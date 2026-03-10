@@ -63,6 +63,7 @@ extract_lai_sites <- function(root_dir, site_info, site_ids = NULL) {
            select(site_id, site_name, lon, lat, everything())})
 }
 
+# For obs.mean and obs.mean list data
 get_obs <- function(obs.mean, site_id, varname) {
   dates <- names(obs.mean)
   sapply(dates, function(dt) {
@@ -89,7 +90,28 @@ get_cov <- function(obs.mean, obs.cov, site_id, varname) {
   })
 }
 
-
+stack_obs <- function(obs.mean, obs.cov, site_ids, varname) {
+  # use only dates present in both mean and var lists
+  dates <- intersect(names(obs.mean), names(obs.cov))
+  year  <- format(as.Date(dates), "%Y")
+  month <- as.integer(format(as.Date(dates), "%m"))
+  
+  mean_list <- vector("list", length(site_ids))
+  var_list  <- vector("list", length(site_ids))
+  
+  for (i in seq_along(site_ids)) {
+    sid <- site_ids[i]
+    m <- get_obs(obs.mean, sid, varname)[dates]
+    v <- get_cov(obs.mean, obs.cov, sid, varname)[dates]  
+    
+    nm <- paste0("site_", i, "_", varname, "_", year, "_", month)
+    names(m) <- nm
+    names(v) <- nm
+    mean_list[[i]] <- m
+    var_list[[i]]  <- v
+  }
+  list(mean = unlist(mean_list, use.names = TRUE), var  = unlist(var_list,  use.names = TRUE))
+}
 
 
 

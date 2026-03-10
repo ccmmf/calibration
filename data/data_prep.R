@@ -21,4 +21,8 @@ load("/projectnb/dietzelab/dongchen/NEON_SDA_Files/obs.cov.Rdata")
 agb_vals <- get_obs(obs.mean, "1000004944", "AbvGrndWood")
 lai_var <- get_cov(obs.mean, obs.cov, site_id = "1000004944", varname = "AbvGrndWood")
 
+# site ids
+site_ids <- as.character(pft$site)
+res <- get_stacked(obs.mean, obs.cov, site_ids, "AbvGrndWood")
+
 
