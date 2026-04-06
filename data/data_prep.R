@@ -13,6 +13,21 @@ lai_harvard <- extract_lai_one_site(root_dir = lai_dir, lon = -72.1875, lat = 42
 # selected site ids
 lai_3 <- extract_lai_sites(root_dir = lai_dir, site_info, site_ids = c(1,3,5))
 
+#or from the xml extracted info site_vals
+library(furrr)
+library(dplyr)
+
+plan(multisession, workers = 3)
+
+lai_all_sites <- future_map_dfr(site_vals, function(site) {
+  lon <- as.numeric(site$lon)
+  lat <- as.numeric(site$lat)
+  sid <- site$id
+  
+  df <- extract_lai_one_site(root_dir = lai_dir, lon = lon, lat = lat)
+  df %>% mutate(site_id = sid, lon = lon, lat = lat)
+})
+
 ###### AGB ######
 load("/projectnb/dietzelab/dongchen/NEON_SDA_Files/obs.mean.Rdata")
 load("/projectnb/dietzelab/dongchen/NEON_SDA_Files/obs.cov.Rdata")

@@ -7,6 +7,8 @@
 #   4. double bounded (a,b): logit
 #   5. simplex-valued: Stan-style simplex transform
 
+library(truncnorm)
+
 get_param_names <- function(dist_list, flatten=TRUE) {
   # `flatten=FALSE` returns vector of multivariate parameter names. 
   # `flatten=TRUE` returns vector of scalar parameter names, which will be at 

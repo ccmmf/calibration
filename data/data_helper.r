@@ -44,6 +44,7 @@ extract_lai_one_site <- function(root_dir, lon, lat) {
 
 
 extract_lai_sites <- function(root_dir, site_info, site_ids = NULL) {
+  # site_info is a list storing site id, lon, and lat
   # If site_ids is NULL, use all sites
   if (is.null(site_ids)) {
     idx <- seq_along(site_info$site_ids)
