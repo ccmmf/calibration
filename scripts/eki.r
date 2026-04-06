@@ -122,14 +122,14 @@ run_eki <- function(y, U, fwd, Sig, n_itr=1L, par_map=NULL, G0=NULL) {
     }
     if (k == n_itr+1) break
     # Transform ensemble members to unconstrained space.
-    U <- par_map$fwd(U)
+    U_unbound <- par_map$fwd(U)
     # EKI with tempered likelihood.
     Sig_scaled <- n_itr * Sig
-    eki_step_list <- run_eki_step(U=U, y=y, G=G, Sig=Sig_scaled)
-    U <- eki_step_list$U
+    eki_step_list <- run_eki_step(U=U_unbound, y=y, G=G, Sig=Sig_scaled)
+    U_updated <- eki_step_list$U
     eki_list[[k]] <- eki_step_list
     # Map parameters back to original space. 
-    U <- par_map$inv(U)
+    U <- par_map$inv(U_updated)
   }
   return(list(U=U, par_map=par_map, eki_list=eki_list, G=G))
 }
