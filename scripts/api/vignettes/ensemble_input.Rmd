@@ -1,0 +1,359 @@
+---
+title: "Representing Ensembles of Model Inputs"
+output: html_document
+---
+
+```{r echo=FALSE, message=FALSE}
+library(dplyr)
+library(assertthat)
+
+base_dir <- "/projectnb/dietzelab/arober/pecan/modules/prob.tools"
+code_dir <- file.path(base_dir, "R")
+fwd_dir <- file.path(code_dir, "forward_model")
+
+source(file.path(code_dir, "utils.r"))
+source(file.path(code_dir, "types.r"))
+source(file.path(code_dir, "batched_array.r"))
+source(file.path(fwd_dir, "broadcast_rules.r"))
+source(file.path(fwd_dir, "model_input.r"))
+source(file.path(fwd_dir, "ensemble_input.r"))
+source(file.path(fwd_dir, "ensemble_input_list.r"))
+source(file.path(fwd_dir, "ensemble_input_table.r"))
+source(file.path(fwd_dir, "ensemble_input_broadcast.r"))
+```
+
+
+We define a model ensemble as a set of runs of a particular model at different
+inputs. The `EnsembleInput` class provides a standardized container to hold
+the set of inputs. This class represents an ordered set of `ModelInput` objects,
+which can be stored using one of three underlying data structures: a list,
+table, or implicitly via a "broadcast rule". This tutorial introduces 
+these representations, and provides various examples of working with 
+`EnsembleInput` objects. See the `ModelInput` tutorial for more detailed
+information on the individual `model_input.Rmd` objects themselves, and
+the `run_model_intro.Rmd` tutorial for information on defining models
+that run at one or more model inputs.
+
+# List Representation
+The simplest data structure used to encode `EnsembleInput` is a list of 
+`ModelInput` objects.
+
+```{r}
+mi1 <- ModelInput(list(a=1, b=list(c="2", d=1:3), e=4))
+mi2 <- ModelInput(list(a=10, b=list(c="20", d=10*(1:3), e=MetadataSlot("some_metadata"))))
+
+ei <- EnsembleInput(list(mi1, mi2))
+summary(ei)
+print(class(ei))
+```
+Notice that the input slots and metadata are not restricted to coincide for
+all model inputs comprising the ensemble [TODO: this is slated to change]. 
+The printed summary displays the union of all input slots across all inputs. 
+The input-by-input input slot and metadata names can also be queried as follows.
+
+```{r}
+# Input slot keys (must be unique)
+input_keys(ei)
+
+# Input slot names (may not be unique)
+input_names(ei)
+```
+
+Each model input is associated with a particular "run" of the model, and 
+assigned a corresponding unique `run_id`. We could have manually specified
+run IDs by adding a names attribute to the list passed into the 
+`EnsembleInput` constructor. Since we didn't do this, default run IDs were
+generated for us.
+
+```{r}
+run_ids(ei)
+```
+
+In addition to uniquely identifying each run, the run IDs define the order
+of the `EnsembleInput` object. We can view the inputs for each run on a 
+slot-by-slot level by converting to a table format.
+
+```{r}
+# Columns default to list columns
+as_ensemble_input_table(ei)
+```
+
+By default, the columns other than `run_id` are list columns, which accommodate
+arbitrary structured objects. We can fetch the `ModelInput` corresponding to a 
+particular `run_id` using `get_run_input()`.
+
+```{r}
+run_input <- get_run_input(ei, "run_1")
+
+summary(run_input)
+```
+
+Trying to extract a non-existent run ID will result in an error.
+
+```{r}
+try(get_run_input(ei, "run_100"))
+```
+
+# Broadcast Representation
+
+The list representation is intuitive and reasonable when one has a pre-defined
+set of model inputs. In other cases, one may need to construct a large
+ensemble of inputs, where certain slot values may be repeated across many
+different runs. In this case, list or table representations require storing
+duplicate information. An `EnsembleInputBroadcast` class 
+provides a more efficient representation. It is defined by specifying 
+a unique set of values in each slot, along with a "broadcast rule" that 
+describes how to construct runs by combining the inputs. 
+
+We walk through a sequence of increasingly complicated examples. 
+
+## Recycling along an axis
+
+To start, 
+consider an example with two slots, one of length 4 and one of length 2.
+We seek to define 4 unique runs by repeating the pattern of the shorter slot
+so that it matches the length of the longer one. The sets of values for slots
+`a` and `b` are given by lists (one element per value). The value set for slot
+`c` is specified via a matrix (one row per element). Slot `d` only defines
+a singleton value, since atomic vectors are interpreted as one row matrices.
+The values in slots `b`, `c`, and `d` will be recycled to match the length of
+slot `a`, which has 4 values.
+
+```{r}
+slot_list <- list(
+  a = list(1, 2, 3, 4),
+  b = list("one", "two"),
+  c = matrix(5:8, nrow=2L),
+  d = 9:11 # Equivalent to list(9:11) or matrix(9:11, nrow=1L)
+)
+
+# NOTE: currently the `EnsembleInputBroadcast` should always be used when 
+# constructing an ensemble input broadcast object. The code will likely 
+# transition to require the same from `EnsembleInputList` and 
+# `EnsembleInputTable` as well.
+ei <- EnsembleInputBroadcast(slot_list, fn_rule=rule_recycle)
+
+# Class of created object
+print(class(ei))
+
+# EnsembleInput summary does not change based on underlying data structure
+summary(ei)
+
+# Underlying data structure (indices of slot values)
+print(ei$mat_rule)
+
+# Visualizing runs (slot tags)
+get_labeled_mat_rule(ei)
+
+# The third run input
+input_slots(get_run_input(ei, "run_3"))
+```
+
+The main object defining the runs for a `EnsembleBroadcastInput` is the 
+`idx_mat` matrix shown above. The `get_labeled_idx_mat()` helper prepends
+the slot names to these indices for improved readability. The print method
+for an `EnsembleInputBroadcast` prints this latter visualization.
+
+```{r}
+print(ei)
+```
+
+The table of actual slot values (rather than values) can also be formed as before.
+Recall that the type of columns other than `run_id` defaults to lists.
+
+```{r}
+as_ensemble_input_table(ei)
+```
+
+As with any
+`EnsembleInput` object, the runs can be queried individually. While
+`EnsembleInputList` always stores the `ModelInput` objects, the broadcast
+representation creates these objects on-demand (i.e., lazily).
+
+
+```{r}
+run_input <- get_run_input(ei, "run_2")
+
+summary(run_input)
+print_tree(run_input)
+```
+`ModelInput`s with a tree structure (depth greater than one) can be accommodated
+in `EnsembleInputBroadcast` by setting the names in the slot list to be the
+note keys. If one wants a multidimensional array to be treated as a single
+value, rather than a collection of values, then make sure to wrap it in a list.
+
+
+```{r}
+slot_list <- list(
+  `a/b/c` = list(1, 2, 3, 4),
+  `a/b/d` = list("one", "two"),
+  `a/e` = 100, # Equivalent to list(100) or matrix(100),
+  `a/f` = list(matrix(5:8, nrow=2L)) # Wrapped in list so treated as single value
+)
+
+ei <- EnsembleInputBroadcast(slot_list, fn_rule=rule_recycle)
+
+print(ei)
+
+cat("\nRun 2:\n")
+print_tree(get_run_input(ei, "run_2"))
+```
+
+The above example also illustrates a case where the values in multiple
+slots are recycled. Unlike base R, an error will be thrown if the length
+of any of the shorter axes does not divide the length of the longest axis
+evenly.
+
+```{r}
+slot_list <- list(
+  `a/b/c` = list(1, 2, 3, 4),
+  `a/b/d` = list("one", "two"),
+  `a/e` = list(100, 200, 300),
+  `a/f` = list(matrix(5:8, nrow=2L))
+)
+
+try(EnsembleInputBroadcast(slot_list, fn_rule=rule_recycle))
+```
+
+## Cartesian Product
+
+Another pre-defined rule allows taking all possible combinations of slot values.
+
+```{r}
+slot_list <- list(
+  a = list(1, 2, 3),
+  b = list("one", "two"),
+  c = 100,
+  d = array(1:24, dim=c(2,3,4)) # Two values, each 3x4 arrays
+)
+
+# Ensemble
+ei <- EnsembleInputBroadcast(slot_list, fn_rule=rule_product)
+print(ei)
+
+# Inspecting a single run
+input_slots(get_run_input(ei, "run_11"))
+```
+
+## Matching across equal-length dimensions
+The match rule simply lines up slot values for slots that have the same length.
+
+```{r}
+slot_list <- list(
+  a = list(1, 2, 3),
+  b = list("four", "five", "six"),
+  c = list(7, 8, 9)
+)
+
+ei <- EnsembleInputBroadcast(slot_list, fn_rule=rule_match)
+print(ei)
+```
+
+## Combining Rules
+The base rules can be combined to produce more complicated combinations.
+In this example, slot `b` is recycled to the length of slot `a`. The Cartesian
+product between the resulting six runs is then taken with slot `c`. This results
+in a total of 12 runs.
+
+
+```{r}
+slot_list <- list(
+  a = list(1, 2, 3, 4, 5, 6),
+  b = list("seven", "eight", "nine"),
+  c = matrix(10:11, nrow=2L) # Equivalent to list(10, 11)
+)
+
+ei <- EnsembleInputBroadcast(slot_list, 
+                             list_rule=list(recycle=c("a", "b"),
+                                            identity="c"))
+print(ei)
+```
+
+
+## Work in Progress: Nested Structures
+
+It certain applications, it may make intuitive sense to organize run inputs
+into a tree-like structure. Consider the below example, where a model is 
+two be run at three spatial locations ("sites"). Each site has its own 
+meteorology data, and an ensemble of three different initial conditions. This 
+would imply 3 runs per site, or 9 in total. Now suppose we want to repeat each
+of those 9 runs with two different (site-independent) parameter settings. This
+would produce 18 runs in total. 
+
+We could easily construct an `EnsembleInputList` for this example via manual
+looping. Constructing an `EnsembleInputBroadcast` would require specifying
+the inputs in the following (slightly unnatural way). Note that we are using
+character strings as a stand-in for the actual inputs for simplicity.
+
+```{r}
+# Define slots
+slot_list <- list(
+  met = list("met_site1", "met_site2", "met_site3"),
+  ic = list("ic_site1_1", "ic_site2_1", "ic_site3_1", 
+            "ic_site1_2", "ic_site2_2", "ic_site3_2",
+            "ic_site1_3", "ic_site2_3", "ic_site3_3"),
+  par = matrix(c("p1", "p2"), nrow=2L) # Equivalent to list("p1", "p2")
+)
+
+
+ei <- EnsembleInputBroadcast(slot_list, 
+                             list_rule=list(recycle=c("met", "ic"),
+                                            identity="par"))
+
+summary(ei)
+get_labeled_mat_rule(ei)
+```
+
+A more intuitive representation of these inputs would be to organize them
+by site.
+
+```{r}
+site_settings <- list(
+  site1 = list(met = list("met_site1"),
+               ic = list("ic_site1_1", "ic_site1_2", "ic_site1_3")),
+  site2 = list(met = list("met_site2"),
+               ic = list("ic_site2_1", "ic_site2_2", "ic_site2_3")),
+  site3 = list(met = list("met_site3"),
+               ic = list("ic_site3_1", "ic_site3_2", "ic_site3_3")),
+  par = list("p1", "p2")
+)
+```
+
+At present, there is no interface that allows the application of the broadcasting
+rules to a nested list structure of this form. One could construct the 
+ensemble somewhat manually by applying broadcasting to the sub-trees and then
+concatenating the resulting runs.
+
+```{r}
+#
+# TODO: this does not yet work
+#
+
+
+broadcast_site <- function(site_name) {
+  x <- site_settings[[site_name]]
+  x$par <- site_settings$par
+  
+  EnsembleInputBroadcast(x, list_rule=list(recycle=c("met", "ic"),
+                                           identity="par"))
+}
+
+site_names <- c("site1", "site2", "site3")
+ei_list <- lapply(site_names, broadcast_site)
+args <- c(ei_list, list(output_class="EnsembleInputBroadcast"))
+ei <- do.call(concatenate_ensemble_inputs, args)
+
+summary(ei)
+as_ensemble_input_table(ei) %>% mutate(across(everything(), as.character))
+```
+
+
+
+
+
+
+
+
+
+
+

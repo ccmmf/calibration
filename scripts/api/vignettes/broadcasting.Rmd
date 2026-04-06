@@ -1,0 +1,145 @@
+---
+title: "broadcasting"
+output: html_document
+---
+
+```{r}
+base_dir <- "/projectnb/dietzelab/arober/pecan/modules/prob.tools"
+code_dir <- file.path(base_dir, "R")
+fwd_dir <- file.path(code_dir, "forward_model")
+
+source(file.path(code_dir, "utils.r"))
+source(file.path(fwd_dir, "broadcast_rules.r"))
+```
+
+In this tutorial we explore a basic system for broadcasting, which is useful
+for quickly constructing ensemble runs with different combinations of model 
+inputs. This functionality is built into the `EnsembleInputBroadcast` class, 
+though this walk through focuses only on the underlying broadcast functions.
+
+
+# Illustrative Examples
+
+To start, consider an example where we want to run a different initial condition
+ensemble at a number of sites. Each site has different initial conditions, and 
+we consider running two ensemble members per site. The total number of model 
+runs in this case is thus six (three sites times two ensemble members per site).
+The two dimensions ("slots") in this example are `site` and `ic`. The below
+code first defines the unique set of values for each slot, consisting of 3
+sites and 6 initial conditions. The function `rule_recycle()` is used to 
+repeat the sequence of three sites twice to fill out a complete `(6,2)` matrix
+of slot combinations.
+
+```{r}
+slots <- list(
+  site = list("s1", "s2", "s3"),
+  ic = list("ic1_1", "ic2_1", "ic3_1", "ic1_2", "ic2_2", "ic3_2")
+)
+
+lens <- vapply(slots, length, integer(1))
+idcs <- rule_recycle(lens)
+idx_names <- visualize_slot_grid(idcs, names(slots))
+
+print(idcs)
+print(idx_names)
+```
+We have also used the function `visualize_slot_grid()` to fill in the indices
+with names to make it easier to read. Note that the names are the slot names
+with indices appended, not the slot values themselves.
+
+Let's now extend this example. Suppose that we want to extend the runs from 
+above so that each run is repeated for multiple (site-independent) parameter
+values. If we consider a parameter ensemble of size two then there will be 
+twelve runs in total (3 sites times 6 initial conditions times 2 parameter sets).
+In this case we can use the `rule_recycle()` function as before on the first 
+two dimensions, then take the cartesian product of the result with the 
+parameter ensemble. We can construct a new broadcast rule that performs both
+of these steps using the `get_composite_rule()` function.
+
+```{r}
+slots <- list(
+  site = list("s1", "s2", "s3"),
+  ic = list("ic1_1", "ic2_1", "ic3_1", "ic1_2", "ic2_2", "ic3_2"),
+  param = list("p1", "p2")
+)
+
+# Create new broadcast rule
+new_rule <- get_composite_rule(groups=list(c(1,2), c(3)), # slot groups: (site, ic), (param)
+                               rules=list(rule_recycle, rule_match))
+
+# Apply rule to slot values
+lens <- vapply(slots, length, integer(1))
+idcs <- new_rule(lens)
+idx_names <- visualize_slot_grid(idcs, names(slots))
+
+print(idcs)
+print(idx_names)
+```
+
+Observe that this repeats all of the same combinations from the first example 
+once per each parameter set.
+
+# Broadcast Rules
+
+As illustrated above, the broadcast rule functions simply take in integer vectors
+corresponding to array dimensions and return a matrix of shape 
+`(n_combinations, n_dims)`. We walk through rule functions that are already
+implemented. For special cases, ad hoc rule functions can easily be constructed.
+
+## Cartesian product
+Constructs every possible combination.
+
+```{r}
+rule_cartesian(c(2,3,1))
+```
+
+## Parallel Match
+This simply lines up the dimensions; the first combination consists of the
+first value in each dimension, and so on. This function requires the lengths
+of every dimension to be equal.
+
+```{r}
+idx <- rule_match(c(2,2,2))
+print(idx)
+
+# Error, non-equal dimension lengths
+idx <- try(rule_match(c(2,3,1)))
+idx
+```
+## Broadcasting
+`rule_braodcast()` actually implements the standard notion of broadcasting, as
+used in packages such as NumPy or rray. Each dimension length in this case must
+be 1 or equal to the maximal dimension length. The unit dimensions are repeated
+to equal the maximal length.
+
+```{r}
+idx <- rule_broadcast(c(1,2))
+print(idx)
+
+idx <- rule_broadcast(c(3,1,3))
+print(idx)
+
+# Invalid
+idx <- try(rule_broadcast(c(3,1,2)))
+idx
+```
+
+## Recycling
+The recycling rule simply repeats the pattern in a shorter dimension until it 
+lines up with the longer dimension. This is similar to the way R cycles values
+but is safer, since it will throw an error if the shorter dimensions don't 
+evenly divide the maximal dimension length.
+
+```{r}
+idx <- rule_recycle(c(2, 4))
+print(idx)
+
+idx <- rule_recycle(c(2, 4, 8))
+print(idx)
+
+# Invalid
+idx <- rule_recycle(c(2, 4, 6))
+idx
+```
+
+

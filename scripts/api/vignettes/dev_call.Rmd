@@ -1,0 +1,217 @@
+---
+title: "Proposed API for Black Box Model Runs"
+output: html_document
+---
+
+```{r, include=FALSE}
+library(dplyr)
+
+base_dir <- "/projectnb/dietzelab/arober/pecan/modules/prob.tools"
+code_dir <- file.path(base_dir, "R")
+fwd_dir <- file.path(code_dir, "forward_model")
+
+source(file.path(code_dir, "utils.r"))
+source(file.path(fwd_dir, "broadcast_rules.r"))
+source(file.path(fwd_dir, "model_input.r"))
+source(file.path(fwd_dir, "ensemble_model_input.r"))
+source(file.path(fwd_dir, "ensemble_input_list.r"))
+source(file.path(fwd_dir, "ensemble_input_table.r"))
+source(file.path(fwd_dir, "ensemble_input_broadcast.r"))
+```
+
+# Goals
+
+1. Develop a unified interface for generated PEcAn "forward models".
+2. No modifications of any existing low-level PEcAn functionality.
+
+The goal is to provide functionality that works something like this.
+```{r, eval=FALSE}
+f <- get_forward_model(...)
+run_algorithm(f, ...)
+```
+
+Here `run_algorithm()` might be from an external package, and doesn't need to
+know anything about PEcAn.
+
+## Motivating examples
+
+### Fixed ensemble run
+
+Consider an ensemble run with the following characteristics:  
+
+* The model is run at 3 sites  
+* Site-specific initial conditions (IC); 2 member (IC) ensemble  
+* Site-invariant parameters; 2 member parameter ensemble
+
+```{r, eval=FALSE}
+list(
+  site  = list("s1", "s2", "s3"),
+  ic    = list("ic1_1", "ic2_1", "ic3_1", "ic1_2", "ic2_2", "ic3_2"),
+  param = list("p1", "p2")
+)
+```
+
+A single ensemble run consists of 12 individual model runs.
+
+```{r, echo=FALSE}
+slots <- list(
+  site  = list("s1", "s2", "s3"),
+  ic    = list("ic1_1", "ic2_1", "ic3_1", "ic1_2", "ic2_2", "ic3_2"),
+  param = list("p1", "p2")
+)
+
+rule <- get_composite_rule(groups = list(c(1,2), 3),
+                           rules = list(rule_recycle, rule_match))
+idx <- rule(vapply(slots, length, integer(1)))
+instantiate_slot_grid(idx, slots) %>% mutate(across(everything(), as.character))
+```
+
+### Ensemble run with free parameters
+
+Consider the same above run template with the following modifications:  
+
+* Want to learn the parameters  
+* Want to learn the initial condition at site 2
+
+The run spec would now look something like this: 
+
+```{r, eval=FALSE}
+list(
+  site  = list("s1", "s2", "s3"),
+  ic    = list("FREE", "ic2_1", "ic3_1", "FREE", "ic2_2", "ic3_2"),
+  param = list("FREE")
+)
+```
+
+If we could generate a forward model `f` of the form
+
+```{r, eval=FALSE}
+f(free_inputs) = observable
+```
+
+the we could utilize `f` is standard MCMC or optimization software, with the
+complicated PEcAn ensemble run mechanisms hidden under the hood.
+
+
+# Benefits
+1. Make PEcAn more modular and extensible
+2. Abstraction: separation of algorithm code and run model code
+3. Easier debugging and unit testing
+4. Interface with external packages
+5. Less boilerplate
+6. Support both PEcAn models and "R models"
+
+# Overview
+1. Formalize `ModelInput`
+2. Formalize `EnsembleInput` 
+3. Define model runner APIs
+4. Define a "forward model generator"
+
+# Formalizing `ModelInput`
+
+## Current PEcAn Approach
+* Single model input effectively defined by `(settings, runtime_inputs)`  
+    - e.g., `runtime_inputs` typically includes parameters and/or initial conditions.  
+* `settings` also stores information beyond model inputs (e.g., parallelization settings)  
+* More specifically, single model input defined by something like `(settings$run, defaults, trait.values, ic)`
+* Questions:  
+    - Is the format for `trait.values` standardized? (e.g., via validators or documentation)
+    - Same for `defaults`?
+
+## A simple `ModelInput` abstraction
+
+* Simply a light container with "input slots"
+* Includes basic validation (e.g, slots must have names)
+* Up to a particular model to validate that the required slots are present
+
+```{r}
+input <- ModelInput(param    = c(a=1, b=2),
+                    ic       = c(ic1=0, ic2=0.5),
+                    settings = list(run = list(a="/file/path")),
+                    metadata = list(input_id = 1L))
+
+print(input)
+```
+
+
+# Formalizing `EnsembleInput`
+
+Define an *ensemble model run* as a set of runs of a fixed model with 
+different inputs.
+
+## Current PEcAn Approach
+* Store list of `settings` objects, one per run `settings` (`MultiSettings`)  
+* `MultiSettings` then fed to functions like `write.ensemble.configs()` and `runModule.run.write.configs()`.  
+* Questions:  
+    - Support for free inputs?  
+    - How are free inputs lined up with information in `MultiSettings`?  
+* Workflow appears to be geared towards fixed and randomized ensemble runs  
+    - Config functions noted above perform sub-sampling (randomization)  
+    - Not aware of an interface for ensemble runs not involving sub-sampling  
+
+## An `EnsembleInput` abstraction
+
+* Simply an ordered collection of `ModelInput` objects, with metadata (e.g., run IDs)  
+* Can be represented in 3 underlying data structures:  
+   1. List of `ModelInputs`s (similar to `MultiSettings`)  
+   2. Table of shape `(n_runs, n_slots)` (one row per run)  
+   3. Set of unique slot values, plus a broadcasting rule  
+   
+   
+### Broadcast representation
+   
+```{r}
+# Define unique values
+slots <- list(
+  site = list("s1", "s2", "s3"),
+  ic = list("ic1_1", "ic2_1", "ic3_1", "ic1_2", "ic2_2", "ic3_2"),
+  param = list("p1", "p2")
+)
+
+# Create broadcast rule
+rule <- get_composite_rule(groups=list(c(1,2), c(3)), # slot groups: (site, ic), (param)
+                           rules=list(rule_recycle, rule_match))
+
+# Instantiate ensemble input object
+ens_input <- EnsembleInput(rule, slots)
+
+summary(ens_input)
+```
+
+
+### Table representation
+
+The broadcast rule can be realized at any time to obtain the concrete run 
+table. However, this will typically not be necessary as run inputs can be 
+generated one at a time when needed.
+
+
+```{r}
+tbl <- as_ensemble_input_table(ens_input)
+summary(tbl)
+
+print(tbl %>% mutate(across(everything(), as.character)))
+```
+
+
+# Next steps
+
+## Complete forward model work
+
+1. Define APIs for running model (in progress)  
+2. Define forward model generators (basic idea sketched out)  
+
+## Complete standalone tools for calibration  
+
+1. Probability distributions (base classes complete; R6)    
+2. Modular MCMC package (core functionality almost complete)  
+3. Ensemble Kalman Inversion (need to port over from personal code)  
+4. Sensitivity analysis (Meng)
+
+
+
+
+
+
+
+
