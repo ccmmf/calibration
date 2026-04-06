@@ -85,3 +85,12 @@ summarise_constraints_time_by_site <- function(df_long, period = c("month", "yea
   
   out
 }
+
+
+add_vec_to_mat_rows <- function(v, M) {
+  # `v`: numeric vector of length `n`. 
+  # `M`: matrix with `n` columns. 
+  
+  assert_that(length(v) == ncol(M))
+  M + rep(v, each=nrow(M))
+}

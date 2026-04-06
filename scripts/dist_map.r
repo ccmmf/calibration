@@ -6,7 +6,7 @@
 #   3. upper bounded only (-inf, b): log distance to upper bound
 #   4. double bounded (a,b): logit
 #   5. simplex-valued: Stan-style simplex transform
-
+library(gtools)
 library(truncnorm)
 
 get_param_names <- function(dist_list, flatten=TRUE) {
