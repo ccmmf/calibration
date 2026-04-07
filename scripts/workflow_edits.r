@@ -17,7 +17,28 @@
 #'  files to disk.
 
 # added ic processing --- 
-prep_pecan_model_run <- function(settings, model_input, run_id=NULL, 
+# Return the filtered defaults (settings$pfts) for the current site by reading
+# the pft.site CSV input. 
+get_site_defaults <- function(settings) {
+  pft_path <- settings$run$inputs$pft.site$path
+  if (is.null(pft_path) || !file.exists(pft_path)) return(settings$pfts)
+
+  pft_tbl   <- read.csv(pft_path)
+  site_id   <- as.character(settings$run$site$id)
+  site_pfts <- as.character(pft_tbl$pft[as.character(pft_tbl$site) == site_id])
+
+  if (length(site_pfts) == 0) return(settings$pfts)
+
+  defined_pft_names <- sapply(settings$pfts, function(p) p$name)
+  valid_idx <- which(defined_pft_names %in% site_pfts)
+
+  if (length(valid_idx) == 0) return(settings$pfts)
+
+  settings$pfts[valid_idx]
+}
+
+
+prep_pecan_model_run <- function(settings, model_input, run_id=NULL,
                                  overwrite_runs_file=FALSE, mat_rule=NULL) {
   
   .check_pecan_model_input_type(model_input)
@@ -41,7 +62,7 @@ prep_pecan_model_run <- function(settings, model_input, run_id=NULL,
   # config_args <- list(settings=settings, defaults=settings$pfts, run.id=run_id)
   # config_args <- c(config_args, config_args(model_input))
   
-  config_in <- list(settings=settings, defaults=settings$pfts, run.id=run_id)
+  config_in <- list(settings=settings, defaults=get_site_defaults(settings), run.id=run_id)
   config_in <- c(config_in, config_args(model_input))
   
   if("trait.values" %in% names(config_in)) {
