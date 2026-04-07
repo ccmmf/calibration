@@ -150,7 +150,7 @@ extract_year(abg_vec, 2012)
 
 # source("/projectnb/dietzelab/menglai/pecan_calibration/tests/mpj/scripts/extract_xml.r")
 # settings_path <- "/projectnb/dietzelab/dongchen/anchorSites/NA_runs/SDA_8k_site/shashank/pecan.xml"
-settings_path <- "/projectnb/dietzelab/dongchen/NEON_SDA_Files/pecan.xml"
+settings_path <- paste0(base_dir,"/reference/pecan.xml")
 # settings_path <- "/projectnb/dietzelab/menglai/pecan_calibration/templates/pecan.xml"
 multisettings <- PEcAn.settings::read.settings(settings_path)
 settings_samp <- multisettings[[1]]
@@ -165,7 +165,7 @@ settings_list <- list(
   
   host = list(name="localhost"),
   
-  pft = settings_samp$pfts,
+  pfts = settings_samp$pfts,
   
   model = settings_samp$model,
   
