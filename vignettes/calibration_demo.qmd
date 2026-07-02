@@ -1,0 +1,262 @@
+---
+title: "Calibrating model parameters with the calibration package"
+author:
+  - "Akash BV"
+format:
+  html: default
+  pdf: default
+toc: true
+number-sections: true
+fig-width: 9
+fig-height: 6
+fig-dpi: 200
+---
+
+# Introduction
+
+This notebook walks you through the `calibration` package: what it does, how it
+is put together, and how to run it. By the end you will have run a small example
+yourself and seen how the same steps drive a real SIPNET soil carbon calibration.
+
+## What the package does
+
+Calibration means finding the parameter values that make a process model agree
+with field data, and saying how confident we are in those values. This package
+does that with Ensemble Kalman Inversion (EKI): it runs an ensemble of parameter
+sets through the model and nudges them toward the values that fit the
+observations.
+
+Two things to know up front:
+
+- It is not tied to one model, site, or variable. The observations, the sites,
+  the parameters, and the model all come in through arguments, so the same code
+  calibrates soil carbon at one site or fluxes at many.
+- It is set up so a new method can be added later. Right now the method is EKI;
+  the entry point `calibrate()` dispatches to it, and other methods can slot in
+  the same way.
+
+## What this notebook does
+
+1. Explains the four pieces you provide to a calibration.
+2. Runs a small example that finishes in a few seconds, so you can see the loop
+   work end to end.
+3. Shows the same steps on the real SIPNET soil carbon run at Salinas.
+
+## Prerequisites
+
+Install the package from its source directory:
+
+```{r install, eval = FALSE}
+# from the parent of the calibration/ directory
+install.packages("calibration", repos = NULL, type = "source")
+# or, during development
+pkgload::load_all("calibration")
+```
+
+The SIPNET section also needs PEcAn and the prepared forward run, which live on
+the cluster. The small example needs only the package itself.
+
+```{r libraries, message = FALSE}
+library(calibration)
+```
+
+# The four pieces of a calibration
+
+Every calibration is one call:
+
+```{r contract, eval = FALSE}
+result <- calibrate(obs, prior, forward, control)
+```
+
+and you provide four things:
+
+- **`obs`** -- what you are fitting to. A named vector `y` of observed values,
+  their covariance `Sigma` (how much you trust each one), and a `meta` table that
+  keeps track of what each value is.
+- **`prior`** -- your starting belief about the parameters, before seeing the
+  data. One record per parameter with its distribution and its allowed range.
+- **`forward`** -- a function that runs the model at a set of parameter values and
+  returns what the model predicts at each observation. This is the only piece
+  that knows about the model.
+- **`control`** -- which method to use and its settings (ensemble size,
+  iterations, seed), from `calibration_control()`.
+
+`calibrate()` returns the posterior: the updated ensemble of parameters (`U`),
+the starting ensemble (`U0`), and the per iteration model predictions you can
+plot and score.
+
+# A small example you can run now
+
+Here the model is the identity: the prediction equals the parameter, so we know
+the true answer and can check the calibration finds it. The prior starts near
+zero and the observations are (2, -1), measured tightly, so the data should lead.
+
+```{r toy-setup}
+# prior: two parameters, each a wide normal centred at zero
+prior <- prior_from_specs(list(
+  theta1 = list(distn = "norm", parama = 0, paramb = 5),
+  theta2 = list(distn = "norm", parama = 0, paramb = 5)
+))
+
+# observations: two values, measured tightly (small variance)
+y <- c(obs1 = 2, obs2 = -1)
+Sigma <- diag(c(0.05, 0.05))
+dimnames(Sigma) <- list(names(y), names(y))
+obs <- list(y = y, Sigma = Sigma)
+
+# forward model: prediction equals the parameter
+forward <- function(U, iteration) {
+  G <- U
+  colnames(G) <- names(y)
+  G
+}
+```
+
+Run it:
+
+```{r toy-run}
+result <- calibrate(
+  obs, prior, forward,
+  control = calibration_control(n_particles = 300, n_iterations = 3, seed = 1)
+)
+
+rbind(
+  prior     = round(colMeans(result$U0), 2),
+  posterior = round(colMeans(result$U), 2),
+  target    = c(2, -1)
+)
+```
+
+The posterior mean moves from near zero to the target. That is the whole loop:
+start from the prior, run the model, pull toward the data, repeat.
+
+You can see the shift per parameter:
+
+```{r toy-densities, eval = FALSE}
+plot_param_densities(
+  list(prior = result$U0, posterior = result$U),
+  pdf_file = "toy_param_densities.pdf"
+)
+```
+
+# Calibrating SIPNET soil carbon
+
+The same four pieces, now with real data and SIPNET as the model. The values here
+are the Salinas organic cropping systems soil carbon run; the surrounding code is
+the general package.
+
+## The observations
+
+`build_obs()` reads the curated cal/val data and builds the target for one
+variable at the sites you name. Each site, treatment, and year becomes one slot;
+the value is the replicate mean and the variance comes from the replicate spread.
+
+```{r sipnet-obs, eval = FALSE}
+obs <- build_obs(
+  cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal_val",
+  target_var  = "SOC_stock_Mg_ha",
+  sites       = "salinas_socs"
+)
+```
+
+## The prior
+
+Priors come from three sources, combined into one list:
+
+- traits with a meta-analysis posterior are read straight from it,
+- traits without one get a plausible range written down explicitly,
+- a calibrated initial state is anchored to its first observation.
+
+```{r sipnet-prior, eval = FALSE}
+prior <- c(
+  prior_from_postdistns("som_respiration_rate", soil_pft$posterior.files),
+  prior_from_specs(list(
+    soil_respiration_Q10 = list(distn = "unif", parama = 1.4,  paramb = 3.0),
+    turn_over_time       = list(distn = "unif", parama = 0.13, paramb = 1.2)
+  )),
+  state_prior_from_obs(obs$meta, prefix = "soilInit.",
+                       from_unit = "Mg/ha", to_unit = "kg/m2", anchor_year = 2)
+)
+```
+
+## The forward model
+
+`make_forward_sipnet()` wraps a prepared PEcAn multisite run as the `forward`
+function. It runs the ensemble through SIPNET, using the settings and the SGE
+launcher exactly as prepared, and harvests the variable back to the observation
+units.
+
+```{r sipnet-forward, eval = FALSE}
+settings <- PEcAn.settings::read.settings(
+  "/projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/settings.xml"
+)
+
+forward <- make_forward_sipnet(
+  settings = settings, obs = obs, n_particles = 50,
+  harvest_var = "TotSoilCarb", from_unit = "kg/m2", to_unit = "Mg/ha",
+  soil_pft = "soil", state_prefix = "soilInit.",
+  state_pool = "soil_organic_carbon_content"
+)
+```
+
+## Run it
+
+This launches the SIPNET ensemble on the cluster, so it is not run here. In
+practice you run it through the numbered scripts (`scripts/010` to `040`) against
+a config; see `examples/salinas_soc/`.
+
+```{r sipnet-run, eval = FALSE}
+result <- calibrate(
+  obs, prior, forward,
+  control = calibration_control(n_particles = 50, n_iterations = 3, seed = 556688)
+)
+```
+
+## Look at the results
+
+The result carries the per iteration model predictions and the prior and
+posterior parameter ensembles, which the plotting and scoring functions consume.
+
+```{r sipnet-results, eval = FALSE}
+G_list <- c(lapply(result$eki$eki_list, function(s) s$G), list(result$eki$G))
+names(G_list) <- paste("iteration", seq_along(G_list))
+
+# fit of each iteration against the data
+score_table(G_list, result$obs$meta)
+
+# ensemble against the observations, one page per iteration
+save_iterations_pdf(G_list, result$obs$meta, "ensembles_vs_truth.pdf",
+                    ylab = "SOC stock (Mg C ha-1)")
+
+# how each parameter moved from prior to posterior
+plot_param_densities(list(prior = result$U0, posterior = result$U),
+                     "param_prior_posterior.pdf")
+```
+
+The score table reports RMSE, bias, coverage, interval width, and CRPS per
+iteration. The two figures show the ensemble tracking the observations and the
+prior to posterior shift in each parameter.
+
+# Using it on your own problem
+
+To calibrate something else, you change the four pieces, not the estimator:
+
+- point `build_obs()` at a different `target_var` and `sites`,
+- build a prior for the parameters you want,
+- give `make_forward_sipnet()` (or your own `forward`) the variable and units,
+- keep `calibrate()` as is.
+
+The estimator only ever sees `y`, `Sigma`, and the model predictions, so it does
+not care what the variable, the site, or the model are.
+
+# Conclusion
+
+You have run a calibration end to end on a toy problem and seen the same steps
+set up the real SIPNET soil carbon run. The pattern is always the same: describe
+the observations, state the prior, wrap the model, and call `calibrate()`.
+
+# Session info
+
+```{r session-info}
+sessionInfo()
+```
