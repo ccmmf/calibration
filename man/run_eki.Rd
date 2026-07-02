@@ -39,5 +39,5 @@ observation on the wrong model output and yield a plausible but wrong
 posterior with no error.
 }
 \author{
-Akash BV
+Meng Lai and Akash BV
 }

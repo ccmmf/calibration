@@ -25,6 +25,6 @@ compute_enkf_update(). Assumes the forward model has already run at U with
 outputs G; parameter transforms are handled by run_eki(), not here.
 }
 \author{
-Akash BV
+Meng Lai and Akash BV
 }
 \keyword{internal}

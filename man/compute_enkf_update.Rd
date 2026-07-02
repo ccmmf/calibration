@@ -28,6 +28,6 @@ covariances via a Cholesky solve for stability. No sample moments are
 estimated here; this only applies the update equation.
 }
 \author{
-Akash BV
+Meng Lai and Akash BV
 }
 \keyword{internal}

@@ -19,5 +19,5 @@ columns named "_<param>_<k>_", and `inv` maps back and attaches a per row
 log-Jacobian-determinant attribute "log_det_J".
 }
 \author{
-Akash BV
+Meng Lai and Akash BV
 }

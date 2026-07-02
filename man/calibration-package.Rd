@@ -11,5 +11,10 @@ Method-agnostic ensemble calibration of process-based ecosystem model parameters
 \author{
 \strong{Maintainer}: Akash BV \email{akash@davidlebauer.com}
 
+Authors:
+\itemize{
+  \item Meng Lai \email{menglai@bu.edu}
+}
+
 }
 \keyword{internal}

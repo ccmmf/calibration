@@ -20,6 +20,6 @@ into the unconstrained space the Kalman update assumes, and runs the tempered
 inversion run_eki().
 }
 \author{
-Akash BV
+Meng Lai and Akash BV
 }
 \keyword{internal}
