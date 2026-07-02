@@ -91,6 +91,7 @@ prep_pecan_model_run <- function(settings, model_input, run_id=NULL,
         
         ic_vec <- trait_values[ic_idx]
         names(ic_vec) <- sub(paste0("^", prefix), "", names(ic_vec))
+        config_in[["IC"]] <- as.list(ic_vec)
       }
       
       # keep only true traits in trait.values (remove ALL site_* entries)
@@ -101,7 +102,7 @@ prep_pecan_model_run <- function(settings, model_input, run_id=NULL,
       if(is.atomic(trait_only)) {
         config_in[["trait.values"]] <- list(pft = trait_only)
       }
-      config_in[["IC"]] <- as.list(ic_vec)
+      
     }
   }
   do.call(model_write_config, args=config_in)

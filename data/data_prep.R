@@ -39,5 +39,3 @@ lai_var <- get_cov(obs.mean, obs.cov, site_id = "1000004944", varname = "AbvGrnd
 # site ids
 site_ids <- as.character(pft$site)
 res <- get_stacked(obs.mean, obs.cov, site_ids, "AbvGrndWood")
-
-

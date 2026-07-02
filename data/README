@@ -7,3 +7,33 @@ contain site info like names: "Harvard Forest EMS Tower/HFR1 (US-Ha1)",
 "Bartlett Experimental Forest (US-Bar)". (these are the two test sites we use)
                 
 /projectnb/dietzelab/cwebb16/SDA/IC_prep_guide.md
+
+
+most recent data for AGB from Dongchen >10yrs:
+/projectnb/dietzelab/dongchen/anchorSites/NA_runs/SDA_8k_site/observation/Rdata_with_attributes" (obs.mean and obs.cov Rdata file)
+unit: Mg/ha
+nc file unit: kg/m^2  (Mg/ha x 0.1)
+plantWoodInit; // g C * m^-2
+
+site id matching file:
+/projectnb/dietzelab/menglai/pecan_calibration/tests/nee/id_mapping-2.csv
+/projectnb/dietzelab/guYANG/Validation/validation/matched_within_1km.csv
+
+NEE data from Yang: /projectnb/dietzelab/guYANG/Gap_fill/results/ens_ec_3h.csv
+units: 
+# (sipnet) x_kgC_m2_s <- x_umolCO2_m2_s * 12e-9
+# x_umolCO2_m2_s <- x_kgC_m2_s * (1e9 / 12)
+
+phenology:
+NEON:/projectnb/dietzelab/dongchen/NEON_SDA_Files/leaf_phenology.csv
+8K sites: /projectnb/dietzelab/dongchen/anchorSites/NA_runs/SDA_8k_site/leaf_phenology.csv
+
+pecan units: https://github.com/PecanProject/pecan/blob/develop/base/utils/data/standard_vars.csv
+
+AbvGrndWood kg C m-2
+LAI m2 m-2
+NEE kg C m-2 s-1
+
+
+
+
