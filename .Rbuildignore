@@ -1,0 +1,8 @@
+^scripts$
+^config\.yml$
+^cache$
+^figures$
+^runs$
+^\.git$
+^examples$
+^vignettes$

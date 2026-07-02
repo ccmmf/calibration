@@ -1,0 +1,38 @@
+Package: calibration
+Title: Ensemble Parameter Calibration for Process-Based Ecosystem Models
+Version: 0.1.0
+Authors@R: c(
+    person("Meng", "Lai", email = "menglai@bu.edu", role = "aut"),
+    person("Akash", "BV", email = "akash@davidlebauer.com", role = c("aut", "cre"))
+)
+Description: Method-agnostic ensemble calibration of process-based ecosystem
+    model parameters against field observations. A generic driver dispatches to a
+    calibration method (Ensemble Kalman Inversion first); observation targets and
+    priors are built from curated data and PEcAn trait priors, and a forward-model
+    adapter runs the ensemble through a PEcAn-configured model. Reuses PEcAn for
+    the model run, unit conversion, and trait priors, and is not tied to any one
+    model, site, or variable.
+License: BSD_3_clause + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.1.0)
+Imports:
+    PEcAn.logger,
+    PEcAn.priors,
+    PEcAn.utils,
+    PEcAn.workflow,
+    PEcAn.data.land,
+    PEcAn.SIPNET,
+    dplyr,
+    tidyr,
+    tibble,
+    readr,
+    matrixStats,
+    ggplot2,
+    stats,
+    grDevices
+Suggests:
+    testthat (>= 3.0.0),
+    PEcAn.settings
+RoxygenNote: 7.3.3
+Config/testthat/edition: 3
