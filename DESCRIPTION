@@ -1,6 +1,8 @@
 Package: calibration
 Title: Ensemble Parameter Calibration for Process-Based Ecosystem Models
 Version: 0.1.0
+Author: Meng Lai [aut], Akash BV [aut, cre]
+Maintainer: Akash BV <akash@davidlebauer.com>
 Authors@R: c(person("Meng", "Lai", email = "menglai@bu.edu", role = "aut"), person("Akash", "BV", email = "akash@davidlebauer.com", role = c("aut", "cre")))
 Description: Method-agnostic ensemble calibration of process-based ecosystem
     model parameters against field observations. A generic driver dispatches to a
