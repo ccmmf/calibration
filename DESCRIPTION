@@ -4,7 +4,7 @@ Version: 0.1.0
 Authors@R: c(
     person("Meng", "Lai", email = "menglai@bu.edu", role = "aut"),
     person("Akash", "BV", email = "akash@davidlebauer.com", role = c("aut", "cre"))
-)
+    )
 Description: Method-agnostic ensemble calibration of process-based ecosystem
     model parameters against field observations. A generic driver dispatches to a
     calibration method (Ensemble Kalman Inversion first); observation targets and
