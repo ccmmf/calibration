@@ -46,9 +46,3 @@ settings (qsub, sge_array_launcher.sh, Njobmax, qstat), used exactly as written.
   the measured 0-30 cm stock. meta carries the depth window.
 - **treatments as sites:** each treatment is one site in the multisite run, so
   `soilInit.<system>` maps to that system's site id in the settings.
-
-## run record
-
-fill in after an executed run: date, operator, sipnet revision, host, n_particles,
-n_iterations, seed, and any issues. the estimator itself is unit tested
-(`tests/testthat/`); the full sipnet run is validated on the cluster.
