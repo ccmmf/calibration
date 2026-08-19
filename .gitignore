@@ -13,6 +13,8 @@
 !/runs/*/*.yml
 !/runs/*/*.yaml
 !/runs/*/*.csv
+!/runs/*/*.xml
+!/runs/*/*.json
 !/runs/*/README.md
 
 # r session files
