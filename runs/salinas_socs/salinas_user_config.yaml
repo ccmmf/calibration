@@ -1,4 +1,4 @@
-run_dir: "/projectnb2/dietzelab/ccmmf/usr/adey2/runs/salinas-socs"
+run_dir: "salinas-socs"
 
 start_date: "2003-01-01"
 end_date:   "2011-12-31"

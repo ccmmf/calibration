@@ -5,7 +5,7 @@
 # run_dir and data_dir are deliberately NOT the ones used by examples/us_twt:
 # 02_ic_build.R caches by site id only, not by date, so reusing them would
 # silently return initial conditions built for a 2016/2017 start.
-run_dir: "/projectnb2/dietzelab/ccmmf/usr/adey2/runs/us-twt-2010"
+run_dir: "us-twt-2010"
 
 start_date: "2010-01-01"
 end_date:   "2016-12-31"

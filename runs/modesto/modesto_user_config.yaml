@@ -2,7 +2,7 @@
 # cal/val site. Reconstructed from the modesto-ncycle run dir on SCC, which is the
 # variant with NITROGEN_CYCLE = 1 (organization#255; the earlier modesto-nichols run
 # had it off and produced N2O flat at zero).
-run_dir: "/projectnb2/dietzelab/ccmmf/usr/adey2/runs/modesto-ncycle"
+run_dir: "modesto-ncycle"
 
 start_date: "2018-01-01"
 end_date:   "2019-12-31"

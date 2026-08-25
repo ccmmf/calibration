@@ -1,4 +1,4 @@
-run_dir: "/projectnb2/dietzelab/ccmmf/usr/adey2/runs/russell-ranch-1992"
+run_dir: "russell-ranch-1992"
 
 start_date: "1992-01-01"
 end_date:   "2014-12-31"

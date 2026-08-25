@@ -1,4 +1,4 @@
-run_dir: "/projectnb2/dietzelab/ccmmf/usr/adey2/runs/us-twt"
+run_dir: "us-twt"
 
 start_date: "2017-01-01"
 end_date:   "2023-12-31"
