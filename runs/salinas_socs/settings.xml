@@ -10,14 +10,9 @@
  <rundir>output/run</rundir>
  <pfts>
   <pft>
-   <name>temperate.deciduous</name>
-   <posterior.files>pfts/temperate.deciduous/post.distns.Rdata</posterior.files>
-   <outdir>output/pfts/temperate.deciduous</outdir>
-  </pft>
-  <pft>
-   <name>grass</name>
-   <posterior.files>pfts/grass/post.distns.Rdata</posterior.files>
-   <outdir>output/pfts/grass</outdir>
+   <name>annual_crop</name>
+   <posterior.files>pfts/annual_crop/post.distns.Rdata</posterior.files>
+   <outdir>output/pfts/annual_crop</outdir>
   </pft>
  </pfts>
  <ensemble>
