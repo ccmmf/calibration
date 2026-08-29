@@ -1,1144 +1,3495 @@
 {
-  "pecan_events_version": "0.1.1",
-  "site_id": "US-Twt",
-  "provenance": {
-    "parcel_id": 590073,
-    "crop": "R1",
-    "member": "ens_001",
-    "generator": "adey2:step3_delta_assemble",
-    "note": "single-member; 2017 synthesized; events filtered to run window"
+ "pecan_events_version": "0.1.1",
+ "site_id": "US-Twt",
+ "provenance": {
+  "parcel_id": 590073,
+  "crop": "R1",
+  "generator": "merge of the 2010-2016 literature build and the 2017-2023 monitoring build",
+  "note": "One continuous 2010-2023 series. 2010-2016 management is derived from Knox et al. 2016 with flood and drain dates from the AmeriFlux WTD series; 2017-2023 comes from the statewide monitoring product, which does not cover this parcel before 2017. Tillage for 2017-2023 is carried forward from the Knox pattern because the product records none. Per-event source and provenance_class record which applies to each event."
+ },
+ "events": [
+  {
+   "event_type": "irrigation",
+   "date": "2010-01-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Carry-in of the winter flood established before the run window; held at 70 mm every 7 d until the WTD-derived drain."
   },
-  "events": [
-    {
-      "event_type": "planting",
-      "date": "2017-05-20",
-      "source": "synthesized:median_doy",
-      "crop_code": "R1",
-      "crop_display": "R1",
-      "leaf_c_kg_m2": 0.02618692,
-      "prior_filled": "date<-synthesized:2017_excluded_year"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2017-07-05",
-      "source": "synthesized:median_doy",
-      "nh4_n_kg_m2": 0.00572063,
-      "no3_n_kg_m2": 0.00572063,
-      "org_n_kg_m2": 0.00310691,
-      "prior_filled": "date<-synthesized:2017_excluded_year"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2017-07-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2017-08-17",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2017-09-09",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2017-10-09",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2017-11-14",
-      "source": "synthesized:median_doy",
-      "crop_display": "R1",
-      "frac_above_removed_0to1": 0.8,
-      "prior_filled": "date<-synthesized:2017_excluded_year"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2018-02-02",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0,
-      "no3_n_kg_m2": 0,
-      "org_n_kg_m2": 0.01864148
-    },
-    {
-      "event_type": "planting",
-      "date": "2018-05-23",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "R1",
-      "crop_display": "R1",
-      "leaf_c_kg_m2": 0.02478044
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-05-30",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.7997,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-06-07",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.2761,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-06-14",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.6142,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-06-22",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.7394,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-06-29",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.5725,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-07-06",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.7156,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-07-13",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.6476,
-      "method": "flood"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2018-07-15",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00649159,
-      "no3_n_kg_m2": 0.00649159,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-07-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.0214,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-07-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.6319,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-08-04",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 75.2596,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-08-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.4969,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-08-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.9684,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-08-29",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.6796,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-09-07",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.4078,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-09-18",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.7569,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-09-30",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.1332,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-10-15",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.2611,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-11-01",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.6284,
-      "method": "flood"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2018-11-15",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "R1",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2018-11-21",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.5282,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-04-07",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.744,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-04-17",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.395,
-      "method": "flood"
-    },
-    {
-      "event_type": "planting",
-      "date": "2019-04-24",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "R1",
-      "crop_display": "R1",
-      "leaf_c_kg_m2": 0.02443199
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-04-26",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 74.1261,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-05-04",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.373,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-05-13",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.7986,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-05-28",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.9608,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-06-05",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 74.9693,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-06-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.3684,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-06-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.3396,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-06-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.7662,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-07-05",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 74.015,
-      "method": "flood"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2019-07-07",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00704283,
-      "no3_n_kg_m2": 0.00704283,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-07-13",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 74.7882,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-07-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.9112,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-07-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.3846,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-08-03",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.6065,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-08-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.1568,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-08-19",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.3104,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-08-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.0404,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-09-05",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.147,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-09-15",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.4355,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-09-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.3727,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-10-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.6321,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-10-26",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.9053,
-      "method": "flood"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2019-10-27",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "R1",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2019-11-10",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.806,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-01-26",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.4594,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-02-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.4314,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-02-24",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.2111,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-03-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.1984,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-03-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.0369,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-04-13",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.7213,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-04-22",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.0469,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-04-30",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.6486,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-05-08",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.3808,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-05-17",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.6573,
-      "method": "flood"
-    },
-    {
-      "event_type": "planting",
-      "date": "2020-05-19",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "R1",
-      "crop_display": "R1",
-      "leaf_c_kg_m2": 0.02455947
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-05-25",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.7809,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-06-02",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.5187,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-06-09",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.4658,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-06-17",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.3862,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-06-24",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.243,
-      "method": "flood"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2020-06-29",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00625163,
-      "no3_n_kg_m2": 0.00625163,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-07-01",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.8595,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-07-08",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.6418,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-07-15",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.9668,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-07-23",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.5631,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-07-30",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.7632,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-08-07",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.8226,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-08-14",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.2928,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-08-21",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.4078,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-08-29",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.5837,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-09-07",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.1525,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-09-18",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.8669,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-09-30",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.15,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-10-16",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.7271,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-10-31",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.2225,
-      "method": "flood"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2020-11-13",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "R1",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-11-23",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.2363,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2020-12-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.0158,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-01-18",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.6257,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-02-23",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.4421,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-03-08",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.2578,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-03-24",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.2421,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-04-02",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.2136,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-04-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.9601,
-      "method": "flood"
-    },
-    {
-      "event_type": "planting",
-      "date": "2021-04-19",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "R1",
-      "crop_display": "R1",
-      "leaf_c_kg_m2": 0.02333066
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-04-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.2792,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-04-29",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.6252,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-05-06",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.5813,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-05-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.0749,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-05-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.7709,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-05-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.5229,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-06-03",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.9647,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-06-10",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.9035,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-06-17",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.5423,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-06-24",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.8923,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-07-01",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.0563,
-      "method": "flood"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2021-07-05",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00765569,
-      "no3_n_kg_m2": 0.00765569,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-07-08",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.5666,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-07-15",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.2098,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-07-22",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.1076,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-07-29",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.9869,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-08-05",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.4307,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-08-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.6285,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-08-20",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.5248,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-08-28",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 65.6551,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-09-06",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.7828,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-09-15",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.2249,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-09-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.3977,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-10-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.7402,
-      "method": "flood"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2021-11-14",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "R1",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-12-06",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.6931,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-02-02",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.6475,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-02-16",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.2488,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-03-02",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.7824,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-03-13",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.2365,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-03-25",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.8172,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-04-06",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.9165,
-      "method": "flood"
-    },
-    {
-      "event_type": "planting",
-      "date": "2022-04-08",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "G2",
-      "crop_display": "G2",
-      "leaf_c_kg_m2": 0.01151624
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-04-08",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-04-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2022-05-02",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00574111,
-      "no3_n_kg_m2": 0.00574111,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-07-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-09-25",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 157.4418,
-      "method": "canopy"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2022-10-25",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "G2",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2023-05-27",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "R1",
-      "crop_display": "R1",
-      "leaf_c_kg_m2": 0.03383203
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-06-02",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.8159,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-06-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.7622,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-06-19",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 72.0665,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-06-27",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.742,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-07-04",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.4517,
-      "method": "flood"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2023-07-05",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00688203,
-      "no3_n_kg_m2": 0.00688203,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-07-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 71.7926,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-07-19",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.5127,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-07-26",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.093,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-08-03",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.6366,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-08-11",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 73.1068,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-08-18",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.1367,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-08-26",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 67.0375,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-09-04",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.1861,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-09-14",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 68.5631,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-09-26",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.78,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-10-12",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 70.1513,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-10-29",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 69.3803,
-      "method": "flood"
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-11-17",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.1297,
-      "method": "flood"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2023-11-26",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "R1",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2023-12-13",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 66.5396,
-      "method": "flood"
-    }
-  ]
+  {
+   "event_type": "irrigation",
+   "date": "2010-01-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-01-01; ends 2010-02-01, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-01-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-01-01; ends 2010-02-01, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-01-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-01-01; ends 2010-02-01, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-01-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-01-01; ends 2010-02-01, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2010-03-26",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2010-04-09",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2010-04-16",
+   "nh4_n_kg_m2": 0.00123294,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 100.0,
+   "reported_grade": "11-52-0",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0003",
+   "provenance_note": "100.0 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "planting",
+   "date": "2010-04-16",
+   "crop_code": "R1",
+   "crop_display": "rice (M-206)",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-planting-0006"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2010-06-05",
+   "nh4_n_kg_m2": 0.00504383,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 150.0,
+   "reported_grade": "30-0-20",
+   "provenance_class": "derived",
+   "source": "calval:managements/delta-fertilization-0004",
+   "provenance_note": "source reports a window 2010-06-05..2010-06-09; earliest date used; 150.0 lb/ac of 30-0-20 -> 0.00504383 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-06-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 60 d after planting, within the 45-60 d Knox reports. Standing water 103 d; Knox reports 64-112 d. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-06-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-06-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-07-06",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-07-13",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-07-20",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-07-27",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-08-03",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-08-10",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-08-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-08-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-08-31",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-09-07",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-09-14",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-09-21",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2010-06-15; ends 2010-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2010-10-28",
+   "crop_display": "rice (M-206)",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "derived",
+   "source": "calval:managements/delta-harvest-0004",
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed.",
+   "frac_above_to_litter_0to1": 0.5
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-11-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 114 d, within the 65-135 d Knox reports. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-11-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-12-03",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-12-10",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-12-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-12-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-12-31",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-01-07",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-01-14",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-01-21",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-01-28",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-02-04",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-02-11",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-02-18",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-02-25",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-03-04",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-03-11",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2010-11-19; ends 2011-03-13, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2011-04-01",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2011-04-15",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-04-22",
+   "nh4_n_kg_m2": 0.00123294,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 100.0,
+   "reported_grade": "11-52-0",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0005",
+   "provenance_note": "100.0 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-04-22",
+   "crop_code": "R1",
+   "crop_display": "rice (M-104)",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-planting-0007"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-06-14",
+   "nh4_n_kg_m2": 0.0067251,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 200.0,
+   "reported_grade": "30-0-20",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0006",
+   "provenance_note": "200.0 lb/ac of 30-0-20 -> 0.0067251 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-06-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 56 d after planting, within the 45-60 d Knox reports. Standing water 83 d; Knox reports 64-112 d. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-06-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-08-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-08-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-08-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-08-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-09-02",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2011-06-17; ends 2011-09-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2011-10-12",
+   "crop_display": "rice (M-104)",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "derived",
+   "source": "calval:managements/delta-harvest-0005",
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed.",
+   "frac_above_to_litter_0to1": 0.5
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-11-10",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 106 d, within the 65-135 d Knox reports. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-11-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-11-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-12-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-12-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-12-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-12-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-12-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-01-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-01-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-01-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-01-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-02-02",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-02-09",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-02-16",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-02-23",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2011-11-10; ends 2012-02-24, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2012-04-26",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2012-05-10",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2012-05-17",
+   "nh4_n_kg_m2": 0.00123294,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 100.0,
+   "reported_grade": "11-52-0",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0007",
+   "provenance_note": "100.0 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "planting",
+   "date": "2012-05-17",
+   "crop_code": "R1",
+   "crop_display": "rice (M-104)",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-planting-0008"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2012-06-16",
+   "nh4_n_kg_m2": 0.0067251,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 200.0,
+   "reported_grade": "30-0-20",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0008",
+   "provenance_note": "200.0 lb/ac of 30-0-20 -> 0.0067251 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-06-18",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 32 d after planting, outside the 45-60 d Knox reports. Standing water 100 d; Knox reports 64-112 d. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-06-25",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-07-02",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-07-09",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-07-16",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-07-23",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-07-30",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-08-06",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-08-13",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-08-20",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-08-27",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-09-03",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-09-10",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-09-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-09-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2012-06-18; ends 2012-09-26, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2012-11-13",
+   "crop_display": "rice (M-104)",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "derived",
+   "source": "calval:managements/delta-harvest-0006",
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed.",
+   "frac_above_to_litter_0to1": 0.5
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-11-30",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 77 d, within the 65-135 d Knox reports. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-12-07",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-12-14",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-12-21",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-12-28",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-01-04",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-01-11",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-01-18",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-01-25",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-02-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-02-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2012-11-30; ends 2013-02-15, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-03-12",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-03-26",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2013-04-02",
+   "crop_code": "R1",
+   "crop_display": "rice (M-206)",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-planting-0009"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-05-02",
+   "nh4_n_kg_m2": 0.00168127,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 100.0,
+   "reported_grade": "15-15-15",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0009",
+   "provenance_note": "100.0 lb/ac of 15-15-15 -> 0.00168127 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-05-18",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 46 d after planting, within the 45-60 d Knox reports. Standing water 95 d; Knox reports 64-112 d. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-05-25",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-07-06",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-07-13",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-07-20",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-07-27",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-08-03",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-08-10",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-08-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2013-05-18; ends 2013-08-21, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-09-20",
+   "crop_display": "rice (M-206)",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-harvest-0007",
+   "frac_above_to_litter_0to1": 0.5,
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-10-16",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 143 d, outside the 65-135 d Knox reports. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-10-23",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-10-30",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-11-06",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-11-13",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-11-20",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-11-27",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-12-04",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-12-11",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-12-18",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-12-25",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-01-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-01-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-01-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-01-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-01-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-02-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-02-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-02-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-02-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-03-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2013-10-16; ends 2014-03-08, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2014-04-07",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2014-04-21",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2014-04-28",
+   "crop_code": "R1",
+   "crop_display": "rice (M-206)",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-planting-0010"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2014-06-05",
+   "nh4_n_kg_m2": 0.00252191,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 150.0,
+   "reported_grade": "15-15-15",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0010",
+   "provenance_note": "150.0 lb/ac of 15-15-15 -> 0.00252191 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-06-10",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 43 d after planting, outside the 45-60 d Knox reports. Standing water 78 d; Knox reports 64-112 d. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-06-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-06-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-07-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-07-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-07-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-07-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-07-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-08-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-08-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-08-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-08-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2014-06-10; ends 2014-08-27, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2014-10-02",
+   "crop_display": "rice (M-206)",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-harvest-0008",
+   "frac_above_to_litter_0to1": 0.5,
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. Knox does not state the 2014 residue treatment, so this year's fraction is carried from the others rather than sourced.",
+   "residue_treatment_resolved": false
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-10-31",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 95 d, within the 65-135 d Knox reports. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-11-07",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-11-14",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-11-21",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-11-28",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-12-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-12-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-12-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-12-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-01-02",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-01-09",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-01-16",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-01-23",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-01-30",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2014-10-31; ends 2015-02-03, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2015-03-26",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2015-04-09",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2015-04-16",
+   "crop_code": "R1",
+   "crop_display": "rice (M-206)",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-planting-0011"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2015-05-31",
+   "nh4_n_kg_m2": 0.00168127,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 100.0,
+   "reported_grade": "15-15-15",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-fertilization-0011",
+   "provenance_note": "100.0 lb/ac of 15-15-15 -> 0.00168127 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-06-07",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 52 d after planting, within the 45-60 d Knox reports. Standing water 68 d; Knox reports 64-112 d. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-06-14",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-06-21",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-06-28",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-07-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-07-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-07-19",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-07-26",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-08-02",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-08-09",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2015-06-07; ends 2015-08-14, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2015-09-23",
+   "crop_display": "rice (M-206)",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "published",
+   "source": "calval:managements/delta-harvest-0009",
+   "frac_above_to_litter_0to1": 0.5,
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-11-04",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 36 d, outside the 65-135 d Knox reports. Short: WTD is -0.37 m in Feb 2016 and -0.35 m in Mar 2016, so the field was genuinely not reflooded that winter rather than unobserved - consistent with the 2012-2016 drought. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-11-11",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2015-11-04; ends 2015-12-10, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-11-18",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2015-11-04; ends 2015-12-10, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-11-25",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2015-11-04; ends 2015-12-10, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-12-02",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2015-11-04; ends 2015-12-10, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2015-12-09",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2015-11-04; ends 2015-12-10, the WTD-derived drain date."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2016-03-28",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the synthesized 2016 planting"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2016-04-11",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0002",
+   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the synthesized 2016 planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2016-04-18",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.02455947,
+   "prior_filled": "date<-synthesized:median_doy(2010-2015)",
+   "provenance_class": "assumed",
+   "source": "synthesized:median_doy",
+   "provenance_note": "2016 absent from the monitoring product export (covers site_id 0..99999); date is the 2010-2015 median day of year"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2016-05-30",
+   "nh4_n_kg_m2": 0.00168127,
+   "no3_n_kg_m2": 0.0,
+   "org_n_kg_m2": 0.0,
+   "reported_rate_lb_ac": 100.0,
+   "reported_grade": "15-15-15",
+   "prior_filled": "date,rate<-synthesized:median(2013-2015)",
+   "provenance_class": "assumed",
+   "source": "synthesized:median_doy",
+   "provenance_note": "2016 absent from the monitoring product export; rate and date are the median of the 2013-2015 single-application regime"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-06-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Growing-season flood onset from the WTD series: first 14 consecutive observed days at or above the surface (short breaks of <=7 d merged). 67 d after planting, outside the 45-60 d Knox reports. Standing water 56 d; Knox reports 64-112 d. The 2016 planting date is itself synthesized (median DOY), so the offset is the weaker half of this comparison; the WTD rise on 2016-06-19..24 is continuously observed. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-07-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-07-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-07-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-07-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-07-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-08-05",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-08-12",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "growing",
+   "provenance_note": "Maintains the flooded period begun 2016-06-24; ends 2016-08-19, the WTD-derived drain date."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2016-10-06",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.5,
+   "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
+   "provenance_class": "assumed",
+   "source": "synthesized:median_doy",
+   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed.",
+   "frac_above_to_litter_0to1": 0.5
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-11-17",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Winter reflood onset from the WTD series, same rule. Flooded 114 d, within the 65-135 d Knox reports. Flood held by repeated application of 70 mm every 7 d, the rate and interval of the 2017-2023 monitoring record (mean 69.7 mm, modal gap 7 d), because SIPNET has no persistent flood state."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-11-24",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2016-11-17 to the end of the run window."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-12-01",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2016-11-17 to the end of the run window."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-12-08",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2016-11-17 to the end of the run window."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-12-15",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2016-11-17 to the end of the run window."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-12-22",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2016-11-17 to the end of the run window."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2016-12-29",
+   "amount_mm": 70.0,
+   "method": "flood",
+   "provenance_class": "derived",
+   "source": "ameriflux:US-Twt BASE-BADM 7-5 WTD",
+   "season": "winter",
+   "provenance_note": "Maintains the flooded period begun 2016-11-17 to the end of the run window."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2017-04-29",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2017-05-20."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2017-05-13",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2017-05-20."
+  },
+  {
+   "event_type": "planting",
+   "date": "2017-05-20",
+   "source": "synthesized:median_doy",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.02618692,
+   "prior_filled": "date<-synthesized:2017_excluded_year"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2017-07-05",
+   "source": "synthesized:median_doy",
+   "nh4_n_kg_m2": 0.00572063,
+   "no3_n_kg_m2": 0.00572063,
+   "org_n_kg_m2": 0.00310691,
+   "prior_filled": "date<-synthesized:2017_excluded_year"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2017-07-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2017-08-17",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2017-09-09",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2017-10-09",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2017-11-14",
+   "source": "synthesized:median_doy",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.8,
+   "prior_filled": "date<-synthesized:2017_excluded_year"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2018-02-02",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0.01864148
+  },
+  {
+   "event_type": "tillage",
+   "date": "2018-05-02",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2018-05-23."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2018-05-16",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2018-05-23."
+  },
+  {
+   "event_type": "planting",
+   "date": "2018-05-23",
+   "source": "monitoring_product:planting/v1.0",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.02478044
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-05-30",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.7997,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-06-07",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.2761,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-06-14",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.6142,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-06-22",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.7394,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-06-29",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.5725,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-07-06",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.7156,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-07-13",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.6476,
+   "method": "flood"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2018-07-15",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0.00649159,
+   "no3_n_kg_m2": 0.00649159,
+   "org_n_kg_m2": 0
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-07-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.0214,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-07-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.6319,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-08-04",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 75.2596,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-08-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.4969,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-08-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.9684,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-08-29",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.6796,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-09-07",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.4078,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-09-18",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.7569,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-09-30",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.1332,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-10-15",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.2611,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-11-01",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.6284,
+   "method": "flood"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2018-11-15",
+   "source": "monitoring_product:harvest/v1.0",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.8
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2018-11-21",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.5282,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2019-04-03",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2019-04-24."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-04-07",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.744,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-04-17",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.395,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2019-04-17",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2019-04-24."
+  },
+  {
+   "event_type": "planting",
+   "date": "2019-04-24",
+   "source": "monitoring_product:planting/v1.0",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.02443199
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-04-26",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 74.1261,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-05-04",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.373,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-05-13",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.7986,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-05-28",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.9608,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-06-05",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 74.9693,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-06-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.3684,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-06-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.3396,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-06-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.7662,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-07-05",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 74.015,
+   "method": "flood"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2019-07-07",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0.00704283,
+   "no3_n_kg_m2": 0.00704283,
+   "org_n_kg_m2": 0
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-07-13",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 74.7882,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-07-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.9112,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-07-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.3846,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-08-03",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.6065,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-08-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.1568,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-08-19",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.3104,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-08-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.0404,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-09-05",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.147,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-09-15",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.4355,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-09-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.3727,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-10-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.6321,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-10-26",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.9053,
+   "method": "flood"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2019-10-27",
+   "source": "monitoring_product:harvest/v1.0",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.8
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2019-11-10",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.806,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-01-26",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.4594,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-02-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.4314,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-02-24",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.2111,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.1984,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.0369,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-04-13",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.7213,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-04-22",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.0469,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2020-04-28",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2020-05-19."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-04-30",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.6486,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-05-08",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.3808,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2020-05-12",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2020-05-19."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-05-17",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.6573,
+   "method": "flood"
+  },
+  {
+   "event_type": "planting",
+   "date": "2020-05-19",
+   "source": "monitoring_product:planting/v1.0",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.02455947
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-05-25",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.7809,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-06-02",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.5187,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-06-09",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.4658,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-06-17",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.3862,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-06-24",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.243,
+   "method": "flood"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2020-06-29",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0.00625163,
+   "no3_n_kg_m2": 0.00625163,
+   "org_n_kg_m2": 0
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-07-01",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.8595,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-07-08",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.6418,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-07-15",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.9668,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-07-23",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.5631,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-07-30",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.7632,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-08-07",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.8226,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-08-14",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.2928,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-08-21",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.4078,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-08-29",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.5837,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-09-07",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.1525,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-09-18",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.8669,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-09-30",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.15,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-10-16",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.7271,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-10-31",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.2225,
+   "method": "flood"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2020-11-13",
+   "source": "monitoring_product:harvest/v1.0",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.8
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-11-23",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.2363,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-12-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.0158,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-01-18",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.6257,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-02-23",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.4421,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-03-08",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.2578,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-03-24",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.2421,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2021-03-29",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2021-04-19."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-04-02",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.2136,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-04-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.9601,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2021-04-12",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2021-04-19."
+  },
+  {
+   "event_type": "planting",
+   "date": "2021-04-19",
+   "source": "monitoring_product:planting/v1.0",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.02333066
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-04-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.2792,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-04-29",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.6252,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-05-06",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.5813,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-05-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.0749,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-05-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.7709,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-05-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.5229,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-06-03",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.9647,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-06-10",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.9035,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-06-17",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.5423,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-06-24",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.8923,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-07-01",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.0563,
+   "method": "flood"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2021-07-05",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0.00765569,
+   "no3_n_kg_m2": 0.00765569,
+   "org_n_kg_m2": 0
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-07-08",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.5666,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-07-15",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.2098,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-07-22",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.1076,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-07-29",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.9869,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-08-05",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.4307,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-08-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.6285,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-08-20",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.5248,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-08-28",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 65.6551,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-09-06",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.7828,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-09-15",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.2249,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-09-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.3977,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-10-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.7402,
+   "method": "flood"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2021-11-14",
+   "source": "monitoring_product:harvest/v1.0",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.8
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2021-12-06",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.6931,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-02-02",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.6475,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-02-16",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.2488,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-03-02",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.7824,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-03-13",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.2365,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2022-03-18",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2022-04-08."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-03-25",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.8172,
+   "method": "flood"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2022-04-01",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2022-04-08."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-04-06",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.9165,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-04-08",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "planting",
+   "date": "2022-04-08",
+   "source": "monitoring_product:planting/v1.0",
+   "crop_code": "G2",
+   "crop_display": "G2",
+   "leaf_c_kg_m2": 0.01151624
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-04-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2022-05-02",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0.00574111,
+   "no3_n_kg_m2": 0.00574111,
+   "org_n_kg_m2": 0
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-07-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2022-09-25",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 157.4418,
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2022-10-25",
+   "source": "monitoring_product:harvest/v1.0",
+   "crop_display": "G2",
+   "frac_above_removed_0to1": 0.8
+  },
+  {
+   "event_type": "tillage",
+   "date": "2023-05-06",
+   "tillage_eff_0to1": 0.5,
+   "implement": "disking",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents disking every year at planting minus 21 d with tillage_eff 0.5, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2023-05-27."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2023-05-20",
+   "tillage_eff_0to1": 0.2,
+   "implement": "ring rolling",
+   "provenance_class": "assumed",
+   "source": "calval:managements/delta-tillage-0001",
+   "provenance_note": "The monitoring product records no tillage for this parcel, which is a gap in the product rather than a change in practice. Knox documents ring rolling every year at planting minus 7 d with tillage_eff 0.2, exact in all seven of 2010-2016, so that pattern is carried forward onto the monitoring planting date of 2023-05-27."
+  },
+  {
+   "event_type": "planting",
+   "date": "2023-05-27",
+   "source": "monitoring_product:planting/v1.0",
+   "crop_code": "R1",
+   "crop_display": "R1",
+   "leaf_c_kg_m2": 0.03383203
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-06-02",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.8159,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-06-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.7622,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-06-19",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 72.0665,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-06-27",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.742,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-07-04",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.4517,
+   "method": "flood"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2023-07-05",
+   "source": "akash:fertilization.parquet",
+   "nh4_n_kg_m2": 0.00688203,
+   "no3_n_kg_m2": 0.00688203,
+   "org_n_kg_m2": 0
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-07-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 71.7926,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-07-19",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.5127,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-07-26",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.093,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-08-03",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.6366,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-08-11",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 73.1068,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-08-18",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.1367,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-08-26",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 67.0375,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-09-04",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.1861,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-09-14",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 68.5631,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-09-26",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.78,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-10-12",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 70.1513,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-10-29",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 69.3803,
+   "method": "flood"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-11-17",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.1297,
+   "method": "flood"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2023-11-26",
+   "source": "monitoring_product:harvest/v1.0",
+   "crop_display": "R1",
+   "frac_above_removed_0to1": 0.8
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2023-12-13",
+   "source": "monitoring_product:irrigation/v1.1",
+   "amount_mm": 66.5396,
+   "method": "flood"
+  }
+ ]
 }
