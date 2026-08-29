@@ -39,9 +39,9 @@
  <model>
  <id>99000000003</id>
  <type>SIPNET</type>
- <revision>2.1.0</revision>
+ <revision>v2.2.0-alpha.1</revision>
  <delete.raw>TRUE</delete.raw>
- <binary>sipnet.git</binary>
+ <binary>sipnet</binary>
  <options>
   <GDD>0</GDD>
   <NITROGEN_CYCLE>1</NITROGEN_CYCLE>
