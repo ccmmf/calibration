@@ -1,26 +1,6 @@
 #!/usr/bin/env Rscript
-
-# Step 3-ENSEMBLE — assemble a MEMBER ENSEMBLE of events.json for one site.
-#
-# Usage:
-#   Rscript step3_delta_ensemble.R <label> <parcel_id> <crop_code> <synth_year> <run_start> <run_end> [n_members]
-# e.g.
-#   Rscript step3_delta_ensemble.R US-Bi2 565118 F16 2017 2017-01-01 2023-12-31 20
-#
-# Management uncertainty comes from the two sources that ship ensemble members:
-#   fert       -> Akash's fertilization.parquet, event_member_id = ens_001..ens_020
-#   irrigation -> monitoring product,            ens_id          = irr_ens_001..irr_ens_020
-# planting / harvest / tillage / phenology are deterministic (one row per parcel/year/season),
-# so they are identical across members - that is correct, the uncertainty is in fert+water.
-#
-# Member N = fert ens_<N> + irrigation irr_ens_<N>.
-#
-# Writes, per member:
-#   <label>_events_ens/events_ens_<NNN>.json      (PEcAn events schema 0.1.1)
-# and (if PEcAn.SIPNET available) converts each to:
-#   <label>_events_ens/ens_<NNN>/events-<label>.in
-#
-# ARROW ONLY (no terra).
+# Assemble a member ensemble of events.json for one Delta site; management uncertainty
+# comes from the fertilization and irrigation members, other event types are deterministic.
 
 suppressPackageStartupMessages({ library(arrow); library(dplyr); library(jsonlite) })
 options(arrow.unsafe_metadata = TRUE)

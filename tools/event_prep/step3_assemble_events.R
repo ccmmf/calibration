@@ -1,23 +1,6 @@
 #!/usr/bin/env Rscript
-
-# Step 3 — Assemble US-Bi2 (parcel 565118) events.json in PEcAn schema 0.1.1.
-# Converted to events.in afterward via PEcAn.SIPNET::write.events.SIPNET.
-#
-# Sources (all REAL dated data for US-Bi2's OWN field):
-#   planting/harvest/irrigation -> statewide monitoring product (own parcel)
-#   fertilization               -> Akash's event_files (own parcel, ens_001)
-#
-# 2017 is a product-EXCLUDED year -> SYNTHESIZED as corn (F16) from the parcel's
-# own 2018-2023 corn events via David's median_doy(). US-Bi2 grew F16 every year
-# 2018-2023; 2017 assumed corn (tagged). Confirmed defensible from crop history.
-#
-# Irrigation: real events exist only for 2021-2022 (drought years). Those are the
-# only years the field was irrigated (Bouldin is below sea level, high water table)
-# -> zeros elsewhere are REAL, left as-is. The water table is handled by the flood
-# config, NOT by inventing irrigation.
-#
-# First run = single member (ens_001). 20-member management ensemble is a later refinement.
-# ARROW ONLY (no terra).
+# Assemble US-Bi2 (parcel 565118) events.json from the statewide monitoring product
+# and the fertilization parquet. 2017 is absent from the product and is synthesized.
 
 suppressPackageStartupMessages({
   library(arrow); library(dplyr); library(jsonlite)

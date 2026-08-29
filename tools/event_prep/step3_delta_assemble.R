@@ -1,13 +1,6 @@
 #!/usr/bin/env Rscript
-
-# Step 3 (Delta) — assemble a site's events.json (PEcAn 0.1.1). Parameterized.
-# Usage: Rscript step3_delta_assemble.R <label> <parcel_id> <crop_code> <synth_year> <run_start> <run_end>
-#   e.g. Rscript step3_delta_assemble.R US-Bi1 328163 P1 2017 2017-01-01 2023-12-31
-#
-# - Emits only events with date >= run_start (drops pre-run-start; no awk needed).
-# - Synthesizes <synth_year> (crop-matched, season 2) via median_doy for planting/harvest/fert.
-# - Gracefully skips fert if the crop has no synthetic-N events (e.g. alfalfa N-fixer).
-# - Single member (ens_001 fert, irr_ens_001 irrigation).
+# Assemble one Delta site's events.json from the monitoring product. Parameterized.
+# Usage: step3_delta_assemble.R <label> <parcel_id> <crop_code> <synth_year> <start> <end>
 
 suppressPackageStartupMessages({ library(arrow); library(dplyr); library(jsonlite) })
 options(arrow.unsafe_metadata = TRUE)
