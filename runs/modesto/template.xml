@@ -13,10 +13,6 @@
    <name>temperate.deciduous</name>
    <posterior.files>pfts/temperate.deciduous/post.distns.Rdata</posterior.files>
   </pft>
-  <pft>
-   <name>soil</name>
-   <posterior.files>pfts/soil/trait.mcmc.Rdata</posterior.files>
-  </pft>
  </pfts>
  <ensemble>
   <size><!-- inserted at config time --></size>

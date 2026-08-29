@@ -9,7 +9,7 @@ n_met: 10
 ic_ensemble_size: 100
 
 external_paths:
-    template_file: "template.xml"
+    template_file: "../template.xml"
     site_info_file: "salinas_site_info.csv"
 
 n_workers: 1
