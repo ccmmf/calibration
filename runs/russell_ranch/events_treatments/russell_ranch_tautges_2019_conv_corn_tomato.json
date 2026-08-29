@@ -1,0 +1,1681 @@
+{
+  "pecan_events_version": "0.1.1",
+  "site_id": "conv_corn_tomato",
+  "provenance": {
+    "dataset_id": "russell_ranch_tautges_2019",
+    "source_rows": 159,
+    "generated_at": "2026-05-28T23:00:04+0530",
+    "generator": "ccmmf/uncertainty:calval_to_events"
+  },
+  "events": [
+    {
+      "event_type": "fertilization",
+      "date": "1994-03-21",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0,
+      "no3_n_kg_m2": 0,
+      "org_n_kg_m2": 0
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1994-04-07",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0,
+      "no3_n_kg_m2": 0,
+      "org_n_kg_m2": 0
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1994-04-08",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "planting",
+      "date": "1994-04-14",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0032,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1994-05-21",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0062,
+      "no3_n_kg_m2": 0.0062,
+      "org_n_kg_m2": 0.0133
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1994-05-26",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0033,
+      "no3_n_kg_m2": 0.0033,
+      "org_n_kg_m2": 0.007
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1994-07-14",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 464.8464,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1994-08-27",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.6234,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1994-10-13",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.3425,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1995-04-18",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "planting",
+      "date": "1995-04-22",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0034,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1995-05-05",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "planting",
+      "date": "1995-05-18",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0027,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1995-05-25",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0033,
+      "no3_n_kg_m2": 0.0033,
+      "org_n_kg_m2": 0.007
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1995-06-09",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0033,
+      "no3_n_kg_m2": 0.0033,
+      "org_n_kg_m2": 0.0069
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1995-06-19",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0023
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1995-06-22",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0022,
+      "no3_n_kg_m2": 0.0022,
+      "org_n_kg_m2": 0.0046
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1995-06-30",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 454.0014,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1995-08-02",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 617.6199,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1995-09-08",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.3986,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1995-09-09",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.3252,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1995-10-18",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.6135,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1996-04-13",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "planting",
+      "date": "1996-04-14",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0037,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1996-04-16",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "planting",
+      "date": "1996-04-25",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0024,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1996-05-13",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1996-05-14",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1996-06-01",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0016,
+      "no3_n_kg_m2": 0.0016,
+      "org_n_kg_m2": 0.0035
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1996-06-13",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1996-06-23",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 672.9751,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1996-07-19",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 466.3135,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1996-08-22",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4353,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1996-08-23",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.2827,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1996-10-24",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.2951,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1997-03-20",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "planting",
+      "date": "1997-03-25",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0042,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1997-04-16",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "planting",
+      "date": "1997-04-21",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0033,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1997-05-02",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1997-05-08",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1997-05-13",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0021,
+      "no3_n_kg_m2": 0.0021,
+      "org_n_kg_m2": 0.0044
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1997-05-30",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.003
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1997-06-18",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 710.7524,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1997-06-28",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 662.2539,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1997-08-15",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.6061,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1997-08-22",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.5252,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1997-10-01",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.5031,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "1998-03-21",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0041,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "planting",
+      "date": "1998-04-19",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0032,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1998-04-20",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "planting",
+      "date": "1998-04-22",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.004,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1998-05-21",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1998-06-09",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1998-06-12",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0043,
+      "no3_n_kg_m2": 0.0043,
+      "org_n_kg_m2": 0.0093
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1998-12-26",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 697.4315,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1999-01-05",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 657.6238,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1999-01-19",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 646.031,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1999-05-20",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0,
+      "no3_n_kg_m2": 0,
+      "org_n_kg_m2": 0
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1999-05-24",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "planting",
+      "date": "1999-06-04",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0031,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1999-06-07",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1999-07-02",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.002,
+      "no3_n_kg_m2": 0.002,
+      "org_n_kg_m2": 0.0043
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1999-08-13",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 569.7315,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1999-09-01",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.6536,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1999-10-22",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.6267,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2000-03-24",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0034,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2000-04-11",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "planting",
+      "date": "2000-04-26",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0028,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2000-05-04",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2000-05-12",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0048,
+      "no3_n_kg_m2": 0.0048,
+      "org_n_kg_m2": 0.0102
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2000-05-22",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2000-06-23",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 383.8441,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2000-07-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 539.7712,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2000-08-21",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.5695,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2000-10-18",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.4415,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2001-03-28",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0035,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2001-04-25",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2001-04-26",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0011,
+      "no3_n_kg_m2": 0.0011,
+      "org_n_kg_m2": 0.0024
+    },
+    {
+      "event_type": "planting",
+      "date": "2001-05-01",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0026,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2001-05-18",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0043,
+      "no3_n_kg_m2": 0.0043,
+      "org_n_kg_m2": 0.0093
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2001-05-28",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2001-06-29",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 448.3241,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2001-08-27",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4356,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2002-01-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 637.1089,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2002-04-17",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2002-04-24",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0041,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2002-05-03",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2002-05-14",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0041,
+      "no3_n_kg_m2": 0.0041,
+      "org_n_kg_m2": 0.0087
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2002-05-18",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2002-06-21",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 583.8516,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2002-08-19",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4443,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2002-10-18",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.5034,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2003-04-09",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0028,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2003-05-06",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "planting",
+      "date": "2003-05-07",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0042,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2003-05-20",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2003-05-31",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0045,
+      "no3_n_kg_m2": 0.0045,
+      "org_n_kg_m2": 0.0095
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2003-06-03",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2003-06-29",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 646.9891,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2003-07-13",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 568.8897,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2003-08-21",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.5097,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2003-10-17",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.5644,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2004-03-22",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0037,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2004-04-20",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2004-04-21",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2004-05-04",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0029,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2004-05-13",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0045,
+      "no3_n_kg_m2": 0.0045,
+      "org_n_kg_m2": 0.0095
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2004-05-25",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2004-06-22",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 627.1555,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2004-06-25",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 504.7684,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2004-08-11",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4228,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2004-08-12",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.5293,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2004-09-28",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.445,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2004-09-29",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.4457,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2005-04-19",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0036,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2005-05-03",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2005-05-13",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0029,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2005-05-31",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2005-06-03",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0045,
+      "no3_n_kg_m2": 0.0045,
+      "org_n_kg_m2": 0.0095
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2005-06-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2005-07-04",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 520.7749,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2005-07-13",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 581.703,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2005-08-26",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.34,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2005-10-07",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.6165,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2006-05-02",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0036,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2006-05-07",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0045,
+      "no3_n_kg_m2": 0.0045,
+      "org_n_kg_m2": 0.0095
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2006-05-11",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2006-05-16",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2006-05-19",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0035,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2006-06-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2006-07-16",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 648.381,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2006-07-28",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 509.8731,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2006-09-13",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4556,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2006-10-24",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.5111,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2007-04-18",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.004,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2007-05-08",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2007-05-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2007-05-15",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0041,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2007-05-24",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0045,
+      "no3_n_kg_m2": 0.0045,
+      "org_n_kg_m2": 0.0095
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2007-05-31",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2007-07-13",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 561.1351,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2007-07-21",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 472.7562,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2007-09-11",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.3556,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2007-10-23",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.417,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2008-05-16",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2008-06-01",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0044,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2008-06-01",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2008-08-02",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 505.5304,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2008-10-03",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4474,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2009-04-30",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2009-05-26",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0028,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2009-06-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2009-07-02",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2009-07-29",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 739.179,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "planting",
+      "date": "2009-08-03",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Sudangrass",
+      "crop_display": "Sudangrass",
+      "leaf_c_kg_m2": 0.0035,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2009-10-01",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4928,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2009-11-09",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "planting",
+      "date": "2009-11-13",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.003,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2010-03-12",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 416.115,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2010-03-24",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2010-04-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2010-05-03",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0036,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2010-05-29",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2010-07-05",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 588.3725,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2010-07-09",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5608,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2010-09-06",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.5103,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2010-11-02",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "planting",
+      "date": "2010-11-16",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0026,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2011-03-13",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 523.2036,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2011-03-24",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2011-04-11",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2011-04-21",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0036,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2011-05-13",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2011-07-02",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 473.4411,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2011-07-09",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5527,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2011-09-13",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.5498,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2011-11-14",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "planting",
+      "date": "2011-11-17",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0031,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2012-03-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 375.1411,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2012-03-26",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0014,
+      "no3_n_kg_m2": 0.0014,
+      "org_n_kg_m2": 0.0029
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2012-04-16",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0012,
+      "no3_n_kg_m2": 0.0012,
+      "org_n_kg_m2": 0.0026
+    },
+    {
+      "event_type": "planting",
+      "date": "2012-04-30",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0035,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2012-05-14",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "harvest",
+      "date": "2012-06-25",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4595,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2012-07-03",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 578.6613,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2012-09-05",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.3412,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2012-11-12",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0027,
+      "no3_n_kg_m2": 0.0027,
+      "org_n_kg_m2": 0.0058
+    },
+    {
+      "event_type": "planting",
+      "date": "2013-03-25",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Corn",
+      "crop_display": "Corn",
+      "leaf_c_kg_m2": 0.0026,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "planting",
+      "date": "2013-04-17",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0032,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2013-05-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0033,
+      "no3_n_kg_m2": 0.0033,
+      "org_n_kg_m2": 0.0069
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2013-06-18",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 461.6288,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2013-06-28",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 504.5862,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-08-20",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4529,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-10-01",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Corn",
+      "frac_above_removed_0to1": 0.4501,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    }
+  ]
+}

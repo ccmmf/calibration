@@ -19,6 +19,10 @@
 !/runs/*/*.xml
 !/runs/*/*.json
 !/runs/*/README.md
+# per-treatment event sets live one level deeper
+!/runs/*/*/
+!/runs/*/*/*.json
+!/runs/*/*/README.md
 
 # r session files
 .Rhistory
