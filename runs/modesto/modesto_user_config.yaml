@@ -1,0 +1,21 @@
+# Modesto (Nichols almond orchard) - the project's only perennial / temperate.deciduous
+# cal/val site. Reconstructed from the modesto-ncycle run dir on SCC, which is the
+# variant with NITROGEN_CYCLE = 1 (organization#255; the earlier modesto-nichols run
+# had it off and produced N2O flat at zero).
+run_dir: "modesto-ncycle"
+
+start_date: "2018-01-01"
+end_date:   "2019-12-31"
+run_LAI_date: "2018-07-01"
+
+n_ens: 20
+n_met: 10
+ic_ensemble_size: 100
+
+external_paths:
+    template_file: "template.xml"
+    site_info_file: "../site_info.csv"
+
+n_workers: 1
+use_apptainer: false
+pecan_dispatch: slurm-dispatch

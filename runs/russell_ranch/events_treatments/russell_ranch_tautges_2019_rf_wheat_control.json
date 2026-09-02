@@ -1,0 +1,547 @@
+{
+  "pecan_events_version": "0.1.1",
+  "site_id": "rf_wheat_control",
+  "provenance": {
+    "dataset_id": "russell_ranch_tautges_2019",
+    "source_rows": 42,
+    "generated_at": "2026-05-28T23:00:05+0530",
+    "generator": "ccmmf/uncertainty:calval_to_events"
+  },
+  "events": [
+    {
+      "event_type": "planting",
+      "date": "1993-11-19",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0027,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1994-03-03",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 639.0498,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1994-06-15",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5963,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "1994-12-01",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0033,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1995-03-19",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 684.7317,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1995-07-05",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4774,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1995-07-07",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.3866,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "1995-11-22",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0022,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1996-03-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 700.7013,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1996-06-20",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.6527,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "1996-11-11",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.004,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1997-02-28",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 336.3197,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1997-06-17",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.3244,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "1997-06-22",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5466,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "1997-11-04",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0036,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "1998-09-02",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 518.278,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "1999-01-01",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0,
+      "no3_n_kg_m2": 0,
+      "org_n_kg_m2": 0
+    },
+    {
+      "event_type": "harvest",
+      "date": "1999-07-01",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.2983,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "1999-11-13",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0028,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2000-03-05",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 312.4475,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2000-06-26",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4071,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2000-11-20",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0031,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2001-03-16",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 570.6916,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2001-07-10",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5785,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2002-07-08",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4926,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2002-11-05",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.003,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2003-03-09",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 444.3247,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2003-07-12",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5182,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2003-11-13",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0033,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2004-03-07",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 447.2988,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2004-06-30",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.6016,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2004-11-21",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0037,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2005-03-14",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 534.0502,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2005-07-06",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.632,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2005-11-10",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0026,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2006-03-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 733.1977,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2006-06-30",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4971,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2006-11-09",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0038,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2007-03-05",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 685.0505,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2007-06-29",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.5123,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2007-12-15",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0034,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2008-03-27",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 495.9725,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2008-07-09",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.7308,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2008-11-20",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0037,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2009-03-15",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 545.7456,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2009-07-08",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4801,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2009-11-13",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0038,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2010-03-12",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 483.1504,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2010-07-09",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.708,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2010-11-16",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.004,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2011-03-13",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 568.2364,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2011-07-09",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.3645,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2011-11-17",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0039,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2012-03-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 702.3723,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2012-06-25",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.4073,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2012-11-12",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0037,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2013-03-07",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 679.9943,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-07-01",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Wheat",
+      "frac_above_removed_0to1": 0.458,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2013-10-25",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0,
+      "no3_n_kg_m2": 0,
+      "org_n_kg_m2": 0
+    },
+    {
+      "event_type": "planting",
+      "date": "2013-11-10",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Wheat",
+      "crop_display": "Wheat",
+      "leaf_c_kg_m2": 0.0042,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    }
+  ]
+}
