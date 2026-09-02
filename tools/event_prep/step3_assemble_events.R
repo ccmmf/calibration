@@ -13,9 +13,18 @@ MEMBER     <- "ens_001"
 SYNTH_YEAR <- 2017L
 CORN       <- "F16"
 
-TMP    <- "/projectnb2/dietzelab/ccmmf/usr/adey2/tmp"
+# Paths come from the environment, chained the same way as the CCMMF setup script
+# (pecan modules/data.remote/inst/ccmmf/documentation/setup_env.sh) so that setting
+# CCMMF_BASE alone is enough. No absolute path is baked in. See the README.
+CCMMF_BASE         <- Sys.getenv("CCMMF_BASE", path.expand("~"))
+CCMMF_ROOT         <- Sys.getenv("CCMMF_ROOT", file.path(CCMMF_BASE, "ccmmf"))
+PRODUCTS_ROOT      <- Sys.getenv("PRODUCTS_ROOT", file.path(CCMMF_ROOT, "products"))
+PRODUCTS_INVENTORY <- Sys.getenv("PRODUCTS_INVENTORY", file.path(PRODUCTS_ROOT, "inventory"))
+EVENT_OUTPUT_DIR   <- Sys.getenv("EVENT_OUTPUT_DIR", file.path(PRODUCTS_INVENTORY, "event_files"))
+CCMMF_WORK         <- Sys.getenv("CCMMF_WORK", file.path(CCMMF_ROOT, "work"))
+TMP    <- CCMMF_WORK
 EVDIR  <- file.path(TMP, "us_bi2_events")
-FERT   <- "/projectnb2/dietzelab/ccmmf/usr/akash/event_files/fertilization.parquet"
+FERT   <- file.path(EVENT_OUTPUT_DIR, "fertilization.parquet")
 OUT    <- file.path(EVDIR, "us_bi2_events.json")
 
 ## ------------------------------------------------------------- helpers

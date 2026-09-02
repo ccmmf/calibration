@@ -32,3 +32,35 @@ write_events_in.R            # emit events.in for SIPNET
   truncated at `site_id` 99999. That is why 2010-2016 is built from the literature instead.
 - `validate_events_json` needs `jsonvalidate` installed or it silently returns `NA` rather
   than validating, and it needs `events_schema_v0.1.1`, which not every PEcAn install ships.
+
+## Inputs and environment
+
+The three `step3_*` scripts read the statewide monitoring product and the fertilization
+parquet. No path is hardcoded. They chain from the environment exactly as the CCMMF setup
+script does, so setting `CCMMF_BASE` alone is enough:
+
+```
+CCMMF_BASE          default ~
+CCMMF_ROOT          default $CCMMF_BASE/ccmmf
+PRODUCTS_ROOT       default $CCMMF_ROOT/products
+PRODUCTS_INVENTORY  default $PRODUCTS_ROOT/inventory
+EVENT_OUTPUT_DIR    default $PRODUCTS_INVENTORY/event_files   fertilization.parquet
+CCMMF_WORK          default $CCMMF_ROOT/work                  extracted monitoring product tabs
+```
+
+Any of them can be overridden individually. Set them up by sourcing the project script
+rather than by hand:
+
+- Environment and account setup:
+  <https://github.com/ccmmf/magic-training/blob/main/CARB-PEcAn-setup.md>
+- Canonical variable names and the chaining above:
+  <https://github.com/PecanProject/pecan/blob/develop/modules/data.remote/inst/ccmmf/documentation/setup_env.sh>
+- The pattern these scripts should follow for pulling inputs, as used in the phenology
+  session:
+  <https://github.com/PecanProject/pecan/blob/develop/modules/data.remote/inst/ccmmf/documentation/sessions/02-phenology.md>
+
+### Not yet done
+
+Inputs are still read from a shared filesystem rather than pulled from S3 into a local
+path. Moving to an S3 pull following the phenology session pattern is tracked separately
+and does not block this PR.
