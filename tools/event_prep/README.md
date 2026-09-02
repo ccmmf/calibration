@@ -61,6 +61,22 @@ The monitoring product lives in the Garage S3 bucket `carb` under `management/`.
 an `aws` client and the `ccmmf-garage` profile in `~/.aws/credentials`; on SCC,
 `module load awscli/2.13.5` provides the client.
 
+### Two version schemes in the same bucket -- don't mix them up
+
+`carb` carries two independently versioned prefixes, and they sit on opposite sides of these
+scripts:
+
+| prefix | what | latest | relation to event_prep |
+|---|---|---|---|
+| `management/<product>/vN.M` | upstream monitoring product | per product: planting/harvest/fertilization `v2.0`, irrigation `v1.1`, tillage `v1.0` | **input** -- what `pull_inputs.sh` reads |
+| `calval_sa_inputs/vN.M` | staged IC / met / events for the SA runs | **`v0.3`** (2026-08-20) | **output** -- where the results get published |
+
+So `v0.3` is the latest *staged run inputs*, not a monitoring product version, and it is
+downstream of everything here: `management/` -> these scripts -> `runs/*/events.json` ->
+`calval_sa_inputs/v0.3/<site>/`. Bumping `calval_sa_inputs` does not change what to pull, and
+the product versions below are unrelated to it. The v0.3 README on S3 records the same chain
+under "Event provenance".
+
 See what exists before pulling anything:
 
 ```bash
