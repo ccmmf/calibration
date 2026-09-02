@@ -106,6 +106,22 @@ One directory per site, plus a combined `site_info.csv` and a shared `template.x
 `modesto` is the only `temperate.deciduous` site, so it keeps its own `template.xml`;
 the other five share `runs/template.xml`.
 
+### One site_info for all sites
+
+`runs/site_info.csv` carries all six sites; there are no per-site copies. Every
+`user_config.yaml` points at it with `site_info_file: "../site_info.csv"`.
+
+⚠️ **The workflow has no site filter, so this file drives which sites a run covers.**
+`01_ERA5_nc_to_clim.R` and `03_xml_build.R` both process every row of whatever
+`site_info` they are given, and the run window comes from `--start_date` / `--end_date`
+rather than from the file. There is no `--site` option. So invoking one site's config
+builds met and settings for all six, using that config's dates.
+
+The six sites have five distinct windows, so a single multi-site run is not currently
+correct for all of them. Running one site in isolation needs either a site filter in
+the CLI or the window moving into `site_info.csv` as per-row columns. Until then, pass
+a one-row `site_info` explicitly with `--site_info_file` when running a single site.
+
 ### What is committed and what is not
 
 Committed are inputs only: `*_user_config.yaml`, `*_site_info.csv`, `template.xml` and
