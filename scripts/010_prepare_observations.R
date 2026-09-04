@@ -11,8 +11,7 @@ config <- config::get(file = args$config)
 
 obs <- build_obs(
   cal_val_dir = file.path(config$scc, config$observations$dir),
-  target_var  = config$observations$target_var,
-  sites       = as.character(config$observations$sites)
+  targets = config$observations$targets
 )
 
 dir.create(config$cache_dir, showWarnings = FALSE, recursive = TRUE)
