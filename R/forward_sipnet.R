@@ -2,11 +2,10 @@
 # fwd(U, iteration) -> G the calibration calls. only this file knows sipnet and
 # the pecan run machinery; the estimator in method_eki.R knows neither.
 #
-# one iteration is one ensemble where only the calibrated parameters change; met,
-# events, and the pools we do not calibrate are built once and held fixed. a call
-# writes the proposal into the sample object and, when an initial state is
-# calibrated, the ic files, runs the pecan config and model steps, and harvests
-# the output into G.
+# one iteration is one ensemble where only the calibrated parameters change: met,
+# events, and uncalibrated pools are pinned to one member, otherwise the prediction
+# spread measures the input draw and cov(U, G) in the kalman gain is sampling
+# noise. input uncertainty belongs in a separate forward pass.
 #
 # launching is left to pecan and the prepared host block. runModule_start_model_runs
 # submits through the settings host (qsub, sge_array_launcher.sh, Njobmax, qstat)
@@ -26,31 +25,41 @@
 ##' @param settings a prepared PEcAn multisite settings object (the forward run).
 ##' @param obs the build_obs target list(y, Sigma, meta); names(y) are the slots.
 ##' @param n_particles ensemble size J.
-##' @param harvest_var the model output variable to compare to the observations.
-##' @param from_unit the model unit of harvest_var (udunits string).
-##' @param to_unit the observation unit to convert the harvest to.
-##' @param soil_pft name of the PFT whose traits U overwrites.
+##' @param var_map named list keyed by observation variable, each
+##'   `list(model_var, from, to)` (see harvest_output_to_G): the crosswalk from
+##'   each observed variable to its model output and units.
+##' @param soil_pfts character vector of soil PFT names that share the calibrated
+##'   rates; the same proposal column is written into each (see inject_traits).
 ##' @param state_prefix column prefix marking calibrated initial-state entries in
 ##'   U; when present each is written into the initial condition per particle.
 ##' @param state_pool the initial condition pool variable the state writes into.
 ##' @param base_out_dir parent directory for the per iteration model output.
+##' @param fixed_traits trait names pinned through the run dir `default.param`,
+##'   dropped from the baseline sample so the pinned value is not overwritten by
+##'   the PFT posterior median.
+##' @param raw_obs the untransformed target the model output is harvested against;
+##'   its `transform` (the linear map from raw to fitted slots) is applied to G so
+##'   model and observations are the same quantity. NULL fits the raw slots.
 ##' @return function(U, iteration) -> matrix (J, P) aligned to names(obs$y).
 ##' @export
-make_forward_sipnet <- function(settings, obs, n_particles,
-                                harvest_var, from_unit, to_unit,
-                                soil_pft = "soil",
+make_forward_sipnet <- function(settings, obs, n_particles, var_map,
+                                soil_pfts,
                                 state_prefix = "soilInit.",
                                 state_pool = "soil_organic_carbon_content",
-                                base_out_dir = settings$outdir) {
+                                base_out_dir = settings$outdir,
+                                fixed_traits = character(0),
+                                raw_obs = NULL) {
+  transform <- raw_obs$transform
+  if (!is.null(raw_obs) && is.null(transform)) {
+    PEcAn.logger::logger.severe(
+      "raw_obs carries no transform; the fitted target cannot be reached from the ",
+      "model output without one"
+    )
+  }
+  harvest_meta <- if (is.null(raw_obs)) obs$meta else raw_obs$meta
   obs_order <- names(obs$y)
   meta <- obs$meta
-  start_year <- as.integer(format(as.Date(settings[[1]]$run$start.date), "%Y"))
-  end_year   <- as.integer(format(as.Date(settings[[1]]$run$end.date), "%Y"))
-
-  inputs   <- settings[[1]]$run$inputs
-  n_met    <- length(inputs$met$path)
-  n_events <- length(inputs$events$path)
-  n_ic     <- length(inputs$poolinitcond$path)
+  window <- run_window(settings)
 
   # the multisite site ids, iterated in settings order
   treatments <- vapply(settings, function(x) x$run$site$id, character(1))
@@ -62,10 +71,7 @@ make_forward_sipnet <- function(settings, obs, n_particles,
            function(i) settings[[i]]$run$inputs$poolinitcond$path[[1]]),
     treatments)
 
-  baseline <- baseline_trait_samples(settings$pfts, n_particles)
-  # config + model steps run from the prepared run dir: the host's launcher path
-  # is relative to it.
-  run_dir <- dirname(settings$outdir)
+  baseline <- baseline_trait_samples(settings$pfts, n_particles, fixed_traits)
 
   function(U, itr) {
     out_itr <- file.path(base_out_dir, paste0("itr", itr))
@@ -80,8 +86,7 @@ make_forward_sipnet <- function(settings, obs, n_particles,
     state_cols <- grep(paste0("^", state_prefix), colnames(U), value = TRUE)
     trait_cols <- setdiff(colnames(U), state_cols)
 
-    ensemble.samples <- inject_traits(baseline, soil_pft, U[, trait_cols, drop = FALSE])
-    write_samples_rdata(ensemble.samples, file.path(s$outdir, "samples.Rdata"))
+    ensemble.samples <- inject_traits(baseline, soil_pfts, U[, trait_cols, drop = FALSE])
 
     # calibrated initial state: write one ic per (site, particle) with the pool
     # set to that particle's proposal and point the run's poolinitcond at them, so
@@ -91,41 +96,60 @@ make_forward_sipnet <- function(settings, obs, n_particles,
       ic_paths <- write_state_ensemble(U, state_cols, state_prefix, state_pool,
                                        treatments, file.path(out_itr, "IC_files"),
                                        ic_template_paths)
-      s <- repoint_poolinitcond(s, treatments, ic_paths)
+      s <- repoint_poolinitcond(s, treatments, ic_paths, n_particles)
       poolinitcond_idx <- seq_len(n_particles)
     } else {
-      poolinitcond_idx <- rep_len(seq_len(n_ic), n_particles)
+      poolinitcond_idx <- rep(1L, n_particles)
     }
-    input_design <- tibble::tibble(
-      param        = seq_len(n_particles),
-      poolinitcond = poolinitcond_idx,
-      met          = rep_len(seq_len(n_met), n_particles),
-      events       = rep_len(seq_len(n_events), n_particles)
+    # a design's `param` column indexes into the samples it was drawn with, so the
+    # two arrive together; supplying both also keeps pecan from generating its own
+    # design, which pins met and events to the first member.
+    input_design <- list(
+      design_matrix = data.frame(
+        param        = seq_len(n_particles),
+        poolinitcond = poolinitcond_idx,
+        met          = 1L,
+        events       = 1L
+      ),
+      samples = list(
+        ensemble.samples = ensemble.samples,
+        trait.samples    = lapply(ensemble.samples, as.list),
+        sa.samples       = NULL,
+        runs.samples     = list(),
+        env.samples      = list()
+      )
     )
 
-    old_wd <- setwd(run_dir)
-    on.exit(setwd(old_wd), add = TRUE)
     s <- PEcAn.workflow::runModule.run.write.configs(s, input_design = input_design)
     PEcAn.workflow::runModule_start_model_runs(s, stop.on.error = FALSE)
 
-    G <- harvest_output_to_G(s$modeloutdir, meta, harvest_var,
-                             start_year, end_year, from_unit, to_unit)
+    G <- harvest_output_to_G(s$modeloutdir, harvest_meta, var_map, window)
+    if (!is.null(transform)) G <- apply_transform(G, transform)
+    missing <- setdiff(obs_order, colnames(G))
+    if (length(missing) > 0L) {
+      PEcAn.logger::logger.severe(
+        length(missing), " observation slots have no forward output (e.g. ",
+        paste(utils::head(missing, 5), collapse = ", "),
+        "); every treatment's ensemble runs must finish before harvest"
+      )
+    }
     G[, obs_order, drop = FALSE]
   }
 }
 
-##' fixed baseline trait samples: every parameter at its prior median (the
-##' PEcAn.priors::get.sample p = 0.5 of the post.distns row, so it matches the
-##' family the pft carries), replicated over particles, one data.frame per pft.
-##' the calibrated columns are overwritten by U; the rest stay fixed so the
-##' prediction spread reflects only the estimated parameters.
+##' baseline trait samples: every parameter at its prior median, replicated over
+##' particles, one data.frame per pft. calibrated columns are overwritten by U.
+##' traits named in `fixed` are dropped so the run dir default.param value stands;
+##' a trait left in here overwrites it.
 ##' @keywords internal
-baseline_trait_samples <- function(pfts, n_particles) {
+baseline_trait_samples <- function(pfts, n_particles, fixed = character(0)) {
   out <- list()
   for (pft in pfts) {
     e <- new.env()
     load(pft$posterior.files, envir = e)
     pd <- get(ls(e)[[1]], envir = e)
+    keep <- setdiff(rownames(pd), fixed)
+    pd <- pd[keep, , drop = FALSE]
     med <- vapply(seq_len(nrow(pd)), function(i) {
       PEcAn.priors::get.sample(pd[i, c("distn", "parama", "paramb")], p = 0.5)
     }, numeric(1))
@@ -137,25 +161,24 @@ baseline_trait_samples <- function(pfts, n_particles) {
   out
 }
 
-##' overwrite the pft's calibrated trait columns with the proposal U.
+##' write the proposal U into each named soil pft: the calibrated rates are one
+##' shared quantity, not one per pft. fails if a named pft is absent rather than
+##' silently calibrating a subset.
 ##' @keywords internal
-inject_traits <- function(baseline, soil_pft, U_traits) {
+inject_traits <- function(baseline, soil_pfts, U_traits) {
+  missing_pfts <- setdiff(soil_pfts, names(baseline))
+  if (length(missing_pfts) > 0L) {
+    PEcAn.logger::logger.severe(
+      "soil PFT(s) not present in the prepared settings: ",
+      paste(missing_pfts, collapse = ", "), "; the run carries ",
+      paste(names(baseline), collapse = ", ")
+    )
+  }
   es <- baseline
-  for (nm in colnames(U_traits)) es[[soil_pft]][[nm]] <- U_traits[, nm]
+  for (pft in soil_pfts) {
+    for (nm in colnames(U_traits)) es[[pft]][[nm]] <- U_traits[, nm]
+  }
   es
-}
-
-##' write samples.Rdata in the object run.write.configs expects.
-##' @keywords internal
-write_samples_rdata <- function(ensemble.samples, file) {
-  trait.samples <- lapply(ensemble.samples, as.list)
-  pft.names <- names(ensemble.samples)
-  trait.names <- lapply(ensemble.samples, names)
-  sa.samples <- NULL
-  runs.samples <- list()
-  env.samples <- list()
-  save(ensemble.samples, trait.samples, sa.samples, runs.samples,
-       pft.names, trait.names, env.samples, file = file)
 }
 
 ##' write the per-(site, particle) initial condition ensemble for a calibrated
@@ -182,11 +205,47 @@ write_state_ensemble <- function(U, state_cols, prefix, state_pool, treatments,
 }
 
 ##' point each site's poolinitcond path at the freshly written per particle ics,
-##' so particle j uses its own ic at every site and the design indexes 1:J.
+##' so particle j uses its own ic at every site and the design indexes 1:J. sites
+##' without a calibrated state (no `ic_paths` entry) keep their template ic,
+##' recycled to J paths so the shared design column stays in range; overwriting
+##' them with an empty list silently drops every one of their run dirs.
 ##' @keywords internal
-repoint_poolinitcond <- function(settings, treatments, ic_paths) {
+repoint_poolinitcond <- function(settings, treatments, ic_paths, n_particles) {
   for (i in seq_along(treatments)) {
-    settings[[i]]$run$inputs$poolinitcond$path <- as.list(ic_paths[[treatments[i]]])
+    t <- treatments[i]
+    if (!is.null(ic_paths[[t]])) {
+      settings[[i]]$run$inputs$poolinitcond$path <- as.list(ic_paths[[t]])
+    } else {
+      have <- unlist(settings[[i]]$run$inputs$poolinitcond$path, use.names = FALSE)
+      if (length(have) == 0L) {
+        PEcAn.logger::logger.severe(
+          "block ", t, " has neither a calibrated state column nor a pinned ",
+          "poolinitcond path; every block needs an initial condition"
+        )
+      }
+      settings[[i]]$run$inputs$poolinitcond$path <-
+        as.list(rep_len(have, n_particles))
+    }
   }
   settings
+}
+
+##' @title Run years per treatment from a multisite settings object
+##' @name run_window
+##' @author Akash BV
+##'
+##' @description First and last run year of each treatment, for reading model
+##'   output over that treatment's own window; a joint run spans different
+##'   periods per site.
+##'
+##' @param settings a PEcAn multisite settings object.
+##' @return integer matrix (2 x n_treatments), columns named by treatment.
+##' @export
+run_window <- function(settings) {
+  win <- vapply(settings, function(x) {
+    c(as.integer(format(as.Date(x$run$start.date), "%Y")),
+      as.integer(format(as.Date(x$run$end.date), "%Y")))
+  }, integer(2))
+  colnames(win) <- vapply(settings, function(x) x$run$site$id, character(1))
+  win
 }
