@@ -1,0 +1,233 @@
+---
+title: "Joint SOC and N2O calibration: run report"
+date: today
+format:
+  html:
+    self-contained: true
+    toc: true
+    theme: cosmo
+    number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(calibration)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+config <- config::get(file = file.path(here::here(), "examples/2_joint_soc_n2o/config.yml"))
+cache  <- config$cache_dir
+result <- readRDS(file.path(cache, "result.rds"))
+target <- readRDS(file.path(cache, "target.rds"))
+obs    <- readRDS(file.path(cache, "obs.rds"))
+prior  <- readRDS(file.path(cache, "prior.rds"))
+
+G_list <- c(lapply(result$eki$eki_list, function(s) s$G), list(result$eki$G))
+names(G_list) <- paste("iteration", seq_along(G_list))
+shift <- param_shift(result$U0, result$U)
+scores <- score_table(G_list, result$obs$meta)
+
+theme_set(theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(), legend.position = "bottom"))
+```
+
+This report interprets one executed calibration of SIPNET soil parameters
+against the curated cal/val observations, run with the configuration in this
+directory. The run itself is reproduced by the script sequence in the README;
+nothing here reruns the model: every figure and number is read from the run's
+cached artifacts under `` `r cache` ``.
+
+# What was calibrated
+
+The fitted target is soil organic carbon at the Salinas organic cropping
+systems trial, contracted from `r sum(obs$meta$variable == "SOC_stock_salinas")`
+per system per year stocks (8 systems, 2005 to 2011) into
+`r sum(result$obs$meta$variable == "SOC_periodmean_salinas")` slots: the control
+system's period mean level and one period mean contrast per remaining system.
+The Modesto almond N2O treatment contrast
+(`r sum(target$meta$variable == "N2O_contrast_modesto")` date-matched slots) is
+held out of the likelihood and scored as validation.
+
+Three soil parameters are estimated (`som_respiration_rate`,
+`fracLitterRespired`, `turn_over_time`) together with one initial soil carbon
+stock per system (`soilInit.*`), each anchored on that system's 2005 observation
+at its measurement error rather than pinned to it. `soil_respiration_Q10` is
+pinned at 2.0 in the run's `default.param`. The ensemble runs
+`r result$control$n_particles` particles through
+`r result$control$n_iterations` tempered ensemble Kalman updates
+(seed `r result$control$seed`).
+
+# Does the calibrated model reproduce the observed target?
+
+```{r}
+#| label: fitted-slots
+#| fig-cap: "Fitted target slots before (left) and after (right) calibration: the control period mean level and the seven system contrasts. Blue points are the ensemble members, the black dash their mean, red the observation with one standard deviation."
+#| fig-width: 10
+#| fig-height: 4.5
+sm <- result$obs$meta
+library(patchwork)
+p1 <- plot_target_slots(G_list[[1]][, sm$slot, drop = FALSE], sm,
+                        ylab = unique(sm$units), title = "before calibration")
+p2 <- plot_target_slots(G_list[[length(G_list)]][, sm$slot, drop = FALSE], sm,
+                        ylab = unique(sm$units), title = "after calibration")
+p1 + p2
+```
+
+```{r}
+#| label: scores
+soc <- scores[scores$variable == "SOC_periodmean_salinas", ]
+kable(soc[, c("iteration", "rmse", "bias", "coverage", "crps")], digits = 2,
+      caption = "Fit of the SOC target by tempering step. Iteration 1 is the prior forward run; the last row is the posterior.")
+```
+
+The prior ensemble misses the target with an RMSE of
+`r round(soc$rmse[1], 1)` `r unique(sm$units)`; the calibrated ensemble closes
+that to `r round(soc$rmse[nrow(soc)], 1)` with coverage
+`r round(soc$coverage[nrow(soc)], 2)` of observations inside the 90 percent
+band.
+
+# What did the data constrain?
+
+```{r}
+#| label: shift-table
+kable(shift[, c("param", "prior_mean", "post_mean", "post_sd", "var_reduction")],
+      digits = 3,
+      caption = "Prior to posterior shift per parameter. var_reduction is the fractional loss of prior variance; a value near zero means the data did not inform the parameter.")
+```
+
+```{r}
+#| label: som-density
+#| fig-cap: "Prior and posterior for som_respiration_rate, the one parameter the target strongly constrains."
+#| fig-width: 6
+#| fig-height: 3
+d <- rbind(
+  data.frame(stage = "prior",     value = result$U0[, "som_respiration_rate"]),
+  data.frame(stage = "posterior", value = result$U[, "som_respiration_rate"])
+)
+ggplot(d, aes(value, color = stage)) +
+  geom_density(linewidth = 1) +
+  labs(x = "som_respiration_rate (g C g-1 soil C yr-1)", y = "density", color = NULL)
+```
+
+```{r}
+#| label: som-numbers
+#| include: false
+sr <- result$U[, "som_respiration_rate"]
+srq <- quantile(sr, c(0.025, 0.975))
+vr <- shift$var_reduction[shift$param == "som_respiration_rate"]
+```
+
+The target constrains one process rate: `som_respiration_rate` collapses from
+its uniform prior to `r round(mean(sr), 3)`
+[`r round(srq[1], 3)`, `r round(srq[2], 3)`], a
+`r round(100 * vr)` percent variance reduction, and it does so in the first
+tempering step (below). `turn_over_time` and `fracLitterRespired` barely
+narrow: the period mean SOC target carries little information about how carbon is
+partitioned on its way to the soil pool, only about how fast the pool turns
+over. The initial stocks stay at their observation-anchored priors, which is
+what the anchoring is for.
+
+```{r}
+#| label: trace
+#| fig-cap: "Ensemble mean and 5-95 percent range of each parameter across tempering steps; dashed lines are the declared support bounds. Initial stocks are in kg C m-2, in model units."
+#| fig-width: 10
+#| fig-height: 6
+pm <- result$eki$par_map
+trace <- c(list(result$U0), lapply(result$eki$eki_list, function(s) pm$inv(s$U)))
+plot_param_trace(trace, prior)
+```
+
+# Does the model capture the compost effect?
+
+The curated treatment pair table names systems 1 and 2 as the compost
+comparison: the same quadrennial cover crop with and without 7.6 Mg/ha compost
+per crop. The effect is computed per ensemble member and year as treatment
+minus control, from the raw per year stocks of the prior (itr1) and posterior
+(itr4) forward runs.
+
+```{r}
+#| label: effect-harvest
+#| include: false
+em <- obs$meta[obs$meta$variable == "SOC_stock_salinas" &
+               obs$meta$treatment_id %in% c("socs_sys1", "socs_sys2"), ]
+vm <- config$forward$var_map["SOC_stock_salinas"]
+win <- cbind(socs_sys1 = c(2005L, 2011L), socs_sys2 = c(2005L, 2011L))
+out <- file.path(config$forward$workspace, "output")
+G_prior <- harvest_output_to_G(file.path(out, "itr1", "out"), em, vm, win)
+G_post  <- harvest_output_to_G(file.path(out, "itr4", "out"), em, vm, win)
+eff <- function(G) mean(colMeans(G[, em$slot[em$treatment_id == "socs_sys2"]]) -
+                        colMeans(G[, em$slot[em$treatment_id == "socs_sys1"]]))
+meas <- with(em, mean(value[treatment_id == "socs_sys2"] -
+                      value[treatment_id == "socs_sys1"]))
+```
+
+```{r}
+#| label: effect-figure
+#| fig-cap: "Measured against modeled compost effect (system 2 minus system 1), before and after calibration, as the absolute effect and as percent of control. Bands are the 5-95 percent ensemble range; red points the measured contrast with one standard deviation."
+#| fig-width: 9
+#| fig-height: 4
+plot_treatment_effect(G_prior, G_post, em, "SOC_stock_salinas",
+                      treatment = "socs_sys2", control = "socs_sys1")
+```
+
+Averaged over the period, the measured effect is
+`r round(meas, 1)` Mg C/ha; the prior ensemble puts it at
+`r round(eff(G_prior), 1)` and the calibrated ensemble at
+`r round(eff(G_post), 1)`. The calibration was fit to the contrasts, so
+matching their mean is expected; that the posterior band also tracks the
+year to year shape in both the absolute and relative form is the substantive
+check.
+
+# The held-out N2O contrast
+
+```{r}
+#| label: validation
+#| fig-cap: "Held-out validation: predicted against measured Modesto N2O treatment contrast per measurement date, with the 5-95 percent ensemble range and a 1:1 line. Axes are linear because a contrast is signed."
+#| fig-width: 8
+#| fig-height: 4
+vmeta <- result$obs_all$meta
+vmeta <- vmeta[vmeta$variable == "N2O_contrast_modesto", , drop = FALSE]
+plot_validation(result$G_validation, vmeta)
+```
+
+```{r}
+#| label: val-scores
+kable(score_iteration(result$G_validation, vmeta)[, c("variable", "slots", "rmse", "bias", "coverage")],
+      digits = 2, caption = "Scores of the held-out contrast at the posterior.")
+```
+
+The model predicts a positive compost minus control N2O contrast on most dates
+while several measured contrasts are negative. That sign structure is why the
+variable is held out: a target the model cannot reach cannot be calibrated
+through; the estimator would answer by pushing a nitrogen parameter to its
+bound for reasons unrelated to the process it stands for. Held out, the
+mismatch stays visible and scored instead of being absorbed.
+
+# Limitations
+
+- The compost carbon inputs carry an amendment quality scaling sourced from the
+  literature, not fitted; its uncertainty is not propagated here.
+- One process rate dominates the fit. With a single site's period mean and
+  contrasts, `turn_over_time` and `fracLitterRespired` are close to
+  unidentifiable, and their posteriors should be read as priors.
+- The SOC inference rests on one trial; transfer to other soils and systems is
+  an assumption until a second site joins the target.
+- The establishment years (2003 to 2004) are excluded by design: the first year
+  drop is a one time disturbance a first order soil model should not be forced
+  to reproduce.
+- The N2O response has the wrong sign structure at Modesto; nitrogen parameters
+  were not calibrated and the held-out scores quantify, not fix, that gap.
+
+# Reproducing this report
+
+The run is reproduced by the script sequence in this directory's README; this
+document then renders from the run's caches with
+`quarto render examples/2_joint_soc_n2o/report.qmd`. The only computation here
+beyond reading caches is the compost effect harvest, which reads the stored
+model output of the first and last iteration.
