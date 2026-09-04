@@ -4,10 +4,17 @@
 \alias{state_prior_from_obs}
 \title{Per-site prior for a calibrated initial state, anchored to an observation}
 \usage{
-state_prior_from_obs(meta, prefix, from_unit, to_unit, anchor_year = NULL)
+state_prior_from_obs(
+  meta,
+  prefix,
+  from_unit,
+  to_unit,
+  variable,
+  anchor_year = NULL
+)
 }
 \arguments{
-\item{meta}{observation meta (treatment_id, study_year, value, var_obs).}
+\item{meta}{observation meta (variable, treatment_id, obs_year, value, var_obs).}
 
 \item{prefix}{column prefix marking the state entries (e.g. "soilInit.").}
 
@@ -15,7 +22,10 @@ state_prior_from_obs(meta, prefix, from_unit, to_unit, anchor_year = NULL)
 
 \item{to_unit}{unit the model state is in (udunits string).}
 
-\item{anchor_year}{study_year to anchor on; defaults to the earliest.}
+\item{variable}{the observed variable whose slots anchor the state; the joint
+meta can span several variables and an unscoped anchor would take the wrong one.}
+
+\item{anchor_year}{observation year to anchor on; defaults to the earliest.}
 }
 \value{
 a dist_list keyed <prefix><site>, in site order.

@@ -3,14 +3,19 @@
 \name{.distn_support}
 \alias{.distn_support}
 \title{distn family -> support the transport map uses. positive-support families get
-a log map, beta a logit, normal an identity, and a uniform its own bounds
-(handled by prior_from_specs, not here).}
+a log map, beta and unif a logit onto their own bounds, normal an identity.}
 \usage{
-.distn_support(distn)
+.distn_support(distn, parama = NULL, paramb = NULL)
+}
+\arguments{
+\item{distn}{family name.}
+
+\item{parama, paramb}{distribution parameters; uniform takes its support from them.}
 }
 \description{
-distn family -> support the transport map uses. positive-support families get
-a log map, beta a logit, normal an identity, and a uniform its own bounds
-(handled by prior_from_specs, not here).
+there is deliberately no default branch: a family falling through to
+c(-Inf, Inf) estimates a bounded parameter on the whole real line, and the
+posterior can leave the physical range without anything objecting. a new
+family must state its support rather than inherit an unbounded one.
 }
 \keyword{internal}

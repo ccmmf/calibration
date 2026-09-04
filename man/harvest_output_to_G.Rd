@@ -4,36 +4,28 @@
 \alias{harvest_output_to_G}
 \title{Harvest a model ensemble into the prediction matrix G}
 \usage{
-harvest_output_to_G(
-  out_root,
-  meta,
-  variable,
-  start_year,
-  end_year,
-  from_unit,
-  to_unit
-)
+harvest_output_to_G(out_root, meta, var_map, run_window)
 }
 \arguments{
 \item{out_root}{the model output directory holding the ENS-* run dirs.}
 
-\item{meta}{observation meta (slot, treatment_id, min_date, max_date).}
+\item{meta}{observation meta (slot, treatment_id, variable, min_date, max_date).}
 
-\item{variable}{the model output variable to read.}
+\item{var_map}{named list keyed by observation `variable`, each
+`list(model_var, from, to)`: the model output to read, its unit, and the
+observation unit.}
 
-\item{start_year, end_year}{the run year range.}
-
-\item{from_unit}{the variable's model unit (udunits string).}
-
-\item{to_unit}{the observation unit to convert to (udunits string).}
+\item{run_window}{integer matrix (2 x n_treatments) of first and last run year,
+columns named by treatment. Each treatment is read over its own window; a
+joint run spans different periods per site.}
 }
 \value{
 matrix (members x slots) named by observation slot, member-ordered.
 }
 \description{
-For each ENS-<member>-<treatment> run under `out_root`, reads
-`variable`, samples it at the observation date of each of that treatment's
-slots (the midpoint of the slot's date window in meta), converts to the
+For each ENS-<member>-<treatment> run under `out_root`, reads the
+model outputs the treatment's slots need over that treatment's run window,
+samples each slot at the midpoint of its date window, converts to the
 observation unit, and assembles the J x P matrix aligned to the observation
 slots. Assumes every expected run has finished; a missing run output fails
 loud in read.output rather than being silently dropped.
