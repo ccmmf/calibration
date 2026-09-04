@@ -9,15 +9,17 @@ score_iteration(G, meta)
 \arguments{
 \item{G}{matrix (J x P), columns named by observation slot.}
 
-\item{meta}{observation meta (slot, value = obs mean).}
+\item{meta}{observation meta (slot, variable, value = obs mean).}
 }
 \value{
-one row tibble: rmse, bias, coverage, mean_width, crps.
+tibble, one row per variable: slots, rmse, bias, coverage,
+  mean_width, crps.
 }
 \description{
 Scores a J x P prediction ensemble G against the observations in
-meta: RMSE and bias of the ensemble mean, coverage and mean width of the 90%
-band, and the mean CRPS. Columns of G are matched to observations by slot.
+meta, per variable: RMSE and bias of the ensemble mean, coverage and mean
+width of the 90% band, and the mean CRPS. Columns of G are matched to
+observations by slot.
 }
 \author{
 Akash BV

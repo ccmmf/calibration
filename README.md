@@ -75,7 +75,7 @@ Rscript scripts/030_calibrate.R             --config <config.yml>
 Rscript scripts/040_plot.R                  --config <config.yml>
 ```
 
-`examples/salinas_soc/` is a worked example (soil carbon at the Salinas organic
+`examples/1_salinas_soc/` is a worked example (soil carbon at the Salinas organic
 cropping systems), and `vignettes/calibration_demo.qmd` walks through the whole
 thing step by step.
 

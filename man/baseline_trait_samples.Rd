@@ -2,19 +2,17 @@
 % Please edit documentation in R/forward_sipnet.R
 \name{baseline_trait_samples}
 \alias{baseline_trait_samples}
-\title{fixed baseline trait samples: every parameter at its prior median (the
-PEcAn.priors::get.sample p = 0.5 of the post.distns row, so it matches the
-family the pft carries), replicated over particles, one data.frame per pft.
-the calibrated columns are overwritten by U; the rest stay fixed so the
-prediction spread reflects only the estimated parameters.}
+\title{baseline trait samples: every parameter at its prior median, replicated over
+particles, one data.frame per pft. calibrated columns are overwritten by U.
+traits named in `fixed` are dropped so the run dir default.param value stands;
+a trait left in here overwrites it.}
 \usage{
-baseline_trait_samples(pfts, n_particles)
+baseline_trait_samples(pfts, n_particles, fixed = character(0))
 }
 \description{
-fixed baseline trait samples: every parameter at its prior median (the
-PEcAn.priors::get.sample p = 0.5 of the post.distns row, so it matches the
-family the pft carries), replicated over particles, one data.frame per pft.
-the calibrated columns are overwritten by U; the rest stay fixed so the
-prediction spread reflects only the estimated parameters.
+baseline trait samples: every parameter at its prior median, replicated over
+particles, one data.frame per pft. calibrated columns are overwritten by U.
+traits named in `fixed` are dropped so the run dir default.param value stands;
+a trait left in here overwrites it.
 }
 \keyword{internal}
