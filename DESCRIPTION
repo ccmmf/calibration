@@ -14,7 +14,7 @@ Description: Method-agnostic ensemble calibration of process-based ecosystem
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.4.0)
 Imports:
     PEcAn.logger,
     PEcAn.priors,
