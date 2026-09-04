@@ -1,0 +1,11 @@
+block_id,lat,lon,veg_pft,soil_pft,run_start,run_end,met_src,ic_src,events_src
+compost,37.6273,-121.0893,temperate.deciduous_almond,soil,2018-01-01,2019-12-31,37.5N_121W/ERA5.1.2018-01-01.2019-12-31.clim,modesto/9cb08ca2174bede7/IC_site_9cb08ca2174bede7_1.nc,modesto/compost/events_ens_01.in
+no_compost,37.6273,-121.0893,temperate.deciduous_almond,soil,2018-01-01,2019-12-31,37.5N_121W/ERA5.1.2018-01-01.2019-12-31.clim,modesto/9cb08ca2174bede7/IC_site_9cb08ca2174bede7_1.nc,modesto/no_compost/events_ens_01.in
+socs_sys1,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys1/events.in
+socs_sys2,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys2/events.in
+socs_sys3,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys3/events.in
+socs_sys4,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys4/events.in
+socs_sys5,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys5/events.in
+socs_sys6,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys6/events.in
+socs_sys7,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys7/events.in
+socs_sys8,36.62,-121.53,annual_crop_row,soil,2005-01-01,2011-12-31,36.5N_121.5W/ERA5.1.2005-01-01.2011-12-31.clim,salinas/9f296becf416ce87/IC_site_9f296becf416ce87_1.nc,salinas_e25/socs_sys8/events.in
