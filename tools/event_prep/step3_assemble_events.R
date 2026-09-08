@@ -124,13 +124,15 @@ for (i in seq_len(nrow(fert))) {
            source = "akash:fertilization.parquet",
            nh4_n_kg_m2 = round(r$nh4_n_kg_m2, 8),
            no3_n_kg_m2 = round(r$no3_n_kg_m2, 8),
-           org_n_kg_m2 = round(r$org_n_kg_m2, 8)))
+           org_n_kg_m2 = round(r$org_n_kg_m2, 8),
+           org_c_kg_m2 = round(r$org_c_kg_m2, 8)))
 }
 add(list(event_type = "fertilization", date = f17_date,
          source = "synthesized:median_doy(2018-2023 F16)",
          nh4_n_kg_m2 = round(mean(cf$nh4_n_kg_m2), 8),
          no3_n_kg_m2 = round(mean(cf$no3_n_kg_m2), 8),
          org_n_kg_m2 = round(mean(cf$org_n_kg_m2), 8),
+         org_c_kg_m2 = round(mean(cf$org_c_kg_m2), 8),
          prior_filled = "date<-synthesized:2017_excluded_year"))
 
 # sort by date

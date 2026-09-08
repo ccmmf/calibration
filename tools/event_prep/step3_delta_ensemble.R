@@ -109,12 +109,14 @@ for (m in seq_len(N_MEM)) {
     add(list(event_type = "fertilization", date = as.character(r$date),
              source = paste0("akash:fertilization.parquet:", fm),
              nh4_n_kg_m2 = round(r$nh4_n_kg_m2, 8), no3_n_kg_m2 = round(r$no3_n_kg_m2, 8),
-             org_n_kg_m2 = round(r$org_n_kg_m2, 8))) }
+             org_n_kg_m2 = round(r$org_n_kg_m2, 8),
+             org_c_kg_m2 = round(r$org_c_kg_m2, 8))) }
   if (!is.na(f_syn) && keep(f_syn))
     add(list(event_type = "fertilization", date = f_syn, source = "synthesized:median_doy",
              nh4_n_kg_m2 = round(mean(cf$nh4_n_kg_m2), 8),
              no3_n_kg_m2 = round(mean(cf$no3_n_kg_m2), 8),
              org_n_kg_m2 = round(mean(cf$org_n_kg_m2), 8),
+             org_c_kg_m2 = round(mean(cf$org_c_kg_m2), 8),
              prior_filled = paste0("date<-synthesized:", SYNTH_YEAR, "_excluded_year")))
 
   events <- events[order(vapply(events, \(e) e$date, character(1)))]
