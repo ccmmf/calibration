@@ -8,7 +8,13 @@ KNOX <- "10.1002/2015JG003247"
 SITE <- "US-Twt"
 CROP <- "R1"
 LEAF_C_KG_M2 <- 0.02455947   # median of the monitoring-product values for this site and crop
-FRAC_ABOVE_REMOVED <- 0.8
+# Rice straw is not removed at this site. The curated Knox records state the residue is
+# 'chopped and left on the soil surface over the winter fallow season' and that fields are
+# reflooded November to February 'to facilitate straw decomposition'. So grain is removed and
+# straw goes to litter. The earlier 0.8 was a generic row-crop default and did not match the
+# committed events.json, which already carried 0.5 from commit 00e477d.
+FRAC_ABOVE_REMOVED <- 0.5
+FRAC_ABOVE_TO_LITTER <- 0.5
 LB_AC_TO_KG_HA <- 1.12085
 KG_HA_TO_KG_M2 <- 1e-4
 FLOOD_AFTER_PLANTING_D <- c(45, 60)
@@ -68,7 +74,8 @@ build <- function(rows, years) {
       add(list(event_type = "harvest", date = md,
                crop_display = if (is.na(r$crop_name)) CROP else r$crop_name,
                frac_above_removed_0to1 = FRAC_ABOVE_REMOVED,
-               prior_filled = "frac_above_removed_0to1<-prior:R1_default"),
+               frac_above_to_litter_0to1 = FRAC_ABOVE_TO_LITTER,
+               prior_filled = "frac_above_removed_0to1<-prior:R1_rice_straw_left"),
           cls, src, note)
     } else if (identical(r$mgmttype, "fertilization")) {
       rate <- as.numeric(r$level); grade <- r$reported_material
@@ -155,6 +162,7 @@ add_tr(list(event_type = "planting", date = pd_, crop_code = CROP, crop_display 
              "date is the 2010-2015 median day of year"))
 add_tr(list(event_type = "harvest", date = hd_, crop_display = CROP,
             frac_above_removed_0to1 = FRAC_ABOVE_REMOVED,
+            frac_above_to_litter_0to1 = FRAC_ABOVE_TO_LITTER,
             prior_filled = "date<-synthesized:median_doy(2010-2015)"),
        "assumed", "synthesized:median_doy",
        "2016 absent from the monitoring product export; date is the 2010-2015 median DOY")
