@@ -104,7 +104,9 @@ One directory per site, plus a combined `site_info.csv` and a shared `template.x
 | `us_twt` | rice | `annual_crop` | 2010-2023 |
 
 `modesto` is the only `temperate.deciduous` site, so it keeps its own `template.xml`;
-the other five share `runs/template.xml`.
+the other five share `runs/template.xml`. The two files differ only in `<pfts>`; every
+other setting, including the `<model><options>` block, is identical so that run settings
+stay constant across sites.
 
 ### One site_info for all sites
 
@@ -117,15 +119,18 @@ the other five share `runs/template.xml`.
 rather than from the file. There is no `--site` option. So invoking one site's config
 builds met and settings for all six, using that config's dates.
 
-The six sites have five distinct windows, so a single multi-site run is not currently
+No two of the six sites share a window, so a single multi-site run is not currently
 correct for all of them. Running one site in isolation needs either a site filter in
-the CLI or the window moving into `site_info.csv` as per-row columns. Until then, pass
-a one-row `site_info` explicitly with `--site_info_file` when running a single site.
+the CLI or the window moving into `site_info.csv` as per-row columns. Until then, point
+that site's `external_paths.site_info_file` at a one-row copy. There is no
+`--site_info_file` flag on `magic-ensemble`: the workflow path comes from
+`workflow_manifest.yaml` and cannot be overridden on the command line, so the only way in
+is the file the config stages into the run directory.
 
 ### What is committed and what is not
 
-Committed are inputs only: `*_user_config.yaml`, `*_site_info.csv`, `template.xml` and
-`events.json`. **`settings.xml` is not committed** - `03_xml_build.R` generates it into the
+Committed are inputs only: `*_user_config.yaml`, the shared `runs/site_info.csv`,
+`template.xml` and `events.json`. **`settings.xml` is not committed** - `03_xml_build.R` generates it into the
 run directory and `run-ensembles` reads it from there, so a copy here would never be read.
 Met, initial conditions and model output live on the cluster and in
 `s3://carb/calval_sa_inputs/`, not in git.
@@ -150,7 +155,10 @@ Running from the workflows checkout without setting it fails at the first step w
 
 - `magic-ensemble` replaces the whole `<model>` element from `workflow_manifest.yaml` at
   prepare time, so `<revision>`, `<binary>` and `<options>` set in a template here do not
-  survive. That includes `NITROGEN_CYCLE` and `ANAEROBIC`, which modesto needs.
+  survive. That includes `NITROGEN_CYCLE` and `ANAEROBIC`. The templates carry them so the
+  intended settings are recorded and consistent, but SIPNET does not receive them until the
+  manifest block gains an `<options>` element. `<host>` is replaced the same way, from the
+  config's `pecan_dispatch`.
 - `events.in` is derived from `events.json` but nothing checks the two agree; they have
   drifted before.
 - Sites with multiple treatments do not yet have one `events.json` per treatment.

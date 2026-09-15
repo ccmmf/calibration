@@ -10,6 +10,8 @@ ic_ensemble_size: 100
 
 external_paths:
     template_file: "../template.xml"
+    # shared file, all six sites. The workflow has no site filter and processes
+    # every row, so to run this site alone point this at a one-row copy.
     site_info_file: "../site_info.csv"
 
 n_workers: 1
