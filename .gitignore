@@ -8,8 +8,10 @@
 
 # runs/ holds versioned per-site run configs; run outputs under each are ignored
 /runs/*
-# the combined site_info.csv and any docs live directly under runs/
+# the combined site_info.csv, the shared template.xml and any docs live
+# directly under runs/
 !/runs/*.csv
+!/runs/*.xml
 !/runs/README.md
 !/runs/*/
 /runs/*/*

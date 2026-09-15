@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<!-- Modesto template. Identical to runs/template.xml except for the PFT, which is
-     temperate.deciduous here and annual_crop there. Every other setting is held
-     constant across the six runs.
+<!-- Shared template for the annual_crop cal/val sites. Only <pfts> is per-site;
+     runs/modesto/template.xml is this file with the temperate.deciduous PFT and
+     is otherwise identical, so settings stay constant across the six runs.
      magic-ensemble replaces <model> and <host> wholesale at prepare time from
      workflow/workflow_manifest.yaml, so the blocks below record the intended
      settings rather than the ones SIPNET currently receives. See "Known gaps". -->
@@ -16,8 +16,8 @@
  <rundir>output/run</rundir>
  <pfts>
   <pft>
-   <name>temperate.deciduous</name>
-   <posterior.files>pfts/temperate.deciduous/post.distns.Rdata</posterior.files>
+   <name>annual_crop</name>
+   <posterior.files>pfts/annual_crop/post.distns.Rdata</posterior.files>
   </pft>
  </pfts>
  <ensemble>
