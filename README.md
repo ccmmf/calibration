@@ -159,6 +159,11 @@ Running from the workflows checkout without setting it fails at the first step w
   intended settings are recorded and consistent, but SIPNET does not receive them until the
   manifest block gains an `<options>` element. `<host>` is replaced the same way, from the
   config's `pecan_dispatch`.
+- The two templates cannot yet be collapsed into one. `03_xml_build.R` builds a MultiSettings
+  with `PEcAn.settings::createMultiSiteSettings()`, which varies only `<run>` per site and
+  keeps `<pfts>` global, and it never reads the `site.pft` column. A single template listing
+  both PFTs would hand every site both. Collapsing needs either a per-site PFT in
+  `03_xml_build.R` or the site filter above, so that each run covers one PFT.
 - `events.in` is derived from `events.json` but nothing checks the two agree; they have
   drifted before.
 - Sites with multiple treatments do not yet have one `events.json` per treatment.
