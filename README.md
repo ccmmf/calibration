@@ -87,3 +87,83 @@ thing step by step.
 - `examples/` a worked example config and its notes.
 - `tests/` unit tests.
 - `vignettes/` the demo.
+- `runs/` per-site SIPNET run configs for the cal/val sites.
+- `tools/event_prep/` the scripts that generate the `events.json` files.
+
+## Cal/val run configs (`runs/`)
+
+One directory per site, plus a combined `site_info.csv` and a shared `template.xml`.
+
+| site | crop | PFT | window |
+|---|---|---|---|
+| `modesto` | almond | `temperate.deciduous` | 2018-2019 |
+| `russell_ranch` | corn / tomato / wheat | `annual_crop` | 1992-2014 |
+| `salinas_socs` | lettuce / broccoli | `annual_crop` | 2003-2011 |
+| `us_bi1` | alfalfa | `annual_crop` | 2017-2023 |
+| `us_bi2` | corn | `annual_crop` | 2016-2023 |
+| `us_twt` | rice | `annual_crop` | 2010-2023 |
+
+`modesto` is the only `temperate.deciduous` site, so it keeps its own `template.xml`;
+the other five share `runs/template.xml`. The two files differ only in `<pfts>`; every
+other setting, including the `<model><options>` block, is identical so that run settings
+stay constant across sites.
+
+### One site_info for all sites
+
+`runs/site_info.csv` carries all six sites; there are no per-site copies. Every
+`user_config.yaml` points at it with `site_info_file: "../site_info.csv"`.
+
+⚠️ **The workflow has no site filter, so this file drives which sites a run covers.**
+`01_ERA5_nc_to_clim.R` and `03_xml_build.R` both process every row of whatever
+`site_info` they are given, and the run window comes from `--start_date` / `--end_date`
+rather than from the file. There is no `--site` option. So invoking one site's config
+builds met and settings for all six, using that config's dates.
+
+No two of the six sites share a window, so a single multi-site run is not currently
+correct for all of them. Running one site in isolation needs either a site filter in
+the CLI or the window moving into `site_info.csv` as per-row columns. Until then, point
+that site's `external_paths.site_info_file` at a one-row copy. There is no
+`--site_info_file` flag on `magic-ensemble`: the workflow path comes from
+`workflow_manifest.yaml` and cannot be overridden on the command line, so the only way in
+is the file the config stages into the run directory.
+
+### What is committed and what is not
+
+Committed are inputs only: `*_user_config.yaml`, the shared `runs/site_info.csv`,
+`template.xml` and `events.json`. **`settings.xml` is not committed** - `03_xml_build.R` generates it into the
+run directory and `run-ensembles` reads it from there, so a copy here would never be read.
+Met, initial conditions and model output live on the cluster and in
+`s3://carb/calval_sa_inputs/`, not in git.
+
+### Running one
+
+`external_paths` are relative to the config's own directory, and the CLI resolves them from
+`INVOCATION_CWD`, which defaults to wherever you invoke from. Point it at the site directory:
+
+```bash
+SITE=$PWD/runs/us_twt
+cd /path/to/workflows
+INVOCATION_CWD=$SITE ./magic-ensemble prepare       --config $SITE/us_twt_user_config.yaml
+INVOCATION_CWD=$SITE ./magic-ensemble run-ensembles --config $SITE/us_twt_user_config.yaml
+```
+
+Running from the workflows checkout without setting it fails at the first step with
+`external_paths.template_file: source file not found`. That is the CLI resolving
+`template.xml` against the workflows checkout rather than the site directory.
+
+### Known gaps
+
+- `magic-ensemble` replaces the whole `<model>` element from `workflow_manifest.yaml` at
+  prepare time, so `<revision>`, `<binary>` and `<options>` set in a template here do not
+  survive. That includes `NITROGEN_CYCLE` and `ANAEROBIC`. The templates carry them so the
+  intended settings are recorded and consistent, but SIPNET does not receive them until the
+  manifest block gains an `<options>` element. `<host>` is replaced the same way, from the
+  config's `pecan_dispatch`.
+- The two templates cannot yet be collapsed into one. `03_xml_build.R` builds a MultiSettings
+  with `PEcAn.settings::createMultiSiteSettings()`, which varies only `<run>` per site and
+  keeps `<pfts>` global, and it never reads the `site.pft` column. A single template listing
+  both PFTs would hand every site both. Collapsing needs either a per-site PFT in
+  `03_xml_build.R` or the site filter above, so that each run covers one PFT.
+- `events.in` is derived from `events.json` but nothing checks the two agree; they have
+  drifted before.
+- Sites with multiple treatments do not yet have one `events.json` per treatment.
