@@ -40,6 +40,11 @@
 ##' @param raw_obs the untransformed target the model output is harvested against;
 ##'   its `transform` (the linear map from raw to fitted slots) is applied to G so
 ##'   model and observations are the same quantity. NULL fits the raw slots.
+##' @param soil_cn soil C:N mass ratio coupling the initial organic N pool to the
+##'   drawn initial soil C: after configs are written, each run's soilOrgNInit is
+##'   set to soilInit / soil_cn. soilInit varies per particle (the calibrated
+##'   state), so this cannot be pinned through default.param. NULL leaves the
+##'   template value.
 ##' @return function(U, iteration) -> matrix (J, P) aligned to names(obs$y).
 ##' @export
 make_forward_sipnet <- function(settings, obs, n_particles, var_map,
@@ -48,7 +53,8 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
                                 state_pool = "soil_organic_carbon_content",
                                 base_out_dir = settings$outdir,
                                 fixed_traits = character(0),
-                                raw_obs = NULL) {
+                                raw_obs = NULL,
+                                soil_cn = NULL) {
   transform <- raw_obs$transform
   if (!is.null(raw_obs) && is.null(transform)) {
     PEcAn.logger::logger.severe(
@@ -72,6 +78,11 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
     treatments)
 
   baseline <- baseline_trait_samples(settings$pfts, n_particles, fixed_traits)
+
+  # host$modellauncher$binary is a path relative to the run dir, and qsub runs
+  # with -cwd, so config and launch have to happen from there or no jobs are
+  # submitted and the harvest finds an empty output tree.
+  run_dir <- dirname(settings$outdir)
 
   function(U, itr) {
     out_itr <- file.path(base_out_dir, paste0("itr", itr))
@@ -120,7 +131,10 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
       )
     )
 
+    old_wd <- setwd(run_dir)
+    on.exit(setwd(old_wd), add = TRUE)
     s <- PEcAn.workflow::runModule.run.write.configs(s, input_design = input_design)
+    if (!is.null(soil_cn)) couple_soil_orgn(s$rundir, soil_cn)
     PEcAn.workflow::runModule_start_model_runs(s, stop.on.error = FALSE)
 
     G <- harvest_output_to_G(s$modeloutdir, harvest_meta, var_map, window)
@@ -134,6 +148,28 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
       )
     }
     G[, obs_order, drop = FALSE]
+  }
+}
+
+##' set each written run's soilOrgNInit to its own soilInit / soil_cn, so the
+##' initial soil C:N is the chosen ratio at every particle's drawn initial C
+##' rather than whatever the template N implies. write.config.SIPNET sets
+##' soilInit from the per-particle ic but never touches soilOrgNInit.
+##' @keywords internal
+couple_soil_orgn <- function(rundir, soil_cn) {
+  stopifnot(is.numeric(soil_cn), soil_cn > 0)
+  for (d in list.dirs(rundir, recursive = FALSE)) {
+    f <- file.path(d, "sipnet.param")
+    if (!file.exists(f)) next
+    p <- utils::read.table(f, stringsAsFactors = FALSE)
+    i_c <- p[[1]] == "soilInit"
+    i_n <- p[[1]] == "soilOrgNInit"
+    if (!any(i_c) || !any(i_n)) {
+      PEcAn.logger::logger.severe("soilInit/soilOrgNInit row missing in ", f)
+    }
+    p[i_n, 2] <- as.numeric(p[i_c, 2]) / soil_cn
+    utils::write.table(p, f, quote = FALSE, sep = "\t",
+                       row.names = FALSE, col.names = FALSE)
   }
 }
 
