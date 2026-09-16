@@ -15,12 +15,14 @@ crps_sample <- function(ens, obs) {
 ##' @author Akash BV
 ##'
 ##' @description Scores a J x P prediction ensemble G against the observations in
-##' meta: RMSE and bias of the ensemble mean, coverage and mean width of the 90%
-##' band, and the mean CRPS. Columns of G are matched to observations by slot.
+##' meta, per variable: RMSE and bias of the ensemble mean, coverage and mean
+##' width of the 90% band, and the mean CRPS. Columns of G are matched to
+##' observations by slot.
 ##'
 ##' @param G matrix (J x P), columns named by observation slot.
-##' @param meta observation meta (slot, value = obs mean).
-##' @return one row tibble: rmse, bias, coverage, mean_width, crps.
+##' @param meta observation meta (slot, variable, value = obs mean).
+##' @return tibble, one row per variable: slots, rmse, bias, coverage,
+##'   mean_width, crps.
 ##' @export
 score_iteration <- function(G, meta) {
   G <- G[, meta$slot, drop = FALSE]
@@ -28,15 +30,23 @@ score_iteration <- function(G, meta) {
   q05 <- apply(G, 2, stats::quantile, 0.05)
   q95 <- apply(G, 2, stats::quantile, 0.95)
   obs <- meta$value
-  crps <- mean(vapply(seq_along(obs), function(j) crps_sample(G[, j], obs[j]),
-                      numeric(1)))
-  tibble::tibble(
-    rmse       = sqrt(mean((m - obs)^2)),
-    bias       = mean(m - obs),
-    coverage   = mean(obs >= q05 & obs <= q95),
-    mean_width = mean(q95 - q05),
-    crps       = crps
-  )
+  crps <- vapply(seq_along(obs), function(j) crps_sample(G[, j], obs[j]), numeric(1))
+
+  # scored per variable: a pooled rmse over a joint target would average
+  # quantities in different units, which is not a quantity. `variable` also names
+  # the unit, so each row is internally consistent.
+  score_group <- function(idx) {
+    tibble::tibble(
+      slots      = length(idx),
+      rmse       = sqrt(mean((m[idx] - obs[idx])^2)),
+      bias       = mean(m[idx] - obs[idx]),
+      coverage   = mean(obs[idx] >= q05[idx] & obs[idx] <= q95[idx]),
+      mean_width = mean(q95[idx] - q05[idx]),
+      crps       = mean(crps[idx])
+    )
+  }
+  dplyr::bind_rows(lapply(split(seq_along(obs), meta$variable), score_group),
+                   .id = "variable")
 }
 
 ##' @title Per iteration score table

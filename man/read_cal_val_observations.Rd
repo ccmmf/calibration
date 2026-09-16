@@ -2,19 +2,11 @@
 % Please edit documentation in R/observations.R
 \name{read_cal_val_observations}
 \alias{read_cal_val_observations}
-\title{Read the curated cal/val observations table}
+\title{read the observations table from a cal-val-data checkout.}
 \usage{
 read_cal_val_observations(cal_val_dir)
 }
-\arguments{
-\item{cal_val_dir}{directory holding the observations tsv export.}
-}
-\value{
-tibble of observation rows, value and study_year coerced to numeric.
-}
 \description{
-Reads the single observations tsv exported from the cal/val
-workbook, drops empty trailing sheet rows, and strips thousands-separator
-commas from the numeric columns so coercion does not silently produce NA.
+read the observations table from a cal-val-data checkout.
 }
 \keyword{internal}

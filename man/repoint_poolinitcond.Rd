@@ -3,12 +3,18 @@
 \name{repoint_poolinitcond}
 \alias{repoint_poolinitcond}
 \title{point each site's poolinitcond path at the freshly written per particle ics,
-so particle j uses its own ic at every site and the design indexes 1:J.}
+so particle j uses its own ic at every site and the design indexes 1:J. sites
+without a calibrated state (no `ic_paths` entry) keep their template ic,
+recycled to J paths so the shared design column stays in range; overwriting
+them with an empty list silently drops every one of their run dirs.}
 \usage{
-repoint_poolinitcond(settings, treatments, ic_paths)
+repoint_poolinitcond(settings, treatments, ic_paths, n_particles)
 }
 \description{
 point each site's poolinitcond path at the freshly written per particle ics,
-so particle j uses its own ic at every site and the design indexes 1:J.
+so particle j uses its own ic at every site and the design indexes 1:J. sites
+without a calibrated state (no `ic_paths` entry) keep their template ic,
+recycled to J paths so the shared design column stays in range; overwriting
+them with an empty list silently drops every one of their run dirs.
 }
 \keyword{internal}

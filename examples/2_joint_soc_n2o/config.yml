@@ -1,0 +1,103 @@
+# joint cal/val calibration: salinas SOC fitted as a period mean level plus
+# treatment contrasts, modesto N2O contracted to date-matched treatment
+# contrasts and held out as validation.
+#
+#   Rscript scripts/010_prepare_observations.R -c examples/2_joint_soc_n2o/config.yml
+#   Rscript scripts/012_build_target.R         -c examples/2_joint_soc_n2o/config.yml
+#   Rscript scripts/015_build_settings.R       -c examples/2_joint_soc_n2o/config.yml
+#   Rscript scripts/020_build_priors.R         -c examples/2_joint_soc_n2o/config.yml
+#   Rscript scripts/030_calibrate.R            -c examples/2_joint_soc_n2o/config.yml
+#   Rscript scripts/040_plot.R                 -c examples/2_joint_soc_n2o/config.yml
+default:
+  scc: /projectnb/dietzelab/ccmmf/usr/akash
+  cache_dir: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint/cache_pass5
+  soil_pft: [soil, soil_nfixer]
+
+  observations:
+    dir: cal-val-data
+    targets:
+      - variable: SOC_stock_salinas
+        sites: [salinas_socs]
+        source_variables: [SOC_stock_Mg_ha]
+        units: Mg C ha-1
+        years: [2005, 2011]
+        variance: pooled_cv
+      # raw per date per treatment cells; 012 contracts them to per date contrasts
+      - variable: N2O_chamber_daily
+        sites: [modesto_almond_usda]
+        source_variables: [N2O_flux_g_N_ha_d]
+        units: g N2O-N ha-1 day-1
+        cell_period: date
+        variance: pooled_cv
+
+  # how the raw targets become the fitted target: one contraction per entry (012)
+  target:
+    - type: period_mean
+      variable: SOC_stock_salinas
+      control: socs_sys1
+      years: [2005, 2011]
+      new_variable: SOC_periodmean_salinas
+    - type: contrast
+      variable: N2O_chamber_daily
+      treatment: compost
+      control: no_compost
+      new_variable: N2O_contrast_modesto
+
+  priors:
+    post_distns_params:
+      # maps to SIPNET litterBreakdownRate; read from the soil pft posterior
+      - turn_over_time
+    specified:
+      # BETY prior 1000000095 on som_respiration_rate ("SIPNET default.
+      # Reference temp = 0C"); the statewide weibull posterior does not cover an
+      # intensively tilled irrigated vegetable soil and is not this system's prior
+      som_respiration_rate:
+        distn: unif
+        parama: 0.003
+        paramb: 0.6
+      # 0 to 1 is the support of a fraction; the BETY unif(0.4, 0.6) traces to an
+      # uncited 2017 placeholder (prior 1000000246)
+      fracLitterRespired:
+        distn: unif
+        parama: 0.0
+        paramb: 1.0
+    # calibrated initial state, one entry per treatment, prior anchored on that
+    # treatment's anchor year observation at its measurement error rather than
+    # pinned to it: the anchor sample is a measurement, not the truth. the forward
+    # writes one IC per (treatment, particle).
+    state:
+      prefix: "soilInit."
+      variable: SOC_stock_salinas
+      anchor_year: 2005
+      from_unit: Mg ha-1
+      to_unit: kg m-2
+
+  # held out of the likelihood, still simulated and scored
+  validation_variables:
+    - N2O_contrast_modesto
+
+  fixed_params:
+    soil_respiration_Q10: {sipnet: soilRespQ10, value: 2.0}
+
+  forward:
+    workspace: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint/pass5
+    prepared_root: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint
+    blocks: examples/2_joint_soc_n2o/blocks.csv
+    template: examples/2_joint_soc_n2o/template.xml
+    sa_root: /projectnb/dietzelab/ccmmf/usr/akash/calval_sa_v3_20260821
+    binary: /projectnb/dietzelab/ccmmf/usr/akash/calval_sa_v3_20260821/tools/sipnet_d2fc7a2
+    var_map:
+      SOC_stock_salinas:
+        {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
+      N2O_chamber_daily:
+        {model_var: N2O_flux, from: kg m-2 s-1, to: g ha-1 day-1}
+    state_pool: soil_organic_carbon_content
+
+  # measured vs modeled treatment effect figure; the curated validation pair
+  figures:
+    treatment_effect:
+      variable: SOC_stock_salinas
+      treatment: socs_sys2
+      control: socs_sys1
+
+  eki: {n_particles: 50, n_iterations: 3, seed: 556688}

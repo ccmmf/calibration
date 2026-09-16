@@ -11,3 +11,7 @@
 .Rhistory
 .RData
 .Rproj.user/
+
+# rendered reports, regenerated from the qmd
+examples/*/report.html
+examples/*/report_files/
