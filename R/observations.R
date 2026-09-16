@@ -200,7 +200,8 @@ target_rows <- function(raw_all, tg) {
 ##'
 ##' @param obs a build_obs target list(y, Sigma, meta).
 ##' @param keep logical vector over rows of `obs$meta`, TRUE to retain.
-##' @return an obs list of the same shape carrying only the kept slots.
+##' @return an obs list of the same shape carrying only the kept slots; a
+##'   fitted target's transform keeps the rows of the kept slots.
 ##' @export
 subset_obs <- function(obs, keep) {
   if (length(keep) != nrow(obs$meta)) {
@@ -213,9 +214,15 @@ subset_obs <- function(obs, keep) {
     PEcAn.logger::logger.severe("subset_obs would leave no slots")
   }
   slots <- obs$meta$slot[keep]
-  list(
+  out <- list(
     y = obs$y[slots],
     Sigma = obs$Sigma[slots, slots, drop = FALSE],
     meta = obs$meta[keep, , drop = FALSE]
   )
+  # a fitted target carries the raw-to-fitted map; keep the rows of the kept
+  # slots or downstream apply_transform silently falls back to raw slots
+  if (!is.null(obs$transform)) {
+    out$transform <- obs$transform[slots, , drop = FALSE]
+  }
+  out
 }
