@@ -214,3 +214,61 @@ test_that("apply_transform is the same linear map the observations went through"
   expect_equal(colnames(fitted), out$meta$slot)
 })
 
+
+# Two dates, a control and two treatments, three replicate pairs each. Chosen so
+# every expectation is hand computable: control changes by 4, both treatments by
+# 7, every paired-difference variance is 1 so var of a mean change is 1/3.
+fake_endpoint_obs <- function() {
+  trts <- c("c", "a", "b")
+  yrs <- c(2005, 2011)
+  vals <- c(11, 15, 21, 28, 30, 37)
+  meta <- tibble::tibble(
+    slot = paste0("SOC__", rep(trts, each = 2), "__", rep(yrs, 3)),
+    variable = "SOC", sitename = "salinas",
+    treatment_id = rep(trts, each = 2),
+    obs_year = rep(yrs, 3),
+    min_date = paste0(rep(yrs, 3), "-10-01"),
+    max_date = paste0(rep(yrs, 3), "-10-01"),
+    min_depth = 0, max_depth = 30,
+    units = "Mg C ha-1", observation_level = "cell", n_rep = 3L,
+    value = vals, var_obs = 1
+  )
+  Sigma <- diag(1, nrow(meta)); dimnames(Sigma) <- list(meta$slot, meta$slot)
+  reps <- tibble::tibble(
+    treatment_id = rep(trts, each = 6),
+    replicate_id = rep(rep(1:3, 2), 3),
+    obs_year = rep(rep(yrs, each = 3), 3),
+    value = c(10, 11, 12, 13, 15, 17,
+              20, 21, 22, 26, 28, 30,
+              29, 30, 31, 35, 37, 39)
+  )
+  list(obs = list(y = stats::setNames(vals, meta$slot), Sigma = Sigma, meta = meta),
+       reps = reps)
+}
+
+test_that("endpoint_delta_contrast pairs replicates and keeps the shared-control covariance", {
+  f <- fake_endpoint_obs()
+  e <- endpoint_delta_contrast(f$obs, f$reps, "SOC", "c", 2005, 2011, "dSOC")
+
+  expect_equal(unname(e$y), c(4, 3, 3))
+  expect_equal(names(e$y),
+               c("dSOC__c__delta", "dSOC__a__ddelta_vs_c", "dSOC__b__ddelta_vs_c"))
+  v_c <- 1 / 3
+  expect_equal(e$Sigma["dSOC__c__delta", "dSOC__c__delta"], v_c)
+  expect_equal(e$Sigma["dSOC__c__delta", "dSOC__a__ddelta_vs_c"], -v_c)
+  expect_equal(e$Sigma["dSOC__a__ddelta_vs_c", "dSOC__a__ddelta_vs_c"], 2 * v_c)
+  expect_equal(e$Sigma["dSOC__a__ddelta_vs_c", "dSOC__b__ddelta_vs_c"], v_c)
+
+  # the transform is the same endpoint difference the values came from
+  expect_equal(unname(drop(e$transform %*% f$obs$y[colnames(e$transform)])),
+               unname(e$y))
+})
+
+test_that("subset_obs keeps the transform rows of the kept slots", {
+  f <- fake_endpoint_obs()
+  e <- endpoint_delta_contrast(f$obs, f$reps, "SOC", "c", 2005, 2011, "dSOC")
+  s <- subset_obs(e, e$meta$slot != "dSOC__b__ddelta_vs_c")
+  expect_equal(rownames(s$transform),
+               c("dSOC__c__delta", "dSOC__a__ddelta_vs_c"))
+  expect_equal(s$transform, e$transform[rownames(s$transform), , drop = FALSE])
+})
