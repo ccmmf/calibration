@@ -12,7 +12,8 @@ subset_obs(obs, keep)
 \item{keep}{logical vector over rows of `obs$meta`, TRUE to retain.}
 }
 \value{
-an obs list of the same shape carrying only the kept slots.
+an obs list of the same shape carrying only the kept slots; a
+  fitted target's transform keeps the rows of the kept slots.
 }
 \description{
 Keeps slots in the run without letting them into the likelihood;

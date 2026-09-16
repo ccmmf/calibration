@@ -14,7 +14,8 @@ make_forward_sipnet(
   state_pool = "soil_organic_carbon_content",
   base_out_dir = settings$outdir,
   fixed_traits = character(0),
-  raw_obs = NULL
+  raw_obs = NULL,
+  soil_cn = NULL
 )
 }
 \arguments{
@@ -45,6 +46,12 @@ the PFT posterior median.}
 \item{raw_obs}{the untransformed target the model output is harvested against;
 its `transform` (the linear map from raw to fitted slots) is applied to G so
 model and observations are the same quantity. NULL fits the raw slots.}
+
+\item{soil_cn}{soil C:N mass ratio coupling the initial organic N pool to the
+drawn initial soil C: after configs are written, each run's soilOrgNInit is
+set to soilInit / soil_cn. soilInit varies per particle (the calibrated
+state), so this cannot be pinned through default.param. NULL leaves the
+template value.}
 }
 \value{
 function(U, iteration) -> matrix (J, P) aligned to names(obs$y).
