@@ -294,6 +294,129 @@ contrast_target <- function(obs, variable, treatment, control,
        Sigma = Sigma, meta = new_meta, transform = tmat)
 }
 
+##' @title Contract two-date observations into an endpoint change and change contrasts
+##' @name endpoint_delta_contrast
+##' @author Akash BV
+##'
+##' @description One slot for the control's change between two dates and one per
+##' treatment for its change relative to the control's (the double difference).
+##' Values come from the cached cells. The uncertainty comes from replicate rows
+##' paired by replicate id across the two dates, so each change carries the
+##' paired variance rather than the sum of two cross sectional ones. Contrasts
+##' share the control's change, and that covariance is kept.
+##'
+##' @param obs a build_obs target list(y, Sigma, meta).
+##' @param reps replicate rows (treatment_id, replicate_id, obs_year, value) for
+##'   the variable, one row per plot per date.
+##' @param variable the per treatment variable to contract.
+##' @param control treatment id the changes are compared against.
+##' @param t0_year,t1_year the two observation years.
+##' @param new_variable name for the resulting variable.
+##' @return an obs list carrying the change slots, with the contraction recorded
+##'   in `transform`.
+##' @export
+endpoint_delta_contrast <- function(obs, reps, variable, control, t0_year, t1_year,
+                                    new_variable = paste0(variable, "_delta")) {
+  meta <- obs$meta
+  sub <- meta[meta$variable == variable &
+                meta$obs_year %in% c(t0_year, t1_year), , drop = FALSE]
+  if (nrow(sub) == 0L) {
+    PEcAn.logger::logger.severe("no slots for variable '", variable,
+                                "' at years ", t0_year, " and ", t1_year)
+  }
+  if (!control %in% sub$treatment_id) {
+    PEcAn.logger::logger.severe(
+      "control treatment '", control, "' is not in variable '", variable,
+      "'. Present: ", paste(unique(sub$treatment_id), collapse = ", ")
+    )
+  }
+  trts <- unique(sub$treatment_id)
+  others <- setdiff(trts, control)
+  cells <- table(sub$treatment_id, sub$obs_year)
+  if (any(cells != 1L)) {
+    PEcAn.logger::logger.severe(
+      "endpoint delta needs exactly one slot per treatment at each of ",
+      t0_year, " and ", t1_year
+    )
+  }
+
+  # the change variance must come from plots paired across the two dates: the
+  # same plots were resampled, so differencing removes the between plot spread
+  # and the cross sectional sum would overstate the error.
+  MIN_PAIRS <- 3L
+  d_stats <- stats::setNames(lapply(trts, function(t) {
+    a <- reps[reps$treatment_id == t & reps$obs_year == t0_year, , drop = FALSE]
+    b <- reps[reps$treatment_id == t & reps$obs_year == t1_year, , drop = FALSE]
+    if (anyDuplicated(a$replicate_id) || anyDuplicated(b$replicate_id) ||
+        !setequal(a$replicate_id, b$replicate_id)) {
+      PEcAn.logger::logger.severe(
+        "treatment ", t, " replicates do not pair across ", t0_year, " and ",
+        t1_year, "; the paired change variance is undefined"
+      )
+    }
+    if (nrow(a) < MIN_PAIRS) {
+      PEcAn.logger::logger.severe(
+        "treatment ", t, " has ", nrow(a), " paired replicate(s); at least ",
+        MIN_PAIRS, " are needed to estimate the change standard error"
+      )
+    }
+    d <- b$value[match(a$replicate_id, b$replicate_id)] - a$value
+    list(mean = mean(d), var_mean = stats::var(d) / length(d), n = length(d))
+  }), trts)
+
+  delta_slot <- paste0(new_variable, "__", control, "__delta")
+  contrast_slots <- paste0(new_variable, "__", others, "__ddelta_vs_", control)
+  slots <- c(delta_slot, contrast_slots)
+  m_c <- d_stats[[control]]$mean
+  v_c <- d_stats[[control]]$var_mean
+  y_new <- c(m_c, vapply(others, function(t) d_stats[[t]]$mean - m_c, numeric(1)))
+  names(y_new) <- slots
+
+  # every contrast subtracts the same control change, so its variance appears on
+  # the whole contrast block: var(dd_t) = v_t + v_c, cov(dd_t, dd_s) = v_c, and
+  # cov(delta_c, dd_t) = -v_c.
+  P <- length(slots)
+  Sigma <- matrix(v_c, P, P, dimnames = list(slots, slots))
+  Sigma[1, ] <- -v_c
+  Sigma[, 1] <- -v_c
+  Sigma[1, 1] <- v_c
+  for (k in seq_along(others)) {
+    Sigma[1 + k, 1 + k] <- d_stats[[others[k]]]$var_mean + v_c
+  }
+
+  slot_of <- function(t, y) sub$slot[sub$treatment_id == t & sub$obs_year == y]
+  first <- sub[match(c(control, others), sub$treatment_id), , drop = FALSE]
+  new_meta <- tibble::tibble(
+    slot = slots,
+    variable = new_variable,
+    sitename = first$sitename,
+    treatment_id = c(control, paste0(others, "_vs_", control)),
+    obs_year = NA_integer_,
+    min_date = min(sub$min_date),
+    max_date = max(sub$max_date),
+    min_depth = first$min_depth,
+    max_depth = first$max_depth,
+    units = first$units,
+    observation_level = "endpoint_delta",
+    n_rep = vapply(c(control, others), function(t) d_stats[[t]]$n, numeric(1)),
+    value = unname(y_new),
+    var_obs = unname(diag(Sigma))
+  )
+
+  # the model quantity is the same linear combination of the raw slots: the
+  # endpoint difference, and for contrasts the difference of differences.
+  tmat <- matrix(0, P, nrow(meta), dimnames = list(slots, meta$slot))
+  tmat[delta_slot, slot_of(control, t1_year)] <- 1
+  tmat[delta_slot, slot_of(control, t0_year)] <- -1
+  for (k in seq_along(others)) {
+    tmat[contrast_slots[k], slot_of(others[k], t1_year)] <- 1
+    tmat[contrast_slots[k], slot_of(others[k], t0_year)] <- -1
+    tmat[contrast_slots[k], slot_of(control, t1_year)] <- -1
+    tmat[contrast_slots[k], slot_of(control, t0_year)] <- 1
+  }
+  list(y = y_new, Sigma = Sigma, meta = new_meta, transform = tmat)
+}
+
 ##' @title Combine observation targets into one
 ##' @name bind_obs
 ##' @author Akash BV
