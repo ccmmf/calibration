@@ -99,7 +99,8 @@ forward <- make_forward_sipnet(
   state_pool = config$forward$state_pool,
   fixed_traits = names(config$fixed_params),
   base_out_dir = base_out_dir,
-  raw_obs = raw_obs
+  raw_obs = raw_obs,
+  soil_cn = config$soil_cn
 )
 
 control <- calibration_control(
