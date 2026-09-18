@@ -155,7 +155,11 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
 ##' initial soil C:N is the chosen ratio at every particle's drawn initial C
 ##' rather than whatever the template N implies. write.config.SIPNET sets
 ##' soilInit from the per-particle ic but never touches soilOrgNInit.
-##' @keywords internal
+##'
+##' @param rundir directory holding the written run directories.
+##' @param soil_cn soil carbon to nitrogen mass ratio.
+##' @return nothing; edits each run's sipnet.param in place.
+##' @export
 couple_soil_orgn <- function(rundir, soil_cn) {
   stopifnot(is.numeric(soil_cn), soil_cn > 0)
   for (d in list.dirs(rundir, recursive = FALSE)) {
@@ -177,7 +181,12 @@ couple_soil_orgn <- function(rundir, soil_cn) {
 ##' particles, one data.frame per pft. calibrated columns are overwritten by U.
 ##' traits named in `fixed` are dropped so the run dir default.param value stands;
 ##' a trait left in here overwrites it.
-##' @keywords internal
+##'
+##' @param pfts the settings pft list, each with a `posterior.files` path.
+##' @param n_particles number of rows to replicate.
+##' @param fixed trait names to drop.
+##' @return named list of data.frames, one per pft.
+##' @export
 baseline_trait_samples <- function(pfts, n_particles, fixed = character(0)) {
   out <- list()
   for (pft in pfts) {
