@@ -9,10 +9,17 @@ soilInit from the per-particle ic but never touches soilOrgNInit.}
 \usage{
 couple_soil_orgn(rundir, soil_cn)
 }
+\arguments{
+\item{rundir}{directory holding the written run directories.}
+
+\item{soil_cn}{soil carbon to nitrogen mass ratio.}
+}
+\value{
+nothing; edits each run's sipnet.param in place.
+}
 \description{
 set each written run's soilOrgNInit to its own soilInit / soil_cn, so the
 initial soil C:N is the chosen ratio at every particle's drawn initial C
 rather than whatever the template N implies. write.config.SIPNET sets
 soilInit from the per-particle ic but never touches soilOrgNInit.
 }
-\keyword{internal}
