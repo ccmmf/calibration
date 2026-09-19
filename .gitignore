@@ -15,3 +15,9 @@
 # rendered reports, regenerated from the qmd
 examples/*/report.html
 examples/*/report_files/
+reports/*.html
+reports/*_files/
+
+# quarto site, built by quarto render / quarto publish
+/_site/
+/.quarto/
