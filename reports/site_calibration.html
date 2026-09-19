@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-09-19">
+
+<title>Calibration - Site-Level Soil Carbon Parameter Calibration</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Site-Level Soil Carbon Parameter Calibration</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Calibration</a> 
+        <div class="sidebar-tools-main">
+    <a href="" title="Status: Draft" class="sidebar-tool px-1"><i class="bi bi-exclamation-octagon"></i></a>
+    <a href="https://github.com/ccmmf/calibration" title="" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Reports</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reports/site_calibration.html" class="sidebar-item-text sidebar-link active">Site-Level Calibration</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scope" id="toc-scope" class="nav-link active" data-scroll-target="#scope">Scope</a></li>
+  <li><a href="#calibration-approach" id="toc-calibration-approach" class="nav-link" data-scroll-target="#calibration-approach">Calibration approach</a></li>
+  <li><a href="#observations" id="toc-observations" class="nav-link" data-scroll-target="#observations">Observations</a></li>
+  <li><a href="#estimated-parameters" id="toc-estimated-parameters" class="nav-link" data-scroll-target="#estimated-parameters">Estimated parameters</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#fit-to-the-calibration-observations" id="toc-fit-to-the-calibration-observations" class="nav-link" data-scroll-target="#fit-to-the-calibration-observations">Fit to the calibration observations</a></li>
+  <li><a href="#estimated-parameter-values" id="toc-estimated-parameter-values" class="nav-link" data-scroll-target="#estimated-parameter-values">Estimated parameter values</a></li>
+  <li><a href="#performance-against-reporting-criteria" id="toc-performance-against-reporting-criteria" class="nav-link" data-scroll-target="#performance-against-reporting-criteria">Performance against reporting criteria</a></li>
+  </ul></li>
+  <li><a href="#independent-evaluation" id="toc-independent-evaluation" class="nav-link" data-scroll-target="#independent-evaluation">Independent evaluation</a></li>
+  <li><a href="#interpretation-the-amendment-carbon-pathway" id="toc-interpretation-the-amendment-carbon-pathway" class="nav-link" data-scroll-target="#interpretation-the-amendment-carbon-pathway">Interpretation: the amendment carbon pathway</a></li>
+  <li><a href="#restrictions-on-application" id="toc-restrictions-on-application" class="nav-link" data-scroll-target="#restrictions-on-application">Restrictions on application</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
+  <li><a href="#key-artifacts" id="toc-key-artifacts" class="nav-link" data-scroll-target="#key-artifacts">Key artifacts</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Site-Level Soil Carbon Parameter Calibration</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This report documents the calibration of SIPNET soil biogeochemistry parameters against soil organic carbon observations from a single long-term field trial, and what that calibration establishes about the model. It is a site-level calibration, not a final parameter set for the statewide inventory.</p>
+<section id="scope" class="level2">
+<h2 class="anchored" data-anchor-id="scope">Scope</h2>
+<p>Three soil process parameters and eight per-treatment initial soil carbon states were estimated against the soil carbon record of the Salinas organic cropping systems trial over 2005 to 2011 (White et al., 2020a, 2020b). Nitrous oxide from the Modesto almond trial was withheld from the estimation, simulated, and scored as an independent evaluation.</p>
+<p>Sensitivity and uncertainty analyses are reported separately. Methane, and sites other than the two named here, are outside this report.</p>
+</section>
+<section id="calibration-approach" class="level2">
+<h2 class="anchored" data-anchor-id="calibration-approach">Calibration approach</h2>
+<p>Calibration is treated as a Bayesian inverse problem: estimate the parameter values, with their uncertainty, that are consistent with the measurements given prior knowledge of those parameters.</p>
+<p>The estimator is tempered ensemble Kalman inversion (Iglesias et al., 2013). It requires no model gradients, so SIPNET is used as released (Longfritz et al., 2026). An ensemble of parameter sets is drawn from the prior, the model is run once per ensemble member, each run is compared with the measured soil carbon, and the ensemble is moved toward the observations by a Kalman-style update. The observations are admitted over several steps rather than all at once (<a href="#fig-eki">Figure&nbsp;1</a>). The result is a distribution of parameter values rather than a single best estimate.</p>
+<div id="fig-eki" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/eki_algorithm.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: One tempering step of the calibration. Steps 1 through 5 repeat for each tempering step; after the final step the ensemble represents the calibrated parameters and their uncertainty.</figcaption><p></p>
+</figure>
+</div>
+<p>Ecosystem parameters are bounded: rates are positive and fractions lie between zero and one. The update is therefore not applied to the parameters directly. Each parameter is mapped to an unconstrained scale, updated there, and mapped back (<a href="#fig-constraint">Figure&nbsp;2</a>). An ensemble member can approach a bound arbitrarily closely but never cross it, which is how the bounded results below should be read.</p>
+<div id="fig-constraint" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/constraint_mapping.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Bounded parameters are mapped to an unconstrained scale for the update and mapped back afterwards. Posterior mass resting against a bound indicates a parameter the observations do not constrain at that edge.</figcaption><p></p>
+</figure>
+</div>
+<p>Four choices keep the reported uncertainty conservative. The likelihood covariance is inflated across the tempering steps so that the observations are admitted gradually; a single update on a nonlinear model collapses the ensemble and understates the remaining uncertainty. The observation covariance retains the shared control term, so the seven treatment contrasts are not counted as seven independent measurements. Initial soil carbon is estimated rather than fixed, so measurement error in the baseline propagates into the result. Observation uncertainty is taken from the replicate structure of the trial rather than assumed.</p>
+<p>The report refers to the eight cropping systems by number throughout. System 1 is the unamended control, system 2 receives compost, and systems 3 to 8 receive compost with cover crops.</p>
+</section>
+<section id="observations" class="level2">
+<h2 class="anchored" data-anchor-id="observations">Observations</h2>
+<p>Calibration and evaluation observations are separate in site, cropping system and greenhouse gas. The evaluation set entered no part of the likelihood.</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>set</th>
+<th>site</th>
+<th>system</th>
+<th>measurement</th>
+<th>period</th>
+<th>contrast</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>calibration</td>
+<td>Salinas</td>
+<td>organic vegetables, eight systems</td>
+<td>soil carbon stock, 0-30 cm</td>
+<td>2005-2011</td>
+<td>compost and cover crops against an unamended control</td>
+</tr>
+<tr class="even">
+<td>evaluation</td>
+<td>Modesto</td>
+<td>almond orchard</td>
+<td>nitrous oxide, chamber</td>
+<td>2018-2019</td>
+<td>compost against no compost</td>
+</tr>
+</tbody>
+</table>
+<p>Observation provenance, replicate structure and curation decisions are documented in the data entry report for each site.</p>
+<p>The fitted quantity is a period mean rather than an annual trajectory. The source study reports that soil carbon levels were relatively stable from study years 2 through 8 and analyses the mean over those years for each system (White et al., 2020a). Regression of the curated stocks on year agrees: no system shows a significant trend over 2005 to 2011, at a pooled slope of −0.33 ± 0.30 Mg C ha⁻¹ yr⁻¹ (p = 0.28, systems as a factor). An annual target would ask the model to reproduce sampling variation.</p>
+<p>Salinas soil carbon is therefore contracted to eight quantities: the unamended control as a period mean stock, plus each of the seven amended systems as a difference from that control over the same window. A difference cancels the site effects the model is not expected to carry, and the measured contrast is what a practice effect means for inventory purposes. Uncertainty on each quantity is the standard error of the seven-year mean, computed across years with the contrasts paired by year.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>quantity</th>
+<th style="text-align: right;">value (Mg C ha⁻¹)</th>
+<th style="text-align: right;">SE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>baseline stock, system 1, unamended control</td>
+<td style="text-align: right;">23.46</td>
+<td style="text-align: right;">1.19</td>
+</tr>
+<tr class="even">
+<td>compost, system 2</td>
+<td style="text-align: right;">+9.46</td>
+<td style="text-align: right;">0.99</td>
+</tr>
+<tr class="odd">
+<td>compost with cover crops, system 3</td>
+<td style="text-align: right;">+10.79</td>
+<td style="text-align: right;">1.11</td>
+</tr>
+<tr class="even">
+<td>compost with cover crops, system 4</td>
+<td style="text-align: right;">+12.57</td>
+<td style="text-align: right;">1.34</td>
+</tr>
+<tr class="odd">
+<td>compost with cover crops, system 5</td>
+<td style="text-align: right;">+11.86</td>
+<td style="text-align: right;">1.28</td>
+</tr>
+<tr class="even">
+<td>compost with cover crops, system 6</td>
+<td style="text-align: right;">+12.18</td>
+<td style="text-align: right;">1.59</td>
+</tr>
+<tr class="odd">
+<td>compost with cover crops, system 7</td>
+<td style="text-align: right;">+11.68</td>
+<td style="text-align: right;">1.62</td>
+</tr>
+<tr class="even">
+<td>compost with cover crops, system 8</td>
+<td style="text-align: right;">+12.54</td>
+<td style="text-align: right;">1.44</td>
+</tr>
+</tbody>
+</table>
+<p>The compost-only comparison reproduces the mean effect of 9.4 Mg C ha⁻¹ published for the same trial (White et al., 2020a), which is a reproduction check on the curation of the calibration target rather than an independent one: both use the same underlying dataset.</p>
+<p>Modesto nitrous oxide is contracted in the same way, to nine date-matched compost minus no-compost contrasts, and then withheld.</p>
+</section>
+<section id="estimated-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="estimated-parameters">Estimated parameters</h2>
+<p>Parameter names follow the SIPNET parameter documentation; the SIPNET name is given in parentheses.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>parameter</th>
+<th>prior</th>
+<th>role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SOM respiration rate (<code>baseSoilResp</code>)</td>
+<td>uniform (0.003, 0.6)</td>
+<td>soil organic matter respiration rate at 0 °C and saturated soil, g C g⁻¹ soil C yr⁻¹</td>
+</tr>
+<tr class="even">
+<td>litter breakdown rate (<code>litterBreakdownRate</code>)</td>
+<td>uniform (0.13, 1.2)</td>
+<td>rate at which litter is converted to soil or respired, yr⁻¹</td>
+</tr>
+<tr class="odd">
+<td>litter fraction respired (<code>fracLitterRespired</code>)</td>
+<td>uniform (0, 1)</td>
+<td>of the litter broken down, the fraction respired rather than transferred to the soil pool</td>
+</tr>
+<tr class="even">
+<td>initial soil carbon, eight states (<code>soilInit</code>)</td>
+<td>lognormal per system</td>
+<td>one initial stock per treatment, kg C m⁻²</td>
+</tr>
+</tbody>
+</table>
+<p>Initial soil carbon is estimated rather than fixed, one value per treatment, with a lognormal prior centred on that treatment’s 2005 measurement at that measurement’s error. The 2005 sample is a measurement rather than the truth, and fixing the model to a single draw forces a residual that the rate parameters can only absorb by moving onto their bounds.</p>
+<p>Three parameters were held fixed rather than fitted. The temperature sensitivity of soil respiration (<code>soilRespQ10</code>) was set to 2.0 because it enters the same respiration term as <code>baseSoilResp</code> and is not separately identifiable from a single soil carbon series. The decomposition C:N scaling parameter (<code>kCN</code>) was set to 80 following a sweep from 2 to 1000 that gave a flat optimum. The optimum temperature of photosynthesis (<code>psnTOpt</code>) was set to 25 °C because the model derives its maximum photosynthetic temperature from the optimum, and a lower optimum suppresses photosynthesis within the growing season temperature range.</p>
+<p>The ensemble comprised 50 members over three tempering steps.</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="fit-to-the-calibration-observations" class="level3">
+<h3 class="anchored" data-anchor-id="fit-to-the-calibration-observations">Fit to the calibration observations</h3>
+<table class="table">
+<caption>Stocks and contrasts in Mg C ha⁻¹. Residuals are the ensemble mean minus the observed mean, in units of the observation standard error.</caption>
+<colgroup>
+<col style="width: 11%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>quantity</th>
+<th style="text-align: right;">observed</th>
+<th style="text-align: right;">SE</th>
+<th style="text-align: right;">before</th>
+<th style="text-align: right;">after</th>
+<th style="text-align: right;">residual before</th>
+<th style="text-align: right;">residual after</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>system 1, unamended control</td>
+<td style="text-align: right;">23.46</td>
+<td style="text-align: right;">1.19</td>
+<td style="text-align: right;">12.91</td>
+<td style="text-align: right;">23.76</td>
+<td style="text-align: right;">−8.85</td>
+<td style="text-align: right;">+0.25</td>
+</tr>
+<tr class="even">
+<td>system 2, compost</td>
+<td style="text-align: right;">9.46</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">14.23</td>
+<td style="text-align: right;">10.76</td>
+<td style="text-align: right;">+4.82</td>
+<td style="text-align: right;">+1.32</td>
+</tr>
+<tr class="odd">
+<td>system 3</td>
+<td style="text-align: right;">10.79</td>
+<td style="text-align: right;">1.11</td>
+<td style="text-align: right;">16.40</td>
+<td style="text-align: right;">12.47</td>
+<td style="text-align: right;">+5.07</td>
+<td style="text-align: right;">+1.52</td>
+</tr>
+<tr class="even">
+<td>system 4</td>
+<td style="text-align: right;">12.57</td>
+<td style="text-align: right;">1.34</td>
+<td style="text-align: right;">17.71</td>
+<td style="text-align: right;">14.56</td>
+<td style="text-align: right;">+3.83</td>
+<td style="text-align: right;">+1.48</td>
+</tr>
+<tr class="odd">
+<td>system 5</td>
+<td style="text-align: right;">11.86</td>
+<td style="text-align: right;">1.28</td>
+<td style="text-align: right;">16.51</td>
+<td style="text-align: right;">14.34</td>
+<td style="text-align: right;">+3.63</td>
+<td style="text-align: right;">+1.94</td>
+</tr>
+<tr class="even">
+<td>system 6</td>
+<td style="text-align: right;">12.18</td>
+<td style="text-align: right;">1.59</td>
+<td style="text-align: right;">18.15</td>
+<td style="text-align: right;">14.95</td>
+<td style="text-align: right;">+3.76</td>
+<td style="text-align: right;">+1.75</td>
+</tr>
+<tr class="odd">
+<td>system 7</td>
+<td style="text-align: right;">11.68</td>
+<td style="text-align: right;">1.62</td>
+<td style="text-align: right;">15.60</td>
+<td style="text-align: right;">13.39</td>
+<td style="text-align: right;">+2.41</td>
+<td style="text-align: right;">+1.05</td>
+</tr>
+<tr class="even">
+<td>system 8</td>
+<td style="text-align: right;">12.54</td>
+<td style="text-align: right;">1.44</td>
+<td style="text-align: right;">16.90</td>
+<td style="text-align: right;">15.34</td>
+<td style="text-align: right;">+3.04</td>
+<td style="text-align: right;">+1.95</td>
+</tr>
+</tbody>
+</table>
+<p>Root mean squared error falls from 5.96 to 2.04 Mg C ha⁻¹, and the same error expressed in standard errors falls from 4.80 to 1.50. The unamended control is recovered to within a quarter of a standard error (<a href="#fig-fit">Figure&nbsp;3</a>). The seven treatment contrasts remain above their measured values by 1.05 to 1.95 standard errors (<a href="#fig-residuals">Figure&nbsp;4</a>).</p>
+<div id="fig-fit" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig1_calibration_fit.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Soil carbon parameter calibration for the 2005 to 2011 mean baseline stock and the seven treatment-baseline contrasts. The two panels carry different quantities: the left is an absolute stock for system 1, the right is each amended system’s difference from system 1, and the two y axes are independent. Brackets below the right panel group the systems by treatment. Grey points show prior ensemble members and blue points calibrated ensemble members, 50 in each; horizontal bars show ensemble means. Red lines show observed means and shaded bands observed means ± 1 SE.</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-residuals" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig2_residuals.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Ensemble mean minus observed mean for each calibration quantity, before and after calibration, expressed in units of that observation’s standard error. Arrows run from the prior to the calibrated value. Shaded bands mark one and two standard errors either side of the observation.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="estimated-parameter-values" class="level3">
+<h3 class="anchored" data-anchor-id="estimated-parameter-values">Estimated parameter values</h3>
+<table class="table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>parameter</th>
+<th style="text-align: right;">prior mean</th>
+<th style="text-align: right;">calibrated mean</th>
+<th style="text-align: right;">variance reduction</th>
+<th style="text-align: right;">5th to 95th percentile</th>
+<th style="text-align: right;">upper bound</th>
+<th>identified</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SOM respiration rate</td>
+<td style="text-align: right;">0.291</td>
+<td style="text-align: right;">0.072</td>
+<td style="text-align: right;">98 percent</td>
+<td style="text-align: right;">0.037 to 0.133</td>
+<td style="text-align: right;">0.6</td>
+<td>yes; the interval occupies 16 percent of the prior range, well clear of both bounds</td>
+</tr>
+<tr class="even">
+<td>litter breakdown rate</td>
+<td style="text-align: right;">0.618</td>
+<td style="text-align: right;">0.931</td>
+<td style="text-align: right;">55 percent</td>
+<td style="text-align: right;">0.538 to 1.189</td>
+<td style="text-align: right;">1.2</td>
+<td>weakly; the interval still spans 61 percent of the prior range</td>
+</tr>
+<tr class="odd">
+<td>litter fraction respired</td>
+<td style="text-align: right;">0.531</td>
+<td style="text-align: right;">0.928</td>
+<td style="text-align: right;">93 percent</td>
+<td style="text-align: right;">0.747 to 0.995</td>
+<td style="text-align: right;">1.0</td>
+<td>no; 58 percent of members lie in the top 5 percent of the range</td>
+</tr>
+</tbody>
+</table>
+<p>The eight initial soil carbon states are reduced in variance by 44 to 87 percent. Taking the shift as the calibrated mean minus the 2005 anchor, in units of the prior standard deviation, five of the eight move less than 0.6, systems 7 and 8 move 1.0, and system 1 moves 1.5.</p>
+<div id="fig-params" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig3_rate_parameters.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Calibrated distributions for the three estimated soil process parameters. The shaded band spans the full support of each uniform prior and dashed vertical lines mark its bounds; the prior is uniform across that band, so no prior density is drawn. Tick marks along the base are the 50 calibrated ensemble members. The grey point is the prior mean, the dashed blue line the calibrated mean, and the arrow runs between them with both values printed. Variance reduction is annotated in each panel.</figcaption><p></p>
+</figure>
+</div>
+<p>The SOM respiration rate is the estimate this calibration provides: 0.072 g C g⁻¹ soil C yr⁻¹, a 98 percent reduction in variance, with its 5th to 95th percentile occupying 16 percent of the prior range and clear of both bounds (<a href="#fig-params">Figure&nbsp;5</a>).</p>
+<p>Both litter parameters moved upward, and the litter fraction respired reached the upper limit of its support: 58 percent of its members lie in the top 5 percent of the range. By the argument of <a href="#fig-constraint">Figure&nbsp;2</a>, that is a parameter the observations do not constrain at that edge rather than one estimated to lie there. It is unconstrained rather than calibrated, and should be carried forward as its prior distribution or left at the model default rather than quoted as a fitted value.</p>
+<p>The litter breakdown rate is an intermediate case. Its mean moves from 0.618 to 0.931 and its variance falls by 55 percent, but its 5th to 95th percentile still spans 61 percent of the prior range and only 8 percent of members lie in the top 2 percent of that range. It is weakly constrained by these observations, not pinned against its bound, and should not be quoted as a fitted value either.</p>
+<div id="fig-joint" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig5_parameter_joint.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Prior and calibrated ensembles for the SOM respiration rate and the litter fraction respired, shown jointly. The shaded rectangle is the support allowed by the two priors and dashed lines are its bounds. The arrow runs from the prior mean to the calibrated mean.</figcaption><p></p>
+</figure>
+</div>
+<p><a href="#fig-joint">Figure&nbsp;6</a> shows the two parameters together.</p>
+<div id="fig-states" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig4_initial_carbon.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;7: Prior and calibrated distributions for the eight per-treatment initial soil carbon states. Bars span the 2.5th to 97.5th percentile and points mark the mean. The prior for each state is the 2005 measurement for that treatment with that measurement’s error. The column at the right margin gives the variance reduction for each state.</figcaption><p></p>
+</figure>
+</div>
+<p>System 1 moves furthest (<a href="#fig-states">Figure&nbsp;7</a>), which is expected: it is the state the period-mean baseline stock bears on most directly.</p>
+<div id="fig-effect" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig6_effect_by_year.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Modeled and measured compost effect for system 2 relative to the unamended control, by study year, before and after calibration. Study years 2 to 8 are calendar years 2005 to 2011. Left, absolute effect. Right, the same effect as a percentage of the control stock, on a logarithmic scale. Lines are ensemble means and bands the 5th to 95th percentile of the ensemble; red points are measured effects with 95 percent intervals. The dashed line marks an effect equal to the entire control stock.</figcaption><p></p>
+</figure>
+</div>
+<p>On the absolute scale the calibrated ensemble interval overlaps the measured interval in all seven study years, and contains the measured mean in three of seven (<a href="#fig-effect">Figure&nbsp;8</a>, left). The measured effect varies between 6.75 and 14.50 Mg C ha⁻¹ with no significant trend, at a slope of +0.50 ± 0.49 Mg C ha⁻¹ yr⁻¹. The modeled effect accumulates monotonically before calibration, from 10.5 Mg C ha⁻¹ in study year 2 to 18.2 in study year 8, a slope of +1.19. After calibration the slope falls to +0.23 and the series is no longer monotonic, running from 9.8 to 12.1. The measured points in this figure are the same Salinas record used for calibration, decomposed by year, not additional observations.</p>
+<p>The relative panel is plotted on a logarithmic scale because the prior mean reaches 413 percent of the control stock at study year 7 (<a href="#fig-effect">Figure&nbsp;8</a>, right). That value is a property of the prior rather than of the model: the prior range for the SOM respiration rate reaches 0.6 per year, which draws the control’s soil carbon as low as 1.1 Mg C ha⁻¹, so any ratio taken against it is large. After calibration the modeled relative effect runs from 33 to 64 percent against a measured 30 to 56 percent.</p>
+</section>
+<section id="performance-against-reporting-criteria" class="level3">
+<h3 class="anchored" data-anchor-id="performance-against-reporting-criteria">Performance against reporting criteria</h3>
+<p>Soil carbon offset reporting protocols evaluate a calibrated model on prediction interval coverage and on mean bias relative to measurement uncertainty. The DayCent-CR validation reports coverage of at least 90 percent for 90 percent prediction intervals, with mean bias below pooled measurement uncertainty (Mathers et al., 2023). Evaluated the same way, this calibration does not yet meet those criteria.</p>
+<table class="table">
+<caption>Bias is the mean of modeled minus observed across the eight quantities. Pooled measurement uncertainty is the root mean square of the eight observation standard errors. The prediction interval is the 5th to 95th percentile of the ensemble. Coverage intervals are Agresti-Coull (Agresti and Coull, 1998); with eight observations they are wide enough that neither coverage figure is precisely estimated.</caption>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>criterion</th>
+<th style="text-align: right;">before</th>
+<th style="text-align: right;">after</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>observations within the 90 percent prediction interval</td>
+<td style="text-align: right;">8 of 8</td>
+<td style="text-align: right;">3 of 8</td>
+</tr>
+<tr class="even">
+<td>coverage</td>
+<td style="text-align: right;">100 percent</td>
+<td style="text-align: right;">37.5 percent</td>
+</tr>
+<tr class="odd">
+<td>95 percent Agresti-Coull interval on coverage</td>
+<td style="text-align: right;">63 to 100 percent</td>
+<td style="text-align: right;">13 to 70 percent</td>
+</tr>
+<tr class="even">
+<td>mean bias (Mg C ha⁻¹)</td>
+<td style="text-align: right;">+2.98</td>
+<td style="text-align: right;">+1.88</td>
+</tr>
+<tr class="odd">
+<td>root mean squared error (Mg C ha⁻¹)</td>
+<td style="text-align: right;">5.96</td>
+<td style="text-align: right;">2.04</td>
+</tr>
+<tr class="even">
+<td>pooled measurement uncertainty (Mg C ha⁻¹)</td>
+<td style="text-align: right;">1.34</td>
+<td style="text-align: right;">1.34</td>
+</tr>
+<tr class="odd">
+<td>absolute bias below pooled measurement uncertainty</td>
+<td style="text-align: right;">no</td>
+<td style="text-align: right;">no</td>
+</tr>
+</tbody>
+</table>
+<p>Coverage before calibration reflects a prior wide enough to contain any outcome rather than a model that predicts well. After calibration the ensemble is narrow and biased high: mean bias exceeds pooled measurement uncertainty, and five of eight observations fall outside the prediction interval. The cause is the one-signed residual described below, which no choice of these three parameters removes.</p>
+</section>
+</section>
+<section id="independent-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="independent-evaluation">Independent evaluation</h2>
+<p>The nine Modesto nitrous oxide contrasts were withheld from the likelihood. No nitrogen parameter was estimated in this calibration, so this comparison measures what is currently unconstrained. The soil carbon parameters do affect the modeled flux, through the soil carbon and nitrogen pools, but no observation in the likelihood bears on the nitrogen cycle directly.</p>
+<p>Averaged over the nine measured dates the modeled compost arm emits 103 g N₂O-N ha⁻¹ d⁻¹ against a measured 1.3, approximately eighty times the measurement (<a href="#fig-validation">Figure&nbsp;9</a>, a). Calibrating soil carbon moved that value from 174 to 103 g N₂O-N ha⁻¹ d⁻¹, so the difference is a structural discrepancy rather than a calibration residual.</p>
+<div id="fig-validation" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig7_n2o_evaluation.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;9: Modeled against measured nitrous oxide at Modesto across nine date-matched chamber measurements. a) daily flux of the compost arm, on logarithmic axes because the quantity is strictly positive and spans three orders of magnitude. b) the compost minus no-compost contrast, which is the quantity that was withheld, on linear axes because it takes both signs. Grey points are the prior ensemble and blue points the calibrated ensemble; error bars show 90 percent posterior prediction intervals on the modeled value. The red dashed line is the one-to-one line. Modeled and measured values cover the same days.</figcaption><p></p>
+</figure>
+</div>
+<p>Evaluated by the metrics used for soil carbon above:</p>
+<table class="table">
+<caption>Metrics are defined as for the soil carbon table above, over the nine withheld contrasts.</caption>
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>criterion</th>
+<th style="text-align: right;">prior</th>
+<th style="text-align: right;">calibrated</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>contrasts within the 90 percent prediction interval</td>
+<td style="text-align: right;">2 of 9</td>
+<td style="text-align: right;">0 of 9</td>
+</tr>
+<tr class="even">
+<td>coverage</td>
+<td style="text-align: right;">22 percent</td>
+<td style="text-align: right;">0 percent</td>
+</tr>
+<tr class="odd">
+<td>95 percent Agresti-Coull interval on coverage</td>
+<td style="text-align: right;">5 to 56 percent</td>
+<td style="text-align: right;">0 to 34 percent</td>
+</tr>
+<tr class="even">
+<td>mean bias (g N₂O-N ha⁻¹ d⁻¹)</td>
+<td style="text-align: right;">+13.65</td>
+<td style="text-align: right;">+26.49</td>
+</tr>
+<tr class="odd">
+<td>root mean squared error (g N₂O-N ha⁻¹ d⁻¹)</td>
+<td style="text-align: right;">21.65</td>
+<td style="text-align: right;">41.65</td>
+</tr>
+<tr class="even">
+<td>pooled measurement uncertainty (g N₂O-N ha⁻¹ d⁻¹)</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">1.35</td>
+</tr>
+<tr class="odd">
+<td>absolute bias below pooled measurement uncertainty</td>
+<td style="text-align: right;">no</td>
+<td style="text-align: right;">no</td>
+</tr>
+</tbody>
+</table>
+<p>Calibrating soil carbon reduced the modeled flux of each arm but increased the modeled difference between them: mean bias on the withheld contrast rises from +13.65 to +26.49 g N₂O-N ha⁻¹ d⁻¹, and coverage falls from 2 of 9 to 0 of 9. The soil carbon parameters enter the nitrogen cycle through the soil carbon and nitrogen pools, so this is a consequence of the soil carbon fit rather than an independent failure, and it is one more reason to estimate the nitrogen parameters against nitrogen measurements before using these outputs.</p>
+<p>Eight of the nine measured contrasts lie within two standard errors of zero. The measurements constrain the compost effect on nitrous oxide to be near zero, and the model places it between 1.3 and 96 g N₂O-N ha⁻¹ d⁻¹. All nine modeled contrasts are positive and every point lies above the one-to-one line (<a href="#fig-validation">Figure&nbsp;9</a>, b).</p>
+</section>
+<section id="interpretation-the-amendment-carbon-pathway" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-the-amendment-carbon-pathway">Interpretation: the amendment carbon pathway</h2>
+<p>All seven amended systems remain above their measured contrast after calibration, every residual with the same sign, between 1.05 and 1.95 standard errors.</p>
+<p>The three fitted parameters are global rather than per-treatment, so a one-signed residual is also what a mis-set parameter would produce; the sign pattern alone does not separate the two explanations. What separates them is that the estimator was free to remove the bias and did not. The litter fraction respired reached the upper limit of its support in the attempt, and the bias remains. Within the admissible range of these three parameters there is no setting that reproduces both the baseline stock and the practice effects.</p>
+<p>Both litter parameters moved upward, and both act to move carbon away from the soil pool: a larger respired fraction leaves less broken-down litter to transfer, and a faster breakdown rate moves litter through that split sooner. The litter fraction respired reaches the upper limit of its support doing so. SIPNET routes all organic carbon added by a management event into the fresh litter pool with residue kinetics, so composted material, which is partly stabilized on arrival, is treated as fresh residue. The model retains amendment carbon it should not, and the only channels available to remove it are the two litter parameters.</p>
+<p>Comparable soil carbon accounting models give exogenous organic matter its own quality partition. RothC treats farmyard manure separately from crop residue, and the RothC-EOM extension adds decomposable, resistant and humified amendment pools whose partitioning factors are fitted per amendment type (Mondini et al., 2017). The corresponding gap in SIPNET has been filed for model development.</p>
+</section>
+<section id="restrictions-on-application" class="level2">
+<h2 class="anchored" data-anchor-id="restrictions-on-application">Restrictions on application</h2>
+<ol type="1">
+<li>The parameters are conditioned on one site, one cropping system and one soil, over seven years, in an intensively tilled irrigated vegetable soil. Application to orchards, rice or rangeland is extrapolation.</li>
+<li>The parameters are conditioned on soil carbon alone. Nitrous oxide and methane outputs produced with them are uncalibrated, and the one nitrous oxide comparison available differs from the measurement by approximately eighty times. They should not be used for a nitrous oxide or methane estimate without separate calibration.</li>
+<li>Only the SOM respiration rate is reported as calibrated. The litter fraction respired rests against the upper limit of its support, so its spread understates its uncertainty; the limit rather than the observations sets the upper edge. The litter breakdown rate is only weakly constrained, its 5th to 95th percentile still spanning 61 percent of the prior range. Neither should be quoted as a fitted value.</li>
+<li>Modeled practice effects are above the measurement at every treatment tested. Practice effects taken from this parameterization are upper estimates.</li>
+<li>Prediction interval coverage and mean bias do not meet the criteria applied in soil carbon offset reporting. An uncertainty deduction derived from this posterior alone would not be conservative, because the dominant error is structural rather than parametric.</li>
+<li>The temperature sensitivity of soil respiration is held fixed because a single soil carbon series cannot separate it from the SOM respiration rate. Its contribution to uncertainty is not represented.</li>
+<li>Meteorology and management are held at a single realization, so the posterior spread is a parameter range under fixed inputs rather than a full calibration uncertainty.</li>
+</ol>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<ol type="1">
+<li>Add an amendment carbon partition to SIPNET so that a fraction of organic carbon added by a management event enters the soil pool directly rather than all of it entering fresh litter, and re-estimate the soil parameters.</li>
+<li>Estimate the nitrogen cycling parameters against nitrogen measurements. The Modesto result measures what is currently unconstrained; it is not grounds for further adjustment of the soil carbon parameters.</li>
+<li>Evaluate the re-estimated parameters against a longer independent soil carbon record, including the Russell Ranch century experiment (Wolf et al., 2018), using an observation operator matched to that trial’s sampling design.</li>
+</ol>
+</section>
+<section id="key-artifacts" class="level2">
+<h2 class="anchored" data-anchor-id="key-artifacts">Key artifacts</h2>
+<ul>
+<li>Multi-site calibration code: <a href="https://github.com/ccmmf/calibration" class="uri">https://github.com/ccmmf/calibration</a></li>
+<li>Collected observations for calibration and evaluation: <a href="https://github.com/ccmmf/cal-val-data" class="uri">https://github.com/ccmmf/cal-val-data</a></li>
+<li>Calibration run record: <a href="https://github.com/ccmmf/organization/issues/272" class="uri">https://github.com/ccmmf/organization/issues/272</a></li>
+<li>Amendment carbon partition request: <a href="https://github.com/PecanProject/sipnet/issues/396" class="uri">https://github.com/PecanProject/sipnet/issues/396</a></li>
+<li>SIPNET parameter documentation: <a href="https://pecanproject.org/sipnet/parameters/" class="uri">https://pecanproject.org/sipnet/parameters/</a></li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Agresti, A., &amp; Coull, B. A. (1998). Approximate is better than “exact” for interval estimation of binomial proportions. <em>The American Statistician</em>, 52(2), 119–126. https://doi.org/10.1080/00031305.1998.10480550</p>
+<p>Iglesias, M. A., Law, K. J. H., &amp; Stuart, A. M. (2013). Ensemble Kalman methods for inverse problems. <em>Inverse Problems</em>, 29(4), 045001. https://doi.org/10.1088/0266-5611/29/4/045001</p>
+<p>Longfritz, M., Sacks, W. J., Moore, D. J. P., Zobitz, J. M., Braswell, B. H., Schimel, D. S., Kooper, R., Dietze, M. C., Fer, I., Black, C., &amp; LeBauer, D. S. (2026). SIPNET: Simple Photosynthesis and Evapotranspiration Model (v2.2.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.22286320</p>
+<p>Mathers, C., Black, C. K., Segal, B. D., et al.&nbsp;(2023). Validating DayCent-CR for cropland soil carbon offset reporting at a national scale. <em>Geoderma</em>, 438, 116647. https://doi.org/10.1016/j.geoderma.2023.116647</p>
+<p>Mondini, C., Cayuela, M. L., Sinicco, T., et al.&nbsp;(2017). Modification of the RothC model to simulate soil C mineralization of exogenous organic matter. <em>Biogeosciences</em>, 14(13), 3253–3274. https://doi.org/10.5194/bg-14-3253-2017</p>
+<p>White, K. E., Brennan, E. B., Cavigelli, M. A., &amp; Smith, R. F. (2020a). Tradeoffs in cover cropping impact net N mineralization, nitrous oxide emissions, and vegetable yields in an organic production system. <em>PLOS ONE</em>, 15(1), e0228677. https://doi.org/10.1371/journal.pone.0228677</p>
+<p>White, K. E., Brennan, E. B., &amp; Cavigelli, M. A. (2020b). Soil carbon and nitrogen data during eight years of cover crop and compost treatments in organic vegetable production. <em>Data in Brief</em>, 33, 106481. https://doi.org/10.1016/j.dib.2020.106481</p>
+<p>Wolf, K. M., Torbert, E. E., Bryant, D., et al.&nbsp;(2018). The Century Experiment: The first twenty years of UC Davis’ Mediterranean agroecological experiment. <em>Ecology</em>, 99(2), 503. https://doi.org/10.1002/ecy.2105</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
