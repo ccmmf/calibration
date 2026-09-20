@@ -14,8 +14,8 @@ execute:
 
 This report documents the calibration of SIPNET soil biogeochemistry parameters against
 soil organic carbon observations from a single long-term field trial, and what that
-calibration establishes about the model. The three soil parameters estimated here are the
-values carried into the statewide inventory runs.
+calibration establishes about the model. The parameters estimated here are the values 
+carried into the statewide inventory runs.
 
 ## Scope
 
