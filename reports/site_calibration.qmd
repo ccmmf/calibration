@@ -14,8 +14,8 @@ execute:
 
 This report documents the calibration of SIPNET soil biogeochemistry parameters against
 soil organic carbon observations from a single long-term field trial, and what that
-calibration establishes about the model. It is a site-level calibration, not a final
-parameter set for the statewide inventory.
+calibration establishes about the model. The three soil parameters estimated here are the
+values carried into the statewide inventory runs.
 
 ## Scope
 
@@ -61,9 +61,10 @@ is estimated rather than fixed, so measurement error in the baseline propagates 
 result. Observation uncertainty is taken from the replicate structure of the trial rather
 than assumed.
 
-The report refers to the eight cropping systems by number throughout. System 1 is the
-unamended control, system 2 receives compost, and systems 3 to 8 receive compost with
-cover crops.
+The report refers to the eight cropping systems by number throughout; each is defined in
+the target table below. Systems 1 and 2 share the same cover crop schedule and differ only
+in compost, so that pair isolates the compost effect. Systems 3 to 8 add an annual cover
+crop as well as compost, so their differences from system 1 combine the two practices.
 
 ## Observations
 
@@ -72,7 +73,7 @@ greenhouse gas. The evaluation set entered no part of the likelihood.
 
 | set | site | system | measurement | period | contrast |
 |---|---|---|---|---|---|
-| calibration | Salinas | organic vegetables, eight systems | soil carbon stock, 0-30 cm | 2005-2011 | compost and cover crops against an unamended control |
+| calibration | Salinas | organic vegetables, eight systems | soil carbon stock, 0-30 cm | 2005-2011 | compost and cover crops against a no-compost control |
 | evaluation | Modesto | almond orchard | nitrous oxide, chamber | 2018-2019 | compost against no compost |
 
 Observation provenance, replicate structure and curation decisions are documented in the
@@ -85,23 +86,27 @@ the curated stocks on year agrees: no system shows a significant trend over 2005
 at a pooled slope of −0.33 ± 0.30 Mg C ha⁻¹ yr⁻¹ (p = 0.28, systems as a factor). An
 annual target would ask the model to reproduce sampling variation.
 
-Salinas soil carbon is therefore contracted to eight quantities: the unamended control as
+Salinas soil carbon is therefore contracted to eight quantities: the no-compost control as
 a period mean stock, plus each of the seven amended systems as a difference from that
 control over the same window. A difference cancels the site effects the model is not
 expected to carry, and the measured contrast is what a practice effect means for
 inventory purposes. Uncertainty on each quantity is the standard error of the seven-year
 mean, computed across years with the contrasts paired by year.
 
-| quantity | value (Mg C ha⁻¹) | SE |
-|---|---:|---:|
-| baseline stock, system 1, unamended control | 23.46 | 1.19 |
-| compost, system 2 | +9.46 | 0.99 |
-| compost with cover crops, system 3 | +10.79 | 1.11 |
-| compost with cover crops, system 4 | +12.57 | 1.34 |
-| compost with cover crops, system 5 | +11.86 | 1.28 |
-| compost with cover crops, system 6 | +12.18 | 1.59 |
-| compost with cover crops, system 7 | +11.68 | 1.62 |
-| compost with cover crops, system 8 | +12.54 | 1.44 |
+| system | compost | cover crop | value (Mg C ha⁻¹) | SE |
+|---|---|---|---:|---:|
+| 1, control | none | legume-rye, every fourth year | 23.46 | 1.19 |
+| 2 | 7.6 Mg ha⁻¹ per crop | legume-rye, every fourth year | +9.46 | 0.99 |
+| 3 | 7.6 Mg ha⁻¹ per crop | legume-rye annually, 1x seeding rate | +10.79 | 1.11 |
+| 4 | 7.6 Mg ha⁻¹ per crop | legume-rye annually | +12.57 | 1.34 |
+| 5 | 7.6 Mg ha⁻¹ per crop | mustard annually | +11.86 | 1.28 |
+| 6 | 7.6 Mg ha⁻¹ per crop | mustard annually, 3x seeding rate | +12.18 | 1.59 |
+| 7 | 7.6 Mg ha⁻¹ per crop | cereal rye annually | +11.68 | 1.62 |
+| 8 | 7.6 Mg ha⁻¹ per crop | cereal rye annually, 3x seeding rate | +12.54 | 1.44 |
+
+: System 1 is an absolute period-mean stock; systems 2 to 8 are differences from system 1
+over the same window. The every-fourth-year cover crop in systems 1 and 2 was planted in
+study years 3 and 7. Treatment definitions are from the curated trial record.
 
 The compost-only comparison reproduces the mean effect of 9.4 Mg C ha⁻¹ published for the
 same trial (White et al., 2020a), which is a reproduction check on the curation of the
@@ -144,7 +149,7 @@ The ensemble comprised 50 members over three tempering steps.
 
 | quantity | observed | SE | before | after | residual before | residual after |
 |---|---:|---:|---:|---:|---:|---:|
-| system 1, unamended control | 23.46 | 1.19 | 12.91 | 23.76 | −8.85 | +0.25 |
+| system 1, no-compost control | 23.46 | 1.19 | 12.91 | 23.76 | −8.85 | +0.25 |
 | system 2, compost | 9.46 | 0.99 | 14.23 | 10.76 | +4.82 | +1.32 |
 | system 3 | 10.79 | 1.11 | 16.40 | 12.47 | +5.07 | +1.52 |
 | system 4 | 12.57 | 1.34 | 17.71 | 14.56 | +3.83 | +1.48 |
@@ -157,7 +162,7 @@ The ensemble comprised 50 members over three tempering steps.
 mean, in units of the observation standard error.
 
 Root mean squared error falls from 5.96 to 2.04 Mg C ha⁻¹, and the same error expressed in
-standard errors falls from 4.80 to 1.50. The unamended control is recovered to within a
+standard errors falls from 4.80 to 1.50. The no-compost control is recovered to within a
 quarter of a standard error (@fig-fit). The seven treatment contrasts remain above their
 measured values by 1.05 to 1.95 standard errors (@fig-residuals).
 
@@ -206,7 +211,7 @@ be quoted as a fitted value either.
 System 1 moves furthest (@fig-states), which is expected: it is the state the period-mean
 baseline stock bears on most directly.
 
-![Modeled and measured compost effect for system 2 relative to the unamended control, by study year, before and after calibration. Study years 2 to 8 are calendar years 2005 to 2011. Left, absolute effect. Right, the same effect as a percentage of the control stock, on a logarithmic scale. Lines are ensemble means and bands the 5th to 95th percentile of the ensemble; red points are measured effects with 95 percent intervals. The dashed line marks an effect equal to the entire control stock.](figures/fig6_effect_by_year.png){#fig-effect width=100% fig-align="center"}
+![Modeled and measured compost effect for system 2 relative to the no-compost control, by study year, before and after calibration. Study years 2 to 8 are calendar years 2005 to 2011. Left, absolute effect. Right, the same effect as a percentage of the control stock, on a logarithmic scale. Lines are ensemble means and bands the 5th to 95th percentile of the ensemble; red points are measured effects with 95 percent intervals. The dashed line marks an effect equal to the entire control stock.](figures/fig6_effect_by_year.png){#fig-effect width=100% fig-align="center"}
 
 On the absolute scale the calibrated ensemble interval overlaps the measured interval in
 all seven study years, and contains the measured mean in three of seven (@fig-effect,
@@ -360,6 +365,16 @@ SIPNET has been filed for model development.
 3. Evaluate the re-estimated parameters against a longer independent soil carbon record,
    including the Russell Ranch century experiment (Wolf et al., 2018), using an
    observation operator matched to that trial's sampling design.
+4. Replace the uniform priors with informed distributions. A uniform prior asserts that
+   every value in its range is equally probable and that no value outside it is possible;
+   neither holds for these parameters. The finding that the litter fraction respired is
+   unconstrained at its upper edge is in part a consequence of that choice, since the
+   prior places as much weight on complete respiration of litter as on any other value.
+5. Draw the initial ensemble with a quasi-random or stratified sampler. The ensemble is
+   currently drawn independently per parameter by pseudo-random sampling, which leaves
+   coverage of the joint parameter space to chance at an ensemble size of 50. Halton,
+   Sobol and Latin hypercube designs are available in PEcAn and would give more even
+   coverage for the same number of model runs.
 
 ## Key artifacts
 
@@ -372,7 +387,7 @@ SIPNET has been filed for model development.
 ## References
 
 Agresti, A., & Coull, B. A. (1998). Approximate is better than "exact" for interval
-estimation of binomial proportions. *The American Statistician*, 52(2), 119–126.
+estimation of binomial proportions. *The American Statistician*, 52(2), 119--126.
 https://doi.org/10.1080/00031305.1998.10480550
 
 Iglesias, M. A., Law, K. J. H., & Stuart, A. M. (2013). Ensemble Kalman methods for
@@ -390,7 +405,7 @@ https://doi.org/10.1016/j.geoderma.2023.116647
 
 Mondini, C., Cayuela, M. L., Sinicco, T., et al. (2017). Modification of the RothC model
 to simulate soil C mineralization of exogenous organic matter. *Biogeosciences*, 14(13),
-3253–3274. https://doi.org/10.5194/bg-14-3253-2017
+3253--3274. https://doi.org/10.5194/bg-14-3253-2017
 
 White, K. E., Brennan, E. B., Cavigelli, M. A., & Smith, R. F. (2020a). Tradeoffs in cover
 cropping impact net N mineralization, nitrous oxide emissions, and vegetable yields in an
