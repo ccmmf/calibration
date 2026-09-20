@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-09-19">
+<meta name="dcterms.date" content="2026-09-20">
 
 <title>Calibration - Site-Level Soil Carbon Parameter Calibration</title>
 <style>
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 19, 2026</p>
+      <p class="date">September 20, 2026</p>
     </div>
   </div>
   
@@ -171,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This report documents the calibration of SIPNET soil biogeochemistry parameters against soil organic carbon observations from a single long-term field trial, and what that calibration establishes about the model. It is a site-level calibration, not a final parameter set for the statewide inventory.</p>
+<p>This report documents the calibration of SIPNET soil biogeochemistry parameters against soil organic carbon observations from a single long-term field trial, and what that calibration establishes about the model. The parameters estimated here are the values carried into the statewide inventory runs.</p>
 <section id="scope" class="level2">
 <h2 class="anchored" data-anchor-id="scope">Scope</h2>
 <p>Three soil process parameters and eight per-treatment initial soil carbon states were estimated against the soil carbon record of the Salinas organic cropping systems trial over 2005 to 2011 (White et al., 2020a, 2020b). Nitrous oxide from the Modesto almond trial was withheld from the estimation, simulated, and scored as an independent evaluation.</p>
@@ -195,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 <p>Four choices keep the reported uncertainty conservative. The likelihood covariance is inflated across the tempering steps so that the observations are admitted gradually; a single update on a nonlinear model collapses the ensemble and understates the remaining uncertainty. The observation covariance retains the shared control term, so the seven treatment contrasts are not counted as seven independent measurements. Initial soil carbon is estimated rather than fixed, so measurement error in the baseline propagates into the result. Observation uncertainty is taken from the replicate structure of the trial rather than assumed.</p>
-<p>The report refers to the eight cropping systems by number throughout. System 1 is the unamended control, system 2 receives compost, and systems 3 to 8 receive compost with cover crops.</p>
+<p>The report refers to the eight cropping systems by number throughout; each is defined in the target table below. Systems 1 and 2 share the same cover crop schedule and differ only in compost, so that pair isolates the compost effect. Systems 3 to 8 add an annual cover crop as well as compost, so their differences from system 1 combine the two practices.</p>
 </section>
 <section id="observations" class="level2">
 <h2 class="anchored" data-anchor-id="observations">Observations</h2>
@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
 <td>organic vegetables, eight systems</td>
 <td>soil carbon stock, 0-30 cm</td>
 <td>2005-2011</td>
-<td>compost and cover crops against an unamended control</td>
+<td>compost and cover crops against a no-compost control</td>
 </tr>
 <tr class="even">
 <td>evaluation</td>
@@ -240,53 +240,79 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <p>Observation provenance, replicate structure and curation decisions are documented in the data entry report for each site.</p>
 <p>The fitted quantity is a period mean rather than an annual trajectory. The source study reports that soil carbon levels were relatively stable from study years 2 through 8 and analyses the mean over those years for each system (White et al., 2020a). Regression of the curated stocks on year agrees: no system shows a significant trend over 2005 to 2011, at a pooled slope of −0.33 ± 0.30 Mg C ha⁻¹ yr⁻¹ (p = 0.28, systems as a factor). An annual target would ask the model to reproduce sampling variation.</p>
-<p>Salinas soil carbon is therefore contracted to eight quantities: the unamended control as a period mean stock, plus each of the seven amended systems as a difference from that control over the same window. A difference cancels the site effects the model is not expected to carry, and the measured contrast is what a practice effect means for inventory purposes. Uncertainty on each quantity is the standard error of the seven-year mean, computed across years with the contrasts paired by year.</p>
+<p>Salinas soil carbon is therefore contracted to eight quantities: the no-compost control as a period mean stock, plus each of the seven amended systems as a difference from that control over the same window. A difference cancels the site effects the model is not expected to carry, and the measured contrast is what a practice effect means for inventory purposes. Uncertainty on each quantity is the standard error of the seven-year mean, computed across years with the contrasts paired by year.</p>
 <table class="table">
+<caption>System 1 is an absolute period-mean stock; systems 2 to 8 are differences from system 1 over the same window. The every-fourth-year cover crop in systems 1 and 2 was planted in study years 3 and 7. Treatment definitions are from the curated trial record.</caption>
+<colgroup>
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>quantity</th>
+<th>system</th>
+<th>compost</th>
+<th>cover crop</th>
 <th style="text-align: right;">value (Mg C ha⁻¹)</th>
 <th style="text-align: right;">SE</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>baseline stock, system 1, unamended control</td>
+<td>1, control</td>
+<td>none</td>
+<td>legume-rye, every fourth year</td>
 <td style="text-align: right;">23.46</td>
 <td style="text-align: right;">1.19</td>
 </tr>
 <tr class="even">
-<td>compost, system 2</td>
+<td>2</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>legume-rye, every fourth year</td>
 <td style="text-align: right;">+9.46</td>
 <td style="text-align: right;">0.99</td>
 </tr>
 <tr class="odd">
-<td>compost with cover crops, system 3</td>
+<td>3</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>legume-rye annually, 1x seeding rate</td>
 <td style="text-align: right;">+10.79</td>
 <td style="text-align: right;">1.11</td>
 </tr>
 <tr class="even">
-<td>compost with cover crops, system 4</td>
+<td>4</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>legume-rye annually</td>
 <td style="text-align: right;">+12.57</td>
 <td style="text-align: right;">1.34</td>
 </tr>
 <tr class="odd">
-<td>compost with cover crops, system 5</td>
+<td>5</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>mustard annually</td>
 <td style="text-align: right;">+11.86</td>
 <td style="text-align: right;">1.28</td>
 </tr>
 <tr class="even">
-<td>compost with cover crops, system 6</td>
+<td>6</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>mustard annually, 3x seeding rate</td>
 <td style="text-align: right;">+12.18</td>
 <td style="text-align: right;">1.59</td>
 </tr>
 <tr class="odd">
-<td>compost with cover crops, system 7</td>
+<td>7</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>cereal rye annually</td>
 <td style="text-align: right;">+11.68</td>
 <td style="text-align: right;">1.62</td>
 </tr>
 <tr class="even">
-<td>compost with cover crops, system 8</td>
+<td>8</td>
+<td>7.6 Mg ha⁻¹ per crop</td>
+<td>cereal rye annually, 3x seeding rate</td>
 <td style="text-align: right;">+12.54</td>
 <td style="text-align: right;">1.44</td>
 </tr>
@@ -366,7 +392,7 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>system 1, unamended control</td>
+<td>system 1, no-compost control</td>
 <td style="text-align: right;">23.46</td>
 <td style="text-align: right;">1.19</td>
 <td style="text-align: right;">12.91</td>
@@ -439,7 +465,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Root mean squared error falls from 5.96 to 2.04 Mg C ha⁻¹, and the same error expressed in standard errors falls from 4.80 to 1.50. The unamended control is recovered to within a quarter of a standard error (<a href="#fig-fit">Figure&nbsp;3</a>). The seven treatment contrasts remain above their measured values by 1.05 to 1.95 standard errors (<a href="#fig-residuals">Figure&nbsp;4</a>).</p>
+<p>Root mean squared error falls from 5.96 to 2.04 Mg C ha⁻¹, and the same error expressed in standard errors falls from 4.80 to 1.50. The no-compost control is recovered to within a quarter of a standard error (<a href="#fig-fit">Figure&nbsp;3</a>). The seven treatment contrasts remain above their measured values by 1.05 to 1.95 standard errors (<a href="#fig-residuals">Figure&nbsp;4</a>).</p>
 <div id="fig-fit" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/fig1_calibration_fit.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -533,7 +559,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="fig-effect" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/fig6_effect_by_year.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8: Modeled and measured compost effect for system 2 relative to the unamended control, by study year, before and after calibration. Study years 2 to 8 are calendar years 2005 to 2011. Left, absolute effect. Right, the same effect as a percentage of the control stock, on a logarithmic scale. Lines are ensemble means and bands the 5th to 95th percentile of the ensemble; red points are measured effects with 95 percent intervals. The dashed line marks an effect equal to the entire control stock.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;8: Modeled and measured compost effect for system 2 relative to the no-compost control, by study year, before and after calibration. Study years 2 to 8 are calendar years 2005 to 2011. Left, absolute effect. Right, the same effect as a percentage of the control stock, on a logarithmic scale. Lines are ensemble means and bands the 5th to 95th percentile of the ensemble; red points are measured effects with 95 percent intervals. The dashed line marks an effect equal to the entire control stock.</figcaption><p></p>
 </figure>
 </div>
 <p>On the absolute scale the calibrated ensemble interval overlaps the measured interval in all seven study years, and contains the measured mean in three of seven (<a href="#fig-effect">Figure&nbsp;8</a>, left). The measured effect varies between 6.75 and 14.50 Mg C ha⁻¹ with no significant trend, at a slope of +0.50 ± 0.49 Mg C ha⁻¹ yr⁻¹. The modeled effect accumulates monotonically before calibration, from 10.5 Mg C ha⁻¹ in study year 2 to 18.2 in study year 8, a slope of +1.19. After calibration the slope falls to +0.23 and the series is no longer monotonic, running from 9.8 to 12.1. The measured points in this figure are the same Salinas record used for calibration, decomposed by year, not additional observations.</p>
@@ -688,6 +714,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Add an amendment carbon partition to SIPNET so that a fraction of organic carbon added by a management event enters the soil pool directly rather than all of it entering fresh litter, and re-estimate the soil parameters.</li>
 <li>Estimate the nitrogen cycling parameters against nitrogen measurements. The Modesto result measures what is currently unconstrained; it is not grounds for further adjustment of the soil carbon parameters.</li>
 <li>Evaluate the re-estimated parameters against a longer independent soil carbon record, including the Russell Ranch century experiment (Wolf et al., 2018), using an observation operator matched to that trial’s sampling design.</li>
+<li>Replace the uniform priors with informed distributions. A uniform prior asserts that every value in its range is equally probable and that no value outside it is possible; neither holds for these parameters. The finding that the litter fraction respired is unconstrained at its upper edge is in part a consequence of that choice, since the prior places as much weight on complete respiration of litter as on any other value.</li>
+<li>Draw the initial ensemble with a quasi-random or stratified sampler. The ensemble is currently drawn independently per parameter by pseudo-random sampling, which leaves coverage of the joint parameter space to chance at an ensemble size of 50. Halton, Sobol and Latin hypercube designs are available in PEcAn and would give more even coverage for the same number of model runs.</li>
 </ol>
 </section>
 <section id="key-artifacts" class="level2">
