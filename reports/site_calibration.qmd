@@ -229,15 +229,14 @@ rate reaches 0.6 per year, which draws the control's soil carbon as low as 1.1 M
 so any ratio taken against it is large. After calibration the modeled relative effect runs
 from 33 to 64 percent against a measured 30 to 56 percent.
 
-### Performance against reporting criteria
-
-Soil carbon offset reporting protocols evaluate a calibrated model on prediction interval
-coverage and on mean bias relative to measurement uncertainty. The DayCent-CR validation
-reports coverage of at least 90 percent for 90 percent prediction intervals, with mean
-bias below pooled measurement uncertainty (Mathers et al., 2023). Evaluated the same way,
-this calibration does not yet meet those criteria.
-
-| criterion | before | after |
+### Performance diagnostics
+ 
+We evaluate calibration performance using prediction-interval coverage, mean bias, root
+mean squared error, and measurement uncertainty. These diagnostics assess whether the
+calibrated ensemble remains consistent with the observations and whether the reduction in
+ensemble spread is accompanied by systematic error.
+ 
+| diagnostic | before | after |
 |---|---:|---:|
 | observations within the 90 percent prediction interval | 8 of 8 | 3 of 8 |
 | coverage | 100 percent | 37.5 percent |
@@ -246,18 +245,20 @@ this calibration does not yet meet those criteria.
 | root mean squared error (Mg C ha⁻¹) | 5.96 | 2.04 |
 | pooled measurement uncertainty (Mg C ha⁻¹) | 1.34 | 1.34 |
 | absolute bias below pooled measurement uncertainty | no | no |
-
+ 
 : Bias is the mean of modeled minus observed across the eight quantities. Pooled
 measurement uncertainty is the root mean square of the eight observation standard errors.
 The prediction interval is the 5th to 95th percentile of the ensemble. Coverage intervals
-are Agresti-Coull (Agresti and Coull, 1998); with eight observations they are wide enough
+are Agresti–Coull (Agresti and Coull, 1998); with eight observations they are wide enough
 that neither coverage figure is precisely estimated.
-
-Coverage before calibration reflects a prior wide enough to contain any outcome rather
-than a model that predicts well. After calibration the ensemble is narrow and biased high:
-mean bias exceeds pooled measurement uncertainty, and five of eight observations fall
-outside the prediction interval. The cause is the one-signed residual described below,
-which no choice of these three parameters removes.
+ 
+The prior covers all eight observations, but that reflects a prior wide enough to contain
+any outcome rather than a model that predicts well. The calibrated ensemble is narrower
+and its root mean squared error is a third of the prior value, but five of eight
+observations now fall outside the prediction interval and the mean bias of +1.88 Mg C ha⁻¹
+remains larger than the pooled measurement uncertainty of 1.34. The contraction in spread
+is therefore accompanied by a systematic error that no choice of these three parameters
+removes; its source is the one-signed residual described below.
 
 ## Independent evaluation
 
@@ -398,10 +399,6 @@ Longfritz, M., Sacks, W. J., Moore, D. J. P., Zobitz, J. M., Braswell, B. H., Sc
 D. S., Kooper, R., Dietze, M. C., Fer, I., Black, C., & LeBauer, D. S. (2026). SIPNET:
 Simple Photosynthesis and Evapotranspiration Model (v2.2.0) [Software]. Zenodo.
 https://doi.org/10.5281/zenodo.22286320
-
-Mathers, C., Black, C. K., Segal, B. D., et al. (2023). Validating DayCent-CR for cropland
-soil carbon offset reporting at a national scale. *Geoderma*, 438, 116647.
-https://doi.org/10.1016/j.geoderma.2023.116647
 
 Mondini, C., Cayuela, M. L., Sinicco, T., et al. (2017). Modification of the RothC model
 to simulate soil C mineralization of exogenous organic matter. *Biogeosciences*, 14(13),
