@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#fit-to-the-calibration-observations" id="toc-fit-to-the-calibration-observations" class="nav-link" data-scroll-target="#fit-to-the-calibration-observations">Fit to the calibration observations</a></li>
   <li><a href="#estimated-parameter-values" id="toc-estimated-parameter-values" class="nav-link" data-scroll-target="#estimated-parameter-values">Estimated parameter values</a></li>
-  <li><a href="#performance-against-reporting-criteria" id="toc-performance-against-reporting-criteria" class="nav-link" data-scroll-target="#performance-against-reporting-criteria">Performance against reporting criteria</a></li>
+  <li><a href="#performance-diagnostics" id="toc-performance-diagnostics" class="nav-link" data-scroll-target="#performance-diagnostics">Performance diagnostics</a></li>
   </ul></li>
   <li><a href="#independent-evaluation" id="toc-independent-evaluation" class="nav-link" data-scroll-target="#independent-evaluation">Independent evaluation</a></li>
   <li><a href="#interpretation-the-amendment-carbon-pathway" id="toc-interpretation-the-amendment-carbon-pathway" class="nav-link" data-scroll-target="#interpretation-the-amendment-carbon-pathway">Interpretation: the amendment carbon pathway</a></li>
@@ -565,11 +565,11 @@ ul.task-list li input[type="checkbox"] {
 <p>On the absolute scale the calibrated ensemble interval overlaps the measured interval in all seven study years, and contains the measured mean in three of seven (<a href="#fig-effect">Figure&nbsp;8</a>, left). The measured effect varies between 6.75 and 14.50 Mg C ha⁻¹ with no significant trend, at a slope of +0.50 ± 0.49 Mg C ha⁻¹ yr⁻¹. The modeled effect accumulates monotonically before calibration, from 10.5 Mg C ha⁻¹ in study year 2 to 18.2 in study year 8, a slope of +1.19. After calibration the slope falls to +0.23 and the series is no longer monotonic, running from 9.8 to 12.1. The measured points in this figure are the same Salinas record used for calibration, decomposed by year, not additional observations.</p>
 <p>The relative panel is plotted on a logarithmic scale because the prior mean reaches 413 percent of the control stock at study year 7 (<a href="#fig-effect">Figure&nbsp;8</a>, right). That value is a property of the prior rather than of the model: the prior range for the SOM respiration rate reaches 0.6 per year, which draws the control’s soil carbon as low as 1.1 Mg C ha⁻¹, so any ratio taken against it is large. After calibration the modeled relative effect runs from 33 to 64 percent against a measured 30 to 56 percent.</p>
 </section>
-<section id="performance-against-reporting-criteria" class="level3">
-<h3 class="anchored" data-anchor-id="performance-against-reporting-criteria">Performance against reporting criteria</h3>
-<p>Soil carbon offset reporting protocols evaluate a calibrated model on prediction interval coverage and on mean bias relative to measurement uncertainty. The DayCent-CR validation reports coverage of at least 90 percent for 90 percent prediction intervals, with mean bias below pooled measurement uncertainty (Mathers et al., 2023). Evaluated the same way, this calibration does not yet meet those criteria.</p>
+<section id="performance-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="performance-diagnostics">Performance diagnostics</h3>
+<p>We evaluate calibration performance using prediction-interval coverage, mean bias, root mean squared error, and measurement uncertainty. These diagnostics assess whether the calibrated ensemble remains consistent with the observations and whether the reduction in ensemble spread is accompanied by systematic error.</p>
 <table class="table">
-<caption>Bias is the mean of modeled minus observed across the eight quantities. Pooled measurement uncertainty is the root mean square of the eight observation standard errors. The prediction interval is the 5th to 95th percentile of the ensemble. Coverage intervals are Agresti-Coull (Agresti and Coull, 1998); with eight observations they are wide enough that neither coverage figure is precisely estimated.</caption>
+<caption>Bias is the mean of modeled minus observed across the eight quantities. Pooled measurement uncertainty is the root mean square of the eight observation standard errors. The prediction interval is the 5th to 95th percentile of the ensemble. Coverage intervals are Agresti–Coull (Agresti and Coull, 1998); with eight observations they are wide enough that neither coverage figure is precisely estimated.</caption>
 <colgroup>
 <col style="width: 27%">
 <col style="width: 36%">
@@ -577,7 +577,7 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>criterion</th>
+<th>diagnostic</th>
 <th style="text-align: right;">before</th>
 <th style="text-align: right;">after</th>
 </tr>
@@ -620,7 +620,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Coverage before calibration reflects a prior wide enough to contain any outcome rather than a model that predicts well. After calibration the ensemble is narrow and biased high: mean bias exceeds pooled measurement uncertainty, and five of eight observations fall outside the prediction interval. The cause is the one-signed residual described below, which no choice of these three parameters removes.</p>
+<p>The prior covers all eight observations, but that reflects a prior wide enough to contain any outcome rather than a model that predicts well. The calibrated ensemble is narrower and its root mean squared error is a third of the prior value, but five of eight observations now fall outside the prediction interval and the mean bias of +1.88 Mg C ha⁻¹ remains larger than the pooled measurement uncertainty of 1.34. The contraction in spread is therefore accompanied by a systematic error that no choice of these three parameters removes; its source is the one-signed residual described below.</p>
 </section>
 </section>
 <section id="independent-evaluation" class="level2">
@@ -733,7 +733,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Agresti, A., &amp; Coull, B. A. (1998). Approximate is better than “exact” for interval estimation of binomial proportions. <em>The American Statistician</em>, 52(2), 119–126. https://doi.org/10.1080/00031305.1998.10480550</p>
 <p>Iglesias, M. A., Law, K. J. H., &amp; Stuart, A. M. (2013). Ensemble Kalman methods for inverse problems. <em>Inverse Problems</em>, 29(4), 045001. https://doi.org/10.1088/0266-5611/29/4/045001</p>
 <p>Longfritz, M., Sacks, W. J., Moore, D. J. P., Zobitz, J. M., Braswell, B. H., Schimel, D. S., Kooper, R., Dietze, M. C., Fer, I., Black, C., &amp; LeBauer, D. S. (2026). SIPNET: Simple Photosynthesis and Evapotranspiration Model (v2.2.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.22286320</p>
-<p>Mathers, C., Black, C. K., Segal, B. D., et al.&nbsp;(2023). Validating DayCent-CR for cropland soil carbon offset reporting at a national scale. <em>Geoderma</em>, 438, 116647. https://doi.org/10.1016/j.geoderma.2023.116647</p>
 <p>Mondini, C., Cayuela, M. L., Sinicco, T., et al.&nbsp;(2017). Modification of the RothC model to simulate soil C mineralization of exogenous organic matter. <em>Biogeosciences</em>, 14(13), 3253–3274. https://doi.org/10.5194/bg-14-3253-2017</p>
 <p>White, K. E., Brennan, E. B., Cavigelli, M. A., &amp; Smith, R. F. (2020a). Tradeoffs in cover cropping impact net N mineralization, nitrous oxide emissions, and vegetable yields in an organic production system. <em>PLOS ONE</em>, 15(1), e0228677. https://doi.org/10.1371/journal.pone.0228677</p>
 <p>White, K. E., Brennan, E. B., &amp; Cavigelli, M. A. (2020b). Soil carbon and nitrogen data during eight years of cover crop and compost treatments in organic vegetable production. <em>Data in Brief</em>, 33, 106481. https://doi.org/10.1016/j.dib.2020.106481</p>
