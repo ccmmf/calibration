@@ -1,16 +1,25 @@
-# sipnet forward model. wraps a prepared pecan multisite run as the
-# fwd(U, iteration) -> G the calibration calls. only this file knows sipnet and
-# the pecan run machinery; the estimator in method_eki.R knows neither.
+# Connect the calibration algorithm to SIPNET through PEcAn.
+# make_forward_sipnet() takes prepared PEcAn settings for multiple sites and
+# returns a function, fwd(U, itr), that runs one ensemble of simulations.
+# Each row of U contains one candidate set of parameter values, optionally
+# including initial pool sizes. The corresponding row of the returned matrix G
+# contains model predictions, with columns ordered to match obs$y.
+# The calibration algorithm in method_eki.R uses this function to evaluate
+# candidates without managing SIPNET inputs or execution.
 #
-# one iteration is one ensemble where only the calibrated parameters change: met,
-# events, and uncalibrated pools are pinned to one member, otherwise the prediction
-# spread measures the input draw and cov(U, G) in the kalman gain is sampling
-# noise. input uncertainty belongs in a separate forward pass.
+# Every candidate uses the first prepared meteorological input and management
+# event file for each site. Holding these inputs fixed helps isolate how changes
+# in the calibrated parameters affect predictions. At sites with calibrated
+# initial pools, those pools vary by candidate and the remaining pools are
+# copied from the site's first initial-condition file. When any site has a
+# calibrated initial pool, sites without one reuse their existing initial-
+# condition paths across candidates. Supply one initial-condition file per site
+# to keep those other pools fixed.
 #
-# launching is left to pecan and the prepared host block. runModule_start_model_runs
-# submits through the settings host (qsub, sge_array_launcher.sh, Njobmax, qstat)
-# exactly as written and blocks on qstat until the ensemble finishes. nothing here
-# touches those launcher fields; each iteration only points its own output dirs.
+# Each call writes model inputs and outputs to separate directories for that
+# iteration. PEcAn launches the simulations using the supplied host settings.
+# This file then reads the outputs and converts them to the quantities and units
+# used by the calibration observations.
 
 ##' @title Build the SIPNET forward model closure
 ##' @name make_forward_sipnet
