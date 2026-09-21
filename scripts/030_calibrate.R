@@ -117,9 +117,9 @@ window <- run_window(settings)
 val_meta <- if (is.null(raw_obs)) obs_all$meta else raw_obs$meta
 itr_dir <- function(k) file.path(base_out_dir, paste0("itr", k), "out")
 result$raw_meta <- val_meta
-result$G_raw_prior <- harvest_output_to_G(itr_dir(1L), val_meta,
+result$G_raw_prior <- read_output_to_G(itr_dir(1L), val_meta,
                                           config$forward$var_map, window)
-result$G_raw_post <- harvest_output_to_G(itr_dir(n_iterations + 1L), val_meta,
+result$G_raw_post <- read_output_to_G(itr_dir(n_iterations + 1L), val_meta,
                                          config$forward$var_map, window)
 result$G_validation <- if (is.null(obs_all$transform)) result$G_raw_post else
   apply_transform(result$G_raw_post, obs_all$transform)

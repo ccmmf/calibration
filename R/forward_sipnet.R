@@ -26,7 +26,7 @@
 ##' @param obs the build_obs target list(y, Sigma, meta); names(y) are the slots.
 ##' @param n_particles ensemble size J.
 ##' @param var_map named list keyed by observation variable, each
-##'   `list(model_var, from, to)` (see harvest_output_to_G): the crosswalk from
+##'   `list(model_var, from, to)` (see read_output_to_G): the crosswalk from
 ##'   each observed variable to its model output and units.
 ##' @param soil_pfts character vector of soil PFT names that share the calibrated
 ##'   rates; the same proposal column is written into each (see inject_traits).
@@ -137,7 +137,7 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
     if (!is.null(soil_cn)) couple_soil_orgn(s$rundir, soil_cn)
     PEcAn.workflow::runModule_start_model_runs(s, stop.on.error = FALSE)
 
-    G <- harvest_output_to_G(s$modeloutdir, harvest_meta, var_map, window)
+    G <- read_output_to_G(s$modeloutdir, harvest_meta, var_map, window)
     if (!is.null(transform)) G <- apply_transform(G, transform)
     missing <- setdiff(obs_order, colnames(G))
     if (length(missing) > 0L) {
@@ -155,6 +155,12 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
 ##' initial soil C:N is the chosen ratio at every particle's drawn initial C
 ##' rather than whatever the template N implies. write.config.SIPNET sets
 ##' soilInit from the per-particle ic but never touches soilOrgNInit.
+##'
+##' the workflow ic builder now writes soil_organic_nitrogen_content, and that
+##' is a PEcAn standard variable, but PEcAn.SIPNET has no reader for it: there
+##' is no soilOrgNInit handling in write.configs.SIPNET and the name is not in
+##' its ic_ncvars_to_try list, so the value in the ic file is ignored. this
+##' stays until that reader lands upstream.
 ##' @keywords internal
 couple_soil_orgn <- function(rundir, soil_cn) {
   stopifnot(is.numeric(soil_cn), soil_cn > 0)
