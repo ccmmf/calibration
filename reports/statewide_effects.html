@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-09-21">
+
+<title>Calibration - Statewide Management Treatment Effect Benchmark</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../reports/site_calibration.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Statewide Management Treatment Effect Benchmark</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Calibration</a> 
+        <div class="sidebar-tools-main">
+    <a href="" title="Status: Draft" class="sidebar-tool px-1"><i class="bi bi-exclamation-octagon"></i></a>
+    <a href="https://github.com/ccmmf/calibration" title="" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Reports</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reports/site_calibration.html" class="sidebar-item-text sidebar-link">Site-Level Calibration</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reports/statewide_effects.html" class="sidebar-item-text sidebar-link active">Statewide Treatment Effects</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-findings" id="toc-summary-of-findings" class="nav-link" data-scroll-target="#summary-of-findings">Summary of findings</a></li>
+  </ul></li>
+  <li><a href="#benchmark-design" id="toc-benchmark-design" class="nav-link" data-scroll-target="#benchmark-design">Benchmark design</a>
+  <ul class="collapse">
+  <li><a href="#model-configuration" id="toc-model-configuration" class="nav-link" data-scroll-target="#model-configuration">Model configuration</a></li>
+  <li><a href="#relationship-to-the-site-level-calibration" id="toc-relationship-to-the-site-level-calibration" class="nav-link" data-scroll-target="#relationship-to-the-site-level-calibration">Relationship to the site-level calibration</a></li>
+  <li><a href="#how-a-cell-is-scored" id="toc-how-a-cell-is-scored" class="nav-link" data-scroll-target="#how-a-cell-is-scored">How a cell is scored</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#agreement-by-target-cell" id="toc-agreement-by-target-cell" class="nav-link" data-scroll-target="#agreement-by-target-cell">Agreement by target cell</a></li>
+  <li><a href="#spread-across-design-points" id="toc-spread-across-design-points" class="nav-link" data-scroll-target="#spread-across-design-points">Spread across design points</a></li>
+  <li><a href="#benchmark-coverage" id="toc-benchmark-coverage" class="nav-link" data-scroll-target="#benchmark-coverage">Benchmark coverage</a></li>
+  <li><a href="#how-the-differences-develop" id="toc-how-the-differences-develop" class="nav-link" data-scroll-target="#how-the-differences-develop">How the differences develop</a></li>
+  </ul></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
+  <li><a href="#key-artifacts" id="toc-key-artifacts" class="nav-link" data-scroll-target="#key-artifacts">Key artifacts</a></li>
+  <li><a href="#appendix-a.-scorecard" id="toc-appendix-a.-scorecard" class="nav-link" data-scroll-target="#appendix-a.-scorecard">Appendix A. Scorecard</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Statewide Management Treatment Effect Benchmark</h1>
+<p class="subtitle lead">MAGiC Modeling Framework (Task 2) – supporting report</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 21, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This report compares modelled management practice effects at the statewide cropland design points against effects summarised from the published literature, and records which comparisons the model can and cannot presently support.</p>
+<p>It is a forward comparison at fixed parameters. No parameter was adjusted to any target here, no evidence was weighted into a likelihood, and no inventory estimate is produced. The site-level parameter calibration is reported separately; this report carries that parameterization forward to the statewide design points and asks whether the resulting practice effects are consistent with the synthesis evidence.</p>
+<p>We ran six management practices as paired treatment and reference arms at 99 design points over 2016 to 2023, covering soil carbon, nitrous oxide and methane. Thirteen practice-by-outcome cells carry a synthesis estimate. Eleven of them have a modelled estimate to compare against it; the other two have no runnable treatment pair.</p>
+<p>The result divides cleanly by outcome. <strong>Soil carbon responds to all three carbon-adding practices, in the right direction and at roughly half the reported magnitude. The greenhouse gas cells are near zero, of the wrong sign, or produce no response at all.</strong> Most of the gas discrepancies can be traced to the model formulation rather than to parameter values, which is the most useful thing this benchmark tells us: they will not be resolved by recalibration.</p>
+<section id="summary-of-findings" class="level3">
+<h3 class="anchored" data-anchor-id="summary-of-findings">Summary of findings</h3>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Outcome group</th>
+<th>Status</th>
+<th>What the benchmark shows</th>
+<th>Remaining work</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Soil carbon, three practices</td>
+<td>Reproduced</td>
+<td>Cover crops, reduced tillage and zero tillage all raise soil carbon at essentially every design point, within a quarter of the reported among-site spread</td>
+<td>Re-run with a parameter ensemble so the comparison carries parameter uncertainty</td>
+</tr>
+<tr class="even">
+<td>Soil carbon, organic amendment</td>
+<td>Underestimated</td>
+<td>Modelled effect is about a quarter of the synthesis estimate; consistent with the amendment pathway identified in the site-level calibration</td>
+<td>Add an amendment carbon partition to SIPNET and re-run the cell</td>
+</tr>
+<tr class="odd">
+<td>Nitrous oxide, tillage</td>
+<td>Wrong sign</td>
+<td>Model lowers N<sub>2</sub>O at all 99 design points against a positive synthesis estimate; tillage enters only as a respiration multiplier</td>
+<td>Review the tillage N<sub>2</sub>O pathway; a physical mechanism is required</td>
+</tr>
+<tr class="even">
+<td>Nitrous oxide, fertilization</td>
+<td>Not produced</td>
+<td>Emission factor is constant in nitrogen rate by construction, against a synthesis estimate of a rise with rate</td>
+<td>Review the N<sub>2</sub>O formulation; first-order mineral N cannot produce the reported response</td>
+</tr>
+<tr class="odd">
+<td>Nitrous oxide, rice drying</td>
+<td>Direction reproduced</td>
+<td>Both drying intensities give the reported sign; magnitude was not under test</td>
+<td>Obtain a quantitative target so the cell can be scored, not only sign-checked</td>
+</tr>
+<tr class="even">
+<td>Methane, rice drying</td>
+<td>Failed</td>
+<td>Arms are identical in every year at most design points; the check fails rather than being absent</td>
+<td>Represent flooding and draining explicitly; the prescribed drying never dries the soil</td>
+</tr>
+<tr class="odd">
+<td>Methane, tillage; annual to perennial</td>
+<td>No runnable pair</td>
+<td>The event package contains no arm expressing these treatments</td>
+<td>Stage the arms, or record the cells as out of scope for this matrix</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="benchmark-design" class="level2">
+<h2 class="anchored" data-anchor-id="benchmark-design">Benchmark design</h2>
+<p>Each practice is run as a pair: a treatment arm and a reference arm that differ only in the management event file. Meteorological drivers, initial conditions, parameters, executable and configuration are identical between the two arms, so the difference between them isolates the practice and nothing else.</p>
+<p>The model side is aggregated before any comparison with the evidence. Each design point contributes one paired effect, the per-site effects are summarised to a single modelled estimate per target cell, and only that estimate is compared with the target. Design points are never scored individually against a target, because the targets are summaries across studies rather than predictions for a particular California field. Scoring each design point separately against the same synthesis number would count one piece of information repeatedly, and the apparent precision would then be set by how many design points we ran rather than by the underlying data.</p>
+<p>Targets are keyed by practice and outcome, so each cell is one practice acting on one greenhouse gas. Where a target distinguishes subclasses, such as crops that fix nitrogen against those that do not, the modelled design points are split the same way. Each target row carries its own units, sign convention, spread type, and the observation operator stating how the modelled quantity must be formed to match it. The operator differs by cell: a soil carbon stock log response ratio for amendments, a flooded-season total for rice, a per-cover-year rate for cover crops, and the slope of the emission factor against nitrogen rate for fertilization. The scorer reads all of these from the target row rather than assuming them.</p>
+<p>For the fertilization cells the emission factor is taken over mineral nitrogen applied. A fertilization event carries separate mineral nitrogen, organic nitrogen and organic carbon fields, and across the four fertilizer arms only mineral nitrogen differs; organic nitrogen and organic carbon are identical between arms. Organic nitrogen can mineralize and contribute to nitrous oxide, but because it is the same in both arms that contribution cancels in the paired difference, and organic carbon is not a nitrogen input at all. Mineral nitrogen is therefore the quantity the paired contrast actually varies, and the denominator the induced emission factor is formed over.</p>
+<section id="model-configuration" class="level3">
+<h3 class="anchored" data-anchor-id="model-configuration">Model configuration</h3>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>setting</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>model</td>
+<td>SIPNET v2.2.0 (Longfritz et al., 2026)</td>
+</tr>
+<tr class="even">
+<td>options</td>
+<td>nitrogen cycle, anaerobic decomposition, flooding and litter pool enabled</td>
+</tr>
+<tr class="odd">
+<td>window</td>
+<td>2016-01-01 to 2023-12-31; soil carbon endpoints at 2016 and 2023</td>
+</tr>
+<tr class="even">
+<td>design points</td>
+<td>99</td>
+</tr>
+<tr class="odd">
+<td>runs</td>
+<td>958 arm runs forming 683 eligible pairs</td>
+</tr>
+<tr class="even">
+<td>parameters</td>
+<td>v1.0 statewide plant functional type trait medians</td>
+</tr>
+<tr class="odd">
+<td>ensemble</td>
+<td>one member at the parameter medians</td>
+</tr>
+</tbody>
+</table>
+<p>Photosynthesis optimum, soil organic matter respiration rate, litter breakdown rate, the fraction of litter respired, the soil respiration temperature sensitivity, the carbon-to-nitrogen decomposition constant and the anaerobic transfer exponent are run-level and pinned in the run configuration. They are written into the default parameter file and dropped from the trait samples, so a plant functional type posterior cannot overwrite them. All 958 arm runs therefore carry identical parameter values.</p>
+<p>Of the 683 pairs, 495 are prepared from the management record directly and 188 are prepared with stated assumptions where the record was incomplete. Every pair passed the pairing check.</p>
+</section>
+<section id="relationship-to-the-site-level-calibration" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-to-the-site-level-calibration">Relationship to the site-level calibration</h3>
+<p>The soil process parameters used here were conditioned on a single amended field trial in the site-level calibration. The synthesis targets are global syntheses and none of them is that trial, so the comparison is out of sample in site, crop system and soil.</p>
+<p>It is not fully independent validation, for two reasons: the soil parameters were conditioned on an amended trial, and whether any synthesis includes that trial among its primary studies has not been audited. Results should be read as an out-of-sample check on the statewide parameterization, not as independent validation.</p>
+</section>
+<section id="how-a-cell-is-scored" class="level3">
+<h3 class="anchored" data-anchor-id="how-a-cell-is-scored">How a cell is scored</h3>
+<p>A <strong>target cell</strong> is one practice crossed with one outcome. Each cell carries a <strong>synthesis estimate</strong> – a single number summarising the published literature for that practice and outcome – together with a reported spread.</p>
+<p>The <strong>standardised discrepancy</strong> is the modelled estimate minus the synthesis estimate, divided by that cell’s own reported spread. A negative value means the modelled effect sits below the synthesis estimate.</p>
+<p>That number cannot be read without knowing <strong>what the reported spread describes</strong>, and the cells divide into two groups on exactly this point.</p>
+<ul>
+<li>For three cells the spread is an <strong>among-unit standard deviation</strong> – the variation across the plots or sites the synthesis pooled. Dividing by it asks whether the modelled effect lies inside the heterogeneity the evidence itself observed.</li>
+<li>For the remaining cells the spread is the <strong>standard error of a synthesis mean</strong>, which describes how precisely the synthesis pinned its average, not how much real fields vary. Dividing by it asks a much stricter question, and on a synthesis built from many comparisons this standard error is small enough that any model value is many multiples away from the centre.</li>
+</ul>
+<p>Two cells are scored as a <strong>sign check</strong> rather than quantitatively, because their spread is an expert-informed prior rather than a reported dispersion. For those, the only question asked is whether the model moves in the reported direction.</p>
+<p>Reading the two groups as though they answered the same question would misrepresent both, so they are kept apart in every figure below.</p>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="agreement-by-target-cell" class="level3">
+<h3 class="anchored" data-anchor-id="agreement-by-target-cell">Agreement by target cell</h3>
+<div id="fig-scorecard" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig1_scorecard.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Modelled treatment effect against the synthesis estimate, one panel per cell on its own scale, grouped by what the reported spread describes. The grey band is the reported spread and the dashed line its centre; the blue mark is the modelled estimate with one standard deviation across design points. Open squares are sign-check cells. <code>n</code> is the number of design points.</figcaption><p></p>
+</figure>
+</div>
+<p>The three soil carbon rate cells land inside their bands. Cover crops give 0.132 against a synthesis estimate of 0.320 Mg C ha<sup>-1</sup> yr<sup>-1</sup> (Poeplau and Don, 2015), reduced tillage 0.118 and zero tillage 0.146 against 0.216 (Sun et al., 2020). In each case the modelled effect is roughly half the synthesis centre but comfortably within an among-site spread of 0.74 and 0.448 respectively.</p>
+<p>The organic amendment cell is the clearest case of the second group. The modelled log response ratio is 0.061 against a synthesis estimate of 0.238, but the reported spread is a standard error of 0.0028, so the discrepancy is 62.8 spreads. The interpretation is not that the model is 62.8 times wrong; it is that this synthesis estimate is pinned far more tightly than any single model realisation could match. The modelled effect being about a quarter of the target is the substantive result.</p>
+<p>The two rice nitrous oxide cells pass their sign check: both are positive, 0.0117 and 0.0191, against a positive synthesis estimate of 0.718 (Jiang et al., 2019). The two rice methane cells do not pass. The modelled effects are −1.36 × 10<sup>-4</sup> and −3.68 × 10<sup>-5</sup> against synthesis estimates of −0.399 and −0.625 from the same source. The sign is nominally right but the magnitude is four orders of magnitude short, which is indistinguishable from no response at all.</p>
+<div id="fig-discrepancy" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig2_discrepancy.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Standardised discrepancy by cell: modelled minus synthesis estimate, divided by that cell’s reported spread, so negative is below the evidence. Rows are grouped by what the spread describes, and the grey bands mark one and two spreads. Filled circle, quantitative cell; open square, sign check; open grey circle, no runnable pair. The organic amendment cell lies past the axis break at −62.8.</figcaption><p></p>
+</figure>
+</div>
+<p>Read with the grouping, the figure separates cleanly. Every cell whose spread is an among-unit standard deviation sits well inside one spread. Every cell whose spread is a standard error of a synthesis mean sits outside two.</p>
+</section>
+<section id="spread-across-design-points" class="level3">
+<h3 class="anchored" data-anchor-id="spread-across-design-points">Spread across design points</h3>
+<div id="fig-distributions" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig3_site_distributions.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Per-site paired effects behind each cell aggregate, one row per cell on its own scale. The shaded curve is a kernel density, blue where positive and grey where negative, and each dot is one design point. The vertical bar is the median and the blue diamond the aggregate entering the comparison. The black bar beneath is the synthesis estimate with its reported spread.</figcaption><p></p>
+</figure>
+</div>
+<p>Three things are visible here that the aggregate alone conceals.</p>
+<p><strong>The distributions are right-skewed, so the mean sits above the median in every soil carbon cell.</strong> Cover crops have a median of 0.041 against an aggregate of 0.132; zero tillage a median of 0.102 against an aggregate of 0.146. The aggregate is carried by a minority of strongly responding design points while the typical design point responds far less. Reporting the aggregate alone would overstate how uniformly the model produces a cover crop effect.</p>
+<p><strong>The sign is consistent almost everywhere.</strong> Cover crops are positive at 97 percent of design points, and the organic amendment and both tillage soil carbon cells at 100 percent. Reduced tillage nitrous oxide is negative at every one of its 99 design points, with the largest value −0.0055, so the disagreement with the positive synthesis estimate is not caused by averaging positive and negative site responses.</p>
+<p><strong>The rice methane rows are a spike at zero.</strong> Median and both quartiles are exactly zero for both cells. The two arms are bit-identical in every year at 9 of 12 design points for a single drying and 8 of 12 for two dryings.</p>
+</section>
+<section id="benchmark-coverage" class="level3">
+<h3 class="anchored" data-anchor-id="benchmark-coverage">Benchmark coverage</h3>
+<div id="fig-coverage" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig4_coverage.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Benchmark coverage, practice by outcome. Mark area is proportional to the number of design points behind the cell, printed with the mark. Filled blue circle, quantitative comparison matching the synthesis sign; open red circle, opposite sign; open blue square, sign check only; filled red circle, model runs and returns no response; open grey circle, no runnable pair; grey dash, no synthesis target.</figcaption><p></p>
+</figure>
+</div>
+<p>A model that runs and returns no response has <strong>failed</strong> the check it was set; it has not escaped it, and further investigation is warranted. The figure draws that case in the failure colour rather than greying it out. The two rice methane cells are the instance, and they matter more than their size suggests: the response of methane to alternate wetting and drying in rice is the outcome this part of the evidence set was assembled to test.</p>
+<p>Two cells are genuinely empty rather than failing. Reduced tillage on methane and the annual-to-perennial conversion have no runnable treatment pair, so there is no modelled estimate to place. Three fertilization contrast arms were run and produced effects, but the evidence table contains no fertilization contrast target for them to be scored against; they are retained in the run outputs and left unscored.</p>
+</section>
+<section id="how-the-differences-develop" class="level3">
+<h3 class="anchored" data-anchor-id="how-the-differences-develop">How the differences develop</h3>
+<div id="fig-paired" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/fig5_paired_responses.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Paired difference at every design point, three representative cells. The upper strip gives the share of design points whose two arms differ in that year, read from the event files, so it shows when a difference can move at all. Below, each thin line is one design point’s treatment minus reference arm; the heavy line is the median and the band the interquartile range.</figcaption><p></p>
+</figure>
+</div>
+<p>The exposure strip explains a good deal. <strong>Cover crop exposure is not uniform across the window</strong>: 34 percent of design points carry a cover crop in 2016, rising to 80 percent by 2022, with a median of 6 cover years per design point and a range of 1 to 8. The soil carbon difference is correspondingly flat through 2016 to 2018 and separates from zero only as exposure rises. Rice drying never exceeds 67 percent of its design points in any year. Zero tillage is the only practice applied at every design point in every year, which is why its nitrous oxide response is the tightest bundle in the figure.</p>
+</section>
+</section>
+<section id="interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation">Interpretation</h2>
+<p>The discrepancies do not all have the same origin. Some are differences in the magnitude of a response the model does produce; others arise because the model formulation does not contain the mechanism the evidence describes. The distinction matters because parameter adjustment cannot recover a response the equations do not permit.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>response</th>
+<th>current model mechanism</th>
+<th>benchmark outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cover crop soil carbon</td>
+<td>carbon and litter dynamics</td>
+<td>reproduced, about half the reported magnitude</td>
+</tr>
+<tr class="even">
+<td>reduced and zero tillage soil carbon</td>
+<td>tillage as a respiration multiplier</td>
+<td>reproduced, about half to two thirds</td>
+</tr>
+<tr class="odd">
+<td>organic amendment soil carbon</td>
+<td>amendment carbon enters the litter pathway</td>
+<td>reproduced but underestimated</td>
+</tr>
+<tr class="even">
+<td>reduced tillage N<sub>2</sub>O</td>
+<td>indirect respiration effect only</td>
+<td>produced with the wrong sign</td>
+</tr>
+<tr class="odd">
+<td>fertilization N<sub>2</sub>O emission factor</td>
+<td>first order in the mineral nitrogen pool</td>
+<td>target response not generated</td>
+</tr>
+<tr class="even">
+<td>rice N<sub>2</sub>O</td>
+<td>mineral nitrogen and moisture</td>
+<td>direction reproduced, magnitude small</td>
+</tr>
+<tr class="odd">
+<td>rice methane</td>
+<td>moisture-gated methane production</td>
+<td>no response; check fails</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Soil carbon responds; the gases do not.</strong> All three carbon-adding practices raise modelled soil carbon in the right direction. Every nitrous oxide and methane cell is near zero, of the wrong sign, or a null. The failures are concentrated on one side of the model.</p>
+<p><strong>The amendment cell restates the calibration residual.</strong> Amendment carbon enters SIPNET as fresh litter, with no partition to a more persistent soil pool. The site-level calibration identified the same pathway; the statewide benchmark reproduces the limitation at a larger scale, and the same model change addresses both.</p>
+<p><strong>Tillage nitrous oxide is a mechanism problem.</strong> Tillage enters as a multiplier on heterotrophic respiration. There is no compaction, pore-space or oxygen-transport pathway through which reduced tillage could raise denitrification, which is why the modelled effect is small and of the wrong sign at every design point. The consistency across all 99 design points confirms this is structural rather than a parameter artefact.</p>
+<p><strong>The fertilization dose-response cannot be produced.</strong> Nitrous oxide is first order in the mineral nitrogen pool, so induced emissions are proportional to nitrogen applied and the emission factor is constant in nitrogen rate. The synthesis estimate is a rise of the emission factor with rate. Adjusting the existing parameter cannot generate that; an additional nonlinear mechanism would be required.</p>
+<p><strong>Rice methane is a water balance result, not evidence about drying.</strong> The prescribed drying events do not produce a realized loss of saturation. Soil moisture stays above water holding capacity throughout the window in both arms, with a minimum of 1.02 times capacity, so the clipped water fraction is one and the anaerobic index sits at its ceiling in the drying arm exactly as in the irrigated reference. The methane moisture response is that index raised to the anaerobic transition exponent, and one raised to any exponent is one, so no value of that exponent can recover a contrast. Two thirds to three quarters of rice design points returned an effect of exactly zero. This should be read as the comparison not having been made, and as a check the model failed, rather than as evidence that drying events do not affect methane.</p>
+<p><strong>Aggregating first matters.</strong> Because the model side is summarised before comparison, a cell can agree in aggregate while the underlying site distribution is wide or skewed. The cover crop cell agrees with its target and is simultaneously the least uniform cell in the matrix.</p>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<ol type="1">
+<li>This is a single ensemble member at the parameter medians. The spread reported per cell is variation across design points at fixed parameters and contains no parameter uncertainty, so no uncertainty statement about practice effects should be taken from it.</li>
+<li>Nitrous oxide and methane outputs are uncalibrated. No nitrogen or methane parameter was estimated in the site-level calibration, and most of the scored cells are gas cells.</li>
+<li>The reported nitrous oxide quantity is total mineral nitrogen volatilization rather than a partitioned N<sub>2</sub>O flux, so its absolute level is not comparable with a measured emission factor. The dose-response result is a ratio and is unaffected. The induced emission factor has not equilibrated over the window, rising through to the final year without reaching a plateau.</li>
+<li>The soil carbon parameters come from a single field trial in one cropping system. Applying them across the full range of California cropland is extrapolation.</li>
+<li>Targets are global syntheses, not California-specific. The organic amendment target is partly comparable at best, and for the fertilization cells the published crop classes match this panel poorly, since most fertilized design points are orchard or pasture and the N-fixing class carries only three.</li>
+<li>Agreement in a cell is agreement of aggregates. Per-site effects vary widely, and in the cover crop cell the aggregate is not representative of the typical design point.</li>
+<li>Tillage soil carbon and both rice outcomes each map two arms onto one target cell. Those rows share a target and are not independent estimates of it.</li>
+<li>Two cells returned no usable comparison. Absence of a result there is not evidence of agreement.</li>
+<li>No site in the companion site-level dataset carries both soil carbon and a greenhouse gas flux at useful density, so a parameter set that reproduces soil carbon has not been tested against methane in the same system. There is no measured practice contrast anywhere in the Delta and none under rice, which is precisely where this synthesis evidence carries the weight.</li>
+</ol>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<p>Work that follows directly from this benchmark, in priority order.</p>
+<p><strong>1. Add an amendment carbon partition to SIPNET.</strong> A fraction of organic carbon added by a management event should enter the soil pool directly rather than the whole amount passing through fresh litter. This is the single change that addresses both the statewide amendment cell and the residual identified in the site-level calibration. Re-run the amendment cell after the change.</p>
+<p><strong>2. Represent flooding and draining explicitly for rice.</strong> The drying events are prescribed but never realized: soil moisture stays above water holding capacity in both arms, so the anaerobic index is at its ceiling throughout and the two arms are identical. This is a water balance limitation rather than a parameter setting. Reducing the drainage fraction and reducing the total water applied were both tested and neither produced a dry-down, so the treatment needs an explicit flood and drain representation before these cells can be scored at all. Because alternate wetting and drying in rice is the outcome this evidence set was assembled to test, we treat this as the highest-value change after the amendment partition.</p>
+<p><strong>3. Review the nitrous oxide formulation against the benchmark evidence.</strong> A first-order volatilization term cannot produce an emission factor that varies with nitrogen rate, and a respiration multiplier cannot produce the tillage response the evidence reports. Both are model-form questions rather than calibration questions, and both should be scoped before any further nitrogen calibration effort.</p>
+<p><strong>4. Re-run the matrix as an ensemble.</strong> Running at the parameter medians leaves the cell comparisons without parameter uncertainty. An ensemble would separate spatial heterogeneity from parameter uncertainty and show whether the discrepancies survive propagating the calibrated parameter distributions.</p>
+</section>
+<section id="key-artifacts" class="level2">
+<h2 class="anchored" data-anchor-id="key-artifacts">Key artifacts</h2>
+<ul>
+<li>Amendment carbon partition request: https://github.com/PecanProject/sipnet/issues/396</li>
+<li>Multi-site calibration and statewide scoring code: https://github.com/ccmmf/calibration</li>
+<li>Summarized evidence targets: https://github.com/ccmmf/cal-val-data</li>
+<li>SIPNET v2.2.0: https://github.com/PecanProject/sipnet/releases/tag/v2.2.0</li>
+<li>SIPNET parameter documentation: https://pecanproject.org/sipnet/parameters/</li>
+</ul>
+</section>
+<section id="appendix-a.-scorecard" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a.-scorecard">Appendix A. Scorecard</h2>
+<p>All thirteen rows of the scored target table, including the cells with no runnable pair and the cell not scored. The standardised discrepancy must be read together with what the spread describes. Rows shaded grey fail the check: a discrepancy beyond two spreads, a model that runs and returns no response, or no runnable pair.</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Target cell</th>
+<th>Use</th>
+<th style="text-align: right;">Synthesis estimate</th>
+<th style="text-align: right;">Reported spread</th>
+<th>What the spread is</th>
+<th style="text-align: right;">Modelled estimate</th>
+<th style="text-align: right;">Standardised discrepancy</th>
+<th style="text-align: right;">Design points</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cover crops × soil carbon</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">0.740</td>
+<td>among-unit SD</td>
+<td style="text-align: right;">0.132</td>
+<td style="text-align: right;">−0.253</td>
+<td style="text-align: right;">65</td>
+<td>scored</td>
+</tr>
+<tr class="even">
+<td>Reduced tillage × soil carbon</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.216</td>
+<td style="text-align: right;">0.448</td>
+<td>among-unit SD</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">−0.219</td>
+<td style="text-align: right;">99</td>
+<td>scored</td>
+</tr>
+<tr class="odd">
+<td>Zero tillage × soil carbon</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.216</td>
+<td style="text-align: right;">0.448</td>
+<td>among-unit SD</td>
+<td style="text-align: right;">0.146</td>
+<td style="text-align: right;">−0.156</td>
+<td style="text-align: right;">99</td>
+<td>scored</td>
+</tr>
+<tr class="even">
+<td>Organic amendment × soil carbon</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.238</td>
+<td style="text-align: right;">0.00281</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">0.0614</td>
+<td style="text-align: right;">−62.8</td>
+<td style="text-align: right;">99</td>
+<td>scored</td>
+</tr>
+<tr class="odd">
+<td>Reduced tillage × N<sub>2</sub>O</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.322</td>
+<td style="text-align: right;">0.124</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">−0.0239</td>
+<td style="text-align: right;">−2.79</td>
+<td style="text-align: right;">99</td>
+<td>scored</td>
+</tr>
+<tr class="even">
+<td>Rice, one drying × N<sub>2</sub>O</td>
+<td>sign check</td>
+<td style="text-align: right;">0.718</td>
+<td style="text-align: right;">0.707</td>
+<td>expert-informed prior</td>
+<td style="text-align: right;">0.0117</td>
+<td style="text-align: right;">−0.999</td>
+<td style="text-align: right;">12</td>
+<td>scored</td>
+</tr>
+<tr class="odd">
+<td>Rice, two dryings × N<sub>2</sub>O</td>
+<td>sign check</td>
+<td style="text-align: right;">0.718</td>
+<td style="text-align: right;">0.707</td>
+<td>expert-informed prior</td>
+<td style="text-align: right;">0.0191</td>
+<td style="text-align: right;">−0.989</td>
+<td style="text-align: right;">12</td>
+<td>scored</td>
+</tr>
+<tr class="even">
+<td>Rice, one drying × CH<sub>4</sub></td>
+<td>quantitative</td>
+<td style="text-align: right;">−0.399</td>
+<td style="text-align: right;">0.140</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">−0.000136</td>
+<td style="text-align: right;">2.85</td>
+<td style="text-align: right;">12</td>
+<td>runs, no response</td>
+</tr>
+<tr class="odd">
+<td>Rice, two dryings × CH<sub>4</sub></td>
+<td>quantitative</td>
+<td style="text-align: right;">−0.625</td>
+<td style="text-align: right;">0.170</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">−3.68e−05</td>
+<td style="text-align: right;">3.68</td>
+<td style="text-align: right;">12</td>
+<td>runs, no response</td>
+</tr>
+<tr class="even">
+<td>Fertilization × N<sub>2</sub>O, N-fixing crops</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.0181</td>
+<td style="text-align: right;">0.00497</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">1.12e−06</td>
+<td style="text-align: right;">−3.64</td>
+<td style="text-align: right;">3</td>
+<td>scored</td>
+</tr>
+<tr class="odd">
+<td>Fertilization × N<sub>2</sub>O, other crops</td>
+<td>quantitative</td>
+<td style="text-align: right;">0.00180</td>
+<td style="text-align: right;">0.000480</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">2.92e−06</td>
+<td style="text-align: right;">−3.74</td>
+<td style="text-align: right;">96</td>
+<td>scored</td>
+</tr>
+<tr class="even">
+<td>Annual to perennial × soil carbon</td>
+<td>sign check</td>
+<td style="text-align: right;">0.154</td>
+<td style="text-align: right;">0.707</td>
+<td>expert-informed prior</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">0</td>
+<td>no runnable pair</td>
+</tr>
+<tr class="odd">
+<td>Reduced tillage × CH<sub>4</sub></td>
+<td>not scored</td>
+<td style="text-align: right;">−0.600</td>
+<td style="text-align: right;">0.100</td>
+<td>SE of the synthesis mean</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">0</td>
+<td>no runnable pair</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Jiang, Y., et al.&nbsp;(2019). Water management to mitigate the global warming potential of rice systems. <em>Global Change Biology</em>.</p>
+<p>Longfritz, M., Sacks, W. J., Moore, D. J. P., Zobitz, J. M., Braswell, B. H., Schimel, D. S., Kooper, R., Dietze, M. C., Fer, I., Black, C., and LeBauer, D. S. (2026). SIPNET: Simple Photosynthesis and Evapotranspiration Model (v2.2.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.22286320</p>
+<p>Poeplau, C., and Don, A. (2015). Carbon sequestration in agricultural soils via cultivation of cover crops: a meta-analysis. <em>Agriculture, Ecosystems and Environment</em>, 200, 33–41. https://doi.org/10.1016/j.agee.2014.10.024</p>
+<p>Sun, W., et al.&nbsp;(2020). Climate drives global soil carbon sequestration and crop yield changes under conservation agriculture. <em>Global Change Biology</em>.</p>
+<p>van Kessel, C., Venterea, R., Six, J., Adviento-Borbe, M. A., Linquist, B., and van Groenigen, K. J. (2013). Climate, duration, and N placement determine N<sub>2</sub>O emissions in reduced tillage systems: a meta-analysis. <em>Global Change Biology</em>, 19(1), 33–44. https://doi.org/10.1111/j.1365-2486.2012.02779.x</p>
+<p>The source for every target cell is recorded in the curated evidence table, which is the authoritative mapping; the works above are those cited in the text.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../reports/site_calibration.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Site-Level Calibration</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

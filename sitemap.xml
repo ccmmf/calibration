@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ccmmf.github.io/calibration/index.html</loc>
-    <lastmod>2026-09-20T14:29:41.779Z</lastmod>
+    <lastmod>2026-09-21T12:21:05.015Z</lastmod>
   </url>
   <url>
     <loc>https://ccmmf.github.io/calibration/reports/site_calibration.html</loc>
-    <lastmod>2026-09-20T14:29:42.506Z</lastmod>
+    <lastmod>2026-09-21T12:21:05.786Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ccmmf.github.io/calibration/reports/statewide_effects.html</loc>
+    <lastmod>2026-09-21T12:21:06.437Z</lastmod>
   </url>
 </urlset>
