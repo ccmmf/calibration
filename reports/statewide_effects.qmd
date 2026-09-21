@@ -376,11 +376,11 @@ discrepancies survive propagating the calibrated parameter distributions.
 
 ## Key artifacts
 
-- Amendment carbon partition request: https://github.com/PecanProject/sipnet/issues/396
-- Multi-site calibration and statewide scoring code: https://github.com/ccmmf/calibration
-- Summarized evidence targets: https://github.com/ccmmf/cal-val-data
-- SIPNET v2.2.0: https://github.com/PecanProject/sipnet/releases/tag/v2.2.0
-- SIPNET parameter documentation: https://pecanproject.org/sipnet/parameters/
+- Amendment carbon partition request: <https://github.com/PecanProject/sipnet/issues/396>
+- Multi-site calibration and statewide scoring code: <https://github.com/ccmmf/calibration>
+- Summarized evidence targets: <https://github.com/ccmmf/cal-val-data>
+- SIPNET v2.2.0: <https://github.com/PecanProject/sipnet/releases/tag/v2.2.0>
+- SIPNET parameter documentation: <https://pecanproject.org/sipnet/parameters/>
 
 ## Appendix A. Scorecard
 
