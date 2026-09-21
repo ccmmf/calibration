@@ -4,8 +4,8 @@ One inversion over the cal/val treatments the curated record supports, rather
 than a per site pass. The fitted target is the salinas SOC period mean level
 plus its treatment contrasts; the modesto N2O treatment contrast is held out of
 the likelihood and scored as validation. Physiological parameters are held at
-strong priors; the compost events carry an amendment quality scaling documented
-beside the prepared inputs in the workspace.
+strong priors, and the compost events carry the full measured amendment organic
+carbon with no efficiency scaling applied.
 
 This directory holds configuration only, the same shape as
 `examples/1_salinas_soc`. The code is the generic numbered scripts in
