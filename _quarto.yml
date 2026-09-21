@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: _site
+  preview:
+    watch-inputs: true
+  render:
+    # explicit list; the example and vignette qmds need a run workspace to build
+    - index.qmd
+    - reports/site_calibration.qmd
+
+website:
+  title: "Calibration"
+  description: "Parameter calibration for process-based ecosystem models"
+  search: true
+  page-navigation: true
+  sidebar:
+    style: docked
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+        text: Home
+      - section: Reports
+        contents:
+          - href: reports/site_calibration.qmd
+            text: Site-Level Calibration
+    tools:
+      - icon: exclamation-octagon
+        text: "Status: Draft"
+      - icon: github
+        href: https://github.com/ccmmf/calibration
+
+lightbox: auto
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    self-contained: false
+    df-print: paged
+
+# freeze so a publish does not re-execute anything
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
