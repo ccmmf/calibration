@@ -4,19 +4,21 @@
 \alias{.shrink_to_pd}
 \title{shrink correlations toward zero by the least amount that restores positive
 definiteness, leaving the diagonal exactly as estimated. a mean over K years
-gives an empirical covariance of rank at most K - 1, so more quantities than
-years is singular by construction and the EnKF's Cholesky of cov(G) + Sigma
-has no reason to succeed. the marginal variances are well estimated from K
-years; the correlations are not, so only they are damped.}
+gives an empirical covariance of rank at most K - 1, so with more quantities
+than years it is singular by construction and cov(G) + Sigma is not
+guaranteed positive definite, which is what the EnKF's Cholesky requires.
+the marginal variances are well estimated from K years; the correlations are
+not, so only they are damped.}
 \usage{
 .shrink_to_pd(S, label = "", tol = 1e-08)
 }
 \description{
 shrink correlations toward zero by the least amount that restores positive
 definiteness, leaving the diagonal exactly as estimated. a mean over K years
-gives an empirical covariance of rank at most K - 1, so more quantities than
-years is singular by construction and the EnKF's Cholesky of cov(G) + Sigma
-has no reason to succeed. the marginal variances are well estimated from K
-years; the correlations are not, so only they are damped.
+gives an empirical covariance of rank at most K - 1, so with more quantities
+than years it is singular by construction and cov(G) + Sigma is not
+guaranteed positive definite, which is what the EnKF's Cholesky requires.
+the marginal variances are well estimated from K years; the correlations are
+not, so only they are damped.
 }
 \keyword{internal}

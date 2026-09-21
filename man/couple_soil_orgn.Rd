@@ -10,9 +10,10 @@ soilInit from the per-particle ic but never touches soilOrgNInit.}
 couple_soil_orgn(rundir, soil_cn)
 }
 \description{
-set each written run's soilOrgNInit to its own soilInit / soil_cn, so the
-initial soil C:N is the chosen ratio at every particle's drawn initial C
-rather than whatever the template N implies. write.config.SIPNET sets
-soilInit from the per-particle ic but never touches soilOrgNInit.
+the workflow ic builder now writes soil_organic_nitrogen_content, and that
+is a PEcAn standard variable, but PEcAn.SIPNET has no reader for it: there
+is no soilOrgNInit handling in write.configs.SIPNET and the name is not in
+its ic_ncvars_to_try list, so the value in the ic file is ignored. this
+stays until that reader lands upstream.
 }
 \keyword{internal}
