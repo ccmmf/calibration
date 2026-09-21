@@ -2,31 +2,28 @@
 % Please edit documentation in R/observations.R
 \name{build_obs}
 \alias{build_obs}
-\title{Build the calibration target from cal/val observations}
+\title{Build the calibration target from the curated cal/val observations}
 \usage{
-build_obs(cal_val_dir, target_var, sites, rel_var_floor = 0.05)
+build_obs(cal_val_dir, targets)
 }
 \arguments{
-\item{cal_val_dir}{directory of the cal/val tsv export.}
+\item{cal_val_dir}{the cal-val-data checkout root.}
 
-\item{target_var}{the cal/val variable to calibrate to.}
-
-\item{sites}{character vector of sitenames to include.}
-
-\item{rel_var_floor}{relative floor on each cell variance: the variance is at
-least `(rel_var_floor * value)^2`, so an agreeing cell cannot make Sigma
-singular. Set 0 to disable.}
+\item{targets}{list of target specs: `variable`, `sites`, `units` (the unit
+every source record must carry), and optionally `source_variables` (raw names
+feeding it, default `variable`), `years` (inclusive c(first, last) filter),
+`variance` ("replicate", the default, or "pooled_cv"), and `cell_period`
+("year", the default, or "date" for an episodic sub-annual flux).}
 }
 \value{
-list(y, Sigma, meta): `y` named numeric (length P), `Sigma` a P x P
-  diagonal variance matrix named to match `y`, `meta` one row per slot.
+list(y, Sigma, meta).
 }
 \description{
 Assembles the observation vector `y`, its diagonal likelihood
-covariance `Sigma`, and the per-slot `meta` for one variable at one or more
-sites. Each (site, treatment, year) cell becomes one slot: `y` is the
-replicate mean, `Sigma` the variance of that mean floored relative to its
-magnitude. Nothing here is variable- or site specific; the caller names them.
+  covariance `Sigma`, and the per-slot `meta`, stacking every target into one
+  vector. A cell is one (variable, site, treatment, year, depth) group; the slot
+  name carries all of them so the estimator, which aligns by name only, never has
+  to know what a site or a variable is.
 }
 \author{
 Akash BV
