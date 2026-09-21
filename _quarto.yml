@@ -7,6 +7,7 @@ project:
     # explicit list; the example and vignette qmds need a run workspace to build
     - index.qmd
     - reports/site_calibration.qmd
+    - reports/statewide_effects.qmd
 
 website:
   title: "Calibration"
@@ -23,6 +24,8 @@ website:
         contents:
           - href: reports/site_calibration.qmd
             text: Site-Level Calibration
+          - href: reports/statewide_effects.qmd
+            text: Statewide Treatment Effects
     tools:
       - icon: exclamation-octagon
         text: "Status: Draft"
