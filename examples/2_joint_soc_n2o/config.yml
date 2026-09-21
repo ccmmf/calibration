@@ -8,9 +8,12 @@
 #   Rscript scripts/020_build_priors.R         -c examples/2_joint_soc_n2o/config.yml
 #   Rscript scripts/030_calibrate.R            -c examples/2_joint_soc_n2o/config.yml
 #   Rscript scripts/040_plot.R                 -c examples/2_joint_soc_n2o/config.yml
+# paths are built from CALIBRATION_DATA_ROOT, the directory holding the run
+# workspaces, prepared inputs and caches. set it before running:
+#   export CALIBRATION_DATA_ROOT=/path/to/artifacts
 default:
-  scc: /projectnb/dietzelab/ccmmf/usr/akash
-  cache_dir: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint/cache_pass5
+  scc: !expr calibration::data_root()
+  cache_dir: !expr calibration::data_root("cal_val_joint", "cache")
   soil_pft: [soil, soil_nfixer]
 
   observations:
@@ -80,12 +83,12 @@ default:
     soil_respiration_Q10: {sipnet: soilRespQ10, value: 2.0}
 
   forward:
-    workspace: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint/pass5
-    prepared_root: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint
+    workspace: !expr calibration::data_root("cal_val_joint", "run")
+    prepared_root: !expr calibration::data_root("cal_val_joint")
     blocks: examples/2_joint_soc_n2o/blocks.csv
     template: examples/2_joint_soc_n2o/template.xml
-    sa_root: /projectnb/dietzelab/ccmmf/usr/akash/calval_sa_v3_20260821
-    binary: /projectnb/dietzelab/ccmmf/usr/akash/calval_sa_v3_20260821/tools/sipnet_d2fc7a2
+    sa_root: !expr calibration::data_root("calval_sa_v3_20260821")
+    binary: !expr calibration::data_root("calval_sa_v3_20260821", "tools", "sipnet_v2.2.0-3ccc41c")
     var_map:
       SOC_stock_salinas:
         {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
