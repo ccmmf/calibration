@@ -6,6 +6,16 @@ synthesis targets in `summarized_targets.csv`. The runs are driven entirely
 by the standard PEcAn workflow: settings, configuration writing, submission
 and output conversion are PEcAn's, not this repository's.
 
+## Workspace
+
+The run artifacts, the staged inputs and the curated target table live outside
+the repo. Set `CALIBRATION_DATA_ROOT` to the directory that holds them; every
+path in `config.yml` is built from that root, so no absolute path is committed:
+
+```sh
+export CALIBRATION_DATA_ROOT=/path/to/artifacts
+```
+
 ## Workflow
 
     Rscript scripts/050_build_statewide_settings.R -c examples/3_statewide_effects/config.yml
@@ -86,7 +96,7 @@ fertilized arms, scored once per crop class.
 
 ## Reproducibility
 
-The run is determined by this repository at the build commit, `config.yml`,
-which pins every input path and checksum and every parameter value, the PFT
-input package version, and the generated `settings.xml`. `pecan.CONFIGS.xml`
-records the settings actually used.
+The run is determined by this repository at the build commit and by
+`config.yml`, which pins the event package, the input paths, the design point
+commit, the PFT input package version, the model revision and every parameter
+value. `pecan.CONFIGS.xml` records the settings actually used.
