@@ -21,40 +21,73 @@ t1 <- config$soc_endpoints[2]
 n_window <- t1 - t0 + 1
 
 # annual reduction of the standard model output, cached: the scorer re-reads it
-# on every pass but the runs do not change. reads the netcdf written by
-# model2netcdf.SIPNET rather than the raw model file, so variable names and
-# units come from the model package
+# on every pass but the runs do not change. read.output supplies the file
+# discovery, the time axis and the year index, so nothing here reconstructs
+# the netcdf layout; ud_convert and seconds_in_year supply the units
 ann_path <- file.path(ws, "annual_outputs.csv")
-read_run_years <- function(dir) {
-  files <- list.files(dir, pattern = "^[0-9]{4}\\.nc$", full.names = TRUE)
-  dplyr::bind_rows(lapply(files, function(f) {
-    nc <- ncdf4::nc_open(f)
-    on.exit(ncdf4::nc_close(nc))
-    get <- function(v) as.numeric(ncdf4::ncvar_get(nc, v))
-    # kg C m-2 -> Mg C ha-1; fluxes are per second over the output step
-    tot <- get("TotSoilCarb") * 10
-    lit <- get("litter_carbon_content") * 10
-    step <- diff(as.numeric(nc$dim$time$vals)[1:2]) * 86400
-    tibble::tibble(
-      year = as.integer(sub("\\.nc$", "", basename(f))),
-      soc_first = tot[1], soc_last = tot[length(tot)],
-      soil_first = (tot - lit)[1], soil_last = (tot - lit)[length(tot)],
-      n2o_sum = sum(get("N2O_flux")) * step,
-      ch4_sum = sum(get("CH4_flux")) * step
+run_vars <- c("TotSoilCarb", "litter_carbon_content", "N2O_flux", "CH4_flux")
+read_run_years <- function(runid, dir) {
+  d <- PEcAn.utils::read.output(
+    runid = runid, outdir = dir, start.year = t0, end.year = t1,
+    variables = run_vars, dataframe = TRUE, print_summary = FALSE)
+  tibble::tibble(
+    year = d$year, posix = d$posix,
+    tot = PEcAn.utils::ud_convert(d$TotSoilCarb, "kg m-2", "Mg ha-1"),
+    soil = PEcAn.utils::ud_convert(d$TotSoilCarb - d$litter_carbon_content,
+                                   "kg m-2", "Mg ha-1"),
+    n2o = d$N2O_flux, ch4 = d$CH4_flux
+  ) |>
+    arrange(posix) |>
+    # the annual flux total is the mean rate over the length of that year, so
+    # leap years carry their extra day without assuming a fixed output step
+    summarise(
+      soc_last = last(tot), soil_last = last(soil),
+      n2o_sum = mean(n2o) * PEcAn.utils::seconds_in_year(first(year)),
+      ch4_sum = mean(ch4) * PEcAn.utils::seconds_in_year(first(year)),
+      .by = year
     )
-  }))
 }
-if (!file.exists(ann_path)) {
-  runs <- list.dirs(file.path(ws, "output", "out"), recursive = FALSE)
+out_dir <- file.path(ws, "output", "out")
+runs <- list.dirs(out_dir, recursive = FALSE)
+out_nc <- list.files(out_dir, pattern = "^[0-9]{4}\\.nc$", recursive = TRUE,
+                     full.names = TRUE)
+if (length(out_nc) == 0) {
+  PEcAn.logger::logger.severe("no model output under ", out_dir)
+}
+run_ids <- sub("^ENS-[0-9]+-", "", basename(runs))
+
+# the cache is a pure reduction of the run outputs, so it is rebuilt whenever
+# the run set changes, any output was written after it, or it was written by an
+# older reduction. a silently stale cache would score a superseded run against
+# the current target table
+ann_cols <- c("site", "arm", "year", "soc_last", "soil_last", "n2o_sum",
+              "ch4_sum")
+ann <- NULL
+if (file.exists(ann_path)) {
+  ann <- utils::read.csv(ann_path, colClasses = c(site = "character"))
+  if (!setequal(names(ann), ann_cols) ||
+      !setequal(run_ids, unique(paste(ann$site, ann$arm, sep = "."))) ||
+      max(file.mtime(out_nc)) > file.mtime(ann_path)) {
+    PEcAn.logger::logger.info("run outputs changed since ", basename(ann_path),
+                              " was written; rebuilding it")
+    ann <- NULL
+  }
+}
+if (is.null(ann)) {
+  # read.output narrates every file it opens, which is 958 runs of noise here
+  old_level <- PEcAn.logger::logger.setLevel("ERROR")
   ann <- dplyr::bind_rows(lapply(runs, function(d) {
     id <- sub("^ENS-[0-9]+-", "", basename(d))
-    read_run_years(d) |>
+    read_run_years(basename(d), d) |>
       mutate(site = sub("\\..*$", "", id), arm = sub("^[^.]*\\.", "", id),
              .before = 1)
   }))
+  PEcAn.logger::logger.setLevel(old_level)
   utils::write.csv(ann, ann_path, row.names = FALSE)
+  # score from the written artifact, so a pass that rebuilds and a pass that
+  # reuses the cache produce the same numbers
+  ann <- utils::read.csv(ann_path, colClasses = c(site = "character"))
 }
-ann <- utils::read.csv(ann_path, colClasses = c(site = "character"))
 pairs <- utils::read.csv(file.path(pkg, "run_pairs.csv"),
                          colClasses = c(site_id = "character"))
 tm <- utils::read.csv(config$scoring$treatment_matrix)
@@ -79,16 +112,31 @@ soc_of <- function(site, arm, yr, col) {
   v <- ann[[col]][ann$site == site & ann$arm == arm & ann$year == yr]
   if (length(v) != 1) NA_real_ else v
 }
+# a short year set would put the two arms of a ratio over different windows,
+# so a summed operator returns NA unless every year in the window is present
 sum_of <- function(site, arm, var, y0, y1) {
   sel <- ann$site == site & ann$arm == arm & ann$year >= y0 & ann$year <= y1
-  if (!any(sel)) NA_real_ else sum(ann[[var]][sel])
+  if (sum(sel) != y1 - y0 + 1) NA_real_ else sum(ann[[var]][sel])
+}
+n_years <- function(site, arm) {
+  sum(ann$site == site & ann$arm == arm & ann$year >= t0 & ann$year <= t1)
 }
 
+# the operators read either the t1 stock or a sum over the whole window, so a
+# pair is usable only when both arms carry every year of it
 staged_pairs <- pairs |>
   mutate(pair_ok = vapply(seq_len(n()), function(i) {
-    !is.na(soc_of(site_id[i], treatment[i], t1, "soc_last")) &&
-      !is.na(soc_of(site_id[i], reference[i], t1, "soc_last"))
+    n_years(site_id[i], treatment[i]) == n_window &&
+      n_years(site_id[i], reference[i]) == n_window
   }, logical(1)))
+if (any(!staged_pairs$pair_ok)) {
+  PEcAn.logger::logger.warn(
+    sum(!staged_pairs$pair_ok), " of ", nrow(staged_pairs),
+    " pairs dropped for incomplete output over ", t0, "-", t1, ": ",
+    paste(utils::head(staged_pairs$site_id[!staged_pairs$pair_ok], 10),
+          collapse = ", ")
+  )
+}
 
 ty0 <- config$scoring$tillage_n2o_years[1]
 ty1 <- config$scoring$tillage_n2o_years[2]
@@ -131,16 +179,27 @@ season_windows <- function(site) {
   lapply(split(d, y), range)
 }
 season_sum <- function(site, arm, win, var) {
-  d <- file.path(ws, "output", "out", paste0("ENS-00001-", site, ".", arm))
-  sum(vapply(names(win), function(y) {
-    nc <- ncdf4::nc_open(file.path(d, paste0(y, ".nc")))
-    on.exit(ncdf4::nc_close(nc))
-    day <- as.numeric(nc$dim$time$vals) + 1
-    step <- diff(as.numeric(nc$dim$time$vals)[1:2]) * 86400
-    x <- as.numeric(ncdf4::ncvar_get(nc, var))
-    w <- win[[y]]
-    sum(x[day >= w[1] & day <= w[2] + 1]) * step
-  }, numeric(1)))
+  runid <- paste0("ENS-00001-", site, ".", arm)
+  yrs <- as.integer(names(win))
+  d <- PEcAn.utils::read.output(
+    runid = runid, outdir = file.path(out_dir, runid),
+    start.year = min(yrs), end.year = max(yrs),
+    variables = var, dataframe = TRUE, print_summary = FALSE)
+  d <- d[d$year %in% yrs, ]
+  # fractional day of year off the standard time axis, so the window edges do
+  # not depend on how the model wrote its time units
+  doy <- 1 + as.numeric(difftime(d$posix,
+                                 lubridate::floor_date(d$posix, "year"),
+                                 units = "days"))
+  lo <- vapply(win[as.character(d$year)], `[`, numeric(1), 1)
+  hi <- vapply(win[as.character(d$year)], `[`, numeric(1), 2)
+  sel <- doy >= lo & doy <= hi + 1
+  # each year integrates at its own uniform step, taken from that year's length
+  step <- PEcAn.utils::seconds_in_year(yrs) /
+    as.numeric(table(d$year)[as.character(yrs)])
+  names(step) <- as.character(yrs)
+  in_season <- tapply(d[[var]][sel], d$year[sel], sum)
+  sum(in_season * step[names(in_season)])
 }
 var_nc <- list(n2o = "N2O_flux", ch4 = "CH4_flux")
 rice <- eff$treatment %in% c("rice_one_dry", "rice_two_dry")
@@ -179,6 +238,16 @@ ef_slope <- vapply(fert_sites, function(s) {
   # percent change in EF per kg N ha-1, so the model side is scaled to match
   ef <- function(arm, mult) 100 * (n2o_win(s, arm) - z) / (n_applied(s) * mult)
   (ef("mineral_N_one_half", 1.5) - ef("mineral_N_half", 0.5)) / rate
+}, numeric(1))
+
+# the EF LEVEL at the reference rate: fertilizer induced N2O as a percentage
+# of the mineral N applied. a different quantity from the slope above, and the
+# one the mediterranean synthesis constrains
+n_site <- vapply(fert_sites, n_applied, numeric(1))
+ef_level <- vapply(fert_sites, function(s) {
+  if (n_site[[s]] <= 0) return(NA_real_)
+  100 * (n2o_win(s, "fertilizer_reference") - n2o_win(s, "mineral_N_zero")) /
+    n_site[[s]]
 }, numeric(1))
 
 ## model-side aggregation: ONE estimate per treatment x metric ---------------
@@ -233,13 +302,16 @@ for (i in seq_len(nrow(tm))) {
   # stratified cells carry several rows and must be matched on all three
   cell <- strsplit(r$target_cell, " x ")[[1]]
   trow <- if (length(cell) == 2) {
-    targets |> filter(practice_table6 == cell[1], outcome == cell[2],
+    targets |> filter(practice == cell[1], outcome == cell[2],
                       subclass == r$target_subclass)
   } else targets[0, ]
   rows[[r$pair_id]] <- tibble::tibble(
     pair_id = r$pair_id, treatment = r$treatment, reference = r$reference,
     metric = ifelse(is.na(metric), "", metric),
     target_cell = r$target_cell,
+    # carried through so a scored row says which subclass it was matched on;
+    # the rice drying cells are only distinguishable by it
+    target_subclass = r$target_subclass,
     target_use = if (nrow(trow) == 1) trow$use else "",
     target_center = if (nrow(trow) == 1) trow$center else NA,
     target_spread = if (nrow(trow) == 1) trow$spread else NA,
@@ -292,7 +364,7 @@ score <- dplyr::bind_rows(rows)
 # once per crop class. the published groups other than N fixers do not differ
 # from each other, so the panel splits in two on N fixation
 fert_cell <- targets |>
-  filter(practice_table6 == "+/- N Fertilization", outcome == "N2O",
+  filter(practice == "+/- N Fertilization", outcome == "N2O",
          subclass %in% c("non N fixing crops", "N fixing crops"))
 pft <- utils::read.csv(config$pfts$assignment,
                        colClasses = c(site_id = "character"))
@@ -318,6 +390,34 @@ crop_rows <- tibble::tibble(site_id = names(ef_slope), slope = unname(ef_slope))
                                   "so the emission factor is constant in N rate")) |>
   select(-subclass, -use, -center, -spread, -spread_type, -units)
 score <- dplyr::bind_rows(score, crop_rows)
+
+# the level cell is one panel estimate, N weighted as the target specifies, so
+# a site applying more N carries proportionally more of the panel mean
+lev_cell <- targets |>
+  filter(practice == "+/- N Fertilization", outcome == "N2O",
+         subclass == "EF level, Mediterranean")
+if (nrow(lev_cell) != 1) {
+  PEcAn.logger::logger.severe("expected one EF level target row, got ",
+                              nrow(lev_cell))
+}
+ok <- is.finite(ef_level) & n_site > 0
+score <- dplyr::bind_rows(score, tibble::tibble(
+  pair_id = "minN_EF_level",
+  metric = "ef_level",
+  model_effect = stats::weighted.mean(ef_level[ok], n_site[ok]),
+  model_median = stats::median(ef_level[ok]),
+  model_sd_across_sites = stats::sd(ef_level[ok]),
+  model_n_sites = sum(ok),
+  target_cell = "+/- N Fertilization x N2O",
+  target_subclass = lev_cell$subclass,
+  target_use = lev_cell$use,
+  target_center = lev_cell$center,
+  target_spread = lev_cell$spread,
+  target_spread_type = lev_cell$spread_type,
+  target_units = lev_cell$`scale/units`,
+  z_vs_target_spread = (model_effect - lev_cell$center) / lev_cell$spread,
+  status = "scored"
+))
 
 utils::write.csv(score, file.path(ws, "model_vs_evidence_scorecard.csv"),
                  row.names = FALSE)
