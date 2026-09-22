@@ -392,7 +392,14 @@ crop_rows <- tibble::tibble(site_id = names(ef_slope), slope = unname(ef_slope))
 score <- dplyr::bind_rows(score, crop_rows)
 
 # the level cell is one panel estimate, N weighted as the target specifies, so
-# a site applying more N carries proportionally more of the panel mean
+# a site applying more N carries proportionally more of the panel mean.
+#
+# it is reported but NOT scored. sipnet's n2o output is total mineral nitrogen
+# volatilization (sipnet.c: trackers.n2o = fluxes.nVolatilization), so the
+# modelled level is an upper bound on the emission factor the target measures.
+# an upper bound above the target is uninformative: it would only be decisive
+# if it came in below. the discrepancy is left NA rather than reported as a
+# failure the comparison cannot establish.
 lev_cell <- targets |>
   filter(practice == "+/- N Fertilization", outcome == "N2O",
          subclass == "EF level, Mediterranean")
@@ -401,10 +408,13 @@ if (nrow(lev_cell) != 1) {
                               nrow(lev_cell))
 }
 ok <- is.finite(ef_level) & n_site > 0
+lev_effect <- stats::weighted.mean(ef_level[ok], n_site[ok])
+# a bound landing below the target would settle the cell; above it, it does not
+lev_informative <- lev_effect < lev_cell$center
 score <- dplyr::bind_rows(score, tibble::tibble(
   pair_id = "minN_EF_level",
   metric = "ef_level",
-  model_effect = stats::weighted.mean(ef_level[ok], n_site[ok]),
+  model_effect = lev_effect,
   model_median = stats::median(ef_level[ok]),
   model_sd_across_sites = stats::sd(ef_level[ok]),
   model_n_sites = sum(ok),
@@ -415,8 +425,12 @@ score <- dplyr::bind_rows(score, tibble::tibble(
   target_spread = lev_cell$spread,
   target_spread_type = lev_cell$spread_type,
   target_units = lev_cell$`scale/units`,
-  z_vs_target_spread = (model_effect - lev_cell$center) / lev_cell$spread,
-  status = "scored"
+  z_vs_target_spread = if (lev_informative) {
+    (lev_effect - lev_cell$center) / lev_cell$spread
+  } else NA_real_,
+  status = if (lev_informative) "scored" else "proxy_upper_bound",
+  structural_flags = paste("model side is total mineral N volatilization, an",
+                           "upper bound on the measured emission factor")
 ))
 
 utils::write.csv(score, file.path(ws, "model_vs_evidence_scorecard.csv"),
