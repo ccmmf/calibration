@@ -1,0 +1,175 @@
+---
+title: "Statewide treatment-effect matrix: run report"
+date: today
+format:
+  html:
+    self-contained: true
+    toc: true
+    theme: cosmo
+    number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+config <- config::get(file = file.path(here::here(), "examples/3_statewide_effects/config.yml"))
+ws <- config$workspace
+score <- read.csv(file.path(ws, "model_vs_evidence_scorecard.csv"))
+eff <- read.csv(file.path(ws, "site_pair_effects.csv"),
+                colClasses = c(site_id = "character"))
+# runs_manifest.csv is written by the PEcAn config step and lists every run it
+# created, so the design minus the manifest is what never reached the model
+manifest <- read.csv(file.path(ws, "output", "runs_manifest.csv"))
+design <- read.csv(file.path(config$event_package$root, "run_pairs.csv"),
+                   colClasses = c(site_id = "character"))
+
+active <- score |> filter(target_use %in% c("likelihood", "sign_check"))
+n_pairs <- nrow(eff)
+n_sites <- dplyr::n_distinct(eff$site_id)
+n_blocked <- nrow(dplyr::distinct(
+  tidyr::pivot_longer(design, c(treatment, reference), values_to = "arm"),
+  site_id, arm)) - nrow(manifest)
+ef <- score |> filter(pair_id == "minN_EF_level")
+ef_level <- ef$model_effect
+ef_target <- ef$target_center
+
+theme_set(theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(), legend.position = "bottom"))
+```
+
+This report interprets one executed forward matrix of SIPNET practice effects
+at the statewide design points, run with the configuration in this directory.
+Nothing here reruns the model: every number is read from the run outputs under
+`` `r ws` ``.
+
+# What was run
+
+`r n_pairs` treatment pairs at `r n_sites` sites, one run per (site, arm),
+over `r config$window$start` to `r config$window$end`. Within a pair only
+`events.in` differs; met drivers, initial conditions, parameters, executable
+and configuration are shared. `r n_blocked` arms at one site are blocked on an
+invalid wood initial condition and were not substituted.
+
+Vegetation parameters are the plant functional type medians from the pinned
+input package; photosynthesis optimum, soil respiration rates, soil C:N and
+the nitrogen settings are run level and pinned in `config.yml`.
+
+# Model against evidence
+
+Each cell is scored with the operator recorded in the target table, and the
+model side is aggregated to one estimate per cell before any comparison.
+
+```{r}
+#| label: scorecard
+active |>
+  transmute(
+    cell = paste0(target_cell,
+                  ifelse(is.na(target_subclass) | target_subclass == "", "",
+                         paste0(" [", target_subclass, "]"))),
+    use = target_use,
+    target = signif(target_center, 4),
+    spread = signif(target_spread, 3),
+    spread_type = target_spread_type,
+    model = signif(model_effect, 3),
+    z = round(z_vs_target_spread, 2),
+    n = model_n_sites,
+    status = status
+  ) |>
+  kable()
+```
+
+`z` is the model estimate minus the target centre in units of the target's own
+spread, and must be read with `spread_type`. A population standard deviation
+asks whether the model sits inside the observed heterogeneity; a standard
+error of a synthesis mean asks whether it matches that mean, and is tight
+enough that any model value is many multiples away.
+
+```{r}
+#| label: site-effects
+#| fig-height: 3.2
+#| fig-width: 7
+fam <- bind_rows(
+  tibble(family = "cover, per cover yr",
+         value = eff$dd_soc_per_cover_yr[eff$treatment == "cover_annual"]),
+  tibble(family = "amendment, soil LRR",
+         value = eff$soil_lrr_end[eff$treatment == "organic_substitution"]),
+  tibble(family = "zero till, per yr",
+         value = eff$dd_soc_per_window_yr[eff$treatment == "tillage_zero"]),
+  tibble(family = "zero till, N2O LRR",
+         value = eff$lrr_n2o_till[eff$treatment == "tillage_zero"])
+) |>
+  filter(is.finite(value))
+
+ggplot(fam, aes(x = value, y = family)) +
+  geom_vline(xintercept = 0, linewidth = 0.3, colour = "grey60") +
+  geom_boxplot(outlier.size = 0.6, linewidth = 0.3, width = 0.5) +
+  labs(x = "site-level paired effect", y = NULL)
+```
+
+Site-level effects behind four of the scored cells. The aggregate that enters
+the scorecard is the mean of each distribution, not the individual sites.
+
+# What the matrix shows
+
+The three soil carbon rate cells agree with their targets in sign and sit
+inside their spreads. Cover is positive at
+`r round(100 * score$model_frac_positive[score$pair_id == "cover_soc"])` percent
+of sites, reduced and zero tillage at 100 percent, and the amendment cell at
+100 percent.
+
+Three cells cannot be matched by any parameter setting in the current model,
+for reasons in the model structure rather than the parameterization.
+
+Tillage enters as a heterotrophic respiration multiplier with no compaction or
+pore-space pathway, so tillage nitrous oxide is a small negative log ratio at
+every site. The cell is matched to the under-10-year adoption class, which
+reports a positive effect; van Kessel finds the response flips with duration
+and reports a negative effect at 10 years or more, so the modelled sign agrees
+with the long-duration class rather than the one matched here.
+
+The anaerobic index clips soil water at saturation, and the prescribed flood
+keeps both arms above field capacity through the drying windows at eleven of
+twelve rice sites. The scored quantity is the flooded-season total, and the two
+arms give an identical season total at nine of twelve, so the rice methane
+cells carry no model response rather than a small one.
+
+Nitrous oxide is first order in the mineral nitrogen pool, so induced
+emissions are proportional to nitrogen applied and the emission factor is
+constant across the fertilized arms. The observed rise of the emission factor
+with nitrogen rate cannot be reproduced. The level of that emission factor is
+`r round(ef_level, 2)` percent of nitrogen applied against a Mediterranean
+synthesis value of `r sprintf("%.2f", ef_target)` percent, but that cell is
+reported without a discrepancy: the modelled level is an upper bound on the
+measured quantity, and a bound above the target settles nothing.
+
+# Limitations
+
+The `n2o` output is total mineral nitrogen volatilization rather than a
+partitioned nitrous oxide flux, so the emission factor level is an upper bound
+on the measured quantity and its cell carries no discrepancy. The dose response
+is a ratio of that same quantity, and is unaffected only if the nitrous oxide
+share of volatilization does not itself move with nitrogen rate; if that share
+varies with rate, a real dose response could exist while the quantity computed
+here stays flat. The induced emission factor has also not equilibrated over the
+window, rising monotonically without a plateau.
+
+Two cells receive more than one row, since tillage soil carbon and rice drying
+each map two arms to one cell; those rows are not independent estimates.
+Cover results are sensitive to one site with a single prepared cover year on an
+organic soil. The design points predate a later downscaling release that
+swapped two parcels. For the fertilizer cell, the published crop classes match
+this panel poorly, as most fertilized sites are orchard or pasture.
+
+# Reproducing
+
+The run is determined by this repository at the staging commit and by
+`config.yml`, which pins the event package, the input paths, the model
+revision and every parameter override. The script sequence is in the README.

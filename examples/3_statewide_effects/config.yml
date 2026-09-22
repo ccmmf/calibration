@@ -1,0 +1,78 @@
+# statewide treatment-effect forward matrix at the first 100 design sites, run
+# through the standard PEcAn workflow. scripts:
+#
+#   Rscript scripts/050_build_statewide_settings.R -c examples/3_statewide_effects/config.yml
+#   Rscript scripts/052_run_statewide_matrix.R     -c examples/3_statewide_effects/config.yml
+#   Rscript scripts/060_score_statewide_matrix.R   -c examples/3_statewide_effects/config.yml
+#
+# 050 writes settings.xml and the pinned default.param; 052 writes configs at
+# the pft trait medians, submits the runs and converts output; 060 scores the
+# completed runs against the synthesis targets.
+# paths are built from CALIBRATION_DATA_ROOT, the directory holding the run
+# workspaces, prepared inputs and caches. set it before running:
+#   export CALIBRATION_DATA_ROOT=/path/to/artifacts
+default:
+  workspace: !expr calibration::data_root("statewide_matrix", "pecan_v1")
+
+  # treatment event package: only events.in differs within a pair
+  event_package:
+    root: !expr calibration::data_root("statewide_cover", "statewide_events_first100_20260914")
+
+  # met drivers and initial conditions; the site set is pinned to the
+  # downscaling design points at the commit below
+  model_inputs:
+    root: !expr calibration::data_root("statewide_cover", "inputs_1k_20260911", "1k-sites-test-20260911")
+    design_points_commit: de7e9568ab1183026a6e5f8ace519852e936b6b6
+    met_member: 1
+    ic_member: 1
+
+  model:
+    # the binary lives with the run workspace so the runs carry their own
+    # executable rather than pointing at another experiment's tools directory
+    binary: !expr calibration::data_root("statewide_matrix", "pecan_v1", "sipnet_v2.2.0-3ccc41c")
+
+  forward:
+    template: examples/3_statewide_effects/template.xml
+    launcher: !expr calibration::data_root("cal_val_joint", "scripts", "sge_array_launcher.sh")
+
+  # written into default.param but still overridable by a pft posterior, which
+  # is how the rice soil gets its own drainage rate
+  default_param:
+    waterDrainFrac: 20
+
+  # pinned through default.param and dropped from the trait samples. the key is
+  # the PEcAn trait name, `sipnet` the model parameter it writes
+  fixed_params:
+    psnTOpt: {sipnet: psnTOpt, value: 25}
+    turn_over_time: {sipnet: litterBreakdownRate, value: 0.931093}
+    som_respiration_rate: {sipnet: baseSoilResp, value: 0.071613}
+    fracLitterRespired: {sipnet: fracLitterRespired, value: 0.928143}
+    soil_respiration_Q10: {sipnet: soilRespQ10, value: 2.0}
+    kCN: {sipnet: kCN, value: 80}
+    # the common soil value applies to every soil pft: CH4 is controlled by
+    # water content rather than a per-soil exponent
+    anaerobic_trans_exp: {sipnet: anaerobicTransExp, value: 99.98298}
+
+  parameterization:
+    # applied to the written configs, since write.config.SIPNET sets soilInit
+    # from the initial conditions but not soilOrgNInit
+    soil_cn: 10
+
+  # the version this run was built against; template.xml carries the per pft
+  # posterior paths under this root
+  pfts:
+    root: !expr calibration::data_root("statewide_pft_inputs", "v1.0")
+    assignment: !expr calibration::data_root("statewide_pft_inputs", "v1.0", "site_pft_assignment.csv")
+
+  window:
+    start: "2016-01-01"
+    end: "2023-12-31"
+  soc_endpoints: [2016, 2023]
+
+  # the target table is for read; the treatment matrix maps pairs to target
+  # cells and subclasses
+  scoring:
+    summarized_targets: !expr calibration::data_root("cal-val-data", "data_raw", "statewide_benchmarking", "summarized_targets.csv")
+    treatment_matrix: examples/3_statewide_effects/treatment_matrix.csv
+    # dry-climate short-term window for the tillage n2o log ratio
+    tillage_n2o_years: [2016, 2020]

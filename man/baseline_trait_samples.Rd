@@ -9,10 +9,19 @@ a trait left in here overwrites it.}
 \usage{
 baseline_trait_samples(pfts, n_particles, fixed = character(0))
 }
+\arguments{
+\item{pfts}{the settings pft list, each with a `posterior.files` path.}
+
+\item{n_particles}{number of rows to replicate.}
+
+\item{fixed}{trait names to drop.}
+}
+\value{
+named list of data.frames, one per pft.
+}
 \description{
 baseline trait samples: every parameter at its prior median, replicated over
 particles, one data.frame per pft. calibrated columns are overwritten by U.
 traits named in `fixed` are dropped so the run dir default.param value stands;
 a trait left in here overwrites it.
 }
-\keyword{internal}
