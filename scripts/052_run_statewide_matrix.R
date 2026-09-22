@@ -31,6 +31,15 @@ status_file <- file.path(settings$outdir, "STATUS")
 if (!args$continue && file.exists(status_file)) file.remove(status_file)
 dir.create(settings$outdir, recursive = TRUE, showWarnings = FALSE)
 
+# status.check returns -1 for a stage that ended in ERROR. the stage gates
+# below only test for "not yet done", so without this a resumed run would step
+# straight over a failure and build on incomplete state
+for (stage in c("CONFIG", "MODEL", "OUTPUT")) {
+  if (PEcAn.utils::status.check(stage) == -1L) {
+    logger.severe(stage, " previously failed; resolve before continuing")
+  }
+}
+
 # the matrix is a deterministic run at the trait medians, so the one ensemble
 # member carries the median of each pft posterior rather than a draw. traits
 # pinned in default.param are dropped here, otherwise the posterior overwrites
