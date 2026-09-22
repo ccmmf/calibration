@@ -130,12 +130,16 @@ for reasons in the model structure rather than the parameterization.
 
 Tillage enters as a heterotrophic respiration multiplier with no compaction or
 pore-space pathway, so tillage nitrous oxide is a small negative log ratio at
-every site against a positive target.
+every site. The cell is matched to the under-10-year adoption class, which
+reports a positive effect; van Kessel finds the response flips with duration
+and reports a negative effect at 10 years or more, so the modelled sign agrees
+with the long-duration class rather than the one matched here.
 
 The anaerobic index clips soil water at saturation, and the prescribed flood
 keeps both arms above field capacity through the drying windows at eleven of
-twelve rice sites. Methane is identical between arms at nine of twelve, so the
-rice methane cells carry no model response rather than a small one.
+twelve rice sites. The scored quantity is the flooded-season total, and the two
+arms give an identical season total at nine of twelve, so the rice methane
+cells carry no model response rather than a small one.
 
 Nitrous oxide is first order in the mineral nitrogen pool, so induced
 emissions are proportional to nitrogen applied and the emission factor is
