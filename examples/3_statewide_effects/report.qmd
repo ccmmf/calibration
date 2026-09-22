@@ -25,13 +25,21 @@ ws <- config$workspace
 score <- read.csv(file.path(ws, "model_vs_evidence_scorecard.csv"))
 eff <- read.csv(file.path(ws, "site_pair_effects.csv"),
                 colClasses = c(site_id = "character"))
-manifest <- read.csv(file.path(ws, "run_manifest.csv"),
-                     colClasses = c(site_id = "character"))
+# runs_manifest.csv is written by the PEcAn config step and lists every run it
+# created, so the design minus the manifest is what never reached the model
+manifest <- read.csv(file.path(ws, "output", "runs_manifest.csv"))
+design <- read.csv(file.path(config$event_package$root, "run_pairs.csv"),
+                   colClasses = c(site_id = "character"))
 
 active <- score |> filter(target_use %in% c("likelihood", "sign_check"))
 n_pairs <- nrow(eff)
 n_sites <- dplyr::n_distinct(eff$site_id)
-n_blocked <- sum(manifest$status != "staged")
+n_blocked <- nrow(dplyr::distinct(
+  tidyr::pivot_longer(design, c(treatment, reference), values_to = "arm"),
+  site_id, arm)) - nrow(manifest)
+ef <- score |> filter(pair_id == "minN_EF_level")
+ef_level <- ef$model_effect
+ef_target <- ef$target_center
 
 theme_set(theme_minimal(base_size = 12) +
   theme(panel.grid.minor = element_blank(), legend.position = "bottom"))
@@ -132,16 +140,18 @@ rice methane cells carry no model response rather than a small one.
 Nitrous oxide is first order in the mineral nitrogen pool, so induced
 emissions are proportional to nitrogen applied and the emission factor is
 constant across the fertilized arms. The observed rise of the emission factor
-with nitrogen rate cannot be reproduced.
+with nitrogen rate cannot be reproduced. The level of that emission factor is
+`r round(ef_level, 2)` percent of nitrogen applied against a Mediterranean
+synthesis value of `r sprintf("%.2f", ef_target)` percent.
 
 # Limitations
 
 The `n2o` output is total mineral nitrogen volatilization rather than a
-partitioned nitrous oxide flux, so its absolute level is not comparable with a
-measured emission factor; the dose-response result is scale free and
-unaffected. The induced emission factor has not equilibrated over the window,
-rising monotonically to `r round(3.57, 2)` percent by the final year without a
-plateau.
+partitioned nitrous oxide flux, so the emission factor level is an upper bound
+on the measured quantity, and the gap above it is a ceiling rather than an
+estimate of model bias. The dose response is a ratio of that same quantity and
+is unaffected. The induced emission factor has also not equilibrated over the
+window, rising monotonically without a plateau.
 
 Two cells receive more than one row, since tillage soil carbon and rice drying
 each map two arms to one cell; those rows are not independent estimates.
@@ -152,6 +162,6 @@ this panel poorly, as most fertilized sites are orchard or pasture.
 
 # Reproducing
 
-The run is determined by this repository at the staging commit, `config.yml`,
-which pins every input path and checksum and every parameter override, and the
-generated `run_manifest.csv`. The script sequence is in the README.
+The run is determined by this repository at the staging commit and by
+`config.yml`, which pins the event package, the input paths, the model
+revision and every parameter override. The script sequence is in the README.
