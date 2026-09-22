@@ -95,6 +95,8 @@ usable <- vapply(unique(arms$site_id), function(s) {
   !is.null(p) && all(c("soil", "wood") %in% names(p))
 }, logical(1))
 blocked <- names(usable)[!usable]
+# the arms that survive are the ones write.configs records in runs_manifest.csv,
+# so coverage against the design is read from there rather than tracked here
 if (length(blocked) > 0) {
   logger.warn(length(blocked), " site(s) dropped for unusable initial pools: ",
               paste(blocked, collapse = ", "))
