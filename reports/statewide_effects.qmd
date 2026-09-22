@@ -27,18 +27,28 @@ separately; this report carries that parameterization forward to the statewide
 design points and asks whether the resulting practice effects are consistent
 with the synthesis evidence.
 
-We ran six management practices as paired treatment and reference arms at 99
+We ran five management practices as paired treatment and reference arms at 99
 design points over 2016 to 2023, covering soil carbon, nitrous oxide and
-methane. Thirteen practice-by-outcome cells carry a synthesis estimate. Eleven
-of them have a modelled estimate to compare against it; the other two have no
-runnable treatment pair.
+methane. A sixth, conversion from annual to perennial cropping, carries a
+target but has no arm in the event package and was not run.
 
-The result divides cleanly by outcome. **Soil carbon responds to all three
-carbon-adding practices, in the right direction and at roughly half the
-reported magnitude. The greenhouse gas cells are near zero, of the wrong sign,
-or produce no response at all.** Most of the gas discrepancies can be traced to
-the model formulation rather than to parameter values, which is the most useful
-thing this benchmark tells us: they will not be resolved by recalibration.
+The target table holds 18 usable rows. Eleven of them are represented here
+across thirteen scored rows, since tillage soil carbon and rice nitrous oxide
+each carry two arms against one target. Eleven of the thirteen are compared
+against their target. Of the other two, the annual-to-perennial row has no
+runnable treatment pair, and the Mediterranean emission factor level is
+reported without a discrepancy because the modelled quantity is only an upper
+bound on what that target measures. Of the seven rows not represented, four are
+the finer fertilization crop classes set aside in favour of the nitrogen-fixing
+split and three are rice drying classes that were not staged.
+
+The result divides cleanly by outcome. **Soil carbon responds in every cell
+tested, in the right direction: cover cropping and the two tillage practices at
+roughly half the reported magnitude, the organic amendment at about a quarter.
+The greenhouse gas cells are near zero, of the wrong sign, or produce no
+response at all.** Most of the gas discrepancies can be traced to the model
+formulation rather than to parameter values, which is the most useful thing
+this benchmark tells us: they will not be resolved by recalibration.
 
 ### Summary of findings
 
@@ -46,11 +56,12 @@ thing this benchmark tells us: they will not be resolved by recalibration.
 |---|---|---|---|
 | Soil carbon, three practices | Reproduced | Cover crops, reduced tillage and zero tillage all raise soil carbon at essentially every design point, within a quarter of the reported among-site spread | Re-run with a parameter ensemble so the comparison carries parameter uncertainty |
 | Soil carbon, organic amendment | Underestimated | Modelled effect is about a quarter of the synthesis estimate; consistent with the amendment pathway identified in the site-level calibration | Add an amendment carbon partition to SIPNET and re-run the cell |
-| Nitrous oxide, tillage | Wrong sign | Model lowers N~2~O at all 99 design points against a positive synthesis estimate; tillage enters only as a respiration multiplier | Review the tillage N~2~O pathway; a physical mechanism is required |
+| Nitrous oxide, tillage | Wrong sign for the class matched | Model lowers N~2~O at all 99 design points against the under-10-year estimate of +0.322 this cell is matched to. van Kessel reports −0.419 at 10 years or more, so the sign agrees with the long-duration class | Name the adoption age matched; review the tillage N~2~O pathway |
 | Nitrous oxide, fertilization | Not produced | Emission factor is constant in nitrogen rate by construction, against a synthesis estimate of a rise with rate | Review the N~2~O formulation; first-order mineral N cannot produce the reported response |
 | Nitrous oxide, rice drying | Direction reproduced | Both drying intensities give the reported sign; magnitude was not under test | Obtain a quantitative target so the cell can be scored, not only sign-checked |
 | Methane, rice drying | Failed | Arms are identical in every year at most design points; the check fails rather than being absent | Represent flooding and draining explicitly; the prescribed drying never dries the soil |
-| Methane, tillage; annual to perennial | No runnable pair | The event package contains no arm expressing these treatments | Stage the arms, or record the cells as out of scope for this matrix |
+| Methane, tillage | Out of scope, not absent | The arm exists and the model responds: at the twelve rice-soil design points zero tillage raises methane, median log ratio +0.011, against a reported −0.6 uptake enhancement. Methane was scoped to rice systems, so the target is not in use | Score it if methane scope is ever widened beyond rice |
+| Soil carbon, annual to perennial | No runnable pair | The event package contains no arm expressing this conversion | Stage the arm, or record the cell as out of scope for this matrix |
 
 ## Benchmark design
 
@@ -97,8 +108,8 @@ denominator the induced emission factor is formed over.
 | model | SIPNET v2.2.0 (Longfritz et al., 2026) |
 | options | nitrogen cycle, anaerobic decomposition, flooding and litter pool enabled |
 | window | 2016-01-01 to 2023-12-31; soil carbon endpoints at 2016 and 2023 |
-| design points | 99 |
-| runs | 958 arm runs forming 683 eligible pairs |
+| design points | 99 scored of 100 designed |
+| runs | 958 arm runs forming 683 eligible pairs of 690 designed |
 | parameters | v1.0 statewide plant functional type trait medians |
 | ensemble | one member at the parameter medians |
 
@@ -108,11 +119,18 @@ sensitivity, the carbon-to-nitrogen decomposition constant and the anaerobic
 transfer exponent are run-level and pinned in the run configuration. They are
 written into the default parameter file and dropped from the trait samples, so
 a plant functional type posterior cannot overwrite them. All 958 arm runs
-therefore carry identical parameter values.
+therefore carry identical values for those seven. The remaining traits are
+plant functional type medians and do vary across design points: the panel spans
+six vegetation types, of which almond covers 69 design points and annual row
+crops 14, and three soil types, of which 85 points are the generic soil and 12
+the rice soil. Within any one pair every parameter is identical, which is what
+the paired design requires.
 
-Of the 683 pairs, 495 are prepared from the management record directly and 188
-are prepared with stated assumptions where the record was incomplete. Every
-pair passed the pairing check.
+One design point of the 100 was dropped before configuration because its
+initial conditions carried no usable pools, removing 10 arm runs and 7 pairs.
+Of the 683 pairs that remain, 495 are prepared from the management record
+directly and 188 are prepared with stated assumptions where the record was
+incomplete. Every remaining pair passed the pairing check.
 
 ### Relationship to the site-level calibration
 
@@ -213,8 +231,10 @@ disagreement with the positive synthesis estimate is not caused by averaging
 positive and negative site responses.
 
 **The rice methane rows are a spike at zero.** Median and both quartiles are
-exactly zero for both cells. The two arms are bit-identical in every year at 9
-of 12 design points for a single drying and 8 of 12 for two dryings.
+exactly zero for both cells. The scored quantity is the flooded-season total,
+and the two arms give an identical season total at 9 of 12 design points for a
+single drying and 8 of 12 for two dryings. Taking the whole year rather than
+the flooded season, the arms are bit-identical in every year at 7 and 6 of 12.
 
 ### Benchmark coverage
 
@@ -227,25 +247,41 @@ methane cells are the instance, and they matter more than their size suggests:
 the response of methane to alternate wetting and drying in rice is the outcome
 this part of the evidence set was assembled to test.
 
-Two cells are genuinely empty rather than failing. Reduced tillage on methane
-and the annual-to-perennial conversion have no runnable treatment pair, so
-there is no modelled estimate to place. Three fertilization contrast arms were
-run and produced effects, but the evidence table contains no fertilization
-contrast target for them to be scored against; they are retained in the run
-outputs and left unscored.
+One cell is genuinely empty rather than failing. The annual-to-perennial
+conversion has no runnable treatment pair, so there is no modelled estimate to
+place.
+
+Tillage on methane is a different case and should not be read as empty. The
+zero tillage arm is the same one scoring the tillage soil carbon and nitrous
+oxide cells, and the model does respond: methane in SIPNET is a rate times the
+soil carbon pool times temperature and moisture terms, and tillage acts on that
+pool through heterotrophic respiration. Methane is non-zero only at the twelve
+rice-soil design points, and at those twelve zero tillage raises it, log ratios
+of +0.005 to +0.021 with a median of +0.011, against a reported −0.6 which is
+an uptake enhancement. The cell is out of scope because methane was scoped to
+rice systems, and its target row is marked not for use; it is not a cell the
+model failed to reach.
+
+The three fertilization contrast arms were run and produced effects, and they
+are scored jointly rather than individually: the target is the slope of the
+emission factor against nitrogen rate, formed across the arms, so no single arm
+carries a target of its own. Appendix A reports that slope for the
+nitrogen-fixing and other crop classes.
 
 ### How the differences develop
 
 ![Paired difference at every design point, three representative cells. The upper strip gives the share of design points whose two arms differ in that year, read from the event files, so it shows when a difference can move at all. Below, each thin line is one design point's treatment minus reference arm; the heavy line is the median and the band the interquartile range.](figures/fig5_paired_responses.png){#fig-paired width=100% fig-align="center"}
 
 The exposure strip explains a good deal. **Cover crop exposure is not uniform
-across the window**: 34 percent of design points carry a cover crop in 2016,
-rising to 80 percent by 2022, with a median of 6 cover years per design point
-and a range of 1 to 8. The soil carbon difference is correspondingly flat
+across the window**: 34 percent of its design points carry a cover crop in
+2016, rising to 80 percent by 2022, with a median of 6 cover years per design
+point and a range of 1 to 8. The soil carbon difference is correspondingly flat
 through 2016 to 2018 and separates from zero only as exposure rises. Rice
-drying never exceeds 67 percent of its design points in any year. Zero tillage
-is the only practice applied at every design point in every year, which is why
-its nitrous oxide response is the tightest bundle in the figure.
+drying never exceeds 67 percent of its design points in any year. Cover
+cropping and rice drying are the only practices with uneven exposure; both
+tillage arms, all three fertilization arms and the organic amendment differ
+from their reference at every design point in every year, which is why the zero
+tillage nitrous oxide response is the tightest bundle in the figure.
 
 ## Interpretation
 
@@ -260,13 +296,14 @@ equations do not permit.
 | cover crop soil carbon | carbon and litter dynamics | reproduced, about half the reported magnitude |
 | reduced and zero tillage soil carbon | tillage as a respiration multiplier | reproduced, about half to two thirds |
 | organic amendment soil carbon | amendment carbon enters the litter pathway | reproduced but underestimated |
-| reduced tillage N~2~O | indirect respiration effect only | produced with the wrong sign |
+| reduced tillage N~2~O | indirect respiration effect only | negative everywhere; wrong sign for the under-10-year class matched |
 | fertilization N~2~O emission factor | first order in the mineral nitrogen pool | target response not generated |
+| tillage methane | rate times soil carbon, no direct tillage term | responds through the soil carbon pool, opposite in sign; cell out of scope |
 | rice N~2~O | mineral nitrogen and moisture | direction reproduced, magnitude small |
 | rice methane | moisture-gated methane production | no response; check fails |
 
-**Soil carbon responds; the gases do not.** All three carbon-adding practices
-raise modelled soil carbon in the right direction. Every nitrous oxide and
+**Soil carbon responds; the gases do not.** All four soil carbon cells move in
+the direction the evidence reports. Every nitrous oxide and
 methane cell is near zero, of the wrong sign, or a null. The failures are
 concentrated on one side of the model.
 
@@ -279,9 +316,14 @@ change addresses both.
 **Tillage nitrous oxide is a mechanism problem.** Tillage enters as a
 multiplier on heterotrophic respiration. There is no compaction, pore-space or
 oxygen-transport pathway through which reduced tillage could raise
-denitrification, which is why the modelled effect is small and of the wrong
-sign at every design point. The consistency across all 99 design points
-confirms this is structural rather than a parameter artefact.
+denitrification, which is why the modelled effect is small and negative at
+every design point. The cell is matched to the under-10-year adoption class,
+because the runs sit roughly five years after conversion, and that class
+reports +0.322. van Kessel finds the response flips with duration and gives
+−0.419 for 10 years or more, so the modelled sign agrees with the long-duration
+class and the disagreement is with the class we matched. Either way the
+magnitude is an order of magnitude short, and the consistency across all 99
+design points confirms this is structural rather than a parameter artefact.
 
 **The fertilization dose-response cannot be produced.** Nitrous oxide is first
 order in the mineral nitrogen pool, so induced emissions are proportional to
@@ -318,9 +360,16 @@ is simultaneously the least uniform cell in the matrix.
    scored cells are gas cells.
 3. The reported nitrous oxide quantity is total mineral nitrogen volatilization
    rather than a partitioned N~2~O flux, so its absolute level is not comparable
-   with a measured emission factor. The dose-response result is a ratio and is
-   unaffected. The induced emission factor has not equilibrated over the window,
-   rising through to the final year without reaching a plateau.
+   with a measured emission factor. The dose-response result is a ratio, and is
+   unaffected only if the N~2~O share of volatilization does not itself change
+   with nitrogen rate; if that share varies with rate, a real N~2~O dose
+   response could exist while the quantity computed here stays flat. This
+   assumption is untested and the fertilization conclusion rests on it. For the
+   same reason the modelled emission factor level is an upper bound on the
+   measured quantity, so the Mediterranean emission factor row is reported
+   without a discrepancy: a bound lying above the target settles nothing. The
+   induced emission factor has not equilibrated over the window, rising through
+   to the final year without reaching a plateau.
 4. The soil carbon parameters come from a single field trial in one cropping
    system. Applying them across the full range of California cropland is
    extrapolation.
@@ -331,10 +380,12 @@ is simultaneously the least uniform cell in the matrix.
 6. Agreement in a cell is agreement of aggregates. Per-site effects vary widely,
    and in the cover crop cell the aggregate is not representative of the typical
    design point.
-7. Tillage soil carbon and both rice outcomes each map two arms onto one target
-   cell. Those rows share a target and are not independent estimates of it.
-8. Two cells returned no usable comparison. Absence of a result there is not
-   evidence of agreement.
+7. Tillage soil carbon and rice nitrous oxide each map two arms onto one target
+   cell. Those rows share a target and are not independent estimates of it. The
+   two rice methane arms are matched to different drying classes and do not
+   share a target.
+8. One cell, the annual-to-perennial conversion, returned no usable comparison.
+   Absence of a result there is not evidence of agreement.
 9. No site in the companion site-level dataset carries both soil carbon and a
     greenhouse gas flux at useful density, so a parameter set that reproduces
     soil carbon has not been tested against methane in the same system. There is
@@ -384,11 +435,11 @@ discrepancies survive propagating the calibrated parameter distributions.
 
 ## Appendix A. Scorecard
 
-All thirteen rows of the scored target table, including the cells with no
-runnable pair and the cell not scored. The standardised discrepancy must be
-read together with what the spread describes. Rows shaded grey fail the check:
-a discrepancy beyond two spreads, a model that runs and returns no response, or
-no runnable pair.
+The thirteen scored rows, plus the tillage methane row, which is recorded but
+is not a target. The standardised discrepancy must be read together with what
+the spread describes, and the last column states the outcome of each check: a
+discrepancy beyond two spreads, a model that runs and returns no response, no
+runnable pair, or a comparison the reported quantity cannot support.
 
 | Target cell | Use | Synthesis estimate | Reported spread | What the spread is | Modelled estimate | Standardised discrepancy | Design points | Outcome |
 |---|---|---:|---:|---|---:|---:|---:|---|
@@ -404,7 +455,8 @@ no runnable pair.
 | Fertilization × N~2~O, N-fixing crops | quantitative | 0.0181 | 0.00497 | SE of the synthesis mean | 1.12e−06 | −3.64 | 3 | scored |
 | Fertilization × N~2~O, other crops | quantitative | 0.00180 | 0.000480 | SE of the synthesis mean | 2.92e−06 | −3.74 | 96 | scored |
 | Annual to perennial × soil carbon | sign check | 0.154 | 0.707 | expert-informed prior | -- | -- | 0 | no runnable pair |
-| Reduced tillage × CH~4~ | not scored | −0.600 | 0.100 | SE of the synthesis mean | -- | -- | 0 | no runnable pair |
+| Reduced tillage × CH~4~ | not a target | −0.600 | 0.100 | SE of the synthesis mean | +0.011 | -- | 12 | out of scope; methane scoped to rice |
+| Fertilization × N~2~O, EF level | not comparable | 0.500 | 0.0612 | SE of the synthesis mean | 3.57 | -- | 99 | model side is an upper bound |
 
 ## References
 
@@ -416,9 +468,17 @@ Schimel, D. S., Kooper, R., Dietze, M. C., Fer, I., Black, C., and LeBauer,
 D. S. (2026). SIPNET: Simple Photosynthesis and Evapotranspiration Model
 (v2.2.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.22286320
 
+Bai, X., Tang, J., Wang, W., et al. (2023). *Catena*, 231, 107343.
+https://doi.org/10.1016/j.catena.2023.107343 -- the organic amendment soil
+carbon target, a global synthesis over 424 studies and 1972 observations.
+
 Poeplau, C., and Don, A. (2015). Carbon sequestration in agricultural soils via
 cultivation of cover crops: a meta-analysis. *Agriculture, Ecosystems and
 Environment*, 200, 33--41. https://doi.org/10.1016/j.agee.2014.10.024
+
+Six, J., et al. (2004). *Global Change Biology*, 10(2), 155--160.
+https://doi.org/10.1111/j.1529-8817.2003.00730.x -- the tillage methane
+estimate, recorded but not used as a target.
 
 Sun, W., et al. (2020). Climate drives global soil carbon sequestration and
 crop yield changes under conservation agriculture. *Global Change Biology*.
