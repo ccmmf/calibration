@@ -142,15 +142,19 @@ emissions are proportional to nitrogen applied and the emission factor is
 constant across the fertilized arms. The observed rise of the emission factor
 with nitrogen rate cannot be reproduced. The level of that emission factor is
 `r round(ef_level, 2)` percent of nitrogen applied against a Mediterranean
-synthesis value of `r sprintf("%.2f", ef_target)` percent.
+synthesis value of `r sprintf("%.2f", ef_target)` percent, but that cell is
+reported without a discrepancy: the modelled level is an upper bound on the
+measured quantity, and a bound above the target settles nothing.
 
 # Limitations
 
 The `n2o` output is total mineral nitrogen volatilization rather than a
 partitioned nitrous oxide flux, so the emission factor level is an upper bound
-on the measured quantity, and the gap above it is a ceiling rather than an
-estimate of model bias. The dose response is a ratio of that same quantity and
-is unaffected. The induced emission factor has also not equilibrated over the
+on the measured quantity and its cell carries no discrepancy. The dose response
+is a ratio of that same quantity, and is unaffected only if the nitrous oxide
+share of volatilization does not itself move with nitrogen rate; if that share
+varies with rate, a real dose response could exist while the quantity computed
+here stays flat. The induced emission factor has also not equilibrated over the
 window, rising monotonically without a plateau.
 
 Two cells receive more than one row, since tillage soil carbon and rice drying
