@@ -159,8 +159,8 @@ em <- obs$meta[obs$meta$variable == "SOC_stock_salinas" &
 vm <- config$forward$var_map["SOC_stock_salinas"]
 win <- cbind(socs_sys1 = c(2005L, 2011L), socs_sys2 = c(2005L, 2011L))
 out <- file.path(config$forward$workspace, "output")
-G_prior <- harvest_output_to_G(file.path(out, "itr1", "out"), em, vm, win)
-G_post  <- harvest_output_to_G(file.path(out, "itr4", "out"), em, vm, win)
+G_prior <- read_output_to_G(file.path(out, "itr1", "out"), em, vm, win)
+G_post  <- read_output_to_G(file.path(out, "itr4", "out"), em, vm, win)
 eff <- function(G) mean(colMeans(G[, em$slot[em$treatment_id == "socs_sys2"]]) -
                         colMeans(G[, em$slot[em$treatment_id == "socs_sys1"]]))
 meas <- with(em, mean(value[treatment_id == "socs_sys2"] -

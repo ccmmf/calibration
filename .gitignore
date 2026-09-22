@@ -15,3 +15,17 @@
 # rendered reports, regenerated from the qmd
 examples/*/report.html
 examples/*/report_files/
+
+# local agent instructions
+/AGENTS.md
+/r_coding_preferences.md
+
+# desktop and language-session artifacts
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# local ad-hoc analyses
+/analysis/
+

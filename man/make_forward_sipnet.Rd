@@ -26,7 +26,7 @@ make_forward_sipnet(
 \item{n_particles}{ensemble size J.}
 
 \item{var_map}{named list keyed by observation variable, each
-`list(model_var, from, to)` (see harvest_output_to_G): the crosswalk from
+`list(model_var, from, to)` (see read_output_to_G): the crosswalk from
 each observed variable to its model output and units.}
 
 \item{soil_pfts}{character vector of soil PFT names that share the calibrated

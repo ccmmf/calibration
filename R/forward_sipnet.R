@@ -1,16 +1,25 @@
-# sipnet forward model. wraps a prepared pecan multisite run as the
-# fwd(U, iteration) -> G the calibration calls. only this file knows sipnet and
-# the pecan run machinery; the estimator in method_eki.R knows neither.
+# Connect the calibration algorithm to SIPNET through PEcAn.
+# make_forward_sipnet() takes prepared PEcAn settings for multiple sites and
+# returns a function, fwd(U, itr), that runs one ensemble of simulations.
+# Each row of U contains one candidate set of parameter values, optionally
+# including initial pool sizes. The corresponding row of the returned matrix G
+# contains model predictions, with columns ordered to match obs$y.
+# The calibration algorithm in method_eki.R uses this function to evaluate
+# candidates without managing SIPNET inputs or execution.
 #
-# one iteration is one ensemble where only the calibrated parameters change: met,
-# events, and uncalibrated pools are pinned to one member, otherwise the prediction
-# spread measures the input draw and cov(U, G) in the kalman gain is sampling
-# noise. input uncertainty belongs in a separate forward pass.
+# Every candidate uses the first prepared meteorological input and management
+# event file for each site. Holding these inputs fixed helps isolate how changes
+# in the calibrated parameters affect predictions. At sites with calibrated
+# initial pools, those pools vary by candidate and the remaining pools are
+# copied from the site's first initial-condition file. When any site has a
+# calibrated initial pool, sites without one reuse their existing initial-
+# condition paths across candidates. Supply one initial-condition file per site
+# to keep those other pools fixed.
 #
-# launching is left to pecan and the prepared host block. runModule_start_model_runs
-# submits through the settings host (qsub, sge_array_launcher.sh, Njobmax, qstat)
-# exactly as written and blocks on qstat until the ensemble finishes. nothing here
-# touches those launcher fields; each iteration only points its own output dirs.
+# Each call writes model inputs and outputs to separate directories for that
+# iteration. PEcAn launches the simulations using the supplied host settings.
+# This file then reads the outputs and converts them to the quantities and units
+# used by the calibration observations.
 
 ##' @title Build the SIPNET forward model closure
 ##' @name make_forward_sipnet
@@ -26,7 +35,7 @@
 ##' @param obs the build_obs target list(y, Sigma, meta); names(y) are the slots.
 ##' @param n_particles ensemble size J.
 ##' @param var_map named list keyed by observation variable, each
-##'   `list(model_var, from, to)` (see harvest_output_to_G): the crosswalk from
+##'   `list(model_var, from, to)` (see read_output_to_G): the crosswalk from
 ##'   each observed variable to its model output and units.
 ##' @param soil_pfts character vector of soil PFT names that share the calibrated
 ##'   rates; the same proposal column is written into each (see inject_traits).
@@ -137,7 +146,7 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
     if (!is.null(soil_cn)) couple_soil_orgn(s$rundir, soil_cn)
     PEcAn.workflow::runModule_start_model_runs(s, stop.on.error = FALSE)
 
-    G <- harvest_output_to_G(s$modeloutdir, harvest_meta, var_map, window)
+    G <- read_output_to_G(s$modeloutdir, harvest_meta, var_map, window)
     if (!is.null(transform)) G <- apply_transform(G, transform)
     missing <- setdiff(obs_order, colnames(G))
     if (length(missing) > 0L) {
@@ -156,9 +165,16 @@ make_forward_sipnet <- function(settings, obs, n_particles, var_map,
 ##' rather than whatever the template N implies. write.config.SIPNET sets
 ##' soilInit from the per-particle ic but never touches soilOrgNInit.
 ##'
+##' the workflow ic builder now writes soil_organic_nitrogen_content, and that
+##' is a PEcAn standard variable, but PEcAn.SIPNET has no reader for it: there
+##' is no soilOrgNInit handling in write.configs.SIPNET and the name is not in
+##' its ic_ncvars_to_try list, so the value in the ic file is ignored. this
+##' stays until that reader lands upstream.
+##'
 ##' @param rundir directory holding the written run directories.
 ##' @param soil_cn soil carbon to nitrogen mass ratio.
 ##' @return nothing; edits each run's sipnet.param in place.
+##' @keywords internal
 ##' @export
 couple_soil_orgn <- function(rundir, soil_cn) {
   stopifnot(is.numeric(soil_cn), soil_cn > 0)
