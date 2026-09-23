@@ -1,6 +1,5 @@
 ---
 title: "Statewide Management Treatment Effect Benchmark"
-subtitle: "MAGiC Modeling Framework (Task 2) -- supporting report"
 date: today
 format:
   html:
