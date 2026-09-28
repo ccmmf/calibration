@@ -9,6 +9,14 @@ soilInit from the per-particle ic but never touches soilOrgNInit.}
 \usage{
 couple_soil_orgn(rundir, soil_cn)
 }
+\arguments{
+\item{rundir}{directory holding the written run directories.}
+
+\item{soil_cn}{soil carbon to nitrogen mass ratio.}
+}
+\value{
+nothing; edits each run's sipnet.param in place.
+}
 \description{
 the workflow ic builder now writes soil_organic_nitrogen_content, and that
 is a PEcAn standard variable, but PEcAn.SIPNET has no reader for it: there
