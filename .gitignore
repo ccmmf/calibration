@@ -21,3 +21,17 @@ reports/*_files/
 # quarto site, built by quarto render / quarto publish
 /_site/
 /.quarto/
+
+# local agent instructions
+/AGENTS.md
+/r_coding_preferences.md
+
+# desktop and language-session artifacts
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# local ad-hoc analyses
+/analysis/
+

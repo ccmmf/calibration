@@ -172,7 +172,7 @@ test_that("each treatment is harvested over its own run window", {
   vm <- list(SOC_stock = list(model_var = "TotSoilCarb", from = "kg/m2",
                               to = "kg/m2"))
 
-  G <- harvest_output_to_G(out_root, meta, vm, win)
+  G <- read_output_to_G(out_root, meta, vm, win)
 
   expect_equal(asked$early, c(2005L, 2011L))
   expect_equal(asked$late,  c(2017L, 2023L))          # not the first block's window
@@ -196,12 +196,12 @@ test_that("an observation outside the run window fails instead of returning a ne
                               to = "kg/m2"))
 
   inside <- make_meta("in_slot", "site", "2020-06-01", "2020-06-01")
-  expect_silent(harvest_output_to_G(out_root, inside, vm, win))
+  expect_silent(read_output_to_G(out_root, inside, vm, win))
 
   # 2024 is past the run end: nearest-date substitution would answer with
   # 2023-12-31 and look clean
   outside <- make_meta("out_slot", "site", "2024-06-01", "2024-06-01")
-  expect_error(harvest_output_to_G(out_root, outside, vm, win),
+  expect_error(read_output_to_G(out_root, outside, vm, win),
                "outside the")
 })
 

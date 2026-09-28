@@ -3,6 +3,7 @@
 
 # column names used non-standardly inside dplyr / ggplot2 verbs; declared so R CMD
 # check does not flag them as undefined globals.
+# TODO: consider using .data$varname instead of declaring globals
 utils::globalVariables(c(
   "variable", "sitename", "observation_level", "value", "obs_year",
   "treatment_id", "min_date", "max_date", "min_depth", "max_depth",

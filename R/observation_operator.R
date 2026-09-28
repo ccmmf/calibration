@@ -1,7 +1,11 @@
 # the observation operators: everything that maps between model output, raw
 # observation slots, and the fitted target.
 #
-# harvest_output_to_G reads a model ensemble into the prediction matrix G aligned
+# a slot is one observation cell: a single site, treatment, variable and date
+# window. slots are the unit the raw observations arrive in and the unit the
+# model is read onto, before any contraction to the fitted target.
+#
+# read_output_to_G reads a model ensemble into the prediction matrix G aligned
 # to the raw slots. period_mean_contrast and contrast_target contract raw slots
 # into fitted quantities (a period-mean level plus treatment contrasts; a
 # per-date treatment contrast), and bind_obs stacks targets. each contraction is
@@ -9,8 +13,8 @@
 # observations and to G, so the fitted quantity is the same operation on both
 # sides by construction.
 
-##' @title Harvest a model ensemble into the prediction matrix G
-##' @name harvest_output_to_G
+##' @title Read a model ensemble into the prediction matrix G
+##' @name read_output_to_G
 ##' @author Akash BV
 ##'
 ##' @description For each ENS-<member>-<treatment> run under `out_root`, reads the
@@ -19,6 +23,13 @@
 ##' observation unit, and assembles the J x P matrix aligned to the observation
 ##' slots. Assumes every expected run has finished; a missing run output fails
 ##' loud in read.output rather than being silently dropped.
+##'
+##' A slot with `min_date` equal to `max_date` is sampled at that date, so the
+##' midpoint is exact. A slot whose window has width is sampled at the model
+##' step nearest the window centre, which assumes the quantity moves little
+##' over the window. That holds for the soil carbon slots here, whose windows
+##' are a month against a stock that trends well under one Mg C ha-1 yr-1, and
+##' it would not hold for a fast flux observed over a wide window.
 ##'
 ##' @param out_root the model output directory holding the ENS-* run dirs.
 ##' @param meta observation meta (slot, treatment_id, variable, min_date, max_date).
@@ -30,7 +41,7 @@
 ##'   joint run spans different periods per site.
 ##' @return matrix (members x slots) named by observation slot, member-ordered.
 ##' @export
-harvest_output_to_G <- function(out_root, meta, var_map, run_window) {
+read_output_to_G <- function(out_root, meta, var_map, run_window) {
   run_dirs <- list.files(out_root, pattern = "^ENS-")
   rows <- lapply(run_dirs, function(rid) {
     treat  <- sub("^ENS-[0-9]+-", "", rid)
@@ -78,10 +89,11 @@ harvest_output_to_G <- function(out_root, meta, var_map, run_window) {
 
 ##' shrink correlations toward zero by the least amount that restores positive
 ##' definiteness, leaving the diagonal exactly as estimated. a mean over K years
-##' gives an empirical covariance of rank at most K - 1, so more quantities than
-##' years is singular by construction and the EnKF's Cholesky of cov(G) + Sigma
-##' has no reason to succeed. the marginal variances are well estimated from K
-##' years; the correlations are not, so only they are damped.
+##' gives an empirical covariance of rank at most K - 1, so with more quantities
+##' than years it is singular by construction and cov(G) + Sigma is not
+##' guaranteed positive definite, which is what the EnKF's Cholesky requires.
+##' the marginal variances are well estimated from K years; the correlations are
+##' not, so only they are damped.
 ##' @keywords internal
 .shrink_to_pd <- function(S, label = "", tol = 1e-8) {
   if (min(eigen(S, symmetric = TRUE, only.values = TRUE)$values) > tol) return(S)
