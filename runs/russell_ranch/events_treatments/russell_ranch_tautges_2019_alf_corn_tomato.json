@@ -1,0 +1,114 @@
+{
+  "pecan_events_version": "0.1.1",
+  "site_id": "alf_corn_tomato",
+  "provenance": {
+    "dataset_id": "russell_ranch_tautges_2019",
+    "source_rows": 10,
+    "generated_at": "2026-05-28T23:00:04+0530",
+    "generator": "ccmmf/uncertainty:calval_to_events"
+  },
+  "events": [
+    {
+      "event_type": "planting",
+      "date": "2012-10-04",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Alfalfa",
+      "crop_display": "Alfalfa",
+      "leaf_c_kg_m2": 0.0045,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2013-01-06",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 490.8664,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-04-10",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Alfalfa",
+      "frac_above_removed_0to1": 0.5676,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "planting",
+      "date": "2013-04-17",
+      "source": "10.1002/ecy.2105",
+      "crop_code": "Tomato",
+      "crop_display": "Tomato",
+      "leaf_c_kg_m2": 0.0039,
+      "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+    },
+    {
+      "event_type": "fertilization",
+      "date": "2013-05-10",
+      "source": "10.1002/ecy.2105",
+      "nh4_n_kg_m2": 0.0033,
+      "no3_n_kg_m2": 0.0033,
+      "org_n_kg_m2": 0.0069
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-05-17",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Alfalfa",
+      "frac_above_removed_0to1": 0.5529,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "irrigation",
+      "date": "2013-06-18",
+      "source": "10.1002/ecy.2105",
+      "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+      "cover_crop_window": false,
+      "amount_mm": 471.3108,
+      "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+      "method": "canopy"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-06-19",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Alfalfa",
+      "frac_above_removed_0to1": 0.6052,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-07-31",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Alfalfa",
+      "frac_above_removed_0to1": 0.3935,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-08-20",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Tomato",
+      "frac_above_removed_0to1": 0.4755,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-09-08",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Alfalfa",
+      "frac_above_removed_0to1": 0.3213,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    },
+    {
+      "event_type": "harvest",
+      "date": "2013-10-04",
+      "source": "10.1002/ecy.2105",
+      "crop_display": "Alfalfa",
+      "frac_above_removed_0to1": 0.368,
+      "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+    }
+  ]
+}
