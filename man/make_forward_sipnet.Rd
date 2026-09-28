@@ -8,13 +8,14 @@ make_forward_sipnet(
   settings,
   obs,
   n_particles,
-  harvest_var,
-  from_unit,
-  to_unit,
-  soil_pft = "soil",
+  var_map,
+  soil_pfts,
   state_prefix = "soilInit.",
   state_pool = "soil_organic_carbon_content",
-  base_out_dir = settings$outdir
+  base_out_dir = settings$outdir,
+  fixed_traits = character(0),
+  raw_obs = NULL,
+  soil_cn = NULL
 )
 }
 \arguments{
@@ -24,13 +25,12 @@ make_forward_sipnet(
 
 \item{n_particles}{ensemble size J.}
 
-\item{harvest_var}{the model output variable to compare to the observations.}
+\item{var_map}{named list keyed by observation variable, each
+`list(model_var, from, to)` (see read_output_to_G): the crosswalk from
+each observed variable to its model output and units.}
 
-\item{from_unit}{the model unit of harvest_var (udunits string).}
-
-\item{to_unit}{the observation unit to convert the harvest to.}
-
-\item{soil_pft}{name of the PFT whose traits U overwrites.}
+\item{soil_pfts}{character vector of soil PFT names that share the calibrated
+rates; the same proposal column is written into each (see inject_traits).}
 
 \item{state_prefix}{column prefix marking calibrated initial-state entries in
 U; when present each is written into the initial condition per particle.}
@@ -38,6 +38,20 @@ U; when present each is written into the initial condition per particle.}
 \item{state_pool}{the initial condition pool variable the state writes into.}
 
 \item{base_out_dir}{parent directory for the per iteration model output.}
+
+\item{fixed_traits}{trait names pinned through the run dir `default.param`,
+dropped from the baseline sample so the pinned value is not overwritten by
+the PFT posterior median.}
+
+\item{raw_obs}{the untransformed target the model output is harvested against;
+its `transform` (the linear map from raw to fitted slots) is applied to G so
+model and observations are the same quantity. NULL fits the raw slots.}
+
+\item{soil_cn}{soil C:N mass ratio coupling the initial organic N pool to the
+drawn initial soil C: after configs are written, each run's soilOrgNInit is
+set to soilInit / soil_cn. soilInit varies per particle (the calibrated
+state), so this cannot be pinned through default.param. NULL leaves the
+template value.}
 }
 \value{
 function(U, iteration) -> matrix (J, P) aligned to names(obs$y).

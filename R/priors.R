@@ -1,18 +1,35 @@
 # priors for the calibrated parameters, plus the initial ensemble draw.
 #
 # priors are not hand tuned. they come from a pft's meta-analysis posterior
-# (post.distns, read straight off disk), from an
-# explicit specification (a biologically plausible, zero bounded distribution
-# written down), or, for a calibrated initial state, anchored to an observation
-# with its measurement uncertainty as the spread. each returns the same dist_list
-# the transport maps (transport.R) and the sampler consume.
+# (post.distns, read straight off disk), from an explicit specification, or, for
+# a calibrated initial state, anchored to an observation with its measurement
+# uncertainty as the spread. each returns the same dist_list the transport maps
+# (transport.R) and the sampler consume. records carry the PEcAn (distn, parama,
+# paramb) triple, so PEcAn.priors does the drawing here and the estimating
+# upstream (fit.dist for samples, prior.fn for elicited quantiles); this file
+# only constructs dist_lists from sources that already exist.
 
 ##' distn family -> support the transport map uses. positive-support families get
-##' a log map, beta a logit, normal an identity, and a uniform its own bounds
-##' (handled by prior_from_specs, not here).
+##' a log map, beta and unif a logit onto their own bounds, normal an identity.
+##'
+##' there is deliberately no default branch: a family falling through to
+##' c(-Inf, Inf) estimates a bounded parameter on the whole real line, and the
+##' posterior can leave the physical range without anything objecting. a new
+##' family must state its support rather than inherit an unbounded one.
+##' @param distn family name.
+##' @param parama,paramb distribution parameters; uniform takes its support from them.
 ##' @keywords internal
-.distn_support <- function(distn) {
-  switch(as.character(distn),
+.distn_support <- function(distn, parama = NULL, paramb = NULL) {
+  distn <- as.character(distn)
+  if (identical(distn, "unif")) {
+    if (length(parama) != 1L || length(paramb) != 1L || anyNA(c(parama, paramb))) {
+      PEcAn.logger::logger.severe(
+        "uniform prior needs parama and paramb to define its support"
+      )
+    }
+    return(c(parama, paramb))
+  }
+  switch(distn,
     weibull = ,
     lnorm   = ,
     gamma   = ,
@@ -21,7 +38,10 @@
     geom    = c(0, Inf),
     beta    = c(0, 1),
     norm    = c(-Inf, Inf),
-    c(-Inf, Inf)
+    PEcAn.logger::logger.severe(
+      "no declared support for distribution family '", distn,
+      "'. Add it to .distn_support rather than letting it default to the real line."
+    )
   )
 }
 
@@ -56,12 +76,50 @@ prior_from_postdistns <- function(params, post_distns_path) {
     )
   }
   stats::setNames(lapply(params, function(p) {
+    if (!p %in% rownames(pd)) {
+      PEcAn.logger::logger.severe("no posterior for '", p, "' in ", post_distns_path)
+    }
     row <- pd[p, ]
     list(param_name = p, len = 1L,
-         constraint = .distn_support(row$distn),
+         constraint = .distn_support(row$distn, row$parama, row$paramb),
          distn = as.character(row$distn),
          parama = row$parama, paramb = row$paramb)
   }), params)
+}
+
+##' @title Prior for a rate shared across several PFTs
+##' @name prior_from_shared_postdistns
+##' @author Akash BV
+##'
+##' @description A rate written into several PFTs is one calibrated quantity, so
+##'   there must be one prior for it. This reads the requested traits from each
+##'   named PFT's posterior and requires them to agree before returning a single
+##'   record; disagreement is an error rather than a quiet choice of the first.
+##'
+##' @param params character vector of PEcAn trait names to calibrate.
+##' @param posterior_files named character vector of post.distns paths, one per soil PFT.
+##' @return a dist_list, one record per trait.
+##' @export
+prior_from_shared_postdistns <- function(params, posterior_files) {
+  stopifnot(length(posterior_files) >= 1L, !is.null(names(posterior_files)))
+  per_pft <- lapply(posterior_files, function(f) prior_from_postdistns(params, f))
+  reference <- per_pft[[1]]
+  for (i in seq_along(per_pft)[-1]) {
+    for (p in params) {
+      a <- reference[[p]][c("distn", "parama", "paramb")]
+      b <- per_pft[[i]][[p]][c("distn", "parama", "paramb")]
+      if (!isTRUE(all.equal(a, b))) {
+        PEcAn.logger::logger.severe(
+          "prior for '", p, "' differs between soil PFTs '", names(posterior_files)[1],
+          "' (", a$distn, " ", a$parama, ", ", a$paramb, ") and '",
+          names(posterior_files)[i], "' (", b$distn, " ", b$parama, ", ", b$paramb,
+          "). One shared calibrated rate needs one prior; reconcile the PFTs or ",
+          "calibrate them separately."
+        )
+      }
+    }
+  }
+  reference
 }
 
 ##' @title Priors from an explicit specification
@@ -82,7 +140,7 @@ prior_from_specs <- function(specs) {
     distn <- as.character(s$distn)
     a <- as.numeric(s$parama)
     b <- as.numeric(s$paramb)
-    constraint <- if (identical(distn, "unif")) c(a, b) else .distn_support(distn)
+    constraint <- .distn_support(distn, a, b)
     list(param_name = p, len = 1L, constraint = constraint,
          distn = distn, parama = a, paramb = b)
   }), names(specs))
@@ -99,17 +157,29 @@ prior_from_specs <- function(specs) {
 ##' into the state. The observation is converted from its reported unit to the
 ##' model's unit with PEcAn.utils::ud_convert.
 ##'
-##' @param meta observation meta (treatment_id, study_year, value, var_obs).
+##' @param meta observation meta (variable, treatment_id, obs_year, value, var_obs).
 ##' @param prefix column prefix marking the state entries (e.g. "soilInit.").
+##' @param variable the observed variable whose slots anchor the state; the joint
+##'   meta can span several variables and an unscoped anchor would take the wrong one.
 ##' @param from_unit unit the observation is reported in (udunits string).
 ##' @param to_unit unit the model state is in (udunits string).
-##' @param anchor_year study_year to anchor on; defaults to the earliest.
+##' @param anchor_year observation year to anchor on; defaults to the earliest.
 ##' @return a dist_list keyed <prefix><site>, in site order.
 ##' @export
-state_prior_from_obs <- function(meta, prefix, from_unit, to_unit,
+state_prior_from_obs <- function(meta, prefix, from_unit, to_unit, variable,
                                  anchor_year = NULL) {
-  if (is.null(anchor_year)) anchor_year <- min(meta$study_year)
-  base <- meta[meta$study_year == anchor_year, ]
+  # scope to one variable before anchoring: a joint meta can span several
+  # variables and sites, and an unscoped selection would anchor the state
+  # on whichever variable sorts first.
+  base <- meta[meta$variable == variable, ]
+  if (nrow(base) == 0L) {
+    PEcAn.logger::logger.severe("no ", variable, " slots to anchor an initial state on")
+  }
+  if (is.null(anchor_year)) anchor_year <- min(base$obs_year)
+  base <- base[base$obs_year == anchor_year, ]
+  if (nrow(base) == 0L) {
+    PEcAn.logger::logger.severe("no ", variable, " slots in anchor year ", anchor_year)
+  }
   base <- base[order(base$treatment_id), ]
   center <- PEcAn.utils::ud_convert(base$value, from_unit, to_unit)
   spread <- PEcAn.utils::ud_convert(sqrt(base$var_obs), from_unit, to_unit)
