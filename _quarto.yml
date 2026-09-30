@@ -50,7 +50,7 @@ lightbox: auto
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: report-styles.css
     toc: true
     self-contained: false
     df-print: paged
