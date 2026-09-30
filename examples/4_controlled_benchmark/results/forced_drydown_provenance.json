@@ -1,0 +1,176 @@
+{
+  "status": "local drainage and state-forcing diagnostics; not a validated hydrology simulation",
+  "sipnet_revision": "3ccc41c1ad2db426b7eb857881a32ca685bf57f1",
+  "sipnet_version": "2.2.0",
+  "binary_sha256": "2bda98cd132718fde6a6e5e54804adbee2d5ab5da6ae0503359a81029b1e9cee",
+  "script_sha256": "f5912bb8bf27c16bacbfcb4b552ce0f7ca1285bd68a8ce34ff9410d91cf20c4f",
+  "pilot_spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2",
+  "planting_date": "05-15",
+  "drydown_start": "06-19",
+  "drydown_end": "06-28",
+  "reflood_date": "06-29",
+  "target_water_ratio_schedules": {
+    "field_reference_drydown": [
+      1.0,
+      0.9,
+      0.8,
+      0.7,
+      0.6,
+      0.595,
+      0.595,
+      0.595,
+      0.595,
+      0.595
+    ],
+    "threshold_stress_drydown": [
+      1.0,
+      0.9,
+      0.8,
+      0.7,
+      0.6,
+      0.5,
+      0.4,
+      0.3,
+      0.25,
+      0.25
+    ],
+    "reproductive_severe_field_drydown": [
+      1.0,
+      0.9,
+      0.8,
+      0.7,
+      0.6,
+      0.5,
+      0.4,
+      0.3,
+      0.25,
+      0.25
+    ]
+  },
+  "scenario_timing": {
+    "field_reference_drydown": {
+      "drydown_start": "06-19",
+      "drydown_end": "06-28",
+      "reflood_date": "06-29"
+    },
+    "threshold_stress_drydown": {
+      "drydown_start": "06-19",
+      "drydown_end": "06-28",
+      "reflood_date": "06-29"
+    },
+    "reproductive_severe_field_drydown": {
+      "drydown_start": "07-15",
+      "drydown_end": "07-24",
+      "reflood_date": "07-25"
+    },
+    "reproductive_one_time_drain": {
+      "drydown_start": "07-15",
+      "drydown_end": "07-24",
+      "reflood_date": "07-25"
+    }
+  },
+  "scenario_water_intervention": {
+    "field_reference_drydown": "prescribed_trajectory",
+    "threshold_stress_drydown": "prescribed_trajectory",
+    "reproductive_severe_field_drydown": "prescribed_trajectory",
+    "reproductive_one_time_drain": "initial_drain_only"
+  },
+  "reflood_depth_cm": 5.0,
+  "water_accounting": "Restart-state water changes are external prescribed adjustments and are reported separately from SIPNET fluxes.",
+  "natural_drydown_gap_calculation": {
+    "initial_ratio_after_one_time_drain": 1.0,
+    "severe_field_target_ratio": 0.25,
+    "net_storage_loss_cm": "soilWHC * (initial ratio - daily minimum endpoint ratio)",
+    "interpretation": "Net modeled storage change after the one-time drain; it is not a partitioned evaporation, transpiration, precipitation, and drainage budget."
+  },
+  "support_contract": {
+    "evaluation_days": 2922,
+    "timesteps_per_day": 8,
+    "rows_per_scenario": 23376,
+    "baseline_treatment_time_support_identical": true,
+    "initial_pre_treatment_rows_identical": true
+  },
+  "scenario_interpretation": {
+    "field_reference_drydown": "Primary California field-reference diagnostic. The 0.595 target and realized minima are checked against the SSURGO-normalized available-water range from Carrijo et al. (2018).",
+    "threshold_stress_drydown": "California-timed severe-stress diagnostic retained to isolate endpoint effects. It crosses fAnoxia but combines California timing with a severity not observed in the California comparator.",
+    "reproductive_severe_field_drydown": "Calendar-matched severe-field diagnostic. Its July 15-24 dry-down starts 61 days after planting and lasts 10 days, within the first-cycle field ranges of 57-66 days after sowing and 7-13 days from drain to reflood. The endpoint schedule is prescribed because the one-time-drain comparator does not realize the observed severity.",
+    "reproductive_one_time_drain": "Process-oriented comparator. It removes water above soilWHC once at the start, omits irrigation for the observed-length dry interval, and then lets SIPNET evaporation and transpiration determine the trajectory until reflooding."
+  },
+  "log_audit_interpretation": "Recurring harvest-date nitrogen-balance warnings occur in baseline and all four treatment runs; zero SIPNET error lines were observed.",
+  "severe_field_comparator": {
+    "source": "https://www.ars.usda.gov/research/publications/publication/?seqNo115=370626",
+    "sowing_date": "May 9 in 2017 and 2018",
+    "first_cycle_dates": {
+      "2017": {
+        "drain": "July 14",
+        "reflood": "July 21-24"
+      },
+      "2018": {
+        "drain": "July 5",
+        "reflood": "July 17-18"
+      }
+    },
+    "first_cycle_start_days_after_sowing": [
+      57,
+      66
+    ],
+    "first_cycle_duration_days": [
+      7,
+      13
+    ],
+    "reported_minimum_timing": "approximately 10 and 13 weeks after emergence",
+    "reported_vwc_range": [
+      0.15,
+      0.2
+    ],
+    "use": "External endpoint, calendar, and phenology comparator; exact emergence date and plot coordinate are unavailable."
+  },
+  "field_window_comparator": {
+    "source": "https://doi.org/10.1016/j.fcr.2021.108312",
+    "start_days_after_planting": [
+      34,
+      49
+    ],
+    "durations_days": [
+      5,
+      8,
+      10,
+      12
+    ],
+    "reported_seasonal_ch4_reduction_percent": [
+      38,
+      66
+    ],
+    "use": "External comparison only; not a calibration target or validation dataset."
+  },
+  "inputs": [
+    {
+      "task": "413887_prep8",
+      "parameters_sha256": "55936f4706eaa155f239b1db0a09c0f716751a086a9b9b8b33afe300364a1a0a",
+      "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+      "weather_sha256": "b35e5d5673520995dd1baf3576fa64070636e32c16a65c322743649c2acd2e07",
+      "restart_sha256": "fdc31bf4bbb95ceff8b01cb53572aa8e289340ce710ce80753d8ec1573d5b198"
+    },
+    {
+      "task": "413887_prep16",
+      "parameters_sha256": "55936f4706eaa155f239b1db0a09c0f716751a086a9b9b8b33afe300364a1a0a",
+      "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+      "weather_sha256": "b35e5d5673520995dd1baf3576fa64070636e32c16a65c322743649c2acd2e07",
+      "restart_sha256": "1668550df168b177e701ddc9f59e6b06fd0ac0a00132a8192bd7d1394e67cda2"
+    },
+    {
+      "task": "535358_prep8",
+      "parameters_sha256": "399267983743effc883c63321bb825cc2662a58f5754c69cd91d1162da6ed08d",
+      "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+      "weather_sha256": "731728fa4bbdc0f78872a972a3942816fadb008c7a90f704103c21098e3a1306",
+      "restart_sha256": "92db4d70d2fe00a6a8b0b0d9bcade73c459ef13d175ce959d291175742af5909"
+    },
+    {
+      "task": "535358_prep16",
+      "parameters_sha256": "399267983743effc883c63321bb825cc2662a58f5754c69cd91d1162da6ed08d",
+      "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+      "weather_sha256": "731728fa4bbdc0f78872a972a3942816fadb008c7a90f704103c21098e3a1306",
+      "restart_sha256": "4361cd4ab4cf703053fe004bbf30dc7ac9470cb90c6802eda262a2198b4b86f8"
+    }
+  ]
+}

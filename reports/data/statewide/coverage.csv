@@ -1,0 +1,16 @@
+treatment,sites,files,prepared,not_yet_prepared,inapplicable,model_unsupported
+baseline,100,100,100,0,0,0
+comparison_baseline,100,100,100,0,0,0
+cover_none,100,100,100,0,0,0
+cover_annual,100,66,66,0,0,34
+fertilizer_reference,100,100,100,0,0,0
+organic_substitution,100,100,100,0,0,0
+mineral_N_zero,100,100,100,0,0,0
+mineral_N_half,100,100,100,0,0,0
+mineral_N_one_half,100,100,100,0,0,0
+tillage_reference,100,100,100,0,0,0
+tillage_reduced,100,100,100,0,0,0
+tillage_zero,100,100,100,0,0,0
+rice_irrigated_reference,100,12,12,0,88,0
+rice_one_dry,100,12,12,0,88,0
+rice_two_dry,100,12,12,0,88,0
