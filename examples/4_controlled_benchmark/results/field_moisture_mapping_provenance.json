@@ -1,0 +1,45 @@
+{
+  "status": "field-source mapping diagnostic; not a site-specific SIPNET conversion",
+  "field_source": {
+    "citation": "Carrijo et al. 2018, Field Crops Research 222:101-110",
+    "doi": "https://doi.org/10.1016/j.fcr.2018.02.026",
+    "measurement": "volumetric water content at 0-15 cm depth",
+    "continuous_flood_fraction": [0.47, 0.50],
+    "awd_safe_minimum_fraction": [0.41, 0.44],
+    "awd35_minimum_fraction": [0.30, 0.33],
+    "awd25_minimum_fraction": [0.24, 0.28],
+    "drying_duration_days": {
+      "AWD_safe": 3,
+      "AWD35": 7,
+      "AWD25": 11
+    },
+    "field_soil": "45% clay, 26% silt, 29% sand Vertisol at Biggs, California"
+  },
+  "model_source": {
+    "soilWHC_cm": 12.0,
+    "fAnoxia": 0.286236668022783,
+    "source_sites": {
+      "413887": {
+        "clay_percent": 42.6,
+        "initial_SoilMoistFrac_percent": 26.007137298584
+      },
+      "535358": {
+        "clay_percent": 32.3,
+        "initial_SoilMoistFrac_percent": 39.7662734985352
+      }
+    },
+    "missing_properties": [
+      "configured modeled storage depth",
+      "residual volumetric water content",
+      "field-measured site-specific saturation or field-capacity water content",
+      "run-time depth-resolved hydraulic properties"
+    ],
+    "external_mapping_added": "site_soil_hydraulic_mapping.csv and field_site_soil_hydraulic_mapping.csv supply SSURGO surface-horizon estimates as separate diagnostics; those estimates were not inputs to the archived source runs"
+  },
+  "calculations": {
+    "zero_residual_ratio": "dry VWC divided by continuous-flood VWC; this assumes zero residual water and common physical support and is not asserted as the SIPNET mapping.",
+    "required_residual_vwc": "theta_r = (theta_dry - fAnoxia * theta_flood) / (1 - fAnoxia); this is the residual VWC that would make the field endpoint equal the SIPNET threshold under a linear available-water mapping.",
+    "ssurgo_available_water_ratio": "(theta - wfifteenbar) / awc; this is now the primary physical interpretation because SIPNET documents soilWater as plant-available water and soilWHC as its cap."
+  },
+  "interpretation": "The zero-residual dry/flood ratios remain useful as a sensitivity bound, but they are not the primary model interpretation. At the Carrijo field coordinate, SSURGO available water maps the observed AWD25 endpoint to 0.469-0.719, which contains the realized field-reference minima of 0.477-0.528. Under analogous source-site mappings, the forced 0.25 target remains above 15-bar water content but is drier than the Carrijo field observations. The archived source runs do not supply modeled depth or depth-resolved hydraulic properties, and SSURGO is mapped survey evidence rather than a run input or field measurement."
+}

@@ -1,0 +1,12 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N pr6-convert
+#$ -pe omp 1
+#$ -l h_rt=00:20:00
+#$ -l buyin
+set -e
+source /etc/profile
+module load R/4.4.3 udunits/2.2.28 gdal/3.10.2
+export R_LIBS_USER=/projectnb/dietzelab/ccmmf/usr/dlebauer/R/x86_64-pc-linux-gnu-library/4.4
+Rscript --vanilla convert_pilot.R "$PWD" sites.csv

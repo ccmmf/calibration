@@ -1,0 +1,90 @@
+{
+  "retrieved_utc": "2026-09-22T23:17:10.518955+00:00",
+  "report_revision": "70987abaecf787331b970e52ac0710b41f98384b",
+  "workflow_revision": "74acfa4c4b17eb8037d51940fca0d516370791ca",
+  "evidence_revision": "b5f65bb7fce5bbd3476bf6d34cd380990a1167d2",
+  "model_revision_named_in_config": "3ccc41c1ad2db426b7eb857881a32ca685bf57f1",
+  "scope": "Frozen existing outputs; no model runs performed by report rendering. run_manifest.csv describes setup_v1 staging; scored outputs are pecan_v1.",
+  "files": [
+    {
+      "file": "original_scorecard.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/model_vs_evidence_scorecard.csv",
+      "sha256": "3a5ed5a34631da090725eca6ae5e38ff79032ca620499be2720c7992d7811ad1"
+    },
+    {
+      "file": "site_pair_effects.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/site_pair_effects.csv",
+      "sha256": "35972dfaf4801b826e2b89adfe0a1c41db39f5854fe27d858e1477f4310d23dd"
+    },
+    {
+      "file": "annual_outputs.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/annual_outputs.csv",
+      "sha256": "beaf2a2c84055564c0b997ffe7e1381ec684ad9dc1586cf3adb04120f3797e42"
+    },
+    {
+      "file": "run_pairs.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/run_pairs.csv",
+      "sha256": "6067d38bc387ab9151d1caabafd7cc11e2a2dd7137764c61be335536450b4af6"
+    },
+    {
+      "file": "exposure.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/exposure.csv",
+      "sha256": "b63b403b88f1745d3a84212419d2953724535b8a962974d74cab0ee99ed14b5f"
+    },
+    {
+      "file": "coverage.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/coverage.csv",
+      "sha256": "b7e1dfe84b191468d142e3647c691fca6b34cfd041e51f452f57160e4de5e992"
+    },
+    {
+      "file": "remaining_combinations.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/remaining_combinations.csv",
+      "sha256": "cc232a577f06ec91044ce05e46c4377067a06b9ffe194a829f39e75a3b56ec2d"
+    },
+    {
+      "file": "sites.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/sites.csv",
+      "sha256": "c0019f8fcc23a1741188715c2c1554deca03ed30095ae93a3e521330781e75f3"
+    },
+    {
+      "file": "preparation_audit.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/preparation_audit.csv",
+      "sha256": "9a0be2ad3c4787ffc9cb55b9ebea5f29711e8bab377ecc0735972648ca291add"
+    },
+    {
+      "file": "build_receipt.json",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_cover/statewide_events_first100_20260914/build_receipt.json",
+      "sha256": "8b9afaf8611295d7cedb7d19a0786bc22094051f2d9b27144b1bd83660f78aa9"
+    },
+    {
+      "file": "run_manifest.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/setup_v1/run_manifest.csv",
+      "sha256": "73e78771d04b47f40e0dca6c6e7b79044a54669452c1e3f8a7dfb487ebb293dc"
+    },
+    {
+      "file": "summarized_targets.csv",
+      "source": "https://github.com/ccmmf/cal-val-data/blob/b5f65bb7fce5bbd3476bf6d34cd380990a1167d2/data_raw/statewide_benchmarking/summarized_targets.csv",
+      "sha256": "7ea544bb7ab69e8f1a7098db491dbc11f1586ee00f85a79831ee74ef52c0ab5f"
+    },
+    {
+      "file": "normalised_targets.csv",
+      "source": "https://github.com/ccmmf/cal-val-data/blob/b5f65bb7fce5bbd3476bf6d34cd380990a1167d2/data_raw/statewide_benchmarking/normalised_targets.csv",
+      "sha256": "10722af67d47d1137c096892a1b7ada25b9fcc05098c509fb011ededd2dc0e15"
+    },
+    {
+      "file": "extracted_evidence.csv",
+      "source": "https://github.com/ccmmf/cal-val-data/blob/b5f65bb7fce5bbd3476bf6d34cd380990a1167d2/data_raw/statewide_benchmarking/extracted_evidence.csv",
+      "sha256": "bf1ddf13117862aaa93f1a8a54f1469355a5fdf75b9924d8502500c1a44f82e7"
+    },
+    {
+      "file": "evidence_assessment.csv",
+      "source": "https://github.com/ccmmf/cal-val-data/blob/b5f65bb7fce5bbd3476bf6d34cd380990a1167d2/data_raw/statewide_benchmarking/evidence_assessment.csv",
+      "sha256": "9acf93fdc79de470c8bcb521096a92cadad28bed928e43c561a34ae1d0ba34a2"
+    },
+    {
+      "file": "site_pft_assignment.csv",
+      "source": "geo:/projectnb/dietzelab/ccmmf/usr/akash/statewide_pft_inputs/v1.0/site_pft_assignment.csv",
+      "sha256": "b9223ed32b8bf4990ff0801d6ef2a717c69319ef6a4139c303078f1b4b395cfc"
+    }
+  ]
+}

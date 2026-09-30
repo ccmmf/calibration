@@ -1,0 +1,143 @@
+{
+  "purpose": "Capability and experimental-design diagnostic; not a validated crop or statewide adoption estimate",
+  "cases": [
+    {
+      "site_id": "14",
+      "system": "annual",
+      "source_scenario": "cover_none",
+      "reason": "Annual-row PFT; cooler low-clay condition (15 C, 18.8% clay)"
+    },
+    {
+      "site_id": "54800",
+      "system": "annual",
+      "source_scenario": "cover_none",
+      "reason": "Annual-row PFT; warmer high-clay condition (17.2 C, 51.3% clay)"
+    },
+    {
+      "site_id": "413887",
+      "system": "rice",
+      "source_scenario": "rice_irrigated_reference",
+      "reason": "Rice vegetation and soil PFT; 16.4 C, 42.6% clay"
+    },
+    {
+      "site_id": "535358",
+      "system": "rice",
+      "source_scenario": "rice_irrigated_reference",
+      "reason": "Rice vegetation and soil PFT; 18.3 C, 32.3% clay"
+    }
+  ],
+  "evaluation_years": [
+    2016,
+    2023
+  ],
+  "preparation_years": [
+    8,
+    16
+  ],
+  "preparation_weather": "Repeat 2016-2023 forcing backward in whole eight-year blocks, preserving leap alignment; preparation sensitivity only, not observed historical weather",
+  "annual": {
+    "crop": "Processing-tomato calendar represented by existing generic annual-row PFT; winter cover uses the same PFT and is a capability diagnostic",
+    "cash_establishment": "05-01",
+    "cash_harvest": "09-30",
+    "tillage": "04-15",
+    "tillage_intensity": 0.35,
+    "mineral_n_g_m2": {
+      "05-01": 10,
+      "06-15": 10
+    },
+    "irrigation_start": "05-01",
+    "irrigation_stop": "09-15",
+    "irrigation_every_days": 7,
+    "irrigation_cm": 3.5,
+    "cash_plant_C_g_m2": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "cash_harvest_fractions": [
+      0.95,
+      0,
+      0.05,
+      1
+    ],
+    "cover_establishment": "10-15",
+    "cover_termination": "04-01",
+    "cover_plant_C_g_m2": [
+      0.1,
+      0.1,
+      0.1,
+      0
+    ],
+    "cover_harvest_fractions": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "cover_extra_fertilizer": 0,
+    "cover_extra_irrigation": 0,
+    "variants": [
+      "baseline",
+      "no_change",
+      "cover"
+    ]
+  },
+  "rice": {
+    "crop": "Single annual rice season using the existing rice PFT",
+    "cash_establishment": "05-15",
+    "cash_harvest": "10-01",
+    "tillage": "05-01",
+    "tillage_intensity": 0.35,
+    "mineral_n_g_m2": {
+      "05-10": 16
+    },
+    "irrigation_start": "05-10",
+    "irrigation_stop": "09-10",
+    "irrigation_every_days": 1,
+    "irrigation_cm": 1,
+    "cash_plant_C_g_m2": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "cash_harvest_fractions": [
+      0.8,
+      0,
+      0.2,
+      1
+    ],
+    "interruptions": [
+      [
+        "06-15",
+        "06-28"
+      ],
+      [
+        "07-15",
+        "07-28"
+      ]
+    ],
+    "variants": [
+      "baseline",
+      "no_change",
+      "one_interruption",
+      "two_interruptions"
+    ]
+  },
+  "assumptions": [
+    "Dates, irrigation amounts, harvest fractions and planting carbon are explicit diagnostic settings, not fitted or observed field operations.",
+    "Annual N is 200 kg/ha, within the UC processing-tomato guide's 140-280 kg/ha range; other operational settings require pilot plausibility checks.",
+    "Rice N is 160 kg/ha and irrigation is an open-loop input schedule; realized flooding and drying determine interpretability.",
+    "Treatments start on 2016-01-01; the first winter cover is established in October 2016 and terminated in April 2017.",
+    "Every pair branches from the same full restart checkpoint after baseline preparation; the 8 and 16 year preparation cases are separate sensitivity scenarios.",
+    "No changes to SIPNET code, drainage parameters, or crop traits are made to force agreement or drying.",
+    "Planting supplies leaf, stem and root carbon. Positive stem and root pools are required by hasSufficientBiomass in SIPNET v2.2.0; leafon mobilization is not added to an explicit planting event."
+  ],
+  "sources": [
+    "https://anrcatalog.ucanr.edu/pdf/7228.pdf",
+    "https://ucanr.edu/site/solution-center-nutrient-management/cover-crops",
+    "https://ucanr.edu/blog/uc-rice-blog/article/managing-rice-limited-water",
+    "https://bg.copernicus.org/articles/19/957/2022/"
+  ]
+}
