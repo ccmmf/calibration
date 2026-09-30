@@ -1,0 +1,36 @@
+source: /projectnb/dietzelab/ccmmf/usr/akash/cal_val_joint/cache_refit_v3/result.rds
+source_md5: 6a70fc5e6c2b25e36cebbbfc89c2447c
+Only the three shared process parameters are exported; soilInit.socs_sys1-8 are excluded.
+$method
+[1] "eki"
+
+$n_particles
+[1] 50
+
+$n_iterations
+[1] 3
+
+$seed
+[1] 556688
+
+R version 4.4.3 (2025-02-28)
+Platform: x86_64-pc-linux-gnu
+Running under: AlmaLinux 8.10 (Cerulean Leopard)
+
+Matrix products: default
+BLAS/LAPACK: FlexiBLAS NETLIB;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: America/New_York
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] compiler_4.4.3 tools_4.4.3   

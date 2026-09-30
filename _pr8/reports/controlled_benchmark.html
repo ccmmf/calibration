@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Akash B V">
+<meta name="author" content="David LeBauer">
+<meta name="dcterms.date" content="2026-09-22">
+
+<title>Controlled management comparisons: pilot assessment – Calibration</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../reports/statewide_effects.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reports/site_calibration.html">Reports</a></li><li class="breadcrumb-item"><a href="../reports/controlled_benchmark.html">Controlled Comparison Pilot</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Calibration</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ccmmf/calibration" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reports</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reports/site_calibration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Site-Level Calibration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reports/statewide_effects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statewide Treatment Effects</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../reports/controlled_benchmark.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Controlled Comparison Pilot</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#decision" id="toc-decision" class="nav-link active" data-scroll-target="#decision">Decision</a></li>
+  <li><a href="#design-assessment" id="toc-design-assessment" class="nav-link" data-scroll-target="#design-assessment">Design assessment</a></li>
+  <li><a href="#what-was-run" id="toc-what-was-run" class="nav-link" data-scroll-target="#what-was-run">What was run</a>
+  <ul class="collapse">
+  <li><a href="#explicit-operations-and-preparation" id="toc-explicit-operations-and-preparation" class="nav-link" data-scroll-target="#explicit-operations-and-preparation">Explicit operations and preparation</a></li>
+  </ul></li>
+  <li><a href="#diagnostic-results" id="toc-diagnostic-results" class="nav-link" data-scroll-target="#diagnostic-results">Diagnostic results</a>
+  <ul class="collapse">
+  <li><a href="#pairing-and-vegetation-timing" id="toc-pairing-and-vegetation-timing" class="nav-link" data-scroll-target="#pairing-and-vegetation-timing">Pairing and vegetation timing</a></li>
+  <li><a href="#baseline-production-needs-revision" id="toc-baseline-production-needs-revision" class="nav-link" data-scroll-target="#baseline-production-needs-revision">Baseline production needs revision</a></li>
+  <li><a href="#irrigation-omission-is-not-consistently-realized-drying" id="toc-irrigation-omission-is-not-consistently-realized-drying" class="nav-link" data-scroll-target="#irrigation-omission-is-not-consistently-realized-drying">Irrigation omission is not consistently realized drying</a></li>
+  <li><a href="#effect-magnitudes-and-preparation-sensitivity" id="toc-effect-magnitudes-and-preparation-sensitivity" class="nav-link" data-scroll-target="#effect-magnitudes-and-preparation-sensitivity">Effect magnitudes and preparation sensitivity</a></li>
+  </ul></li>
+  <li><a href="#expansion-and-uncertainty" id="toc-expansion-and-uncertainty" class="nav-link" data-scroll-target="#expansion-and-uncertainty">Expansion and uncertainty</a></li>
+  <li><a href="#reproducibility-and-verification" id="toc-reproducibility-and-verification" class="nav-link" data-scroll-target="#reproducibility-and-verification">Reproducibility and verification</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reports/site_calibration.html">Reports</a></li><li class="breadcrumb-item"><a href="../reports/controlled_benchmark.html">Controlled Comparison Pilot</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Controlled management comparisons: pilot assessment</h1>
+<p class="subtitle lead">A test of experimental design using the existing statewide inputs</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Akash B V </p>
+             <p>David LeBauer </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="decision" class="level2">
+<h2 class="anchored" data-anchor-id="decision">Decision</h2>
+<p><strong>Retain the controlled-comparison approach as a useful design framework, and revise the crop and water specifications before expanding it.</strong> The pilot successfully reuses prepared inputs and the model executable, branches paired scenarios from identical states, and reproduces no-change controls exactly. These checks establish that the experiment can be executed consistently.</p>
+<p>The pilot does not yet establish realistic crop production or repeatable rice drying. Those limitations concern the experiment and model representation, not whether an effect agrees with the literature. No broad expansion or new parameter-ensemble simulations were launched on these scenario definitions. The verified 50-member calibration ensemble and tested aggregation code are ready for comparisons that meet the implementation checks.</p>
+<p>This is a model benchmark across California growing conditions, using the existing 100 design points as the environmental sampling frame. It is not an estimate of adoption benefits or an area-weighted statewide inventory.</p>
+</section>
+<section id="design-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="design-assessment">Design assessment</h2>
+<p>The scientific question is whether the model reproduces the direction and approximate magnitude of practice effects under comparable crop systems, environments, intensities, durations, and measured quantities. Historical management can supply realistic context, but need not define the experiment.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Use in this assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Repair existing management-derived scenarios</td>
+<td>Retain as diagnostics; use directly where their intervention and comparison already match the question</td>
+</tr>
+<tr class="even">
+<td>Replace the whole workflow</td>
+<td>Unnecessary: climate, soil inputs, PEcAn-written configurations, execution and conversion remain useful</td>
+</tr>
+<tr class="odd">
+<td>Define controlled scenarios using existing infrastructure</td>
+<td>Preferred candidate, conditional on pilot checks of baseline behavior and realized treatment</td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="../examples/4_controlled_benchmark/candidate_comparisons.csv">candidate comparison matrix</a> records crop/environment support, explicit baselines, treatment changes, frequency, duration, common preparation, evidence, outputs, capabilities and reusable components. Its current dispositions are:</p>
+<ul>
+<li><strong>Revise:</strong> annual cover cropping, annual tillage, rice water management, and orchard amendment comparisons need more explicit or better matched definitions.</li>
+<li><strong>Retain the contrast definition:</strong> the mineral-N dose ladder can be reused for annual crops and forage. Species-specific N₂O interpretation remains deferred.</li>
+<li><strong>Defer:</strong> orchard/vineyard understory needs concurrent vegetation; adding cover to standing forage also needs a clearly supported intervention and capability. Neither is an agronomic judgment against cover crops.</li>
+</ul>
+<p>Porwollik et al.&nbsp;(2022) used explicit reference, cover-crop and tillage scenarios with shared starting states and common forcing, comparing different management durations. Their model-specific vegetation and preparation procedures are precedent for asking these questions, not settings automatically transferable to SIPNET. <a href="https://bg.copernicus.org/articles/19/957/2022/">Methods, Sections 2.2–2.5</a></p>
+</section>
+<section id="what-was-run" class="level2">
+<h2 class="anchored" data-anchor-id="what-was-run">What was run</h2>
+<p>The final pilot contains <strong>36 simulations: eight baseline preparations and 28 evaluation runs</strong>, including eight no-change controls. Four locations are crossed with 8- and 16-year preparation periods. Each pair shares the same full restart checkpoint, model parameters, weather, and non-treatment operations.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Locations</th>
+<th>Crop representation</th>
+<th>Contrast</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>14 and 54800</td>
+<td>Existing annual-row PFT; a summer processing-tomato calendar</td>
+<td>Winter fallow versus an annually established winter cover</td>
+</tr>
+<tr class="even">
+<td>413887 and 535358</td>
+<td>Existing rice vegetation and rice-soil PFTs</td>
+<td>Continuous irrigation schedule versus one or two interruptions</td>
+</tr>
+</tbody>
+</table>
+<p>The annual locations contrast 15.0 versus 17.2 °C and 18.8% versus 51.3% clay in the frozen metadata. The rice locations contrast 16.4 versus 18.3 °C and 42.6% versus 32.3% clay. These deliberately selected cases test behavior; they are not a new sample intended to replace the full design.</p>
+<p>The original 12-location rice-scenario aggregate includes only two rice vegetation assignments, alongside six almond, three grass, and one corn assignment. All have rice-soil parameters. The pilot requires both the rice vegetation and soil assignments, while the original report retains its original 12-location results with that limitation stated.</p>
+<section id="explicit-operations-and-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="explicit-operations-and-preparation">Explicit operations and preparation</h3>
+<p>The <a href="../examples/4_controlled_benchmark/pilot_spec.json">executable specification</a> sets summer annual establishment on May 1 and harvest on September 30. It prescribes 200 kg mineral N/ha in two applications, a fixed weekly irrigation schedule, conventional tillage, and explicit harvest/residue fractions. The N rate lies within the UC processing-tomato guide’s 140–280 kg/ha range. Dates, water amounts and biomass inputs are diagnostic settings, not observations or validated prescriptions. <a href="https://anrcatalog.ucanr.edu/pdf/7228.pdf">UC production guide</a></p>
+<p>Cover is planted October 15 and terminated April 1, with no additional fertilizer or irrigation. Cash-crop operations are unchanged. The first cover is planted in autumn 2016, so seven full cover seasons end during the eight-year evaluation; a final cover is growing at the endpoint. The annual-row PFT also represents the cover, which limits crop-specific interpretation. Concurrent orchard understory is not represented by substituting this sequential single-PFT comparison.</p>
+<p>Rice establishment is May 15, with 160 kg N/ha before planting and soil irrigation of 1 cm/day from May 10 to September 10. One interruption omits June 15–28 irrigation; the second also omits July 15–28. No drainage parameter or model process was changed to force drying. The baseline is an explicit input schedule, not a guarantee of a particular water depth.</p>
+<p>Preparation repeats the archived 2016–2023 forcing backward in whole eight-year blocks. It preserves leap-year alignment and tests preparation duration; it is not reconstructed historical weather or a demonstrated equilibrium. All subsequent simulations use the actual archived 2016–2023 forcing. Planting adds leaf, stem and root carbon; a common planting definition is used in the baseline and practice scenario. Full harvest is followed by checks of vegetation and GPP in the intended bare periods.</p>
+</section>
+</section>
+<section id="diagnostic-results" class="level2">
+<h2 class="anchored" data-anchor-id="diagnostic-results">Diagnostic results</h2>
+<section id="pairing-and-vegetation-timing" class="level3">
+<h3 class="anchored" data-anchor-id="pairing-and-vegetation-timing">Pairing and vegetation timing</h3>
+<p>All eight no-change controls have byte-identical raw outputs to their baselines. Parameters, configuration, weather and restart checksums match within every pair, and every evaluation has all 2,922 calendar days. Baseline winter fallow and the interval between cover termination and cash-crop establishment have zero reported leaf carbon, fine-root carbon and GPP. The specification therefore realizes planting and termination without silently treating an unstaged year as a zero practice effect.</p>
+<div id="fig-pilot-growth" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two location panels show average daily maximum leaf carbon across eight evaluation years after eight years of preparation. Baseline vegetation is absent in winter; the cover scenario has winter vegetation that disappears in April before the summer crop. Summer leaf carbon remains low in both scenarios.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pilot-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="generated/controlled/annual_growth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Leaf-carbon trajectories for the annual-crop baseline and cover scenarios."><img src="generated/controlled/annual_growth.png" class="img-fluid figure-img" style="width:100.0%" alt="Two location panels show average daily maximum leaf carbon across eight evaluation years after eight years of preparation. Baseline vegetation is absent in winter; the cover scenario has winter vegetation that disappears in April before the summer crop. Summer leaf carbon remains low in both scenarios."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pilot-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Leaf-carbon trajectories for the annual-crop baseline and cover scenarios.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="baseline-production-needs-revision" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-production-needs-revision">Baseline production needs revision</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 31%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Location</th>
+<th style="text-align: left;">System</th>
+<th style="text-align: right;">Preparation years</th>
+<th style="text-align: right;">Mean annual GPP (g C/m²)</th>
+<th style="text-align: right;">Maximum LAI (m²/m²)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">annual</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5.12</td>
+<td style="text-align: right;">0.062</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">annual</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">5.12</td>
+<td style="text-align: right;">0.062</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">54800</td>
+<td style="text-align: left;">annual</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9.17</td>
+<td style="text-align: right;">0.082</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">54800</td>
+<td style="text-align: left;">annual</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">9.17</td>
+<td style="text-align: right;">0.082</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">413887</td>
+<td style="text-align: left;">rice</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">11.27</td>
+<td style="text-align: right;">0.106</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">413887</td>
+<td style="text-align: left;">rice</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">11.27</td>
+<td style="text-align: right;">0.106</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">535358</td>
+<td style="text-align: left;">rice</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3.03</td>
+<td style="text-align: right;">0.046</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">535358</td>
+<td style="text-align: left;">rice</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">3.03</td>
+<td style="text-align: right;">0.046</td>
+</tr>
+</tbody>
+</table>
+<p>The largest simulated leaf-area index is only 0.106 m²/m², and mean annual GPP ranges from approximately 3 to 11 g C/m². These sparse canopies do not establish credible production for the named crop systems. The result applies to these planting inputs and parameterizations; it does not prove that all admissible SIPNET configurations behave this way. Crop-establishment inputs, PFT traits, and growth/phenology behavior need a focused check before the carbon response is interpreted as a field-practice benchmark.</p>
+</section>
+<section id="irrigation-omission-is-not-consistently-realized-drying" class="level3">
+<h3 class="anchored" data-anchor-id="irrigation-omission-is-not-consistently-realized-drying">Irrigation omission is not consistently realized drying</h3>
+<div id="fig-pilot-water" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two rice locations show soil water divided by model holding capacity. Lines are calendar-aligned means across eight evaluation years, ribbons are the across-year range, and gray windows mark June and July interruptions. Water usually remains above the dashed saturation threshold of one.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pilot-water-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="generated/controlled/rice_water.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Rice water trajectories under baseline and interrupted irrigation."><img src="generated/controlled/rice_water.png" class="img-fluid figure-img" style="width:100.0%" alt="Two rice locations show soil water divided by model holding capacity. Lines are calendar-aligned means across eight evaluation years, ribbons are the across-year range, and gray windows mark June and July interruptions. Water usually remains above the dashed saturation threshold of one."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pilot-water-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Rice water trajectories under baseline and interrupted irrigation.
+</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Location</th>
+<th style="text-align: right;">Preparation years</th>
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: right;">Minimum water / holding capacity during interruptions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">1.279</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">1.215</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">1.279</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">1.215</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">1.048</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">0.961</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">1.048</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">0.961</td>
+</tr>
+</tbody>
+</table>
+<p>The two-interruption scenario at location 535358 briefly falls below the model’s saturation threshold in some conditions. The other cases remain above it during the interruptions, and the June interruption does not produce a corresponding dry-down at either location. This is not a repeatable one- or two-drying-event experiment comparable to the literature classes. A revised water-management specification needs to represent the intended hydrologic intervention explicitly. The model’s threshold is a diagnostic, not a field measurement of ponded depth.</p>
+<p>The dashed line is the holding-capacity threshold, not the source-run anaerobic onset parameter. A <a href="../examples/4_controlled_benchmark/RICE_DRYDOWN_FOLLOWUP.md">local follow-up</a> found that neither pilot location reaches <code>fAnoxia = 0.286</code> under the archived interruptions. It also verified that methane responds sharply once water falls just below holding capacity. The limiting result is therefore failure to realize the intended drainage, not an unresponsive methane equation.</p>
+<p>A bounded local experiment then prescribed one June 19–28 dry-down and June 29 reflood. The revised analysis separates a California field-reference path, a California-timed threshold stress test, and a reproductive-stage severe-field path, and it adds a one-time drain followed by SIPNET’s own water balance. The field-reference target is 0.595 of available water. At the published Carrijo field coordinate, SSURGO available water maps the observed severe AWD25 endpoint to a ratio of 0.469–0.719. Realized daily minima are 0.528 and 0.477 at the two locations, both within that field range under the survey mapping. Neither crosses <code>fAnoxia</code>. A separate 0.25 severe-stress diagnostic crosses <code>fAnoxia</code> on two days per year. That endpoint remains above mapped 15-bar water content at both modeled sites. It is drier than the California observations but is bracketed by medium and high severities realized in a USDA Arkansas field experiment. It is therefore treated as field-attainable severe stress, not as safe AWD or a validated California endpoint.</p>
+<p>The reproductive-stage path starts July 15, reaches the 0.25 target July 24 at 70 days after planting, and refloods July 25. Its realized minima are 0.240 and 0.231, with two days at or below <code>fAnoxia</code> in every year. A USDA field record shows that first cycles began 57–66 days after May 9 sowing and lasted 7–13 days before reflooding. The model interval starts 61 days after planting and lasts 10 days, directly within those field bounds. Exact emergence and plot coordinates are unavailable.</p>
+<p>The one-time-drain treatment removes water above <code>soilWHC</code> at the July start, omits irrigation for ten days, and then lets SIPNET evolve the water state. It reaches only 0.838 and 0.698 at the two sites and never crosses <code>fAnoxia</code>. Thus the prescribed severe path has field-supported timing and severity, but the available model process does not generate it from a single drain. Reaching the 0.25 target from <code>soilWHC</code> requires 9 cm of net storage loss, or 0.9 cm/day. The maximum realized losses are only 1.94 and 3.63 cm, or 0.19 and 0.36 cm/day; the required loss is 4.63 and 2.48 times larger. This is a net storage comparison rather than a partitioned water budget. The <a href="../examples/4_controlled_benchmark/results/natural_drydown_gap.csv">calculation</a> is retained with the run evidence.</p>
+<p>During those intervals, mean evapotranspiration is only 0.170 and 0.268 cm/day, and transpiration contributes 0.0034 and 0.0008 cm/day—2.0% and 0.3% of the total. Simulated LAI is only 0.030–0.072 m²/m². The hydrologic failure therefore links directly to the crop-establishment failure: adding a drain event without correcting canopy development would still leave field drying underpowered.</p>
+<p>The field-reference path reduces dry-period methane by about 95% and seasonal methane by 9%–10%. Continuing to the threshold-stress endpoint changes the seasonal result by less than 0.4 percentage point. Moving the severe path to July reduces dry-period methane by 95.2% and 96.6% and seasonal methane by 9.4% and 10.5% at the two sites. These results verify the methane response to prescribed trajectories, but they do not validate hydrology: the script externally changes restart-state water and records removals of up to 14.4 cm in one step. A California comparison should use one model-supported mid-season drain and verify the field-length dry period before methane magnitude is interpreted.</p>
+<p>The model-evolved one-time-drain treatment reduces dry-period methane by 94.4% and 96.3% and seasonal methane by 8.4% and 9.3%. The source-run exponent near 100 therefore produces strong methane suppression even though the water state remains well above <code>fAnoxia</code>.</p>
+<p>The 9%–11% seasonal response is also below the 38%–66% reduction reported for single 5–12 day California drains with comparable timing (<a href="https://doi.org/10.1016/j.fcr.2021.108312">Perry et al.&nbsp;2022</a>). Across all field-supported start dates tested here, the best 5–12 day window contains only 4.4%–11.4% of baseline seasonal methane. Timing alone therefore cannot bridge the response gap. The present inputs also lack a validated conversion from the model’s integrated <code>soilWater / soilWHC</code> ratio to measured volumetric water content, so crossing <code>fAnoxia</code> is not evidence of field-equivalent drying.</p>
+<p>California field measurements sharpen this limitation. Carrijo et al.&nbsp;(2018) reported 47%–50% VWC under continuous flooding and minimum 0–15 cm VWC of 24%–28% under the most severe 10–12 day dry-down (<a href="https://doi.org/10.1016/j.fcr.2018.02.026">Field Crops Research</a>). SIPNET v2.2.0 documents <code>soilWater</code> as plant-available soil water and <code>soilWHC</code> as its cap, so the appropriate physical comparison places ratio zero at the wilting-point end of the available-water range, not at zero absolute VWC. The archived run nevertheless provides no modeled storage depth or depth-resolved hydraulic profile, so its integrated ratio is not a direct 0–15 cm VWC measurement.</p>
+<p>Current PEcAn interfaces expose an unresolved semantic inconsistency: the generic water-balance code defines holding capacity as field capacity minus wilting point, whereas the SIPNET configuration writer integrates saturation VWC when a soil profile is supplied and the output adapter labels SIPNET’s available-water fraction as <code>SoilMoistFrac</code>. The archived runs supplied no soil profile and retained the fixed 12 cm value, so this does not alter the frozen run interpretation. It must be resolved before the comparison is promoted to a production hydrology workflow.</p>
+<p>A point query to USDA SSURGO provides an external site bound. The dominant surface components at locations 413887 and 535358 have available-water fractions of 0.270 and 0.210 and 15-bar VWC of 0.222 and 0.133. Mapping the model ratio as <code>theta = theta_15bar + ratio * AWC</code> places <code>fAnoxia</code> at VWC 0.299 and 0.193. The 0.25 target maps to 0.290 and 0.186. Realized June stress minima map to 0.286 and 0.182, and reproductive-stage minima map to 0.287 and 0.181—all above 15-bar water content.</p>
+<p>The Carrijo coordinate maps to an Esquon surface horizon with 47% clay, close to the reported 45%, 15-bar VWC of 0.165, and available water of 0.160. Its observed 24%–28% VWC maps to available-water ratios of 0.469–0.719. This supports the field-reference range but not the drier threshold-stress endpoint. At that field site, <code>fAnoxia</code> maps to VWC 0.211 and the 0.25 target maps to 0.205, 3–8 percentage points below the observations. AWD25 reached approximately −69 to −73 kPa without a reported yield reduction, but it does not demonstrate the drier modeled endpoint. The previous zero-based saturation calculation is retained as a sensitivity bound; it maps <code>fAnoxia</code> below wilting and is inconsistent with the fixed-WHC run’s documented plant-available-water semantics. SSURGO remains mapped survey evidence rather than a field measurement or source-run input, so the comparison supports physical plausibility but does not validate either site’s hydrology. The <a href="../examples/4_controlled_benchmark/results/field_moisture_mapping.csv">field-moisture bounds</a> and <a href="../examples/4_controlled_benchmark/results/site_soil_hydraulic_mapping.csv">site soil mapping</a>, plus the <a href="../examples/4_controlled_benchmark/results/field_site_soil_hydraulic_mapping.csv">field-site mapping</a>, retain the calculations and provenance.</p>
+<p>A USDA Arkansas comparison establishes a field-observed lower bound. At the Dale Bumpers National Rice Research Center, an AWD30 field experiment on Dewitt silt loam reached 0.23–0.37 VWC across four cycles, still above <code>fAnoxia</code> after available-water normalization (<a href="https://doi.org/10.3389/fpls.2020.612054">Fernandez-Baca et al.&nbsp;2021</a>). A separate two-year severity experiment reached approximately 0.30, 0.21, and 0.15 VWC (−14, −24, and −43 kPa) under low, medium, and high reproductive-stage AWD stress. SSURGO properties for the mapped Dewitt surface horizon convert these endpoints to available-water ratios of 0.95, 0.45, and 0.117. This uses the research facility coordinate, which returns the same Dewitt series named in the companion field study; the precise experimental plot coordinate is not reported. Under that mapping, the high treatment crossed the equivalent SIPNET threshold, and the modeled 0.25 target is bracketed by the medium and high field severities. This supports field attainability as severe stress, but not agronomic equivalence: high stress reduced rice and red-rice yields by as much as 50% and 60%. The July model path starts and ends within the observed first-cycle calendar range. Exact emergence and plot coordinates remain unavailable, and the endpoint is realized only by the prescribed trajectory rather than by the one-time-drain water balance. See the <a href="https://www.ars.usda.gov/research/publications/publication/?seqNo115=370626">USDA timing record</a>, the <a href="https://www.ars.usda.gov/research/publications/publication/?seqNo115=378751">USDA severity record</a>, and <a href="../examples/4_controlled_benchmark/results/field_severity_comparators.csv">field-severity mapping</a>.</p>
+<p>The archived <a href="../examples/4_controlled_benchmark/results/anaerobic_exponent_audit.csv">parameter audit</a> also qualifies the methane result. The PFT bundle and statewide configuration deliberately fix <code>anaerobicTransExp</code> at 99.98298 and drop that trait from the posterior samples before PEcAN writes each run. The same archived <code>soil_rice</code> posterior has a median of 9.97418. Changing only the exponent to that posterior median leaves the water trajectory unchanged and yields an 88%–89% dry-period methane decrease and 8.8%–10.0% seasonal decrease, compared with 95%–96% and 9%–11% under the fixed source-run value. The near-100 exponent is therefore a documented modeling choice, not a fitted value or an accidental mapping error. Neither value is accepted here as calibrated; the scientific justification for using a common fixed exponent rather than the rice-soil posterior remains open.</p>
+</section>
+<section id="effect-magnitudes-and-preparation-sensitivity" class="level3">
+<h3 class="anchored" data-anchor-id="effect-magnitudes-and-preparation-sensitivity">Effect magnitudes and preparation sensitivity</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 35%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Location</th>
+<th style="text-align: right;">Preparation years</th>
+<th style="text-align: left;">Scenario</th>
+<th style="text-align: right;">Soil C difference (Mg C/ha/year)</th>
+<th style="text-align: right;">Seasonal CH4 RR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">14</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">cover</td>
+<td style="text-align: right;">3.65e-03</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">14</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">cover</td>
+<td style="text-align: right;">4.07e-03</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">54800</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">cover</td>
+<td style="text-align: right;">4.42e-03</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">54800</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">cover</td>
+<td style="text-align: right;">5.04e-03</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">-8.75e-05</td>
+<td style="text-align: right;">0.999995</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">-6.13e-04</td>
+<td style="text-align: right;">0.999958</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">-5.00e-05</td>
+<td style="text-align: right;">0.999994</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">413887</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">-3.62e-04</td>
+<td style="text-align: right;">0.999964</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">-1.75e-04</td>
+<td style="text-align: right;">0.999935</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">-1.11e-03</td>
+<td style="text-align: right;">0.998212</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">one_interruption</td>
+<td style="text-align: right;">-8.75e-05</td>
+<td style="text-align: right;">0.999960</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">535358</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">two_interruptions</td>
+<td style="text-align: right;">-5.50e-04</td>
+<td style="text-align: right;">0.998184</td>
+</tr>
+</tbody>
+</table>
+<p>These diagnostic effects are retained regardless of sign. Soil-carbon changes are calculated from the soil pool alone, with the final paired difference divided by the eight-year evaluation period. Methane ratios use May 15–September 10 totals at each location; they are not averaged with other crop systems. Long-term effects are not inferred from this eight-year experiment.</p>
+<p>Preparation duration changes the carbon differences, even though vegetation production and the principal water diagnosis are similar. Small positive carbon responses and near-one methane ratios do not establish agreement or disagreement with field evidence while the baseline and treatment limitations remain.</p>
+</section>
+</section>
+<section id="expansion-and-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="expansion-and-uncertainty">Expansion and uncertainty</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>Decision</th>
+<th>Evidence needed before expansion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Annual cover</td>
+<td>Revise</td>
+<td>Credible crop and cover growth; explicit physiology mapping; carbon-pool/depth alignment</td>
+</tr>
+<tr class="even">
+<td>Rice water</td>
+<td>Revise</td>
+<td>Repeated realized drying matched to the intended event class, alongside credible rice growth</td>
+</tr>
+<tr class="odd">
+<td>Orchard understory</td>
+<td>Defer</td>
+<td>Concurrent vegetation capability and a source-matched understory contrast</td>
+</tr>
+<tr class="even">
+<td>N₂O quantities</td>
+<td>Defer species-specific scoring</td>
+<td>Verified N₂O representation; the current total-volatilization tracker is insufficient</td>
+</tr>
+</tbody>
+</table>
+<p>The design framework and working infrastructure are retained. Neither a model response in the wrong direction nor a small effect is, by itself, a reason to reject a comparison. Here the reasons to revise are crop plausibility and the realization of the intended treatment.</p>
+<p>The final calibrated process ensemble has 50 members. Its means reproduce the three fitted soil values in the original matrix; experimental Salinas initial states are excluded. The <a href="../examples/4_controlled_benchmark/README.md">export and aggregation implementation</a> preserves joint members and requires the same locations within each comparison group. It aggregates within members before estimating intervals and fractions above or below zero. No new ensemble response probabilities are reported because the pilot does not yet justify expanding these scenario definitions.</p>
+</section>
+<section id="reproducibility-and-verification" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-and-verification">Reproducibility and verification</h2>
+<p>The <a href="../examples/4_controlled_benchmark/README.md">example README</a>, specification, candidate matrix, input manifest, submission receipt, calibrated ensemble and compact results are included with this report. Full model outputs and restart states remain in the isolated Geo workspace identified in the submission receipt. The original runs and evidence were not altered. Rebuild the tables and figures with <code>Rscript reports/R/build_controlled_benchmark.R</code> from the repository root.</p>
+<p>Calendar tests verify the no-change control, planting pool requirements, chronology/leap dates, unchanged annual cash-crop operations, and irrigation-only rice differences. Ensemble tests cover member-first aggregation and rejection of duplicate, missing and nonfinite inputs. Model execution, paired-state checks, output conversion and scientific suitability are assessed separately. The installed PEcAn converter produced 224 annual files; all soil-carbon endpoint and GPP-total checks passed against raw output (tolerances of 0.02 and 0.001 g C/m², respectively). Its runtime and compatibility wrapper are recorded with the results. Methane uses raw outputs because this installed converter does not expose a methane variable.</p>
+<p>The log audit records nitrogen-balance warnings, with maximum reported absolute residual 0.004162 g N/m² per affected step across preparation and evaluation. There are no reported carbon-balance warnings; displayed carbon clamps round to zero at the log’s precision. These observations are not proof of exact mass conservation. The warnings remain part of the numerical-quality assessment and are not hidden by successful execution or file conversion.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../reports/statewide_effects.html" class="pagination-link" aria-label="Statewide Treatment Effects">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Statewide Treatment Effects</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

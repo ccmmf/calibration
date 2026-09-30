@@ -1,0 +1,17 @@
+task,duration_days,best_start_dap,maximum_baseline_seasonal_ch4_share,interpretation
+413887_prep8,5,34,0.04424450570371158,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep8,8,49,0.07096513806180417,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep8,10,49,0.08877724302837388,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep8,12,49,0.10652995019723115,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep16,5,34,0.044241406280394795,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep16,8,49,0.07097406892147697,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep16,10,49,0.08878667666578573,upper bound if methane were zero only within the window; excludes post-drain persistence
+413887_prep16,12,49,0.10653690171304228,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep8,5,34,0.04766327857540935,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep8,8,49,0.07597462912343093,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep8,10,49,0.09518944118609737,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep8,12,49,0.11434763762462073,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep16,5,34,0.04766436238478591,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep16,8,49,0.07597385077587208,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep16,10,49,0.09519746820674362,upper bound if methane were zero only within the window; excludes post-drain persistence
+535358_prep16,12,49,0.11435545735620112,upper bound if methane were zero only within the window; excludes post-drain persistence

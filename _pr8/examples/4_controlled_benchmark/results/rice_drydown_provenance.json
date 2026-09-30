@@ -1,0 +1,28 @@
+{
+  "status": "local diagnostic; not an accepted field benchmark or production run",
+  "run_date": "2026-09-29",
+  "source_workspace": "geo:/projectnb/dietzelab/ccmmf/usr/dlebauer/pr6-benchmark-20260922-v4",
+  "source_calibration_revision": "70987abaecf787331b970e52ac0710b41f98384b",
+  "source_sipnet_revision": "3ccc41c1ad2db426b7eb857881a32ca685bf57f1",
+  "source_sipnet_version": "2.2.0",
+  "local_binary_sha256": "2bda98cd132718fde6a6e5e54804adbee2d5ab5da6ae0503359a81029b1e9cee",
+  "local_build": "Apple clang 16.0.0; arm64-apple-darwin25.3.0; source exported from the pinned SIPNET revision",
+  "source_tasks": [
+    {
+      "site_id": "413887",
+      "prep_years": 8,
+      "parameters_sha256": "55936f4706eaa155f239b1db0a09c0f716751a086a9b9b8b33afe300364a1a0a",
+      "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+      "weather_sha256": "b35e5d5673520995dd1baf3576fa64070636e32c16a65c322743649c2acd2e07"
+    },
+    {
+      "site_id": "535358",
+      "prep_years": 8,
+      "parameters_sha256": "399267983743effc883c63321bb825cc2662a58f5754c69cd91d1162da6ed08d",
+      "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+      "weather_sha256": "731728fa4bbdc0f78872a972a3942816fadb008c7a90f704103c21098e3a1306"
+    }
+  ],
+  "candidate_contract": "All candidates use the same source restart, configuration, climate, crop operations, and methane parameters within a site. Source candidates retain waterDrainFrac=0.0535520521170028. Rapid-drain sensitivity candidates set waterDrainFrac=1 for the entire evaluation and are hydrologic diagnostics, not event-specific field representations.",
+  "formulation_test": "The first 2016 climate day was run from identical restart state and carbon pools after setting only envi.soilWater to each listed ratio. The main text output rounds methane to four decimal places; expected multipliers retain the implemented A^anaerobicTransExp calculation."
+}
