@@ -22,7 +22,7 @@ stopifnot(!anyDuplicated(score$pair_id),
 labels <- c(cover_soc = "Cover crop / no cover crop",
   till_reduced_soc = "Reduced / conventional tillage",
   till_zero_soc = "No tillage / conventional tillage",
-  org_sub = "Organic substitution / fertilizer baseline",
+  org_sub = "Organic amendments / mineral fertilizer baseline",
   rice_one_ch4 = "One irrigation interruption / flooded baseline",
   rice_two_ch4 = "Two interruptions / flooded baseline",
   till_zero_n2o = "No tillage: modeled N2O-N",
@@ -73,13 +73,13 @@ for (id in main_ids) {
             isTRUE(all.equal(mean(x), s$model_effect, tolerance = 1e-10)))
 }
 
-panel_names <- c("Carbon difference / reported denominator (Mg C/ha/year)",
+panel_names <- c("Soil + litter C difference\n(Mg C/ha per reported year)",
                  "Soil carbon response ratio", "Seasonal methane response ratio")
 main <- retained[seq_len(6), ]
 main$panel <- factor(rep(panel_names, c(3, 1, 2)), levels = panel_names)
-main$label <- main$comparison
-main$label[1] <- "Cover crop / no cover crop; per cover year"
-main$label <- vapply(main$label, function(x) paste(strwrap(x, width = 43), collapse = "\n"), character(1))
+main$label <- c("Cover crop; per cover year", "Reduced tillage", "No tillage",
+                "Organic amendments", "One irrigation interruption",
+                "Two irrigation interruptions")
 main$label <- factor(main$label, levels = rev(main$label))
 # Literature bars retain their distinct meanings: SD or approximate 95% CI.
 main$half_width <- ifelse(main$target_spread_type == "sd", main$target_spread,
@@ -90,7 +90,7 @@ main$upper <- ifelse(main$is_ratio, exp(main$target_center + main$half_width),
                      main$target_center + main$half_width)
 reference <- data.frame(panel = factor(panel_names, levels = panel_names),
                         null = c(0, 1, 1))
-plot_theme <- ggplot2::theme_minimal(base_size = 14) +
+plot_theme <- ggplot2::theme_minimal(base_size = 16) +
   ggplot2::theme(panel.grid.minor = ggplot2::element_blank(),
     panel.grid.major.y = ggplot2::element_blank(),
     strip.text.y = ggplot2::element_text(angle = 0),
@@ -110,7 +110,7 @@ p <- ggplot2::ggplot(main, ggplot2::aes(y = label)) +
   ggplot2::scale_colour_manual(values = c(Model = "#0072B2", Literature = "#D55E00")) +
   ggplot2::scale_shape_manual(values = c(Model = 16, Literature = 18)) +
   ggplot2::labs(x = NULL, y = NULL, colour = NULL, shape = NULL) + plot_theme
-ggplot2::ggsave(file.path(out, "effects.png"), p, width = 10, height = 8.5, dpi = 180, bg = "white")
+ggplot2::ggsave(file.path(out, "effects.png"), p, width = 7.5, height = 8, dpi = 180, bg = "white")
 
 points <- do.call(rbind, lapply(seq_len(nrow(main)), function(i) {
   m <- main[i, ]
@@ -131,7 +131,7 @@ p <- ggplot2::ggplot(points, ggplot2::aes(x = value, y = label)) +
   ggplot2::geom_point(data = medians, shape = 18, size = 4, colour = "black") +
   ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free") +
   ggplot2::labs(x = NULL, y = NULL) + plot_theme
-ggplot2::ggsave(file.path(out, "locations-v4.png"), p, width = 10, height = 8.5, dpi = 180, bg = "white")
+ggplot2::ggsave(file.path(out, "locations-v4.png"), p, width = 7.5, height = 8, dpi = 180, bg = "white")
 utils::write.csv(points, file.path(out, "location_display_values.csv"), row.names = FALSE)
 
 # Endpoint trajectories use the same pairs; no rate denominator is introduced.
