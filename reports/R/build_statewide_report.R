@@ -139,29 +139,6 @@ p <- ggplot2::ggplot(points, ggplot2::aes(x = value, y = label)) +
 ggplot2::ggsave(file.path(out, "locations-v4.png"), p, width = 7.5, height = 8, dpi = 180, bg = "white")
 utils::write.csv(points, file.path(out, "location_display_values.csv"), row.names = FALSE)
 
-# Endpoint trajectories use the same pairs; no rate denominator is introduced.
-trajectories <- do.call(rbind, lapply(c("cover_soc", "rice_one_ch4", "rice_two_ch4"), function(id) {
-  s <- score[score$pair_id == id, ]
-  valid <- effects[effects$treatment == s$treatment & effects$reference == s$reference & effects$pair_ok, ]
-  a <- annual[annual$arm == s$treatment & annual$site %in% valid$site_id, ]
-  b <- annual[annual$arm == s$reference & annual$site %in% valid$site_id, ]
-  z <- merge(a, b, by = c("site", "year"), suffixes = c("_practice", "_baseline"))
-  is_cover <- id == "cover_soc"
-  data.frame(site = z$site, year = z$year,
-    panel = if (is_cover) "Cover crop: soil + litter C difference (Mg C/ha)" else
-      paste0(if (id == "rice_one_ch4") "One interruption" else "Two interruptions", ": annual CH4 difference (kg C/ha)"),
-    value = if (is_cover) z$soc_last_practice - z$soc_last_baseline else
-      10000 * (z$ch4_sum_practice - z$ch4_sum_baseline))
-}))
-median_time <- stats::aggregate(value ~ panel + year, trajectories, stats::median)
-p <- ggplot2::ggplot(trajectories, ggplot2::aes(year, value, group = site)) +
-  ggplot2::geom_hline(yintercept = 0, colour = "grey70", linetype = 2) +
-  ggplot2::geom_line(colour = "#0072B2", alpha = 0.3, linewidth = 0.4) +
-  ggplot2::geom_line(data = median_time, ggplot2::aes(group = 1), colour = "black", linewidth = 0.8) +
-  ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free_y") +
-  ggplot2::scale_x_continuous(breaks = seq(2016, 2023)) +
-  ggplot2::labs(x = NULL, y = NULL) + plot_theme
-ggplot2::ggsave(file.path(out, "trajectories.png"), p, width = 10, height = 8, dpi = 180, bg = "white")
 writeLines(c("Archived estimators reproduced for all six main comparisons.",
              "All finite location effects retained; no axis limits or trimming.",
              capture.output(utils::sessionInfo())), file.path(out, "verification.txt"))
