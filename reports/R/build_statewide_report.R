@@ -42,9 +42,9 @@ retained$display_evidence <- ifelse(retained$is_ratio, exp(retained$target_cente
                                     retained$target_center)
 retained$display_units <- ifelse(retained$is_ratio, "Response ratio",
                                   retained$target_units)
-retained$display_units[retained$pair_id == "cover_soc"] <- "Mg soil + litter C/ha/cover year"
+retained$display_units[retained$pair_id == "cover_soc"] <- "Mg C/ha/cover year"
 retained$display_units[retained$pair_id %in% c("till_reduced_soc", "till_zero_soc")] <-
-  "Mg soil + litter C/ha/simulation year"
+  "Mg C/ha/simulation year"
 utils::write.csv(retained, file.path(out, "display_values.csv"), row.names = FALSE)
 
 fmt <- function(x) ifelse(is.na(x), "—", formatC(x, format = "g", digits = 2))
@@ -73,7 +73,7 @@ for (id in main_ids) {
             isTRUE(all.equal(mean(x), s$model_effect, tolerance = 1e-10)))
 }
 
-panel_names <- c("Soil + litter C difference\n(Mg C/ha per reported year)",
+panel_names <- c("Carbon difference\n(Mg C/ha per reported year)",
                  "Soil carbon response ratio", "Seasonal methane response ratio")
 main <- retained[seq_len(6), ]
 main$panel <- factor(rep(panel_names, c(3, 1, 2)), levels = panel_names)
@@ -109,7 +109,9 @@ p <- ggplot2::ggplot(main, ggplot2::aes(y = label)) +
   ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free") +
   ggplot2::scale_colour_manual(values = c(Model = "#0072B2", Literature = "#D55E00")) +
   ggplot2::scale_shape_manual(values = c(Model = 16, Literature = 18)) +
-  ggplot2::labs(x = NULL, y = NULL, colour = NULL, shape = NULL) + plot_theme
+  ggplot2::labs(x = NULL, y = NULL, colour = NULL, shape = NULL,
+                caption = "Carbon: model is soil + litter C; literature is measured SOC to 30 cm.") +
+  plot_theme
 ggplot2::ggsave(file.path(out, "effects.png"), p, width = 7.5, height = 8, dpi = 180, bg = "white")
 
 points <- do.call(rbind, lapply(seq_len(nrow(main)), function(i) {
@@ -121,7 +123,8 @@ points <- do.call(rbind, lapply(seq_len(nrow(main)), function(i) {
     value = if (m$is_ratio) 100 * expm1(x[[m$metric]]) else x[[m$metric]])
 }))
 points$panel <- factor(points$panel, levels = panel_names,
-  labels = c(panel_names[1], "Soil carbon change (%)", "Seasonal methane change (%)"))
+  labels = c("Model soil + litter C difference\n(Mg C/ha per reported year)",
+             "Soil carbon change (%)", "Seasonal methane change (%)"))
 points$label <- factor(points$label, levels = levels(main$label))
 medians <- stats::aggregate(value ~ panel + label, points, stats::median)
 p <- ggplot2::ggplot(points, ggplot2::aes(x = value, y = label)) +

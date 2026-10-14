@@ -68,15 +68,17 @@ and converted back to ratios; they are not ratios of regional totals.
 
 {{< include generated/effects_table.md >}}
 
-For cover and tillage, the carbon quantity is **soil plus litter**, whereas the
-organic-substitution ratio uses **soil carbon alone**. The cover estimate is the
+For cover and tillage, the model carbon quantity is **soil plus litter**: the
+SIPNET soil and litter pools, which PEcAn reports together as `TotSoilCarb`.
+The literature values are measured SOC stocks to 30 cm. The
+organic-substitution ratio uses model **soil carbon alone**. The cover estimate is the
 final paired difference divided by the number of prepared cover years; tillage
 uses the eight-year simulation window. These are the existing calculations,
 not interchangeable estimates of a common annual SOC accumulation rate.
 The correspondence between model pools and measured sampling depth also needs
 resolution before quantitative agreement is assessed.
 
-![Model estimates (blue circles) and literature estimates (orange diamonds) for carbon and methane responses. Cover crop is compared with no cover crop, tillage practices with conventional tillage, organic amendments with mineral fertilizer, and irrigation interruptions with continuous flooding. Literature bars show one among-unit SD for carbon rates and approximate 95% intervals for response ratios; model estimates have no parameter-uncertainty intervals.](generated/effects.png){#fig-effects width=85% fig-alt="Blue circles show the model and orange diamonds the literature. Carbon effects are positive; methane response ratios are nearly one. Carbon-rate bars show one literature SD; ratio bars show approximate 95 percent intervals. Location counts are given in the coverage table."}
+![Model estimates (blue circles) and literature estimates (orange diamonds) for carbon and methane responses. Cover crop is compared with no cover crop, tillage practices with conventional tillage, organic amendments with mineral fertilizer, and irrigation interruptions with continuous flooding. Literature bars show one among-unit SD for carbon rates and approximate 95% intervals for response ratios; model estimates have no parameter-uncertainty intervals. For carbon rates, model points are soil plus litter carbon and literature points are measured SOC stocks to 30 cm.](generated/effects.png){#fig-effects width=85% fig-alt="Blue circles show the model and orange diamonds the literature. Carbon effects are positive; methane response ratios are nearly one. Carbon-rate bars show one literature SD; ratio bars show approximate 95 percent intervals. Location counts are given in the coverage table."}
 
 In @fig-effects, literature bars show the archived among-unit SD for carbon
 rates and approximately 95% confidence intervals (mean ± 1.96 SE, transformed
