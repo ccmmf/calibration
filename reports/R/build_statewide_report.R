@@ -73,7 +73,7 @@ for (id in main_ids) {
             isTRUE(all.equal(mean(x), s$model_effect, tolerance = 1e-10)))
 }
 
-panel_names <- c("Carbon difference\n(Mg C/ha per reported year)",
+panel_names <- c("Carbon difference (Mg C/ha per reported year)",
                  "Soil carbon response ratio", "Seasonal methane response ratio")
 main <- retained[seq_len(6), ]
 main$panel <- factor(rep(panel_names, c(3, 1, 2)), levels = panel_names)
@@ -90,6 +90,8 @@ main$upper <- ifelse(main$is_ratio, exp(main$target_center + main$half_width),
                      main$target_center + main$half_width)
 reference <- data.frame(panel = factor(panel_names, levels = panel_names),
                         null = c(0, 1, 1))
+# Panel names stay on one line in the CSVs; the break before the units is added only when drawing.
+wrap_panel <- ggplot2::as_labeller(function(x) sub(" (Mg", "\n(Mg", x, fixed = TRUE))
 plot_theme <- ggplot2::theme_minimal(base_size = 16) +
   ggplot2::theme(panel.grid.minor = ggplot2::element_blank(),
     panel.grid.major.y = ggplot2::element_blank(),
@@ -106,7 +108,7 @@ p <- ggplot2::ggplot(main, ggplot2::aes(y = label)) +
                      size = 3, position = ggplot2::position_nudge(y = -0.12)) +
   ggplot2::geom_point(ggplot2::aes(x = display_model, colour = "Model", shape = "Model"),
                      size = 3, position = ggplot2::position_nudge(y = 0.12)) +
-  ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free") +
+  ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free", labeller = wrap_panel) +
   ggplot2::scale_colour_manual(values = c(Model = "#0072B2", Literature = "#D55E00")) +
   ggplot2::scale_shape_manual(values = c(Model = 16, Literature = 18)) +
   ggplot2::labs(x = NULL, y = NULL, colour = NULL, shape = NULL,
@@ -123,7 +125,7 @@ points <- do.call(rbind, lapply(seq_len(nrow(main)), function(i) {
     value = if (m$is_ratio) 100 * expm1(x[[m$metric]]) else x[[m$metric]])
 }))
 points$panel <- factor(points$panel, levels = panel_names,
-  labels = c("Model soil + litter C difference\n(Mg C/ha per reported year)",
+  labels = c("Model soil + litter C difference (Mg C/ha per reported year)",
              "Soil carbon change (%)", "Seasonal methane change (%)"))
 points$label <- factor(points$label, levels = levels(main$label))
 medians <- stats::aggregate(value ~ panel + label, points, stats::median)
@@ -132,7 +134,7 @@ p <- ggplot2::ggplot(points, ggplot2::aes(x = value, y = label)) +
   ggplot2::geom_point(position = ggplot2::position_jitter(width = 0, height = 0.15, seed = 41),
                      size = 1.8, alpha = 0.65, colour = "#0072B2") +
   ggplot2::geom_point(data = medians, shape = 18, size = 4, colour = "black") +
-  ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free") +
+  ggplot2::facet_wrap(~ panel, ncol = 1, scales = "free", labeller = wrap_panel) +
   ggplot2::labs(x = NULL, y = NULL) + plot_theme
 ggplot2::ggsave(file.path(out, "locations-v4.png"), p, width = 7.5, height = 8, dpi = 180, bg = "white")
 utils::write.csv(points, file.path(out, "location_display_values.csv"), row.names = FALSE)
