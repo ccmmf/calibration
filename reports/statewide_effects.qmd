@@ -92,7 +92,10 @@ contextual comparisons rather than calibrated agreement tests.
 Cover crops produce an average soil-plus-litter difference of 0.13 Mg C ha⁻¹
 per prepared cover year. Reduced and no tillage produce 0.12 and 0.15
 Mg C ha⁻¹ per simulation year, respectively. The corresponding synthesis
-centers are 0.32 for cover and 0.22 for tillage. Their relative magnitudes
+centers are 0.32 for cover and 0.22 for tillage. The tillage center is from
+Sun et al. (2020), who compare no tillage with conventional tillage, so it
+matches the no-tillage row; the reduced-tillage row compares modeled reduced
+versus conventional tillage against that same no-tillage value. Their relative magnitudes
 identify useful comparisons to revisit after matching pools and durations;
 they do not by themselves establish underprediction of measured SOC.
 
