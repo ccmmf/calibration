@@ -1,0 +1,269 @@
+{
+ "pecan_events_version": "0.1.1",
+ "site_id": "rf_wheat_legume__cc-wheat",
+ "provenance": {
+  "dataset_id": "russell_ranch_tautges_2019",
+  "treatment": "rf_wheat_legume",
+  "rotation_phase": "CC-wheat",
+  "generator": "calibration:tools/event_prep/russell_split_phases.R",
+  "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_legume.json",
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+ },
+ "events": [
+  {
+   "event_type": "planting",
+   "date": "1993-11-09",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "1994-12-01",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0021,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1995-07-05",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5072,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "merged_dates": "1995-07-05;1995-07-07;1995-07-10",
+   "merge_note": "One operation recorded on 3 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+  },
+  {
+   "event_type": "planting",
+   "date": "1995-11-14",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "1996-11-11",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0033,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1997-06-17",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4542,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "merged_dates": "1997-06-17;1997-06-22",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+  },
+  {
+   "event_type": "planting",
+   "date": "1997-10-28",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1999-07-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.705,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "1999-11-04",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2000-11-20",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2001-07-10",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4942,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2002-11-06",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.004,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2003-07-12",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5018,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2003-11-19",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0045,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2004-11-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0033,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2005-07-06",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5149,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2005-10-28",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0033,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2006-11-09",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2007-06-29",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5824,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2007-12-12",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2008-11-20",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0039,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2009-07-08",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4997,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2009-11-18",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0031,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2010-11-16",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2011-07-09",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5426,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-11-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0033,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2012-11-12",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-07-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.3739,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2013-10-28",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  }
+ ]
+}

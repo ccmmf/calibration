@@ -14,6 +14,7 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `us_twt_build_events.R` | US-Twt 2010-2016 | Knox et al. 2016 + curated `cal-val-data` managements |
 | `us_twt_irrigation_schedule.R` | rewrites US-Twt irrigation | 2017-2023 monitoring rate and interval |
 | `us_twt_merge_2010_2023.R` | merges the two US-Twt windows | both of the above |
+| `russell_split_phases.R` | Russell Ranch, one file per treatment and rotation phase | `generator_stacked/` + Century Experiment package (`10.1002/ecy.2105`) |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
 
 ## Order for US-Twt

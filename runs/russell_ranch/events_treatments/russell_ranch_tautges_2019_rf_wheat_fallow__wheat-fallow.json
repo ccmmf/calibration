@@ -1,0 +1,368 @@
+{
+ "pecan_events_version": "0.1.1",
+ "site_id": "rf_wheat_fallow__wheat-fallow",
+ "provenance": {
+  "dataset_id": "russell_ranch_tautges_2019",
+  "treatment": "rf_wheat_fallow",
+  "rotation_phase": "wheat-fallow",
+  "generator": "calibration:tools/event_prep/russell_split_phases.R",
+  "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_fallow.json",
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+ },
+ "events": [
+  {
+   "event_type": "fertilization",
+   "date": "1993-11-04",
+   "nh4_n_kg_m2": 0.008384,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium nitrate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1993-11-19",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0042,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1994-02-15",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1994-06-15",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4423,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-11-20",
+   "nh4_n_kg_m2": 0.008384,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium nitrate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1995-11-22",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.003,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1996-03-18",
+   "nh4_n_kg_m2": 0.002836,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1996-06-20",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.7077,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "1997-11-04",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.004,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1998-02-28",
+   "nh4_n_kg_m2": 0.0028,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1999-03-04",
+   "nh4_n_kg_m2": 0.002954,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1999-10-12",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1999-11-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2000-03-23",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2000-06-26",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5753,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2002-04-21",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2002-07-08",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4753,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2003-11-01",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2003-11-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2004-03-24",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2004-06-30",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.6543,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2005-10-28",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2005-11-10",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2006-05-24",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2006-06-30",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.2569,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2007-10-31",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2007-12-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2008-04-02",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2008-07-09",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4612,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2009-11-09",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2009-11-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2010-03-24",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2010-07-09",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.7004,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-11-05",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-11-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2012-03-26",
+   "nh4_n_kg_m2": 0.002784,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-10-25",
+   "nh4_n_kg_m2": 0.008413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2013-11-10",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0031,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  }
+ ]
+}

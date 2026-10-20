@@ -1,0 +1,876 @@
+{
+ "pecan_events_version": "0.1.1",
+ "site_id": "conv_corn_tomato__corn-tomato",
+ "provenance": {
+  "dataset_id": "russell_ranch_tautges_2019",
+  "treatment": "conv_corn_tomato",
+  "rotation_phase": "corn-tomato",
+  "generator": "calibration:tools/event_prep/russell_split_phases.R",
+  "stacked_input": "generator_stacked/russell_ranch_tautges_2019_conv_corn_tomato.json",
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+ },
+ "events": [
+  {
+   "event_type": "fertilization",
+   "date": "1994-04-08",
+   "nh4_n_kg_m2": 0.005655,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1994-04-14",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1994-05-21",
+   "nh4_n_kg_m2": 0.02578,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1994-07-14",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 464.8464,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1994-10-13",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.3425,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-04-18",
+   "nh4_n_kg_m2": 0.005655,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1995-04-22",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-05-25",
+   "nh4_n_kg_m2": 0.013568,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-06-19",
+   "nh4_n_kg_m2": 0.004515,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1995-06-30",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 454.0014,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1995-09-08",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.3619,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "merged_dates": "1995-09-08;1995-09-09",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1996-04-13",
+   "nh4_n_kg_m2": 0.005655,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1996-04-14",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1996-05-14",
+   "nh4_n_kg_m2": 0.011188,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1996-06-01",
+   "nh4_n_kg_m2": 0.006703,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1996-07-19",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 466.3135,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1996-10-24",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.2951,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1997-04-16",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "1997-04-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0033,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1997-05-08",
+   "nh4_n_kg_m2": 0.005658,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1997-05-30",
+   "nh4_n_kg_m2": 0.005883,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1997-06-18",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 710.7524,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1997-08-15",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.5656,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "merged_dates": "1997-08-15;1997-08-22",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+  },
+  {
+   "event_type": "planting",
+   "date": "1998-03-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0041,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "1998-04-19",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1998-05-21",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1998-06-12",
+   "nh4_n_kg_m2": 0.017943,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1999-06-07",
+   "nh4_n_kg_m2": 0.011216,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1999-09-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.6536,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2000-03-24",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2000-05-04",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2000-05-12",
+   "nh4_n_kg_m2": 0.019747,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2000-07-06",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 539.7712,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2000-10-18",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.4415,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2001-04-26",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2001-05-01",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0026,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2001-05-28",
+   "nh4_n_kg_m2": 0.011216,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2001-06-29",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 448.3241,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2001-08-27",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.4356,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2002-05-03",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2002-05-14",
+   "nh4_n_kg_m2": 0.016808,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2002-10-18",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.5034,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2003-05-06",
+   "nh4_n_kg_m2": 0.005599,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2003-05-07",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0042,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2003-06-03",
+   "nh4_n_kg_m2": 0.011216,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2003-06-29",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 646.9891,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2003-08-21",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.5097,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2004-03-22",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2004-04-21",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2004-05-13",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2004-06-25",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 504.7684,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2004-09-28",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.4454,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "merged_dates": "2004-09-28;2004-09-29",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2005-05-03",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2005-05-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2005-06-10",
+   "nh4_n_kg_m2": 0.011216,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2005-07-04",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 520.7749,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2005-08-26",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.34,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2006-05-02",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2006-05-07",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2006-05-16",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2006-07-28",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 509.8731,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2006-10-24",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.5111,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2007-05-08",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2007-05-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0041,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2007-05-31",
+   "nh4_n_kg_m2": 0.011216,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2007-07-13",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 561.1351,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2007-09-11",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.3556,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2009-04-30",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2009-05-26",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0028,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2009-06-10",
+   "nh4_n_kg_m2": 0.011216,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2009-07-29",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 739.179,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2009-10-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.4928,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2009-11-09",
+   "nh4_n_kg_m2": 0.011197,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2009-11-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.003,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-03-12",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 416.115,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2010-03-24",
+   "nh4_n_kg_m2": 0.00562,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2010-07-09",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.5608,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-04-11",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-04-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-05-13",
+   "nh4_n_kg_m2": 0.011209,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "UAN 32 fertilizer",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-02",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 473.4411,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2011-09-13",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.5498,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-11-14",
+   "nh4_n_kg_m2": 0.011197,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-11-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0031,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2012-03-06",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 375.1411,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2012-03-26",
+   "nh4_n_kg_m2": 0.00562,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2012-06-25",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.4595,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2013-04-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-05-10",
+   "nh4_n_kg_m2": 0.01345,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "UAN 32 fertilizer",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-18",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 461.6288,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-08-20",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.4529,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  }
+ ]
+}

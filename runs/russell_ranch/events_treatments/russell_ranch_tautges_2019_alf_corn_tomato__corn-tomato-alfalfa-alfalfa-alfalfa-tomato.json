@@ -1,0 +1,51 @@
+{
+ "pecan_events_version": "0.1.1",
+ "site_id": "alf_corn_tomato__corn-tomato-alfalfa-alfalfa-alfalfa-tomato",
+ "provenance": {
+  "dataset_id": "russell_ranch_tautges_2019",
+  "treatment": "alf_corn_tomato",
+  "rotation_phase": "corn-tomato-alfalfa-alfalfa-alfalfa-tomato",
+  "generator": "calibration:tools/event_prep/russell_split_phases.R",
+  "stacked_input": "generator_stacked/russell_ranch_tautges_2019_alf_corn_tomato.json",
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+ },
+ "events": [
+  {
+   "event_type": "planting",
+   "date": "2013-04-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0039,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-05-10",
+   "nh4_n_kg_m2": 0.01345,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "UAN 32 fertilizer",
+   "n_plots_treated": 3,
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-18",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 471.3108,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-08-20",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.4755,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  }
+ ]
+}

@@ -1,0 +1,806 @@
+{
+ "pecan_events_version": "0.1.1",
+ "site_id": "org_corn_tomato__corn-cc-tomato-cc",
+ "provenance": {
+  "dataset_id": "russell_ranch_tautges_2019",
+  "treatment": "org_corn_tomato",
+  "rotation_phase": "corn/CC-tomato/CC",
+  "generator": "calibration:tools/event_prep/russell_split_phases.R",
+  "stacked_input": "generator_stacked/russell_ranch_tautges_2019_org_corn_tomato.json",
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+ },
+ "events": [
+  {
+   "event_type": "planting",
+   "date": "1993-11-09",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1994-04-29",
+   "org_c_kg_m2": 0.3251365,
+   "org_n_kg_m2": 0.0336363,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 8,
+   "compost_total_c_pct": 18.13,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 1994 analysis, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "1994-05-05",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1994-07-24",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 539.7414,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1994-10-13",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.524,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "1994-11-04",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-04-19",
+   "org_c_kg_m2": 0.2545117,
+   "org_n_kg_m2": 0.0189204,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4.5,
+   "compost_total_c_pct": 25.23,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 1995 analysis, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "1995-04-22",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "1995-11-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1995-12-19",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 377.9647,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1996-05-07",
+   "org_c_kg_m2": 0.4347826,
+   "org_n_kg_m2": 0.0369999,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 8.8,
+   "compost_total_c_pct": 22.04,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 1996 analysis, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "1996-05-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1996-08-04",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 598.1636,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1996-10-24",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.5791,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "1996-11-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0025,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1997-04-14",
+   "org_c_kg_m2": 0.208568,
+   "org_n_kg_m2": 0.0168181,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 23.26,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 1997 analysis, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "1997-04-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.004,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1997-06-21",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 505.2479,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1997-08-22",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.7719,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "1997-10-29",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1999-09-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.549,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "1999-11-04",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0044,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2000-04-07",
+   "org_c_kg_m2": 0.1788281,
+   "org_n_kg_m2": 0.0168181,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 19.9433,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the mean of measured years, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2000-05-05",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2000-07-27",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 547.4116,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2000-10-18",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.7076,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2000-11-11",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2001-04-17",
+   "org_c_kg_m2": 0.1371922,
+   "org_n_kg_m2": 0.0177543,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 15.3,
+   "compost_total_n_pct": 1.98,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2001 analysis, N from the 2001 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2001-05-02",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2001-07-04",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 666.4215,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2001-09-05",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.5756,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2002-04-14",
+   "org_c_kg_m2": 0.1497457,
+   "org_n_kg_m2": 0.0168576,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 16.7,
+   "compost_total_n_pct": 1.88,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2002 analysis, N from the 2002 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2002-06-03",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0031,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2002-08-11",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 707.8808,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2002-10-19",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.4184,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2002-11-02",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0031,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2003-04-11",
+   "org_c_kg_m2": 0.0995316,
+   "org_n_kg_m2": 0.0111188,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 11.1,
+   "compost_total_n_pct": 1.24,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2003 analysis, N from the 2003 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2003-05-08",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2003-06-29",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 554.9257,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2003-08-20",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.4655,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2003-11-18",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0039,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2004-03-29",
+   "org_c_kg_m2": 0.1291221,
+   "org_n_kg_m2": 0.0131812,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 14.4,
+   "compost_total_n_pct": 1.47,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2004 analysis, N from the 2004 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2004-05-02",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2004-07-15",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 434.536,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2004-09-28",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.6333,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "merged_dates": "2004-09-28;2004-09-29",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2005-04-20",
+   "org_c_kg_m2": 0.1788281,
+   "org_n_kg_m2": 0.0168181,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 19.9433,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the mean of measured years, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2005-05-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.003,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2005-07-07",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 427.0743,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2005-08-31",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.408,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2005-10-28",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2006-05-11",
+   "org_c_kg_m2": 0.1788281,
+   "org_n_kg_m2": 0.0168181,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 19.9433,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "assumed",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the mean of measured years, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2006-06-01",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Corn",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2006-08-12",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 611.7336,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2006-10-24",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.4564,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2006-11-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2007-04-28",
+   "org_c_kg_m2": 0.2474839,
+   "org_n_kg_m2": 0.0219687,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 27.6,
+   "compost_total_n_pct": 2.45,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2007 analysis, N from the 2007 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2007-05-16",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0027,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2007-07-24",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 485.2686,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2007-10-02",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.3659,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2007-11-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2008-05-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Sudangrass",
+   "crop_display": "Sudangrass",
+   "leaf_c_kg_m2": 0.0043,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2008-11-20",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2009-04-23",
+   "org_c_kg_m2": 0.1336055,
+   "org_n_kg_m2": 0.0173956,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 14.9,
+   "compost_total_n_pct": 1.94,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2009 analysis, N from the 2009 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2009-05-26",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2009-07-29",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 652.3614,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2009-10-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.546,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2009-11-13",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2010-03-12",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 556.6212,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2010-07-09",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.3661,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2010-11-15",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0029,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-04-10",
+   "org_c_kg_m2": 0.2909228,
+   "org_n_kg_m2": 0.0239444,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 32.4444,
+   "compost_total_n_pct": 2.6703,
+   "provenance_class": "derived",
+   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 2011 analysis, N from the 2011 analysis. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-04-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2011-07-02",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 575.0694,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2011-09-13",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.6397,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2011-11-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0039,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2012-10-16",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "planting",
+   "date": "2013-04-17",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-06-18",
+   "source": "10.1002/ecy.2105",
+   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
+   "cover_crop_window": false,
+   "amount_mm": 528.28,
+   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
+   "method": "canopy"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-08-20",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.4729,
+   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+  },
+  {
+   "event_type": "planting",
+   "date": "2013-10-28",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.003,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  }
+ ]
+}
