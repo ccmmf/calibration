@@ -122,7 +122,20 @@ cmp$date <- as_date(cmp$date)
 cmp$wet <- as.numeric(cmp$compost_applied_wet_weight)
 cmp$phase <- unname(phase_of[sp(cmp$system_name, cmp$plot)])
 stopifnot(all(cmp$material_units == "tons/acre"), !anyNA(cmp$phase), !anyNA(cmp$date))
-cmp <- unique(cmp[, c("system_name", "phase", "date", "plot", "wet")])
+# The package lists every plot's compost history twice. The two copies agree except for
+# 2005 on plots 2-3, 6-4 and 6-8, dated 4/20 in one and 5/20 in the other at the same
+# 4 t/ac, which unique() alone would keep as two applications. Compost went on once a
+# year, so keep one per plot and year, on the earlier date: it falls in the "March or
+# April" window Tautges et al. (2019) give for compost.
+cmp <- cmp[order(cmp$system_name, cmp$plot, cmp$date), c("system_name", "phase", "date", "plot", "wet")]
+cmp$year <- format(cmp$date, "%Y")
+same_wet <- tapply(cmp$wet, paste(cmp$system_name, cmp$plot, cmp$year), function(w) length(unique(w)) == 1L)
+if (!all(same_wet)) stop("a plot-year has differing compost amounts: ", paste(names(same_wet)[!same_wet], collapse = ", "))
+dup <- duplicated(cmp[, c("system_name", "plot", "year")])
+dropped <- cmp[dup & !duplicated(cmp[, c("system_name", "plot", "date")]), ]
+cat(sprintf("compost rows repeated in the package: %d; second-copy dates dropped: %s\n", sum(dup),
+            if (nrow(dropped)) paste(sprintf("%s %s", dropped$plot, format(dropped$date)), collapse = ", ") else "none"))
+cmp <- cmp[!dup, ]
 compost <- field_mean(cmp, "wet")
 
 fert_events <- function(sys, ph, last_year) {

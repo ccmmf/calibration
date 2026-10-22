@@ -52,7 +52,7 @@ reproduces the paper:
 
 | check | these files | Tautges et al. 2019 |
 |---|---|---|
-| compost C per application year, organic system | 2.14 Mg C/ha | 40.4 Mg C/ha over 19 years = 2.13 |
+| compost C per application year, organic system | 2.09 Mg C/ha | 40.4 Mg C/ha over 19 years = 2.13 |
 | compost N per application year | median 168 kg N/ha (111 to 505) | 150 to 200 kg N/ha |
 | 4 tons/acre in t/ha | 8.97 | "annual inputs of 9 t/ha" |
 
@@ -63,6 +63,11 @@ reproduces the paper:
   annual application: 1998, 1999 and 2008 in both organic phases, plus 2010, 2012 and 2013
   in `corn/CC-tomato/CC` and 2011 in `tomato/CC-corn/CC`; `transitional` lacks 2008 and
   2011. Those years carry no compost here; nothing is filled in.
+- `operations_compost.csv` lists every plot's history twice. The copies agree except for
+  2005 on plots 2-3, 6-4 and 6-8, dated 4/20 in one and 5/20 in the other at the same
+  4 tons/acre. Compost is kept once per plot and year, on the earlier date, which falls in
+  the "March or April" window Tautges gives. The curated `managements` in cal-val-data
+  repeat the same rows, so summing them there double counts compost.
 
 ## Merging multi-day operations
 
@@ -80,10 +85,11 @@ Left as recorded: corn replanted four weeks later (`conv_corn_tomato` 1998;
 
 ## Checks
 
-- All 23 files validate against `events_schema_v0.1.1` with `jsonvalidate` installed, and
-  `PEcAn.SIPNET::write.events.SIPNET` writes an `events.in` for each.
-- Every phase-year's mineral N and compost C (447 totals) recomputed independently from the
-  package: 0 differences.
+- All 23 files validate against `events_schema_v0.1.1` from PEcAn `develop` (the stacked
+  organic and transitional files still fail it), and `PEcAn.SIPNET::write.events.SIPNET`
+  writes an `events.in` for each, with organic C on all 42 compost events.
+- Every phase-year's mineral N, compost C and compost N (261 nonzero totals) recomputed
+  independently from the package: 0 differences.
 - Rerunning the script reproduces every output byte for byte.
 
 ## Rebuild

@@ -516,20 +516,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "fertilization",
-   "date": "2005-05-20",
-   "org_c_kg_m2": 0.1788281,
-   "org_n_kg_m2": 0.0168181,
-   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
-   "material": "composted poultry manure",
-   "n_plots_treated": 3,
-   "compost_wet_tons_acre": 4,
-   "compost_total_c_pct": 19.9433,
-   "compost_total_n_pct": 1.8756,
-   "provenance_class": "assumed",
-   "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the mean of measured years, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
-  },
-  {
    "event_type": "planting",
    "date": "2005-05-24",
    "source": "10.1002/ecy.2105",
