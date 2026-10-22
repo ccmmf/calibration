@@ -38,6 +38,7 @@ SYSTEMS <- c(
 # Tautges et al. (2019) Table 1 lists irrigation "None" for the rainfed wheat systems
 RAINFED <- c("rf_wheat_control", "rf_wheat_fallow", "rf_wheat_legume")
 CASH_CROPS <- c("corn", "tomato", "wheat", "alfalfa", "sudangrass")
+SEASON_DAYS <- 365  # longest planting-to-harvest span that counts as one cash crop window
 SOURCE <- "10.1002/ecy.2105"
 TON_AC_TO_KG_M2 <- 907.18474 / 4046.8564224  # US short ton per acre (per David)
 KG_HA_TO_KG_M2 <- 1e-4
@@ -65,14 +66,23 @@ frt <- rd("operations_fertilizers.csv")
 cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")
 
-op_table <- function(df, date_col, crop_col) {
+# Operation rows whose (system, plot) has no rotation phase cannot go to any phase file.
+# None of them feeds an event, but they are printed rather than dropped silently.
+unmapped <- function(file, system, plot, date, what)
+  cat(sprintf("%s: %s plot %s, %s, %s: no rotation phase in plot_system.csv (dropped)\n",
+              file, system, plot, format(date), what), sep = "")
+
+op_table <- function(df, file, date_col, crop_col, what = df[[crop_col]]) {
   d <- data.frame(system = df$system_name, plot = df$plot, date = as_date(df[[date_col]]),
                   crop = tolower(df[[crop_col]]), stringsAsFactors = FALSE)
   d$phase <- unname(phase_of[sp(d$system, d$plot)])
-  d[!is.na(d$phase) & !is.na(d$date), ]
+  miss <- is.na(d$phase)
+  unmapped(file, d$system[miss], d$plot[miss], d$date[miss], what[miss])
+  d[!miss & !is.na(d$date), ]
 }
-ops <- list(planting = op_table(plt, "Date", "Crop_planted"),
-            harvest = op_table(hrv, "date", "crop_harvested"))
+ops <- list(planting = op_table(plt, "operations_planting.csv", "Date", "Crop_planted",
+                                paste(plt$Crop_planted, plt$material_quantity, plt$material_units)),
+            harvest = op_table(hrv, "operations_harvest.csv", "date", "crop_harvested"))
 
 # Compost %C and %N for the year it was applied. Tautges et al. 2019 measured compost on the
 # in-house Costech each year, so those replicates are averaged where they exist (2011-2013
@@ -109,10 +119,36 @@ cat(sprintf("operations_fertilizers rows without a usable date: %d, total N %.2f
             nrow(undated), sum(as.numeric(undated[["nitrogen_applied_kg/ha"]]), na.rm = TRUE)))
 frt <- frt[!is.na(frt$date), ]
 frt$n <- as.numeric(frt[["nitrogen_applied_kg/ha"]])
+# Excel turned one plot id into a date: "5-Jan" is plot 1-5 (Conventional Wheat/Tomato,
+# 11/5/2011, Can_27, 111.97 kg N/ha).
+FERT_PLOT_FIXES <- c("5-Jan" = "1-5")
+fix <- frt$plot %in% names(FERT_PLOT_FIXES)
+frt$plot[fix] <- FERT_PLOT_FIXES[frt$plot[fix]]
 frt$phase <- unname(phase_of[sp(frt$system_name, frt$plot)])
-frt <- frt[!is.na(frt$phase), ]
+miss <- is.na(frt$phase)
+unmapped("operations_fertilizers.csv", frt$system_name[miss], frt$plot[miss], frt$date[miss],
+         paste(frt$material_applied[miss], frt$n[miss], "kg N/ha"))
+frt <- frt[!miss, ]
 frt <- unique(frt)  # the package repeats some plot rows verbatim
 frt <- frt[!is.na(frt$n) & frt$n > 0, ]
+# Known duplicate records: the same application listed on two dates. The 2011 wheat
+# pre-plant on the Conventional Wheat/Tomato wheat plots appears on 11/5 and again on 11/14
+# at the same rate, while every other wheat year has one. As with compost, it is kept once
+# per plot on the earlier date. Listed explicitly, not deduplicated by rule, because split
+# applications are real (Conventional Corn/Tomato 1996 tomato: 56.55 kg N/ha on 4/16 and 5/13).
+FERT_DUPLICATES <- data.frame(
+  system_name = "Conventional Wheat/Tomato", material_applied = "Can_27", n = 111.97,
+  keep = as.Date("2011-11-05"), drop = as.Date("2011-11-14"))
+for (i in seq_len(nrow(FERT_DUPLICATES))) {
+  d <- FERT_DUPLICATES[i, ]
+  rec <- frt$system_name == d$system_name & frt$material_applied == d$material_applied & frt$n == d$n
+  drop <- rec & frt$date == d$drop
+  stopifnot(any(drop), setequal(frt$plot[drop], frt$plot[rec & frt$date == d$keep]))
+  cat(sprintf("fertilizer records repeated in the package: %s %s %.2f kg N/ha on %s dropped for plots %s (kept %s)\n",
+              d$system_name, d$material_applied, d$n, format(d$drop),
+              paste(sort(frt$plot[drop]), collapse = ", "), format(d$keep)))
+  frt <- frt[!drop, ]
+}
 fert_n <- field_mean(frt, "n")
 mats <- aggregate(material_applied ~ system_name + phase + date, data = frt,
                   FUN = function(m) paste(sort(unique(m)), collapse = "; "))
@@ -268,7 +304,11 @@ for (tid in names(SYSTEMS)) {
   for (ph in phases) keep[[ph]] <- c(keep[[ph]], fert_events(sys, ph, last_year))
 
   # irrigation was injected at the midpoint of each cash crop window; give each event to
-  # the phase whose own window midpoint it sits on. Rainfed systems get none.
+  # the phase whose own window midpoint it sits on. A window is one season: from a cash crop
+  # planting to the first same-crop harvest within SEASON_DAYS, and a planting with no such
+  # harvest has none. The generator also paired a planting in one phase with a harvest in
+  # the other and put irrigation in winter; those events fall outside every window and are
+  # dropped. Rainfed systems get none.
   irr <- Filter(function(e) identical(e$event_type, "irrigation"), ev)
   dropped_irr <- 0L
   if (tid %in% RAINFED) {
@@ -281,7 +321,8 @@ for (tid in names(SYSTEMS)) {
       if (!length(pl)) return(NULL)
       do.call(rbind, lapply(pl, function(p) {
         h <- Filter(function(x) tolower(x$crop_display) == tolower(p$crop_display) &&
-                      as.Date(x$date) > as.Date(p$date), hv)
+                      as.Date(x$date) > as.Date(p$date) &&
+                      as.numeric(as.Date(x$date) - as.Date(p$date)) <= SEASON_DAYS, hv)
         if (!length(h)) return(NULL)
         hd <- min(as.Date(vapply(h, `[[`, "", "date")))
         data.frame(phase = ph, start = as.Date(p$date), end = hd,
@@ -335,7 +376,8 @@ for (tid in names(SYSTEMS)) {
     cat(sprintf("%-18s %-44s %3d events -> %s\n", tid, ph, length(pe), basename(fn)))
   }
   if (dropped_irr) cat(sprintf("%-18s irrigation events dropped: %d (%s)\n", tid, dropped_irr,
-                               if (tid %in% RAINFED) "rainfed system" else "outside any cash crop window"))
+                               if (tid %in% RAINFED) "rainfed system" else
+                                 sprintf("outside any cash crop window of %d days or less: generator artifacts", SEASON_DAYS)))
 }
 
 smry <- do.call(rbind, summary_rows)

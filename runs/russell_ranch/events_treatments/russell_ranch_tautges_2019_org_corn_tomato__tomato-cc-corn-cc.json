@@ -212,16 +212,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "1998-12-26",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 595.7937,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "planting",
    "date": "1999-06-04",
    "source": "10.1002/ecy.2105",
@@ -329,16 +319,6 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0031,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2002-02-01",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 518.6596,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
   },
   {
    "event_type": "fertilization",

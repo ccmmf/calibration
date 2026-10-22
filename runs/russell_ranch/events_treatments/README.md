@@ -31,6 +31,7 @@ represent a treatment, run both of its phases; observations are per treatment.
 | compost (`org_corn_tomato`, `transitional`) | no amount, so both files failed the schema and were withheld | organic C and N from the package (below) |
 | multi-day operations | one harvest per recorded date, so a crop was harvested 2 to 3 times | merged into one event (below) |
 | irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none; Tautges Table 1 lists irrigation "None" |
+| irrigation, irrigated systems | every event kept | 18 events outside any one-season cash-crop window dropped (below) |
 | zero-N applications (P, K, Zn) | written as 0/0/0 events, two dated an invented 1999-01-01 | dropped; SIPNET reads only N and C |
 
 Fertilization is rebuilt entirely from `operations_fertilizers.csv` and
@@ -41,6 +42,18 @@ crop, harvest fractions drawn from a grain-harvest prior, and irrigation from a 
 prior placed at each cash-crop window midpoint (median 480 to 560 mm per crop year). Those are
 the remaining weaknesses listed when ccmmf/uncertainty#6 was closed; this change does not
 fix them.
+
+Each irrigation event goes to the phase whose cash-crop window has the nearest midpoint. A
+window is one season: from a cash-crop planting to the first harvest of the same crop
+within 365 days. A planting with no such harvest gets no window. The generator also paired
+a planting in one phase with a harvest in the other and put irrigation at that midpoint,
+in winter or in a year the phase had no crop. Those 18 events fall outside every window and
+are dropped as generator artifacts (`conv_corn_tomato` 4, `conv_wheat_tomato` 3,
+`org_corn_tomato` 3, the irrigated wheat systems and `leg_corn_tomato` 2 each; the script
+prints the count per treatment). Unbounded windows had stacked them onto one phase, for
+example 1873 mm in `conv_corn_tomato` `tomato-corn` 1999. A phase-year whose only
+irrigation was such an artifact now has none (for example `conv_corn_tomato` `corn-tomato`
+1998 and 1999). Nothing is filled in.
 
 ## Compost
 
@@ -68,6 +81,29 @@ reproduces the paper:
   4 tons/acre. Compost is kept once per plot and year, on the earlier date, which falls in
   the "March or April" window Tautges gives. The curated `managements` in cal-val-data
   repeat the same rows, so summing them there double counts compost.
+
+## Synthetic N and unplaced records
+
+- Excel turned one plot id in `operations_fertilizers.csv` into a date. `5-Jan` is plot 1-5
+  (Conventional Wheat/Tomato, 11/5/2011, Can_27, 111.97 kg N/ha). The script maps it back
+  before the phase lookup.
+- The 2011 wheat pre-plant on the `conv_wheat_tomato` `wheat-tomato` plots (1-5, 4-3,
+  7-9) is listed on 11/5 and again on 11/14 at the same 111.97 kg N/ha. Every other wheat
+  year has one. As with compost, it is kept once per plot on the earlier date, so
+  `wheat-tomato` 2011 carries 330.7 kg N/ha rather than 405.35. The script drops it from an
+  explicit list of known duplicate records rather than by a rule, because split
+  applications are real: `conv_corn_tomato` 1996 tomato got 56.55 kg N/ha on both 4/16 and
+  5/13.
+- Left as recorded, but likely a plot mislabel in the source: the spring 2011 urea topdress
+  (3/24/2011, 56.2 kg N/ha) is recorded on the same plots, which grew tomato that year.
+  `wheat-tomato` therefore gets it, and `tomato-wheat`, which harvested wheat in 2011, gets
+  no N that year.
+- Two operation rows name a plot that `plot_system.csv` does not place in that system. The
+  script prints both and leaves them out; no event depends on either:
+  - `operations_planting.csv`: cover crop seeded on plot 7-9 under Irrigated Wheat/Legume,
+    11/2/2002. Plot 7-9 is a Conventional Wheat/Tomato plot.
+  - `operations_harvest.csv`: tomato harvested on plot 6-9E under Legume/Corn/Tomato,
+    8/19/2003.
 
 ## Merging multi-day operations
 

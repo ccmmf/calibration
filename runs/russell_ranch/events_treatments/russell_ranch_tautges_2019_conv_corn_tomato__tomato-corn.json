@@ -231,36 +231,6 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
-   "event_type": "irrigation",
-   "date": "1998-12-26",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 697.4315,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "1999-01-05",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 657.6238,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "1999-01-19",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 646.031,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "1999-05-24",
    "nh4_n_kg_m2": 0.004624,
@@ -382,16 +352,6 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2002-01-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 637.1089,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
   },
   {
    "event_type": "fertilization",

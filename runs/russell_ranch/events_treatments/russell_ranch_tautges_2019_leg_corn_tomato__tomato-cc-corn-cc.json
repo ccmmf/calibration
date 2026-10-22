@@ -191,16 +191,6 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
-   "event_type": "irrigation",
-   "date": "1998-12-27",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 573.6283,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "planting",
    "date": "1999-06-04",
    "source": "10.1002/ecy.2105",
@@ -291,16 +281,6 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0032,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2002-02-01",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 523.3858,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
   },
   {
    "event_type": "fertilization",
