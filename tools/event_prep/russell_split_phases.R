@@ -257,21 +257,23 @@ plots_for <- function(kind, sys, e, ph) {
 # days then "Swath1", corn "Machine Harvest" then "Cleanup"). The generator made each date
 # its own event, so the model harvested the same crop two or three times. Same-crop
 # operations in a phase-year merge when they fall within MERGE_DAYS of the first, or touch
-# disjoint plots; the merged event takes the date most plots share (earliest on a tie) and
-# the mean of the generator's amounts. Alfalfa cuttings, about a month apart, stay separate.
+# disjoint plots; the merged event takes the date most plots share (earliest on a tie) and,
+# for a planting, the mean of the generator's amounts (a harvest takes the lookup fractions
+# later). Alfalfa cuttings, about a month apart, stay separate.
 MERGE_DAYS <- 14
-AMOUNT_FIELDS <- c("leaf_c_kg_m2", "wood_c_kg_m2", "fine_root_c_kg_m2", "coarse_root_c_kg_m2",
-                   "frac_above_removed_0to1", "frac_below_removed_0to1",
-                   "frac_above_to_litter_0to1", "frac_below_to_litter_0to1")
+AMOUNT_FIELDS <- c("leaf_c_kg_m2", "wood_c_kg_m2", "fine_root_c_kg_m2", "coarse_root_c_kg_m2")
 merge_events <- function(grp, plots) {
   if (length(grp) == 1L) return(grp[[1]])
   base <- grp[[order(-lengths(plots), vapply(grp, `[[`, "", "date"))[1]]]
-  for (f in intersect(AMOUNT_FIELDS, names(base)))
+  avg <- intersect(AMOUNT_FIELDS, names(base))
+  for (f in avg)
     base[[f]] <- round(mean(vapply(grp, function(e) as.numeric(e[[f]]), 0)), 4)
   base$merged_dates <- paste(vapply(grp, `[[`, "", "date"), collapse = ";")
-  base$merge_note <- sprintf(paste("One operation recorded on %d dates; dated by the day most",
-                                   "plots share (earliest on a tie), generator amounts averaged."),
-                             length(grp))
+  base$merge_note <- paste(c(
+    sprintf("One operation recorded on %d dates; dated by the day most plots share (earliest on a tie).",
+            length(grp)),
+    if (length(avg)) "Generator amounts averaged.",
+    if (base$event_type == "harvest") "Fractions from the harvest lookup."), collapse = " ")
   base
 }
 merge_split_days <- function(pe, sys, ph) {
@@ -558,7 +560,7 @@ for (tid in names(SYSTEMS)) {
     for (y in sort(unique(yrs))) {
       ye <- pe[yrs == y]
       g <- function(f) sum(vapply(ye, function(e) as.numeric(if (is.null(e[[f]])) 0 else e[[f]]), 0))
-      cash <- function(t) paste(sort(vapply(Filter(function(e) e$event_type == t &&
+      cash <- function(t) paste(sort(vapply(Filter(function(e) e$event_type == t && !isTRUE(e$not_harvested) &&
         tolower(e$crop_display) %in% CASH_CROPS, ye), function(e) e$crop_display, "")), collapse = "+")
       summary_rows[[length(summary_rows) + 1L]] <- data.frame(
         treatment = tid, rotation_phase = ph, year = y,

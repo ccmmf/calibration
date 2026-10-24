@@ -1,7 +1,9 @@
 # Russell Ranch treatment events
 
-One `events.json` per Tautges et al. (2019) treatment **and rotation phase**, 1993-2013,
-23 files across 12 treatments. These are treatments (farming systems run side by side) and
+One `events.json` per Tautges et al. (2019) treatment **and rotation phase**, 1993 to 2014,
+23 files across 12 treatments. 2014 holds only the ends of crops planted in fall 2013 (wheat
+harvests and cover crop ends): there are no 2014 plantings and no 2014 fertilization, since
+fertilization is cut at the last year of the stacked inputs. These are treatments (farming systems run side by side) and
 phases (the same system on offset rotations), not ensemble members. Using them as ensemble
 members would conflate treatment effect with management uncertainty.
 
@@ -110,7 +112,8 @@ same crop is a replant and is not filled.
 - The `org_corn_tomato` `corn/CC-tomato/CC` wheat planted 2011-11-17 has no harvest in
   either file; `plot_system.csv` says the plots were "NOT harvested for wheat in 2012". It
   ends at the phase's next planting, the 2012-10-16 cover crop, with all biomass to litter,
-  tagged `provenance_class: assumed` and `not_harvested: true`.
+  tagged `provenance_class: assumed` and `not_harvested: true`, and left out of
+  `cash_harvest` in `phase_year_summary.csv`.
 - The `irr_wheat_legume` `wheat-CC` wheat planted 2007-12-15 is left without a harvest.
   The plots were fallow from 2008 and moved to `alf_corn_tomato` in 2012, and nothing after
   that planting is recorded in this system.
@@ -173,8 +176,9 @@ The package often records one planting or harvest on several dates: the three pl
 different days, or the same plots over a multi-day job (wheat "Harvest" on two days then
 "Swath1"; corn "Machine Harvest" then "Cleanup"). Same-crop operations in a phase-year are
 merged when they fall within 14 days of the first or touch disjoint plots. The merged event
-takes the date most plots share (earliest on a tie) and the mean of the generator's amounts,
-and lists the original dates in `merged_dates`. Alfalfa cuttings, about a month apart, stay
+takes the date most plots share (earliest on a tie) and lists the original dates in
+`merged_dates`. A merged planting takes the mean of the generator's amounts; a merged harvest
+takes its fractions from the harvest lookup, like every other harvest. Alfalfa cuttings, about a month apart, stay
 separate.
 
 Left as recorded: corn replanted four weeks later (`conv_corn_tomato` 1998;
