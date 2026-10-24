@@ -168,6 +168,7 @@
 "irr_wheat_legume","CC-wheat","1995","","Wheat",0,0,0,526.7
 "irr_wheat_legume","CC-wheat","1996","Wheat","",0,0,0,0
 "irr_wheat_legume","CC-wheat","1997","","Wheat",0,0,0,576.8
+"irr_wheat_legume","CC-wheat","1998","","",0,0,0,0
 "irr_wheat_legume","CC-wheat","1999","","Wheat",0,0,0,0
 "irr_wheat_legume","CC-wheat","2000","Wheat","",0,0,0,0
 "irr_wheat_legume","CC-wheat","2001","","Wheat",0,0,0,533.5
@@ -185,6 +186,7 @@
 "irr_wheat_legume","wheat-CC","1998","","Wheat",0,0,0,0
 "irr_wheat_legume","wheat-CC","1999","Wheat","",0,0,0,0
 "irr_wheat_legume","wheat-CC","2000","","Wheat",0,0,0,0
+"irr_wheat_legume","wheat-CC","2001","","",0,0,0,0
 "irr_wheat_legume","wheat-CC","2002","","Wheat",0,0,0,0
 "irr_wheat_legume","wheat-CC","2003","Wheat","",0,0,0,0
 "irr_wheat_legume","wheat-CC","2004","","Wheat",0,0,0,583.2
@@ -196,6 +198,7 @@
 "leg_corn_tomato","corn/CC-tomato/CC","1995","Tomato","Tomato",237.38,0,0,605.7
 "leg_corn_tomato","corn/CC-tomato/CC","1996","Corn","Corn",0,0,0,621.4
 "leg_corn_tomato","corn/CC-tomato/CC","1997","Tomato","Tomato",161.65,0,0,449.7
+"leg_corn_tomato","corn/CC-tomato/CC","1998","","",0,0,0,0
 "leg_corn_tomato","corn/CC-tomato/CC","1999","","Tomato",112.16,0,0,0
 "leg_corn_tomato","corn/CC-tomato/CC","2000","Corn","Corn",0,0,0,617.2
 "leg_corn_tomato","corn/CC-tomato/CC","2001","Tomato","Tomato",158.4,0,0,423.6
@@ -211,6 +214,7 @@
 "leg_corn_tomato","corn/CC-tomato/CC","2011","Tomato+Wheat","Tomato",274.5,0,0,587.1
 "leg_corn_tomato","corn/CC-tomato/CC","2012","","Wheat",56.2,0,0,627.6
 "leg_corn_tomato","corn/CC-tomato/CC","2013","Tomato","Tomato",134.5,0,0,376
+"leg_corn_tomato","corn/CC-tomato/CC","2014","","",0,0,0,0
 "leg_corn_tomato","tomato/CC-corn/CC","1994","","Tomato",135.68,0,0,0
 "leg_corn_tomato","tomato/CC-corn/CC","1995","Corn","Corn",0,0,0,629.9
 "leg_corn_tomato","tomato/CC-corn/CC","1996","Tomato","Tomato",159.34,0,0,420.4
@@ -231,11 +235,13 @@
 "leg_corn_tomato","tomato/CC-corn/CC","2011","","Wheat",56.2,0,0,505.7
 "leg_corn_tomato","tomato/CC-corn/CC","2012","Tomato","Tomato",162.53,0,0,623.1
 "leg_corn_tomato","tomato/CC-corn/CC","2013","Corn","Corn",0,0,0,429.5
+"leg_corn_tomato","tomato/CC-corn/CC","2014","","",0,0,0,0
 "org_corn_tomato","corn/CC-tomato/CC","1993","","",0,0,0,0
 "org_corn_tomato","corn/CC-tomato/CC","1994","Corn","Corn",0,3.251,336.36,539.7
 "org_corn_tomato","corn/CC-tomato/CC","1995","Tomato","Tomato",0,2.545,189.2,0
 "org_corn_tomato","corn/CC-tomato/CC","1996","Corn","Corn",0,4.348,370,598.2
 "org_corn_tomato","corn/CC-tomato/CC","1997","Tomato","Tomato",0,2.086,168.18,505.2
+"org_corn_tomato","corn/CC-tomato/CC","1998","","",0,0,0,0
 "org_corn_tomato","corn/CC-tomato/CC","1999","","Tomato",0,0,0,0
 "org_corn_tomato","corn/CC-tomato/CC","2000","Corn","Corn",0,1.788,168.18,547.4
 "org_corn_tomato","corn/CC-tomato/CC","2001","Tomato","Tomato",0,1.372,177.54,666.4
@@ -251,6 +257,7 @@
 "org_corn_tomato","corn/CC-tomato/CC","2011","Tomato+Wheat","Tomato",0,2.909,239.44,575.1
 "org_corn_tomato","corn/CC-tomato/CC","2012","","Wheat",0,0,0,0
 "org_corn_tomato","corn/CC-tomato/CC","2013","Tomato","Tomato",0,0,0,528.3
+"org_corn_tomato","corn/CC-tomato/CC","2014","","",0,0,0,0
 "org_corn_tomato","tomato/CC-corn/CC","1993","","",0,0,0,0
 "org_corn_tomato","tomato/CC-corn/CC","1994","","Tomato",0,1.626,168.18,0
 "org_corn_tomato","tomato/CC-corn/CC","1995","Corn","Corn",0,6.787,504.54,504.2
@@ -272,6 +279,7 @@
 "org_corn_tomato","tomato/CC-corn/CC","2011","","Wheat",0,0,0,0
 "org_corn_tomato","tomato/CC-corn/CC","2012","Tomato","Tomato",0,1.675,150.37,482.1
 "org_corn_tomato","tomato/CC-corn/CC","2013","Corn+Corn+Corn","Corn",0,1.747,141.06,1874.6
+"org_corn_tomato","tomato/CC-corn/CC","2014","","",0,0,0,0
 "rf_wheat_control","fallow-wheat","1994","Wheat","",0,0,0,0
 "rf_wheat_control","fallow-wheat","1995","","Wheat",0,0,0,0
 "rf_wheat_control","fallow-wheat","1996","Wheat","",0,0,0,0
@@ -357,6 +365,7 @@
 "rf_wheat_legume","CC-wheat","1995","","Wheat",0,0,0,0
 "rf_wheat_legume","CC-wheat","1996","Wheat","",0,0,0,0
 "rf_wheat_legume","CC-wheat","1997","","Wheat",0,0,0,0
+"rf_wheat_legume","CC-wheat","1998","","",0,0,0,0
 "rf_wheat_legume","CC-wheat","1999","","Wheat",0,0,0,0
 "rf_wheat_legume","CC-wheat","2000","Wheat","",0,0,0,0
 "rf_wheat_legume","CC-wheat","2001","","Wheat",0,0,0,0
@@ -372,6 +381,7 @@
 "rf_wheat_legume","CC-wheat","2011","","Wheat",0,0,0,0
 "rf_wheat_legume","CC-wheat","2012","Wheat","",0,0,0,0
 "rf_wheat_legume","CC-wheat","2013","","Wheat",0,0,0,0
+"rf_wheat_legume","CC-wheat","2014","","",0,0,0,0
 "rf_wheat_legume","wheat-CC","1993","Wheat","",0,0,0,0
 "rf_wheat_legume","wheat-CC","1994","","Wheat",0,0,0,0
 "rf_wheat_legume","wheat-CC","1995","Wheat","",0,0,0,0
@@ -380,6 +390,7 @@
 "rf_wheat_legume","wheat-CC","1998","","Wheat",0,0,0,0
 "rf_wheat_legume","wheat-CC","1999","Wheat","Wheat",0,0,0,0
 "rf_wheat_legume","wheat-CC","2000","","Wheat",0,0,0,0
+"rf_wheat_legume","wheat-CC","2001","","",0,0,0,0
 "rf_wheat_legume","wheat-CC","2002","","Wheat",0,0,0,0
 "rf_wheat_legume","wheat-CC","2003","Wheat","",0,0,0,0
 "rf_wheat_legume","wheat-CC","2004","","Wheat",0,0,0,0
@@ -394,6 +405,7 @@
 "rf_wheat_legume","wheat-CC","2013","Wheat","",0,0,0,0
 "rf_wheat_legume","wheat-CC","2014","","Wheat",0,0,0,0
 "transitional","tomato-corn","1993","","",0,0,0,0
+"transitional","tomato-corn","1994","","",0,0,0,0
 "transitional","tomato-corn","1995","Corn","Corn",337.03,0,0,493.3
 "transitional","tomato-corn","1996","Tomato+Wheat","Tomato",273.1,0,0,376.4
 "transitional","tomato-corn","1997","","Wheat",56.04,0,0,549.4
@@ -413,3 +425,4 @@
 "transitional","tomato-corn","2011","","Wheat",0,0,0,0
 "transitional","tomato-corn","2012","Tomato","Tomato",0,1.675,150.37,682.7
 "transitional","tomato-corn","2013","Corn+Corn","Corn",0,1.747,141.06,1039.4
+"transitional","tomato-corn","2014","","",0,0,0,0

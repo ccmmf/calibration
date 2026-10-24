@@ -33,6 +33,7 @@ represent a treatment, run both of its phases; observations are per treatment.
 | irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none; Tautges Table 1 lists irrigation "None" |
 | irrigation, irrigated systems | every event kept | 18 events outside any one-season cash-crop window dropped (below) |
 | harvest fractions | drawn from a grain-harvest prior | harvest lookup rows (below) |
+| cover crops | planted, never terminated | end on their incorporation date, all to litter (below) |
 | harvests missing from `operations_harvest.csv` | none, so 35 crops were never harvested | dated from `plot_system.csv` (below) |
 | zero-N applications (P, K, Zn) | written as 0/0/0 events, two dated an invented 1999-01-01 | dropped; SIPNET reads only N and C |
 
@@ -74,6 +75,26 @@ grain-harvest prior is dropped. Roots all go to litter.
 Sudangrass has no row and needs none. In 2008 and 2009 it "was sampled prior to plowing
 under at every harvest and no hay was removed from the plots" (Wolf et al. 2018 metadata),
 so its harvests send everything to litter.
+
+## Cover crop termination
+
+The package has no termination or tillage records, so every cover crop the generator planted
+grew on. The data dictionary for `wcc_harvests_all.csv` gives its `date` as "the date of the
+WCC incorporation" (the methods put the biomass sample in the week before it). Each cover
+crop now ends with a harvest event that removes nothing and sends all biomass, above and
+below ground, to litter. Of 98 cover crop plantings:
+
+- 89 end on that date, the one most of the phase's plots share.
+- 2 have no sample and end on the cover crop harvest date in `plot_system.csv`, which
+  equals the sample date in 342 of 353 plot-years (`leg_corn_tomato` 2006-04-25,
+  `rf_wheat_legume` 2014-03-13).
+- 5 are 2004. That year's date is 5/17 for every plot of every system, after the 5/2 and
+  5/5 corn and tomato plantings, so it cannot be the incorporation. Those cover crops end at
+  the cash crop planting instead, tagged `provenance_class: assumed`.
+- 1 has no date in either file (`transitional` planted fall 1999) and ends at the next cash
+  crop planting, 2000-05-05, also `assumed`.
+- 1 is left running: `irr_wheat_legume` `CC-wheat`, planted 2007-12-12, the last event
+  in that system before its plots went fallow.
 
 ## Missing harvests
 
@@ -172,7 +193,14 @@ that was never harvested.
   writes an `events.in` for each, with organic C on all 42 compost events.
 - Every phase-year's mineral N, compost C and compost N (261 nonzero totals) recomputed
   independently from the package: 0 differences.
+- Every cash crop planting has a same-crop harvest within 365 days and every cover crop a
+  termination, except the two `irr_wheat_legume` plantings of December 2007 above. No cover
+  crop ends after the next cash crop planting. The 398 harvest events give 398 `harv` lines.
 - Rerunning the script reproduces every output byte for byte.
+
+Not fixed here: 25 harvests have no same-crop planting before them, because the planting is
+missing from `operations_planting.csv` (1994 tomato in four phases; 1999 tomato and wheat and
+2002 wheat and corn in most systems). `plot_system.csv` has those planting dates too.
 
 ## Rebuild
 

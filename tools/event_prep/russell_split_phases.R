@@ -53,7 +53,8 @@ HARVEST_LOOKUP <- data.frame(
   stringsAsFactors = FALSE)
 # Sudangrass has no lookup row and needs none: the package metadata says that in 2008 and 2009
 # it was sampled before plowing under and no hay was removed, so it is a green manure.
-GREEN_MANURE <- "sudangrass"
+GREEN_MANURE <- c("cover crop", "sudangrass")
+WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of planting
 
 rd <- function(f, enc = "UTF-8")
   read.csv(file.path(century_dir, f), stringsAsFactors = FALSE, check.names = FALSE,
@@ -89,6 +90,7 @@ hrv <- rd("operations_harvest.csv")
 frt <- rd("operations_fertilizers.csv")
 cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")
+wcc <- rd("wcc_harvests_all.csv")
 
 # Operation rows whose (system, plot) has no rotation phase cannot go to any phase file.
 # None of them feeds an event, but they are printed rather than dropped silently.
@@ -369,6 +371,67 @@ missing_harvests <- function(sys, ph, pe) {
   out
 }
 
+# Cover crop termination. wcc_harvests_all.csv dates each cover crop sample by "the date of
+# the WCC incorporation" (data dictionary; the methods put the sample in the week before
+# it), so each cover crop ends on that date, the one most of the phase's plots share, with
+# all biomass to litter. Where a planting has no sample, plot_system.csv's cover crop
+# harvest date is used (it equals the sample date in 342 of 353 plot-years), then the next
+# cash crop planting. A recorded date after the next cash crop planting cannot be the
+# incorporation (2004 is 5/17 for every plot of every system, after the 5/2 and 5/5 corn and
+# tomato plantings), so the cover crop ends at that planting instead.
+cc_dates <- rbind(
+  data.frame(system = wcc$system_name, plot = sub("[EW]$", "", wcc$plot), date = as_date(wcc$date),
+             src = "wcc_harvests_all.csv", stringsAsFactors = FALSE),
+  data.frame(system = ps$new_system_name, plot = ps$plot,
+             date = do.call(c, lapply(ps$crop_B_date_harvested, first_date)),
+             src = "plot_system.csv", stringsAsFactors = FALSE)[ps$crop_B_harvested %in% "Cover Crop", ])
+cc_dates$phase <- unname(phase_of[sp(cc_dates$system, cc_dates$plot)])
+cc_dates <- cc_dates[!is.na(cc_dates$phase) & !is.na(cc_dates$date), ]
+CC_NOTES <- c(
+  wcc_harvests_all.csv = "Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+  plot_system.csv = "No cover crop sample for this planting; dated by the cover crop harvest date in plot_system.csv.")
+cover_crop_ends <- function(sys, ph, pe) {
+  cc <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) == "cover crop", pe)
+  cash <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
+  out <- list()
+  for (p in cc) {
+    pd <- as.Date(p$date)
+    s <- cc_dates[cc_dates$system == sys & cc_dates$phase == ph & cc_dates$date > pd &
+                    as.numeric(cc_dates$date - pd) <= WCC_WINDOW_DAYS, ]
+    if (nrow(s)) {
+      src <- names(CC_NOTES)[names(CC_NOTES) %in% s$src][1]
+      s <- s[s$src == src, ]
+      per_plot <- tapply(s$date, s$plot, min)
+      d <- shared_date(as.Date(per_plot, origin = "1970-01-01"))
+      cls <- "published"; note <- CC_NOTES[[src]]
+      nxt <- as.Date(vapply(cash, `[[`, "", "date"))
+      nxt <- nxt[nxt > pd & nxt < d]
+      if (length(nxt)) {
+        note <- sprintf("The recorded date (%s, %s) is after the next cash crop planting; ends at that planting.",
+                        format(d), src)
+        d <- min(nxt); src <- "operations_planting.csv"; cls <- "assumed"
+      }
+    } else {
+      nxt <- as.Date(vapply(cash, `[[`, "", "date"))
+      nxt <- nxt[nxt > pd]
+      if (!length(nxt)) {
+        cat(sprintf("%s %s: cover crop planted %s has no incorporation date and no later cash crop; not ended\n",
+                    sys, ph, p$date))
+        next
+      }
+      d <- min(nxt)
+      src <- "operations_planting.csv"; cls <- "assumed"
+      note <- "No incorporation date for this planting; ends at the next cash crop planting."
+    }
+    out[[length(out) + 1L]] <- list(
+      event_type = "harvest", date = format(d), source = paste0(SOURCE, ":", src),
+      crop_display = "Cover Crop", frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
+      frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1,
+      provenance_class = cls, provenance_note = paste("Cover crop termination.", note))
+  }
+  out
+}
+
 # Harvests take the lookup fractions, or all to litter for a green manure; the generator's
 # harvest prior is dropped.
 apply_lookup <- function(e) {
@@ -419,13 +482,15 @@ for (tid in names(SYSTEMS)) {
   }
   if (n_merged) cat(sprintf("%-18s split-day plantings/harvests merged away: %d\n", tid, n_merged))
 
-  n_filled <- 0L
+  n_filled <- 0L; n_ended <- 0L
   for (ph in phases) {
     mh <- missing_harvests(sys, ph, keep[[ph]])
-    n_filled <- n_filled + length(mh)
-    keep[[ph]] <- lapply(c(keep[[ph]], mh), apply_lookup)
+    ce <- cover_crop_ends(sys, ph, keep[[ph]])
+    n_filled <- n_filled + length(mh); n_ended <- n_ended + length(ce)
+    keep[[ph]] <- lapply(c(keep[[ph]], mh, ce), apply_lookup)
   }
-  cat(sprintf("%-18s harvests filled from plot_system.csv: %d\n", tid, n_filled))
+  cat(sprintf("%-18s harvests filled from plot_system.csv: %d; cover crop terminations added: %d\n",
+              tid, n_filled, n_ended))
 
   last_year <- max(as.integer(substr(vapply(ev, `[[`, "", "date"), 1, 4)))
   for (ph in phases) keep[[ph]] <- c(keep[[ph]], fert_events(sys, ph, last_year))
@@ -482,9 +547,9 @@ for (tid in names(SYSTEMS)) {
           "from the stacked generator output, assigned to this phase by the plot ids in the",
           "Century package; planting amounts are still the generator's prior fills",
           "(prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row),",
-          "or go wholly to litter for sudangrass, which was plowed under. Harvests missing",
-          "from operations_harvest.csv are filled from plot_system.csv. Fertilization is",
-          "rebuilt from the package.")),
+          "or go wholly to litter for cover crops and sudangrass, which were plowed under.",
+          "Harvests missing from operations_harvest.csv are filled from plot_system.csv, and",
+          "cover crops end on their incorporation date. Fertilization is rebuilt from the package.")),
       events = pe)
     fn <- file.path(out_dir, sprintf("russell_ranch_tautges_2019_%s__%s.json", tid, slug))
     write(jsonlite::toJSON(out, auto_unbox = TRUE, pretty = 1, digits = NA), fn)

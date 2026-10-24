@@ -7,7 +7,7 @@
   "rotation_phase": "wheat-CC",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_legume.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Harvests missing from operations_harvest.csv are filled from plot_system.csv. Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for cover crops and sudangrass, which were plowed under. Harvests missing from operations_harvest.csv are filled from plot_system.csv, and cover crops end on their incorporation date. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -40,6 +40,18 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "harvest",
+   "date": "1995-04-06",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
    "event_type": "planting",
    "date": "1995-11-22",
    "source": "10.1002/ecy.2105",
@@ -67,6 +79,18 @@
    "crop_display": "Cover Crop",
    "leaf_c_kg_m2": 0.0039,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1997-04-07",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
    "event_type": "planting",
@@ -132,6 +156,18 @@
   },
   {
    "event_type": "harvest",
+   "date": "2001-03-29",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "harvest",
    "date": "2002-07-08",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
@@ -149,6 +185,18 @@
    "crop_display": "Cover Crop",
    "leaf_c_kg_m2": 0.0038,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2003-04-01",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
    "event_type": "planting",
@@ -200,6 +248,18 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "harvest",
+   "date": "2007-04-03",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
    "event_type": "planting",
    "date": "2007-12-15",
    "source": "10.1002/ecy.2105",
@@ -227,6 +287,18 @@
    "crop_display": "Cover Crop",
    "leaf_c_kg_m2": 0.0039,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2009-03-24",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
    "event_type": "planting",
@@ -258,6 +330,18 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "harvest",
+   "date": "2011-04-04",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
    "event_type": "planting",
    "date": "2011-11-17",
    "source": "10.1002/ecy.2105",
@@ -285,6 +369,18 @@
    "crop_display": "Cover Crop",
    "leaf_c_kg_m2": 0.0033,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-02-20",
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
    "event_type": "planting",
