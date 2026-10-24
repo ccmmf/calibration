@@ -43,6 +43,18 @@ SOURCE <- "10.1002/ecy.2105"
 TON_AC_TO_KG_M2 <- 907.18474 / 4046.8564224  # US short ton per acre (per David)
 KG_HA_TO_KG_M2 <- 1e-4
 
+# Harvest fractions from the harvest lookup the other calibration sites use (rows as given
+# by Akash on PR #10). Aboveground removed and to litter; roots all go to litter.
+HARVEST_LOOKUP <- data.frame(
+  crop = c("corn", "tomato", "wheat", "alfalfa"),
+  lookup_row = c("F16", "T32", "G2", "P1"),
+  above_removed = c(0.752, 0.33, 0.713, 0.85),
+  above_to_litter = c(0.248, 0.67, 0.287, 0.15),
+  stringsAsFactors = FALSE)
+# Sudangrass has no lookup row and needs none: the package metadata says that in 2008 and 2009
+# it was sampled before plowing under and no hay was removed, so it is a green manure.
+GREEN_MANURE <- "sudangrass"
+
 rd <- function(f, enc = "UTF-8")
   read.csv(file.path(century_dir, f), stringsAsFactors = FALSE, check.names = FALSE,
            fileEncoding = enc)
@@ -287,6 +299,30 @@ merge_split_days <- function(pe, sys, ph) {
   out
 }
 
+# Harvests take the lookup fractions, or all to litter for a green manure; the generator's
+# harvest prior is dropped.
+apply_lookup <- function(e) {
+  if (e$event_type != "harvest") return(e)
+  crop <- tolower(e$crop_display)
+  if (crop %in% GREEN_MANURE) {
+    e$frac_above_removed_0to1 <- 0
+    e$frac_above_to_litter_0to1 <- 1
+    if (crop == "sudangrass")
+      e$harvest_fraction_note <- paste("Plowed under with no hay removed (2008 and 2009 sudangrass,",
+                                       "Wolf et al. 2018 metadata).")
+  } else {
+    r <- HARVEST_LOOKUP[HARVEST_LOOKUP$crop == crop, ]
+    if (!nrow(r)) stop(sprintf("%s harvest on %s has no harvest lookup row", e$crop_display, e$date))
+    e$frac_above_removed_0to1 <- r$above_removed
+    e$frac_above_to_litter_0to1 <- r$above_to_litter
+    e$harvest_lookup_row <- r$lookup_row
+  }
+  e$frac_below_removed_0to1 <- 0
+  e$frac_below_to_litter_0to1 <- 1
+  e$prior_filled <- NULL
+  e
+}
+
 summary_rows <- list()
 for (tid in names(SYSTEMS)) {
   sys <- SYSTEMS[[tid]]
@@ -311,6 +347,8 @@ for (tid in names(SYSTEMS)) {
     keep[[ph]] <- m
   }
   if (n_merged) cat(sprintf("%-18s split-day plantings/harvests merged away: %d\n", tid, n_merged))
+
+  for (ph in phases) keep[[ph]] <- lapply(keep[[ph]], apply_lookup)
 
   last_year <- max(as.integer(substr(vapply(ev, `[[`, "", "date"), 1, 4)))
   for (ph in phases) keep[[ph]] <- c(keep[[ph]], fert_events(sys, ph, last_year))
@@ -365,8 +403,10 @@ for (tid in names(SYSTEMS)) {
         note = paste(
           "One rotation phase of the treatment. Planting, harvest and irrigation events come",
           "from the stacked generator output, assigned to this phase by the plot ids in the",
-          "Century package; their amounts are still the generator's prior fills",
-          "(prior_filled). Fertilization is rebuilt from the package.")),
+          "Century package; planting amounts are still the generator's prior fills",
+          "(prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row),",
+          "or go wholly to litter for sudangrass, which was plowed under. Fertilization is",
+          "rebuilt from the package.")),
       events = pe)
     fn <- file.path(out_dir, sprintf("russell_ranch_tautges_2019_%s__%s.json", tid, slug))
     write(jsonlite::toJSON(out, auto_unbox = TRUE, pretty = 1, digits = NA), fn)

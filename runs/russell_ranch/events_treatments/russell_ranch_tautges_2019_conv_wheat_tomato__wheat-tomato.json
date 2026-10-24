@@ -7,7 +7,7 @@
   "rotation_phase": "wheat-tomato",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_conv_wheat_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -132,8 +132,11 @@
    "date": "1996-06-21",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4286,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -189,10 +192,13 @@
    "date": "1997-08-14",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.531,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "frac_above_removed_0to1": 0.33,
    "merged_dates": "1997-08-14;1997-08-15",
-   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged.",
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -218,8 +224,11 @@
    "date": "1999-09-01",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.34,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -265,8 +274,11 @@
    "date": "2000-06-26",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.5108,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -312,8 +324,11 @@
    "date": "2001-08-29",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.4798,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -330,8 +345,11 @@
    "date": "2002-07-09",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4855,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -377,8 +395,11 @@
    "date": "2003-08-20",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.4268,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -424,8 +445,11 @@
    "date": "2004-06-30",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4428,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -471,8 +495,11 @@
    "date": "2005-07-26",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.5627,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -518,8 +545,11 @@
    "date": "2006-06-30",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4678,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -565,8 +595,11 @@
    "date": "2007-09-11",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.2908,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -612,8 +645,11 @@
    "date": "2008-07-09",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.6026,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -659,8 +695,11 @@
    "date": "2009-10-01",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.4365,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -706,8 +745,11 @@
    "date": "2010-07-09",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.5261,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -763,8 +805,11 @@
    "date": "2011-09-13",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.4311,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -810,8 +855,11 @@
    "date": "2012-06-25",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.3717,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -857,8 +905,11 @@
    "date": "2013-08-20",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.3282,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",

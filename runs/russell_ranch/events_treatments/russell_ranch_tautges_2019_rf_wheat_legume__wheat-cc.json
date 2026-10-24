@@ -7,7 +7,7 @@
   "rotation_phase": "wheat-CC",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_legume.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -24,8 +24,11 @@
    "date": "1994-06-15",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.6451,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -50,8 +53,11 @@
    "date": "1996-06-20",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.3989,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -76,8 +82,11 @@
    "date": "1999-07-01",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.705,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -93,8 +102,11 @@
    "date": "2000-06-26",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4694,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -110,8 +122,11 @@
    "date": "2002-07-08",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.6995,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -136,8 +151,11 @@
    "date": "2004-06-30",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4492,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -153,8 +171,11 @@
    "date": "2006-06-30",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.5919,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -179,8 +200,11 @@
    "date": "2008-07-09",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.5792,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -205,8 +229,11 @@
    "date": "2010-07-09",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4402,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -231,8 +258,11 @@
    "date": "2012-06-25",
    "source": "10.1002/ecy.2105",
    "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.4805,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",

@@ -32,16 +32,17 @@ represent a treatment, run both of its phases; observations are per treatment.
 | multi-day operations | one harvest per recorded date, so a crop was harvested 2 to 3 times | merged into one event (below) |
 | irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none; Tautges Table 1 lists irrigation "None" |
 | irrigation, irrigated systems | every event kept | 18 events outside any one-season cash-crop window dropped (below) |
+| harvest fractions | drawn from a grain-harvest prior | harvest lookup rows (below) |
 | zero-N applications (P, K, Zn) | written as 0/0/0 events, two dated an invented 1999-01-01 | dropped; SIPNET reads only N and C |
 
 Fertilization is rebuilt entirely from `operations_fertilizers.csv` and
 `operations_compost.csv`. Planting, harvest and irrigation are the generator's events,
-assigned to a phase by plot id; **their amounts are still the generator's prior fills**
-(`prior_filled` on each event): planting leaf C from a processing-tomato baseline for every
-crop, harvest fractions drawn from a grain-harvest prior, and irrigation from a sprinkler
-prior placed at each cash-crop window midpoint (median 480 to 560 mm per crop year). Those are
-the remaining weaknesses listed when ccmmf/uncertainty#6 was closed; this change does not
-fix them.
+assigned to a phase by plot id, and harvest fractions come from the harvest lookup (below).
+**Planting and irrigation amounts are still the generator's prior fills** (`prior_filled`
+on each event): planting leaf C from a processing-tomato baseline for every crop, and
+irrigation from a sprinkler prior placed at each cash-crop window midpoint (median 480 to
+560 mm per crop year). Those are remaining weaknesses listed when ccmmf/uncertainty#6 was
+closed.
 
 Each irrigation event goes to the phase whose cash-crop window has the nearest midpoint. A
 window is one season: from a cash-crop planting to the first harvest of the same crop
@@ -54,6 +55,24 @@ prints the count per treatment). Unbounded windows had stacked them onto one pha
 example 1873 mm in `conv_corn_tomato` `tomato-corn` 1999. A phase-year whose only
 irrigation was such an artifact now has none (for example `conv_corn_tomato` `corn-tomato`
 1998 and 1999). Nothing is filled in.
+
+## Harvest fractions
+
+Every harvest takes its crop's row of the harvest lookup the other calibration sites use
+(rows as given on calibration#10), named in `harvest_lookup_row`. The generator's draw from a
+grain-harvest prior is dropped. Roots all go to litter.
+
+| crop | lookup row | above removed | above to litter | below removed | below to litter |
+|---|---|---|---|---|---|
+| corn | F16 | 0.752 | 0.248 | 0 | 1 |
+| tomato | T32 | 0.33 | 0.67 | 0 | 1 |
+| wheat | G2 | 0.713 | 0.287 | 0 | 1 |
+| alfalfa | P1 | 0.85 | 0.15 | 0 | 1 |
+| sudangrass | none | 0 | 1 | 0 | 1 |
+
+Sudangrass has no row and needs none. In 2008 and 2009 it "was sampled prior to plowing
+under at every harvest and no hay was removed from the plots" (Wolf et al. 2018 metadata),
+so its harvests send everything to litter.
 
 ## Compost
 

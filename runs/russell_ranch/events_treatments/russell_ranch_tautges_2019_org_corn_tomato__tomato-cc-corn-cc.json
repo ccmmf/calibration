@@ -7,7 +7,7 @@
   "rotation_phase": "tomato/CC-corn/CC",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_org_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -38,8 +38,11 @@
    "date": "1994-08-27",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.724,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -88,8 +91,11 @@
    "date": "1995-10-18",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.6779,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -138,10 +144,13 @@
    "date": "1996-08-16",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.5003,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "frac_above_removed_0to1": 0.33,
    "merged_dates": "1996-08-16;1996-08-22",
-   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged.",
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -190,8 +199,11 @@
    "date": "1997-10-01",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.5136,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -235,8 +247,11 @@
    "date": "1999-10-22",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.5478,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -285,8 +300,11 @@
    "date": "2000-08-23",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.3143,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -358,8 +376,11 @@
    "date": "2002-08-22",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.434,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -408,8 +429,11 @@
    "date": "2003-10-17",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.6579,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -458,10 +482,13 @@
    "date": "2004-08-18",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.5017,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters",
+   "frac_above_removed_0to1": 0.33,
    "merged_dates": "2004-08-18;2004-08-19",
-   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged."
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie), generator amounts averaged.",
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -501,8 +528,11 @@
    "date": "2005-10-07",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.5149,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -551,8 +581,11 @@
    "date": "2006-09-13",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.4398,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -601,8 +634,11 @@
    "date": "2007-10-23",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.6175,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -637,8 +673,11 @@
    "date": "2008-10-03",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.6557,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -719,8 +758,11 @@
    "date": "2010-09-06",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.5613,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -778,8 +820,11 @@
    "date": "2012-09-06",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.3566,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -866,8 +911,11 @@
    "date": "2013-10-20",
    "source": "10.1002/ecy.2105",
    "crop_display": "Corn",
-   "frac_above_removed_0to1": 0.6834,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.752,
+   "frac_above_to_litter_0to1": 0.248,
+   "harvest_lookup_row": "F16",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",

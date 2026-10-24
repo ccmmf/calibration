@@ -7,7 +7,7 @@
   "rotation_phase": "corn-tomato-alfalfa-alfalfa-alfalfa-tomato",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_alf_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; their amounts are still the generator's prior fills (prior_filled). Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -44,8 +44,11 @@
    "date": "2013-08-20",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.4755,
-   "prior_filled": "frac_above_removed_0to1<-prior:practices/harvest_grain/parameters"
+   "frac_above_removed_0to1": 0.33,
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   }
  ]
 }
