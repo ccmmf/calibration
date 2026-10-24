@@ -7,7 +7,7 @@
   "rotation_phase": "corn/CC-tomato/CC",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_org_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Harvests missing from operations_harvest.csv are filled from plot_system.csv. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -94,6 +94,19 @@
    "crop_display": "Tomato",
    "leaf_c_kg_m2": 0.0038,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1995-08-24",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.33,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (1995-08-24), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "planting",
@@ -648,6 +661,19 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "harvest",
+   "date": "2008-08-05",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Sudangrass",
+   "frac_above_removed_0to1": 0,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (2008-08-05), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 1,
+   "harvest_fraction_note": "Plowed under with no hay removed (2008 and 2009 sudangrass, Wolf et al. 2018 metadata).",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
    "event_type": "planting",
    "date": "2008-11-20",
    "source": "10.1002/ecy.2105",
@@ -791,6 +817,19 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0039,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2012-10-16",
+   "source": "10.1002/ecy.2105:operations_planting.csv",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "not_harvested": true,
+   "provenance_class": "assumed",
+   "provenance_note": "No harvest in operations_harvest.csv or plot_system.csv; the crop ends at the phase's next planting with all biomass to litter."
   },
   {
    "event_type": "planting",

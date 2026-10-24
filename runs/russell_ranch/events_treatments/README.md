@@ -33,6 +33,7 @@ represent a treatment, run both of its phases; observations are per treatment.
 | irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none; Tautges Table 1 lists irrigation "None" |
 | irrigation, irrigated systems | every event kept | 18 events outside any one-season cash-crop window dropped (below) |
 | harvest fractions | drawn from a grain-harvest prior | harvest lookup rows (below) |
+| harvests missing from `operations_harvest.csv` | none, so 35 crops were never harvested | dated from `plot_system.csv` (below) |
 | zero-N applications (P, K, Zn) | written as 0/0/0 events, two dated an invented 1999-01-01 | dropped; SIPNET reads only N and C |
 
 Fertilization is rebuilt entirely from `operations_fertilizers.csv` and
@@ -73,6 +74,27 @@ grain-harvest prior is dropped. Roots all go to litter.
 Sudangrass has no row and needs none. In 2008 and 2009 it "was sampled prior to plowing
 under at every harvest and no hay was removed from the plots" (Wolf et al. 2018 metadata),
 so its harvests send everything to litter.
+
+## Missing harvests
+
+`operations_harvest.csv` lacks 35 cash crop harvests that `plot_system.csv` records:
+wheat 20, tomato 6, sudangrass 5, corn 4. For example, the 1998 `conv_corn_tomato` tomato
+has no harvest operation, while `plot_system.csv` dates it 1998-08-14 and
+`tomato_harvests_all.csv` has its samples. A cash crop planting with no same-crop harvest
+within 365 days takes the harvest date most of the phase's plots share in
+`crop_A_date_harvested` or `crop_B_date_harvested` (the first day where a range is given),
+with `source` naming `plot_system.csv`. A planting followed within 30 days by another of the
+same crop is a replant and is not filled.
+
+- The `org_corn_tomato` `corn/CC-tomato/CC` wheat planted 2011-11-17 has no harvest in
+  either file; `plot_system.csv` says the plots were "NOT harvested for wheat in 2012". It
+  ends at the phase's next planting, the 2012-10-16 cover crop, with all biomass to litter,
+  tagged `provenance_class: assumed` and `not_harvested: true`.
+- The `irr_wheat_legume` `wheat-CC` wheat planted 2007-12-15 is left without a harvest.
+  The plots were fallow from 2008 and moved to `alf_corn_tomato` in 2012, and nothing after
+  that planting is recorded in this system.
+- A filled cycle gets no irrigation: the generator put none in it, and nothing is filled
+  in (for example `conv_corn_tomato` `tomato-corn` 1998).
 
 ## Compost
 

@@ -7,7 +7,7 @@
   "rotation_phase": "wheat-fallow",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_irr_wheat_fallow.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for sudangrass, which was plowed under. Harvests missing from operations_harvest.csv are filled from plot_system.csv. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -38,6 +38,19 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1994-06-15",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (6/15/1994 - 6/17/1994), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -97,6 +110,19 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0034,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1998-07-07",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (1998-07-07), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "fertilization",
@@ -447,6 +473,19 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0027,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2014-06-22",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (6/22/2014 - 6/28/2014), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
   }
  ]
 }

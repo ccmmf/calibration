@@ -299,10 +299,81 @@ merge_split_days <- function(pe, sys, ph) {
   out
 }
 
+# The date most of a phase's plots share, earliest on a tie
+shared_date <- function(d) {
+  tab <- table(d)
+  as.Date(names(tab)[tab == max(tab)][1])
+}
+first_date <- function(x) {
+  m <- regmatches(x, regexpr("[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}", x))
+  if (!length(m)) return(as.Date(NA))
+  as_date(m)
+}
+
+# Some cash crop harvests are missing from operations_harvest.csv although the crop was
+# harvested (e.g. Conventional Corn/Tomato tomato 1998). plot_system.csv records every
+# plot-year's harvest date, so a cash crop planting with no same-crop harvest within
+# SEASON_DAYS takes the date most of the phase's plots were harvested. A crop with no
+# harvest in either (Organic Corn/Tomato wheat planted 2011, which plot_system.csv says was
+# "NOT harvested for wheat in 2012") ends at the phase's next planting, all to litter.
+ps_harvests <- do.call(rbind, lapply(c("A", "B"), function(k) data.frame(
+  system = ps$new_system_name, plot = ps$plot, phase = ps[["harvest_year_rotation_order_(even-odd)"]],
+  crop = tolower(ps[[sprintf("crop_%s_harvested", k)]]),
+  date = do.call(c, lapply(ps[[sprintf("crop_%s_date_harvested", k)]], first_date)),
+  raw = ps[[sprintf("crop_%s_date_harvested", k)]], stringsAsFactors = FALSE)))
+ps_harvests <- ps_harvests[!is.na(ps_harvests$date) & ps_harvests$crop %in% CASH_CROPS, ]
+
+missing_harvests <- function(sys, ph, pe) {
+  pl <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
+  hv <- Filter(function(e) e$event_type == "harvest", pe)
+  out <- list()
+  for (p in pl) {
+    crop <- tolower(p$crop_display); pd <- as.Date(p$date)
+    has <- any(vapply(hv, function(h) tolower(h$crop_display) == crop &&
+                        as.Date(h$date) > pd && as.numeric(as.Date(h$date) - pd) <= SEASON_DAYS, TRUE))
+    if (has) next
+    later_planting <- any(vapply(pl, function(q) tolower(q$crop_display) == crop &&
+                                   as.Date(q$date) > pd && as.Date(q$date) <= pd + 30, TRUE))
+    if (later_planting) next  # a replant; the harvest belongs to the later planting
+    m <- ps_harvests[ps_harvests$system == sys & ps_harvests$phase == ph & ps_harvests$crop == crop &
+                       ps_harvests$date > pd & as.numeric(ps_harvests$date - pd) <= SEASON_DAYS, ]
+    if (!nrow(m)) {
+      nxt <- as.Date(vapply(Filter(function(e) e$event_type == "planting", pe), `[[`, "", "date"))
+      nxt <- nxt[nxt > pd]
+      if (!length(nxt)) {
+        cat(sprintf("%s %s: %s planted %s has no harvest and no later planting; not ended\n",
+                    sys, ph, p$crop_display, p$date))
+        next
+      }
+      cat(sprintf("%s %s: %s planted %s has no harvest record; ends at the next planting, %s\n",
+                  sys, ph, p$crop_display, p$date, format(min(nxt))))
+      out[[length(out) + 1L]] <- list(
+        event_type = "harvest", date = format(min(nxt)), source = paste0(SOURCE, ":operations_planting.csv"),
+        crop_display = p$crop_display, frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
+        frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1, not_harvested = TRUE,
+        provenance_class = "assumed",
+        provenance_note = paste("No harvest in operations_harvest.csv or plot_system.csv; the crop",
+                                "ends at the phase's next planting with all biomass to litter."))
+      next
+    }
+    hd <- shared_date(m$date)
+    out[[length(out) + 1L]] <- list(
+      event_type = "harvest", date = format(hd), source = paste0(SOURCE, ":plot_system.csv"),
+      crop_display = p$crop_display, frac_above_removed_0to1 = NA,
+      provenance_class = "published",
+      provenance_note = sprintf(paste(
+        "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested",
+        "(%s), the date most of the phase's plots share."),
+        paste(unique(m$raw), collapse = "; ")))
+  }
+  out
+}
+
 # Harvests take the lookup fractions, or all to litter for a green manure; the generator's
 # harvest prior is dropped.
 apply_lookup <- function(e) {
   if (e$event_type != "harvest") return(e)
+  if (isTRUE(e$not_harvested)) return(e)
   crop <- tolower(e$crop_display)
   if (crop %in% GREEN_MANURE) {
     e$frac_above_removed_0to1 <- 0
@@ -348,7 +419,13 @@ for (tid in names(SYSTEMS)) {
   }
   if (n_merged) cat(sprintf("%-18s split-day plantings/harvests merged away: %d\n", tid, n_merged))
 
-  for (ph in phases) keep[[ph]] <- lapply(keep[[ph]], apply_lookup)
+  n_filled <- 0L
+  for (ph in phases) {
+    mh <- missing_harvests(sys, ph, keep[[ph]])
+    n_filled <- n_filled + length(mh)
+    keep[[ph]] <- lapply(c(keep[[ph]], mh), apply_lookup)
+  }
+  cat(sprintf("%-18s harvests filled from plot_system.csv: %d\n", tid, n_filled))
 
   last_year <- max(as.integer(substr(vapply(ev, `[[`, "", "date"), 1, 4)))
   for (ph in phases) keep[[ph]] <- c(keep[[ph]], fert_events(sys, ph, last_year))
@@ -405,7 +482,8 @@ for (tid in names(SYSTEMS)) {
           "from the stacked generator output, assigned to this phase by the plot ids in the",
           "Century package; planting amounts are still the generator's prior fills",
           "(prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row),",
-          "or go wholly to litter for sudangrass, which was plowed under. Fertilization is",
+          "or go wholly to litter for sudangrass, which was plowed under. Harvests missing",
+          "from operations_harvest.csv are filled from plot_system.csv. Fertilization is",
           "rebuilt from the package.")),
       events = pe)
     fn <- file.path(out_dir, sprintf("russell_ranch_tautges_2019_%s__%s.json", tid, slug))
