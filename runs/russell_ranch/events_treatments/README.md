@@ -3,9 +3,10 @@
 One `events.json` per Tautges et al. (2019) treatment **and rotation phase**, 1993 to 2014,
 23 files across 12 treatments. 2014 holds only the ends of crops planted in fall 2013 (wheat
 harvests and cover crop ends): there are no 2014 plantings and no 2014 fertilization, since
-fertilization is cut at the last year of the stacked inputs. These are treatments (farming systems run side by side) and
-phases (the same system on offset rotations), not ensemble members. Using them as ensemble
-members would conflate treatment effect with management uncertainty.
+fertilization is cut at the last year of the stacked inputs. These are treatments (farming
+systems run side by side) and phases (the same system on offset rotations), not ensemble
+members. Using them as ensemble members would conflate treatment effect with management
+uncertainty.
 
 Built by `tools/event_prep/russell_split_phases.R` from `generator_stacked/` and the Century
 Experiment package (Wolf et al. 2018, `10.1002/ecy.2105`, supporting information
@@ -178,8 +179,8 @@ different days, or the same plots over a multi-day job (wheat "Harvest" on two d
 merged when they fall within 14 days of the first or touch disjoint plots. The merged event
 takes the date most plots share (earliest on a tie) and lists the original dates in
 `merged_dates`. A merged planting takes the mean of the generator's amounts; a merged harvest
-takes its fractions from the harvest lookup, like every other harvest. Alfalfa cuttings, about a month apart, stay
-separate.
+takes its fractions from the harvest lookup, like every other harvest. Alfalfa cuttings,
+about a month apart, stay separate.
 
 Left as recorded: corn replanted four weeks later (`conv_corn_tomato` 1998;
 `org_corn_tomato` and `transitional` 2013, twice in organic).
