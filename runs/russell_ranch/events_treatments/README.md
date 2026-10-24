@@ -116,8 +116,13 @@ and lists the original dates in `merged_dates`. Alfalfa cuttings, about a month 
 separate.
 
 Left as recorded: corn replanted four weeks later (`conv_corn_tomato` 1998;
-`org_corn_tomato` and `transitional` 2013, twice in organic), and plot 6-8 in
-`org_corn_tomato` showing a tomato transplant two days before corn seeding in 2003 and 2005.
+`org_corn_tomato` and `transitional` 2013, twice in organic).
+
+`operations_planting.csv` lists the 2003 and 2005 tomato transplanting in `org_corn_tomato`
+under plot 6-8, two days before its own corn seeding, and none under 8-8. `plot_system.csv`
+has 6-8 in corn and 8-8 in tomato both years, and 8-8 has the tomato harvest samples, so
+the script moves those two records to 8-8. Before, the corn phase got a tomato planting
+that was never harvested.
 
 ## Checks
 

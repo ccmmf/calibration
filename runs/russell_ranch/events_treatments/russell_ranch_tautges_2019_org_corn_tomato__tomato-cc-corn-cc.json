@@ -386,15 +386,6 @@
   },
   {
    "event_type": "planting",
-   "date": "2003-05-08",
-   "source": "10.1002/ecy.2105",
-   "crop_code": "Tomato",
-   "crop_display": "Tomato",
-   "leaf_c_kg_m2": 0.0034,
-   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "planting",
    "date": "2003-05-10",
    "source": "10.1002/ecy.2105",
    "crop_code": "Corn",
@@ -485,15 +476,6 @@
    "compost_total_n_pct": 1.8756,
    "provenance_class": "assumed",
    "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the mean of measured years, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
-  },
-  {
-   "event_type": "planting",
-   "date": "2005-05-13",
-   "source": "10.1002/ecy.2105",
-   "crop_code": "Tomato",
-   "crop_display": "Tomato",
-   "leaf_c_kg_m2": 0.003,
-   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
    "event_type": "planting",

@@ -61,6 +61,18 @@ phase_of <- tapply(ps[["harvest_year_rotation_order_(even-odd)"]], sp(ps$new_sys
                    function(v) { u <- unique(v); stopifnot(length(u) == 1L); u })
 
 plt <- rd("operations_planting.csv")
+# In 2003 and 2005 Organic Corn/Tomato plot 6-8 grew corn and 8-8 tomato (plot_system.csv,
+# tomato_harvests_all.csv), but operations_planting.csv lists the tomato transplanting under
+# 6-8, next to its own corn seeding, and none under 8-8. Without this the corn phase gets a
+# tomato planting that is never harvested.
+PLANT_PLOT_FIXES <- data.frame(system_name = "Organic Corn/Tomato", Date = c("5/8/2003", "5/13/2005"),
+                               Crop_planted = "Tomato", from = "6-8", to = "8-8")
+for (i in seq_len(nrow(PLANT_PLOT_FIXES))) {
+  f <- PLANT_PLOT_FIXES[i, ]
+  same <- plt$system_name == f$system_name & plt$Date == f$Date & plt$Crop_planted == f$Crop_planted
+  stopifnot(sum(same & plt$plot == f$from) == 1L, !any(same & plt$plot == f$to))
+  plt$plot[same & plt$plot == f$from] <- f$to
+}
 hrv <- rd("operations_harvest.csv")
 frt <- rd("operations_fertilizers.csv")
 cmp <- rd("operations_compost.csv")
