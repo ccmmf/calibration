@@ -159,14 +159,16 @@ so they do not reach these years.
 - 2014 fertilization: a season without records is never used as the template, because the
   fertilizer log has gaps (it has no 2013 corn N in any corn and tomato system, though it has
   two corn applications a year in 2005 to 2007). So 2014 corn copies 2007 corn.
-  `alf_corn_tomato` has no corn before 2014 and copies `conv_corn_tomato`'s. A treatment that
-  never fertilized a crop gets nothing (`leg_corn_tomato` corn has no mineral N in any year).
-  Only copied events that land in 2014 are kept.
+  `alf_corn_tomato` has no corn before 2014 and copies `conv_corn_tomato`'s. A treatment whose
+  log has no fertilization for a crop gets nothing; that includes `leg_corn_tomato` corn,
+  which has no mineral N in the log in any year (see "Open" below). Only copied events that
+  land in 2014 are kept.
 - Irrigation: 54 seasons in irrigated systems had none: the filled seasons, 2014, and
   seasons whose only generator event fell outside every window. Each gets one event at the
   season midpoint with the median season total of the treatment's other seasons of that crop.
-  Those totals are the generator's sprinkler prior; the package records no irrigation.
-  Alfalfa has no irrigated season to take a median from, so it gets none.
+  Those totals are the generator's sprinkler prior; the package records no irrigation, and
+  Tautges et al. 2019 gives different amounts (see "Open" below). Alfalfa has no irrigated
+  season to take a median from, so it gets none.
 
 ## `alf_corn_tomato` history
 
@@ -250,16 +252,31 @@ has 6-8 in corn and 8-8 in tomato both years, and 8-8 has the tomato harvest sam
 the script moves those two records to 8-8. Before, the corn phase got a tomato planting
 that was never harvested.
 
-## Not in these files
+## Open (calibration#10)
 
-- **Tillage.** The package has no tillage or cultivation table. Its metadata describes the
-  2003 to 2007 standard versus conservation tillage split (all included data are from the
-  standard tillage halves) and logs herbicide incorporation passes in
-  `operations_pesticides.csv` (`Incorporate` 189, `Mulch_Beds` 153, `Perfecta` 6 rows), but
-  gives no primary tillage dates and no intensity. A tillage event needs `tillage_eff_0to1`,
-  which only the monitoring tillage product could supply. Open on calibration#10.
-- The compost years the package lacks (above) and the 2013 corn N the fertilizer log lacks
-  are not filled. Open on calibration#10.
+- **Tillage is not in these files.** The package has no tillage or cultivation table; it logs
+  only herbicide incorporation passes in `operations_pesticides.csv` (`Incorporate` 189,
+  `Mulch_Beds` 153, `Perfecta` 6 rows), and its metadata describes the 2003 to 2007 standard
+  versus conservation tillage split (all included data are from the standard halves).
+  Tautges et al. 2019 (Methods 2.1 to 2.3) describes the operations and when they happen:
+  disking to 15 to 20 cm and tillage to at most 25 cm; maize stalks chopped and disked after
+  harvest; tomato residue shallow disked after harvest; beds listed and rolled before
+  tomato and rolled before maize; compost broadcast and incorporated in March or April; cover
+  crops mowed and incorporated with two to three diskings; one cultivation per crop phase in
+  the conventional systems and three to four in ORG; wheat straw incorporated by two shallow
+  diskings after the July harvest, and four diskings during the wheat fallow. It gives no
+  intensity, and a tillage event needs `tillage_eff_0to1`.
+- **Irrigation amounts.** Tautges et al. 2019 gives the irrigated wheat systems
+  "supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005, and
+  2008–2012", while the generator's sprinkler prior puts several hundred mm into each wheat
+  season. For furrow irrigated maize and tomato it gives "an average of 33.6 mm per year"
+  (17.6 in 1995 to 43.5 in 2004), which is too little for furrow irrigation and is probably
+  in other units; its Table S1 is not in hand. The files keep the generator's amounts.
+- **Fertilization gaps and a conflict.** The fertilizer log has no corn N for
+  `leg_corn_tomato` in any year, although Tautges Table 1 gives CONV+WCC synthetic N at
+  168 kg/ha and its Methods sidedress CONV+WCC maize to 180 kg N/ha. It also has no 2013
+  corn N in `conv_corn_tomato`, and the compost years listed under Compost are missing.
+  None of these is filled.
 
 ## Checks
 
