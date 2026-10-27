@@ -92,6 +92,17 @@ for (i in seq_len(nrow(PLANT_PLOT_FIXES))) {
   plt$plot[same & plt$plot == f$from] <- f$to
 }
 hrv <- rd("operations_harvest.csv")
+# operations_harvest.csv also lists the 7/1/1999 Rainfed Wheat/Legume wheat harvest under
+# plot 7-3, a wheat-CC plot that grew a cover crop that winter (plot_system.csv); the three
+# CC-wheat plots carry the harvest. Kept, the wheat-CC phase harvests a wheat it never planted.
+HARVEST_RECORD_DROPS <- data.frame(system_name = "Rainfed Wheat/Legume", date = "7/1/1999",
+                                   crop_harvested = "Wheat", plot = "7-3")
+for (i in seq_len(nrow(HARVEST_RECORD_DROPS))) {
+  f <- HARVEST_RECORD_DROPS[i, ]
+  drop <- hrv$system_name == f$system_name & hrv$date == f$date & hrv$crop_harvested == f$crop_harvested & hrv$plot == f$plot
+  stopifnot(sum(drop) == 1L)
+  hrv <- hrv[!drop, ]
+}
 frt <- rd("operations_fertilizers.csv")
 cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")

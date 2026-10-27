@@ -115,17 +115,6 @@
    "frac_below_to_litter_0to1": 1
   },
   {
-   "event_type": "harvest",
-   "date": "1999-07-01",
-   "source": "10.1002/ecy.2105",
-   "crop_display": "Wheat",
-   "frac_above_removed_0to1": 0.713,
-   "frac_above_to_litter_0to1": 0.287,
-   "harvest_lookup_row": "G2",
-   "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
-  },
-  {
    "event_type": "planting",
    "date": "1999-11-13",
    "source": "10.1002/ecy.2105",
