@@ -60,7 +60,12 @@ WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of 
 # PR #10: "0.85, 0, 0, 0"); only the stand's last cutting before another crop takes the
 # full P1 row.
 ALFALFA_CUT <- c(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
-# The run ends with 2014; crops still growing then are left running.
+CROP_DISPLAY <- c(corn = "Corn", tomato = "Tomato", wheat = "Wheat", alfalfa = "Alfalfa",
+                  sudangrass = "Sudangrass", "cover crop" = "Cover Crop")
+# The experiment's first operations are in fall 1993; the 1992 and 1993 sudangrass
+# uniformity crops before it are not in these files. The run ends with 2014, a year the
+# package's operation logs no longer cover; crops still growing then are left running.
+FIRST_DATE <- as.Date("1993-09-01")
 LAST_DATE <- as.Date("2014-12-31")
 # A missing date or amount comes from the package's own records for the same system when it
 # has at least MIN_MEDIAN_N of them, otherwise from the whole site (tools/event_prep/README.md,
@@ -113,6 +118,7 @@ frt <- rd("operations_fertilizers.csv")
 cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")
 wcc <- rd("wcc_harvests_all.csv")
+alf <- rd("alfalfa_harvests_all.csv")
 
 # Operation rows whose (system, plot) has no rotation phase cannot go to any phase file.
 # None of them feeds an event, but they are printed rather than dropped silently.
@@ -335,6 +341,15 @@ first_date <- function(x) {
   if (!length(m)) return(as.Date(NA))
   as_date(m)
 }
+# Groups dates into operations: a new one starts more than `days` after the current one's first date
+cluster_dates <- function(d, days) {
+  g <- integer(length(d)); cur <- 0L; start <- as.Date(NA)
+  for (i in order(d)) {
+    if (is.na(start) || as.numeric(d[i] - start) > days) { cur <- cur + 1L; start <- d[i] }
+    g[i] <- cur
+  }
+  g
+}
 yday <- function(d) as.POSIXlt(d)$yday + 1L
 # The first date after `after` that falls on day of year `doy`
 doy_after <- function(after, doy) {
@@ -345,7 +360,8 @@ doy_after <- function(after, doy) {
 }
 dates_of <- function(evs) as.Date(vapply(evs, `[[`, "", "date"))
 
-# plot_system.csv records every plot-year's harvest, including some the logs lack
+# plot_system.csv records every plot-year's planting and harvest, including operations the
+# logs lack and all of 2014, which the logs do not reach.
 ps_ops <- function(what) do.call(rbind, lapply(c("A", "B"), function(k) data.frame(
   system = ps$new_system_name, plot = ps$plot, phase = ps[["harvest_year_rotation_order_(even-odd)"]],
   crop = tolower(ps[[sprintf("crop_%s_%s", k, if (what == "planting") "planted" else "harvested")]]),
@@ -354,6 +370,75 @@ ps_ops <- function(what) do.call(rbind, lapply(c("A", "B"), function(k) data.fra
   stringsAsFactors = FALSE)))
 ps_harvests <- ps_ops("harvest")
 ps_harvests <- ps_harvests[!is.na(ps_harvests$date) & ps_harvests$crop %in% CASH_CROPS, ]
+ps_plantings <- ps_ops("planting")
+ps_plantings <- ps_plantings[!is.na(ps_plantings$date) & ps_plantings$crop %in% names(CROP_DISPLAY) &
+                               ps_plantings$date >= FIRST_DATE & ps_plantings$date <= LAST_DATE, ]
+
+# A filled planting takes the median amounts of the generator's plantings of the same crop in
+# the phase, or across the site when the phase has none.
+planting_amount <- function(crop, phase_pool) {
+  for (pool in list(list(phase_pool, "this phase's"), list(site_plantings, "the site's"))) {
+    same <- Filter(function(e) tolower(e$crop_display) == crop, pool[[1]])
+    if (!length(same)) next
+    f <- intersect(AMOUNT_FIELDS, unique(unlist(lapply(same, names))))
+    vals <- setNames(lapply(f, function(k)
+      round(median(vapply(same, function(e) if (is.null(e[[k]])) NA_real_ else as.numeric(e[[k]]), 0), na.rm = TRUE), 4)), f)
+    return(list(fields = vals, note = sprintf("%s<-median of %s %d generator %s plantings",
+                                              paste(f, collapse = "+"), pool[[2]], length(same), CROP_DISPLAY[[crop]])))
+  }
+  stop("no ", crop, " planting to take an amount from")
+}
+
+# Plantings that plot_system.csv records but operations_planting.csv lacks (25 cash crop
+# seasons that were harvested with no planting before them, whole cover crop seasons, and all
+# of 2014). A planting of the same crop within 30 days counts as the same operation.
+missing_plantings <- function(sys, ph, pe) {
+  m <- ps_plantings[ps_plantings$system == sys & ps_plantings$phase == ph, ]
+  pl <- Filter(function(e) e$event_type == "planting", pe)
+  out <- list()
+  for (crop in unique(m$crop)) {
+    mc <- m[m$crop == crop, ]
+    have <- dates_of(Filter(function(e) tolower(e$crop_display) == crop, pl))
+    cl <- cluster_dates(mc$date, 30)
+    for (g in unique(cl)) {
+      s <- mc[cl == g, ]
+      d <- shared_date(s$date)
+      if (any(abs(as.numeric(have - d)) <= 30)) next
+      amt <- planting_amount(crop, pl)
+      out[[length(out) + 1L]] <- c(
+        list(event_type = "planting", date = format(d), source = paste0(SOURCE, ":plot_system.csv"),
+             crop_code = CROP_DISPLAY[[crop]], crop_display = CROP_DISPLAY[[crop]]),
+        amt$fields,
+        list(prior_filled = amt$note, provenance_class = "published",
+             provenance_note = sprintf(paste(
+               "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted",
+               "(%s), the date most of the phase's plots share."), paste(unique(s$raw), collapse = "; "))))
+    }
+  }
+  out
+}
+
+# Alfalfa cuttings missing from operations_harvest.csv (all of 2014): alfalfa_harvests_all.csv
+# has a sample "at each alfalfa cutting" (Wolf et al. 2018 metadata).
+alf$base_plot <- sub("[EW]$", "", alf$plot)
+alf$date <- as_date(alf$date)
+alf$phase <- unname(phase_of[sp(alf$system_name, alf$base_plot)])
+missing_cuttings <- function(sys, ph, pe) {
+  a <- alf[!is.na(alf$phase) & alf$system_name == sys & alf$phase == ph & !is.na(alf$date) & alf$date <= LAST_DATE, ]
+  if (!nrow(a)) return(list())
+  have <- dates_of(Filter(function(e) e$event_type == "harvest" && tolower(e$crop_display) == "alfalfa", pe))
+  cl <- cluster_dates(a$date, 7)
+  out <- list()
+  for (g in unique(cl)) {
+    d <- shared_date(a$date[cl == g])
+    if (any(abs(as.numeric(have - d)) <= 7)) next
+    out[[length(out) + 1L]] <- list(
+      event_type = "harvest", date = format(d), source = paste0(SOURCE, ":alfalfa_harvests_all.csv"),
+      crop_display = "Alfalfa", provenance_class = "published",
+      provenance_note = "Missing from operations_harvest.csv; dated by the alfalfa_harvests_all.csv sample taken at the cutting.")
+  }
+  out
+}
 
 # Some cash crop harvests are missing from operations_harvest.csv although the crop was
 # harvested (e.g. Conventional Corn/Tomato tomato 1998), and the logs stop before 2014. A cash
@@ -548,18 +633,24 @@ for (tid in names(SYSTEMS)) {
   if (n_merged) cat(sprintf("%-18s split-day plantings/harvests merged away: %d\n", tid, n_merged))
   keep_all[[tid]] <- keep
 }
-# Fill harvests the logs miss from plot_system.csv, end every crop
+site_plantings <- unlist(lapply(keep_all, function(k) unlist(lapply(k, function(pe)
+  Filter(function(e) e$event_type == "planting", pe)), recursive = FALSE)), recursive = FALSE)
+
+# Fill what the logs miss from plot_system.csv and the cutting samples, end every crop
 for (tid in names(SYSTEMS)) {
   sys <- SYSTEMS[[tid]]
-  n <- c(harvests = 0L, cover_crop_ends = 0L)
+  n <- c(plantings = 0L, cuttings = 0L, harvests = 0L, cover_crop_ends = 0L)
   for (ph in names(keep_all[[tid]])) {
     pe <- keep_all[[tid]][[ph]]
+    mp <- missing_plantings(sys, ph, pe); pe <- c(pe, mp)
+    mc <- missing_cuttings(sys, ph, pe); pe <- c(pe, mc)
     mh <- missing_harvests(sys, ph, pe)
     ce <- cover_crop_ends(sys, ph, pe)
-    n <- n + c(length(mh), length(ce))
+    n <- n + c(length(mp), length(mc), length(mh), length(ce))
     keep_all[[tid]][[ph]] <- lapply(c(pe, mh, ce), apply_lookup)
   }
-  cat(sprintf("%-18s filled harvests %d; cover crop ends %d\n", tid, n[[1]], n[[2]]))
+  cat(sprintf("%-18s filled plantings %d, alfalfa cuttings %d, harvests %d; cover crop ends %d\n",
+              tid, n[[1]], n[[2]], n[[3]], n[[4]]))
 }
 
 # Pass 2: dates the records do not give, from medians of the records ------------------------
@@ -665,7 +756,8 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "One rotation phase of the treatment. Planting, harvest and irrigation events come",
         "from the stacked generator output, assigned to this phase by the plot ids in the",
         "Century package; planting amounts are still the generator's prior fills",
-        "(prior_filled). Harvests the operation logs lack are filled from plot_system.csv.",
+        "(prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack,",
+        "including all of 2014, are filled from plot_system.csv and the cutting samples.",
         "Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings",
         "leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and",
         "amounts no record gives are imputed (provenance_class imputed) as described in",

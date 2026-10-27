@@ -7,7 +7,7 @@
   "rotation_phase": "tomato/CC-corn/CC",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_org_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests the operation logs lack are filled from plot_system.csv. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -44,6 +44,17 @@
    "compost_total_n_pct": 1.8756,
    "provenance_class": "assumed",
    "provenance_note": "Wet tons/acre (US short ton) x %C and %N on the reported tonnage. C from the 1994 analysis, N from the mean of measured years. This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year (40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."
+  },
+  {
+   "event_type": "planting",
+   "date": "1994-05-04",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Tomato plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (1994-05-04), the date most of the phase's plots share."
   },
   {
    "event_type": "harvest",
@@ -298,6 +309,29 @@
   },
   {
    "event_type": "planting",
+   "date": "1998-11-14",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 17 generator Cover Crop plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (1998-11-14), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1999-03-30",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "planting",
    "date": "1999-06-04",
    "source": "10.1002/ecy.2105",
    "crop_code": "Corn",
@@ -449,6 +483,29 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "planting",
+   "date": "2001-11-10",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 17 generator Cover Crop plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/10/2001 - 11/23/2001), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2002-04-10",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
    "event_type": "fertilization",
    "date": "2002-04-13",
    "org_c_kg_m2": 0.1497457,
@@ -590,7 +647,7 @@
    "frac_below_to_litter_0to1": 1,
    "source": "10.1002/ecy.2105:operations_planting.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Cover crop termination. The recorded date (2004-05-17, wcc_harvests_all.csv) is after the next cash crop planting. Dated 37 days before the next cash crop planting (2004-05-05), the median gap between a recorded cover crop end and the next cash crop planting (Organic Corn/Tomato, n = 27)."
+   "provenance_note": "Cover crop termination. The recorded date (2004-05-17, wcc_harvests_all.csv) is after the next cash crop planting. Dated 37 days before the next cash crop planting (2004-05-05), the median gap between a recorded cover crop end and the next cash crop planting (Organic Corn/Tomato, n = 37)."
   },
   {
    "event_type": "planting",
@@ -623,6 +680,29 @@
    "harvest_lookup_row": "T32",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "planting",
+   "date": "2004-11-17",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 17 generator Cover Crop plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/17/2004 - 11/20/2004), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2005-03-30",
+   "crop_display": "Cover Crop",
+   "frac_above_removed_0to1": 0,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 1,
+   "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
+   "provenance_class": "published",
+   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
    "event_type": "fertilization",
@@ -1181,6 +1261,41 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "planting",
+   "date": "2014-04-27",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Tomato",
+   "crop_display": "Tomato",
+   "leaf_c_kg_m2": 0.0036,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Tomato plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-04-27), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2014-08-21",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Tomato",
+   "frac_above_removed_0to1": 0.33,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (2014-08-21), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.67,
+   "harvest_lookup_row": "T32",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "planting",
+   "date": "2014-11-09",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Cover Crop",
+   "crop_display": "Cover Crop",
+   "leaf_c_kg_m2": 0.0032,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 17 generator Cover Crop plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-11-09), the date most of the phase's plots share."
   }
  ]
 }

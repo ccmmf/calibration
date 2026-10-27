@@ -7,7 +7,7 @@
   "rotation_phase": "fallow-wheat",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_fallow.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests the operation logs lack are filled from plot_system.csv. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -93,6 +93,17 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "planting",
+   "date": "1998-11-02",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Wheat plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/2/1998 - 11/6/1998), the date most of the phase's plots share."
   },
   {
    "event_type": "harvest",
@@ -384,6 +395,17 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "planting",
+   "date": "2014-11-15",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0034,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Wheat plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-11-15), the date most of the phase's plots share."
   }
  ]
 }
