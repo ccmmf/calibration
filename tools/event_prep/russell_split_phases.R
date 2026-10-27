@@ -66,11 +66,15 @@ CROP_DISPLAY <- c(corn = "Corn", tomato = "Tomato", wheat = "Wheat", alfalfa = "
 # uniformity crops before it are not in these files. The run ends with 2014, a year the
 # package's operation logs no longer cover; crops still growing then are left running.
 FIRST_DATE <- as.Date("1993-09-01")
+LOGS_END <- as.Date("2013-12-31")
 LAST_DATE <- as.Date("2014-12-31")
 # A missing date or amount comes from the package's own records for the same system when it
 # has at least MIN_MEDIAN_N of them, otherwise from the whole site (tools/event_prep/README.md,
 # "Filling missing events").
 MIN_MEDIAN_N <- 5
+FERT_LEAD_DAYS <- 90  # fertilization up to this many days before a planting belongs to its season
+# Alfalfa/Corn/Tomato has no corn season before 2014 to copy fertilization from
+COMPARABLE <- c(alf_corn_tomato = "conv_corn_tomato")
 
 rd <- function(f, enc = "UTF-8")
   read.csv(file.path(century_dir, f), stringsAsFactors = FALSE, check.names = FALSE,
@@ -706,6 +710,62 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
 # Pass 3: fertilization, irrigation, history -----------------------------------------------
 for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]]))
   keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], fert_events(SYSTEMS[[tid]], ph, as.integer(format(LAST_DATE, "%Y"))))
+
+# The logs end in 2013, so a season reaching into 2014 copies the fertilization of the most
+# recent same-crop season of the treatment that has fertilization records (of COMPARABLE's
+# when it has none), shifted by the difference in planting dates; only the copied events that
+# land in 2014 are kept. A season without records is skipped as a template because the log has
+# gaps (no 2013 corn N in any corn/tomato system); a treatment that never fertilized the crop
+# gets nothing.
+fert_2014 <- function(tid, pe) {
+  out <- list()
+  ss <- seasons_of(pe)
+  ss <- ss[is.na(ss$end) | ss$end > LOGS_END, ]
+  for (i in seq_len(nrow(ss))) {
+    s <- ss[i, ]; end <- if (is.na(s$end)) LAST_DATE else s$end
+    tmpl <- NULL
+    in_window <- function(t2, p2, st, en) Filter(function(e) e$event_type == "fertilization" &&
+      as.Date(e$date) >= st - FERT_LEAD_DAYS && as.Date(e$date) <= en, keep_all[[t2]][[p2]])
+    for (t2 in c(tid, COMPARABLE[tid][!is.na(COMPARABLE[tid])])) {
+      cand <- do.call(rbind, lapply(names(keep_all[[t2]]), function(p2) {
+        x <- seasons_of(keep_all[[t2]][[p2]])
+        x <- x[x$crop == s$crop & !is.na(x$end) & x$end <= LOGS_END, ]
+        if (!nrow(x)) return(NULL)
+        x$n_fert <- vapply(seq_len(nrow(x)), function(j) length(in_window(t2, p2, x$start[j], x$end[j])), 0L)
+        cbind(x, phase = p2, tid = t2)
+      }))
+      if (is.null(cand)) next
+      cand <- cand[cand$n_fert > 0, ]
+      if (nrow(cand)) tmpl <- cand[which.max(cand$start), ]
+      break
+    }
+    if (is.null(tmpl)) next
+    shift <- as.numeric(s$start - tmpl$start)
+    src_ev <- in_window(tmpl$tid, tmpl$phase, tmpl$start, tmpl$end)
+    for (e in src_ev) {
+      d <- as.Date(e$date) + shift
+      if (d <= LOGS_END || d > LAST_DATE || d < s$start - FERT_LEAD_DAYS || d > end) next
+      e$date <- format(d)
+      e$provenance_class <- "imputed"
+      e$provenance_note <- sprintf(paste(
+        "The package's operation logs end in 2013. Copies the %s application of the %s %s season",
+        "(planted %s) of %s %s, shifted %+d days to this season's planting."),
+        format(as.Date(e$date) - shift), s$crop, format(tmpl$start, "%Y"), format(tmpl$start), tmpl$tid,
+        tmpl$phase, shift)
+      out[[length(out) + 1L]] <- e
+    }
+  }
+  out
+}
+for (tid in names(SYSTEMS)) {
+  n <- 0L
+  for (ph in names(keep_all[[tid]])) {
+    f <- fert_2014(tid, keep_all[[tid]][[ph]])
+    n <- n + length(f)
+    keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], f)
+  }
+  if (n) cat(sprintf("%-18s 2014 fertilization copied from earlier seasons: %d events\n", tid, n))
+}
 
 # irrigation was injected at the midpoint of each cash crop window; give each event to
 # the phase whose own window midpoint it sits on. A window is one season: from a cash crop

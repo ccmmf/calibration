@@ -994,6 +994,16 @@
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-04-27), the date most of the phase's plots share."
   },
   {
+   "event_type": "fertilization",
+   "date": "2014-05-20",
+   "nh4_n_kg_m2": 0.01345,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "UAN 32 fertilizer",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2013-05-10 application of the tomato 2013 season (planted 2013-04-17) of conv_corn_tomato corn-tomato, shifted +375 days to this season's planting."
+  },
+  {
    "event_type": "harvest",
    "date": "2014-08-21",
    "source": "10.1002/ecy.2105:plot_system.csv",

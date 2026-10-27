@@ -467,6 +467,16 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "fertilization",
+   "date": "2014-11-01",
+   "nh4_n_kg_m2": 0.011197,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2012-10-29 application of the wheat 2012 season (planted 2012-11-12) of irr_wheat_fallow fallow-wheat, shifted +733 days to this season's planting."
+  },
+  {
    "event_type": "planting",
    "date": "2014-11-15",
    "source": "10.1002/ecy.2105:plot_system.csv",

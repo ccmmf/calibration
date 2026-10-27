@@ -1144,6 +1144,20 @@
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
+   "event_type": "fertilization",
+   "date": "2014-04-07",
+   "org_c_kg_m2": 0.1674749,
+   "org_n_kg_m2": 0.015037,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 18.6772,
+   "compost_total_n_pct": 1.677,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2012-04-10 application of the tomato 2012 season (planted 2012-04-30) of transitional tomato-corn, shifted +727 days to this season's planting."
+  },
+  {
    "event_type": "planting",
    "date": "2014-04-27",
    "source": "10.1002/ecy.2105:plot_system.csv",

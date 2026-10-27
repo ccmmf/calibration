@@ -992,6 +992,16 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "fertilization",
+   "date": "2014-03-18",
+   "nh4_n_kg_m2": 0.00562,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2013-03-20 application of the wheat 2012 season (planted 2012-11-12) of conv_wheat_tomato tomato-wheat, shifted +363 days to this season's planting."
+  },
+  {
    "event_type": "harvest",
    "date": "2014-06-22",
    "source": "10.1002/ecy.2105:plot_system.csv",

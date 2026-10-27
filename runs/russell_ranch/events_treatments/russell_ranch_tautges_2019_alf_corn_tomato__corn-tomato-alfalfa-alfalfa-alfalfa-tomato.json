@@ -62,6 +62,26 @@
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-04-15), the date most of the phase's plots share."
   },
   {
+   "event_type": "fertilization",
+   "date": "2014-05-07",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2007-05-10 application of the corn 2007 season (planted 2007-04-18) of conv_corn_tomato tomato-corn, shifted +2554 days to this season's planting."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2014-05-21",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2007-05-24 application of the corn 2007 season (planted 2007-04-18) of conv_corn_tomato tomato-corn, shifted +2554 days to this season's planting."
+  },
+  {
    "event_type": "harvest",
    "date": "2014-10-06",
    "source": "10.1002/ecy.2105:plot_system.csv",

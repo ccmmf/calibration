@@ -975,6 +975,16 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "fertilization",
+   "date": "2014-04-15",
+   "nh4_n_kg_m2": 0.0028022,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Pre-plant starter 8-24-6",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2013-04-05 application of the tomato 2013 season (planted 2013-04-17) of conv_wheat_tomato wheat-tomato, shifted +375 days to this season's planting."
+  },
+  {
    "event_type": "planting",
    "date": "2014-04-27",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -984,6 +994,16 @@
    "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Tomato plantings",
    "provenance_class": "published",
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-04-27), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2014-05-20",
+   "nh4_n_kg_m2": 0.01345,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "UAN 32 fertilizer",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2013-05-10 application of the tomato 2013 season (planted 2013-04-17) of conv_wheat_tomato wheat-tomato, shifted +375 days to this season's planting."
   },
   {
    "event_type": "harvest",
@@ -997,6 +1017,16 @@
    "harvest_lookup_row": "T32",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2014-11-15",
+   "nh4_n_kg_m2": 0.011197,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "The package's operation logs end in 2013. Copies the 2012-11-12 application of the wheat 2012 season (planted 2012-11-12) of conv_wheat_tomato tomato-wheat, shifted +733 days to this season's planting."
   },
   {
    "event_type": "planting",
