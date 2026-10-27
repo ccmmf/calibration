@@ -26,6 +26,33 @@ us_twt_merge_2010_2023.R     # fold in 2017-2023 and backfill tillage
 write_events_in.R            # emit events.in for SIPNET
 ```
 
+## Filling missing events
+
+When a site's records lack an event that is known to have happened (a crop that was
+harvested, a cover crop that was incorporated), or lack its date or amount, the generators
+fill it in this order (David, calibration#10):
+
+1. **The paper or its source data.** Use what they record, including dates relative to
+   another recorded operation (a termination before the next planting) and medians over the
+   site's own records of the same system.
+2. **The monitoring product** (`s3://carb/management/`). For a field and season it covers,
+   use that field's values. Before 2016, when it starts, use average calendar or relative
+   dates and amounts for comparable crops and operations in the same area.
+3. **Guidance documents**, as a last resort; ideally their information is already in the
+   monitoring product, as it is for fertilization.
+
+This applies to amounts as well as dates. Every filled or imputed event says where it came
+from (`source`, `provenance_class`, `provenance_note`).
+
+How the generators here follow it:
+
+| generator | step 1 | step 2 |
+|---|---|---|
+| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, and the package's per-system medians for dates it does not give (see `runs/russell_ranch/events_treatments/README.md`) | not used: the run ends in 2014 |
+| `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 |
+| `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 |
+| `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events |
+
 ## Notes
 
 - `us_twt_merge_2010_2023.R` **asserts** the Knox tillage offsets (planting minus 21 d for
