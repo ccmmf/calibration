@@ -35,10 +35,11 @@
    "source": "10.1002/ecy.2105",
    "crop_display": "Alfalfa",
    "frac_above_removed_0to1": 0.85,
-   "frac_above_to_litter_0to1": 0.15,
+   "frac_above_to_litter_0to1": 0,
    "harvest_lookup_row": "P1",
    "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
+   "frac_below_to_litter_0to1": 0,
+   "harvest_fraction_note": "Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive."
   },
   {
    "event_type": "harvest",
@@ -46,10 +47,11 @@
    "source": "10.1002/ecy.2105",
    "crop_display": "Alfalfa",
    "frac_above_removed_0to1": 0.85,
-   "frac_above_to_litter_0to1": 0.15,
+   "frac_above_to_litter_0to1": 0,
    "harvest_lookup_row": "P1",
    "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
+   "frac_below_to_litter_0to1": 0,
+   "harvest_fraction_note": "Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive."
   },
   {
    "event_type": "harvest",
@@ -57,10 +59,11 @@
    "source": "10.1002/ecy.2105",
    "crop_display": "Alfalfa",
    "frac_above_removed_0to1": 0.85,
-   "frac_above_to_litter_0to1": 0.15,
+   "frac_above_to_litter_0to1": 0,
    "harvest_lookup_row": "P1",
    "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
+   "frac_below_to_litter_0to1": 0,
+   "harvest_fraction_note": "Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive."
   },
   {
    "event_type": "harvest",
@@ -68,10 +71,11 @@
    "source": "10.1002/ecy.2105",
    "crop_display": "Alfalfa",
    "frac_above_removed_0to1": 0.85,
-   "frac_above_to_litter_0to1": 0.15,
+   "frac_above_to_litter_0to1": 0,
    "harvest_lookup_row": "P1",
    "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
+   "frac_below_to_litter_0to1": 0,
+   "harvest_fraction_note": "Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive."
   },
   {
    "event_type": "harvest",
@@ -79,10 +83,11 @@
    "source": "10.1002/ecy.2105",
    "crop_display": "Alfalfa",
    "frac_above_removed_0to1": 0.85,
-   "frac_above_to_litter_0to1": 0.15,
+   "frac_above_to_litter_0to1": 0,
    "harvest_lookup_row": "P1",
    "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
+   "frac_below_to_litter_0to1": 0,
+   "harvest_fraction_note": "Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive."
   },
   {
    "event_type": "harvest",
@@ -90,10 +95,11 @@
    "source": "10.1002/ecy.2105",
    "crop_display": "Alfalfa",
    "frac_above_removed_0to1": 0.85,
-   "frac_above_to_litter_0to1": 0.15,
+   "frac_above_to_litter_0to1": 0,
    "harvest_lookup_row": "P1",
    "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
+   "frac_below_to_litter_0to1": 0,
+   "harvest_fraction_note": "Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive."
   }
  ]
 }

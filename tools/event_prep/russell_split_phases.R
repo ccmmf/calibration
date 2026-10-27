@@ -55,6 +55,11 @@ HARVEST_LOOKUP <- data.frame(
 # it was sampled before plowing under and no hay was removed, so it is a green manure.
 GREEN_MANURE <- c("cover crop", "sudangrass")
 WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of planting
+# Alfalfa is cut several times a year. An intermediate cutting removes the lookup's
+# aboveground share and leaves the rest as living stubble, with the roots alive (David on
+# PR #10: "0.85, 0, 0, 0"); only the stand's last cutting before another crop takes the
+# full P1 row.
+ALFALFA_CUT <- c(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
 
 rd <- function(f, enc = "UTF-8")
   read.csv(file.path(century_dir, f), stringsAsFactors = FALSE, check.names = FALSE,
@@ -459,6 +464,32 @@ apply_lookup <- function(e) {
   e
 }
 
+dates_of <- function(evs) as.Date(vapply(evs, `[[`, "", "date"))
+# An alfalfa harvest followed by another before the next planting is an intermediate cutting
+# and leaves the stand alive; the last one before the next planting ends it with the full P1
+# row. A stand still growing at the end of the run is never ended.
+alfalfa_cuts <- function(pe) {
+  pl <- dates_of(Filter(function(e) e$event_type == "planting", pe))
+  ah <- which(vapply(pe, function(e) e$event_type == "harvest" && tolower(e$crop_display) == "alfalfa", TRUE))
+  ad <- dates_of(pe[ah])
+  for (j in seq_along(ah)) {
+    nxt <- pl[pl > ad[j]]
+    e <- pe[[ah[j]]]
+    if (length(nxt) && !any(ad > ad[j] & ad < min(nxt))) {
+      e$harvest_fraction_note <- "Last cutting before the next planting: ends the stand with the full P1 row."
+    } else {
+      e$frac_above_removed_0to1 <- ALFALFA_CUT[["above_removed"]]
+      e$frac_below_removed_0to1 <- ALFALFA_CUT[["below_removed"]]
+      e$frac_above_to_litter_0to1 <- ALFALFA_CUT[["above_to_litter"]]
+      e$frac_below_to_litter_0to1 <- ALFALFA_CUT[["below_to_litter"]]
+      e$harvest_fraction_note <- paste("Intermediate cutting: removes the P1 aboveground share and leaves",
+                                       "the stubble and roots alive.")
+    }
+    pe[[ah[j]]] <- e
+  }
+  pe
+}
+
 summary_rows <- list()
 for (tid in names(SYSTEMS)) {
   sys <- SYSTEMS[[tid]]
@@ -489,7 +520,7 @@ for (tid in names(SYSTEMS)) {
     mh <- missing_harvests(sys, ph, keep[[ph]])
     ce <- cover_crop_ends(sys, ph, keep[[ph]])
     n_filled <- n_filled + length(mh); n_ended <- n_ended + length(ce)
-    keep[[ph]] <- lapply(c(keep[[ph]], mh, ce), apply_lookup)
+    keep[[ph]] <- alfalfa_cuts(lapply(c(keep[[ph]], mh, ce), apply_lookup))
   }
   cat(sprintf("%-18s harvests filled from plot_system.csv: %d; cover crop terminations added: %d\n",
               tid, n_filled, n_ended))
