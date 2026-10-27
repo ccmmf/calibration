@@ -60,6 +60,12 @@ WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of 
 # PR #10: "0.85, 0, 0, 0"); only the stand's last cutting before another crop takes the
 # full P1 row.
 ALFALFA_CUT <- c(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
+# The run ends with 2014; crops still growing then are left running.
+LAST_DATE <- as.Date("2014-12-31")
+# A missing date or amount comes from the package's own records for the same system when it
+# has at least MIN_MEDIAN_N of them, otherwise from the whole site (tools/event_prep/README.md,
+# "Filling missing events").
+MIN_MEDIAN_N <- 5
 
 rd <- function(f, enc = "UTF-8")
   read.csv(file.path(century_dir, f), stringsAsFactors = FALSE, check.names = FALSE,
@@ -329,20 +335,32 @@ first_date <- function(x) {
   if (!length(m)) return(as.Date(NA))
   as_date(m)
 }
+yday <- function(d) as.POSIXlt(d)$yday + 1L
+# The first date after `after` that falls on day of year `doy`
+doy_after <- function(after, doy) {
+  y <- as.integer(format(after, "%Y"))
+  d <- as.Date(sprintf("%d-01-01", y)) + doy - 1
+  if (d <= after + 30) d <- as.Date(sprintf("%d-01-01", y + 1L)) + doy - 1
+  d
+}
+dates_of <- function(evs) as.Date(vapply(evs, `[[`, "", "date"))
 
-# Some cash crop harvests are missing from operations_harvest.csv although the crop was
-# harvested (e.g. Conventional Corn/Tomato tomato 1998). plot_system.csv records every
-# plot-year's harvest date, so a cash crop planting with no same-crop harvest within
-# SEASON_DAYS takes the date most of the phase's plots were harvested. A crop with no
-# harvest in either (Organic Corn/Tomato wheat planted 2011, which plot_system.csv says was
-# "NOT harvested for wheat in 2012") ends at the phase's next planting, all to litter.
-ps_harvests <- do.call(rbind, lapply(c("A", "B"), function(k) data.frame(
+# plot_system.csv records every plot-year's harvest, including some the logs lack
+ps_ops <- function(what) do.call(rbind, lapply(c("A", "B"), function(k) data.frame(
   system = ps$new_system_name, plot = ps$plot, phase = ps[["harvest_year_rotation_order_(even-odd)"]],
-  crop = tolower(ps[[sprintf("crop_%s_harvested", k)]]),
-  date = do.call(c, lapply(ps[[sprintf("crop_%s_date_harvested", k)]], first_date)),
-  raw = ps[[sprintf("crop_%s_date_harvested", k)]], stringsAsFactors = FALSE)))
+  crop = tolower(ps[[sprintf("crop_%s_%s", k, if (what == "planting") "planted" else "harvested")]]),
+  date = do.call(c, lapply(ps[[sprintf("crop_%s_date_%s", k, if (what == "planting") "planted" else "harvested")]], first_date)),
+  raw = ps[[sprintf("crop_%s_date_%s", k, if (what == "planting") "planted" else "harvested")]],
+  stringsAsFactors = FALSE)))
+ps_harvests <- ps_ops("harvest")
 ps_harvests <- ps_harvests[!is.na(ps_harvests$date) & ps_harvests$crop %in% CASH_CROPS, ]
 
+# Some cash crop harvests are missing from operations_harvest.csv although the crop was
+# harvested (e.g. Conventional Corn/Tomato tomato 1998), and the logs stop before 2014. A cash
+# crop planting with no same-crop harvest within SEASON_DAYS takes the plot_system.csv harvest
+# date most of the phase's plots share. A crop with no harvest in either (Organic Corn/Tomato
+# wheat planted 2011, "NOT harvested for wheat in 2012") ends with all biomass to litter on a
+# date imputed later (impute_date); one still growing at the end of the run is left running.
 missing_harvests <- function(sys, ph, pe) {
   pl <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
   hv <- Filter(function(e) e$event_type == "harvest", pe)
@@ -358,22 +376,16 @@ missing_harvests <- function(sys, ph, pe) {
     m <- ps_harvests[ps_harvests$system == sys & ps_harvests$phase == ph & ps_harvests$crop == crop &
                        ps_harvests$date > pd & as.numeric(ps_harvests$date - pd) <= SEASON_DAYS, ]
     if (!nrow(m)) {
-      nxt <- as.Date(vapply(Filter(function(e) e$event_type == "planting", pe), `[[`, "", "date"))
-      nxt <- nxt[nxt > pd]
-      if (!length(nxt)) {
-        cat(sprintf("%s %s: %s planted %s has no harvest and no later planting; not ended\n",
-                    sys, ph, p$crop_display, p$date))
-        next
-      }
-      cat(sprintf("%s %s: %s planted %s has no harvest record; ends at the next planting, %s\n",
-                  sys, ph, p$crop_display, p$date, format(min(nxt))))
+      if (pd > LAST_DATE - 240) next  # still growing when the run ends
+      cat(sprintf("%s %s: %s planted %s has no harvest record; ends on an imputed date\n",
+                  sys, ph, p$crop_display, p$date))
       out[[length(out) + 1L]] <- list(
-        event_type = "harvest", date = format(min(nxt)), source = paste0(SOURCE, ":operations_planting.csv"),
+        event_type = "harvest", date = NA_character_, source = paste0(SOURCE, ":operations_planting.csv"),
         crop_display = p$crop_display, frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
         frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1, not_harvested = TRUE,
-        provenance_class = "assumed",
-        provenance_note = paste("No harvest in operations_harvest.csv or plot_system.csv; the crop",
-                                "ends at the phase's next planting with all biomass to litter."))
+        provenance_class = "imputed",
+        provenance_note = "No harvest in operations_harvest.csv or plot_system.csv; the crop ends with all biomass to litter.",
+        impute = list(kind = "harvest_doy", crop = crop, after = p$date))
       next
     }
     hd <- shared_date(m$date)
@@ -393,10 +405,10 @@ missing_harvests <- function(sys, ph, pe) {
 # the WCC incorporation" (data dictionary; the methods put the sample in the week before
 # it), so each cover crop ends on that date, the one most of the phase's plots share, with
 # all biomass to litter. Where a planting has no sample, plot_system.csv's cover crop
-# harvest date is used (it equals the sample date in 342 of 353 plot-years), then the next
-# cash crop planting. A recorded date after the next cash crop planting cannot be the
-# incorporation (2004 is 5/17 for every plot of every system, after the 5/2 and 5/5 corn and
-# tomato plantings), so the cover crop ends at that planting instead.
+# harvest date is used (it equals the sample date in 342 of 353 plot-years). A recorded date
+# after the next cash crop planting cannot be the incorporation (2004 is 5/17 for every plot
+# of every system, after the 5/2 and 5/5 corn and tomato plantings); that and a cover crop
+# with no date at all end on a date imputed later (impute_date).
 cc_dates <- rbind(
   data.frame(system = wcc$system_name, plot = sub("[EW]$", "", wcc$plot), date = as_date(wcc$date),
              src = "wcc_harvests_all.csv", stringsAsFactors = FALSE),
@@ -410,42 +422,36 @@ CC_NOTES <- c(
   plot_system.csv = "No cover crop sample for this planting; dated by the cover crop harvest date in plot_system.csv.")
 cover_crop_ends <- function(sys, ph, pe) {
   cc <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) == "cover crop", pe)
-  cash <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
+  cash <- dates_of(Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe))
   out <- list()
   for (p in cc) {
     pd <- as.Date(p$date)
     s <- cc_dates[cc_dates$system == sys & cc_dates$phase == ph & cc_dates$date > pd &
                     as.numeric(cc_dates$date - pd) <= WCC_WINDOW_DAYS, ]
+    nxt <- cash[cash > pd]
+    ev <- list(event_type = "harvest", date = NA_character_, crop_display = "Cover Crop",
+               frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
+               frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1)
     if (nrow(s)) {
       src <- names(CC_NOTES)[names(CC_NOTES) %in% s$src][1]
       s <- s[s$src == src, ]
-      per_plot <- tapply(s$date, s$plot, min)
-      d <- shared_date(as.Date(per_plot, origin = "1970-01-01"))
-      cls <- "published"; note <- CC_NOTES[[src]]
-      nxt <- as.Date(vapply(cash, `[[`, "", "date"))
-      nxt <- nxt[nxt > pd & nxt < d]
-      if (length(nxt)) {
-        note <- sprintf("The recorded date (%s, %s) is after the next cash crop planting; ends at that planting.",
-                        format(d), src)
-        d <- min(nxt); src <- "operations_planting.csv"; cls <- "assumed"
-      }
-    } else {
-      nxt <- as.Date(vapply(cash, `[[`, "", "date"))
-      nxt <- nxt[nxt > pd]
-      if (!length(nxt)) {
-        cat(sprintf("%s %s: cover crop planted %s has no incorporation date and no later cash crop; not ended\n",
-                    sys, ph, p$date))
+      d <- shared_date(as.Date(tapply(s$date, s$plot, min), origin = "1970-01-01"))
+      if (!any(nxt < d)) {
+        out[[length(out) + 1L]] <- modifyList(ev, list(
+          date = format(d), source = paste0(SOURCE, ":", src), provenance_class = "published",
+          provenance_note = paste("Cover crop termination.", CC_NOTES[[src]])))
         next
       }
-      d <- min(nxt)
-      src <- "operations_planting.csv"; cls <- "assumed"
-      note <- "No incorporation date for this planting; ends at the next cash crop planting."
+      note <- sprintf("The recorded date (%s, %s) is after the next cash crop planting.", format(d), src)
+    } else {
+      if (pd > LAST_DATE - WCC_WINDOW_DAYS) next  # still growing when the run ends
+      note <- "No incorporation date for this planting."
     }
-    out[[length(out) + 1L]] <- list(
-      event_type = "harvest", date = format(d), source = paste0(SOURCE, ":", src),
-      crop_display = "Cover Crop", frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
-      frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1,
-      provenance_class = cls, provenance_note = paste("Cover crop termination.", note))
+    out[[length(out) + 1L]] <- modifyList(ev, list(
+      source = paste0(SOURCE, ":operations_planting.csv"), provenance_class = "imputed",
+      provenance_note = paste("Cover crop termination.", note),
+      impute = if (length(nxt)) list(kind = "cc_gap", next_cash = format(min(nxt)), after = p$date)
+               else list(kind = "cc_doy", after = p$date)))
   }
   out
 }
@@ -475,7 +481,6 @@ apply_lookup <- function(e) {
   e
 }
 
-dates_of <- function(evs) as.Date(vapply(evs, `[[`, "", "date"))
 # An alfalfa harvest followed by another before the next planting is an intermediate cutting
 # and leaves the stand alive; the last one before the next planting ends it with the full P1
 # row. A stand still growing at the end of the run is never ended.
@@ -501,15 +506,31 @@ alfalfa_cuts <- function(pe) {
   pe
 }
 
-summary_rows <- list()
+# Cash crop seasons: a planting to the first same-crop harvest within SEASON_DAYS
+seasons_of <- function(pe) {
+  pl <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
+  hv <- Filter(function(e) e$event_type == "harvest" && tolower(e$crop_display) %in% CASH_CROPS, pe)
+  out <- do.call(rbind, lapply(pl, function(p) {
+    crop <- tolower(p$crop_display); pd <- as.Date(p$date)
+    h <- dates_of(Filter(function(x) tolower(x$crop_display) == crop && as.Date(x$date) > pd &&
+                           as.numeric(as.Date(x$date) - pd) <= SEASON_DAYS, hv))
+    data.frame(crop = crop, start = pd, end = if (length(h)) min(h) else as.Date(NA))
+  }))
+  if (is.null(out)) data.frame(crop = character(), start = as.Date(character()), end = as.Date(character())) else out
+}
+is_recorded <- function(e) !isTRUE(e$provenance_class %in% c("imputed", "assumed")) &&
+  !isTRUE(e$not_harvested) && !is.na(e$date)
+
+# Pass 1: the generator's plantings and harvests, assigned to phases and merged -----------
+keep_all <- list(); gen <- list()
 for (tid in names(SYSTEMS)) {
   sys <- SYSTEMS[[tid]]
   src <- jsonlite::fromJSON(file.path(stacked_dir, sprintf("russell_ranch_tautges_2019_%s.json", tid)),
                             simplifyDataFrame = FALSE)
   ev <- src$events
+  gen[[tid]] <- ev
   phases <- sort(unique(phase_of[startsWith(names(phase_of), paste0(sys, "|"))]))
   keep <- setNames(vector("list", length(phases)), phases)
-
   for (e in ev) {
     if (e$event_type %in% c("planting", "harvest")) {
       p <- phases_for(e$event_type, sys, e)
@@ -525,98 +546,150 @@ for (tid in names(SYSTEMS)) {
     keep[[ph]] <- m
   }
   if (n_merged) cat(sprintf("%-18s split-day plantings/harvests merged away: %d\n", tid, n_merged))
-
-  n_filled <- 0L; n_ended <- 0L
-  for (ph in phases) {
-    mh <- missing_harvests(sys, ph, keep[[ph]])
-    ce <- cover_crop_ends(sys, ph, keep[[ph]])
-    n_filled <- n_filled + length(mh); n_ended <- n_ended + length(ce)
-    keep[[ph]] <- alfalfa_cuts(lapply(c(keep[[ph]], mh, ce), apply_lookup))
+  keep_all[[tid]] <- keep
+}
+# Fill harvests the logs miss from plot_system.csv, end every crop
+for (tid in names(SYSTEMS)) {
+  sys <- SYSTEMS[[tid]]
+  n <- c(harvests = 0L, cover_crop_ends = 0L)
+  for (ph in names(keep_all[[tid]])) {
+    pe <- keep_all[[tid]][[ph]]
+    mh <- missing_harvests(sys, ph, pe)
+    ce <- cover_crop_ends(sys, ph, pe)
+    n <- n + c(length(mh), length(ce))
+    keep_all[[tid]][[ph]] <- lapply(c(pe, mh, ce), apply_lookup)
   }
-  cat(sprintf("%-18s harvests filled from plot_system.csv: %d; cover crop terminations added: %d\n",
-              tid, n_filled, n_ended))
+  cat(sprintf("%-18s filled harvests %d; cover crop ends %d\n", tid, n[[1]], n[[2]]))
+}
 
-  last_year <- max(as.integer(substr(vapply(ev, `[[`, "", "date"), 1, 4)))
-  for (ph in phases) keep[[ph]] <- c(keep[[ph]], fert_events(sys, ph, last_year))
+# Pass 2: dates the records do not give, from medians of the records ------------------------
+# (tools/event_prep/README.md, "Filling missing events"): a cover crop ends the system's median
+# gap before the next cash crop planting, or on its median incorporation day when no cash
+# crop follows; an unharvested crop ends on the system's median harvest day for that crop.
+med <- do.call(rbind, lapply(names(SYSTEMS), function(tid) do.call(rbind, lapply(keep_all[[tid]], function(pe) {
+  cash <- dates_of(Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe))
+  do.call(rbind, lapply(Filter(function(e) e$event_type == "harvest" && is_recorded(e), pe), function(e) {
+    crop <- tolower(e$crop_display); d <- as.Date(e$date)
+    r <- data.frame(system = SYSTEMS[[tid]], kind = if (crop == "cover crop") "cc_doy" else paste0("doy_", crop),
+                    value = yday(d))
+    nxt <- cash[cash > d & cash <= d + 365]
+    if (crop == "cover crop" && length(nxt))
+      r <- rbind(r, data.frame(system = SYSTEMS[[tid]], kind = "cc_gap", value = as.numeric(min(nxt) - d)))
+    r
+  }))
+}))))
+median_for <- function(sys, kind) {
+  v <- med$value[med$system == sys & med$kind == kind]
+  if (length(v) >= MIN_MEDIAN_N) return(list(v = round(median(v)), n = length(v), level = sys))
+  v <- med$value[med$kind == kind]
+  list(v = round(median(v)), n = length(v), level = "all systems")
+}
+impute_date <- function(e, sys) {
+  k <- e$impute; e$impute <- NULL
+  after <- as.Date(k$after)
+  if (k$kind == "cc_gap") {
+    m <- median_for(sys, "cc_gap")
+    d <- as.Date(k$next_cash) - m$v
+    rule <- sprintf("%d days before the next cash crop planting (%s), the median gap between a recorded cover crop end and the next cash crop planting (%s, n = %d)",
+                    m$v, k$next_cash, m$level, m$n)
+  } else {
+    what <- if (k$kind == "cc_doy") "cover crop end" else paste(k$crop, "harvest")
+    m <- median_for(sys, if (k$kind == "cc_doy") "cc_doy" else paste0("doy_", k$crop))
+    d <- doy_after(after, m$v)
+    rule <- sprintf("day %d of the year, the median day of a recorded %s (%s, n = %d)", m$v, what, m$level, m$n)
+  }
+  stopifnot(d > after)
+  e$date <- format(d)
+  e$provenance_note <- paste(e$provenance_note, sprintf("Dated %s.", rule))
+  e
+}
+for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
+  pe <- keep_all[[tid]][[ph]]
+  imp <- vapply(pe, function(e) !is.null(e$impute), TRUE)
+  pe[imp] <- lapply(pe[imp], impute_date, sys = SYSTEMS[[tid]])
+  for (e in pe[imp]) cat(sprintf("%-18s %-44s %s %s imputed: %s\n", tid, ph, e$crop_display, e$date,
+                                 sub("^.*Dated ", "", e$provenance_note)))
+  keep_all[[tid]][[ph]] <- alfalfa_cuts(pe)
+}
 
-  # irrigation was injected at the midpoint of each cash crop window; give each event to
-  # the phase whose own window midpoint it sits on. A window is one season: from a cash crop
-  # planting to the first same-crop harvest within SEASON_DAYS, and a planting with no such
-  # harvest has none. The generator also paired a planting in one phase with a harvest in
-  # the other and put irrigation in winter; those events fall outside every window and are
-  # dropped. Rainfed systems get none.
-  irr <- Filter(function(e) identical(e$event_type, "irrigation"), ev)
+# Pass 3: fertilization, irrigation, history -----------------------------------------------
+for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]]))
+  keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], fert_events(SYSTEMS[[tid]], ph, as.integer(format(LAST_DATE, "%Y"))))
+
+# irrigation was injected at the midpoint of each cash crop window; give each event to
+# the phase whose own window midpoint it sits on. A window is one season: from a cash crop
+# planting to the first same-crop harvest within SEASON_DAYS, and a planting with no such
+# harvest has none. The generator also paired a planting in one phase with a harvest in
+# the other and put irrigation in winter; those events fall outside every window and are
+# dropped. Rainfed systems get none.
+for (tid in names(SYSTEMS)) {
+  irr <- Filter(function(e) identical(e$event_type, "irrigation"), gen[[tid]])
   dropped_irr <- 0L
   if (tid %in% RAINFED) {
     dropped_irr <- length(irr)
   } else {
-    win <- do.call(rbind, lapply(phases, function(ph) {
-      pe <- keep[[ph]]
-      pl <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
-      hv <- Filter(function(e) e$event_type == "harvest" && tolower(e$crop_display) %in% CASH_CROPS, pe)
-      if (!length(pl)) return(NULL)
-      do.call(rbind, lapply(pl, function(p) {
-        h <- Filter(function(x) tolower(x$crop_display) == tolower(p$crop_display) &&
-                      as.Date(x$date) > as.Date(p$date) &&
-                      as.numeric(as.Date(x$date) - as.Date(p$date)) <= SEASON_DAYS, hv)
-        if (!length(h)) return(NULL)
-        hd <- min(as.Date(vapply(h, `[[`, "", "date")))
-        data.frame(phase = ph, start = as.Date(p$date), end = hd,
-                   mid = as.Date(p$date) + as.numeric(hd - as.Date(p$date)) / 2)
-      }))
+    win <- do.call(rbind, lapply(names(keep_all[[tid]]), function(ph) {
+      x <- seasons_of(keep_all[[tid]][[ph]])
+      x <- x[!is.na(x$end), ]
+      if (nrow(x)) data.frame(phase = ph, start = x$start, end = x$end, mid = x$start + as.numeric(x$end - x$start) / 2)
     }))
     for (e in irr) {
       d <- as.Date(e$date)
       cand <- win[win$start <= d & win$end >= d, ]
       if (!nrow(cand)) { dropped_irr <- dropped_irr + 1L; next }
       ph <- cand$phase[which.min(abs(as.numeric(cand$mid - d)))]
-      keep[[ph]][[length(keep[[ph]]) + 1L]] <- e
+      keep_all[[tid]][[ph]][[length(keep_all[[tid]][[ph]]) + 1L]] <- e
     }
-  }
-
-  for (ph in phases) {
-    pe <- keep[[ph]]
-    ord <- order(vapply(pe, `[[`, "", "date"), vapply(pe, `[[`, "", "event_type"))
-    pe <- pe[ord]
-    slug <- gsub("-+", "-", gsub("[^a-z0-9]+", "-", tolower(ph)))
-    out <- list(
-      pecan_events_version = "0.1.1",
-      site_id = sprintf("%s__%s", tid, slug),
-      provenance = list(
-        dataset_id = "russell_ranch_tautges_2019", treatment = tid, rotation_phase = ph,
-        generator = "calibration:tools/event_prep/russell_split_phases.R",
-        stacked_input = sprintf("generator_stacked/russell_ranch_tautges_2019_%s.json", tid),
-        note = paste(
-          "One rotation phase of the treatment. Planting, harvest and irrigation events come",
-          "from the stacked generator output, assigned to this phase by the plot ids in the",
-          "Century package; planting amounts are still the generator's prior fills",
-          "(prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row),",
-          "or go wholly to litter for cover crops and sudangrass, which were plowed under.",
-          "Harvests missing from operations_harvest.csv are filled from plot_system.csv, and",
-          "cover crops end on their incorporation date. Fertilization is rebuilt from the package.")),
-      events = pe)
-    fn <- file.path(out_dir, sprintf("russell_ranch_tautges_2019_%s__%s.json", tid, slug))
-    write(jsonlite::toJSON(out, auto_unbox = TRUE, pretty = 1, digits = NA), fn)
-
-    yrs <- substr(vapply(pe, `[[`, "", "date"), 1, 4)
-    for (y in sort(unique(yrs))) {
-      ye <- pe[yrs == y]
-      g <- function(f) sum(vapply(ye, function(e) as.numeric(if (is.null(e[[f]])) 0 else e[[f]]), 0))
-      cash <- function(t) paste(sort(vapply(Filter(function(e) e$event_type == t && !isTRUE(e$not_harvested) &&
-        tolower(e$crop_display) %in% CASH_CROPS, ye), function(e) e$crop_display, "")), collapse = "+")
-      summary_rows[[length(summary_rows) + 1L]] <- data.frame(
-        treatment = tid, rotation_phase = ph, year = y,
-        cash_planting = cash("planting"), cash_harvest = cash("harvest"),
-        mineral_n_kg_ha = round(g("nh4_n_kg_m2") * 1e4, 2),
-        compost_c_mg_ha = round(g("org_c_kg_m2") * 10, 3),
-        compost_n_kg_ha = round(g("org_n_kg_m2") * 1e4, 2),
-        irrigation_mm = round(g("amount_mm"), 1))
-    }
-    cat(sprintf("%-18s %-44s %3d events -> %s\n", tid, ph, length(pe), basename(fn)))
   }
   if (dropped_irr) cat(sprintf("%-18s irrigation events dropped: %d (%s)\n", tid, dropped_irr,
                                if (tid %in% RAINFED) "rainfed system" else
                                  sprintf("outside any cash crop window of %d days or less: generator artifacts", SEASON_DAYS)))
+}
+
+# Write --------------------------------------------------------------------------------------
+summary_rows <- list()
+for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
+  pe <- keep_all[[tid]][[ph]]
+  pe <- Filter(function(e) as.Date(e$date) <= LAST_DATE, pe)
+  stopifnot(!any(vapply(pe, function(e) is.na(e$date), TRUE)))
+  pe <- pe[order(vapply(pe, `[[`, "", "date"), vapply(pe, `[[`, "", "event_type"))]
+  slug <- gsub("-+", "-", gsub("[^a-z0-9]+", "-", tolower(ph)))
+  out <- list(
+    pecan_events_version = "0.1.1",
+    site_id = sprintf("%s__%s", tid, slug),
+    provenance = list(
+      dataset_id = "russell_ranch_tautges_2019", treatment = tid, rotation_phase = ph,
+      generator = "calibration:tools/event_prep/russell_split_phases.R",
+      stacked_input = sprintf("generator_stacked/russell_ranch_tautges_2019_%s.json", tid),
+      note = paste(c(
+        "One rotation phase of the treatment. Planting, harvest and irrigation events come",
+        "from the stacked generator output, assigned to this phase by the plot ids in the",
+        "Century package; planting amounts are still the generator's prior fills",
+        "(prior_filled). Harvests the operation logs lack are filled from plot_system.csv.",
+        "Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings",
+        "leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and",
+        "amounts no record gives are imputed (provenance_class imputed) as described in",
+        "tools/event_prep/README.md. Fertilization is rebuilt from the package."),
+        collapse = " ")),
+    events = pe)
+  fn <- file.path(out_dir, sprintf("russell_ranch_tautges_2019_%s__%s.json", tid, slug))
+  write(jsonlite::toJSON(out, auto_unbox = TRUE, pretty = 1, digits = NA), fn)
+
+  yrs <- substr(vapply(pe, `[[`, "", "date"), 1, 4)
+  for (y in sort(unique(yrs))) {
+    ye <- pe[yrs == y]
+    g <- function(f) sum(vapply(ye, function(e) as.numeric(if (is.null(e[[f]])) 0 else e[[f]]), 0))
+    cash <- function(t) paste(sort(vapply(Filter(function(e) e$event_type == t && !isTRUE(e$not_harvested) &&
+      tolower(e$crop_display) %in% CASH_CROPS, ye), function(e) e$crop_display, "")), collapse = "+")
+    summary_rows[[length(summary_rows) + 1L]] <- data.frame(
+      treatment = tid, rotation_phase = ph, year = y,
+      cash_planting = cash("planting"), cash_harvest = cash("harvest"),
+      mineral_n_kg_ha = round(g("nh4_n_kg_m2") * 1e4, 2),
+      compost_c_mg_ha = round(g("org_c_kg_m2") * 10, 3),
+      compost_n_kg_ha = round(g("org_n_kg_m2") * 1e4, 2),
+      irrigation_mm = round(g("amount_mm"), 1))
+  }
+  cat(sprintf("%-18s %-44s %3d events -> %s\n", tid, ph, length(pe), basename(fn)))
 }
 
 smry <- do.call(rbind, summary_rows)

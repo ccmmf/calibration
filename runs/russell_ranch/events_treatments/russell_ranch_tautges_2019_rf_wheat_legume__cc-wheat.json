@@ -7,7 +7,7 @@
   "rotation_phase": "CC-wheat",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_legume.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests take the harvest lookup fractions (harvest_lookup_row), or go wholly to litter for cover crops and sudangrass, which were plowed under. Harvests missing from operations_harvest.csv are filled from plot_system.csv, and cover crops end on their incorporation date. Fertilization is rebuilt from the package."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Harvests the operation logs lack are filled from plot_system.csv. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package."
  },
  "events": [
   {
@@ -22,12 +22,12 @@
   {
    "event_type": "harvest",
    "date": "1994-04-20",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -65,12 +65,12 @@
   {
    "event_type": "harvest",
    "date": "1996-04-29",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -108,12 +108,12 @@
   {
    "event_type": "harvest",
    "date": "1998-04-07",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -140,12 +140,12 @@
   {
    "event_type": "harvest",
    "date": "2000-03-30",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -201,12 +201,12 @@
   {
    "event_type": "harvest",
    "date": "2004-05-17",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -242,12 +242,12 @@
   {
    "event_type": "harvest",
    "date": "2006-04-25",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -283,12 +283,12 @@
   {
    "event_type": "harvest",
    "date": "2008-04-10",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -324,12 +324,12 @@
   {
    "event_type": "harvest",
    "date": "2010-03-22",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -365,12 +365,12 @@
   {
    "event_type": "harvest",
    "date": "2012-04-04",
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
@@ -406,12 +406,12 @@
   {
    "event_type": "harvest",
    "date": "2014-03-13",
-   "source": "10.1002/ecy.2105:plot_system.csv",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
+   "source": "10.1002/ecy.2105:plot_system.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. No cover crop sample for this planting; dated by the cover crop harvest date in plot_system.csv."
   }
