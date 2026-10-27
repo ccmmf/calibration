@@ -797,6 +797,48 @@ for (tid in names(SYSTEMS)) {
                                  sprintf("outside any cash crop window of %d days or less: generator artifacts", SEASON_DAYS)))
 }
 
+# A season in an irrigated system with no irrigation (a filled season, 2014, or one whose only
+# event was a dropped artifact) takes the treatment's usual irrigation: one event at the season
+# midpoint carrying the median season total of its other seasons of that crop (the site's when
+# the treatment has fewer than MIN_MEDIAN_N). The amounts are the generator's sprinkler prior,
+# so this keeps a filled season like its neighbours; the package records no irrigation.
+season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(tid)
+  do.call(rbind, lapply(keep_all[[tid]], function(pe) {
+    x <- seasons_of(pe); x <- x[!is.na(x$end), ]
+    if (!nrow(x)) return(NULL)
+    irr <- Filter(function(e) e$event_type == "irrigation", pe)
+    x$mm <- vapply(seq_len(nrow(x)), function(i) sum(vapply(Filter(function(e)
+      as.Date(e$date) >= x$start[i] && as.Date(e$date) <= x$end[i], irr), function(e) as.numeric(e$amount_mm), 0)), 0)
+    cbind(x, tid = tid)
+  }))))
+season_irr <- season_irr[season_irr$mm > 0, ]
+for (tid in setdiff(names(SYSTEMS), RAINFED)) {
+  n <- 0L
+  for (ph in names(keep_all[[tid]])) {
+    pe <- keep_all[[tid]][[ph]]
+    x <- seasons_of(pe); x <- x[!is.na(x$end), ]
+    irr <- dates_of(Filter(function(e) e$event_type == "irrigation", pe))
+    for (i in seq_len(nrow(x))) {
+      if (any(irr >= x$start[i] & irr <= x$end[i])) next
+      v <- season_irr$mm[season_irr$tid == tid & season_irr$crop == x$crop[i]]; level <- tid
+      if (length(v) < MIN_MEDIAN_N) { v <- season_irr$mm[season_irr$crop == x$crop[i]]; level <- "irrigated systems" }
+      if (!length(v)) next
+      mid <- x$start[i] + floor(as.numeric(x$end[i] - x$start[i]) / 2)
+      pe[[length(pe) + 1L]] <- list(
+        event_type = "irrigation", date = format(mid), source = "calibration:tools/event_prep/russell_split_phases.R",
+        amount_mm = round(median(v), 4), method = "canopy", provenance_class = "imputed",
+        provenance_note = sprintf(paste(
+          "No irrigation in this %s season (%s to %s); the usual irrigation of %s: one event at the",
+          "season midpoint with the median season total of %d %s seasons. Those amounts are the",
+          "generator's sprinkler prior; the package records no irrigation."),
+          x$crop[i], format(x$start[i]), format(x$end[i]), level, length(v), x$crop[i]))
+      n <- n + 1L
+    }
+    keep_all[[tid]][[ph]] <- pe
+  }
+  if (n) cat(sprintf("%-18s seasons given the usual irrigation: %d\n", tid, n))
+}
+
 # Write --------------------------------------------------------------------------------------
 summary_rows <- list()
 for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {

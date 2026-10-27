@@ -126,6 +126,15 @@
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/2/1998 - 11/6/1998), the date most of the phase's plots share."
   },
   {
+   "event_type": "irrigation",
+   "date": "1999-03-02",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 543.5048,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (1998-11-02 to 1999-07-01); the usual irrigation of irr_wheat_fallow: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+  },
+  {
    "event_type": "harvest",
    "date": "1999-07-01",
    "source": "10.1002/ecy.2105",

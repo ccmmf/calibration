@@ -237,6 +237,15 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "irrigation",
+   "date": "1999-07-02",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 604.1326,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this tomato season (1999-05-01 to 1999-09-02); the usual irrigation of transitional: one event at the season midpoint with the median season total of 8 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+  },
+  {
    "event_type": "harvest",
    "date": "1999-09-02",
    "source": "10.1002/ecy.2105",
@@ -959,6 +968,15 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "irrigation",
+   "date": "2011-03-13",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 547.3512,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (2010-11-16 to 2011-07-09); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 68 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+  },
+  {
    "event_type": "harvest",
    "date": "2011-07-09",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -1167,6 +1185,15 @@
    "prior_filled": "leaf_c_kg_m2<-median of this phase's 8 generator Tomato plantings",
    "provenance_class": "published",
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-04-27), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-06-24",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 604.1326,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this tomato season (2014-04-27 to 2014-08-21); the usual irrigation of transitional: one event at the season midpoint with the median season total of 8 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",

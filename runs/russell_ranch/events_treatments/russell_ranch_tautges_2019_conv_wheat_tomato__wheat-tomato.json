@@ -40,6 +40,15 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "irrigation",
+   "date": "1994-03-02",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 546.9828,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (1993-11-18 to 1994-06-15); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 17 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+  },
+  {
    "event_type": "harvest",
    "date": "1994-06-15",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -90,6 +99,15 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1995-06-23",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 589.4928,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this tomato season (1995-04-22 to 1995-08-24); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -236,6 +254,15 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "irrigation",
+   "date": "1998-03-07",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 546.9828,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (1997-11-05 to 1998-07-07); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 17 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+  },
+  {
    "event_type": "harvest",
    "date": "1998-07-07",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -268,6 +295,15 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1999-07-01",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 589.4928,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this tomato season (1999-05-01 to 1999-09-01); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -390,6 +426,15 @@
    "prior_filled": "leaf_c_kg_m2<-median of this phase's 10 generator Wheat plantings",
    "provenance_class": "published",
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/10/2001 - 11/23/2001), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2002-03-10",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 546.9828,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (2001-11-10 to 2002-07-09); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 17 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "fertilization",
@@ -990,6 +1035,15 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0028,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-03-02",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 546.9828,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (2013-11-10 to 2014-06-22); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 17 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "fertilization",
