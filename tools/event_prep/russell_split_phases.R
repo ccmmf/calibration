@@ -839,6 +839,25 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
   if (n) cat(sprintf("%-18s seasons given the usual irrigation: %d\n", tid, n))
 }
 
+# The six Alfalfa/Corn/Tomato plots were Irrigated Wheat/Legume, one phase to one phase, until
+# fallow from 2008 and the switch in 2012. The package files that history under the old system
+# name, so each Alfalfa/Corn/Tomato phase takes its plots' Irrigated Wheat/Legume events.
+HISTORY <- list(alf_corn_tomato = "irr_wheat_legume")
+plots_of <- function(sys, ph) sort(unique(ps$plot[ps$new_system_name == sys & ps[["harvest_year_rotation_order_(even-odd)"]] == ph]))
+history_of <- list()
+for (tid in names(HISTORY)) for (ph in names(keep_all[[tid]])) {
+  old <- HISTORY[[tid]]
+  oph <- Filter(function(p2) identical(plots_of(SYSTEMS[[old]], p2), plots_of(SYSTEMS[[tid]], ph)), names(keep_all[[old]]))
+  stopifnot(length(oph) == 1L)
+  first_own <- min(dates_of(keep_all[[tid]][[ph]]))
+  h <- Filter(function(e) as.Date(e$date) < first_own, keep_all[[old]][[oph]])
+  h <- lapply(h, function(e) { e$history_of <- sprintf("%s__%s", old, oph); e })
+  keep_all[[tid]][[ph]] <- c(h, keep_all[[tid]][[ph]])
+  history_of[[paste(tid, ph)]] <- sprintf("%s %s (plots %s, %d events before %s)", old, oph,
+                                         paste(plots_of(SYSTEMS[[tid]], ph), collapse = ", "), length(h), format(first_own))
+  cat(sprintf("%-18s %-44s takes %s\n", tid, ph, history_of[[paste(tid, ph)]]))
+}
+
 # Write --------------------------------------------------------------------------------------
 summary_rows <- list()
 for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
@@ -847,6 +866,7 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   stopifnot(!any(vapply(pe, function(e) is.na(e$date), TRUE)))
   pe <- pe[order(vapply(pe, `[[`, "", "date"), vapply(pe, `[[`, "", "event_type"))]
   slug <- gsub("-+", "-", gsub("[^a-z0-9]+", "-", tolower(ph)))
+  hist_note <- history_of[[paste(tid, ph)]]
   out <- list(
     pecan_events_version = "0.1.1",
     site_id = sprintf("%s__%s", tid, slug),
@@ -863,7 +883,8 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings",
         "leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and",
         "amounts no record gives are imputed (provenance_class imputed) as described in",
-        "tools/event_prep/README.md. Fertilization is rebuilt from the package."),
+        "tools/event_prep/README.md. Fertilization is rebuilt from the package.",
+        if (!is.null(hist_note)) sprintf("Before 2012 these plots were %s; those events carry history_of.", hist_note)),
         collapse = " ")),
     events = pe)
   fn <- file.path(out_dir, sprintf("russell_ranch_tautges_2019_%s__%s.json", tid, slug))
