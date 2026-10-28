@@ -68,9 +68,10 @@ CROP_DISPLAY <- c(corn = "Corn", tomato = "Tomato", wheat = "Wheat", alfalfa = "
 FIRST_DATE <- as.Date("1993-09-01")
 LOGS_END <- as.Date("2013-12-31")
 LAST_DATE <- as.Date("2014-12-31")
-# A missing date or amount comes from the package's own records for the same system when it
-# has at least MIN_MEDIAN_N of them, otherwise from the whole site (tools/event_prep/README.md,
-# "Filling missing events").
+# A missing date comes from the package's own records for the same system, and a filled
+# season's irrigation from the treatment's generator events, when there are at least
+# MIN_MEDIAN_N of them, otherwise from the whole site (tools/event_prep/README.md, "Filling
+# missing events").
 MIN_MEDIAN_N <- 5
 FERT_LEAD_DAYS <- 90  # fertilization up to this many days before a planting belongs to its season
 # Alfalfa/Corn/Tomato has no corn season before 2014 to copy fertilization from
@@ -141,6 +142,20 @@ op_table <- function(df, file, date_col, crop_col, what = df[[crop_col]]) {
 ops <- list(planting = op_table(plt, "operations_planting.csv", "Date", "Crop_planted",
                                 paste(plt$Crop_planted, plt$material_quantity, plt$material_units)),
             harvest = op_table(hrv, "operations_harvest.csv", "date", "crop_harvested"))
+# The Transitional plots grew corn in 2006, not tomato: plot_system.csv lists corn planted
+# 5/25 and harvested 9/13 ("Corn planted instead of tomato"), corn_harvests_all.csv has corn
+# samples dated 10/24/2006, and tomato_harvests_all.csv has none that year. The logs record a
+# tomato transplanting and harvest on those dates for the three plots; those records and the
+# generator's events made from them are dropped, and plot_system.csv fills the corn.
+WRONG_CROP_DROPS <- data.frame(tid = "transitional", event_type = c("planting", "harvest"),
+                               date = c("2006-05-25", "2006-09-13"), crop = "Tomato",
+                               plots = "2-2, 5-7, 7-4")
+for (i in seq_len(nrow(WRONG_CROP_DROPS))) {
+  f <- WRONG_CROP_DROPS[i, ]; o <- ops[[f$event_type]]
+  drop <- o$system == SYSTEMS[[f$tid]] & o$date == as.Date(f$date) & o$crop == tolower(f$crop)
+  stopifnot(identical(sort(o$plot[drop]), strsplit(f$plots, ", ")[[1]]))
+  ops[[f$event_type]] <- o[!drop, ]
+}
 
 # Compost %C and %N for the year it was applied. Tautges et al. 2019 measured compost on the
 # in-house Costech each year, so those replicates are averaged where they exist (2011-2013
@@ -395,7 +410,9 @@ planting_amount <- function(crop, phase_pool) {
 
 # Plantings that plot_system.csv records but operations_planting.csv lacks (25 cash crop
 # seasons that were harvested with no planting before them, whole cover crop seasons, and all
-# of 2014). A planting of the same crop within 30 days counts as the same operation.
+# of 2014). A planting of the same crop within 30 days counts as the same operation; a cash
+# crop with a logged planting of another cash crop within 30 days is a conflict between the
+# files, printed and not filled, so one field is never planted with two cash crops.
 missing_plantings <- function(sys, ph, pe) {
   m <- ps_plantings[ps_plantings$system == sys & ps_plantings$phase == ph, ]
   pl <- Filter(function(e) e$event_type == "planting", pe)
@@ -403,11 +420,19 @@ missing_plantings <- function(sys, ph, pe) {
   for (crop in unique(m$crop)) {
     mc <- m[m$crop == crop, ]
     have <- dates_of(Filter(function(e) tolower(e$crop_display) == crop, pl))
+    other <- if (crop %in% CASH_CROPS)
+      Filter(function(e) tolower(e$crop_display) %in% setdiff(CASH_CROPS, crop), pl) else list()
     cl <- cluster_dates(mc$date, 30)
     for (g in unique(cl)) {
       s <- mc[cl == g, ]
       d <- shared_date(s$date)
       if (any(abs(as.numeric(have - d)) <= 30)) next
+      clash <- Filter(function(e) abs(as.numeric(as.Date(e$date) - d)) <= 30, other)
+      if (length(clash)) {
+        cat(sprintf("%s %s: plot_system.csv %s planting %s conflicts with the logged %s planting %s (not filled)\n",
+                    sys, ph, CROP_DISPLAY[[crop]], format(d), clash[[1]]$crop_display, clash[[1]]$date))
+        next
+      }
       amt <- planting_amount(crop, pl)
       out[[length(out) + 1L]] <- c(
         list(event_type = "planting", date = format(d), source = paste0(SOURCE, ":plot_system.csv"),
@@ -595,7 +620,8 @@ alfalfa_cuts <- function(pe) {
   pe
 }
 
-# Cash crop seasons: a planting to the first same-crop harvest within SEASON_DAYS
+# Cash crop seasons: a planting to the first same-crop harvest within SEASON_DAYS. Plantings
+# of a crop that share that first harvest (a replant) are one season from the first planting.
 seasons_of <- function(pe) {
   pl <- Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) %in% CASH_CROPS, pe)
   hv <- Filter(function(e) e$event_type == "harvest" && tolower(e$crop_display) %in% CASH_CROPS, pe)
@@ -605,7 +631,19 @@ seasons_of <- function(pe) {
                            as.numeric(as.Date(x$date) - pd) <= SEASON_DAYS, hv))
     data.frame(crop = crop, start = pd, end = if (length(h)) min(h) else as.Date(NA))
   }))
-  if (is.null(out)) data.frame(crop = character(), start = as.Date(character()), end = as.Date(character())) else out
+  if (is.null(out)) return(data.frame(crop = character(), start = as.Date(character()), end = as.Date(character())))
+  out <- out[order(out$start), ]
+  out[is.na(out$end) | !duplicated(out[c("crop", "end")]), ]
+}
+# Irrigated seasons: the cash crop seasons that end, and each calendar year's run of alfalfa
+# cuttings (first to last cutting of the year), the stand's production seasons.
+irrigation_seasons <- function(pe) {
+  x <- seasons_of(pe); x <- x[!is.na(x$end), ]
+  cut <- dates_of(Filter(function(e) e$event_type == "harvest" && tolower(e$crop_display) == "alfalfa", pe))
+  if (!length(cut)) return(x)
+  yr <- format(cut, "%Y")
+  rbind(x, data.frame(crop = "alfalfa", start = as.Date(tapply(cut, yr, min), origin = "1970-01-01"),
+                      end = as.Date(tapply(cut, yr, max), origin = "1970-01-01"), row.names = NULL))
 }
 is_recorded <- function(e) !isTRUE(e$provenance_class %in% c("imputed", "assumed")) &&
   !isTRUE(e$not_harvested) && !is.na(e$date)
@@ -617,6 +655,11 @@ for (tid in names(SYSTEMS)) {
   src <- jsonlite::fromJSON(file.path(stacked_dir, sprintf("russell_ranch_tautges_2019_%s.json", tid)),
                             simplifyDataFrame = FALSE)
   ev <- src$events
+  wc <- WRONG_CROP_DROPS[WRONG_CROP_DROPS$tid == tid, ]
+  drop <- vapply(ev, function(e) any(wc$event_type == e$event_type & wc$date == e$date &
+                                       wc$crop %in% e$crop_display), TRUE)
+  stopifnot(sum(drop) == nrow(wc))
+  ev <- ev[!drop]
   gen[[tid]] <- ev
   phases <- sort(unique(phase_of[startsWith(names(phase_of), paste0(sys, "|"))]))
   keep <- setNames(vector("list", length(phases)), phases)
@@ -712,11 +755,12 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]]))
   keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], fert_events(SYSTEMS[[tid]], ph, as.integer(format(LAST_DATE, "%Y"))))
 
 # The logs end in 2013, so a season reaching into 2014 copies the fertilization of the most
-# recent same-crop season of the treatment that has fertilization records (of COMPARABLE's
-# when it has none), shifted by the difference in planting dates; only the copied events that
-# land in 2014 are kept. A season without records is skipped as a template because the log has
-# gaps (no 2013 corn N in any corn/tomato system); a treatment that never fertilized the crop
-# gets nothing.
+# recent same-crop season of the treatment (of COMPARABLE's when it has none), shifted by the
+# difference in first planting dates; only the copied events that land in 2014 inside the season
+# are kept. A season none of whose records would land there is skipped as a template because
+# the log has gaps (no 2013 corn N in any corn/tomato system; only the preplant of the
+# Irrigated Wheat/Fallow wheat planted in 2012, which lands in 2013); a treatment that never
+# fertilized the crop gets nothing.
 fert_2014 <- function(tid, pe) {
   out <- list()
   ss <- seasons_of(pe)
@@ -724,28 +768,28 @@ fert_2014 <- function(tid, pe) {
   for (i in seq_len(nrow(ss))) {
     s <- ss[i, ]; end <- if (is.na(s$end)) LAST_DATE else s$end
     tmpl <- NULL
-    in_window <- function(t2, p2, st, en) Filter(function(e) e$event_type == "fertilization" &&
-      as.Date(e$date) >= st - FERT_LEAD_DAYS && as.Date(e$date) <= en, keep_all[[t2]][[p2]])
+    copies <- function(t2, p2, st, en) Filter(function(e) {
+      d <- as.Date(e$date); d2 <- d + as.numeric(s$start - st)
+      e$event_type == "fertilization" && d >= st - FERT_LEAD_DAYS && d <= en &&
+        d2 > LOGS_END && d2 <= LAST_DATE && d2 >= s$start - FERT_LEAD_DAYS && d2 <= end
+    }, keep_all[[t2]][[p2]])
     for (t2 in c(tid, COMPARABLE[tid][!is.na(COMPARABLE[tid])])) {
       cand <- do.call(rbind, lapply(names(keep_all[[t2]]), function(p2) {
         x <- seasons_of(keep_all[[t2]][[p2]])
         x <- x[x$crop == s$crop & !is.na(x$end) & x$end <= LOGS_END, ]
         if (!nrow(x)) return(NULL)
-        x$n_fert <- vapply(seq_len(nrow(x)), function(j) length(in_window(t2, p2, x$start[j], x$end[j])), 0L)
+        x$n_copies <- vapply(seq_len(nrow(x)), function(j) length(copies(t2, p2, x$start[j], x$end[j])), 0L)
         cbind(x, phase = p2, tid = t2)
       }))
       if (is.null(cand)) next
-      cand <- cand[cand$n_fert > 0, ]
+      cand <- cand[cand$n_copies > 0, ]
       if (nrow(cand)) tmpl <- cand[which.max(cand$start), ]
       break
     }
     if (is.null(tmpl)) next
     shift <- as.numeric(s$start - tmpl$start)
-    src_ev <- in_window(tmpl$tid, tmpl$phase, tmpl$start, tmpl$end)
-    for (e in src_ev) {
-      d <- as.Date(e$date) + shift
-      if (d <= LOGS_END || d > LAST_DATE || d < s$start - FERT_LEAD_DAYS || d > end) next
-      e$date <- format(d)
+    for (e in copies(tmpl$tid, tmpl$phase, tmpl$start, tmpl$end)) {
+      e$date <- format(as.Date(e$date) + shift)
       e$provenance_class <- "imputed"
       e$provenance_note <- sprintf(paste(
         "The package's operation logs end in 2013. Copies the %s application of the %s %s season",
@@ -768,43 +812,55 @@ for (tid in names(SYSTEMS)) {
 }
 
 # irrigation was injected at the midpoint of each cash crop window; give each event to
-# the phase whose own window midpoint it sits on. A window is one season: from a cash crop
-# planting to the first same-crop harvest within SEASON_DAYS, and a planting with no such
-# harvest has none. The generator also paired a planting in one phase with a harvest in
-# the other and put irrigation in winter; those events fall outside every window and are
-# dropped. Rainfed systems get none.
+# the phase whose own window midpoint it sits on. A window is one irrigated season
+# (irrigation_seasons): from a cash crop's first planting to the first same-crop harvest
+# within SEASON_DAYS, a planting with no such harvest having none, or a year of alfalfa
+# cuttings. The generator made one window per planting and sometimes paired it with the wrong
+# harvest (one in the other phase or a year later) or gave each planting of a replanted crop its
+# own; such an event either falls outside every window or sits more than IRR_MID_DAYS from the
+# midpoint of the season it falls in, and is dropped. Rainfed systems get none.
+IRR_MID_DAYS <- 10
 for (tid in names(SYSTEMS)) {
   irr <- Filter(function(e) identical(e$event_type, "irrigation"), gen[[tid]])
-  dropped_irr <- 0L
+  dropped_irr <- 0L; dropped_off_mid <- 0L
   if (tid %in% RAINFED) {
     dropped_irr <- length(irr)
   } else {
     win <- do.call(rbind, lapply(names(keep_all[[tid]]), function(ph) {
-      x <- seasons_of(keep_all[[tid]][[ph]])
-      x <- x[!is.na(x$end), ]
+      x <- irrigation_seasons(keep_all[[tid]][[ph]])
       if (nrow(x)) data.frame(phase = ph, start = x$start, end = x$end, mid = x$start + as.numeric(x$end - x$start) / 2)
     }))
     for (e in irr) {
       d <- as.Date(e$date)
       cand <- win[win$start <= d & win$end >= d, ]
       if (!nrow(cand)) { dropped_irr <- dropped_irr + 1L; next }
-      ph <- cand$phase[which.min(abs(as.numeric(cand$mid - d)))]
+      k <- which.min(abs(as.numeric(cand$mid - d)))
+      if (abs(as.numeric(cand$mid[k] - d)) > IRR_MID_DAYS) { dropped_off_mid <- dropped_off_mid + 1L; next }
+      ph <- cand$phase[k]
       keep_all[[tid]][[ph]][[length(keep_all[[tid]][[ph]]) + 1L]] <- e
     }
   }
   if (dropped_irr) cat(sprintf("%-18s irrigation events dropped: %d (%s)\n", tid, dropped_irr,
                                if (tid %in% RAINFED) "rainfed system" else
                                  sprintf("outside any cash crop window of %d days or less: generator artifacts", SEASON_DAYS)))
+  if (dropped_off_mid) cat(sprintf("%-18s irrigation events dropped: %d (more than %d days from their season's midpoint: generator artifacts)\n",
+                                   tid, dropped_off_mid, IRR_MID_DAYS))
 }
 
-# A season in an irrigated system with no irrigation (a filled season, 2014, or one whose only
-# event was a dropped artifact) takes the treatment's usual irrigation: one event at the season
-# midpoint carrying the median season total of its other seasons of that crop (the site's when
-# the treatment has fewer than MIN_MEDIAN_N). The amounts are the generator's sprinkler prior,
-# so this keeps a filled season like its neighbours; the package records no irrigation.
+# A season in an irrigated system with no irrigation (a filled season, 2014, an alfalfa
+# production year, or one whose only event was a dropped artifact) takes the treatment's usual
+# irrigation: one event at the season midpoint carrying the median season total of its other
+# seasons of that crop (the site's when the treatment has fewer than MIN_MEDIAN_N). The amounts
+# are the generator's sprinkler prior, so this keeps a filled season like its neighbours; the
+# package records no irrigation. Tautges et al. (2019) gave the irrigated wheat systems
+# supplemental irrigation "except in 1995, 1998, 2000, 2005, and 2008–2012", so their seasons
+# harvested in those years get none, and a crop with no irrigated season anywhere (the 2008 and
+# 2009 sudangrass green manure) has no median and gets none. Both are printed.
+IRRIGATED_WHEAT <- c("irr_wheat_control", "irr_wheat_fallow", "irr_wheat_legume")
+NO_IRRIGATION_YEARS <- c(1995, 1998, 2000, 2005, 2008:2012)
 season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(tid)
   do.call(rbind, lapply(keep_all[[tid]], function(pe) {
-    x <- seasons_of(pe); x <- x[!is.na(x$end), ]
+    x <- irrigation_seasons(pe)
     if (!nrow(x)) return(NULL)
     irr <- Filter(function(e) e$event_type == "irrigation", pe)
     x$mm <- vapply(seq_len(nrow(x)), function(i) sum(vapply(Filter(function(e)
@@ -816,22 +872,29 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
   n <- 0L
   for (ph in names(keep_all[[tid]])) {
     pe <- keep_all[[tid]][[ph]]
-    x <- seasons_of(pe); x <- x[!is.na(x$end), ]
+    x <- irrigation_seasons(pe)
     irr <- dates_of(Filter(function(e) e$event_type == "irrigation", pe))
     for (i in seq_len(nrow(x))) {
       if (any(irr >= x$start[i] & irr <= x$end[i])) next
+      skip <- function(why) cat(sprintf("%-18s %-44s %s season %s to %s left without irrigation: %s\n",
+                                        tid, ph, x$crop[i], format(x$start[i]), format(x$end[i]), why))
+      if (tid %in% IRRIGATED_WHEAT && as.integer(format(x$end[i], "%Y")) %in% NO_IRRIGATION_YEARS) {
+        skip("a Tautges et al. 2019 no-irrigation year"); next
+      }
       v <- season_irr$mm[season_irr$tid == tid & season_irr$crop == x$crop[i]]; level <- tid
       if (length(v) < MIN_MEDIAN_N) { v <- season_irr$mm[season_irr$crop == x$crop[i]]; level <- "irrigated systems" }
-      if (!length(v)) next
+      if (!length(v)) { skip(sprintf("no irrigated %s season to take a median from", x$crop[i])); next }
       mid <- x$start[i] + floor(as.numeric(x$end[i] - x$start[i]) / 2)
       pe[[length(pe) + 1L]] <- list(
         event_type = "irrigation", date = format(mid), source = "calibration:tools/event_prep/russell_split_phases.R",
         amount_mm = round(median(v), 4), method = "canopy", provenance_class = "imputed",
         provenance_note = sprintf(paste(
           "No irrigation in this %s season (%s to %s); the usual irrigation of %s: one event at the",
-          "season midpoint with the median season total of %d %s seasons. Those amounts are the",
+          "season midpoint with the median season total of %d %s %s. Those amounts are the",
           "generator's sprinkler prior; the package records no irrigation."),
-          x$crop[i], format(x$start[i]), format(x$end[i]), level, length(v), x$crop[i]))
+          x$crop[i], format(x$start[i]), format(x$end[i]), level, length(v), x$crop[i],
+          ngettext(length(v), "season", "seasons")))
+      irr <- c(irr, mid)
       n <- n + 1L
     }
     keep_all[[tid]][[ph]] <- pe

@@ -491,10 +491,10 @@
    "event_type": "irrigation",
    "date": "2001-08-03",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 598.1636,
+   "amount_mm": 575.5541,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this corn season (2001-05-18 to 2001-10-19); the usual irrigation of org_corn_tomato: one event at the season midpoint with the median season total of 15 corn seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "No irrigation in this corn season (2001-05-18 to 2001-10-19); the usual irrigation of org_corn_tomato: one event at the season midpoint with the median season total of 13 corn seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -1091,10 +1091,10 @@
    "event_type": "irrigation",
    "date": "2011-03-13",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 547.3512,
+   "amount_mm": 546.8702,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2010-11-16 to 2011-07-09); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 68 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "No irrigation in this wheat season (2010-11-16 to 2011-07-09); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 67 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -1243,26 +1243,6 @@
    "injected_by": "detect_missing_events:cash_crop_window_midpoint",
    "cover_crop_window": false,
    "amount_mm": 621.8018,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2013-08-02",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 550.0619,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2013-08-10",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 702.759,
    "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
    "method": "canopy"
   },

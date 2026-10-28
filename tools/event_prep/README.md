@@ -48,7 +48,7 @@ How the generators here follow it:
 
 | generator | step 1 | step 2 |
 |---|---|---|
-| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, and the package's per-system medians for dates it does not give (see `runs/russell_ranch/events_treatments/README.md`) | not used: the run ends in 2014 |
+| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, and the package's per-system medians for dates it does not give (see `runs/russell_ranch/events_treatments/README.md`) | not needed: the package's own records and per-system medians gave every filled date. Amounts: 2014 fertilization copies the package's records; filled plantings and irrigation take medians of the generator's priors (irrigation amounts are open) |
 | `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 |
 | `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 |
 | `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events |

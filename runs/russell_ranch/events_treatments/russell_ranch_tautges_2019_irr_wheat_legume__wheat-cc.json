@@ -122,15 +122,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "1998-03-07",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 536.2252,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (1997-11-06 to 1998-07-07); the usual irrigation of irr_wheat_legume: one event at the season midpoint with the median season total of 10 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
-  },
-  {
    "event_type": "harvest",
    "date": "1998-07-07",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -174,15 +165,6 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0033,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2000-03-05",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 536.2252,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (1999-11-14 to 2000-06-26); the usual irrigation of irr_wheat_legume: one event at the season midpoint with the median season total of 10 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -382,15 +364,6 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0036,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2008-03-23",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 536.2252,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2007-12-15 to 2008-06-30); the usual irrigation of irr_wheat_legume: one event at the season midpoint with the median season total of 10 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",

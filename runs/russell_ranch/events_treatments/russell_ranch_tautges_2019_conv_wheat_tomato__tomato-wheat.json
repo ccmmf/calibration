@@ -281,13 +281,12 @@
   },
   {
    "event_type": "irrigation",
-   "date": "1998-12-26",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 630.2324,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "date": "1999-03-02",
+   "source": "calibration:tools/event_prep/russell_split_phases.R",
+   "amount_mm": 545.7474,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "No irrigation in this wheat season (1998-11-02 to 1999-07-01); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "fertilization",

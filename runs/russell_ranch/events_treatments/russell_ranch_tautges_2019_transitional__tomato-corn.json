@@ -221,8 +221,8 @@
    "source": "10.1002/ecy.2105:plot_system.csv",
    "crop_code": "Tomato",
    "crop_display": "Tomato",
-   "leaf_c_kg_m2": 0.0036,
-   "prior_filled": "leaf_c_kg_m2<-median of this phase's 8 generator Tomato plantings",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 7 generator Tomato plantings",
    "provenance_class": "published",
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (1999-05-01), the date most of the phase's plots share."
   },
@@ -240,10 +240,10 @@
    "event_type": "irrigation",
    "date": "1999-07-02",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 604.1326,
+   "amount_mm": 591.7645,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this tomato season (1999-05-01 to 1999-09-02); the usual irrigation of transitional: one event at the season midpoint with the median season total of 8 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "No irrigation in this tomato season (1999-05-01 to 1999-09-02); the usual irrigation of transitional: one event at the season midpoint with the median season total of 7 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -690,15 +690,6 @@
   {
    "event_type": "planting",
    "date": "2006-05-25",
-   "source": "10.1002/ecy.2105",
-   "crop_code": "Tomato",
-   "crop_display": "Tomato",
-   "leaf_c_kg_m2": 0.0036,
-   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "planting",
-   "date": "2006-05-25",
    "source": "10.1002/ecy.2105:plot_system.csv",
    "crop_code": "Corn",
    "crop_display": "Corn",
@@ -716,17 +707,6 @@
    "amount_mm": 663.0526,
    "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
    "method": "canopy"
-  },
-  {
-   "event_type": "harvest",
-   "date": "2006-09-13",
-   "source": "10.1002/ecy.2105",
-   "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.33,
-   "frac_above_to_litter_0to1": 0.67,
-   "harvest_lookup_row": "T32",
-   "frac_below_removed_0to1": 0,
-   "frac_below_to_litter_0to1": 1
   },
   {
    "event_type": "harvest",
@@ -971,10 +951,10 @@
    "event_type": "irrigation",
    "date": "2011-03-13",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 547.3512,
+   "amount_mm": 546.8702,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2010-11-16 to 2011-07-09); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 68 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "No irrigation in this wheat season (2010-11-16 to 2011-07-09); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 67 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",
@@ -1120,16 +1100,6 @@
    "method": "canopy"
   },
   {
-   "event_type": "irrigation",
-   "date": "2013-08-02",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 528.5999,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "harvest",
    "date": "2013-10-20",
    "source": "10.1002/ecy.2105",
@@ -1181,8 +1151,8 @@
    "source": "10.1002/ecy.2105:plot_system.csv",
    "crop_code": "Tomato",
    "crop_display": "Tomato",
-   "leaf_c_kg_m2": 0.0036,
-   "prior_filled": "leaf_c_kg_m2<-median of this phase's 8 generator Tomato plantings",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 7 generator Tomato plantings",
    "provenance_class": "published",
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-04-27), the date most of the phase's plots share."
   },
@@ -1190,10 +1160,10 @@
    "event_type": "irrigation",
    "date": "2014-06-24",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 604.1326,
+   "amount_mm": 591.7645,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this tomato season (2014-04-27 to 2014-08-21); the usual irrigation of transitional: one event at the season midpoint with the median season total of 8 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "No irrigation in this tomato season (2014-04-27 to 2014-08-21); the usual irrigation of transitional: one event at the season midpoint with the median season total of 7 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",

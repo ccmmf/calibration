@@ -292,15 +292,6 @@
    "provenance_note": "No irrigation in this corn season (1998-03-21 to 1998-11-03); the usual irrigation of conv_corn_tomato: one event at the season midpoint with the median season total of 12 corn seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
-   "event_type": "irrigation",
-   "date": "1998-07-27",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 524.8222,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this corn season (1998-04-19 to 1998-11-03); the usual irrigation of conv_corn_tomato: one event at the season midpoint with the median season total of 12 corn seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
-  },
-  {
    "event_type": "harvest",
    "date": "1998-11-03",
    "source": "10.1002/ecy.2105:plot_system.csv",
