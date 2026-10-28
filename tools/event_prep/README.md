@@ -15,6 +15,7 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `us_twt_irrigation_schedule.R` | rewrites US-Twt irrigation | 2017-2023 monitoring rate and interval |
 | `us_twt_merge_2010_2023.R` | merges the two US-Twt windows | both of the above |
 | `russell_split_phases.R` | Russell Ranch, one file per treatment and rotation phase | `generator_stacked/` + Century Experiment package (`10.1002/ecy.2105`) |
+| `russell_monitoring_tillage.R` | `monitoring_tillage_near_russell.csv`, tillage timing and intensity near Russell Ranch | monitoring tillage, harvest and planting v5.0 + crop table v4.1 |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
 
 ## Order for US-Twt
@@ -48,7 +49,7 @@ How the generators here follow it:
 
 | generator | step 1 | step 2 |
 |---|---|---|
-| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, and the package's per-system medians for dates it does not give (see `runs/russell_ranch/events_treatments/README.md`) | not needed: the package's own records and per-system medians gave every filled date. Amounts: 2014 fertilization copies the package's records; filled plantings and irrigation take medians of the generator's priors (irrigation amounts are open) |
+| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, the package's per-system medians for dates it does not give, and its records for fertilization gaps and 2014 fertilization; Tautges et al. 2019 for the irrigated wheat systems' irrigation and the tillage operations (see `runs/russell_ranch/events_treatments/README.md`) | tillage timing and intensity: medians of the monitoring product within 25 km of Russell Ranch (`russell_monitoring_tillage.R`). Filled plantings and other filled irrigation take medians of the generator's priors (maize and tomato irrigation amounts are open) |
 | `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 |
 | `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 |
 | `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events |
