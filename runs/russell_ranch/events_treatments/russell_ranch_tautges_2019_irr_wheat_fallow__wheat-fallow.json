@@ -111,6 +111,16 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "fertilization",
+   "date": "1997-10-09",
+   "nh4_n_kg_m2": 0.011376,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium nitrate",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 18 of 20 seasons. Copies the 1996-10-14 application of the wheat season planted 1996-11-10 in irr_wheat_fallow fallow-wheat, shifted +360 days."
+  },
+  {
    "event_type": "planting",
    "date": "1997-11-05",
    "source": "10.1002/ecy.2105",
@@ -118,6 +128,16 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0034,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1998-02-05",
+   "nh4_n_kg_m2": 0.005604,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 18 of 20 seasons. Copies the 1997-02-10 application of the wheat season planted 1996-11-10 in irr_wheat_fallow fallow-wheat, shifted +360 days."
   },
   {
    "event_type": "harvest",

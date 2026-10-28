@@ -811,6 +811,62 @@ for (tid in names(SYSTEMS)) {
   if (n) cat(sprintf("%-18s 2014 fertilization copied from earlier seasons: %d events\n", tid, n))
 }
 
+# Fertilization the log lacks for a season that had it. Tautges et al. (2019) sidedress
+# CONV+WCC (Legume/Corn/Tomato) maize like CONV maize, but the log has no corn N for it in any
+# year, so each of its corn seasons copies the Conventional Corn/Tomato corn season of the same
+# year, or the nearest one with records when that year has none (2013, 2014). Any other season
+# ending by 2013, of a crop its treatment fertilizes in at least half of its seasons, that has no
+# record copies the treatment's nearest same-crop season with records: the 2013 conventional
+# corn N and the compost years the package lacks. Copies are shifted by the difference in
+# planting dates, and only the ones landing inside the season are kept.
+FERT_LIKE <- list(leg_corn_tomato = c(corn = "conv_corn_tomato"))
+fert_records <- function(pe, st, en) Filter(function(e) e$event_type == "fertilization" &&
+  !identical(e$provenance_class, "imputed") && as.Date(e$date) >= st - FERT_LEAD_DAYS && as.Date(e$date) <= en, pe)
+fert_seasons <- function(tid, crop) do.call(rbind, lapply(names(keep_all[[tid]]), function(p2) {
+  x <- seasons_of(keep_all[[tid]][[p2]])
+  x <- x[x$crop == crop & !is.na(x$end) & x$end <= LOGS_END & x$start >= FIRST_DATE, ]
+  if (!nrow(x)) return(NULL)
+  x$n_fert <- vapply(seq_len(nrow(x)), function(j) length(fert_records(keep_all[[tid]][[p2]], x$start[j], x$end[j])), 0L)
+  cbind(x, phase = p2, tid = tid)
+}))
+fert_gaps <- list()
+for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
+  ss <- seasons_of(keep_all[[tid]][[ph]])
+  ss <- ss[ss$start >= FIRST_DATE, ]
+  for (i in seq_len(nrow(ss))) {
+    s <- ss[i, ]; end <- if (is.na(s$end)) LAST_DATE else s$end
+    if (length(fert_records(keep_all[[tid]][[ph]], s$start, end))) next
+    like <- FERT_LIKE[[tid]][s$crop]
+    if (!is.null(like) && !is.na(like)) {
+      t2 <- like[[1]]; why <- sprintf("Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no %s N here", s$crop)
+    } else {
+      if (end > LOGS_END) next
+      own <- fert_seasons(tid, s$crop)
+      if (is.null(own) || mean(own$n_fert > 0) < 0.5) next
+      t2 <- tid; why <- sprintf("the log has no fertilization for this %s season, which its treatment fertilizes in %d of %d seasons",
+                               s$crop, sum(own$n_fert > 0), nrow(own))
+    }
+    cand <- fert_seasons(t2, s$crop)
+    cand <- cand[!is.null(cand) & cand$n_fert > 0 & !(cand$tid == tid & cand$phase == ph & cand$start == s$start), ]
+    if (is.null(cand) || !nrow(cand)) next
+    tmpl <- cand[which.min(abs(as.numeric(cand$start - s$start))), ]
+    shift <- as.numeric(s$start - tmpl$start)
+    for (e in fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)) {
+      d <- as.Date(e$date) + shift
+      if (d < s$start - FERT_LEAD_DAYS || d > end || d > LAST_DATE) next
+      e$date <- format(d)
+      e$provenance_class <- "imputed"
+      e$provenance_note <- sprintf("Fertilization gap: %s. Copies the %s application of the %s season planted %s in %s %s, shifted %+d days.",
+                                   why, format(d - shift), s$crop, format(tmpl$start), tmpl$tid, tmpl$phase, shift)
+      fert_gaps[[tid]][[ph]] <- c(fert_gaps[[tid]][[ph]], list(e))
+    }
+  }
+}
+for (tid in names(fert_gaps)) {
+  for (ph in names(fert_gaps[[tid]])) keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], fert_gaps[[tid]][[ph]])
+  cat(sprintf("%-18s fertilization gaps filled: %d events\n", tid, length(unlist(fert_gaps[[tid]], recursive = FALSE))))
+}
+
 # irrigation was injected at the midpoint of each cash crop window; give each event to
 # the phase whose own window midpoint it sits on. A window is one irrigated season
 # (irrigation_seasons): from a cash crop's first planting to the first same-crop harvest

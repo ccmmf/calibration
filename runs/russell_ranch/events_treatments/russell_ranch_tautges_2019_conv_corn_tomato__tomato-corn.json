@@ -989,6 +989,26 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "fertilization",
+   "date": "2013-04-16",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 14 of 15 seasons. Copies the 2007-05-10 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-04-30",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 14 of 15 seasons. Copies the 2007-05-24 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+  },
+  {
    "event_type": "irrigation",
    "date": "2013-06-28",
    "source": "10.1002/ecy.2105",

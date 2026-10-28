@@ -73,6 +73,16 @@
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
+   "event_type": "fertilization",
+   "date": "1995-05-06",
+   "nh4_n_kg_m2": 0.005655,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1995-05-05 application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+  },
+  {
    "event_type": "planting",
    "date": "1995-05-19",
    "source": "10.1002/ecy.2105",
@@ -80,6 +90,26 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0038,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-06-10",
+   "nh4_n_kg_m2": 0.013457,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1995-06-09 application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1995-06-23",
+   "nh4_n_kg_m2": 0.008971,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1995-06-22 application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
   },
   {
    "event_type": "irrigation",
@@ -188,6 +218,16 @@
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
+   "event_type": "fertilization",
+   "date": "1997-05-01",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1997-03-20 application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+  },
+  {
    "event_type": "planting",
    "date": "1997-05-06",
    "source": "10.1002/ecy.2105",
@@ -195,6 +235,26 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0031,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1997-06-13",
+   "nh4_n_kg_m2": 0.011188,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1997-05-02 application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1997-06-24",
+   "nh4_n_kg_m2": 0.008507,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1997-05-13 application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
   },
   {
    "event_type": "irrigation",
@@ -292,6 +352,16 @@
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
+   "event_type": "fertilization",
+   "date": "1999-05-24",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1999-05-24 application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
+  },
+  {
    "event_type": "planting",
    "date": "1999-06-04",
    "source": "10.1002/ecy.2105",
@@ -299,6 +369,16 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0028,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1999-07-02",
+   "nh4_n_kg_m2": 0.008404,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1999-07-02 application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
   },
   {
    "event_type": "irrigation",
@@ -402,6 +482,26 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "fertilization",
+   "date": "2001-06-15",
+   "nh4_n_kg_m2": 0.004624,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2001-04-25 application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2001-07-08",
+   "nh4_n_kg_m2": 0.017943,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2001-05-18 application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
+  },
+  {
    "event_type": "irrigation",
    "date": "2001-08-03",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
@@ -502,6 +602,26 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0036,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2003-06-20",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2003-05-20 application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2003-07-01",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2003-05-31 application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
   },
   {
    "event_type": "irrigation",
@@ -620,6 +740,26 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "fertilization",
+   "date": "2005-07-05",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2005-05-31 application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2005-07-08",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2005-06-03 application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
+  },
+  {
    "event_type": "irrigation",
    "date": "2005-07-31",
    "source": "10.1002/ecy.2105",
@@ -730,6 +870,26 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.0028,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2007-06-05",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-10 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2007-06-19",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-24 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
   },
   {
    "event_type": "irrigation",
@@ -1047,6 +1207,26 @@
    "crop_display": "Corn",
    "leaf_c_kg_m2": 0.004,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-04-16",
+   "nh4_n_kg_m2": 0.005044,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-10 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-04-30",
+   "nh4_n_kg_m2": 0.01851,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-24 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
   },
   {
    "event_type": "irrigation",

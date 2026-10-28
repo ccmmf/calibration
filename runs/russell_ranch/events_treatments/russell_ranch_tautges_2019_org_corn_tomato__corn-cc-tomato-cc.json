@@ -281,6 +281,20 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
+   "event_type": "fertilization",
+   "date": "1998-04-05",
+   "org_c_kg_m2": 0.364994,
+   "org_n_kg_m2": 0.0294317,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 7,
+   "compost_total_c_pct": 23.26,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 13 of 15 seasons. Copies the 1997-04-28 application of the corn season planted 1997-05-12 in org_corn_tomato tomato/CC-corn/CC, shifted +342 days."
+  },
+  {
    "event_type": "harvest",
    "date": "1998-04-07",
    "crop_display": "Cover Crop",
@@ -347,6 +361,20 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1999-04-11",
+   "org_c_kg_m2": 0.1788281,
+   "org_n_kg_m2": 0.0168181,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 19.9433,
+   "compost_total_n_pct": 1.8756,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this tomato season, which its treatment fertilizes in 16 of 20 seasons. Copies the 2000-04-07 application of the tomato season planted 2000-04-27 in org_corn_tomato tomato/CC-corn/CC, shifted -362 days."
   },
   {
    "event_type": "planting",
@@ -1159,6 +1187,20 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2013-03-28",
+   "org_c_kg_m2": 0.1674749,
+   "org_n_kg_m2": 0.015037,
+   "source": "10.1002/ecy.2105:operations_compost.csv+compost_analyses_summary.csv",
+   "material": "composted poultry manure",
+   "n_plots_treated": 3,
+   "compost_wet_tons_acre": 4,
+   "compost_total_c_pct": 18.6772,
+   "compost_total_n_pct": 1.677,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this tomato season, which its treatment fertilizes in 16 of 20 seasons. Copies the 2012-04-10 application of the tomato season planted 2012-04-30 in org_corn_tomato tomato/CC-corn/CC, shifted +352 days."
   },
   {
    "event_type": "planting",

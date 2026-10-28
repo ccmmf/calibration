@@ -106,6 +106,16 @@
    "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/2/1998 - 11/6/1998), the date most of the phase's plots share."
   },
   {
+   "event_type": "fertilization",
+   "date": "1999-02-26",
+   "nh4_n_kg_m2": 0.0028,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 19 of 20 seasons. Copies the 1998-02-28 application of the wheat season planted 1997-11-04 in rf_wheat_fallow wheat-fallow, shifted +363 days."
+  },
+  {
    "event_type": "harvest",
    "date": "1999-07-01",
    "source": "10.1002/ecy.2105",
