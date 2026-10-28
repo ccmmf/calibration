@@ -42,11 +42,11 @@
   {
    "event_type": "irrigation",
    "date": "1994-03-02",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 543.5048,
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (1993-11-18 to 1994-06-15); the usual irrigation of irr_wheat_fallow: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1993-11-18 to 1994-06-15 season."
   },
   {
    "event_type": "harvest",
@@ -83,12 +83,11 @@
   {
    "event_type": "irrigation",
    "date": "1996-03-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 504.7351,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
+   "method": "canopy",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1995-11-21 to 1996-06-21 season."
   },
   {
    "event_type": "fertilization",
@@ -163,16 +162,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2000-03-05",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 541.9556,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2000-03-24",
    "nh4_n_kg_m2": 0.00562,
@@ -207,11 +196,11 @@
   {
    "event_type": "irrigation",
    "date": "2002-03-10",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 543.5048,
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2001-11-10 to 2002-07-09); the usual irrigation of irr_wheat_fallow: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2001-11-10 to 2002-07-09 season."
   },
   {
    "event_type": "fertilization",
@@ -256,12 +245,11 @@
   {
    "event_type": "irrigation",
    "date": "2004-03-07",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 418.8899,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
+   "method": "canopy",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2003-11-14 to 2004-06-30 season."
   },
   {
    "event_type": "fertilization",
@@ -306,12 +294,11 @@
   {
    "event_type": "irrigation",
    "date": "2006-03-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 559.7686,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
+   "method": "canopy",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2005-11-10 to 2006-06-30 season."
   },
   {
    "event_type": "fertilization",
@@ -354,16 +341,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2008-03-27",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 590.2076,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2008-04-02",
    "nh4_n_kg_m2": 0.00562,
@@ -404,16 +381,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2010-03-12",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 586.135,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2010-03-24",
    "nh4_n_kg_m2": 0.00562,
@@ -452,16 +419,6 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0033,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2012-03-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 543.0548,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
   },
   {
    "event_type": "fertilization",
@@ -506,11 +463,11 @@
   {
    "event_type": "irrigation",
    "date": "2014-03-02",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 543.5048,
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2013-11-10 to 2014-06-22); the usual irrigation of irr_wheat_fallow: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2013-11-10 to 2014-06-22 season; the paper's period ends in 2012, so this year takes the usual 80 mm."
   },
   {
    "event_type": "fertilization",

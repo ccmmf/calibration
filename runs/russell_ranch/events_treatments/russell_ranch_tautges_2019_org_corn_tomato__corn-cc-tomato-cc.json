@@ -1121,10 +1121,10 @@
    "event_type": "irrigation",
    "date": "2012-03-09",
    "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 546.8702,
+   "amount_mm": 546.2216,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2011-11-17 to 2012-06-30); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 67 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "No irrigation in this wheat season (2011-11-17 to 2012-06-30); the usual irrigation of irrigated systems: one event at the season midpoint with the median season total of 25 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
   },
   {
    "event_type": "harvest",

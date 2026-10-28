@@ -847,17 +847,53 @@ for (tid in names(SYSTEMS)) {
                                    tid, dropped_off_mid, IRR_MID_DAYS))
 }
 
+# Tautges et al. (2019) give the irrigated wheat systems "supplemental irrigation of 80 mm per
+# year except in 1995, 1998, 2000, 2005, and 2008–2012 due to sufficient precipitation". Each
+# wheat season in those systems carries that instead of the generator's sprinkler prior: one
+# 80 mm event at the season midpoint, and none when the season's harvest year is one of those.
+# 2013 and 2014, after the paper's period, take the 80 mm and are tagged imputed.
+IRRIGATED_WHEAT <- c("irr_wheat_control", "irr_wheat_fallow", "irr_wheat_legume")
+NO_IRRIGATION_YEARS <- c(1995, 1998, 2000, 2005, 2008:2012)
+WHEAT_SUPPLEMENTAL_MM <- 80
+for (tid in IRRIGATED_WHEAT) {
+  n <- c(replaced = 0L, events = 0L)
+  for (ph in names(keep_all[[tid]])) {
+    pe <- keep_all[[tid]][[ph]]
+    x <- irrigation_seasons(pe); x <- x[x$crop == "wheat", ]
+    in_wheat <- vapply(pe, function(e) e$event_type == "irrigation" &&
+                         any(as.Date(e$date) >= x$start & as.Date(e$date) <= x$end), TRUE)
+    n[["replaced"]] <- n[["replaced"]] + sum(in_wheat)
+    pe <- pe[!in_wheat]
+    for (i in seq_len(nrow(x))) {
+      yr <- as.integer(format(x$end[i], "%Y"))
+      if (yr %in% NO_IRRIGATION_YEARS) next
+      mid <- x$start[i] + floor(as.numeric(x$end[i] - x$start[i]) / 2)
+      pe[[length(pe) + 1L]] <- list(
+        event_type = "irrigation", date = format(mid), source = "10.1111/gcb.14762",
+        amount_mm = WHEAT_SUPPLEMENTAL_MM, method = "canopy",
+        provenance_class = if (yr <= 2012) "published" else "imputed",
+        provenance_note = sprintf(paste(
+          "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year",
+          "except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the %s to %s",
+          "season%s."), format(x$start[i]), format(x$end[i]),
+          if (yr <= 2012) "" else "; the paper's period ends in 2012, so this year takes the usual 80 mm"))
+      n[["events"]] <- n[["events"]] + 1L
+    }
+    keep_all[[tid]][[ph]] <- pe
+  }
+  cat(sprintf("%-18s wheat irrigation from Tautges et al. 2019: %d events of %d mm (replaced %d generator events)\n",
+              tid, n[["events"]], WHEAT_SUPPLEMENTAL_MM, n[["replaced"]]))
+}
+
 # A season in an irrigated system with no irrigation (a filled season, 2014, an alfalfa
 # production year, or one whose only event was a dropped artifact) takes the treatment's usual
 # irrigation: one event at the season midpoint carrying the median season total of its other
 # seasons of that crop (the site's when the treatment has fewer than MIN_MEDIAN_N). The amounts
 # are the generator's sprinkler prior, so this keeps a filled season like its neighbours; the
-# package records no irrigation. Tautges et al. (2019) gave the irrigated wheat systems
-# supplemental irrigation "except in 1995, 1998, 2000, 2005, and 2008–2012", so their seasons
-# harvested in those years get none, and a crop with no irrigated season anywhere (the 2008 and
-# 2009 sudangrass green manure) has no median and gets none. Both are printed.
-IRRIGATED_WHEAT <- c("irr_wheat_control", "irr_wheat_fallow", "irr_wheat_legume")
-NO_IRRIGATION_YEARS <- c(1995, 1998, 2000, 2005, 2008:2012)
+# package records no irrigation. The irrigated wheat systems' wheat seasons follow Tautges
+# (above), so they neither take the fill nor count toward its medians, and their seasons
+# harvested in the no-irrigation years stay without; a crop with no irrigated season anywhere
+# (the 2008 and 2009 sudangrass green manure) has no median and gets none. Both are printed.
 season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(tid)
   do.call(rbind, lapply(keep_all[[tid]], function(pe) {
     x <- irrigation_seasons(pe)
@@ -867,7 +903,7 @@ season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(t
       as.Date(e$date) >= x$start[i] && as.Date(e$date) <= x$end[i], irr), function(e) as.numeric(e$amount_mm), 0)), 0)
     cbind(x, tid = tid)
   }))))
-season_irr <- season_irr[season_irr$mm > 0, ]
+season_irr <- season_irr[season_irr$mm > 0 & !(season_irr$tid %in% IRRIGATED_WHEAT & season_irr$crop == "wheat"), ]
 for (tid in setdiff(names(SYSTEMS), RAINFED)) {
   n <- 0L
   for (ph in names(keep_all[[tid]])) {
