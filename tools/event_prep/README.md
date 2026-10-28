@@ -97,7 +97,7 @@ scripts:
 
 | prefix | what | latest | relation to event_prep |
 |---|---|---|---|
-| `management/<product>/vN.M` | upstream monitoring product | per product: planting/harvest/fertilization `v2.0`, irrigation `v1.1`, tillage `v1.0` | **input** -- what `pull_inputs.sh` reads |
+| `management/<product>/vN.M` | upstream monitoring product | per product: planting, harvest and tillage `v5.0`, fertilization `v2.0`, irrigation `v1.1` | **input** -- what `pull_inputs.sh` reads |
 | `calval_sa_inputs/vN.M` | staged IC / met / events for the SA runs | **`v0.3`** (2026-08-20) | **output** -- where the results get published |
 
 So `v0.3` is the latest *staged run inputs*, not a monitoring product version, and it is
@@ -126,10 +126,10 @@ Then pull. With no arguments it fetches the three Delta parcels; otherwise pass 
 
 | product | pinned | also on S3 |
 |---|---|---|
-| planting | `v1.0` | `v2.0` |
-| harvest | `v1.0` | `v2.0`, `beta` |
+| planting | `v1.0` | `v2.0`, `v5.0` |
+| harvest | `v1.0` | `v2.0`, `v5.0`, `beta` |
 | irrigation | `v1.1` | `v1.0` |
-| tillage | `v1.0` | — |
+| tillage | `v1.0` | `v5.0` |
 | fertilization | `v1.0` | `v2.0` |
 
 These match the `source` strings recorded in each event, so an events.json says which
@@ -137,6 +137,10 @@ version produced it. A newer version is not a drop-in replacement: for parcel 56
 fertilization `v2.0` moves every event date and puts all N in NH4 with NO3 at zero, where
 `v1.0` splits N evenly. Moving a pin is a deliberate change — override
 `FERTILIZATION_VERSION` and friends, re-run, and diff `runs/*/events.json` before keeping it.
+
+`russell_monitoring_tillage.R` reads outside these pins: tillage, harvest and planting `v5.0`
+and the crop table `crops/v4.1` (paths in its header), which give
+`runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv`.
 
 `management/irrigation/CHANGELOG.txt` is the only changelog in the bucket; the other
 products carry no version notes.

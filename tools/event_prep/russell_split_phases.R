@@ -1004,8 +1004,8 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
 # disking after each corn, tomato and wheat harvest, the median days after harvest for that crop
 # (and before the next planting); bed preparation before each corn and tomato season, the median
 # days before planting (and after the previous crop ends); and incorporation of each cover crop,
-# sudangrass and unharvested crop at its end, and of each compost application on its date, with
-# the median over all tillage events. tillage_eff_0to1 is the median for the operation. In-season
+# sudangrass and unharvested crop at its end, and of each compost application on its date (one
+# pass with another incorporation that day), with the median over all tillage events. tillage_eff_0to1 is the median for the operation. In-season
 # cultivations have no date and are left out.
 til <- read.csv(tillage_csv, stringsAsFactors = FALSE)
 TILLAGE_SOURCE <- if (length(args) == 4L) tillage_csv else
@@ -1025,10 +1025,12 @@ tillage_events <- function(pe) {
   out <- list()
   pl <- dates_of(Filter(function(e) e$event_type == "planting", pe))
   ends <- Filter(function(e) e$event_type == "harvest", pe)
+  inc <- integer()
   for (e in ends) {
     crop <- tolower(e$crop_display); d <- as.Date(e$date)
     if (crop %in% GREEN_MANURE || isTRUE(e$not_harvested)) {
       out[[length(out) + 1L]] <- tillage_event(d, til_row("any", "all"), sprintf("Incorporation of the %s at its end", crop))
+      inc[[e$date]] <- length(out)
     } else if (crop %in% c("corn", "tomato", "wheat")) {
       r <- til_row("post_harvest", crop)
       t <- d + r$median_days; nxt <- pl[pl > d]; moved <- NULL
@@ -1054,8 +1056,15 @@ tillage_events <- function(pe) {
     }
     if (t < st) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Bed preparation before the %s planted %s", ss$crop[i], format(st)), moved)
   }
-  for (e in Filter(function(e) e$event_type == "fertilization" && !is.null(e$org_c_kg_m2), pe))
+  for (e in Filter(function(e) e$event_type == "fertilization" && !is.null(e$org_c_kg_m2), pe)) {
+    k <- inc[e$date]
+    if (!is.na(k)) {
+      out[[k]]$provenance_note <- paste(out[[k]]$provenance_note, "The compost applied that day is incorporated in the same pass.")
+      next
+    }
     out[[length(out) + 1L]] <- tillage_event(as.Date(e$date), til_row("any", "all"), "Incorporation of the compost applied that day")
+    inc[[e$date]] <- length(out)
+  }
   out
 }
 for (tid in names(SYSTEMS)) {
@@ -1112,7 +1121,20 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings",
         "leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and",
         "amounts no record gives are imputed (provenance_class imputed) as described in",
-        "tools/event_prep/README.md. Fertilization is rebuilt from the package.",
+        "tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no",
+        "record, of a crop the treatment fertilizes in at least half its seasons, copies the",
+        "treatment's nearest same-crop season with records (a fertilization gap).",
+        if (tid %in% names(FERT_LIKE)) sprintf(paste(
+          "Its %s seasons copy the same-year (or nearest) %s %s season instead, as Tautges et al.",
+          "2019 sidedress CONV+WCC maize like CONV maize."), names(FERT_LIKE[[tid]]), FERT_LIKE[[tid]], names(FERT_LIKE[[tid]])),
+        if (any(c(tid, HISTORY[[tid]]) %in% IRRIGATED_WHEAT)) paste(
+          "The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the",
+          "generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and",
+          "2008-2012, and 80 mm, imputed, in 2013 and 2014."),
+        sprintf(paste(
+          "Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and",
+          "sized from medians of the monitoring tillage product within %d km of Russell Ranch, %s (%s)."),
+          til$radius_km[1], til$years[1], TILLAGE_SOURCE),
         if (!is.null(hist_note)) sprintf("Before 2012 these plots were %s; those events carry history_of.", hist_note)),
         collapse = " ")),
     events = pe)

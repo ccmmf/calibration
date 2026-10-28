@@ -173,7 +173,7 @@ amounts and the other filled irrigation are medians of the generator's priors (d
 | fertilization gap | a season the log has no fertilization for, copied from comparable records (see "Fertilization gaps") | 50 (N 44, compost 6) |
 | irrigated wheat irrigation | Tautges et al. 2019: 80 mm at the season midpoint, none in its no-irrigation years; 2013 and 2014, after its period, take the 80 mm and are tagged imputed | 34 events, 23 seasons without |
 | irrigation of a season with none | the treatment's median season total for that crop, one event at the season midpoint | 41 |
-| tillage | the operations Tautges et al. 2019 describe, timed and sized from monitoring medians near Russell Ranch | 623 |
+| tillage | the operations Tautges et al. 2019 describe, timed and sized from monitoring medians near Russell Ranch | 622 |
 
 - Unharvested wheat: the `org_corn_tomato` `corn/CC-tomato/CC` wheat planted 2011-11-17,
   which `plot_system.csv` says was "NOT harvested for wheat in 2012", ends 2012-06-30
@@ -359,7 +359,7 @@ describes the operations and when they happen, but not how intense they are. The
 and intensity come from the monitoring tillage product near Russell Ranch:
 `monitoring_tillage_near_russell.csv`, made by `tools/event_prep/russell_monitoring_tillage.R`
 from the v5.0 tillage, harvest and planting products and the v4.1 crop table, for the 11,290
-parcels within 25 km, 2016 to 2023. One event per operation, 623 in all, plus 30 copied into
+parcels within 25 km, 2016 to 2023. One event per operation, 622 in all, plus 30 copied into
 the `alf_corn_tomato` history:
 
 | operation (Tautges et al. 2019) | date | `tillage_eff_0to1` | events |
@@ -370,7 +370,7 @@ the `alf_corn_tomato` history:
 | beds rolled before maize | 38 days before the corn planting | 0.5158 | 55 |
 | beds listed and rolled before tomato | 90 days before the tomato planting | 0.9537 | 93 |
 | cover crops mowed and incorporated with two to three diskings | at the cover crop end | 0.3708 | 118 |
-| compost broadcast and incorporated (ORG) | on the compost date | 0.3708 | 51 |
+| compost broadcast and incorporated (ORG) | on the compost date | 0.3708 | 50 |
 | sudangrass plowed under, unharvested wheat incorporated | at its end | 0.3708 | 7 |
 
 - The days and intensities are medians over monitoring events next to harvests and
@@ -382,7 +382,10 @@ the `alf_corn_tomato` history:
   incorporated. That moves 75 events (55 bed preparations, 20 diskings), and each one's
   provenance note gives the median date, the date it moved to and why.
 - One event per operation: the two to three diskings at cover crop termination and the four
-  fallow diskings are one event each.
+  fallow diskings are one event each. A compost applied on the day a cover crop is
+  incorporated goes in with it, one pass whose note says so: `org_corn_tomato`
+  `tomato/CC-corn/CC` 2004-03-29 is the only such day, so compost has 50 events for 51
+  applications.
 - Left out: the in-season cultivations (one per crop phase in the conventional systems,
   three to four in ORG), which have no date, and alfalfa, which the paper does not cover.
 
@@ -407,7 +410,7 @@ the `alf_corn_tomato` history:
 
 - All 23 files validate against `events_schema_v0.1.1` from PEcAn `develop` (the stacked
   organic and transitional files still fail it), and `PEcAn.SIPNET::write.events.SIPNET`
-  writes an `events.in` for each: 467 `harv`, 471 `plant`, 390 `fert`, 228 `irrig` and 653
+  writes an `events.in` for each: 467 `harv`, 471 `plant`, 390 `fert`, 228 `irrig` and 652
   `till` lines, one per event, and the 13 alfalfa cuttings are `harv 0.85 0 0 0`.
 - The 323 recorded fertilization events are identical to the previous version's (their
   phase-year totals were recomputed independently from the package then: 261 nonzero totals,

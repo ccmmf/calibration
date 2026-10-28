@@ -62,7 +62,7 @@ for (crop in names(CODES)) {
     ev <- if (op == "post_harvest") harv[harv$crop_code == CODES[[crop]], ] else plnt[plnt$crop_code == CODES[[crop]], ]
     m <- nearest(ev, op == "post_harvest")
     rows[[length(rows) + 1L]] <- data.frame(operation = op, crop = crop, crop_code = CODES[[crop]],
-                                            n_events = nrow(m), median_days = median(m$days),
+                                            n_events = nrow(m), median_days = round(median(m$days)),
                                             median_tillage_eff = round(median(m$eff), 4))
   }
 }
