@@ -32,6 +32,14 @@
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
   },
   {
+   "event_type": "tillage",
+   "date": "1994-04-19",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "1994-12-01",
    "source": "10.1002/ecy.2105",
@@ -54,6 +62,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "1995-09-06",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "1995-11-14",
    "source": "10.1002/ecy.2105",
@@ -73,6 +89,14 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "tillage",
+   "date": "1996-04-29",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -106,6 +130,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "1997-08-19",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "1997-10-28",
    "source": "10.1002/ecy.2105",
@@ -125,6 +157,14 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "tillage",
+   "date": "1998-04-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -158,6 +198,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "1999-09-02",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "1999-11-04",
    "source": "10.1002/ecy.2105",
@@ -177,6 +225,14 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2000-03-30",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -208,6 +264,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2001-09-14",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2001-07-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2001-11-10",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -229,6 +293,14 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2002-04-10",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -260,6 +332,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2003-09-11",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2003-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2003-11-19",
    "source": "10.1002/ecy.2105",
@@ -279,6 +359,14 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2004-05-17",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -301,6 +389,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2005-09-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2005-10-28",
    "source": "10.1002/ecy.2105",
@@ -320,6 +416,14 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2006-04-25",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -351,6 +455,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2007-08-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2007-12-12",
    "source": "10.1002/ecy.2105",
@@ -370,6 +482,14 @@
    "source": "10.1002/ecy.2105:operations_planting.csv",
    "provenance_class": "imputed",
    "provenance_note": "Cover crop termination. No incorporation date for this planting. Dated day 96 of the year, the median day of a recorded cover crop end (Irrigated Wheat/Legume, n = 14)."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2008-04-05",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   }
  ]
 }

@@ -33,6 +33,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "1995-09-06",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "1996-11-11",
    "source": "10.1002/ecy.2105",
@@ -53,6 +61,14 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "1997-08-19",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -77,6 +93,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "1999-09-02",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2000-11-20",
    "source": "10.1002/ecy.2105",
@@ -95,6 +119,14 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2001-09-11",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2001-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -117,6 +149,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2003-09-13",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2003-07-12 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2004-11-21",
    "source": "10.1002/ecy.2105",
@@ -135,6 +175,14 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2005-09-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -157,6 +205,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2007-08-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2008-11-20",
    "source": "10.1002/ecy.2105",
@@ -175,6 +231,14 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2009-09-09",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2009-07-08 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -197,6 +261,14 @@
    "frac_below_to_litter_0to1": 1
   },
   {
+   "event_type": "tillage",
+   "date": "2011-09-10",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2011-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2012-11-12",
    "source": "10.1002/ecy.2105",
@@ -215,6 +287,14 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-09-02",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2013-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",

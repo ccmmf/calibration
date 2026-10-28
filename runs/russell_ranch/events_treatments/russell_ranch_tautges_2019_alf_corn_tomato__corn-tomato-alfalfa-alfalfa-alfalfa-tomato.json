@@ -7,7 +7,7 @@
   "rotation_phase": "corn-tomato-alfalfa-alfalfa-alfalfa-tomato",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_alf_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package. Before 2012 these plots were irr_wheat_legume wheat-CC (plots 4-7, 5-1, 7-6, 35 events before 2013-04-17); those events carry history_of."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package. Before 2012 these plots were irr_wheat_legume wheat-CC (plots 4-7, 5-1, 7-6, 50 events before 2013-01-17); those events carry history_of."
  },
  "events": [
   {
@@ -43,6 +43,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "1994-08-18",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1994-06-16 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "1994-11-03",
    "source": "10.1002/ecy.2105",
@@ -63,6 +72,15 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "1995-04-06",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -98,6 +116,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "1996-08-23",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "1996-10-22",
    "source": "10.1002/ecy.2105",
@@ -118,6 +145,15 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "1997-04-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -142,6 +178,15 @@
    "harvest_lookup_row": "G2",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1,
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "1998-09-08",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -170,6 +215,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "1999-03-30",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "1999-11-14",
    "source": "10.1002/ecy.2105",
@@ -194,6 +248,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "2000-08-28",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "2000-11-11",
    "source": "10.1002/ecy.2105",
@@ -214,6 +277,15 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2001-03-29",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -251,6 +323,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "2002-09-10",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "2002-11-02",
    "source": "10.1002/ecy.2105",
@@ -271,6 +352,15 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2003-04-01",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -306,6 +396,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "2004-09-01",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "2004-11-17",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -328,6 +427,15 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2005-03-30",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -363,6 +471,15 @@
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
+   "event_type": "tillage",
+   "date": "2006-09-01",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
    "event_type": "planting",
    "date": "2006-10-17",
    "source": "10.1002/ecy.2105",
@@ -383,6 +500,15 @@
    "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
    "provenance_class": "published",
    "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv.",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2007-04-03",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -408,6 +534,23 @@
    "provenance_class": "imputed",
    "provenance_note": "No harvest in operations_harvest.csv or plot_system.csv; the crop ends with all biomass to litter. Dated day 182 of the year, the median day of a recorded wheat harvest (Irrigated Wheat/Legume, n = 14).",
    "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2008-06-30",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Incorporation of the wheat at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "history_of": "irr_wheat_legume__wheat-CC"
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-01-17",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.9537,
+   "provenance_class": "imputed",
+   "provenance_note": "Bed preparation before the tomato planted 2013-04-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -448,6 +591,22 @@
    "harvest_lookup_row": "T32",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-09-21",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.5799,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the tomato harvest of 2013-08-20 (Tautges et al. 2019). tillage_eff_0to1 is the median of 2592 monitoring tillage events for tomato, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2014-03-08",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.5158,
+   "provenance_class": "imputed",
+   "provenance_note": "Bed preparation before the corn planted 2014-04-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -501,6 +660,14 @@
    "harvest_lookup_row": "F16",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2014-11-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.6435,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the corn harvest of 2014-10-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
   }
  ]
 }

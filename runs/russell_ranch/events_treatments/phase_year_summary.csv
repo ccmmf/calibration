@@ -77,6 +77,7 @@
 "conv_corn_tomato","tomato-corn","2012","Tomato","Tomato",274.5,0,0,578.7
 "conv_corn_tomato","tomato-corn","2013","Corn","Corn",235.54,0,0,504.6
 "conv_corn_tomato","tomato-corn","2014","Tomato","Tomato",134.5,0,0,578.7
+"conv_wheat_tomato","tomato-wheat","1993","","",0,0,0,0
 "conv_wheat_tomato","tomato-wheat","1994","Tomato+Wheat","Tomato",248.48,0,0,589.5
 "conv_wheat_tomato","tomato-wheat","1995","","Wheat",56.2,0,0,557.7
 "conv_wheat_tomato","tomato-wheat","1996","Tomato+Wheat","Tomato",273.1,0,0,675.7

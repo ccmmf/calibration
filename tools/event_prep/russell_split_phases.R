@@ -9,16 +9,19 @@
 # plot id on every operation and plot_system.csv gives each plot's rotation phase, which is
 # what lets the events be separated.
 #
-# usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir>
+# usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv]
 #   century_dir: the extracted RR_2014_datasets/ folder from the Wolf et al. (2018) data
 #   paper supporting information, doi 10.1002/ecy.2105.
+#   tillage_medians_csv: written by russell_monitoring_tillage.R; defaults to
+#   monitoring_tillage_near_russell.csv next to generator_stacked_dir.
 
 suppressMessages(library(jsonlite))
 
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) != 3L)
-  stop("usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir>")
+if (!length(args) %in% 3:4)
+  stop("usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv]")
 stacked_dir <- args[1]; century_dir <- args[2]; out_dir <- args[3]
+tillage_csv <- if (length(args) == 4L) args[4] else file.path(dirname(stacked_dir), "monitoring_tillage_near_russell.csv")
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
 SYSTEMS <- c(
@@ -992,6 +995,67 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
     keep_all[[tid]][[ph]] <- pe
   }
   if (n) cat(sprintf("%-18s seasons given the usual irrigation: %d\n", tid, n))
+}
+
+# Tillage. The package has no tillage records. Tautges et al. (2019) describe the operations and
+# when they happen relative to harvest, planting, cover crop termination and compost; the
+# monitoring product gives their timing and intensity near Russell Ranch (tillage_csv, from
+# russell_monitoring_tillage.R: parcels within 25 km, 2016-2023). One event per operation:
+# disking after each corn, tomato and wheat harvest, the median days after harvest for that crop
+# (and before the next planting); bed preparation before each corn and tomato season, the median
+# days before planting (and after the previous crop ends); and incorporation of each cover crop,
+# sudangrass and unharvested crop at its end, and of each compost application on its date, with
+# the median over all tillage events. tillage_eff_0to1 is the median for the operation. In-season
+# cultivations have no date and are left out.
+til <- read.csv(tillage_csv, stringsAsFactors = FALSE)
+TILLAGE_SOURCE <- "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv"
+til_row <- function(op, crop) { r <- til[til$operation == op & til$crop == crop, ]; stopifnot(nrow(r) == 1L); r }
+tillage_event <- function(d, r, what) list(
+  event_type = "tillage", date = format(d), source = TILLAGE_SOURCE,
+  tillage_eff_0to1 = r$median_tillage_eff, provenance_class = "imputed",
+  provenance_note = sprintf(paste(
+    "%s (Tautges et al. 2019). tillage_eff_0to1 is the median of %d monitoring tillage events%s",
+    "on parcels within %d km of Russell Ranch (%s)."), what, r$n_events,
+    if (r$crop == "all") "" else sprintf(" for %s, %d days %s the %s,", r$crop, r$median_days,
+                                          if (r$operation == "post_harvest") "after" else "before",
+                                          if (r$operation == "post_harvest") "harvest" else "planting"),
+    r$radius_km, r$years))
+tillage_events <- function(pe) {
+  out <- list()
+  pl <- dates_of(Filter(function(e) e$event_type == "planting", pe))
+  ends <- Filter(function(e) e$event_type == "harvest" && !(tolower(e$crop_display) == "alfalfa" &&
+                                                              is.null(e$harvest_lookup_row)), pe)
+  end_dates <- dates_of(ends)
+  for (e in ends) {
+    crop <- tolower(e$crop_display); d <- as.Date(e$date)
+    if (crop %in% GREEN_MANURE || isTRUE(e$not_harvested)) {
+      out[[length(out) + 1L]] <- tillage_event(d, til_row("any", "all"), sprintf("Incorporation of the %s at its end", crop))
+    } else if (crop %in% c("corn", "tomato", "wheat")) {
+      r <- til_row("post_harvest", crop)
+      t <- d + r$median_days; nxt <- pl[pl > d]
+      if (length(nxt) && t >= min(nxt)) t <- min(nxt) - 1
+      if (t > d) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Disking after the %s harvest of %s", crop, format(d)))
+    }
+  }
+  ss <- seasons_of(pe); ss <- ss[ss$crop %in% c("corn", "tomato"), ]
+  for (i in seq_len(nrow(ss))) {
+    r <- til_row("pre_plant", ss$crop[i]); st <- ss$start[i]
+    t <- st - r$median_days; prev <- end_dates[end_dates < st]
+    if (length(prev) && t <= max(prev)) t <- max(prev) + 1
+    if (t < st) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Bed preparation before the %s planted %s", ss$crop[i], format(st)))
+  }
+  for (e in Filter(function(e) e$event_type == "fertilization" && !is.null(e$org_c_kg_m2), pe))
+    out[[length(out) + 1L]] <- tillage_event(as.Date(e$date), til_row("any", "all"), "Incorporation of the compost applied that day")
+  out
+}
+for (tid in names(SYSTEMS)) {
+  n <- 0L
+  for (ph in names(keep_all[[tid]])) {
+    tl <- tillage_events(keep_all[[tid]][[ph]])
+    n <- n + length(tl)
+    keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], tl)
+  }
+  cat(sprintf("%-18s tillage events: %d\n", tid, n))
 }
 
 # The six Alfalfa/Corn/Tomato plots were Irrigated Wheat/Legume, one phase to one phase, until
