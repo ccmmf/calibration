@@ -1008,41 +1008,51 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
 # the median over all tillage events. tillage_eff_0to1 is the median for the operation. In-season
 # cultivations have no date and are left out.
 til <- read.csv(tillage_csv, stringsAsFactors = FALSE)
-TILLAGE_SOURCE <- "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv"
+TILLAGE_SOURCE <- if (length(args) == 4L) tillage_csv else
+  "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv"
 til_row <- function(op, crop) { r <- til[til$operation == op & til$crop == crop, ]; stopifnot(nrow(r) == 1L); r }
-tillage_event <- function(d, r, what) list(
+tillage_event <- function(d, r, what, moved = NULL) list(
   event_type = "tillage", date = format(d), source = TILLAGE_SOURCE,
   tillage_eff_0to1 = r$median_tillage_eff, provenance_class = "imputed",
-  provenance_note = sprintf(paste(
+  provenance_note = paste(c(sprintf(paste(
     "%s (Tautges et al. 2019). tillage_eff_0to1 is the median of %d monitoring tillage events%s",
     "on parcels within %d km of Russell Ranch (%s)."), what, r$n_events,
     if (r$crop == "all") "" else sprintf(" for %s, %d days %s the %s,", r$crop, r$median_days,
                                           if (r$operation == "post_harvest") "after" else "before",
                                           if (r$operation == "post_harvest") "harvest" else "planting"),
-    r$radius_km, r$years))
+    r$radius_km, r$years), moved), collapse = " "))
 tillage_events <- function(pe) {
   out <- list()
   pl <- dates_of(Filter(function(e) e$event_type == "planting", pe))
-  ends <- Filter(function(e) e$event_type == "harvest" && !(tolower(e$crop_display) == "alfalfa" &&
-                                                              is.null(e$harvest_lookup_row)), pe)
-  end_dates <- dates_of(ends)
+  ends <- Filter(function(e) e$event_type == "harvest", pe)
   for (e in ends) {
     crop <- tolower(e$crop_display); d <- as.Date(e$date)
     if (crop %in% GREEN_MANURE || isTRUE(e$not_harvested)) {
       out[[length(out) + 1L]] <- tillage_event(d, til_row("any", "all"), sprintf("Incorporation of the %s at its end", crop))
     } else if (crop %in% c("corn", "tomato", "wheat")) {
       r <- til_row("post_harvest", crop)
-      t <- d + r$median_days; nxt <- pl[pl > d]
-      if (length(nxt) && t >= min(nxt)) t <- min(nxt) - 1
-      if (t > d) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Disking after the %s harvest of %s", crop, format(d)))
+      t <- d + r$median_days; nxt <- pl[pl > d]; moved <- NULL
+      if (length(nxt) && t >= min(nxt)) {
+        moved <- sprintf("Moved from %s to %s, the day before the next planting on %s.",
+                         format(t), format(min(nxt) - 1), format(min(nxt)))
+        t <- min(nxt) - 1
+      }
+      if (t > d) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Disking after the %s harvest of %s", crop, format(d)), moved)
     }
   }
   ss <- seasons_of(pe); ss <- ss[ss$crop %in% c("corn", "tomato"), ]
   for (i in seq_len(nrow(ss))) {
     r <- til_row("pre_plant", ss$crop[i]); st <- ss$start[i]
-    t <- st - r$median_days; prev <- end_dates[end_dates < st]
-    if (length(prev) && t <= max(prev)) t <- max(prev) + 1
-    if (t < st) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Bed preparation before the %s planted %s", ss$crop[i], format(st)))
+    t <- st - r$median_days; prev <- Filter(function(e) as.Date(e$date) < st, ends); moved <- NULL
+    if (length(prev)) {
+      last <- prev[[which.max(dates_of(prev))]]
+      if (t <= as.Date(last$date)) {
+        moved <- sprintf("Moved from %s to %s, the day after the previous crop (%s) ends on %s.",
+                         format(t), format(as.Date(last$date) + 1), tolower(last$crop_display), last$date)
+        t <- as.Date(last$date) + 1
+      }
+    }
+    if (t < st) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Bed preparation before the %s planted %s", ss$crop[i], format(st)), moved)
   }
   for (e in Filter(function(e) e$event_type == "fertilization" && !is.null(e$org_c_kg_m2), pe))
     out[[length(out) + 1L]] <- tillage_event(as.Date(e$date), til_row("any", "all"), "Incorporation of the compost applied that day")

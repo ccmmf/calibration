@@ -213,7 +213,7 @@ amounts and the other filled irrigation are medians of the generator's priors (d
   2008, and 2009 in `conv_corn_tomato` `tomato-corn`, `leg_corn_tomato` and
   `org_corn_tomato` `tomato/CC-corn/CC`, and `transitional`): no sudangrass season has
   irrigation to take a median from. The script prints every season it leaves without
-  irrigation. Each of the 51 gets one event at the season midpoint with the median season
+  irrigation. Each of the 41 gets one event at the season midpoint with the median season
   total of the treatment's other seasons of that crop (for example 545.75 mm for
   `conv_wheat_tomato` wheat, n = 16; 546.22 mm site wheat, n = 25, which leaves out the
   irrigated wheat systems now that they follow the paper).
@@ -379,7 +379,8 @@ the `alf_corn_tomato` history:
   incorporations take the median of all 51,733 tillage events.
 - A post-harvest disking is kept before the next planting, and a bed preparation after the
   previous crop ends, so in the cover crop systems it falls the day after the cover crop is
-  incorporated.
+  incorporated. That moves 75 events (55 bed preparations, 20 diskings), and each one's
+  provenance note gives the median date, the date it moved to and why.
 - One event per operation: the two to three diskings at cover crop termination and the four
   fallow diskings are one event each.
 - Left out: the in-season cultivations (one per crop phase in the conventional systems,
@@ -389,8 +390,11 @@ the `alf_corn_tomato` history:
 
 - **Maize and tomato irrigation amounts.** For furrow irrigated maize and tomato Tautges et al.
   2019 gives "an average of 33.6 mm per year" (17.6 in 1995 to 43.5 in 2004), which is too
-  little for furrow irrigation and is probably in other units; its Table S1 is not in hand
-  yet. These seasons keep the generator's amounts until it is. For alfalfa the paper gives
+  little for furrow irrigation and is probably in other units: about 336 mm if cm, 853 mm if
+  inches, against the generator's prior of about 575 mm. Its supporting information does not
+  settle the unit: Table S1 is precipitation only (winter, October to March, and summer, April
+  to September, 1993-94 to 2011-12), S2 soil pH and S3 bulk density, with no irrigation. These
+  seasons keep the generator's amounts pending David on calibration#10. For alfalfa the paper gives
   nothing, and the 490.87 mm a production year gets here rests on one generator event. The
   five 2008 and 2009 sudangrass green manure seasons get no irrigation, because no sudangrass
   season has any to take a median from.

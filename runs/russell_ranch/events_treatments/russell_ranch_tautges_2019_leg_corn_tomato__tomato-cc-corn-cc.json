@@ -287,7 +287,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.5158,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the corn planted 1997-05-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the corn planted 1997-05-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1997-03-29 to 1997-04-02, the day after the previous crop (cover crop) ends on 1997-04-01."
   },
   {
    "event_type": "fertilization",
@@ -879,7 +879,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the tomato planted 2004-05-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the tomato planted 2004-05-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2004-02-05 to 2004-03-25, the day after the previous crop (cover crop) ends on 2004-03-24."
   },
   {
    "event_type": "fertilization",
@@ -1026,7 +1026,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.6435,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the corn harvest of 2005-10-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the corn harvest of 2005-10-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2005-11-08 to 2005-10-27, the day before the next planting on 2005-10-28."
   },
   {
    "event_type": "planting",
@@ -1063,7 +1063,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the tomato planted 2006-05-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the tomato planted 2006-05-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2006-02-24 to 2006-04-26, the day after the previous crop (cover crop) ends on 2006-04-25."
   },
   {
    "event_type": "fertilization",
@@ -1206,7 +1206,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.6435,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the corn harvest of 2007-10-23 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the corn harvest of 2007-10-23 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2007-11-24 to 2007-11-12, the day before the next planting on 2007-11-13."
   },
   {
    "event_type": "planting",
@@ -1341,7 +1341,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the tomato planted 2010-05-03 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the tomato planted 2010-05-03 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2010-02-02 to 2010-03-23, the day after the previous crop (cover crop) ends on 2010-03-22."
   },
   {
    "event_type": "fertilization",
@@ -1494,7 +1494,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the tomato planted 2012-04-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the tomato planted 2012-04-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2012-01-31 to 2012-04-05, the day after the previous crop (cover crop) ends on 2012-04-04."
   },
   {
    "event_type": "fertilization",
@@ -1589,7 +1589,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.5158,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the corn planted 2013-03-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the corn planted 2013-03-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2013-02-15 to 2013-02-21, the day after the previous crop (cover crop) ends on 2013-02-20."
   },
   {
    "event_type": "planting",
@@ -1647,7 +1647,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.6435,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the corn harvest of 2013-10-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the corn harvest of 2013-10-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2013-11-02 to 2013-10-27, the day before the next planting on 2013-10-28."
   },
   {
    "event_type": "planting",
@@ -1684,7 +1684,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the tomato planted 2014-04-27 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the tomato planted 2014-04-27 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2014-01-27 to 2014-03-14, the day after the previous crop (cover crop) ends on 2014-03-13."
   },
   {
    "event_type": "planting",
