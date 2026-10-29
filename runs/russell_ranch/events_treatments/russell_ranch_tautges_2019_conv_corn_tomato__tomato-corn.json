@@ -2033,7 +2033,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 14 of 15 seasons. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 14 of 15 seasons. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season last planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -2042,7 +2042,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 14 of 15 seasons. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+   "provenance_note": "Fertilization gap: the log has no fertilization for this corn season, which its treatment fertilizes in 14 of 15 seasons. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season last planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days to this season's last planting."
   },
   {
    "event_type": "irrigation",

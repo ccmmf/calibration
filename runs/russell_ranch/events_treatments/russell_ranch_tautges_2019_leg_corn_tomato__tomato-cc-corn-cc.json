@@ -156,7 +156,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1995-05-05 Ammonium sulfate application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1995-05-05 Ammonium sulfate application of the corn season last planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days to this season's last planting."
   },
   {
    "event_type": "planting",
@@ -174,7 +174,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 108.00 kg N/ha of the sidedress. Dated like the 1995-06-09 Urea application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 108.00 kg N/ha of the sidedress. Dated like the 1995-06-09 Urea application of the corn season last planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -183,7 +183,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 72.00 kg N/ha of the sidedress. Dated like the 1995-06-22 Urea application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 72.00 kg N/ha of the sidedress. Dated like the 1995-06-22 Urea application of the corn season last planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -399,7 +399,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1997-03-20 NPK_new application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1997-03-20 NPK_new application of the corn season last planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days to this season's last planting."
   },
   {
    "event_type": "planting",
@@ -417,7 +417,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 102.25 kg N/ha of the sidedress. Dated like the 1997-05-02 Urea application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 102.25 kg N/ha of the sidedress. Dated like the 1997-05-02 Urea application of the corn season last planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -426,7 +426,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 77.75 kg N/ha of the sidedress. Dated like the 1997-05-13 Urea application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 77.75 kg N/ha of the sidedress. Dated like the 1997-05-13 Urea application of the corn season last planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -659,7 +659,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1999-05-24 NPK_new application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1999-05-24 NPK_new application of the corn season last planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days to this season's last planting."
   },
   {
    "event_type": "planting",
@@ -677,7 +677,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 1999-07-02 Urea application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 1999-07-02 Urea application of the corn season last planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -915,7 +915,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2001-04-25 NPK_new application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2001-04-25 NPK_new application of the corn season last planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -924,7 +924,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2001-05-18 Urea application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2001-05-18 Urea application of the corn season last planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -1164,7 +1164,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2003-05-20 NPK_new application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2003-05-20 NPK_new application of the corn season last planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -1173,7 +1173,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2003-05-31 Urea application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2003-05-31 Urea application of the corn season last planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -1452,7 +1452,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2005-05-31 NPK_new application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2005-05-31 NPK_new application of the corn season last planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -1461,7 +1461,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2005-06-03 Urea application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2005-06-03 Urea application of the corn season last planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -1718,7 +1718,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season last planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -1727,7 +1727,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season last planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days to this season's last planting."
   },
   {
    "event_type": "irrigation",
@@ -2289,7 +2289,7 @@
    "source": "10.1111/gcb.14762",
    "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season last planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days to this season's last planting."
   },
   {
    "event_type": "fertilization",
@@ -2298,7 +2298,7 @@
    "source": "10.1111/gcb.14762",
    "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season last planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days to this season's last planting."
   },
   {
    "event_type": "irrigation",

@@ -641,6 +641,9 @@ seasons_of <- function(pe) {
   out <- out[order(out$start), ]
   out[is.na(out$end) | !duplicated(out[c("crop", "end")]), ]
 }
+# A season's last planting of its crop: the replant when it has one.
+last_planting <- function(pe, crop, st, en) max(dates_of(Filter(function(e) e$event_type == "planting" &&
+  tolower(e$crop_display) == crop && as.Date(e$date) >= st && as.Date(e$date) < en, pe)))
 # Irrigated seasons: the cash crop seasons that end, and each calendar year's run of alfalfa
 # cuttings (first to last cutting of the year), the stand's production seasons.
 irrigation_seasons <- function(pe) {
@@ -830,9 +833,10 @@ FERT_LIKE <- list(leg_corn_tomato = c(corn = "conv_corn_tomato"))
 # With no record in the log, the amount is the paper's (David on calibration#10). Tautges et al.
 # (2019): maize in CONV and CONV+WCC was planted "with 56 kg N/ha 8-24-6 starter fertilizer" and
 # sidedressed "in one application, or two split applications, with ammonium sulfate at a total
-# rate of 180 kg N/ha". A corn season of those systems with no record keeps its template's dates:
-# the template's urea applications are the sidedress and share the 180 kg N/ha as they shared
-# their own N, and its one other application is the starter.
+# rate of 180 kg N/ha". A corn season of those systems with no record keeps its template's dates,
+# shifted from the template's last planting (a replant) to its own last planting: the template's
+# urea applications are the sidedress and share the 180 kg N/ha as they shared their own N, and
+# its one other application is the starter.
 PAPER_CORN_N <- c("conv_corn_tomato", "leg_corn_tomato")
 CORN_STARTER_N <- 56
 CORN_SIDEDRESS_N <- 180
@@ -872,9 +876,10 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
     cand <- cand[!is.null(cand) & cand$n_fert > 0 & !(cand$tid == tid & cand$phase == ph & cand$start == s$start), ]
     if (is.null(cand) || !nrow(cand)) next
     tmpl <- cand[which.min(abs(as.numeric(cand$start - s$start))), ]
-    shift <- as.numeric(s$start - tmpl$start)
-    recs <- fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
     paper <- tid %in% PAPER_CORN_N && s$crop == "corn"
+    from <- if (paper) last_planting(keep_all[[tmpl$tid]][[tmpl$phase]], s$crop, tmpl$start, tmpl$end) else tmpl$start
+    shift <- as.numeric((if (paper) last_planting(keep_all[[tid]][[ph]], s$crop, s$start, end) else s$start) - from)
+    recs <- fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
     kg_ha <- if (paper) paper_corn_n(recs)
     for (j in seq_along(recs)) {
       e <- recs[[j]]
@@ -892,10 +897,10 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
           provenance_note = sprintf(paste(
             "Fertilization gap: %s. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize",
             "56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one",
-            "or two applications; this is %s. Dated like the %s %s application of the corn season planted",
-            "%s in %s %s, shifted %+d days."),
+            "or two applications; this is %s. Dated like the %s %s application of the corn season last",
+            "planted %s in %s %s, shifted %+d days to this season's last planting."),
             why, if (side) sprintf("%.2f kg N/ha of the sidedress", kg_ha[j]) else "the starter",
-            format(d - shift), e$material, format(tmpl$start), tmpl$tid, tmpl$phase, shift))
+            format(d - shift), e$material, format(from), tmpl$tid, tmpl$phase, shift))
       } else {
         e$date <- format(d)
         e$provenance_class <- "imputed"
@@ -1111,8 +1116,7 @@ for (tid in FURROW_SYSTEMS) {
       total <- inches * MM_PER_IN
       in_paper <- tid %in% FURROW_PAPER_SYSTEMS
       r <- irm_row(x$crop[i])
-      planted <- max(dates_of(Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) == x$crop[i] &&
-                                       as.Date(e$date) >= x$start[i] && as.Date(e$date) < x$end[i], pe)))
+      planted <- last_planting(pe, x$crop[i], x$start[i], x$end[i])
       first <- planted + r$median_first_days; last <- x$end[i] - r$median_last_days
       short <- last <= first
       if (short) {

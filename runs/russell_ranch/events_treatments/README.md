@@ -344,8 +344,9 @@ season it copies.
   180 kg N/ha" in one or two applications. With no record, the paper's rates apply (David on
   calibration#10). Each of its 16 corn seasons takes the dates of the `conv_corn_tomato` corn
   season of the same year, or the nearest one with records when that year has none (2007, for
-  2013 and 2014): that season's urea applications are the sidedress and share the 180 kg N/ha
-  as they shared their own N, and its one other application (NPK or ammonium sulfate) is the
+  2013 and 2014), shifted from that season's last planting (the 1998 replant) to its own: that
+  season's urea applications are the sidedress and share the 180 kg N/ha as they shared their
+  own N, and its one other application (NPK or ammonium sulfate) is the
   56 kg N/ha starter, 236 kg N/ha a season: 35 events, `source` `10.1111/gcb.14762`. The
   `conv_corn_tomato` records themselves stay as logged (130.28 to 314.35 kg N/ha a season,
   sidedressed with urea rather than the paper's ammonium sulfate).
@@ -414,9 +415,10 @@ takes its fractions from the harvest lookup, like every other harvest. Alfalfa c
 about a month apart, stay separate.
 
 Left as recorded: corn replanted four weeks later (`conv_corn_tomato` 1998;
-`org_corn_tomato` and `transitional` 2013, twice in organic). For irrigation and 2014
-fertilization the replants are one season from the first planting to the harvest, with one
-irrigation event (see "Imputed dates and amounts").
+`org_corn_tomato` and `transitional` 2013, twice in organic). For irrigation and
+fertilization a replanted crop is one season from the first planting to the harvest,
+irrigated from the last planting, and the paper-rate corn N dated from the 1998 conventional
+corn also counts from its replant (see "Imputed dates and amounts" and "Fertilization gaps").
 
 `operations_planting.csv` lists the 2003 and 2005 tomato transplanting in `org_corn_tomato`
 under plot 6-8, two days before its own corn seeding, and none under 8-8. `plot_system.csv`
@@ -481,9 +483,10 @@ the `alf_corn_tomato` history:
 - **CONV+WCC corn N.** The paper's rates fill a log with no corn N in any year (David on
   calibration#10), but that corn yielded at organic levels in 1994 to 2007, 3.4 to 8.0 t/ha
   machine harvested dry yield against conventional's 9.0 to 13.4, while its grain N was close to conventional's; late
-  planting after the cover crop could explain the yield. The dates are the conventional corn
-  records', so the starter can come weeks after planting, as the conventional starter often
-  does in the log, and in 2006 after the sidedress. Both this and the 2004 to 2007 tomato are
+  planting after the cover crop could explain the yield. The dates follow the conventional corn
+  records from the template's last planting (its 1998 replant), so the starter can come weeks
+  after planting, as the conventional starter often does in the log, and in 2006 after the
+  sidedress. Both this and the 2004 to 2007 tomato are
   questions for the data authors.
 
 ## Checks
