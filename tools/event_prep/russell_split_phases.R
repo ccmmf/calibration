@@ -816,13 +816,28 @@ for (tid in names(SYSTEMS)) {
 
 # Fertilization the log lacks for a season that had it. Tautges et al. (2019) sidedress
 # CONV+WCC (Legume/Corn/Tomato) maize like CONV maize, but the log has no corn N for it in any
-# year, so each of its corn seasons copies the Conventional Corn/Tomato corn season of the same
-# year, or the nearest one with records when that year has none (2013, 2014). Any other season
-# ending by 2013, of a crop its treatment fertilizes in at least half of its seasons, that has no
-# record copies the treatment's nearest same-crop season with records: the 2013 conventional
-# corn N and the compost years the package lacks. Copies are shifted by the difference in
-# planting dates, and only the ones landing inside the season are kept.
+# year, so each of its corn seasons takes the dates of the Conventional Corn/Tomato corn season
+# of the same year, or the nearest one with records when that year has none (2013, 2014). Any
+# other season ending by 2013, of a crop its treatment fertilizes in at least half of its
+# seasons, that has no record copies the treatment's nearest same-crop season with records: the
+# 2013 conventional corn N and the compost years the package lacks. Copies are shifted by the
+# difference in planting dates, and only the ones landing inside the season are kept.
 FERT_LIKE <- list(leg_corn_tomato = c(corn = "conv_corn_tomato"))
+# With no record in the log, the amount is the paper's (David on calibration#10). Tautges et al.
+# (2019): maize in CONV and CONV+WCC was planted "with 56 kg N/ha 8-24-6 starter fertilizer" and
+# sidedressed "in one application, or two split applications, with ammonium sulfate at a total
+# rate of 180 kg N/ha". A corn season of those systems with no record keeps its template's dates:
+# the template's urea applications are the sidedress and share the 180 kg N/ha as they shared
+# their own N, and its one other application is the starter.
+PAPER_CORN_N <- c("conv_corn_tomato", "leg_corn_tomato")
+CORN_STARTER_N <- 56
+CORN_SIDEDRESS_N <- 180
+paper_corn_n <- function(recs) {
+  side <- vapply(recs, function(e) identical(e$material, "Urea"), TRUE)
+  stopifnot(sum(!side) == 1L, any(side))
+  n <- vapply(recs, function(e) e$nh4_n_kg_m2, 0)
+  ifelse(side, CORN_SIDEDRESS_N * n / sum(n[side]), CORN_STARTER_N)
+}
 fert_records <- function(pe, st, en) Filter(function(e) e$event_type == "fertilization" &&
   !identical(e$provenance_class, "imputed") && as.Date(e$date) >= st - FERT_LEAD_DAYS && as.Date(e$date) <= en, pe)
 fert_seasons <- function(tid, crop) do.call(rbind, lapply(names(keep_all[[tid]]), function(p2) {
@@ -854,13 +869,35 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
     if (is.null(cand) || !nrow(cand)) next
     tmpl <- cand[which.min(abs(as.numeric(cand$start - s$start))), ]
     shift <- as.numeric(s$start - tmpl$start)
-    for (e in fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)) {
+    recs <- fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
+    paper <- tid %in% PAPER_CORN_N && s$crop == "corn"
+    kg_ha <- if (paper) paper_corn_n(recs)
+    for (j in seq_along(recs)) {
+      e <- recs[[j]]
       d <- as.Date(e$date) + shift
-      if (d < s$start - FERT_LEAD_DAYS || d > end || d > LAST_DATE) next
-      e$date <- format(d)
-      e$provenance_class <- "imputed"
-      e$provenance_note <- sprintf("Fertilization gap: %s. Copies the %s application of the %s season planted %s in %s %s, shifted %+d days.",
-                                   why, format(d - shift), s$crop, format(tmpl$start), tmpl$tid, tmpl$phase, shift)
+      if (d < s$start - FERT_LEAD_DAYS || d > end || d > LAST_DATE) {
+        if (paper) stop(sprintf("%s %s: a paper corn N application would land outside the %s season", tid, ph, format(s$start)))
+        next
+      }
+      if (paper) {
+        side <- identical(e$material, "Urea")
+        e <- list(
+          event_type = "fertilization", date = format(d), nh4_n_kg_m2 = round(kg_ha[j] * KG_HA_TO_KG_M2, 7),
+          source = "10.1111/gcb.14762", material = if (side) "ammonium sulfate" else "8-24-6 starter",
+          provenance_class = "imputed",
+          provenance_note = sprintf(paste(
+            "Fertilization gap: %s. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize",
+            "56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one",
+            "or two applications; this is %s. Dated like the %s %s application of the corn season planted",
+            "%s in %s %s, shifted %+d days."),
+            why, if (side) sprintf("%.2f kg N/ha of the sidedress", kg_ha[j]) else "the starter",
+            format(d - shift), e$material, format(tmpl$start), tmpl$tid, tmpl$phase, shift))
+      } else {
+        e$date <- format(d)
+        e$provenance_class <- "imputed"
+        e$provenance_note <- sprintf("Fertilization gap: %s. Copies the %s application of the %s season planted %s in %s %s, shifted %+d days.",
+                                     why, format(d - shift), s$crop, format(tmpl$start), tmpl$tid, tmpl$phase, shift)
+      }
       fert_gaps[[tid]][[ph]] <- c(fert_gaps[[tid]][[ph]], list(e))
     }
   }
@@ -944,14 +981,66 @@ for (tid in IRRIGATED_WHEAT) {
               tid, n[["events"]], WHEAT_SUPPLEMENTAL_MM, n[["replaced"]]))
 }
 
+# Tautges et al. (2019): "Maize in all systems was furrow irrigated with an average of 33.6 mm per
+# year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004", and tomatoes "as
+# described for maize". As millimetres that is far too little for furrow irrigation; the unit is
+# taken as inches (David on calibration#10), the conservative reading that keeps the crops from
+# being water limited. The monitoring irrigation product near Russell Ranch
+# (monitoring_irrigation_near_russell.csv, from russell_monitoring_irrigation.R) estimates
+# irrigation from evapotranspiration and misses drainage, so it is a lower bound, and its median
+# irrigated corn and tomato season is already above the 336 mm a centimetre reading would give.
+# Each corn and tomato season of the paper's three maize systems carries one furrow event at its
+# midpoint instead of the generator's sprinkler prior: its year's amount where the paper gives one
+# (1995, 2004), the average otherwise; 2013 and 2014, after the paper's period, take the average
+# and are tagged imputed.
+FURROW_SYSTEMS <- c("conv_corn_tomato", "leg_corn_tomato", "org_corn_tomato")
+FURROW_CROPS <- c("corn", "tomato")
+FURROW_YEAR_IN <- c(`1995` = 17.6, `2004` = 43.5)
+FURROW_MEAN_IN <- 33.6
+MM_PER_IN <- 25.4
+for (tid in FURROW_SYSTEMS) {
+  n <- c(replaced = 0L, events = 0L)
+  for (ph in names(keep_all[[tid]])) {
+    pe <- keep_all[[tid]][[ph]]
+    x <- irrigation_seasons(pe); x <- x[x$crop %in% FURROW_CROPS, ]
+    in_season <- vapply(pe, function(e) e$event_type == "irrigation" &&
+                          any(as.Date(e$date) >= x$start & as.Date(e$date) <= x$end), TRUE)
+    n[["replaced"]] <- n[["replaced"]] + sum(in_season)
+    pe <- pe[!in_season]
+    for (i in seq_len(nrow(x))) {
+      yr <- format(x$end[i], "%Y")
+      inches <- if (yr %in% names(FURROW_YEAR_IN)) FURROW_YEAR_IN[[yr]] else FURROW_MEAN_IN
+      mid <- x$start[i] + floor(as.numeric(x$end[i] - x$start[i]) / 2)
+      pe[[length(pe) + 1L]] <- list(
+        event_type = "irrigation", date = format(mid), source = "10.1111/gcb.14762",
+        amount_mm = round(inches * MM_PER_IN, 4), method = "flood",
+        provenance_class = if (as.integer(yr) <= 2012) "published" else "imputed",
+        provenance_note = sprintf(paste(
+          "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with",
+          "\"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm",
+          "in 2004\", read as inches (David on calibration#10): %s in, %s mm, %s. One event at the",
+          "midpoint of the %s to %s %s season."),
+          format(inches), format(round(inches * MM_PER_IN, 2)),
+          if (yr %in% names(FURROW_YEAR_IN)) paste("the paper's", yr, "value")
+          else if (as.integer(yr) <= 2012) "the average" else "the average, as the paper's period ends in 2012",
+          format(x$start[i]), format(x$end[i]), x$crop[i]))
+      n[["events"]] <- n[["events"]] + 1L
+    }
+    keep_all[[tid]][[ph]] <- pe
+  }
+  cat(sprintf("%-18s corn and tomato irrigation from Tautges et al. 2019 (inches): %d events (replaced %d generator events)\n",
+              tid, n[["events"]], n[["replaced"]]))
+}
+
 # A season in an irrigated system with no irrigation (a filled season, 2014, an alfalfa
 # production year, or one whose only event was a dropped artifact) takes the treatment's usual
 # irrigation: one event at the season midpoint carrying the median season total of its other
 # seasons of that crop (the site's when the treatment has fewer than MIN_MEDIAN_N). The amounts
 # are the generator's sprinkler prior, so this keeps a filled season like its neighbours; the
-# package records no irrigation. The irrigated wheat systems' wheat seasons follow Tautges
-# (above), so they neither take the fill nor count toward its medians, and their seasons
-# harvested in the no-irrigation years stay without; a crop with no irrigated season anywhere
+# package records no irrigation. The irrigated wheat systems' wheat seasons and the maize
+# systems' corn and tomato seasons follow Tautges (above), so they neither take the fill nor
+# count toward its medians, and the irrigated wheat seasons harvested in the no-irrigation years
+# stay without; a crop with no irrigated season anywhere
 # (the 2008 and 2009 sudangrass green manure) has no median and gets none. Both are printed.
 season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(tid)
   do.call(rbind, lapply(keep_all[[tid]], function(pe) {
@@ -962,7 +1051,8 @@ season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(t
       as.Date(e$date) >= x$start[i] && as.Date(e$date) <= x$end[i], irr), function(e) as.numeric(e$amount_mm), 0)), 0)
     cbind(x, tid = tid)
   }))))
-season_irr <- season_irr[season_irr$mm > 0 & !(season_irr$tid %in% IRRIGATED_WHEAT & season_irr$crop == "wheat"), ]
+season_irr <- season_irr[season_irr$mm > 0 & !(season_irr$tid %in% IRRIGATED_WHEAT & season_irr$crop == "wheat") &
+                           !(season_irr$tid %in% FURROW_SYSTEMS & season_irr$crop %in% FURROW_CROPS), ]
 for (tid in setdiff(names(SYSTEMS), RAINFED)) {
   n <- 0L
   for (ph in names(keep_all[[tid]])) {
@@ -1125,8 +1215,15 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "record, of a crop the treatment fertilizes in at least half its seasons, copies the",
         "treatment's nearest same-crop season with records (a fertilization gap).",
         if (tid %in% names(FERT_LIKE)) sprintf(paste(
-          "Its %s seasons copy the same-year (or nearest) %s %s season instead, as Tautges et al.",
-          "2019 sidedress CONV+WCC maize like CONV maize."), names(FERT_LIKE[[tid]]), FERT_LIKE[[tid]], names(FERT_LIKE[[tid]])),
+          "Its %s seasons take the dates of the same-year (or nearest) %s %s season instead, as Tautges",
+          "et al. 2019 sidedress CONV+WCC maize like CONV maize."), names(FERT_LIKE[[tid]]), FERT_LIKE[[tid]], names(FERT_LIKE[[tid]])),
+        if (tid %in% PAPER_CORN_N) paste(
+          "A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and",
+          "180 kg N/ha of ammonium sulfate sidedress."),
+        if (tid %in% FURROW_SYSTEMS) paste(
+          "Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: one furrow",
+          "event per season of 33.6 in (853.44 mm), 17.6 in in 1995 and 43.5 in in 2004, the paper's",
+          "\"mm\" read as inches; 2013 and 2014 take the average, imputed."),
         if (any(c(tid, HISTORY[[tid]]) %in% IRRIGATED_WHEAT)) paste(
           "The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the",
           "generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and",

@@ -1,0 +1,3 @@
+"crop","crop_code","n_seasons","n_seasons_irrigated","median_mm","p25_mm","p75_mm","median_irrigated_mm","radius_km","years","n_members","n_parcels"
+"corn","F16",2355,1471,156,0,454,440.2,25,"2016-2023",20,2752
+"tomato","T32",4963,4404,439.5,152.6,598.9,449.8,25,"2016-2023",20,2752

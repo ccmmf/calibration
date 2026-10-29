@@ -7,7 +7,7 @@
   "rotation_phase": "tomato/CC-corn/CC",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_leg_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). Its corn seasons copy the same-year (or nearest) conv_corn_tomato corn season instead, as Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). Its corn seasons take the dates of the same-year (or nearest) conv_corn_tomato corn season instead, as Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize. A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and 180 kg N/ha of ammonium sulfate sidedress. Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: one furrow event per season of 33.6 in (853.44 mm), 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches; 2013 and 2014 take the average, imputed. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
  },
  "events": [
   {
@@ -42,11 +42,11 @@
   {
    "event_type": "irrigation",
    "date": "1994-06-30",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 532.6618,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this tomato season (1994-05-04 to 1994-08-27); the usual irrigation of leg_corn_tomato: one event at the season midpoint with the median season total of 16 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 1994-05-04 to 1994-08-27 tomato season."
   },
   {
    "event_type": "harvest",
@@ -107,12 +107,11 @@
   {
    "event_type": "fertilization",
    "date": "1995-05-06",
-   "nh4_n_kg_m2": 0.005655,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Ammonium sulfate",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1995-05-05 application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1995-05-05 Ammonium sulfate application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
   },
   {
    "event_type": "planting",
@@ -126,32 +125,29 @@
   {
    "event_type": "fertilization",
    "date": "1995-06-10",
-   "nh4_n_kg_m2": 0.013457,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0108002,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1995-06-09 application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 108.00 kg N/ha of the sidedress. Dated like the 1995-06-09 Urea application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
   },
   {
    "event_type": "fertilization",
    "date": "1995-06-23",
-   "nh4_n_kg_m2": 0.008971,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0071998,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1995-06-22 application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 72.00 kg N/ha of the sidedress. Dated like the 1995-06-22 Urea application of the corn season planted 1995-05-18 in conv_corn_tomato tomato-corn, shifted +1 days."
   },
   {
    "event_type": "irrigation",
    "date": "1995-08-03",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 629.8889,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 447.04,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 17.6 in, 447.04 mm, the paper's 1995 value. One event at the midpoint of the 1995-05-19 to 1995-10-18 corn season."
   },
   {
    "event_type": "harvest",
@@ -221,13 +217,12 @@
   },
   {
    "event_type": "irrigation",
-   "date": "1996-06-24",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 420.4186,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "date": "1996-06-26",
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 1996-04-25 to 1996-08-28 tomato season."
   },
   {
    "event_type": "harvest",
@@ -292,12 +287,11 @@
   {
    "event_type": "fertilization",
    "date": "1997-05-01",
-   "nh4_n_kg_m2": 0.004624,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1997-03-20 application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1997-03-20 NPK_new application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
   },
   {
    "event_type": "planting",
@@ -311,32 +305,29 @@
   {
    "event_type": "fertilization",
    "date": "1997-06-13",
-   "nh4_n_kg_m2": 0.011188,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0102251,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1997-05-02 application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 102.25 kg N/ha of the sidedress. Dated like the 1997-05-02 Urea application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
   },
   {
    "event_type": "fertilization",
    "date": "1997-06-24",
-   "nh4_n_kg_m2": 0.008507,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0077749,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1997-05-13 application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 77.75 kg N/ha of the sidedress. Dated like the 1997-05-13 Urea application of the corn season planted 1997-03-25 in conv_corn_tomato tomato-corn, shifted +42 days."
   },
   {
    "event_type": "irrigation",
    "date": "1997-07-19",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 625.1876,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 1997-05-06 to 1997-10-01 corn season."
   },
   {
    "event_type": "harvest",
@@ -397,11 +388,11 @@
   {
    "event_type": "irrigation",
    "date": "1998-06-19",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 532.6618,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this tomato season (1998-04-22 to 1998-08-17); the usual irrigation of leg_corn_tomato: one event at the season midpoint with the median season total of 16 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 1998-04-22 to 1998-08-17 tomato season."
   },
   {
    "event_type": "harvest",
@@ -466,12 +457,11 @@
   {
    "event_type": "fertilization",
    "date": "1999-05-24",
-   "nh4_n_kg_m2": 0.004624,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1999-05-24 application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 1999-05-24 NPK_new application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
   },
   {
    "event_type": "planting",
@@ -485,22 +475,20 @@
   {
    "event_type": "fertilization",
    "date": "1999-07-02",
-   "nh4_n_kg_m2": 0.008404,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.018,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 1999-07-02 application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 1999-07-02 Urea application of the corn season planted 1999-06-04 in conv_corn_tomato tomato-corn, shifted +0 days."
   },
   {
    "event_type": "irrigation",
    "date": "1999-08-13",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 589.6882,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 1999-06-04 to 1999-10-22 corn season."
   },
   {
    "event_type": "harvest",
@@ -561,12 +549,11 @@
   {
    "event_type": "irrigation",
    "date": "2000-06-24",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 534.9755,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2000-04-27 to 2000-08-22 tomato season."
   },
   {
    "event_type": "harvest",
@@ -636,31 +623,29 @@
   {
    "event_type": "fertilization",
    "date": "2001-06-15",
-   "nh4_n_kg_m2": 0.004624,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2001-04-25 application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2001-04-25 NPK_new application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
   },
   {
    "event_type": "fertilization",
    "date": "2001-07-08",
-   "nh4_n_kg_m2": 0.017943,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.018,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2001-05-18 application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2001-05-18 Urea application of the corn season planted 2001-03-28 in conv_corn_tomato tomato-corn, shifted +51 days."
   },
   {
    "event_type": "irrigation",
    "date": "2001-08-03",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 611.7961,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this corn season (2001-05-18 to 2001-10-19); the usual irrigation of leg_corn_tomato: one event at the season midpoint with the median season total of 13 corn seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2001-05-18 to 2001-10-19 corn season."
   },
   {
    "event_type": "harvest",
@@ -723,12 +708,11 @@
   {
    "event_type": "irrigation",
    "date": "2002-06-22",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 674.003,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2002-04-24 to 2002-08-20 tomato season."
   },
   {
    "event_type": "harvest",
@@ -798,32 +782,29 @@
   {
    "event_type": "fertilization",
    "date": "2003-06-20",
-   "nh4_n_kg_m2": 0.005044,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2003-05-20 application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2003-05-20 NPK_new application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
   },
   {
    "event_type": "fertilization",
    "date": "2003-07-01",
-   "nh4_n_kg_m2": 0.01851,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.018,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2003-05-31 application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2003-05-31 Urea application of the corn season planted 2003-04-09 in conv_corn_tomato tomato-corn, shifted +31 days."
   },
   {
    "event_type": "irrigation",
    "date": "2003-07-29",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 670.4006,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2003-05-10 to 2003-10-17 corn season."
   },
   {
    "event_type": "harvest",
@@ -903,12 +884,11 @@
   {
    "event_type": "irrigation",
    "date": "2004-06-26",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 626.1769,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 1104.9,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm, the paper's 2004 value. One event at the midpoint of the 2004-05-05 to 2004-08-17 tomato season."
   },
   {
    "event_type": "harvest",
@@ -982,32 +962,29 @@
   {
    "event_type": "fertilization",
    "date": "2005-07-05",
-   "nh4_n_kg_m2": 0.005044,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2005-05-31 application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2005-05-31 NPK_new application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
   },
   {
    "event_type": "fertilization",
    "date": "2005-07-08",
-   "nh4_n_kg_m2": 0.01851,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.018,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2005-06-03 application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2005-06-03 Urea application of the corn season planted 2005-04-19 in conv_corn_tomato tomato-corn, shifted +35 days."
   },
   {
    "event_type": "irrigation",
    "date": "2005-07-31",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 496.9554,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2005-05-24 to 2005-10-07 corn season."
   },
   {
    "event_type": "harvest",
@@ -1087,12 +1064,11 @@
   {
    "event_type": "irrigation",
    "date": "2006-07-19",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 530.348,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2006-05-25 to 2006-09-13 tomato season."
   },
   {
    "event_type": "harvest",
@@ -1162,32 +1138,29 @@
   {
    "event_type": "fertilization",
    "date": "2007-06-05",
-   "nh4_n_kg_m2": 0.005044,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-10 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
   },
   {
    "event_type": "fertilization",
    "date": "2007-06-19",
-   "nh4_n_kg_m2": 0.01851,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.018,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-24 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +26 days."
   },
   {
    "event_type": "irrigation",
    "date": "2007-08-03",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 546.1963,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2007-05-14 to 2007-10-23 corn season."
   },
   {
    "event_type": "harvest",
@@ -1375,12 +1348,11 @@
   {
    "event_type": "irrigation",
    "date": "2010-07-05",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 594.9419,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2010-05-03 to 2010-09-06 tomato season."
   },
   {
    "event_type": "harvest",
@@ -1528,12 +1500,11 @@
   {
    "event_type": "irrigation",
    "date": "2012-07-03",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 623.1083,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "published",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average. One event at the midpoint of the 2012-04-30 to 2012-09-06 tomato season."
   },
   {
    "event_type": "harvest",
@@ -1603,32 +1574,29 @@
   {
    "event_type": "fertilization",
    "date": "2013-04-16",
-   "nh4_n_kg_m2": 0.005044,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "NPK_new",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "8-24-6 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-10 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is the starter. Dated like the 2007-05-10 NPK_new application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
   },
   {
    "event_type": "fertilization",
    "date": "2013-04-30",
-   "nh4_n_kg_m2": 0.01851,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.018,
+   "source": "10.1111/gcb.14762",
+   "material": "ammonium sulfate",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Copies the 2007-05-24 application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
+   "provenance_note": "Fertilization gap: Tautges et al. 2019 sidedress CONV+WCC maize like CONV maize; the log has no corn N here. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize 56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one or two applications; this is 180.00 kg N/ha of the sidedress. Dated like the 2007-05-24 Urea application of the corn season planted 2007-04-18 in conv_corn_tomato tomato-corn, shifted +2168 days."
   },
   {
    "event_type": "irrigation",
    "date": "2013-06-28",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 429.4803,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average, as the paper's period ends in 2012. One event at the midpoint of the 2013-03-25 to 2013-10-01 corn season."
   },
   {
    "event_type": "harvest",
@@ -1710,11 +1678,11 @@
   {
    "event_type": "irrigation",
    "date": "2014-06-24",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 532.6618,
-   "method": "canopy",
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 853.44,
+   "method": "flood",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this tomato season (2014-04-27 to 2014-08-21); the usual irrigation of leg_corn_tomato: one event at the season midpoint with the median season total of 16 tomato seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm, the average, as the paper's period ends in 2012. One event at the midpoint of the 2014-04-27 to 2014-08-21 tomato season."
   },
   {
    "event_type": "harvest",
