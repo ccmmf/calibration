@@ -7,7 +7,7 @@
   "rotation_phase": "CC-wheat",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_irr_wheat_legume.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. Irrigated Wheat/Legume, which the paper does not describe, is irrigated like IWF, imputed. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
  },
  "events": [
   {
@@ -113,8 +113,8 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1996-11-10 to 1997-06-17 season."
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1996-11-10 to 1997-06-17 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
   },
   {
    "event_type": "harvest",
@@ -183,8 +183,8 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1998-11-02 to 1999-07-01 season."
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1998-11-02 to 1999-07-01 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
   },
   {
    "event_type": "harvest",
@@ -249,8 +249,8 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2000-11-27 to 2001-07-13 season."
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2000-11-27 to 2001-07-13 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
   },
   {
    "event_type": "harvest",
@@ -317,8 +317,8 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2002-10-31 to 2003-07-10 season."
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2002-10-31 to 2003-07-10 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
   },
   {
    "event_type": "harvest",
@@ -440,8 +440,8 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "canopy",
-   "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2006-11-09 to 2007-06-29 season."
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2006-11-09 to 2007-06-29 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
   },
   {
    "event_type": "harvest",

@@ -9,19 +9,22 @@
 # plot id on every operation and plot_system.csv gives each plot's rotation phase, which is
 # what lets the events be separated.
 #
-# usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv]
+# usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv [irrigation_medians_csv]]
 #   century_dir: the extracted RR_2014_datasets/ folder from the Wolf et al. (2018) data
 #   paper supporting information, doi 10.1002/ecy.2105.
 #   tillage_medians_csv: written by russell_monitoring_tillage.R; defaults to
 #   monitoring_tillage_near_russell.csv next to generator_stacked_dir.
+#   irrigation_medians_csv: written by russell_monitoring_irrigation.R; defaults to
+#   monitoring_irrigation_near_russell.csv next to generator_stacked_dir.
 
 suppressMessages(library(jsonlite))
 
 args <- commandArgs(trailingOnly = TRUE)
-if (!length(args) %in% 3:4)
-  stop("usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv]")
+if (!length(args) %in% 3:5)
+  stop("usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv [irrigation_medians_csv]]")
 stacked_dir <- args[1]; century_dir <- args[2]; out_dir <- args[3]
-tillage_csv <- if (length(args) == 4L) args[4] else file.path(dirname(stacked_dir), "monitoring_tillage_near_russell.csv")
+tillage_csv <- if (length(args) >= 4L) args[4] else file.path(dirname(stacked_dir), "monitoring_tillage_near_russell.csv")
+irrigation_csv <- if (length(args) == 5L) args[5] else file.path(dirname(stacked_dir), "monitoring_irrigation_near_russell.csv")
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
 SYSTEMS <- c(
@@ -820,7 +823,8 @@ for (tid in names(SYSTEMS)) {
 # of the same year, or the nearest one with records when that year has none (2013, 2014). Any
 # other season ending by 2013, of a crop its treatment fertilizes in at least half of its
 # seasons, that has no record copies the treatment's nearest same-crop season with records: the
-# 2013 conventional corn N and the compost years the package lacks. Copies are shifted by the
+# 2013 conventional corn N and the compost of the organic corn and tomato seasons the package
+# lacks (a sudangrass year is filled below). Copies are shifted by the
 # difference in planting dates, and only the ones landing inside the season are kept.
 FERT_LIKE <- list(leg_corn_tomato = c(corn = "conv_corn_tomato"))
 # With no record in the log, the amount is the paper's (David on calibration#10). Tautges et al.
@@ -907,6 +911,79 @@ for (tid in names(fert_gaps)) {
   cat(sprintf("%-18s fertilization gaps filled: %d events\n", tid, length(unlist(fert_gaps[[tid]], recursive = FALSE))))
 }
 
+# CONV+WCC tomato in 2004 to 2007 has only its NPK starter in the log, although Tautges et al.
+# (2019) sidedress CONV and CONV+WCC tomatoes to 112 kg N/ha. It is left as logged
+# (calibration#10): those are the first years the system grew a winter legume cover crop before
+# tomato (Wolf et al. 2018 metadata), and its tomatoes then had the lowest fruit N and yield of the
+# four tomato systems, so the missing sidedress looks like a change in management, not a gap.
+
+# Compost the package lacks in an organic rotation year that is not a wheat year: the 2008
+# sudangrass year of Organic Corn/Tomato corn/CC-tomato/CC. Organic Corn/Tomato has compost in
+# each of its other years from 1994 except its wheat years, and so does Transitional (managed like
+# the organic system, Wolf et al. 2018) from 2000, and Tautges et al. (2019) give ORG "annual
+# inputs of 9 t/ha" of compost (calibration#10). Such a year copies the recorded application of
+# the nearest year (the earlier one on a tie), same tonnage, on the same calendar date of its
+# year. The wheat years (wheat replaced corn in 2009 to 2012) have no compost in the package at
+# all, 0 of 5 against 42 of the 49 other years, and the paper times compost only before maize and
+# tomato, so a year whose copy would fall in a growing wheat crop stays without (calibration#10).
+COMPOST_SYSTEMS <- c("org_corn_tomato", "transitional")
+is_compost <- function(e) e$event_type == "fertilization" && !is.null(e$org_c_kg_m2)
+year_of <- function(evs) as.integer(substr(vapply(evs, `[[`, "", "date"), 1, 4))
+on_growing_wheat <- function(pe, d) {
+  w <- seasons_of(pe); w <- w[w$crop == "wheat" & !is.na(w$end), ]
+  any(w$start < d & w$end > d)
+}
+for (tid in COMPOST_SYSTEMS) {
+  filled <- character(); wheat_years <- character()
+  for (ph in names(keep_all[[tid]])) {
+    pe <- keep_all[[tid]][[ph]]
+    comp <- Filter(is_compost, pe)
+    rec <- Filter(function(e) !identical(e$provenance_class, "imputed"), comp)
+    rec_yr <- year_of(rec)
+    for (yr in setdiff(seq(min(rec_yr), as.integer(format(LOGS_END, "%Y"))), year_of(comp))) {
+      k <- order(abs(rec_yr - yr), rec_yr)[1]
+      stopifnot(sum(rec_yr == rec_yr[k]) == 1L)
+      e <- rec[[k]]; src <- e$date
+      d <- as.Date(sprintf("%d%s", yr, substr(src, 5, 10)), format = "%Y-%m-%d")
+      if (is.na(d)) stop(sprintf("%s %s: the %s compost has no date in %d", tid, ph, src, yr))
+      if (on_growing_wheat(pe, d)) { wheat_years <- c(wheat_years, sprintf("%s %d", ph, yr)); next }
+      e$date <- format(d)
+      e$provenance_class <- "imputed"
+      e$provenance_note <- sprintf(paste(
+        "Compost gap: the package has no compost for this phase in %d, although it has compost in",
+        "each of its other years that are not wheat years and Tautges et al. 2019 give the organic",
+        "system annual compost (calibration#10). Copies the %s application, the nearest recorded",
+        "year (%s wet t/ac), on the same date of %d."), yr, src, format(e$compost_wet_tons_acre), yr)
+      pe[[length(pe) + 1L]] <- e
+      filled <- c(filled, sprintf("%s %s", ph, e$date))
+    }
+    keep_all[[tid]][[ph]] <- pe
+  }
+  if (length(filled)) cat(sprintf("%-18s compost year the package lacks, copied from the nearest recorded year: %s\n",
+                                  tid, paste(filled, collapse = ", ")))
+  if (length(wheat_years)) cat(sprintf("%-18s wheat years left without compost: %s\n", tid, paste(wheat_years, collapse = ", ")))
+}
+
+# A copied compost application (2014, a fertilization gap or a compost year) keeps the copied
+# season's tonnage and takes %C and %N for the year it is applied, as the records do: the compost
+# was applied uniformly in the organic and transitional systems each year (Wolf et al. 2018), so a
+# year's applications share its analysis, or the mean of measured years when it has none.
+for (tid in names(keep_all)) for (ph in names(keep_all[[tid]])) {
+  keep_all[[tid]][[ph]] <- lapply(keep_all[[tid]][[ph]], function(e) {
+    if (!is_compost(e) || !identical(e$provenance_class, "imputed")) return(e)
+    yr <- substr(e$date, 1, 4)
+    cp <- if (yr %in% names(c_pct)) c_pct[[yr]] else c_mean
+    np <- if (yr %in% names(n_pct)) n_pct[[yr]] else n_mean
+    mass <- e$compost_wet_tons_acre * TON_AC_TO_KG_M2
+    e$org_c_kg_m2 <- round(mass * cp / 100, 7); e$org_n_kg_m2 <- round(mass * np / 100, 7)
+    e$compost_total_c_pct <- round(cp, 4); e$compost_total_n_pct <- round(np, 4)
+    e$provenance_note <- paste(e$provenance_note, sprintf("C is from %s, N from %s, as for the records.",
+      if (yr %in% names(c_pct)) paste("the", yr, "analysis") else "the mean of measured years",
+      if (yr %in% names(n_pct)) paste("the", yr, "analysis") else "the mean of measured years"))
+    e
+  })
+}
+
 # irrigation was injected at the midpoint of each cash crop window; give each event to
 # the phase whose own window midpoint it sits on. A window is one irrigated season
 # (irrigation_seasons): from a cash crop's first planting to the first same-crop harvest
@@ -947,8 +1024,10 @@ for (tid in names(SYSTEMS)) {
 # year except in 1995, 1998, 2000, 2005, and 2008–2012 due to sufficient precipitation". Each
 # wheat season in those systems carries that instead of the generator's sprinkler prior: one
 # 80 mm event at the season midpoint, and none when the season's harvest year is one of those.
-# 2013 and 2014, after the paper's period, take the 80 mm and are tagged imputed.
+# 2013 and 2014, after the paper's period, take the 80 mm and are tagged imputed, as is
+# Irrigated Wheat/Legume, which the paper does not describe and which is irrigated like IWF.
 IRRIGATED_WHEAT <- c("irr_wheat_control", "irr_wheat_fallow", "irr_wheat_legume")
+WHEAT_PAPER_SYSTEMS <- c("irr_wheat_control", "irr_wheat_fallow")  # IWF and IWF+N
 NO_IRRIGATION_YEARS <- c(1995, 1998, 2000, 2005, 2008:2012)
 WHEAT_SUPPLEMENTAL_MM <- 80
 for (tid in IRRIGATED_WHEAT) {
@@ -967,12 +1046,14 @@ for (tid in IRRIGATED_WHEAT) {
       pe[[length(pe) + 1L]] <- list(
         event_type = "irrigation", date = format(mid), source = "10.1111/gcb.14762",
         amount_mm = WHEAT_SUPPLEMENTAL_MM, method = "canopy",
-        provenance_class = if (yr <= 2012) "published" else "imputed",
+        provenance_class = if (tid %in% WHEAT_PAPER_SYSTEMS && yr <= 2012) "published" else "imputed",
         provenance_note = sprintf(paste(
           "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year",
           "except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the %s to %s",
-          "season%s."), format(x$start[i]), format(x$end[i]),
-          if (yr <= 2012) "" else "; the paper's period ends in 2012, so this year takes the usual 80 mm"))
+          "season%s.%s"), format(x$start[i]), format(x$end[i]),
+          if (yr <= 2012) "" else "; the paper's period ends in 2012, so this year takes the usual 80 mm",
+          if (tid %in% WHEAT_PAPER_SYSTEMS) "" else
+            " The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."))
       n[["events"]] <- n[["events"]] + 1L
     }
     keep_all[[tid]][[ph]] <- pe
@@ -989,17 +1070,34 @@ for (tid in IRRIGATED_WHEAT) {
 # (monitoring_irrigation_near_russell.csv, from russell_monitoring_irrigation.R) estimates
 # irrigation from evapotranspiration and misses drainage, so it is a lower bound, and its median
 # irrigated corn and tomato season is already above the 336 mm a centimetre reading would give.
-# Each corn and tomato season of the paper's three maize systems carries one furrow event at its
-# midpoint instead of the generator's sprinkler prior: its year's amount where the paper gives one
-# (1995, 2004), the average otherwise; 2013 and 2014, after the paper's period, take the average
-# and are tagged imputed.
-FURROW_SYSTEMS <- c("conv_corn_tomato", "leg_corn_tomato", "org_corn_tomato")
+# Each corn and tomato season at the site carries its year's amount where the paper gives one
+# (1995, 2004), the average otherwise, instead of the generator's sprinkler prior. The paper
+# describes the maize systems CONV, CONV+WCC and ORG; the corn and tomato of Transitional,
+# Alfalfa/Corn/Tomato and Conventional Wheat/Tomato, which it does not describe, take the same
+# amounts (calibration#10), as do 2013 and 2014, after the paper's period; those are tagged
+# imputed. One large event would mostly drain in SIPNET, whose soil holds about 12 cm, so the
+# season total is split into equal events of at most IRR_EVENT_MAX_MM, spaced evenly from the
+# median days between planting and the first irrigation to the median days between the last
+# irrigation and harvest of the monitoring product's corn and tomato seasons near Russell Ranch
+# (irrigation_csv, from russell_monitoring_irrigation.R), counted from the crop's last planting
+# (a replant); a season too short for those offsets is irrigated over its middle half
+# (calibration#10). Method soil: furrow water enters the soil, and PEcAn's SIPNET
+# writer gives every other method SIPNET's canopy code.
+FURROW_PAPER_SYSTEMS <- c("conv_corn_tomato", "leg_corn_tomato", "org_corn_tomato")
+FURROW_SYSTEMS <- setdiff(names(SYSTEMS), RAINFED)
 FURROW_CROPS <- c("corn", "tomato")
 FURROW_YEAR_IN <- c(`1995` = 17.6, `2004` = 43.5)
 FURROW_MEAN_IN <- 33.6
 MM_PER_IN <- 25.4
+# The monitoring irrigation product's irrigation_max from v1.1 on, set "to avoid unrealistically
+# large irrigation events" (management/irrigation/CHANGELOG.txt)
+IRR_EVENT_MAX_MM <- 150
+irm <- read.csv(irrigation_csv, stringsAsFactors = FALSE)
+irm_row <- function(crop) { r <- irm[irm$crop == crop, ]; stopifnot(nrow(r) == 1L); r }
+IRRIGATION_SOURCE <- if (length(args) == 5L) irrigation_csv else
+  "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv"
 for (tid in FURROW_SYSTEMS) {
-  n <- c(replaced = 0L, events = 0L)
+  n <- c(replaced = 0L, events = 0L, seasons = 0L)
   for (ph in names(keep_all[[tid]])) {
     pe <- keep_all[[tid]][[ph]]
     x <- irrigation_seasons(pe); x <- x[x$crop %in% FURROW_CROPS, ]
@@ -1010,26 +1108,55 @@ for (tid in FURROW_SYSTEMS) {
     for (i in seq_len(nrow(x))) {
       yr <- format(x$end[i], "%Y")
       inches <- if (yr %in% names(FURROW_YEAR_IN)) FURROW_YEAR_IN[[yr]] else FURROW_MEAN_IN
-      mid <- x$start[i] + floor(as.numeric(x$end[i] - x$start[i]) / 2)
-      pe[[length(pe) + 1L]] <- list(
-        event_type = "irrigation", date = format(mid), source = "10.1111/gcb.14762",
-        amount_mm = round(inches * MM_PER_IN, 4), method = "flood",
-        provenance_class = if (as.integer(yr) <= 2012) "published" else "imputed",
-        provenance_note = sprintf(paste(
-          "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with",
-          "\"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm",
-          "in 2004\", read as inches (David on calibration#10): %s in, %s mm, %s. One event at the",
-          "midpoint of the %s to %s %s season."),
-          format(inches), format(round(inches * MM_PER_IN, 2)),
-          if (yr %in% names(FURROW_YEAR_IN)) paste("the paper's", yr, "value")
-          else if (as.integer(yr) <= 2012) "the average" else "the average, as the paper's period ends in 2012",
-          format(x$start[i]), format(x$end[i]), x$crop[i]))
-      n[["events"]] <- n[["events"]] + 1L
+      total <- inches * MM_PER_IN
+      in_paper <- tid %in% FURROW_PAPER_SYSTEMS
+      r <- irm_row(x$crop[i])
+      planted <- max(dates_of(Filter(function(e) e$event_type == "planting" && tolower(e$crop_display) == x$crop[i] &&
+                                       as.Date(e$date) >= x$start[i] && as.Date(e$date) < x$end[i], pe)))
+      first <- planted + r$median_first_days; last <- x$end[i] - r$median_last_days
+      short <- last <= first
+      if (short) {
+        len <- as.numeric(x$end[i] - planted)
+        first <- planted + round(len / 4); last <- planted + round(3 * len / 4)
+        cat(sprintf("%-18s %-44s %s season %s to %s is shorter than the monitoring offsets; irrigated over its middle half\n",
+                    tid, ph, x$crop[i], format(planted), format(x$end[i])))
+      }
+      k <- ceiling(total / IRR_EVENT_MAX_MM)
+      when <- first + round(seq(0, as.numeric(last - first), length.out = k))
+      amt <- rep(round(total / k, 4), k); amt[k] <- round(total - sum(amt[-k]), 4)
+      for (j in seq_len(k)) {
+        pe[[length(pe) + 1L]] <- list(
+          event_type = "irrigation", date = format(when[j]), source = "10.1111/gcb.14762",
+          amount_mm = amt[j], method = "soil",
+          provenance_class = if (in_paper && as.integer(yr) <= 2012) "published" else "imputed",
+          provenance_note = paste(c(sprintf(paste(
+            "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with",
+            "\"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm",
+            "in 2004\", read as inches (David on calibration#10): %s in, %s mm for the %s to %s %s season,",
+            "%s."), format(inches), format(round(total, 2)), format(x$start[i]), format(x$end[i]), x$crop[i],
+            if (yr %in% names(FURROW_YEAR_IN)) paste("the paper's", yr, "value")
+            else if (as.integer(yr) <= 2012) "the average" else "the average, as the paper's period ends in 2012"),
+            if (!in_paper) "The paper does not describe this system; its corn and tomato take the maize systems' amounts (calibration#10).",
+            if (short) sprintf(paste(
+              "Event %d of %d equal events (at most %d mm each) over the middle half of the season from the",
+              "%s planting, which is shorter than the monitoring irrigation product's median %d days from",
+              "planting to first irrigation and %d from last irrigation to harvest for %s within %d km of",
+              "Russell Ranch, %s (%s). Method soil: furrow water."), j, k, IRR_EVENT_MAX_MM, format(planted),
+              r$median_first_days, r$median_last_days, x$crop[i], r$radius_km, r$years, IRRIGATION_SOURCE)
+            else sprintf(paste(
+              "Event %d of %d equal events (at most %d mm each) from %d days after the %s planting to %d days",
+              "before harvest, the medians for %s seasons in the monitoring irrigation product within %d km",
+              "of Russell Ranch, %s (%s). Method soil: furrow water."), j, k, IRR_EVENT_MAX_MM,
+              r$median_first_days, format(planted), r$median_last_days, x$crop[i], r$radius_km, r$years,
+              IRRIGATION_SOURCE)), collapse = " "))
+        n[["events"]] <- n[["events"]] + 1L
+      }
+      n[["seasons"]] <- n[["seasons"]] + 1L
     }
     keep_all[[tid]][[ph]] <- pe
   }
-  cat(sprintf("%-18s corn and tomato irrigation from Tautges et al. 2019 (inches): %d events (replaced %d generator events)\n",
-              tid, n[["events"]], n[["replaced"]]))
+  if (n[["events"]]) cat(sprintf("%-18s corn and tomato irrigation from Tautges et al. 2019 (inches): %d seasons, %d events (replaced %d generator events)\n",
+                                 tid, n[["seasons"]], n[["events"]], n[["replaced"]]))
 }
 
 # A season in an irrigated system with no irrigation (a filled season, 2014, an alfalfa
@@ -1037,9 +1164,9 @@ for (tid in FURROW_SYSTEMS) {
 # irrigation: one event at the season midpoint carrying the median season total of its other
 # seasons of that crop (the site's when the treatment has fewer than MIN_MEDIAN_N). The amounts
 # are the generator's sprinkler prior, so this keeps a filled season like its neighbours; the
-# package records no irrigation. The irrigated wheat systems' wheat seasons and the maize
-# systems' corn and tomato seasons follow Tautges (above), so they neither take the fill nor
-# count toward its medians, and the irrigated wheat seasons harvested in the no-irrigation years
+# package records no irrigation. The irrigated wheat systems' wheat seasons and every corn and
+# tomato season follow Tautges (above), so they neither take the fill nor count toward its
+# medians, and the irrigated wheat seasons harvested in the no-irrigation years
 # stay without; a crop with no irrigated season anywhere
 # (the 2008 and 2009 sudangrass green manure) has no median and gets none. Both are printed.
 season_irr <- do.call(rbind, lapply(setdiff(names(SYSTEMS), RAINFED), function(tid)
@@ -1098,7 +1225,7 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
 # pass with another incorporation that day), with the median over all tillage events. tillage_eff_0to1 is the median for the operation. In-season
 # cultivations have no date and are left out.
 til <- read.csv(tillage_csv, stringsAsFactors = FALSE)
-TILLAGE_SOURCE <- if (length(args) == 4L) tillage_csv else
+TILLAGE_SOURCE <- if (length(args) >= 4L) tillage_csv else
   "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv"
 til_row <- function(op, crop) { r <- til[til$operation == op & til$crop == crop, ]; stopifnot(nrow(r) == 1L); r }
 tillage_event <- function(d, r, what, moved = NULL) list(
@@ -1220,14 +1347,26 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         if (tid %in% PAPER_CORN_N) paste(
           "A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and",
           "180 kg N/ha of ammonium sulfate sidedress."),
-        if (tid %in% FURROW_SYSTEMS) paste(
-          "Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: one furrow",
-          "event per season of 33.6 in (853.44 mm), 17.6 in in 1995 and 43.5 in in 2004, the paper's",
-          "\"mm\" read as inches; 2013 and 2014 take the average, imputed."),
-        if (any(c(tid, HISTORY[[tid]]) %in% IRRIGATED_WHEAT)) paste(
+        if (tid == "leg_corn_tomato") paste(
+          "Its 2004 to 2007 tomato seasons keep the log's starter only: they were the first to follow",
+          "a winter legume cover crop, and their fruit N and yield were the lowest of the tomato systems."),
+        if (tid %in% COMPOST_SYSTEMS) paste(
+          "Copied compost keeps the copied season's tonnage and takes the %C and %N of the year applied;",
+          "a year the package lacks that is not a wheat year copies the nearest recorded year, and the",
+          "wheat years have no compost."),
+        if (tid %in% FURROW_SYSTEMS && any(seasons_of(pe)$crop %in% FURROW_CROPS)) paste(c(
+          "Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in",
+          "(853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches,",
+          "applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation",
+          "product near Russell Ranch; 2013 and 2014 take the average, imputed.",
+          if (!tid %in% FURROW_PAPER_SYSTEMS) "The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed."),
+          collapse = " "),
+        if (any(c(tid, HISTORY[[tid]]) %in% IRRIGATED_WHEAT)) paste(c(
           "The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the",
           "generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and",
-          "2008-2012, and 80 mm, imputed, in 2013 and 2014."),
+          "2008-2012, and 80 mm, imputed, in 2013 and 2014.",
+          if ("irr_wheat_legume" %in% c(tid, HISTORY[[tid]])) "Irrigated Wheat/Legume, which the paper does not describe, is irrigated like IWF, imputed."),
+          collapse = " "),
         sprintf(paste(
           "Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and",
           "sized from medians of the monitoring tillage product within %d km of Russell Ranch, %s (%s)."),
