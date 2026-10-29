@@ -20,7 +20,9 @@ schedule timed from the monitoring product; tillage takes its timing and intensi
 monitoring product near Russell Ranch; and filled planting amounts and the other filled
 irrigation are medians of the generator's priors (see "Imputed dates and amounts" and
 "Tillage"). Every imputed event carries `provenance_class: imputed` and a `provenance_note`
-that names the rule and the median, or the copied season, it used.
+that names the rule and the median, or the copied season, it used. Records in the package that
+look missing or inconsistent, which many of these fills work around, are listed for its
+maintainers in [`century_package_issues.md`](century_package_issues.md).
 
 ## Why one file per phase
 
@@ -486,8 +488,8 @@ the `alf_corn_tomato` history:
   planting after the cover crop could explain the yield. The dates follow the conventional corn
   records from the template's last planting (its 1998 replant), so the starter can come weeks
   after planting, as the conventional starter often does in the log, and in 2006 after the
-  sidedress. Both this and the 2004 to 2007 tomato are
-  questions for the data authors.
+  sidedress. Both this and the 2004 to 2007 tomato are open questions about the package
+  (`century_package_issues.md`, items 1 and 3).
 
 ## Checks
 
@@ -533,5 +535,8 @@ Rscript tools/event_prep/russell_monitoring_irrigation.R <monitoring_dir> \
 
 ## Which treatment the run uses
 
-The SCC run (`runs/russell-ranch-1992`) still uses the stacked `conv_corn_tomato`. Moving it
-to `conv_corn_tomato__corn-tomato` and `__tomato-corn` is the next step.
+On SCC, `runs/russell-ranch-1992-conv-corn-tomato` and `runs/russell-ranch-1992-conv-tomato-corn`
+run the two `conv_corn_tomato` phase files (20 members, 1992 to 2014, the met, IC and PFT
+posterior of `runs/russell-ranch-1992`, which still runs the stacked file). Both phases, like the
+stacked run, grow almost no canopy (maximum LAI 0.04 to 0.16 against 3 to 6 for these crops) and
+lose most of their soil carbon by 2014, so they are not yet usable for calibration.
