@@ -1,0 +1,363 @@
+{
+ "pecan_events_version": "0.1.1",
+ "site_id": "rf_wheat_control__fallow-wheat",
+ "provenance": {
+  "dataset_id": "russell_ranch_tautges_2019",
+  "treatment": "rf_wheat_control",
+  "rotation_phase": "fallow-wheat",
+  "generator": "calibration:tools/event_prep/russell_split_phases.R",
+  "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_control.json",
+  "note": "One rotation phase of the treatment. Planting and harvest events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for corn and tomato, the shared harvest lookup for the rest), alfalfa cuttings leave the stand alive, cover crops and the 2008 and 2009 sudangrass go wholly to litter, and the 1993 sudangrass uniformity crop is cut for hay. No irrigation comes from the generator; it follows the rules below. Events no record gives are tagged provenance_class imputed, or assumed where they rest on a stated reading of the paper or package (the inches irrigation and the 80 mm wheat on its midpoint date, the 1999 tomato dates, compost years without an analysis), as described in runs/russell_ranch/events_treatments/README.md; they are filled in the order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). The file starts with the 1993 sudangrass uniformity crop, grown on every plot before the experiment: irrigated with the monitoring product's median irrigated F16 (corn, sorghum or sudan) season, 440.2 mm, on the sudangrass schedule (equal soil events of at most 150 mm from planting), unfertilized, and cut for hay (the lookup's hay row). Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv), except that the herbicide incorporation passes the package logs (operations_pesticides.csv) keep their dates and the wheat straw disking comes before August, as the paper has it."
+ },
+ "events": [
+  {
+   "event_type": "irrigation",
+   "date": "1993-05-12",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv",
+   "amount_mm": 146.7333,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1): 440.2 mm for the 1993-05-12 to 1993-08-02 sudangrass season, a lower bound (ET based), as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay. Event 1 of 3 equal events (at most 150 mm each) from the 1993-05-12 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
+   "event_type": "planting",
+   "date": "1993-05-12",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Sudangrass",
+   "crop_display": "Sudangrass",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-median of the site's 5 generator Sudangrass plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (5/12/1993 - 5/14/1993), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1993-06-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv",
+   "amount_mm": 146.7333,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1): 440.2 mm for the 1993-05-12 to 1993-08-02 sudangrass season, a lower bound (ET based), as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay. Event 2 of 3 equal events (at most 150 mm each) from the 1993-05-12 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1993-07-03",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv",
+   "amount_mm": 146.7334,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1): 440.2 mm for the 1993-05-12 to 1993-08-02 sudangrass season, a lower bound (ET based), as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay. Event 3 of 3 equal events (at most 150 mm each) from the 1993-05-12 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1993-08-02",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Sudangrass",
+   "frac_above_removed_0to1": 0.892,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (1993-08-02; 1993-08-03), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.108,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Cut for hay, not grain (uniformity_hay_1993); the lookup's hay row.",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "planting",
+   "date": "1994-12-01",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0033,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1995-07-05",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "merged_dates": "1995-07-05;1995-07-07",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie). Fractions from the harvest lookup.",
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "1995-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1995-09-06 to 1995-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "1996-11-11",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.004,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "1997-06-17",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "merged_dates": "1997-06-17;1997-06-22",
+   "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie). Fractions from the harvest lookup.",
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "1997-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1997-08-19 to 1997-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "1998-11-02",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Wheat plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (11/2/1998 - 11/6/1998), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1999-07-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "1999-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1999-09-02 to 1999-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2000-11-20",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0031,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2001-07-10",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2001-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2001-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2001-09-11 to 2001-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2002-11-05",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.003,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2003-07-12",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2003-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2003-07-12 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2003-09-13 to 2003-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2004-11-21",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2005-07-06",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2005-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2005-09-07 to 2005-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2006-11-09",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0038,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2007-06-29",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2007-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2007-08-31 to 2007-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2008-11-20",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2009-07-08",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2009-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2009-07-08 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2009-09-09 to 2009-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2010-11-16",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.004,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2011-07-09",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2011-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2011-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2011-09-10 to 2011-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2012-11-12",
+   "source": "10.1002/ecy.2105",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "harvest",
+   "date": "2013-07-01",
+   "source": "10.1002/ecy.2105",
+   "crop_display": "Wheat",
+   "frac_above_removed_0to1": 0.713,
+   "frac_above_to_litter_0to1": 0.287,
+   "harvest_lookup_row": "G2",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-07-31",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
+   "tillage_eff_0to1": 0.712,
+   "provenance_class": "imputed",
+   "provenance_note": "Disking after the wheat harvest of 2013-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2013-09-02 to 2013-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+  },
+  {
+   "event_type": "planting",
+   "date": "2014-11-15",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Wheat",
+   "crop_display": "Wheat",
+   "leaf_c_kg_m2": 0.0037,
+   "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Wheat plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (2014-11-15), the date most of the phase's plots share."
+  }
+ ]
+}

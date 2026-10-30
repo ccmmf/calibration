@@ -1,0 +1,6 @@
+crop,lookup_row,above_removed,above_to_litter,lookup_above_removed,lookup_source
+corn,site samples,0.462,0.538,0.461893398328175,"Russell Ranch corn_harvests_all.csv: median share of grain in aboveground dry biomass, n = 280; the shared lookup's F16 row removes 0.752"
+tomato,site samples,0.561,0.439,0.560747663551402,"Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33"
+wheat,G2,0.713,0.287,0.713458673510298,"subclass G 2, Wheat, ludemann, n = 1"
+alfalfa,P1,0.85,0.15,0.85,"subclass P 1, Alfalfa and alfalfa mixtures, ipcc, n = 1"
+hay,P (hay),0.892,0.108,0.891666666666667,"class P, Pasture, PFT hay, swat, n = 8"

@@ -14,6 +14,9 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `us_twt_build_events.R` | US-Twt 2010-2016 | Knox et al. 2016 + curated `cal-val-data` managements |
 | `us_twt_irrigation_schedule.R` | rewrites US-Twt irrigation | 2017-2023 monitoring rate and interval |
 | `us_twt_merge_2010_2023.R` | merges the two US-Twt windows | both of the above |
+| `russell_split_phases.R` | Russell Ranch, one file per treatment and rotation phase | `generator_stacked/` + Century Experiment package (`10.1002/ecy.2105`) + `russell_treatments.csv`, `russell_source_corrections.csv`, `russell_harvest_lookup.csv` |
+| `russell_monitoring_tillage.R` | `monitoring_tillage_near_russell.csv`, tillage timing and intensity near Russell Ranch | monitoring tillage, harvest and planting v5.0 + crop table v4.1 |
+| `russell_monitoring_irrigation.R` | `monitoring_irrigation_near_russell.csv`, corn, tomato and alfalfa season irrigation totals and timing near Russell Ranch | monitoring irrigation, harvest and planting v5.0 + crop table v4.1 |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
 
 ## Order for US-Twt
@@ -24,6 +27,33 @@ us_twt_irrigation_schedule.R # replace the 150/0 flood pair with a weekly schedu
 us_twt_merge_2010_2023.R     # fold in 2017-2023 and backfill tillage
 write_events_in.R            # emit events.in for SIPNET
 ```
+
+## Filling missing events
+
+When a site's records lack an event that is known to have happened (a crop that was
+harvested, a cover crop that was incorporated), or lack its date or amount, the generators
+fill it in this order (David, calibration#10):
+
+1. **The paper or its source data.** Use what they record, including dates relative to
+   another recorded operation (a termination before the next planting) and medians over the
+   site's own records of the same system.
+2. **The monitoring product** (`s3://carb/management/`). For a field and season it covers,
+   use that field's values. Before 2016, when it starts, use average calendar or relative
+   dates and amounts for comparable crops and operations in the same area.
+3. **Guidance documents**, as a last resort; ideally their information is already in the
+   monitoring product, as it is for fertilization.
+
+This applies to amounts as well as dates. Every filled or imputed event says where it came
+from (`source`, `provenance_class`, `provenance_note`).
+
+How the generators here follow it:
+
+| generator | step 1 | step 2 | step 3 |
+|---|---|---|---|
+| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests (the 1993 sudangrass uniformity crop included), its corn and tomato harvest samples for those crops' harvest fractions, the cutting and cover crop samples, the package's per-system medians for dates it does not give, its records for fertilization gaps and 2014 fertilization, its logged herbicide incorporation passes, and its metadata for the irrigation method (furrow flood) and the 1993 and 2012 hay cuts; Tautges et al. 2019 for the corn and wheat N rates where the log has none, the wheat irrigation of every irrigated system, every corn and tomato season's irrigation amount (its "mm" read as inches), the organic 2008 sudangrass compost year the package lacks (annual compost; the nearest recorded year is copied), the tillage operations and the month of the wheat straw disking. Its fixes to package records are rows in `russell_source_corrections.csv`, with the evidence (see `runs/russell_ranch/events_treatments/README.md`) | the monitoring product within 25 km of Russell Ranch: tillage timing and intensity (`russell_monitoring_tillage.R`); the irrigated corn and tomato seasons as a lower bound that rules out reading the paper's irrigation as centimetres, and their median last irrigation before harvest, which ends the corn and tomato schedule (it starts at planting); the sudangrass (F16) and alfalfa (P1) irrigation, which the paper does not give (`russell_monitoring_irrigation.R`); the shared harvest lookup the monitoring harvest product carries, for wheat, alfalfa and hay (`russell_harvest_lookup.csv`) | planting amounts: the generator's priors (ccmmf/scenarios `data/management_priors.yaml`, a processing tomato baseline from the UC Davis Cost Study 2023), a filled planting taking their median in its phase, as agreed on calibration#10; the monitoring planting medians near the site are close (0.0038 to 0.0053 kg C/m2 leaf C against 0.0034) |
+| `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 | |
+| `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 | |
+| `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events | |
 
 ## Notes
 
@@ -68,7 +98,7 @@ scripts:
 
 | prefix | what | latest | relation to event_prep |
 |---|---|---|---|
-| `management/<product>/vN.M` | upstream monitoring product | per product: planting/harvest/fertilization `v2.0`, irrigation `v1.1`, tillage `v1.0` | **input** -- what `pull_inputs.sh` reads |
+| `management/<product>/vN.M` | upstream monitoring product | per product: planting, harvest, tillage and irrigation `v5.0`, fertilization `v2.0` | **input** -- what `pull_inputs.sh` reads |
 | `calval_sa_inputs/vN.M` | staged IC / met / events for the SA runs | **`v0.3`** (2026-08-20) | **output** -- where the results get published |
 
 So `v0.3` is the latest *staged run inputs*, not a monitoring product version, and it is
@@ -97,10 +127,10 @@ Then pull. With no arguments it fetches the three Delta parcels; otherwise pass 
 
 | product | pinned | also on S3 |
 |---|---|---|
-| planting | `v1.0` | `v2.0` |
-| harvest | `v1.0` | `v2.0`, `beta` |
-| irrigation | `v1.1` | `v1.0` |
-| tillage | `v1.0` | — |
+| planting | `v1.0` | `v2.0`, `v5.0` |
+| harvest | `v1.0` | `v2.0`, `v5.0`, `beta` |
+| irrigation | `v1.1` | `v1.0`, `v2.0`, `v5.0` |
+| tillage | `v1.0` | `v5.0` |
 | fertilization | `v1.0` | `v2.0` |
 
 These match the `source` strings recorded in each event, so an events.json says which
@@ -108,6 +138,11 @@ version produced it. A newer version is not a drop-in replacement: for parcel 56
 fertilization `v2.0` moves every event date and puts all N in NH4 with NO3 at zero, where
 `v1.0` splits N evenly. Moving a pin is a deliberate change — override
 `FERTILIZATION_VERSION` and friends, re-run, and diff `runs/*/events.json` before keeping it.
+
+`russell_monitoring_tillage.R` and `russell_monitoring_irrigation.R` read outside these pins:
+tillage, irrigation, harvest and planting `v5.0` and the crop table `crops/v4.1` (paths in
+their headers), which give `monitoring_tillage_near_russell.csv` and
+`monitoring_irrigation_near_russell.csv` in `runs/russell_ranch/events_treatments/`.
 
 `management/irrigation/CHANGELOG.txt` is the only changelog in the bucket; the other
 products carry no version notes.
