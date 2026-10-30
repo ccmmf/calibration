@@ -22,8 +22,11 @@ before harvest; sudangrass and alfalfa, for which the paper gives no amount, tak
 monitoring product's. Tillage follows the operations Tautges describes and the soil passes the
 package logs, with the remaining dates and every intensity from the monitoring product near
 Russell Ranch. Filled planting amounts are medians of the generator's priors (see "Imputed
-dates and amounts" and "Tillage"). Every imputed event carries `provenance_class: imputed` and a
-`provenance_note` that names the rule and the median, or the copied season, it used.
+dates and amounts" and "Tillage"). Every event no record gives is tagged `provenance_class:
+imputed`, or `assumed` where it rests on a stated reading of the paper or package (the inches
+irrigation and the 80 mm wheat on its midpoint date, the 1999 tomato dates, compost years
+without an analysis), and carries a `provenance_note` that names the rule and the median, or
+the copied season, it used.
 
 Three tables next to the files hold what the script would otherwise hard-code:
 `russell_treatments.csv` (each treatment's package name, Tautges code and the rules that apply
