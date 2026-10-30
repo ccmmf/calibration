@@ -14,9 +14,9 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `us_twt_build_events.R` | US-Twt 2010-2016 | Knox et al. 2016 + curated `cal-val-data` managements |
 | `us_twt_irrigation_schedule.R` | rewrites US-Twt irrigation | 2017-2023 monitoring rate and interval |
 | `us_twt_merge_2010_2023.R` | merges the two US-Twt windows | both of the above |
-| `russell_split_phases.R` | Russell Ranch, one file per treatment and rotation phase | `generator_stacked/` + Century Experiment package (`10.1002/ecy.2105`) |
+| `russell_split_phases.R` | Russell Ranch, one file per treatment and rotation phase | `generator_stacked/` + Century Experiment package (`10.1002/ecy.2105`) + `russell_treatments.csv`, `russell_source_corrections.csv`, `russell_harvest_lookup.csv` |
 | `russell_monitoring_tillage.R` | `monitoring_tillage_near_russell.csv`, tillage timing and intensity near Russell Ranch | monitoring tillage, harvest and planting v5.0 + crop table v4.1 |
-| `russell_monitoring_irrigation.R` | `monitoring_irrigation_near_russell.csv`, corn and tomato season irrigation totals and timing near Russell Ranch | monitoring irrigation, harvest and planting v5.0 + crop table v4.1 |
+| `russell_monitoring_irrigation.R` | `monitoring_irrigation_near_russell.csv`, corn, tomato and alfalfa season irrigation totals and timing near Russell Ranch | monitoring irrigation, harvest and planting v5.0 + crop table v4.1 |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
 
 ## Order for US-Twt
@@ -48,12 +48,12 @@ from (`source`, `provenance_class`, `provenance_note`).
 
 How the generators here follow it:
 
-| generator | step 1 | step 2 |
-|---|---|---|
-| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, the package's per-system medians for dates it does not give, and its records for fertilization gaps and 2014 fertilization; Tautges et al. 2019 for the CONV and CONV+WCC corn N rates where the log has none, the irrigated wheat systems' wheat irrigation, every corn and tomato season's irrigation amount (its "mm" read as inches), the organic 2008 sudangrass compost year the package lacks (annual compost; the nearest recorded year is copied) and the tillage operations (see `runs/russell_ranch/events_treatments/README.md`) | tillage timing and intensity: medians of the monitoring product within 25 km of Russell Ranch (`russell_monitoring_tillage.R`); the same area's irrigated corn and tomato seasons as a lower bound that rules out reading the paper's irrigation as centimetres, and their timing for the corn and tomato irrigation schedule (`russell_monitoring_irrigation.R`). Filled plantings and other filled irrigation take medians of the generator's priors |
-| `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 |
-| `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 |
-| `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events |
+| generator | step 1 | step 2 | step 3 |
+|---|---|---|---|
+| `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests, the cutting and cover crop samples, the package's per-system medians for dates it does not give, its records for fertilization gaps and 2014 fertilization, its logged herbicide incorporation passes, and its metadata for the irrigation method (furrow flood) and the 2012 hay cut; Tautges et al. 2019 for the corn N rates where the log has none, the wheat irrigation of every irrigated system, every corn and tomato season's irrigation amount (its "mm" read as inches), the organic 2008 sudangrass compost year the package lacks (annual compost; the nearest recorded year is copied), the tillage operations and the month of the wheat straw disking. Its fixes to package records are rows in `russell_source_corrections.csv`, with the evidence (see `runs/russell_ranch/events_treatments/README.md`) | the monitoring product within 25 km of Russell Ranch: tillage timing and intensity (`russell_monitoring_tillage.R`); the irrigated corn and tomato seasons as a lower bound that rules out reading the paper's irrigation as centimetres, and their timing for the corn and tomato schedule; the sudangrass (F16) and alfalfa (P1) irrigation, which the paper does not give (`russell_monitoring_irrigation.R`); the shared harvest lookup the monitoring harvest product carries (`russell_harvest_lookup.csv`) | planting amounts: the generator's priors (ccmmf/scenarios `data/management_priors.yaml`, a processing tomato baseline from the UC Davis Cost Study 2023), a filled planting taking their median in its phase, as agreed on calibration#10; the monitoring planting medians near the site are close (0.0038 to 0.0053 kg C/m2 leaf C against 0.0034) |
+| `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 | |
+| `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 | |
+| `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events | |
 
 ## Notes
 

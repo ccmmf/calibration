@@ -5,7 +5,7 @@ inconsistent: Wolf et al. 2018, "The century experiment: the first twenty years 
 Mediterranean agroecological experiment", *Ecology* 99:503, doi `10.1002/ecy.2105`, supporting
 information `RR_2014_datasets/`. They are what the package maintainers would need to hear: where
 we expected data and found none, and where the files disagree with each other, with the package
-metadata or with Tautges et al. 2019 (doi `10.1111/gcb.14762`) (David on calibration#10). How the
+metadata or with Tautges et al. 2019 (doi `10.1111/gcb.14762`) (David, 2026-10-29 call). How the
 event files handle each one is in [README.md](README.md); this file only records the package.
 
 The list came from three independent passes over the package: the fix lists and notes in
@@ -13,8 +13,7 @@ The list came from three independent passes over the package: the fix lists and 
 `plot_system.csv` and the crop sample files, and a comparison of Tautges et al. 2019 and the
 package metadata with the records. Each item was then re-derived from the raw CSVs by a separate
 check that tried to refute it; 26 items had details corrected and none was refuted. Items are
-numbered
-through the file and cite each other by number.
+numbered through the file and cite each other by number.
 
 ## Conventions
 
