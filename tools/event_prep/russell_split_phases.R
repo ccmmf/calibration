@@ -1552,7 +1552,8 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "gives are tagged provenance_class imputed, or assumed where they rest on a stated",
         "reading of the paper or package (the inches irrigation and the 80 mm wheat on its",
         "midpoint date, the 1999 tomato dates, compost years without an analysis), as",
-        "described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no",
+        "described in runs/russell_ranch/events_treatments/README.md; they are filled in the",
+        "order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no",
         "record, of a crop the treatment fertilizes in at least half its seasons, copies the",
         "treatment's nearest same-crop season with records (a fertilization gap).",
         if (tid %in% names(FERT_LIKE)) sprintf(paste(
