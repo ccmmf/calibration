@@ -78,8 +78,9 @@ WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of 
 ALFALFA_CUT <- c(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
 CROP_DISPLAY <- c(corn = "Corn", tomato = "Tomato", wheat = "Wheat", alfalfa = "Alfalfa",
                   sudangrass = "Sudangrass", "cover crop" = "Cover Crop")
-# The experiment's first operations are in fall 1993, and its fertilization rules start then. The run ends with 2014, a year the
-# package's operation logs no longer cover; crops still growing then are left running.
+# The experiment's first operations are in fall 1993, and its fertilization rules start then. The
+# run ends with 2014, a year the package's operation logs no longer cover; crops still growing
+# then are left running.
 FIRST_DATE <- as.Date("1993-09-01")
 # The files start earlier, with the 1993 sudangrass uniformity hay grown on every plot (planted
 # 5/12/1993); the July 1992 one has no date and stays out.

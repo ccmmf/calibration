@@ -514,7 +514,7 @@ different days, or the same plots over a multi-day job (wheat "Harvest" on two d
 merged when they fall within 14 days of the first or touch disjoint plots. The merged event
 takes the date most plots share (earliest on a tie) and lists the original dates in
 `merged_dates`. A merged planting takes the mean of the generator's amounts; a merged harvest
-takes its fractions from the harvest lookup, like every other harvest. Alfalfa cuttings,
+takes its crop's fractions (see "Harvest fractions"), like every other harvest. Alfalfa cuttings,
 about a month apart, stay separate.
 
 Left as recorded: corn replanted four weeks later (`conv_corn_tomato` 1998;
