@@ -45,7 +45,7 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "soil",
-   "provenance_class": "published",
+   "provenance_class": "assumed",
    "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1993-11-18 to 1994-06-15 season. Method soil: the metadata says every irrigated system was furrow flood irrigated through 2014, and the paper's Table 1 caption calls this \"supplemental flood\" irrigation, though the table lists sprinkler."
   },
   {
@@ -67,7 +67,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1994-06-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1994-08-17 to 1994-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 1994-06-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1994-08-17 to 1994-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -94,7 +94,7 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "soil",
-   "provenance_class": "published",
+   "provenance_class": "assumed",
    "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1995-11-21 to 1996-06-21 season. Method soil: the metadata says every irrigated system was furrow flood irrigated through 2014, and the paper's Table 1 caption calls this \"supplemental flood\" irrigation, though the table lists sprinkler."
   },
   {
@@ -124,17 +124,16 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1996-08-23 to 1996-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1996-08-23 to 1996-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
    "date": "1997-10-09",
-   "nh4_n_kg_m2": 0.011376,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Ammonium nitrate",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0056,
+   "source": "10.1111/gcb.14762",
+   "material": "15-15-15 starter",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 18 of 20 seasons. Copies the 1996-10-14 application of the wheat season planted 1996-11-10 in irr_wheat_fallow fallow-wheat, shifted +360 days."
+   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 18 of 20 seasons. Amount from Tautges et al. 2019, which give the fertilized wheat systems 56 kg N/ha 15-15-15 starter at planting and 112 kg N/ha urea in March (irrigated); this is the starter. Dated like the 1996-10-14 Ammonium nitrate application of the wheat season planted 1996-11-10 in irr_wheat_fallow fallow-wheat, the nearest with a complete record, shifted +360 days (Aritra, 2026-10-31)."
   },
   {
    "event_type": "planting",
@@ -148,12 +147,11 @@
   {
    "event_type": "fertilization",
    "date": "1998-02-05",
-   "nh4_n_kg_m2": 0.005604,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
+   "nh4_n_kg_m2": 0.0112,
+   "source": "10.1111/gcb.14762",
+   "material": "urea",
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 18 of 20 seasons. Copies the 1997-02-10 application of the wheat season planted 1996-11-10 in irr_wheat_fallow fallow-wheat, shifted +360 days."
+   "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 18 of 20 seasons. Amount from Tautges et al. 2019, which give the fertilized wheat systems 56 kg N/ha 15-15-15 starter at planting and 112 kg N/ha urea in March (irrigated); this is 112.00 kg N/ha of the urea. Dated like the 1997-02-10 Urea application of the wheat season planted 1996-11-10 in irr_wheat_fallow fallow-wheat, the nearest with a complete record, shifted +360 days (Aritra, 2026-10-31)."
   },
   {
    "event_type": "harvest",
@@ -174,7 +172,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1998-09-08 to 1998-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1998-09-08 to 1998-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -232,7 +230,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2000-08-28 to 2000-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2000-08-28 to 2000-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -251,7 +249,7 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "soil",
-   "provenance_class": "published",
+   "provenance_class": "assumed",
    "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2001-11-10 to 2002-07-09 season. Method soil: the metadata says every irrigated system was furrow flood irrigated through 2014, and the paper's Table 1 caption calls this \"supplemental flood\" irrigation, though the table lists sprinkler."
   },
   {
@@ -281,7 +279,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2002-09-10 to 2002-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2002-09-10 to 2002-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -308,7 +306,7 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "soil",
-   "provenance_class": "published",
+   "provenance_class": "assumed",
    "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2003-11-14 to 2004-06-30 season. Method soil: the metadata says every irrigated system was furrow flood irrigated through 2014, and the paper's Table 1 caption calls this \"supplemental flood\" irrigation, though the table lists sprinkler."
   },
   {
@@ -338,7 +336,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2004-09-01 to 2004-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2004-09-01 to 2004-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -365,7 +363,7 @@
    "source": "10.1111/gcb.14762",
    "amount_mm": 80,
    "method": "soil",
-   "provenance_class": "published",
+   "provenance_class": "assumed",
    "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2005-11-10 to 2006-06-30 season. Method soil: the metadata says every irrigated system was furrow flood irrigated through 2014, and the paper's Table 1 caption calls this \"supplemental flood\" irrigation, though the table lists sprinkler."
   },
   {
@@ -395,7 +393,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2006-09-01 to 2006-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2006-09-01 to 2006-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -443,7 +441,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2008-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2008-09-10 to 2008-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2008-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2008-09-10 to 2008-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -491,7 +489,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2010-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2010-09-10 to 2010-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2010-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2010-09-10 to 2010-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -539,7 +537,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2012-06-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2012-08-27 to 2012-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2012-06-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2012-08-27 to 2012-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "fertilization",
@@ -598,7 +596,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2014-06-22 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2014-08-24 to 2014-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2014-06-22 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2014-08-24 to 2014-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   }
  ]
 }

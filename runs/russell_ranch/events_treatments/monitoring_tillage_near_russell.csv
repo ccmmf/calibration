@@ -1,8 +1,8 @@
-"operation","crop","crop_code","n_events","median_days","median_tillage_eff","radius_km","years","n_parcels"
-"post_harvest","corn","F16",1623,32,0.6435,25,"2016-2023",11290
-"pre_plant","corn","F16",1246,38,0.5158,25,"2016-2023",11290
-"post_harvest","tomato","T32",2592,32,0.5799,25,"2016-2023",11290
-"pre_plant","tomato","T32",1829,90,0.9537,25,"2016-2023",11290
-"post_harvest","wheat","G2",1295,63,0.712,25,"2016-2023",11290
-"pre_plant","wheat","G2",1830,83,0.4701,25,"2016-2023",11290
-"any","all","all",51733,NA,0.3708,25,"2016-2023",11290
+"operation","crop","crop_code","n_events","median_days","median_tillage_eff","radius_km","years","n_parcels","products"
+"post_harvest","corn","F16",1623,32,0.6435,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
+"pre_plant","corn","F16",1246,38,0.5158,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
+"post_harvest","tomato","T32",2592,32,0.5799,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
+"pre_plant","tomato","T32",1829,90,0.9537,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
+"post_harvest","wheat","G2",1295,63,0.712,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
+"pre_plant","wheat","G2",1830,83,0.4701,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
+"any","all","all",51733,NA,0.3708,25,"2016-2023",11290,"tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"

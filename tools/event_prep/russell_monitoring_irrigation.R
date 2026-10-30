@@ -21,6 +21,8 @@ suppressMessages({library(arrow); library(dplyr); library(sf)})
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) != 2L) stop("usage: russell_monitoring_irrigation.R <monitoring_dir> <out_csv>")
 mon <- args[1]; out_csv <- args[2]
+# The product versions monitoring_dir holds (above), written with the medians
+PRODUCTS <- "irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1"
 
 # Russell Ranch, 38°32'24"N 121°52'12"W (Tautges et al. 2019), in the crop table's EPSG:3310
 RADIUS_KM <- 25
@@ -111,7 +113,7 @@ out <- do.call(rbind, lapply(names(CODES), function(crop) {
              median_last_days = round(median(w$last_days)), median_interval_days = round(median(w$interval_days, na.rm = TRUE)),
              max_event_mm = round(max(w$max_mm), 1), radius_km = RADIUS_KM,
              years = sprintf("%s-%s", format(min(x$end), "%Y"), format(max(x$end), "%Y")),
-             n_members = length(members), n_parcels = length(unique(x$parcel_id)))
+             n_members = length(members), n_parcels = length(unique(x$parcel_id)), products = PRODUCTS)
 }))
 write.csv(out, out_csv, row.names = FALSE)
 print(out, row.names = FALSE)

@@ -17,6 +17,8 @@ suppressMessages({library(arrow); library(sf)})
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) != 2L) stop("usage: russell_monitoring_tillage.R <monitoring_dir> <out_csv>")
 mon <- args[1]; out_csv <- args[2]
+# The product versions monitoring_dir holds (above), written with the medians
+PRODUCTS <- "tillage v5.0, harvest v5.0, planting v5.0, crops v4.1"
 
 # Russell Ranch, 38°32'24"N 121°52'12"W (Tautges et al. 2019), in the crop table's EPSG:3310
 RADIUS_KM <- 25
@@ -73,5 +75,6 @@ out <- do.call(rbind, rows)
 out$radius_km <- RADIUS_KM
 out$years <- sprintf("%s-%s", format(min(till$date), "%Y"), format(max(till$date), "%Y"))
 out$n_parcels <- length(near)
+out$products <- PRODUCTS
 write.csv(out, out_csv, row.names = FALSE)
 print(out, row.names = FALSE)

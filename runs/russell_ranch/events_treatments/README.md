@@ -14,10 +14,11 @@ Events the operation logs lack are filled, and dates and amounts no record gives
 in the order set out in [`tools/event_prep/README.md`, "Filling missing events"](../../../tools/event_prep/README.md#filling-missing-events):
 the package's own records and Tautges et al. (2019) first, then the monitoring product, then
 guidance. Fertilization gaps and 2014 fertilization copy the package's own records, except corn
-N that the log lacks for a season (Legume/Corn/Tomato in every year, Conventional Corn/Tomato in
-2013), which takes Tautges' rates. Every corn and tomato season and the wheat of every irrigated
-system are irrigated as Tautges gives, the corn and tomato on a schedule timed from the
-monitoring product; sudangrass and alfalfa, for which the paper gives no amount, take the
+and wheat N that the log lacks for a season (Legume/Corn/Tomato corn in every year, Conventional
+Corn/Tomato corn in 2013, four wheat seasons in 1997 to 1999), which takes Tautges' rates. Every
+corn and tomato season and the wheat of every irrigated system are irrigated as Tautges gives,
+the corn and tomato on a schedule from planting to the monitoring product's last irrigation
+before harvest; sudangrass and alfalfa, for which the paper gives no amount, take the
 monitoring product's. Tillage follows the operations Tautges describes and the soil passes the
 package logs, with the remaining dates and every intensity from the monitoring product near
 Russell Ranch. Filled planting amounts are medians of the generator's priors (see "Imputed
@@ -67,9 +68,9 @@ represent a treatment, run both of its phases; observations are per treatment.
 | compost (`org_corn_tomato`, `transitional`) | no amount, so both files failed the schema and were withheld | organic C and N from the package (below) |
 | multi-day operations | one harvest per recorded date, so a crop was harvested 2 to 3 times | merged into one event (below) |
 | irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none; Tautges Table 1 lists irrigation "None" |
-| irrigation, irrigated systems | one sprinkler event of several hundred mm per cash crop window | none from the generator: 22 of its events are artifacts and are dropped (17 outside any one-season cash crop window, 5 more than 10 days from the midpoint of their season), and the other 185 are replaced. Every corn and tomato season follows Tautges et al. 2019 (33.6 in a season, the paper's "mm" read as inches) and every irrigated system's wheat its 80 mm rule (none in its no-irrigation years); sudangrass and alfalfa, which it gives nothing for, take the monitoring product's medians near the site. All of it is soil irrigation, in events of at most 150 mm (below) |
+| irrigation, irrigated systems | one sprinkler event of several hundred mm per cash crop window | none from the generator: its 207 events are dropped. Every corn and tomato season follows Tautges et al. 2019 (33.6 in a season, the paper's "mm" read as inches) and every irrigated system's wheat its 80 mm rule (none in its no-irrigation years); sudangrass and alfalfa, which it gives nothing for, take the monitoring product's medians near the site. All of it is soil irrigation, in events of at most 150 mm (below) |
 | tillage | none | one event per operation Tautges et al. 2019 describe, timed and sized from the monitoring product near Russell Ranch, and the herbicide incorporation passes the package logs, on their logged dates (below) |
-| fertilization the log lacks | none | copied from comparable records; corn with no N record takes the paper's rates; the organic 2008 sudangrass year copies the nearest recorded compost (below) |
+| fertilization the log lacks | none | copied from comparable records; corn and wheat with no N record take the paper's rates; the organic 2008 sudangrass year copies the nearest recorded compost (below) |
 | harvest fractions | drawn from a grain-harvest prior | harvest lookup rows; the 2012 wheat cut for hay takes the hay row; alfalfa cuttings leave the stand alive (below) |
 | cover crops | planted, never terminated | end on their incorporation date, all to litter (below) |
 | plantings and harvests missing from the logs | none, so crops were harvested that were never planted and planted ones never harvested | filled from `plot_system.csv` and the alfalfa cutting samples, the Transitional plots' 1998 crops included (below) |
@@ -127,8 +128,7 @@ has a row for every harvested crop here.
   Instead, all biomass was harvested for hay" (Wolf et al. 2018 metadata), so both take the
   lookup's hay row (Aritra, 2026-10-30). The `leg_corn_tomato` cut is the "Harvest Wheat" logged
   on 6/25/2012. The `org_corn_tomato` one is not logged (`plot_system.csv`: "NOT harvested for
-  wheat in 2012") and is dated like it, tagged imputed. Before, that organic wheat was treated as
-  unharvested and plowed under.
+  wheat in 2012") and is dated like it, tagged imputed.
 
 ## Cover crop termination
 
@@ -142,7 +142,7 @@ filled below):
 
 - 108 end on that date, the one most of the phase's plots share.
 - 2 have no sample and end on the cover crop harvest date in `plot_system.csv`, which
-  equals the sample date in 342 of 353 plot-years (`leg_corn_tomato` 2006-04-25,
+  equals the sample date in 342 of the 343 plot-years that have both (`leg_corn_tomato` 2006-04-25,
   `rf_wheat_legume` 2014-03-13).
 - 9 have no usable date and are imputed (below). Seven are the 2004 cover crops: both files
   record 5/17/2004 for every plot of every system, after the 5/2 and 5/5 corn and tomato
@@ -172,7 +172,8 @@ phase's plots share (the first day where a range is given), with `source` naming
   any logged planting of the same crop: fall 1998 and fall 2001 wheat in the wheat systems,
   1994 and 1999 tomato in the corn and tomato systems, corn in `conv_corn_tomato` 2002,
   `leg_corn_tomato` and `org_corn_tomato` 1998 and `transitional` 1998 and 2006 (below), and
-  fall 1998, 2001 and 2004 cover crops. Before, 25 harvests had no planting before them.
+  fall 1998, 2001 and 2004 cover crops. In `generator_stacked/`, 25 harvests had no planting
+  before them.
 - A filled planting takes the median amounts of the generator's plantings of the same crop
   in the phase (`prior_filled` says which and how many).
 - The `transitional` plots were "unassigned" until 1999, when "three of the unassigned plots
@@ -181,8 +182,7 @@ phase's plots share (the first day where a range is given), with `source` naming
   to 1994 cover crop, then corn, tomato, wheat and corn from 1995 to 1998, with mineral N. Their
   unassigned plot-years take the plots' 1999 phase, so the 1998 corn (planted 1998-04-19,
   harvested 1998-11-03, with `corn_harvests_all.csv` samples) and the fall 1998 cover crop
-  (1998-11-14 to 1999-03-30) are filled. Before, the logged 1998-07-08 corn N fell on bare
-  soil.
+  (1998-11-14 to 1999-03-30) are filled, and the logged 1998-07-08 corn N falls on a crop.
 - Five of the 1999 tomato plantings take 1999-05-01, which `plot-system.csv`, the package's
   annotated copy of the table, calls an assigned date: "Going to assign a plant date of 5/1/99
   unless find evidence otherwise"; "Tomato beds incorporated on 5/20/99, so tomatos likely
@@ -208,8 +208,11 @@ phase's plots share (the first day where a range is given), with `source` naming
   its samples.
 - Crops planted in fall 2014 (wheat, cover crops) are still growing when the files end.
 - Left out: the 1992 and 1993 sudangrass uniformity crops grown before the experiment
-  (`plot_system.csv` lists the 1993 one). The files start with the first experiment
-  operations in fall 1993.
+  ("In July 1992 and May 1993, irrigated unfertilized S. vulgare (sudan grass) hay was planted
+  throughout the Century Experiment area", Wolf et al. 2018 metadata; `plot_system.csv` dates the
+  1993 one, 5/12/1993 to 8/2/1993, but not the 1992 one). The files start with the first
+  experiment operations in fall 1993, after the September 1993 baseline cores, while the run
+  starts on 1992-01-01 (see "Known limitations").
 - `operations_harvest.csv` also lists the 7/1/1999 Rainfed Wheat/Legume wheat harvest under
   plot 7-3, a `wheat-CC` plot that grew a cover crop that winter; the three `CC-wheat` plots
   carry the harvest. The script drops the 7-3 row (`russell_source_corrections.csv`), as it
@@ -224,8 +227,8 @@ which neither the package nor the paper times or sizes, apart from the passes th
 and the paper's month for the wheat straw (see "Tillage"); for the timing of the corn and tomato
 irrigation; for the sudangrass and alfalfa irrigation, which the paper does not give; and as
 the check on the unit of the paper's maize and tomato irrigation (below). Amounts differ by kind:
-fertilization gaps and 2014 fertilization copy the package's own records, except corn N the log
-lacks, which takes the paper's rates; the corn and tomato and the wheat of every irrigated system
+fertilization gaps and 2014 fertilization copy the package's own records, except corn and wheat N
+the log lacks, which takes the paper's rates; the corn and tomato and the wheat of every irrigated system
 are irrigated as Tautges et al. 2019 gives; and a filled planting's amounts are medians of the
 generator's priors (above).
 
@@ -236,10 +239,10 @@ generator's priors (above).
 | unharvested wheat | the median day of a recorded wheat harvest, day 182 (about 1 July), all biomass to litter, `not_harvested: true` | 1 |
 | wheat cut for hay | the logged `leg_corn_tomato` cut, 6/25/2012 (above) | 1 |
 | 2014 fertilization | the most recent same-crop season of the treatment with fertilization records that land in 2014 once shifted to the 2014 planting | 17 |
-| fertilization gap | a season the log has no fertilization for, copied from comparable records; corn with no N record takes Tautges et al. 2019's 56 kg N/ha starter and 180 kg N/ha sidedress on the copied dates (see "Fertilization gaps") | 50 (N 44, 37 of them at the paper's rates; compost 6) |
+| fertilization gap | a season the log has no fertilization for, dated from comparable records; corn and wheat N take Tautges et al. 2019's rates on the copied dates, compost copies the record (see "Fertilization gaps") | 51 (N 45, all at the paper's rates: corn 37, wheat 8; compost 6) |
 | compost year | an organic rotation year that is not a wheat year and has no compost record copies the nearest recorded year's compost (see "Fertilization gaps") | 1 (2008) |
-| wheat irrigation | Tautges et al. 2019's rule for IWF and IWF+N, in every irrigated system: 80 mm at the season midpoint, none in its no-irrigation years; 2013 and 2014, after its period, and the systems it does not describe are tagged imputed | 47 events (20 published, 27 imputed), 43 seasons without |
-| corn and tomato irrigation | Tautges et al. 2019, the paper's "mm" read as inches: 33.6 in (853.44 mm) a season, 17.6 in 1995 and 43.5 in 2004, in equal soil events of at most 150 mm timed from the monitoring irrigation product; 2013 and 2014, after its period, and the systems it does not describe are tagged imputed | 886 events in 149 seasons (582 published, 304 imputed) |
+| wheat irrigation | Tautges et al. 2019's rule for IWF and IWF+N, in every irrigated system: 80 mm at the season midpoint, none in its no-irrigation years; IWF and IWF+N through 2012 are tagged assumed (the paper's amount on an imputed date), 2013 and 2014, after its period, and the systems it does not describe imputed | 47 events (20 assumed, 27 imputed), 43 seasons without |
+| corn and tomato irrigation | Tautges et al. 2019, the paper's "mm" read as inches: 33.6 in (853.44 mm) a season, 17.6 in 1995 and 43.5 in 2004, in equal soil events of at most 150 mm from planting to the monitoring product's median last irrigation before harvest; the maize systems through 2012 are tagged assumed (the amount rests on the inches reading), 2013 and 2014, after its period, and the systems it does not describe imputed | 886 events in 149 seasons (582 assumed, 304 imputed) |
 | sudangrass irrigation | the monitoring product's median irrigated F16 season near the site, 440.2 mm, in 3 equal soil events | 15 in 5 seasons |
 | alfalfa irrigation | the monitoring product's median irrigated P1 year near the site, 579.7 mm, in 4 equal soil events from 12 June to 6 September | 8 in 2 years |
 | tillage | the operations Tautges et al. 2019 describe, timed and sized from monitoring medians near Russell Ranch, and the passes the package logs, on their dates (see "Tillage") | 705 |
@@ -266,19 +269,11 @@ generator's priors (above).
   first planting, not a replant: the `org_corn_tomato` 2014 compost lands on 2014-03-17, 29
   days before the 2014-04-15 corn planting, as the 2013-02-24 compost was 29 days before the
   2013-03-25 planting (replanted 5/15 and 6/1).
-- Generator irrigation: the generator put one sprinkler event at the midpoint of a window per
-  planting, sometimes paired with the wrong harvest (one in the other phase or a year later)
-  and once per planting of a replanted crop. 22 such events are dropped as artifacts: 17 fall
-  outside every one-season window, and 5 sit more than 10 days from the midpoint of the season
-  they fall in (25.5 to 78.5 days). Those 5 are the later replant windows' events (2 in
-  `org_corn_tomato` 2013, 1 in `transitional` 2013) and two winter events in
-  `conv_wheat_tomato` wheat seasons from a tomato planting paired with the next year's harvest
-  (`wheat-tomato` 1995-12-19, `tomato-wheat` 1998-12-26). The other 185 all sit within 2 days
-  of their season's midpoint and are replaced by the rules below (117 in corn and tomato
-  seasons, 67 in wheat seasons, 1 in the alfalfa stand's establishment), so no generator
-  irrigation is left. The script stops if a cash crop season of an irrigated system has no
-  irrigation, other than wheat in the paper's no-irrigation years and the alfalfa stand's
-  establishment.
+- Generator irrigation: the generator put one sprinkler event of several hundred mm at the
+  midpoint of each cash crop window. All 207 of its events in the irrigated systems (and the 54
+  in the rainfed ones) are dropped, and irrigation is rebuilt by the rules below. The script stops
+  if a cash crop season of an irrigated system has no irrigation, other than wheat in the paper's
+  no-irrigation years and the alfalfa stand's establishment.
 - Method: every irrigated system "received furrow-flood irrigation through 2014, with some
   exceptions" (Wolf et al. 2018 metadata), so every event is `soil`, which
   `PEcAn.SIPNET::write.events.SIPNET` writes as SIPNET irrigation code 1; it writes every
@@ -288,8 +283,7 @@ generator's priors (above).
   exceptions do not include the wheat (`century_package_issues.md`, item 68).
 - A replanted crop (corn in `conv_corn_tomato` 1998 and in `org_corn_tomato` and
   `transitional` 2013) is one season from its first planting to its harvest, irrigated as
-  below from its last planting; the generator's events for its later plantings are artifacts
-  (above).
+  below from its last planting.
 - Wheat: Tautges et al. 2019 give the irrigated wheat systems "supplemental irrigation of 80
   mm per year except in 1995, 1998, 2000, 2005, and 2008–2012 due to sufficient
   precipitation". The paper names IWF and IWF+N (`irr_wheat_control` and `irr_wheat_fallow`);
@@ -297,11 +291,9 @@ generator's priors (above).
   the metadata says irrigated wheat rotations "receive supplemental irrigation in early spring
   (Jan–March) in years with low precipitation". Each of the 90 wheat seasons in irrigated
   systems gets one 80 mm event at its midpoint (47 seasons, all of the events in February or
-  March), or none when it is harvested in one of those years (43). 20 events are published
-  (IWF and IWF+N through 2012) and 27 imputed. The 67 generator events those seasons held are
-  dropped.
-- Corn and tomato: every season follows Tautges et al. 2019 instead of the generator's
-  sprinkler prior: "Maize in all systems was furrow irrigated with an average of 33.6 mm per
+  March), or none when it is harvested in one of those years (43). 20 events (IWF and IWF+N
+  through 2012) are tagged assumed, the paper's amount on an imputed date, and 27 imputed.
+- Corn and tomato: every season follows Tautges et al. 2019: "Maize in all systems was furrow irrigated with an average of 33.6 mm per
   year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004", and tomatoes "as
   described for maize". As millimetres that is far too little for furrow irrigation, so the
   unit is read as inches (David, 2026-10-29 call: the conservative assumption, since the crops
@@ -324,31 +316,30 @@ generator's priors (above).
   for 447.04 and 8 of 138.11 for 1104.9. 150 mm is the monitoring product's `irrigation_max`
   from v1.1, set "to avoid unrealistically large irrigation events"
   (`management/irrigation/CHANGELOG.txt`); v5.0 events near the site reach 216 mm. The events
-  are spaced evenly from the product's median days between planting and the first irrigation of
-  a season (61 for corn, 57 for tomato) to its median days between the last irrigation and
-  harvest (30 and 25), counted from the crop's last planting. That puts them 14 days apart for
-  corn and 7 for tomato at the median (2 to 31 days; closest in the 2004 tomato seasons, whose
-  1104.9 mm takes 8 events). One season too short for those offsets, `conv_wheat_tomato`
-  `wheat-tomato` tomato 2005-05-15 to 2005-07-26, is irrigated over its middle half. 582 events
-  are published (the maize systems through 2012) and 304 imputed (2013 and 2014, which take the
-  average, and the other three systems). The 117 generator events those seasons held are
-  dropped.
+  are spaced evenly from the crop's last planting (a replant) to the product's median days
+  between the last irrigation and harvest (30 for corn, 25 for tomato), so the first falls on
+  the planting date (Aritra, 2026-10-31). The package records irrigation at transplanting
+  (`plot-system.csv`, 1999: "Preplant cultivate occurred 4/25/99, mulched 4/26/99, irrigated
+  5/1/99"), and the product, estimated from evapotranspiration, puts a season's first irrigation
+  57 days (tomato) and 61 days (corn) after planting at the median, which would leave the young
+  crop dry for two months; that offset is not used. The events are 26 days apart for corn and
+  19 for tomato at the median (9 to 62 days). 582 events are tagged assumed (the maize systems
+  through 2012, whose amount rests on the inches reading) and 304 imputed (2013 and 2014, which
+  take the average, and the other three systems).
 - Sudangrass: the 2008 and 2009 green manure (`org_corn_tomato` `corn/CC-tomato/CC` 2008, and
   2009 in `conv_corn_tomato` `tomato-corn`, `leg_corn_tomato` and `org_corn_tomato`
   `tomato/CC-corn/CC`, and `transitional`) has no amount in the paper. The metadata says "All
   corn-tomato rotations receive summer irrigation", and sudangrass replaced corn there, so each
   season takes the monitoring product's median irrigated F16 season near the site, 440.2 mm, a
-  lower bound, in 3 equal soil events of about 146.73 mm (Aritra, 2026-10-30). Each season (76
-  to 86 days) is shorter than the corn offsets, so its events fall in its middle half. 15
-  events, imputed.
+  lower bound, in 3 equal soil events of about 146.73 mm (Aritra, 2026-10-30), on the corn
+  schedule: from planting to 30 days before the end. 15 events, imputed.
 - Alfalfa: the paper gives no amount either. Each year of cuttings (2013 and 2014) takes the
   monitoring product's median irrigated P1 calendar year near the site, 579.7 mm (3,074
   irrigated of 5,230 parcel-years on 1,508 parcels, 2016 to 2023), a lower bound, in 4 equal
   soil events of 144.925 mm from the product's median first irrigation of the year, 162 days
   after 1 January (12 June), to its median last, 116 days before 31 December (6 September),
   within the year's cuttings. The stand's fall 2012 establishment, before that window, gets
-  none, and the generator's 490.87 mm event on 2013-01-06 is dropped. 8 events, imputed. Before,
-  both production years took that one event's amount as the usual irrigation.
+  none. 8 events, imputed.
 
 ## `alf_corn_tomato` history
 
@@ -418,11 +409,21 @@ season it copies.
   `conv_corn_tomato` records themselves stay as logged (130.28 to 314.35 kg N/ha a season,
   sidedressed with urea rather than the paper's ammonium sulfate).
 - Any other season ending by 2013, of a crop its treatment fertilizes in at least half of its
-  seasons, that has no record copies the treatment's nearest same-crop season with records:
-  `conv_corn_tomato` 2013 corn (dated from 2007, at the paper's rates as above), the 1997 to
-  1998 wheat in `conv_wheat_tomato` and `irr_wheat_fallow`, the 1998 to 1999
-  `irr_wheat_fallow` and `rf_wheat_fallow` wheat, and the six corn and tomato compost years in
-  Compost: 15 events.
+  seasons, that has no record is dated from the treatment's nearest same-crop season with
+  records: `conv_corn_tomato` 2013 corn (dated from 2007, at the paper's rates as above), four
+  wheat seasons (below) and the six corn and tomato compost years in Compost, which copy the
+  record: 16 events.
+- Wheat with no N record takes the paper's rates in the same way (Aritra, 2026-10-31): Tautges
+  et al. 2019 give fertilized wheat "56 kg/ha 15-15-15 starter fertilizer at planting, and an
+  additional 90 and 112 kg/ha urea in March" in the rainfed and irrigated systems, which make
+  Table 1's 146 (RWF+N) and 168 (IWF+N) kg N/ha, so these are N rates. The four seasons, the 1997
+  to 1998 wheat in `conv_wheat_tomato` `wheat-tomato` and `irr_wheat_fallow` `wheat-fallow` and
+  the 1998 to 1999 `irr_wheat_fallow` and `rf_wheat_fallow` `fallow-wheat` wheat, take the dates
+  of the nearest season of the treatment with a complete record (one application on or before
+  planting, the starter, and the rest after it, the urea): 168 kg N/ha each in the irrigated
+  systems (`conv_wheat_tomato`, which the paper does not describe, takes the irrigated rate) and
+  146 in `rf_wheat_fallow`, 8 events, `source` `10.1111/gcb.14762`. The logged complete seasons
+  carry about 168 (irrigated) and 112 (rainfed) kg N/ha.
 - A season with some records but not all is not filled; for example, the 2012 to 2013
   `irr_wheat_fallow` wheat has its preplant but no spring topdress.
 - `leg_corn_tomato` tomato in 2004 to 2007 (`tomato/CC-corn/CC` 2004 and 2006,
@@ -456,7 +457,7 @@ season it copies.
 - The 2011 wheat pre-plant on the `conv_wheat_tomato` `wheat-tomato` plots (1-5, 4-3,
   7-9) is listed on 11/5 and again on 11/14 at the same 111.97 kg N/ha. Every other wheat
   year has one. As with compost, it is kept once per plot on the earlier date, so
-  `wheat-tomato` 2011 carries 330.7 kg N/ha rather than 405.35. The script drops it as a known
+  `wheat-tomato` 2011 carries 330.7 kg N/ha rather than 442.67. The script drops it as a known
   duplicate listed in `russell_source_corrections.csv` rather than by a rule, because split
   applications are real: `conv_corn_tomato` 1996 tomato got 56.55 kg N/ha on both 4/16 and
   5/13.
@@ -464,6 +465,18 @@ season it copies.
   (3/24/2011, 56.2 kg N/ha) is recorded on the same plots, which grew tomato that year.
   `wheat-tomato` therefore gets it, and `tomato-wheat`, which harvested wheat in 2011, gets
   no N that year.
+- Also left as recorded: the spring 1999 urea that the log puts on the fallow plots of
+  `irr_wheat_fallow` (56.04 kg N/ha) and `rf_wheat_fallow` (29.54), between their 1998 wheat
+  harvest and their fall 1999 seeding, so it falls on bare soil, while the plots that grew wheat
+  that spring have no record and take the paper's rates (`century_package_issues.md`, item 7).
+- Also left as recorded: Can_27 at 111.97 kg N/ha, labelled Wheat, on the `conv_corn_tomato`
+  `tomato-corn` plots on 11/12/2012, after their 2012 tomato harvest and 133 days before their
+  2013 corn, on plots that grew no wheat. The Conventional Wheat/Tomato plots seeded to wheat that
+  day have the identical row, so it may be repeated under the wrong plots, or it may be a
+  preplant for the 2013 corn with the wrong crop label (`century_package_issues.md`, item 10). It
+  gives `tomato-corn` 274.5 kg N/ha in 2012, against 162.53 in the matching `leg_corn_tomato`
+  phase, and with the paper-rate N of the 2013 corn, 347.97 kg N/ha from November 2012 to that
+  corn's harvest.
 - Two operation rows name a plot that `plot_system.csv` does not place in that system. The
   script prints both and leaves them out; no event depends on either:
   - `operations_planting.csv`: cover crop seeded on plot 7-9 under Irrigated Wheat/Legume,
@@ -491,14 +504,14 @@ corn also counts from its replant (see "Imputed dates and amounts" and "Fertiliz
 `operations_planting.csv` lists the 2003 and 2005 tomato transplanting in `org_corn_tomato`
 under plot 6-8, two days before its own corn seeding, and none under 8-8. `plot_system.csv`
 has 6-8 in corn and 8-8 in tomato both years, and 8-8 has the tomato harvest samples, so
-the script moves those two records to 8-8 (`russell_source_corrections.csv`). Before, the corn
-phase got a tomato planting that was never harvested.
+the script moves those two records to 8-8 (`russell_source_corrections.csv`). In
+`generator_stacked/`, the corn phase got a tomato planting that was never harvested.
 
 ## Tillage
 
 The package has no tillage or cultivation table, but it logs dated soil passes in
 `operations_pesticides.csv`: `Mulch_Beds` (153 rows) and `Perfecta` (6), herbicide incorporated
-as the beds are prepared before planting, and `Incorporate` (189), herbicide incorporated by
+into the beds, as a rule before planting (the 2013 passes come after the tomato transplanting), and `Incorporate` (189), herbicide incorporated by
 cultivating between the beds after tomato transplanting. Its metadata describes the 2003 to
 2007 standard versus conservation tillage split (all included data are from the standard
 halves). Tautges et al. 2019 (Methods 2.1 to 2.3) describe the operations and when they happen
@@ -521,7 +534,7 @@ the `alf_corn_tomato` history:
 | cover crops mowed and incorporated with two to three diskings | at the cover crop end | 0.3708 | 119 |
 | compost broadcast and incorporated (ORG) | on the compost date | 0.3708 | 51 |
 | sudangrass plowed under, unharvested wheat incorporated | at its end | 0.3708 | 6 |
-| preplant herbicide incorporation (`Mulch_Beds`, `Perfecta`, logged) | the logged date | 0.3708 | 43 |
+| herbicide incorporation in the beds (`Mulch_Beds`, `Perfecta`, logged) | the logged date | 0.3708 | 43 |
 | cultivation between beds with herbicide incorporation (`Incorporate`, logged) | the logged date | 0.3708 | 36 |
 
 - The days and intensities are medians over monitoring events next to harvests and
@@ -546,7 +559,8 @@ the `alf_corn_tomato` history:
   applications.
 - Left out: the in-season cultivations Tautges et al. 2019 describe that the package does not
   log (one per crop phase in the conventional systems, three to four in ORG), which have no
-  date, and alfalfa, which the paper does not cover.
+  date, so ORG has no in-season cultivation and conventional corn none; and alfalfa, which the
+  paper does not cover.
 
 ## Known limitations
 
@@ -560,15 +574,33 @@ the `alf_corn_tomato` history:
   source across sites (calibration#10); whether Russell should take its own fractions is open.
 - **Irrigation amounts are not records.** The corn and tomato amounts rest on reading the
   paper's "mm" as inches, a conservative assumption, and the sudangrass and alfalfa amounts are
-  monitoring medians, a lower bound. Splitting a season into events of at most 150 mm makes the
-  schedule dense where the total is large and the season short: the 2004 tomato events are as
-  little as 2 days apart.
+  monitoring medians, a lower bound. The schedule spreads a season's total evenly from planting;
+  events of up to 150 mm exceed SIPNET's 12 cm soil store, so part of each drains. Alfalfa keeps
+  the monitoring product's June to September window, after the year's first two cuttings.
 - **Irrigation the metadata describes but the package does not quantify** is not
   represented: sprinkler pre-irrigation of OMT and LMT tomatoes in 2010 to 2012 and of all
   tomato rotations in 2013, and sprinkler irrigation of the cover crops in November 2012 (all
   irrigated rotations) and November 2013 (LMT).
-- **Tillage intensity.** The monitoring medians stand in for intensities the paper does not
-  give (Aritra, 2026-10-29); the in-season cultivations the package does not log are left out.
+- **Tillage intensity and dose.** The monitoring medians stand in for intensities the paper
+  does not give (Aritra, 2026-10-29). The files have one event per operation the paper describes
+  or the package logs: 2.1 to 3.75 a year in the corn and tomato phases (1994 to 2013), with
+  `tillage_eff_0to1` summing to 1.35 to 1.97 a year. The monitoring product near the site detects
+  a median of one tillage episode a year on corn (F16) and tomato (T32) parcels, summing to 0.54
+  and 0.69 (`tools/event_prep/russell_monitoring_tillage.R` inputs, 2016 to 2023). SIPNET adds
+  each event's intensity to a multiplier on heterotrophic respiration that decays with a 30 day
+  time constant, so over 1994 to 2013 that multiplier averages 1.12 to 1.13 in CONV, 1.14 in
+  CONV+WCC and 1.16 in ORG, against 1.03 to 1.04 in the wheat systems. Whether to keep one event
+  per operation or match the product's yearly dose is open (Aritra, 2026-10-31: kept for
+  David).
+- **Compost basis.** Compost C and N multiply the reported wet tonnage by the %C and %N of
+  dry combustion analyses ("Total C and N of incorporated aboveground biomass and composted
+  manure were determined each year, using dry combustion analysis", Tautges et al. 2019), the
+  basis that reproduces the paper's 40.4 Mg C/ha; the paper's conclusions give 700 to 800 kg C/ha
+  a year, about a third of that. The organic minus conventional soil C difference rests most on
+  this input.
+- **The run's start.** The run starts on 1992-01-01 and the files in fall 1993, so every phase
+  is bare for the 1992 and 1993 sudangrass uniformity crops (above). Adding them, or starting
+  the run in fall 1993, is open.
 - **CONV+WCC corn N.** The paper's rates fill a log with no corn N in any year (David,
   2026-10-29 call), but that corn yielded at organic levels in 1994 to 2007, 3.4 to 8.0 t/ha
   machine harvested dry yield against conventional's 9.0 to 13.4, while its grain N was close
@@ -582,12 +614,12 @@ the `alf_corn_tomato` history:
 
 - All 23 files validate against `events_schema_v0.1.1` from PEcAn `develop` (the stacked
   organic and transitional files still fail it), and `PEcAn.SIPNET::write.events.SIPNET`
-  writes an `events.in` for each: 469 `harv`, 473 `plant`, 391 `fert`, 966 `irrig` and 735
+  writes an `events.in` for each: 469 `harv`, 473 `plant`, 392 `fert`, 966 `irrig` and 735
   `till` lines, one per event; every irrigation line carries SIPNET code 1 (soil), and the 13
   alfalfa cuttings are `harv 0.85 0 0 0`.
-- The 323 recorded fertilization events are identical to the previous version's (their
-  phase-year totals were recomputed independently from the package then: 261 nonzero totals,
-  0 differences); the other 68 are imputed (17 for 2014, 50 for gaps, 1 for the compost
+- The 323 recorded fertilization events match the package (their phase-year totals,
+  recomputed independently from `operations_fertilizers.csv` and `operations_compost.csv`, agree
+  in every phase-year); the other 69 are imputed (17 for 2014, 51 for gaps, 1 for the compost
   year).
 - Every planting before 2014 has an end (a same-crop harvest within 365 days, or a cover crop
   end), every harvest has a planting before it, no cover crop ends after the next cash
@@ -632,7 +664,7 @@ On SCC, `runs/russell-ranch-1992-conv-corn-tomato` and `runs/russell-ranch-1992-
 run the two `conv_corn_tomato` phase files (20 members, 1992 to 2014, the met, IC and PFT
 posterior of `runs/russell-ranch-1992`, which still runs the stacked file). Both phases, like the
 stacked run, grow almost no canopy (maximum LAI 0.04 to 0.16 against 3 to 6 for these crops) and
-lose most of their soil carbon by 2014, so they are not yet usable for calibration. They ran the
-files as pushed in `8c8ba58`. Since then the `conv_corn_tomato` files have lost their wheat
-irrigation in the paper's no-irrigation years and gained the 2009 sudangrass irrigation, the
-logged tillage passes and the July wheat disking, so the runs need repeating with them.
+lose most of their soil carbon by 2014, so they are not yet usable for calibration. They ran an
+earlier version of these files, without the planting-start irrigation schedule, the 2009
+sudangrass irrigation, the logged tillage passes and the July wheat disking, and need repeating
+with the current ones.

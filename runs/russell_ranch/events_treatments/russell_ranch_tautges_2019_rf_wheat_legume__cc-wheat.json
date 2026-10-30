@@ -37,7 +37,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -67,7 +67,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1995-09-06 to 1995-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1995-09-06 to 1995-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -96,7 +96,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -126,7 +126,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1997-08-19 to 1997-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1997-08-19 to 1997-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -155,7 +155,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -185,7 +185,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1999-09-02 to 1999-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1999-09-02 to 1999-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -214,7 +214,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -242,7 +242,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2001-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2001-09-11 to 2001-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2001-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2001-09-11 to 2001-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -273,7 +273,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -301,7 +301,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2003-07-12 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2003-09-13 to 2003-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2003-07-12 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2003-09-13 to 2003-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -330,7 +330,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -358,7 +358,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2005-09-07 to 2005-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2005-09-07 to 2005-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -387,7 +387,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -415,7 +415,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2007-08-31 to 2007-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2007-08-31 to 2007-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -444,7 +444,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -472,7 +472,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2009-07-08 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2009-09-09 to 2009-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2009-07-08 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2009-09-09 to 2009-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -501,7 +501,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -529,7 +529,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2011-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2011-09-10 to 2011-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2011-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2011-09-10 to 2011-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -558,7 +558,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",
@@ -586,7 +586,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2013-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2013-09-02 to 2013-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
+   "provenance_note": "Disking after the wheat harvest of 2013-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2013-09-02 to 2013-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -615,7 +615,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "planting",

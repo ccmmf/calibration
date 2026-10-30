@@ -48,7 +48,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1994-06-16 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1994-08-18 to 1994-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 1994-06-16 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1994-08-18 to 1994-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -80,7 +80,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -121,7 +121,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1996-08-23 to 1996-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1996-08-23 to 1996-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -153,7 +153,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -186,7 +186,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1998-09-08 to 1998-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 1998-09-08 to 1998-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -220,7 +220,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -253,7 +253,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2000-08-28 to 2000-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2000-08-28 to 2000-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -285,7 +285,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -328,7 +328,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2002-09-10 to 2002-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2002-09-10 to 2002-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -360,7 +360,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -401,7 +401,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2004-09-01 to 2004-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2004-09-01 to 2004-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -435,7 +435,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -476,7 +476,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2006-09-01 to 2006-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
+   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). Moved from 2006-09-01 to 2006-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\".",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -508,7 +508,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the cover crop at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -541,7 +541,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Incorporation of the wheat at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023).",
+   "provenance_note": "Incorporation of the wheat at its end (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1).",
    "history_of": "irr_wheat_legume__wheat-CC"
   },
   {
@@ -550,7 +550,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the tomato planted 2013-04-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the tomato planted 2013-04-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "tillage",
@@ -558,7 +558,16 @@
    "source": "10.1002/ecy.2105:operations_pesticides.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Dual; Triap, plots 4-7, 5-1, 7-6) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Herbicide incorporation in the beds logged in operations_pesticides.csv (Mulch_Beds, Dual; Triap, plots 4-7, 5-1, 7-6) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-04-17",
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 142.24,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 1 of 6 equal events (at most 150 mm each) from the 2013-04-17 planting to 25 days before harvest, the median days between the last irrigation and harvest of T32 (tomato) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "planting",
@@ -568,6 +577,15 @@
    "crop_display": "Tomato",
    "leaf_c_kg_m2": 0.0039,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2013-05-07",
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 142.24,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 2 of 6 equal events (at most 150 mm each) from the 2013-04-17 planting to 25 days before harvest, the median days between the last irrigation and harvest of T32 (tomato) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "fertilization",
@@ -585,52 +603,34 @@
    "source": "10.1002/ecy.2105:operations_pesticides.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Dual; Triap, plots 4-7, 5-1, 7-6) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Herbicide incorporation in the beds logged in operations_pesticides.csv (Mulch_Beds, Dual; Triap, plots 4-7, 5-1, 7-6) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "irrigation",
-   "date": "2013-06-13",
+   "date": "2013-05-27",
    "source": "10.1111/gcb.14762",
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2013-04-17 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 3 of 6 equal events (at most 150 mm each) from the 2013-04-17 planting to 25 days before harvest, the median days between the last irrigation and harvest of T32 (tomato) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
-   "date": "2013-06-22",
+   "date": "2013-06-16",
    "source": "10.1111/gcb.14762",
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2013-04-17 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 4 of 6 equal events (at most 150 mm each) from the 2013-04-17 planting to 25 days before harvest, the median days between the last irrigation and harvest of T32 (tomato) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
-   "date": "2013-06-30",
+   "date": "2013-07-06",
    "source": "10.1111/gcb.14762",
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2013-04-17 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2013-07-09",
-   "source": "10.1111/gcb.14762",
-   "amount_mm": 142.24,
-   "method": "soil",
-   "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2013-04-17 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2013-07-17",
-   "source": "10.1111/gcb.14762",
-   "amount_mm": 142.24,
-   "method": "soil",
-   "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2013-04-17 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 5 of 6 equal events (at most 150 mm each) from the 2013-04-17 planting to 25 days before harvest, the median days between the last irrigation and harvest of T32 (tomato) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -639,7 +639,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2013-04-17 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-04-17 to 2013-08-20 tomato season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 6 of 6 equal events (at most 150 mm each) from the 2013-04-17 planting to 25 days before harvest, the median days between the last irrigation and harvest of T32 (tomato) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -658,7 +658,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.5799,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the tomato harvest of 2013-08-20 (Tautges et al. 2019). tillage_eff_0to1 is the median of 2592 monitoring tillage events for tomato, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the tomato harvest of 2013-08-20 (Tautges et al. 2019). tillage_eff_0to1 is the median of 2592 monitoring tillage events for tomato, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   },
   {
    "event_type": "tillage",
@@ -666,7 +666,16 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.5158,
    "provenance_class": "imputed",
-   "provenance_note": "Bed preparation before the corn planted 2014-04-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Bed preparation before the corn planted 2014-04-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1246 monitoring tillage events for corn, 38 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2014-04-15",
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 142.24,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 1 of 6 equal events (at most 150 mm each) from the 2014-04-15 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "planting",
@@ -690,6 +699,15 @@
    "provenance_note": "The package's operation logs end in 2013. Copies the 2007-05-10 application of the corn 2007 season (planted 2007-04-18) of conv_corn_tomato tomato-corn, shifted +2554 days to this season's planting."
   },
   {
+   "event_type": "irrigation",
+   "date": "2014-05-14",
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 142.24,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 2 of 6 equal events (at most 150 mm each) from the 2014-04-15 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
    "event_type": "fertilization",
    "date": "2014-05-21",
    "nh4_n_kg_m2": 0.01851,
@@ -701,48 +719,30 @@
   },
   {
    "event_type": "irrigation",
-   "date": "2014-06-15",
+   "date": "2014-06-12",
    "source": "10.1111/gcb.14762",
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2014-04-15 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 3 of 6 equal events (at most 150 mm each) from the 2014-04-15 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
-   "date": "2014-07-02",
+   "date": "2014-07-10",
    "source": "10.1111/gcb.14762",
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2014-04-15 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 4 of 6 equal events (at most 150 mm each) from the 2014-04-15 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
-   "date": "2014-07-18",
+   "date": "2014-08-08",
    "source": "10.1111/gcb.14762",
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2014-04-15 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2014-08-04",
-   "source": "10.1111/gcb.14762",
-   "amount_mm": 142.24,
-   "method": "soil",
-   "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2014-04-15 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
-  },
-  {
-   "event_type": "irrigation",
-   "date": "2014-08-20",
-   "source": "10.1111/gcb.14762",
-   "amount_mm": 142.24,
-   "method": "soil",
-   "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2014-04-15 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 5 of 6 equal events (at most 150 mm each) from the 2014-04-15 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -751,7 +751,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2014-04-15 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-15 to 2014-10-06 corn season, the average, as the paper's period ends in 2012. The paper does not describe this system; its corn and tomato take the maize systems' amounts (Aritra, 2026-10-29). Event 6 of 6 equal events (at most 150 mm each) from the 2014-04-15 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -772,7 +772,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.6435,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the corn harvest of 2014-10-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the corn harvest of 2014-10-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1623 monitoring tillage events for corn, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
   }
  ]
 }
