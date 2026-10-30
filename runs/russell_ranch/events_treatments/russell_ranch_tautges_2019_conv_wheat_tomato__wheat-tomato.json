@@ -7,7 +7,7 @@
   "rotation_phase": "wheat-tomato",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_conv_wheat_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in (853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches, applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation product near Russell Ranch; 2013 and 2014 take the average, imputed. The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
+  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in (853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches, applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation product near Russell Ranch; 2013 and 2014 take the average, imputed. The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed. The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
  },
  "events": [
   {
@@ -42,11 +42,11 @@
   {
    "event_type": "irrigation",
    "date": "1994-03-02",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 545.7474,
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (1993-11-18 to 1994-06-15); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1993-11-18 to 1994-06-15 season. The paper gives this rule for IWF and IWF+N; Conventional Wheat/Tomato wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "harvest",
@@ -63,11 +63,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "1994-08-17",
+   "date": "1994-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1994-06-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 1994-06-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1994-08-17 to 1994-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -186,12 +186,11 @@
   {
    "event_type": "irrigation",
    "date": "1996-03-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 457.4929,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1995-11-21 to 1996-06-21 season. The paper gives this rule for IWF and IWF+N; Conventional Wheat/Tomato wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "fertilization",
@@ -216,11 +215,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "1996-08-23",
+   "date": "1996-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 1996-06-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1996-08-23 to 1996-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -374,15 +373,6 @@
    "provenance_note": "Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 19 of 20 seasons. Copies the 1997-02-10 application of the wheat season planted 1996-11-10 in conv_wheat_tomato tomato-wheat, shifted +360 days."
   },
   {
-   "event_type": "irrigation",
-   "date": "1998-03-07",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 545.7474,
-   "method": "canopy",
-   "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (1997-11-05 to 1998-07-07); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
-  },
-  {
    "event_type": "harvest",
    "date": "1998-07-07",
    "source": "10.1002/ecy.2105:plot_system.csv",
@@ -397,11 +387,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "1998-09-08",
+   "date": "1998-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 1998-07-07 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1998-09-08 to 1998-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -419,8 +409,8 @@
    "crop_display": "Tomato",
    "leaf_c_kg_m2": 0.0032,
    "prior_filled": "leaf_c_kg_m2<-median of this phase's 9 generator Tomato plantings",
-   "provenance_class": "published",
-   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (1999-05-01), the date most of the phase's plots share."
+   "provenance_class": "assumed",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (1999-05-01), the date most of the phase's plots share. The package's own notes call this date assigned, not recorded (tomato_planting_1999): plot-system.csv, the package's annotated copy of the table: 'Going to assign a plant date of 5/1/99 unless find evidence otherwise'; 'Tomato beds incorporated on 5/20/99, so tomatos likely planted thereafter'"
   },
   {
    "event_type": "fertilization",
@@ -525,16 +515,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2000-03-05",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 616.5313,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2000-03-24",
    "nh4_n_kg_m2": 0.00562,
@@ -557,11 +537,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2000-08-28",
+   "date": "2000-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2000-06-26 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2000-08-28 to 2000-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -582,6 +562,14 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "tillage",
+   "date": "2001-04-29",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2001-05-02",
    "source": "10.1002/ecy.2105",
@@ -599,6 +587,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2001-05-31",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Cultivation between beds with herbicide incorporation logged in operations_pesticides.csv (Incorporate, Tilliam, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -687,11 +683,11 @@
   {
    "event_type": "irrigation",
    "date": "2002-03-10",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 545.7474,
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2001-11-10 to 2002-07-09); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2001-11-10 to 2002-07-09 season. The paper gives this rule for IWF and IWF+N; Conventional Wheat/Tomato wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "fertilization",
@@ -716,11 +712,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2002-09-10",
+   "date": "2002-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2002-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2002-09-10 to 2002-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -741,6 +737,14 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "tillage",
+   "date": "2003-05-06",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2003-05-07",
    "source": "10.1002/ecy.2105",
@@ -758,6 +762,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2003-06-04",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Cultivation between beds with herbicide incorporation logged in operations_pesticides.csv (Incorporate, Tilliam, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -854,12 +866,11 @@
   {
    "event_type": "irrigation",
    "date": "2004-03-07",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 516.5858,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2003-11-14 to 2004-06-30 season. The paper gives this rule for IWF and IWF+N; Conventional Wheat/Tomato wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "fertilization",
@@ -884,11 +895,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2004-09-01",
+   "date": "2004-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2004-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2004-09-01 to 2004-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -907,6 +918,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2005-05-06",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "planting",
@@ -944,6 +963,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2005-06-15",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Cultivation between beds with herbicide incorporation logged in operations_pesticides.csv (Incorporate, Dual; Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -1022,12 +1049,11 @@
   {
    "event_type": "irrigation",
    "date": "2006-03-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 546.9828,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
+   "method": "canopy",
+   "provenance_class": "imputed",
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2005-11-10 to 2006-06-30 season. The paper gives this rule for IWF and IWF+N; Conventional Wheat/Tomato wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "fertilization",
@@ -1052,11 +1078,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2006-09-01",
+   "date": "2006-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2006-06-30 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2006-09-01 to 2006-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -1077,6 +1103,14 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "tillage",
+   "date": "2007-05-09",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2007-05-15",
    "source": "10.1002/ecy.2105",
@@ -1094,6 +1128,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2007-05-31",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Cultivation between beds with herbicide incorporation logged in operations_pesticides.csv (Incorporate, Dual; Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -1188,16 +1230,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2008-03-27",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 548.0435,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2008-04-02",
    "nh4_n_kg_m2": 0.00562,
@@ -1220,11 +1252,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2008-09-10",
+   "date": "2008-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2008-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2008-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2008-09-10 to 2008-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -1245,6 +1277,14 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "tillage",
+   "date": "2009-05-05",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2009-05-26",
    "source": "10.1002/ecy.2105",
@@ -1262,6 +1302,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2009-06-10",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Cultivation between beds with herbicide incorporation logged in operations_pesticides.csv (Incorporate, Dual; Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -1356,16 +1404,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2010-03-12",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 515.4241,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2010-03-24",
    "nh4_n_kg_m2": 0.00562,
@@ -1388,11 +1426,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2010-09-10",
+   "date": "2010-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2010-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2010-07-09 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2010-09-10 to 2010-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -1423,6 +1461,14 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "tillage",
+   "date": "2011-04-13",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2011-04-21",
    "source": "10.1002/ecy.2105",
@@ -1440,6 +1486,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2011-05-13",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Cultivation between beds with herbicide incorporation logged in operations_pesticides.csv (Incorporate, Dual; Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -1534,16 +1588,6 @@
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
   },
   {
-   "event_type": "irrigation",
-   "date": "2012-03-06",
-   "source": "10.1002/ecy.2105",
-   "injected_by": "detect_missing_events:cash_crop_window_midpoint",
-   "cover_crop_window": false,
-   "amount_mm": 545.2733,
-   "prior_filled": "amount_mm<-prior:practices/irrigation_sprinkler/parameters",
-   "method": "canopy"
-  },
-  {
    "event_type": "fertilization",
    "date": "2012-03-26",
    "nh4_n_kg_m2": 0.00562,
@@ -1566,11 +1610,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2012-08-27",
+   "date": "2012-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2012-06-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2012-06-25 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2012-08-27 to 2012-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "tillage",
@@ -1591,6 +1635,14 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "tillage",
+   "date": "2013-04-05",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Dual; Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
+  },
+  {
    "event_type": "planting",
    "date": "2013-04-17",
    "source": "10.1002/ecy.2105",
@@ -1608,6 +1660,14 @@
    "n_plots_treated": 3,
    "provenance_class": "published",
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  },
+  {
+   "event_type": "tillage",
+   "date": "2013-05-10",
+   "source": "10.1002/ecy.2105:operations_pesticides.csv",
+   "tillage_eff_0to1": 0.3708,
+   "provenance_class": "imputed",
+   "provenance_note": "Preplant herbicide incorporation logged in operations_pesticides.csv (Mulch_Beds, Dual; Triap, plots 1-5, 4-3, 7-9) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023)."
   },
   {
    "event_type": "irrigation",
@@ -1704,11 +1764,11 @@
   {
    "event_type": "irrigation",
    "date": "2014-03-02",
-   "source": "calibration:tools/event_prep/russell_split_phases.R",
-   "amount_mm": 545.7474,
+   "source": "10.1111/gcb.14762",
+   "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "No irrigation in this wheat season (2013-11-10 to 2014-06-22); the usual irrigation of conv_wheat_tomato: one event at the season midpoint with the median season total of 16 wheat seasons. Those amounts are the generator's sprinkler prior; the package records no irrigation."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2013-11-10 to 2014-06-22 season; the paper's period ends in 2012, so this year takes the usual 80 mm. The paper gives this rule for IWF and IWF+N; Conventional Wheat/Tomato wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "fertilization",
@@ -1735,11 +1795,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2014-08-24",
+   "date": "2014-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2014-06-22 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2014-06-22 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2014-08-24 to 2014-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   }
  ]
 }

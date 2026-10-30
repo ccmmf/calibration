@@ -63,11 +63,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "1995-09-06",
+   "date": "1995-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 1995-07-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1995-09-06 to 1995-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -114,7 +114,7 @@
    "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1996-11-10 to 1997-06-17 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1996-11-10 to 1997-06-17 season. The paper gives this rule for IWF and IWF+N; Irrigated Wheat/Legume wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "harvest",
@@ -131,11 +131,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "1997-08-19",
+   "date": "1997-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 1997-06-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1997-08-19 to 1997-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -184,7 +184,7 @@
    "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1998-11-02 to 1999-07-01 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 1998-11-02 to 1999-07-01 season. The paper gives this rule for IWF and IWF+N; Irrigated Wheat/Legume wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "harvest",
@@ -199,11 +199,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "1999-09-02",
+   "date": "1999-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 1999-07-01 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 1999-09-02 to 1999-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -250,7 +250,7 @@
    "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2000-11-27 to 2001-07-13 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2000-11-27 to 2001-07-13 season. The paper gives this rule for IWF and IWF+N; Irrigated Wheat/Legume wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "harvest",
@@ -265,11 +265,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2001-09-14",
+   "date": "2001-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2001-07-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2001-07-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2001-09-14 to 2001-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -318,7 +318,7 @@
    "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2002-10-31 to 2003-07-10 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2002-10-31 to 2003-07-10 season. The paper gives this rule for IWF and IWF+N; Irrigated Wheat/Legume wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "harvest",
@@ -333,11 +333,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2003-09-11",
+   "date": "2003-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2003-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2003-07-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2003-09-11 to 2003-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -350,19 +350,19 @@
   },
   {
    "event_type": "harvest",
-   "date": "2004-05-17",
+   "date": "2004-04-08",
    "crop_display": "Cover Crop",
    "frac_above_removed_0to1": 0,
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 1,
    "frac_below_to_litter_0to1": 1,
-   "source": "10.1002/ecy.2105:wcc_harvests_all.csv",
-   "provenance_class": "published",
-   "provenance_note": "Cover crop termination. Dated by the WCC incorporation date in wcc_harvests_all.csv."
+   "source": "10.1002/ecy.2105:operations_planting.csv",
+   "provenance_class": "imputed",
+   "provenance_note": "Cover crop termination. The recorded date (2004-05-17) is the same for every plot of every system and falls after the corn and tomato plantings that year, so it is not taken as the incorporation (russell_source_corrections.csv). Dated 226 days before the next cash crop planting (2004-11-20), the median gap between a recorded cover crop end and the next cash crop planting (Irrigated Wheat/Legume, n = 13)."
   },
   {
    "event_type": "tillage",
-   "date": "2004-05-17",
+   "date": "2004-04-08",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
@@ -390,11 +390,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2005-09-07",
+   "date": "2005-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2005-07-06 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2005-09-07 to 2005-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -441,7 +441,7 @@
    "amount_mm": 80,
    "method": "canopy",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2006-11-09 to 2007-06-29 season. The paper describes IWF and IWF+N; Irrigated Wheat/Legume is irrigated the same way."
+   "provenance_note": "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the 2006-11-09 to 2007-06-29 season. The paper gives this rule for IWF and IWF+N; Irrigated Wheat/Legume wheat is irrigated the same way (Aritra, 2026-10-30)."
   },
   {
    "event_type": "harvest",
@@ -456,11 +456,11 @@
   },
   {
    "event_type": "tillage",
-   "date": "2007-08-31",
+   "date": "2007-07-31",
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.712,
    "provenance_class": "imputed",
-   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023)."
+   "provenance_note": "Disking after the wheat harvest of 2007-06-29 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1295 monitoring tillage events for wheat, 63 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023). Moved from 2007-08-31 to 2007-07-31: Tautges et al. 2019 incorporate the straw after the July harvest, \"then fallowed from August\"."
   },
   {
    "event_type": "planting",
@@ -481,7 +481,7 @@
    "frac_below_to_litter_0to1": 1,
    "source": "10.1002/ecy.2105:operations_planting.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Cover crop termination. No incorporation date for this planting. Dated day 96 of the year, the median day of a recorded cover crop end (Irrigated Wheat/Legume, n = 14)."
+   "provenance_note": "Cover crop termination. No incorporation date for this planting. Dated day 96 of the year, the median day of a recorded cover crop end (Irrigated Wheat/Legume, n = 13)."
   },
   {
    "event_type": "tillage",
