@@ -16,6 +16,11 @@
 #   monitoring_tillage_near_russell.csv next to generator_stacked_dir.
 #   irrigation_medians_csv: written by russell_monitoring_irrigation.R; defaults to
 #   monitoring_irrigation_near_russell.csv next to generator_stacked_dir.
+# It also reads three reviewable tables next to generator_stacked_dir:
+#   russell_treatments.csv          each treatment's package system name, Tautges et al. (2019)
+#                                   code and the classes the rules below use
+#   russell_source_corrections.csv  keyed corrections to package records, each with its evidence
+#   russell_harvest_lookup.csv      the shared harvest lookup rows used here
 
 suppressMessages(library(jsonlite))
 
@@ -27,36 +32,35 @@ tillage_csv <- if (length(args) >= 4L) args[4] else file.path(dirname(stacked_di
 irrigation_csv <- if (length(args) == 5L) args[5] else file.path(dirname(stacked_dir), "monitoring_irrigation_near_russell.csv")
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
-SYSTEMS <- c(
-  alf_corn_tomato = "Alfalfa/Corn/Tomato",
-  conv_corn_tomato = "Conventional Corn/Tomato",
-  conv_wheat_tomato = "Conventional Wheat/Tomato",
-  irr_wheat_control = "Irrigated Wheat Control",
-  irr_wheat_fallow = "Irrigated Wheat/Fallow",
-  irr_wheat_legume = "Irrigated Wheat/Legume",
-  leg_corn_tomato = "Legume/Corn/Tomato",
-  org_corn_tomato = "Organic Corn/Tomato",
-  rf_wheat_control = "Rainfed Wheat Control",
-  rf_wheat_fallow = "Rainfed Wheat/Fallow",
-  rf_wheat_legume = "Rainfed Wheat/Legume",
-  transitional = "Transitional")
+rd_table <- function(f) read.csv(file.path(dirname(stacked_dir), f), stringsAsFactors = FALSE,
+                                 colClasses = "character", na.strings = character())
 
-# Tautges et al. (2019) Table 1 lists irrigation "None" for the rainfed wheat systems
-RAINFED <- c("rf_wheat_control", "rf_wheat_fallow", "rf_wheat_legume")
+# Treatments (russell_treatments.csv). The rule sections below take their lists from it:
+# irrigated FALSE are the rainfed wheat systems, whose irrigation Tautges et al. (2019) Table 1
+# lists as "None"; paper_irrigation is what the paper gives the system (furrow maize and tomato,
+# supplemental wheat sprinkling, none); wheat_irrigation says whether its wheat follows the
+# paper's 80 mm rule; corn_n_dates_from, fert_2014_template and history_from name the
+# treatment whose records stand in for its own where the package lacks them.
+TREATMENTS <- rd_table("russell_treatments.csv")
+stopifnot(!anyDuplicated(TREATMENTS$tid), all(TREATMENTS$irrigated %in% c("TRUE", "FALSE")))
+treatments_where <- function(col, value = "TRUE") TREATMENTS$tid[TREATMENTS[[col]] == value]
+treatment_links <- function(col) { v <- setNames(TREATMENTS[[col]], TREATMENTS$tid); v[v != ""] }
+SYSTEMS <- setNames(TREATMENTS$system_name, TREATMENTS$tid)
+RAINFED <- treatments_where("irrigated", "FALSE")
 CASH_CROPS <- c("corn", "tomato", "wheat", "alfalfa", "sudangrass")
 SEASON_DAYS <- 365  # longest planting-to-harvest span that counts as one cash crop window
 SOURCE <- "10.1002/ecy.2105"
 TON_AC_TO_KG_M2 <- 907.18474 / 4046.8564224  # US short ton per acre (per David)
 KG_HA_TO_KG_M2 <- 1e-4
 
-# Harvest fractions from the harvest lookup the other calibration sites use (rows as given
-# by Akash on PR #10). Aboveground removed and to litter; roots all go to litter.
-HARVEST_LOOKUP <- data.frame(
-  crop = c("corn", "tomato", "wheat", "alfalfa"),
-  lookup_row = c("F16", "T32", "G2", "P1"),
-  above_removed = c(0.752, 0.33, 0.713, 0.85),
-  above_to_litter = c(0.248, 0.67, 0.287, 0.15),
-  stringsAsFactors = FALSE)
+# Harvest fractions from the shared harvest lookup the other calibration sites use
+# (russell_harvest_lookup.csv: its rows rounded to three decimals, as given on calibration#10).
+# Aboveground removed and to litter; roots all go to litter.
+HARVEST_LOOKUP <- rd_table("russell_harvest_lookup.csv")
+HARVEST_LOOKUP$above_removed <- as.numeric(HARVEST_LOOKUP$above_removed)
+HARVEST_LOOKUP$above_to_litter <- as.numeric(HARVEST_LOOKUP$above_to_litter)
+stopifnot(!anyDuplicated(HARVEST_LOOKUP$crop),
+          abs(HARVEST_LOOKUP$above_removed + HARVEST_LOOKUP$above_to_litter - 1) < 1e-9)
 # Sudangrass has no lookup row and needs none: the package metadata says that in 2008 and 2009
 # it was sampled before plowing under and no hay was removed, so it is a green manure.
 GREEN_MANURE <- c("cover crop", "sudangrass")
@@ -81,7 +85,7 @@ LAST_DATE <- as.Date("2014-12-31")
 MIN_MEDIAN_N <- 5
 FERT_LEAD_DAYS <- 90  # fertilization up to this many days before a planting belongs to its season
 # Alfalfa/Corn/Tomato has no corn season before 2014 to copy fertilization from
-COMPARABLE <- c(alf_corn_tomato = "conv_corn_tomato")
+COMPARABLE <- treatment_links("fert_2014_template")
 
 rd <- function(f, enc = "UTF-8")
   read.csv(file.path(century_dir, f), stringsAsFactors = FALSE, check.names = FALSE,
@@ -100,28 +104,27 @@ sp <- function(system, plot) paste(system, plot, sep = "|")
 phase_of <- tapply(ps[["harvest_year_rotation_order_(even-odd)"]], sp(ps$new_system_name, ps$plot),
                    function(v) { u <- unique(v); stopifnot(length(u) == 1L); u })
 
+# Corrections to package records (russell_source_corrections.csv), each keyed to the record it
+# changes and asserted to match exactly that record; the evidence column says why.
+CORRECTIONS <- rd_table("russell_source_corrections.csv")
+stopifnot(!anyDuplicated(CORRECTIONS$id))
+corrections <- function(file, action) CORRECTIONS[CORRECTIONS$file %in% file & CORRECTIONS$action == action, ]
+
 plt <- rd("operations_planting.csv")
-# In 2003 and 2005 Organic Corn/Tomato plot 6-8 grew corn and 8-8 tomato (plot_system.csv,
-# tomato_harvests_all.csv), but operations_planting.csv lists the tomato transplanting under
-# 6-8, next to its own corn seeding, and none under 8-8. Without this the corn phase gets a
-# tomato planting that is never harvested.
-PLANT_PLOT_FIXES <- data.frame(system_name = "Organic Corn/Tomato", Date = c("5/8/2003", "5/13/2005"),
-                               Crop_planted = "Tomato", from = "6-8", to = "8-8")
-for (i in seq_len(nrow(PLANT_PLOT_FIXES))) {
-  f <- PLANT_PLOT_FIXES[i, ]
-  same <- plt$system_name == f$system_name & plt$Date == f$Date & plt$Crop_planted == f$Crop_planted
-  stopifnot(sum(same & plt$plot == f$from) == 1L, !any(same & plt$plot == f$to))
-  plt$plot[same & plt$plot == f$from] <- f$to
+# move_plot: a record filed under the wrong plot of its system
+mv <- corrections("operations_planting.csv", "move_plot")
+for (i in seq_len(nrow(mv))) {
+  f <- mv[i, ]
+  same <- plt$system_name == f$system_name & plt$Date == f$date & plt$Crop_planted == f$crop
+  stopifnot(sum(same & plt$plot == f$plot) == 1L, !any(same & plt$plot == f$replacement))
+  plt$plot[same & plt$plot == f$plot] <- f$replacement
 }
 hrv <- rd("operations_harvest.csv")
-# operations_harvest.csv also lists the 7/1/1999 Rainfed Wheat/Legume wheat harvest under
-# plot 7-3, a wheat-CC plot that grew a cover crop that winter (plot_system.csv); the three
-# CC-wheat plots carry the harvest. Kept, the wheat-CC phase harvests a wheat it never planted.
-HARVEST_RECORD_DROPS <- data.frame(system_name = "Rainfed Wheat/Legume", date = "7/1/1999",
-                                   crop_harvested = "Wheat", plot = "7-3")
-for (i in seq_len(nrow(HARVEST_RECORD_DROPS))) {
-  f <- HARVEST_RECORD_DROPS[i, ]
-  drop <- hrv$system_name == f$system_name & hrv$date == f$date & hrv$crop_harvested == f$crop_harvested & hrv$plot == f$plot
+# drop: a record on a plot that did not grow the crop
+dr <- corrections("operations_harvest.csv", "drop")
+for (i in seq_len(nrow(dr))) {
+  f <- dr[i, ]
+  drop <- hrv$system_name == f$system_name & hrv$date == f$date & hrv$crop_harvested == f$crop & hrv$plot == f$plot
   stopifnot(sum(drop) == 1L)
   hrv <- hrv[!drop, ]
 }
@@ -148,18 +151,19 @@ op_table <- function(df, file, date_col, crop_col, what = df[[crop_col]]) {
 ops <- list(planting = op_table(plt, "operations_planting.csv", "Date", "Crop_planted",
                                 paste(plt$Crop_planted, plt$material_quantity, plt$material_units)),
             harvest = op_table(hrv, "operations_harvest.csv", "date", "crop_harvested"))
-# The Transitional plots grew corn in 2006, not tomato: plot_system.csv lists corn planted
-# 5/25 and harvested 9/13 ("Corn planted instead of tomato"), corn_harvests_all.csv has corn
-# samples dated 10/24/2006, and tomato_harvests_all.csv has none that year. The logs record a
-# tomato transplanting and harvest on those dates for the three plots; those records and the
-# generator's events made from them are dropped, and plot_system.csv fills the corn.
-WRONG_CROP_DROPS <- data.frame(tid = "transitional", event_type = c("planting", "harvest"),
-                               date = c("2006-05-25", "2006-09-13"), crop = "Tomato",
-                               plots = "2-2, 5-7, 7-4")
+# wrong_crop: log records of a crop the plots did not grow (the Transitional 2006 tomato was
+# corn); those records and the generator's events made from them are dropped, and
+# plot_system.csv fills the crop that was grown.
+wc <- corrections(c("operations_planting.csv", "operations_harvest.csv"), "wrong_crop")
+WRONG_CROP_DROPS <- data.frame(
+  tid = names(SYSTEMS)[match(wc$system_name, SYSTEMS)],
+  event_type = c(operations_planting.csv = "planting", operations_harvest.csv = "harvest")[wc$file],
+  date = format(as_date(wc$date)), crop = wc$crop, plots = wc$plot, stringsAsFactors = FALSE)
+stopifnot(!anyNA(WRONG_CROP_DROPS$tid))
 for (i in seq_len(nrow(WRONG_CROP_DROPS))) {
   f <- WRONG_CROP_DROPS[i, ]; o <- ops[[f$event_type]]
   drop <- o$system == SYSTEMS[[f$tid]] & o$date == as.Date(f$date) & o$crop == tolower(f$crop)
-  stopifnot(identical(sort(o$plot[drop]), strsplit(f$plots, ", ")[[1]]))
+  stopifnot(identical(sort(o$plot[drop]), strsplit(f$plots, ";")[[1]]))
   ops[[f$event_type]] <- o[!drop, ]
 }
 
@@ -198,9 +202,9 @@ cat(sprintf("operations_fertilizers rows without a usable date: %d, total N %.2f
             nrow(undated), sum(as.numeric(undated[["nitrogen_applied_kg/ha"]]), na.rm = TRUE)))
 frt <- frt[!is.na(frt$date), ]
 frt$n <- as.numeric(frt[["nitrogen_applied_kg/ha"]])
-# Excel turned one plot id into a date: "5-Jan" is plot 1-5 (Conventional Wheat/Tomato,
-# 11/5/2011, Can_27, 111.97 kg N/ha).
-FERT_PLOT_FIXES <- c("5-Jan" = "1-5")
+# fix_plot_id: a plot id a spreadsheet turned into a date
+fp <- corrections("operations_fertilizers.csv", "fix_plot_id")
+FERT_PLOT_FIXES <- setNames(fp$replacement, fp$plot)
 fix <- frt$plot %in% names(FERT_PLOT_FIXES)
 frt$plot[fix] <- FERT_PLOT_FIXES[frt$plot[fix]]
 frt$phase <- unname(phase_of[sp(frt$system_name, frt$plot)])
@@ -210,14 +214,13 @@ unmapped("operations_fertilizers.csv", frt$system_name[miss], frt$plot[miss], fr
 frt <- frt[!miss, ]
 frt <- unique(frt)  # the package repeats some plot rows verbatim
 frt <- frt[!is.na(frt$n) & frt$n > 0, ]
-# Known duplicate records: the same application listed on two dates. The 2011 wheat
-# pre-plant on the Conventional Wheat/Tomato wheat plots appears on 11/5 and again on 11/14
-# at the same rate, while every other wheat year has one. As with compost, it is kept once
-# per plot on the earlier date. Listed explicitly, not deduplicated by rule, because split
-# applications are real (Conventional Corn/Tomato 1996 tomato: 56.55 kg N/ha on 4/16 and 5/13).
-FERT_DUPLICATES <- data.frame(
-  system_name = "Conventional Wheat/Tomato", material_applied = "Can_27", n = 111.97,
-  keep = as.Date("2011-11-05"), drop = as.Date("2011-11-14"))
+# drop_duplicate: the same application listed on two dates, kept once per plot on the earlier
+# (replacement) date. Listed explicitly, not deduplicated by rule, because split applications
+# are real (Conventional Corn/Tomato 1996 tomato: 56.55 kg N/ha on 4/16 and 5/13).
+dd <- corrections("operations_fertilizers.csv", "drop_duplicate")
+FERT_DUPLICATES <- data.frame(system_name = dd$system_name, material_applied = dd$material,
+                              n = as.numeric(dd$value), keep = as_date(dd$replacement),
+                              drop = as_date(dd$date), stringsAsFactors = FALSE)
 for (i in seq_len(nrow(FERT_DUPLICATES))) {
   d <- FERT_DUPLICATES[i, ]
   rec <- frt$system_name == d$system_name & frt$material_applied == d$material_applied & frt$n == d$n
@@ -829,7 +832,7 @@ for (tid in names(SYSTEMS)) {
 # 2013 conventional corn N and the compost of the organic corn and tomato seasons the package
 # lacks (a sudangrass year is filled below). Copies are shifted by the
 # difference in planting dates, and only the ones landing inside the season are kept.
-FERT_LIKE <- list(leg_corn_tomato = c(corn = "conv_corn_tomato"))
+FERT_LIKE <- lapply(treatment_links("corn_n_dates_from"), function(t2) c(corn = t2))
 # With no record in the log, the amount is the paper's (David on calibration#10). Tautges et al.
 # (2019): maize in CONV and CONV+WCC was planted "with 56 kg N/ha 8-24-6 starter fertilizer" and
 # sidedressed "in one application, or two split applications, with ammonium sulfate at a total
@@ -837,7 +840,7 @@ FERT_LIKE <- list(leg_corn_tomato = c(corn = "conv_corn_tomato"))
 # shifted from the template's last planting (a replant) to its own last planting: the template's
 # urea applications are the sidedress and share the 180 kg N/ha as they shared their own N, and
 # its one other application is the starter.
-PAPER_CORN_N <- c("conv_corn_tomato", "leg_corn_tomato")
+PAPER_CORN_N <- treatments_where("paper_corn_n")
 CORN_STARTER_N <- 56
 CORN_SIDEDRESS_N <- 180
 paper_corn_n <- function(recs) {
@@ -931,7 +934,7 @@ for (tid in names(fert_gaps)) {
 # year. The wheat years (wheat replaced corn in 2009 to 2012) have no compost in the package at
 # all, 0 of 5 against 42 of the 49 other years, and the paper times compost only before maize and
 # tomato, so a year whose copy would fall in a growing wheat crop stays without (calibration#10).
-COMPOST_SYSTEMS <- c("org_corn_tomato", "transitional")
+COMPOST_SYSTEMS <- treatments_where("compost")
 is_compost <- function(e) e$event_type == "fertilization" && !is.null(e$org_c_kg_m2)
 year_of <- function(evs) as.integer(substr(vapply(evs, `[[`, "", "date"), 1, 4))
 on_growing_wheat <- function(pe, d) {
@@ -1031,8 +1034,8 @@ for (tid in names(SYSTEMS)) {
 # 80 mm event at the season midpoint, and none when the season's harvest year is one of those.
 # 2013 and 2014, after the paper's period, take the 80 mm and are tagged imputed, as is
 # Irrigated Wheat/Legume, which the paper does not describe and which is irrigated like IWF.
-IRRIGATED_WHEAT <- c("irr_wheat_control", "irr_wheat_fallow", "irr_wheat_legume")
-WHEAT_PAPER_SYSTEMS <- c("irr_wheat_control", "irr_wheat_fallow")  # IWF and IWF+N
+IRRIGATED_WHEAT <- treatments_where("wheat_irrigation", "paper")
+WHEAT_PAPER_SYSTEMS <- treatments_where("paper_irrigation", "supplemental")  # IWF and IWF+N
 NO_IRRIGATION_YEARS <- c(1995, 1998, 2000, 2005, 2008:2012)
 WHEAT_SUPPLEMENTAL_MM <- 80
 for (tid in IRRIGATED_WHEAT) {
@@ -1088,7 +1091,7 @@ for (tid in IRRIGATED_WHEAT) {
 # (a replant); a season too short for those offsets is irrigated over its middle half
 # (calibration#10). Method soil: furrow water enters the soil, and PEcAn's SIPNET
 # writer gives every other method SIPNET's canopy code.
-FURROW_PAPER_SYSTEMS <- c("conv_corn_tomato", "leg_corn_tomato", "org_corn_tomato")
+FURROW_PAPER_SYSTEMS <- treatments_where("paper_irrigation", "furrow")
 FURROW_SYSTEMS <- setdiff(names(SYSTEMS), RAINFED)
 FURROW_CROPS <- c("corn", "tomato")
 FURROW_YEAR_IN <- c(`1995` = 17.6, `2004` = 43.5)
@@ -1301,7 +1304,7 @@ for (tid in names(SYSTEMS)) {
 # The six Alfalfa/Corn/Tomato plots were Irrigated Wheat/Legume, one phase to one phase, until
 # fallow from 2008 and the switch in 2012. The package files that history under the old system
 # name, so each Alfalfa/Corn/Tomato phase takes its plots' Irrigated Wheat/Legume events.
-HISTORY <- list(alf_corn_tomato = "irr_wheat_legume")
+HISTORY <- as.list(treatment_links("history_from"))
 plots_of <- function(sys, ph) sort(unique(ps$plot[ps$new_system_name == sys & ps[["harvest_year_rotation_order_(even-odd)"]] == ph]))
 history_of <- list()
 for (tid in names(HISTORY)) for (ph in names(keep_all[[tid]])) {

@@ -1,0 +1,13 @@
+tid,system_name,tautges_code,irrigated,paper_irrigation,wheat_irrigation,compost,paper_corn_n,corn_n_dates_from,fert_2014_template,history_from
+alf_corn_tomato,Alfalfa/Corn/Tomato,,TRUE,,generator,FALSE,FALSE,,conv_corn_tomato,irr_wheat_legume
+conv_corn_tomato,Conventional Corn/Tomato,CONV,TRUE,furrow,generator,FALSE,TRUE,,,
+conv_wheat_tomato,Conventional Wheat/Tomato,,TRUE,,generator,FALSE,FALSE,,,
+irr_wheat_control,Irrigated Wheat Control,IWF,TRUE,supplemental,paper,FALSE,FALSE,,,
+irr_wheat_fallow,Irrigated Wheat/Fallow,IWF+N,TRUE,supplemental,paper,FALSE,FALSE,,,
+irr_wheat_legume,Irrigated Wheat/Legume,,TRUE,,paper,FALSE,FALSE,,,
+leg_corn_tomato,Legume/Corn/Tomato,CONV+WCC,TRUE,furrow,generator,FALSE,TRUE,conv_corn_tomato,,
+org_corn_tomato,Organic Corn/Tomato,ORG,TRUE,furrow,generator,TRUE,FALSE,,,
+rf_wheat_control,Rainfed Wheat Control,RWF,FALSE,none,none,FALSE,FALSE,,,
+rf_wheat_fallow,Rainfed Wheat/Fallow,RWF+N,FALSE,none,none,FALSE,FALSE,,,
+rf_wheat_legume,Rainfed Wheat/Legume,RWF+WCC,FALSE,none,none,FALSE,FALSE,,,
+transitional,Transitional,,TRUE,,generator,TRUE,FALSE,,,
