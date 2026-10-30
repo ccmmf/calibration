@@ -194,8 +194,9 @@ phase's plots share (the first day where a range is given), with `source` naming
   in the phase (`prior_filled` says which and how many).
 - The `transitional` plots were "unassigned" until 1999, when "three of the unassigned plots
   were converted into a transitional organic corn-tomato rotation" (`plot_system.csv`). The
-  logs file their earlier operations under Transitional, so the file starts with them: a 1993
-  to 1994 cover crop, then corn, tomato, wheat and corn from 1995 to 1998, with mineral N. Their
+  logs file their earlier operations under Transitional, so the file starts with the 1993
+  sudangrass uniformity crop and then those operations: a 1993 to 1994 cover crop, then corn,
+  tomato, wheat and corn from 1995 to 1998, with mineral N. Their
   unassigned plot-years take the plots' 1999 phase, so the 1998 corn (planted 1998-04-19,
   harvested 1998-11-03, with `corn_harvests_all.csv` samples) and the fall 1998 cover crop
   (1998-11-14 to 1999-03-30) are filled, and the logged 1998-07-08 corn N falls on a crop.

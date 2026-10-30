@@ -1359,7 +1359,8 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
 # disking after each corn, tomato and wheat harvest, the median days after harvest for that crop
 # (and before the next planting); bed preparation before each corn and tomato season, the median
 # days before planting (and after the previous crop ends); and incorporation of each cover crop,
-# sudangrass and unharvested crop at its end, and of each compost application on its date (one
+# the 2008 and 2009 sudangrass green manure (plowed under; the 1993 crop was cut for hay, not
+# incorporated) and unharvested crop at its end, and of each compost application on its date (one
 # pass with another incorporation that day), with the median over all tillage events.
 # tillage_eff_0to1 is the median for the operation. Where the paper or the package gives a date,
 # it comes first (David's order): the paper incorporates wheat straw by two shallow diskings
