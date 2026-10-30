@@ -87,7 +87,7 @@ Fertilization is rebuilt from `operations_fertilizers.csv` and `operations_compo
 irrigation from the rules below. Planting and harvest are the generator's events, assigned to a
 phase by plot id, plus what the logs miss. **Planting amounts are still the generator's prior
 fills** (`prior_filled` on each event): leaf C from a processing-tomato baseline for every crop,
-a median of 0.0035 kg C/m2 (0.0020 to 0.0048). A filled planting takes the median of those same
+a median of 0.0034 kg C/m2 (0.0020 to 0.0048). A filled planting takes the median of those same
 priors in its phase, so it matches its neighbours (proposed on calibration#10 and agreed by
 Akash and David). The monitoring planting product near the site gives similar leaf C: medians of
 0.0038 kg C/m2 for G2 wheat, 0.0046 for F16 corn and 0.0053 for T32 tomato (v5.0, within 25 km,
@@ -102,7 +102,10 @@ calibration sites use (`s3://carb/management/plant_traits/harvest_lookup.csv`, d
 md5 `defbff0c0b86ae9ff6db07d520813538`), the values the monitoring harvest product carries,
 rounded to three decimals as Akash gave them on calibration#10. Corn and tomato take what the
 site's own samples say the harvest removed instead (Aritra, 2026-10-31; below), and the script
-recomputes both from the package. Every row takes 100% of the biomass as removed or to litter, so
+recomputes both from the package. This departs on purpose from the shared lookup David asked for
+on calibration#10: the site's samples are source data, which comes first in David's fill order
+(`tools/event_prep/README.md`, "Filling missing events"), and the residue left in the field is
+what feeds soil carbon. Every row takes 100% of the biomass as removed or to litter, so
 a harvest ends the crop; an intermediate alfalfa cutting does not (below). David suggested DSSAT
 parameters if more values were needed; none were.
 
@@ -583,7 +586,10 @@ the `alf_corn_tomato` history:
 ## Known limitations
 
 - **Harvest fractions differ from the other sites.** Corn and tomato take the site's own shares
-  (above), so Russell no longer uses the shared lookup's F16 and T32 rows (Aritra, 2026-10-31).
+  (above), so Russell no longer uses the shared lookup's F16 and T32 rows, departing from the
+  shared lookup David asked for on calibration#10: the site's samples are source data, which
+  comes first in David's fill order, and the residue left in the field is what feeds soil carbon
+  (Aritra, 2026-10-31).
   Wheat still takes G2, which removes 0.713 although the paper incorporates the straw; the package
   has no straw weights to replace it with.
 - **Irrigation amounts are not records.** The corn and tomato amounts rest on reading the

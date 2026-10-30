@@ -20,7 +20,8 @@
 #   russell_treatments.csv          each treatment's package system name, Tautges et al. (2019)
 #                                   code and the classes the rules below use
 #   russell_source_corrections.csv  keyed corrections to package records, each with its evidence
-#   russell_harvest_lookup.csv      the shared harvest lookup rows used here
+#   russell_harvest_lookup.csv      the harvest fraction rows used here: the site's own samples for
+#                                   corn and tomato, the shared harvest lookup for the rest
 
 suppressMessages(library(jsonlite))
 
@@ -658,9 +659,9 @@ cover_crop_ends <- function(sys, ph, pe) {
 
 # Harvests take the lookup fractions, or all to litter for a green manure; the generator's
 # harvest prior is dropped. A crop cut for hay instead of grain (hay_harvest corrections: the
-# 2012 Organic and Legume/Corn/Tomato wheat) takes the lookup's hay row. Sudangrass has a
-# monitoring row (F16 groups corn, sorghum and sudan), but the site record overrides it: in 2008
-# and 2009 it was plowed under with no hay removed.
+# 2012 Organic and Legume/Corn/Tomato wheat, the 1993 uniformity sudangrass) takes the lookup's
+# hay row. Sudangrass has a monitoring row (F16 groups corn, sorghum and sudan), but the site
+# record overrides it: in 2008 and 2009 it was plowed under with no hay removed.
 HAY <- corrections("metadata", "hay_harvest")
 # A hay_harvest row with no system applies to every system, and a replacement date makes its date
 # a range (the 1993 uniformity crop was cut over two days).
@@ -1131,7 +1132,7 @@ for (tid in names(keep_all)) for (ph in names(keep_all[[tid]])) {
 
 # The generator's irrigation, one sprinkler event at the midpoint of each cash crop window, is
 # dropped: every irrigated season is rebuilt below from the paper or the monitoring product, and
-# the rainfed systems get none.
+# the rainfed systems get none but the 1993 uniformity crop's.
 for (tid in names(SYSTEMS)) {
   n <- sum(vapply(gen[[tid]], function(e) identical(e$event_type, "irrigation"), TRUE))
   if (n) cat(sprintf("%-18s generator irrigation dropped: %d events\n", tid, n))
@@ -1547,15 +1548,25 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   }
 }
 if (length(incomplete)) stop("operations plot_system.csv records but the files lack:\n", paste(incomplete, collapse = "\n"))
-# Every assumed_date and hay_harvest correction reaches an event.
+# Every assumed_date and hay_harvest correction reaches an event. A hay_harvest row with no system
+# is one hay cut in every phase file, history included (alf_corn_tomato has the 1993 crop in its
+# history); a row with a system is one in that system's own events.
 own <- function(tid) Filter(function(e) is.null(e$history_of), unlist(keep_all[[tid]], recursive = FALSE))
 for (i in seq_len(nrow(ASSUMED_DATES))) stopifnot(any(vapply(unlist(lapply(names(SYSTEMS), own), recursive = FALSE),
   function(e) e$event_type == "planting" && identical(e$provenance_class, "assumed") &&
     e$date == format(as_date(ASSUMED_DATES$date[i])) && tolower(e$crop_display) == tolower(ASSUMED_DATES$crop[i]), TRUE)))
-for (i in seq_len(nrow(HAY))) for (tid in if (HAY$system_name[i] == "") names(SYSTEMS) else names(SYSTEMS)[SYSTEMS == HAY$system_name[i]])
-  stopifnot(sum(vapply(unlist(keep_all[[tid]], recursive = FALSE), function(e) e$event_type == "harvest" &&
-    identical(e$harvest_lookup_row, HARVEST_LOOKUP$lookup_row[HARVEST_LOOKUP$crop == "hay"]) &&
-    nrow(hay_for(SYSTEMS[[tid]], tolower(e$crop_display), e$date)) > 0 && any(hay_for(SYSTEMS[[tid]], tolower(e$crop_display), e$date)$id == HAY$id[i]), TRUE)) >= 1L)
+hay_cuts <- function(evs, tid, id) sum(vapply(evs, function(e) e$event_type == "harvest" &&
+  identical(e$harvest_lookup_row, HARVEST_LOOKUP$lookup_row[HARVEST_LOOKUP$crop == "hay"]) &&
+  id %in% hay_for(SYSTEMS[[tid]], tolower(e$crop_display), e$date)$id, TRUE))
+for (i in seq_len(nrow(HAY))) {
+  every <- HAY$system_name[i] == ""
+  tids <- names(SYSTEMS)[every | SYSTEMS == HAY$system_name[i]]
+  stopifnot(length(tids) > 0L)
+  for (tid in tids) {
+    n <- if (every) vapply(keep_all[[tid]], hay_cuts, 0L, tid, HAY$id[i]) else hay_cuts(own(tid), tid, HAY$id[i])
+    stopifnot(n == 1L)
+  }
+}
 cat("completeness: every plot_system.csv planting and cash crop harvest in the run is in its phase file\n")
 
 # Write --------------------------------------------------------------------------------------
@@ -1583,7 +1594,8 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "including all of 2014, are filled from plot_system.csv and the cutting samples.",
         "Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for",
         "corn and tomato, the shared harvest lookup for the rest), alfalfa cuttings",
-        "leave the stand alive, and cover crops and sudangrass go wholly to litter. No",
+        "leave the stand alive, cover crops and the 2008 and 2009 sudangrass go wholly to",
+        "litter, and the 1993 sudangrass uniformity crop is cut for hay. No",
         "irrigation comes from the generator; it follows the rules below. Events no record",
         "gives are tagged provenance_class imputed, or assumed where they rest on a stated",
         "reading of the paper or package (the inches irrigation and the 80 mm wheat on its",
@@ -1618,10 +1630,12 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
           "product near Russell Ranch; 2013 and 2014 take the average, imputed.",
           if (!tid %in% FURROW_PAPER_SYSTEMS) "The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed."),
           collapse = " "),
-        if (any(seasons_of(pe)$crop == "sudangrass" & seasons_of(pe)$start < FIRST_DATE)) paste(
+        if (any(seasons_of(pe)$crop == "sudangrass" & seasons_of(pe)$start < FIRST_DATE)) sprintf(paste(
           "The file starts with the 1993 sudangrass uniformity crop, grown on every plot before the",
-          "experiment: irrigated like the later sudangrass, unfertilized, and cut for hay (the lookup's",
-          "hay row)."),
+          "experiment: irrigated with the monitoring product's median irrigated F16 (corn, sorghum or",
+          "sudan) season, %s mm, on the sudangrass schedule (equal soil events of at most %d mm from",
+          "planting), unfertilized, and cut for hay (the lookup's hay row)."),
+          format(irm_row("corn")$median_irrigated_mm), IRR_EVENT_MAX_MM),
         if (tid %in% FURROW_SYSTEMS && any(seasons_of(pe)$crop == "sudangrass" & seasons_of(pe)$start >= FIRST_DATE)) paste(
           "Sudangrass, for which the paper gives nothing, takes the monitoring product's median",
           "irrigated F16 (corn, sorghum or sudan) season on the same schedule, imputed."),
