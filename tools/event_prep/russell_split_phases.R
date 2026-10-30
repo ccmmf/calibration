@@ -55,10 +55,11 @@ SOURCE <- "10.1002/ecy.2105"
 TON_AC_TO_KG_M2 <- 907.18474 / 4046.8564224
 KG_HA_TO_KG_M2 <- 1e-4
 
-# Harvest fractions from the shared harvest lookup the other calibration sites use
-# (russell_harvest_lookup.csv: its rows rounded to three decimals, as Akash gave them on
-# calibration#10).
-# Aboveground removed and to litter; roots all go to litter.
+# Harvest fractions (russell_harvest_lookup.csv): the shared harvest lookup the other calibration
+# sites use, its rows rounded to three decimals as Akash gave them on calibration#10, except corn
+# and tomato, which take what the site's own samples say the harvest removed (Aritra,
+# 2026-10-31; checked against the package below). Aboveground removed and to litter; roots all
+# go to litter.
 HARVEST_LOOKUP <- rd_table("russell_harvest_lookup.csv")
 HARVEST_LOOKUP$above_removed <- as.numeric(HARVEST_LOOKUP$above_removed)
 HARVEST_LOOKUP$above_to_litter <- as.numeric(HARVEST_LOOKUP$above_to_litter)
@@ -66,7 +67,7 @@ stopifnot(!anyDuplicated(HARVEST_LOOKUP$crop),
           abs(HARVEST_LOOKUP$above_removed + HARVEST_LOOKUP$above_to_litter - 1) < 1e-9)
 # Sudangrass takes no lookup row: F16 groups corn, sorghum and sudan, but the package metadata says
 # that in 2008 and 2009 it was sampled before plowing under and no hay was removed, so it is a
-# green manure, all to litter.
+# green manure, all to litter. The 1993 uniformity crop was cut for hay (a hay_harvest correction).
 GREEN_MANURE <- c("cover crop", "sudangrass")
 WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of planting
 # Alfalfa is cut several times a year. An intermediate cutting removes the lookup's
@@ -76,10 +77,12 @@ WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of 
 ALFALFA_CUT <- c(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
 CROP_DISPLAY <- c(corn = "Corn", tomato = "Tomato", wheat = "Wheat", alfalfa = "Alfalfa",
                   sudangrass = "Sudangrass", "cover crop" = "Cover Crop")
-# The experiment's first operations are in fall 1993; the 1992 and 1993 sudangrass
-# uniformity crops before it are not in these files. The run ends with 2014, a year the
+# The experiment's first operations are in fall 1993, and its fertilization rules start then. The run ends with 2014, a year the
 # package's operation logs no longer cover; crops still growing then are left running.
 FIRST_DATE <- as.Date("1993-09-01")
+# The files start earlier, with the 1993 sudangrass uniformity hay grown on every plot (planted
+# 5/12/1993); the July 1992 one has no date and stays out.
+FILES_START <- as.Date("1993-05-01")
 LOGS_END <- as.Date("2013-12-31")
 LAST_DATE <- as.Date("2014-12-31")
 # A missing date comes from the package's own records for the same system, when there are at
@@ -110,7 +113,7 @@ phase_of <- tapply(ps[["harvest_year_rotation_order_(even-odd)"]], sp(ps$new_sys
 # The Transitional plots are "unassigned" until their 1999 conversion, but the package files
 # their earlier operations under Transitional (the 1995 to 1997 crops, the 1998 corn N), so those
 # rows take the plots' phase and plot_system.csv fills those years like any other: the 1998 corn
-# and the cover crop sown after it. The 1993 sudangrass uniformity crop stays out (FIRST_DATE).
+# and the cover crop sown after it, and the 1993 sudangrass uniformity crop (FILES_START).
 # Native Grass, the only other system with unassigned rows, is never a treatment.
 pre <- ps_all[ps_all[["harvest_year_rotation_order_(even-odd)"]] == "unassigned" &
                 sp(ps_all$new_system_name, ps_all$plot) %in% names(phase_of), ]
@@ -146,6 +149,23 @@ cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")
 wcc <- rd("wcc_harvests_all.csv")
 alf <- rd("alfalfa_harvests_all.csv")
+# The corn and tomato rows of russell_harvest_lookup.csv are the site's own medians: grain over
+# aboveground dry biomass (corn_harvests_all.csv) and machine harvested fruit over fruit plus vine
+# dry biomass (tomato_harvests_all.csv). Recomputed here so the table cannot drift from the package.
+site_share <- function(f, part, whole) {
+  x <- rd(f); a <- suppressWarnings(as.numeric(x[[part]])); w <- suppressWarnings(as.numeric(whole(x)))
+  ok <- !is.na(a) & !is.na(w) & a > 0 & w > 0
+  median(a[ok] / w[ok])
+}
+SITE_SHARE <- c(
+  corn = site_share("corn_harvests_all.csv", "dry_grain_wt_kg/ha", function(x) x[["dry_total_biomass_kg/ha"]]),
+  tomato = site_share("tomato_harvests_all.csv", "tomato_mh_dry_yield_Mg/ha", function(x)
+    as.numeric(x[["tomato_mh_dry_yield_Mg/ha"]]) + as.numeric(x[["tomato_hh_vine_dry_yield_Mg/ha"]])))
+for (crop in names(SITE_SHARE)) {
+  r <- HARVEST_LOOKUP[HARVEST_LOOKUP$crop == crop, ]
+  stopifnot(r$lookup_row == "site samples", abs(as.numeric(r$lookup_above_removed) - SITE_SHARE[[crop]]) < 1e-12,
+            r$above_removed == round(SITE_SHARE[[crop]], 3))
+}
 
 # Operation rows whose (system, plot) has no rotation phase cannot go to any phase file.
 # None of them feeds an event, but they are printed rather than dropped silently.
@@ -425,7 +445,7 @@ for (i in seq_len(nrow(rp))) {
   ps_plantings$raw[hit] <- sprintf("%s, replaced by %s (%s)", ps_plantings$raw[hit], f$replacement, f$id)
 }
 ps_plantings <- ps_plantings[!is.na(ps_plantings$date) & ps_plantings$crop %in% names(CROP_DISPLAY) &
-                               ps_plantings$date >= FIRST_DATE & ps_plantings$date <= LAST_DATE, ]
+                               ps_plantings$date >= FILES_START & ps_plantings$date <= LAST_DATE, ]
 # assumed_date: plot table dates its own notes call assigned rather than recorded (1999 tomato)
 ASSUMED_DATES <- corrections("plot_system.csv", "assumed_date")
 
@@ -642,24 +662,32 @@ cover_crop_ends <- function(sys, ph, pe) {
 # monitoring row (F16 groups corn, sorghum and sudan), but the site record overrides it: in 2008
 # and 2009 it was plowed under with no hay removed.
 HAY <- corrections("metadata", "hay_harvest")
+# A hay_harvest row with no system applies to every system, and a replacement date makes its date
+# a range (the 1993 uniformity crop was cut over two days).
+hay_for <- function(sys, crop, d) {
+  d <- as.Date(d); from <- as_date(HAY$date)
+  to <- ifelse(HAY$replacement == "", HAY$date, HAY$replacement)
+  HAY[HAY$system_name %in% c("", sys) & tolower(HAY$crop) == crop & d >= from & d <= as_date(to), ]
+}
 apply_lookup <- function(e, sys) {
   if (e$event_type != "harvest") return(e)
   if (isTRUE(e$not_harvested)) return(e)
   crop <- tolower(e$crop_display)
-  if (crop %in% GREEN_MANURE) {
+  hay <- hay_for(sys, crop, e$date)
+  if (crop %in% GREEN_MANURE && !nrow(hay)) {
     e$frac_above_removed_0to1 <- 0
     e$frac_above_to_litter_0to1 <- 1
     if (crop == "sudangrass")
       e$harvest_fraction_note <- paste("Plowed under with no hay removed (2008 and 2009 sudangrass,",
                                        "Wolf et al. 2018 metadata), which overrides the F16 lookup row.")
   } else {
-    hay <- HAY[HAY$system_name == sys & tolower(HAY$crop) == crop & format(as_date(HAY$date)) == e$date, ]
     r <- HARVEST_LOOKUP[HARVEST_LOOKUP$crop == if (nrow(hay)) "hay" else crop, ]
     if (!nrow(r)) stop(sprintf("%s harvest on %s has no harvest lookup row", e$crop_display, e$date))
     e$frac_above_removed_0to1 <- r$above_removed
     e$frac_above_to_litter_0to1 <- r$above_to_litter
     e$harvest_lookup_row <- r$lookup_row
     if (nrow(hay)) e$harvest_fraction_note <- sprintf("Cut for hay, not grain (%s); the lookup's hay row.", hay$id[1])
+    else if (r$lookup_row == "site samples") e$harvest_fraction_note <- sprintf("%s (Aritra, 2026-10-31).", r$lookup_source)
   }
   e$frac_below_removed_0to1 <- 0
   e$frac_below_to_litter_0to1 <- 1
@@ -1179,7 +1207,8 @@ for (tid in IRRIGATED_WHEAT) {
 # manure, for which the paper gives nothing, takes the monitoring product's median irrigated
 # season of its own class (F16 groups corn, sorghum and sudan), a lower bound, on the same
 # schedule, as the metadata says all corn-tomato rotations receive summer irrigation (Aritra,
-# 2026-10-30).
+# 2026-10-30). So does the 1993 uniformity crop, "irrigated unfertilized" sudan grass hay grown
+# throughout the experiment area (metadata), in every system, the rainfed ones included.
 FURROW_PAPER_SYSTEMS <- treatments_where("paper_irrigation", "furrow")
 FURROW_SYSTEMS <- setdiff(names(SYSTEMS), RAINFED)
 FURROW_CROPS <- c("corn", "tomato")
@@ -1193,11 +1222,12 @@ irm <- read.csv(irrigation_csv, stringsAsFactors = FALSE)
 irm_row <- function(crop) { r <- irm[irm$crop == crop, ]; stopifnot(nrow(r) == 1L); r }
 IRRIGATION_SOURCE <- if (length(args) == 5L) irrigation_csv else
   "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv"
-for (tid in FURROW_SYSTEMS) {
+for (tid in names(SYSTEMS)) {
   n <- c(events = 0L, seasons = 0L)
   for (ph in names(keep_all[[tid]])) {
     pe <- keep_all[[tid]][[ph]]
     x <- irrigation_seasons(pe); x <- x[x$crop %in% c(FURROW_CROPS, "sudangrass"), ]
+    if (tid %in% RAINFED) x <- x[x$crop == "sudangrass" & x$end < FIRST_DATE, ]
     for (i in seq_len(nrow(x))) {
       yr <- format(x$end[i], "%Y")
       suda <- x$crop[i] == "sudangrass"
@@ -1219,9 +1249,10 @@ for (tid in FURROW_SYSTEMS) {
           provenance_note = paste(c(if (suda) sprintf(paste(
             "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the",
             "monitoring irrigation product within %d km of Russell Ranch, %s (%s): %s mm for the %s to %s",
-            "sudangrass season, a lower bound (ET based), as the metadata says all corn-tomato rotations",
-            "receive summer irrigation (Aritra, 2026-10-30)."), r$radius_km, r$years, r$products, format(total),
-            format(x$start[i]), format(x$end[i])) else sprintf(paste(
+            "sudangrass season, a lower bound (ET based), %s"), r$radius_km, r$years, r$products, format(total),
+            format(x$start[i]), format(x$end[i]), if (x$end[i] < FIRST_DATE)
+              "as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay."
+            else "as the metadata says all corn-tomato rotations receive summer irrigation (Aritra, 2026-10-30).") else sprintf(paste(
             "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with",
             "\"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm",
             "in 2004\", read as inches (David, 2026-10-29 call): %s in, %s mm for the %s to %s %s season,",
@@ -1388,7 +1419,7 @@ tillage_events <- function(pe, sys, ph) {
   inc <- integer()
   for (e in ends) {
     crop <- tolower(e$crop_display); d <- as.Date(e$date)
-    if (crop %in% GREEN_MANURE || isTRUE(e$not_harvested)) {
+    if ((crop %in% GREEN_MANURE && is.null(e$harvest_lookup_row)) || isTRUE(e$not_harvested)) {
       out[[length(out) + 1L]] <- tillage_event(d, til_row("any", "all"), sprintf("Incorporation of the %s at its end", crop))
       inc[[e$date]] <- length(out)
     } else if (crop %in% c("corn", "tomato", "wheat")) {
@@ -1502,7 +1533,7 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   pe <- Filter(function(e) is.null(e$history_of), keep_all[[tid]][[ph]])
   for (kind in c("planting", "harvest")) {
     m <- if (kind == "planting") ref_plantings else ref_harvests
-    m <- m[!is.na(m$date) & m$date >= FIRST_DATE & m$date <= LAST_DATE & m$system == sys & m$phase == ph, ]
+    m <- m[!is.na(m$date) & m$date >= FILES_START & m$date <= LAST_DATE & m$system == sys & m$phase == ph, ]
     for (crop in unique(m$crop)) {
       mc <- m[m$crop == crop, ]
       have <- dates_of(Filter(function(e) e$event_type == kind && tolower(e$crop_display) == crop, pe))
@@ -1521,9 +1552,10 @@ own <- function(tid) Filter(function(e) is.null(e$history_of), unlist(keep_all[[
 for (i in seq_len(nrow(ASSUMED_DATES))) stopifnot(any(vapply(unlist(lapply(names(SYSTEMS), own), recursive = FALSE),
   function(e) e$event_type == "planting" && identical(e$provenance_class, "assumed") &&
     e$date == format(as_date(ASSUMED_DATES$date[i])) && tolower(e$crop_display) == tolower(ASSUMED_DATES$crop[i]), TRUE)))
-for (i in seq_len(nrow(HAY))) stopifnot(sum(vapply(own(names(SYSTEMS)[SYSTEMS == HAY$system_name[i]]), function(e)
-  e$event_type == "harvest" && identical(e$harvest_lookup_row, HARVEST_LOOKUP$lookup_row[HARVEST_LOOKUP$crop == "hay"]) &&
-    e$date == format(as_date(HAY$date[i])), TRUE)) == 1L)
+for (i in seq_len(nrow(HAY))) for (tid in if (HAY$system_name[i] == "") names(SYSTEMS) else names(SYSTEMS)[SYSTEMS == HAY$system_name[i]])
+  stopifnot(sum(vapply(unlist(keep_all[[tid]], recursive = FALSE), function(e) e$event_type == "harvest" &&
+    identical(e$harvest_lookup_row, HARVEST_LOOKUP$lookup_row[HARVEST_LOOKUP$crop == "hay"]) &&
+    nrow(hay_for(SYSTEMS[[tid]], tolower(e$crop_display), e$date)) > 0 && any(hay_for(SYSTEMS[[tid]], tolower(e$crop_display), e$date)$id == HAY$id[i]), TRUE)) >= 1L)
 cat("completeness: every plot_system.csv planting and cash crop harvest in the run is in its phase file\n")
 
 # Write --------------------------------------------------------------------------------------
@@ -1549,7 +1581,8 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "package; planting amounts are still the generator's prior fills",
         "(prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack,",
         "including all of 2014, are filled from plot_system.csv and the cutting samples.",
-        "Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings",
+        "Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for",
+        "corn and tomato, the shared harvest lookup for the rest), alfalfa cuttings",
         "leave the stand alive, and cover crops and sudangrass go wholly to litter. No",
         "irrigation comes from the generator; it follows the rules below. Events no record",
         "gives are tagged provenance_class imputed, or assumed where they rest on a stated",
@@ -1585,7 +1618,11 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
           "product near Russell Ranch; 2013 and 2014 take the average, imputed.",
           if (!tid %in% FURROW_PAPER_SYSTEMS) "The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed."),
           collapse = " "),
-        if (tid %in% FURROW_SYSTEMS && "sudangrass" %in% seasons_of(pe)$crop) paste(
+        if (any(seasons_of(pe)$crop == "sudangrass" & seasons_of(pe)$start < FIRST_DATE)) paste(
+          "The file starts with the 1993 sudangrass uniformity crop, grown on every plot before the",
+          "experiment: irrigated like the later sudangrass, unfertilized, and cut for hay (the lookup's",
+          "hay row)."),
+        if (tid %in% FURROW_SYSTEMS && any(seasons_of(pe)$crop == "sudangrass" & seasons_of(pe)$start >= FIRST_DATE)) paste(
           "Sudangrass, for which the paper gives nothing, takes the monitoring product's median",
           "irrigated F16 (corn, sorghum or sudan) season on the same schedule, imputed."),
         if (tid %in% FURROW_SYSTEMS && "alfalfa" %in% seasons_of(pe)$crop) paste(

@@ -19,7 +19,8 @@ Corn/Tomato corn in 2013, four wheat seasons in 1997 to 1999), which takes Tautg
 corn and tomato season and the wheat of every irrigated system are irrigated as Tautges gives,
 the corn and tomato on a schedule from planting to the monitoring product's last irrigation
 before harvest; sudangrass and alfalfa, for which the paper gives no amount, take the
-monitoring product's. Tillage follows the operations Tautges describes and the soil passes the
+monitoring product's. Corn and tomato harvests remove what the site's own samples say the harvest
+took. Tillage follows the operations Tautges describes and the soil passes the
 package logs, with the remaining dates and every intensity from the monitoring product near
 Russell Ranch. Filled planting amounts are medians of the generator's priors (see "Imputed
 dates and amounts" and "Tillage"). Every event no record gives is tagged `provenance_class:
@@ -70,13 +71,13 @@ represent a treatment, run both of its phases; observations are per treatment.
 | synthetic N | 25% NH4, 25% NO3, **50% organic N with no C** | all mineral N (`nh4_n_kg_m2`), field average over the phase's plots |
 | compost (`org_corn_tomato`, `transitional`) | no amount, so both files failed the schema and were withheld | organic C and N from the package (below) |
 | multi-day operations | one harvest per recorded date, so a crop was harvested 2 to 3 times | merged into one event (below) |
-| irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none; Tautges Table 1 lists irrigation "None" |
+| irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none after the 1993 uniformity crop, which was irrigated everywhere; Tautges Table 1 lists irrigation "None" |
 | irrigation, irrigated systems | one sprinkler event of several hundred mm per cash crop window | none from the generator: its 207 events are dropped. Every corn and tomato season follows Tautges et al. 2019 (33.6 in a season, the paper's "mm" read as inches) and every irrigated system's wheat its 80 mm rule (none in its no-irrigation years); sudangrass and alfalfa, which it gives nothing for, take the monitoring product's medians near the site. All of it is soil irrigation, in events of at most 150 mm (below) |
 | tillage | none | one event per operation Tautges et al. 2019 describe, timed and sized from the monitoring product near Russell Ranch, and the herbicide incorporation passes the package logs, on their logged dates (below) |
 | fertilization the log lacks | none | copied from comparable records; corn and wheat with no N record take the paper's rates; the organic 2008 sudangrass year copies the nearest recorded compost (below) |
-| harvest fractions | drawn from a grain-harvest prior | harvest lookup rows; the 2012 wheat cut for hay takes the hay row; alfalfa cuttings leave the stand alive (below) |
+| harvest fractions | drawn from a grain-harvest prior | the site's own samples for corn and tomato, harvest lookup rows for the rest; the 2012 wheat and the 1993 sudangrass, cut for hay, take the hay row; alfalfa cuttings leave the stand alive (below) |
 | cover crops | planted, never terminated | end on their incorporation date, all to litter (below) |
-| plantings and harvests missing from the logs | none, so crops were harvested that were never planted and planted ones never harvested | filled from `plot_system.csv` and the alfalfa cutting samples, the Transitional plots' 1998 crops included (below) |
+| plantings and harvests missing from the logs | none, so crops were harvested that were never planted and planted ones never harvested | filled from `plot_system.csv` and the alfalfa cutting samples, the 1993 sudangrass uniformity crop and the Transitional plots' 1998 crops included (below) |
 | package records that contradict the rest of the package | used as recorded | moved, dropped, re-dated or reinterpreted from `russell_source_corrections.csv`, with the evidence in each row (below) |
 | 2014 | none (the logs end in 2013) | built from `plot_system.csv` and the cutting samples, fertilization imputed (below) |
 | `alf_corn_tomato` before 2012 | no events | the plots' Irrigated Wheat/Legume history (below) |
@@ -86,7 +87,7 @@ Fertilization is rebuilt from `operations_fertilizers.csv` and `operations_compo
 irrigation from the rules below. Planting and harvest are the generator's events, assigned to a
 phase by plot id, plus what the logs miss. **Planting amounts are still the generator's prior
 fills** (`prior_filled` on each event): leaf C from a processing-tomato baseline for every crop,
-a median of 0.0034 kg C/m2 (0.0020 to 0.0048). A filled planting takes the median of those same
+a median of 0.0035 kg C/m2 (0.0020 to 0.0048). A filled planting takes the median of those same
 priors in its phase, so it matches its neighbours (proposed on calibration#10 and agreed by
 Akash and David). The monitoring planting product near the site gives similar leaf C: medians of
 0.0038 kg C/m2 for G2 wheat, 0.0046 for F16 corn and 0.0053 for T32 tomato (v5.0, within 25 km,
@@ -94,22 +95,23 @@ Akash and David). The monitoring planting product near the site gives similar le
 
 ## Harvest fractions
 
-Every harvest takes its crop's row of the harvest lookup the other calibration sites use
-(`s3://carb/management/plant_traits/harvest_lookup.csv`, dated 2026-08-06, md5
-`defbff0c0b86ae9ff6db07d520813538`), the values the monitoring harvest product carries, rounded
-to three decimals as Akash gave them on calibration#10. `russell_harvest_lookup.csv` holds the
-rows with the lookup's exact values, and `harvest_lookup_row` on each event names the one used.
-The generator's draw from a grain-harvest prior is dropped. Every row takes 100% of the biomass
-as removed or to litter, so a harvest ends the crop; an intermediate alfalfa cutting does not
-(below). David suggested DSSAT parameters if more values were needed; none were, as the lookup
-has a row for every harvested crop here.
+Every harvest takes a row of `russell_harvest_lookup.csv`, which holds each row's exact value and
+source; `harvest_lookup_row` on each event names the one used. The generator's draw from a
+grain-harvest prior is dropped. Wheat, alfalfa and hay take the harvest lookup the other
+calibration sites use (`s3://carb/management/plant_traits/harvest_lookup.csv`, dated 2026-08-06,
+md5 `defbff0c0b86ae9ff6db07d520813538`), the values the monitoring harvest product carries,
+rounded to three decimals as Akash gave them on calibration#10. Corn and tomato take what the
+site's own samples say the harvest removed instead (Aritra, 2026-10-31; below), and the script
+recomputes both from the package. Every row takes 100% of the biomass as removed or to litter, so
+a harvest ends the crop; an intermediate alfalfa cutting does not (below). David suggested DSSAT
+parameters if more values were needed; none were.
 
-| crop | lookup row | above removed | above to litter | below removed | below to litter | events |
+| crop | row | above removed | above to litter | below removed | below to litter | events |
 |---|---|---|---|---|---|---|
-| corn | F16 | 0.752 | 0.248 | 0 | 1 | 56 |
-| tomato | T32 | 0.33 | 0.67 | 0 | 1 | 93 |
+| corn | site samples | 0.462 | 0.538 | 0 | 1 | 56 |
+| tomato | site samples | 0.561 | 0.439 | 0 | 1 | 93 |
 | wheat | G2 | 0.713 | 0.287 | 0 | 1 | 150 |
-| wheat cut for hay, 2012 | hay (P, pasture) | 0.892 | 0.108 | 0 | 1 | 2 |
+| cut for hay: the 1993 sudangrass, the 2012 wheat | hay (P, pasture) | 0.892 | 0.108 | 0 | 1 | 23 |
 | alfalfa, last cutting before another crop | P1 | 0.85 | 0.15 | 0 | 1 | 0 |
 | alfalfa, intermediate cutting | P1 share | 0.85 | 0 | 0 | 0 | 13 |
 | sudangrass | none | 0 | 1 | 0 | 1 | 5 |
@@ -123,10 +125,18 @@ has a row for every harvested crop here.
   planting would take the full row; the stand planted 2012-10-04 is still growing at the end
   of 2014, so all 13 cuttings in the files are intermediate. The monitoring product has one
   P1 harvest a year with the full row, so it has no cutting values to use instead.
+- Corn removes 0.462 of its aboveground biomass: the median share of grain in aboveground dry
+  biomass over the 280 plot samples of `corn_harvests_all.csv` (interquartile range 0.41 to
+  0.50). Tomato removes 0.561: the median share of machine harvested fruit in fruit plus vine dry
+  biomass over the 501 samples of `tomato_harvests_all.csv` (hand harvested red and green fruit
+  give 0.60). Tautges et al. 2019 chop and disk the maize stalks and disk the tomato residue, so
+  the rest stays in the field. The lookup's F16 row would remove 0.752 of corn, leaving about
+  half the site's residue, and its T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package
+  has grain yields but no straw, so it gives no wheat share.
 - Sudangrass falls in F16, which groups corn, sorghum and sudan, but the site record overrides
   that row: in 2008 and 2009 it "was sampled prior to plowing under at every harvest and no hay
   was removed from the plots" (Wolf et al. 2018 metadata), so its harvests send everything to
-  litter.
+  litter. The 1993 uniformity crop was hay (below) and takes the hay row.
 - In 2012 the `org_corn_tomato` and `leg_corn_tomato` wheat "was not harvested for grain.
   Instead, all biomass was harvested for hay" (Wolf et al. 2018 metadata), so both take the
   lookup's hay row (Aritra, 2026-10-30). The `leg_corn_tomato` cut is the "Harvest Wheat" logged
@@ -167,8 +177,8 @@ phase's plots share (the first day where a range is given), with `source` naming
 
 | | 1993 to 2013 | 2014 |
 |---|---|---|
-| plantings | 49: wheat 14, tomato 9, corn 5, cover crop 21 | 21: wheat 6, tomato 5, corn 4, cover crop 6 |
-| harvests | 33: wheat 14, corn 8, tomato 6, sudangrass 5 | 15: wheat 6, tomato 5, corn 4 |
+| plantings | 70: sudangrass 21, cover crop 21, wheat 14, tomato 9, corn 5 | 21: wheat 6, tomato 5, corn 4, cover crop 6 |
+| harvests | 54: sudangrass 26, wheat 14, corn 8, tomato 6 | 15: wheat 6, tomato 5, corn 4 |
 | alfalfa cuttings | none missing | 7 |
 
 - The pre-2014 plantings are whole seasons the planting log lacks, at least 336 days from
@@ -210,12 +220,15 @@ phase's plots share (the first day where a range is given), with `source` naming
   operation, while `plot_system.csv` dates it 1998-08-14 and `tomato_harvests_all.csv` has
   its samples.
 - Crops planted in fall 2014 (wheat, cover crops) are still growing when the files end.
-- Left out: the 1992 and 1993 sudangrass uniformity crops grown before the experiment
-  ("In July 1992 and May 1993, irrigated unfertilized S. vulgare (sudan grass) hay was planted
-  throughout the Century Experiment area", Wolf et al. 2018 metadata; `plot_system.csv` dates the
-  1993 one, 5/12/1993 to 8/2/1993, but not the 1992 one). The files start with the first
-  experiment operations in fall 1993, after the September 1993 baseline cores, while the run
-  starts on 1992-01-01 (see "Known limitations").
+- The files start with the 1993 sudangrass uniformity crop, grown on every plot before the
+  experiment: "In July 1992 and May 1993, irrigated unfertilized S. vulgare (sudan grass) hay was
+  planted throughout the Century Experiment area" (Wolf et al. 2018 metadata). `plot_system.csv`
+  has it planted 5/12/1993 to 5/14/1993 and harvested 1993-08-02 or 1993-08-03 on every plot, so
+  each file gets a planting on 1993-05-12 and a hay cut (Aritra, 2026-10-31;
+  `russell_source_corrections.csv`), irrigated like the later sudangrass and with no
+  fertilizer; `alf_corn_tomato` gets it with its Irrigated Wheat/Legume history. The July 1992
+  crop has no date anywhere, so it is left out, and the run, which starts on 1992-01-01, is bare
+  until 1993-05-12.
 - `operations_harvest.csv` also lists the 7/1/1999 Rainfed Wheat/Legume wheat harvest under
   plot 7-3, a `wheat-CC` plot that grew a cover crop that winter; the three `CC-wheat` plots
   carry the harvest. The script drops the 7-3 row (`russell_source_corrections.csv`), as it
@@ -246,7 +259,7 @@ generator's priors (above).
 | compost year | an organic rotation year that is not a wheat year and has no compost record copies the nearest recorded year's compost (see "Fertilization gaps") | 1 (2008) |
 | wheat irrigation | Tautges et al. 2019's rule for IWF and IWF+N, in every irrigated system: 80 mm at the season midpoint, none in its no-irrigation years; IWF and IWF+N through 2012 are tagged assumed (the paper's amount on an imputed date), 2013 and 2014, after its period, and the systems it does not describe imputed | 47 events (20 assumed, 27 imputed), 43 seasons without |
 | corn and tomato irrigation | Tautges et al. 2019, the paper's "mm" read as inches: 33.6 in (853.44 mm) a season, 17.6 in 1995 and 43.5 in 2004, in equal soil events of at most 150 mm from planting to the monitoring product's median last irrigation before harvest; the maize systems through 2012 are tagged assumed (the amount rests on the inches reading), 2013 and 2014, after its period, and the systems it does not describe imputed | 886 events in 149 seasons (582 assumed, 304 imputed) |
-| sudangrass irrigation | the monitoring product's median irrigated F16 season near the site, 440.2 mm, in 3 equal soil events | 15 in 5 seasons |
+| sudangrass irrigation | the monitoring product's median irrigated F16 season near the site, 440.2 mm, in 3 equal soil events | 78: 15 in the five 2008 and 2009 seasons, 63 for the 1993 uniformity crop (21 files; `alf_corn_tomato` gets its 6 with the history) |
 | alfalfa irrigation | the monitoring product's median irrigated P1 year near the site, 579.7 mm, in 4 equal soil events from 12 June to 6 September | 8 in 2 years |
 | tillage | the operations Tautges et al. 2019 describe, timed and sized from monitoring medians near Russell Ranch, and the passes the package logs, on their dates (see "Tillage") | 705 |
 
@@ -335,7 +348,9 @@ generator's priors (above).
   corn-tomato rotations receive summer irrigation", and sudangrass replaced corn there, so each
   season takes the monitoring product's median irrigated F16 season near the site, 440.2 mm, a
   lower bound, in 3 equal soil events of about 146.73 mm (Aritra, 2026-10-30), on the corn
-  schedule: from planting to 30 days before the end. 15 events, imputed.
+  schedule: from planting to 30 days before the end. 15 events, imputed. The 1993 uniformity
+  crop, "irrigated unfertilized" sudan grass hay, gets the same amount on the same schedule in
+  every system, the rainfed ones included: 3 events from 1993-05-12 in each file.
 - Alfalfa: the paper gives no amount either. Each year of cuttings (2013 and 2014) takes the
   monitoring product's median irrigated P1 calendar year near the site, 579.7 mm (3,074
   irrigated of 5,230 parcel-years on 1,508 parcels, 2016 to 2023), a lower bound, in 4 equal
@@ -352,8 +367,8 @@ phase (`corn-tomato-alfalfa-alfalfa-alfalfa-tomato` = `wheat-CC`, plots 4-7, 5-1
 2008 until the switch in 2012. The package files their operations from 1993 to 2007 under
 the old system name, and the generator built each treatment from its own system name, so the
 `alf_corn_tomato` files started at the 2012 alfalfa planting and ran bare from the start of
-the run. Each `alf_corn_tomato` phase now starts with its plots' `irr_wheat_legume` events (100
-in all, tillage included, each tagged `history_of`), then the fallow years, then its own events.
+the run. Each `alf_corn_tomato` phase now starts with its plots' `irr_wheat_legume` events (110
+in all, the 1993 sudangrass and tillage included, each tagged `history_of`), then the fallow years, then its own events.
 
 ## Compost
 
@@ -567,14 +582,10 @@ the `alf_corn_tomato` history:
 
 ## Known limitations
 
-- **Harvest fractions against the site's own records.** The lookup removes 0.752 of corn,
-  0.713 of wheat and 0.33 of tomato aboveground biomass. The package's samples put corn grain
-  at a median 0.462 of aboveground dry biomass (`corn_harvests_all.csv`, n = 280, interquartile
-  range 0.41 to 0.50) and tomato fruit at 0.56 to 0.60 (`tomato_harvests_all.csv`, n = 501,
-  machine or hand harvested fruit against the vine), and Tautges et al. 2019 chop and disk the
-  maize stalks, disk the tomato residue and incorporate the wheat straw. So the lookup removes
-  more corn and less tomato than the site did. The lookup is kept because it is the shared
-  source across sites (calibration#10); whether Russell should take its own fractions is open.
+- **Harvest fractions differ from the other sites.** Corn and tomato take the site's own shares
+  (above), so Russell no longer uses the shared lookup's F16 and T32 rows (Aritra, 2026-10-31).
+  Wheat still takes G2, which removes 0.713 although the paper incorporates the straw; the package
+  has no straw weights to replace it with.
 - **Irrigation amounts are not records.** The corn and tomato amounts rest on reading the
   paper's "mm" as inches, a conservative assumption, and the sudangrass and alfalfa amounts are
   monitoring medians, a lower bound. The schedule spreads a season's total evenly from planting;
@@ -592,18 +603,18 @@ the `alf_corn_tomato` history:
   and 0.69 (`tools/event_prep/russell_monitoring_tillage.R` inputs, 2016 to 2023). SIPNET adds
   each event's intensity to a multiplier on heterotrophic respiration that decays with a 30 day
   time constant, so over 1994 to 2013 that multiplier averages 1.12 to 1.13 in CONV, 1.14 in
-  CONV+WCC and 1.16 in ORG, against 1.03 to 1.04 in the wheat systems. Whether to keep one event
-  per operation or match the product's yearly dose is open (Aritra, 2026-10-31: kept for
-  David).
+  CONV+WCC and 1.16 in ORG, against 1.03 to 1.04 in the wheat systems. One event per operation is
+  kept (Aritra, 2026-10-31): the paper says each operation happened, and the product, detecting
+  tillage from imagery, likely misses some.
 - **Compost basis.** Compost C and N multiply the reported wet tonnage by the %C and %N of
   dry combustion analyses ("Total C and N of incorporated aboveground biomass and composted
   manure were determined each year, using dry combustion analysis", Tautges et al. 2019), the
   basis that reproduces the paper's 40.4 Mg C/ha; the paper's conclusions give 700 to 800 kg C/ha
-  a year, about a third of that. The organic minus conventional soil C difference rests most on
-  this input.
-- **The run's start.** The run starts on 1992-01-01 and the files in fall 1993, so every phase
-  is bare for the 1992 and 1993 sudangrass uniformity crops (above). Adding them, or starting
-  the run in fall 1993, is open.
+  a year, about a third of that. The basis is kept (Aritra, 2026-10-31) because it is the
+  paper's, and the package has no compost moisture to correct with; the organic minus
+  conventional soil C difference rests most on this input.
+- **The run's start.** The run starts on 1992-01-01 and the files on 1993-05-12 with the 1993
+  uniformity crop, so every phase is bare through the 1992 crop, which has no date (above).
 - **CONV+WCC corn N.** The paper's rates fill a log with no corn N in any year (David,
   2026-10-29 call), but that corn yielded at organic levels in 1994 to 2007, 3.4 to 8.0 t/ha
   machine harvested dry yield against conventional's 9.0 to 13.4, while its grain N was close
@@ -617,7 +628,7 @@ the `alf_corn_tomato` history:
 
 - All 23 files validate against `events_schema_v0.1.1` from PEcAn `develop` (the stacked
   organic and transitional files still fail it), and `PEcAn.SIPNET::write.events.SIPNET`
-  writes an `events.in` for each: 469 `harv`, 473 `plant`, 392 `fert`, 966 `irrig` and 735
+  writes an `events.in` for each: 492 `harv`, 496 `plant`, 392 `fert`, 1035 `irrig` and 735
   `till` lines, one per event; every irrigation line carries SIPNET code 1 (soil), and the 13
   alfalfa cuttings are `harv 0.85 0 0 0`.
 - The 323 recorded fertilization events match the package (their phase-year totals,
@@ -669,5 +680,5 @@ posterior of `runs/russell-ranch-1992`, which still runs the stacked file). Both
 stacked run, grow almost no canopy (maximum LAI 0.04 to 0.16 against 3 to 6 for these crops) and
 lose most of their soil carbon by 2014, so they are not yet usable for calibration. They ran an
 earlier version of these files, without the planting-start irrigation schedule, the 2009
-sudangrass irrigation, the logged tillage passes and the July wheat disking, and need repeating
-with the current ones.
+sudangrass irrigation, the logged tillage passes, the July wheat disking, the site's corn and
+tomato harvest fractions and the 1993 crop, and need repeating with the current ones.

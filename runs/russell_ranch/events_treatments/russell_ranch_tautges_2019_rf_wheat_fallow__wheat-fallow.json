@@ -7,9 +7,61 @@
   "rotation_phase": "wheat-fallow",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_rf_wheat_fallow.json",
-  "note": "One rotation phase of the treatment. Planting and harvest events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. No irrigation comes from the generator; it follows the rules below. Events no record gives are tagged provenance_class imputed, or assumed where they rest on a stated reading of the paper or package (the inches irrigation and the 80 mm wheat on its midpoint date, the 1999 tomato dates, compost years without an analysis), as described in runs/russell_ranch/events_treatments/README.md; they are filled in the order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv), except that the herbicide incorporation passes the package logs (operations_pesticides.csv) keep their dates and the wheat straw disking comes before August, as the paper has it."
+  "note": "One rotation phase of the treatment. Planting and harvest events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for corn and tomato, the shared harvest lookup for the rest), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. No irrigation comes from the generator; it follows the rules below. Events no record gives are tagged provenance_class imputed, or assumed where they rest on a stated reading of the paper or package (the inches irrigation and the 80 mm wheat on its midpoint date, the 1999 tomato dates, compost years without an analysis), as described in runs/russell_ranch/events_treatments/README.md; they are filled in the order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). The file starts with the 1993 sudangrass uniformity crop, grown on every plot before the experiment: irrigated like the later sudangrass, unfertilized, and cut for hay (the lookup's hay row). Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv), except that the herbicide incorporation passes the package logs (operations_pesticides.csv) keep their dates and the wheat straw disking comes before August, as the paper has it."
  },
  "events": [
+  {
+   "event_type": "irrigation",
+   "date": "1993-05-12",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv",
+   "amount_mm": 146.7333,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1): 440.2 mm for the 1993-05-12 to 1993-08-03 sudangrass season, a lower bound (ET based), as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay. Event 1 of 3 equal events (at most 150 mm each) from the 1993-05-12 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
+   "event_type": "planting",
+   "date": "1993-05-12",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_code": "Sudangrass",
+   "crop_display": "Sudangrass",
+   "leaf_c_kg_m2": 0.0035,
+   "prior_filled": "leaf_c_kg_m2<-median of the site's 5 generator Sudangrass plantings",
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted (5/12/1993 - 5/14/1993), the date most of the phase's plots share."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1993-06-07",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv",
+   "amount_mm": 146.7333,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1): 440.2 mm for the 1993-05-12 to 1993-08-03 sudangrass season, a lower bound (ET based), as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay. Event 2 of 3 equal events (at most 150 mm each) from the 1993-05-12 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "1993-07-04",
+   "source": "calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv",
+   "amount_mm": 146.7334,
+   "method": "soil",
+   "provenance_class": "imputed",
+   "provenance_note": "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1): 440.2 mm for the 1993-05-12 to 1993-08-03 sudangrass season, a lower bound (ET based), as the metadata says the 1993 uniformity crop was \"irrigated unfertilized\" sudan grass hay. Event 3 of 3 equal events (at most 150 mm each) from the 1993-05-12 planting to 30 days before harvest, the median days between the last irrigation and harvest of F16 (corn) seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (irrigation v5.0, harvest v5.0, planting v5.0, crops v4.1; calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). The schedule starts at planting: the package records irrigation at transplanting (plot-system.csv, 1999: \"irrigated 5/1/99\"), and the product, estimated from evapotranspiration, misses early season water (Aritra, 2026-10-31). Method soil: furrow water."
+  },
+  {
+   "event_type": "harvest",
+   "date": "1993-08-03",
+   "source": "10.1002/ecy.2105:plot_system.csv",
+   "crop_display": "Sudangrass",
+   "frac_above_removed_0to1": 0.892,
+   "provenance_class": "published",
+   "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (1993-08-02; 1993-08-03), the date most of the phase's plots share.",
+   "frac_above_to_litter_0to1": 0.108,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Cut for hay, not grain (uniformity_hay_1993); the lookup's hay row.",
+   "frac_below_removed_0to1": 0,
+   "frac_below_to_litter_0to1": 1
+  },
   {
    "event_type": "fertilization",
    "date": "1993-11-04",
