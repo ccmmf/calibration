@@ -7,7 +7,7 @@
   "rotation_phase": "tomato-corn",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_conv_corn_tomato.json",
-  "note": "One rotation phase of the treatment. Planting, harvest and irrigation events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and 180 kg N/ha of ammonium sulfate sidedress. Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in (853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches, applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation product near Russell Ranch; 2013 and 2014 take the average, imputed. The irrigated wheat systems' wheat irrigation follows Tautges et al. 2019 instead of the generator: 80 mm per year at the season midpoint, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv)."
+  "note": "One rotation phase of the treatment. Planting and harvest events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take the harvest lookup fractions (harvest_lookup_row), alfalfa cuttings leave the stand alive, and cover crops and sudangrass go wholly to litter. No irrigation comes from the generator; it follows the rules below. Dates and amounts no record gives are imputed (provenance_class imputed) as described in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and 180 kg N/ha of ammonium sulfate sidedress. Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in (853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches, applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation product near Russell Ranch; 2013 and 2014 take the average, imputed. Sudangrass, for which the paper gives nothing, takes the monitoring product's median irrigated F16 (corn, sorghum or sudan) season on the same schedule, imputed. Wheat irrigation follows Tautges et al. 2019's rule for the irrigated wheat systems instead of the generator: 80 mm per year at the season midpoint, applied to the soil, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. The paper gives the rule for IWF and IWF+N only; this system's wheat is irrigated the same way, imputed. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv), except that the herbicide incorporation passes the package logs (operations_pesticides.csv) keep their dates and the wheat straw disking comes before August, as the paper has it."
  },
  "events": [
   {
@@ -46,7 +46,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -55,7 +55,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -64,7 +64,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -73,7 +73,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -82,7 +82,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -91,7 +91,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1994-05-04 to 1994-08-27 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 1994-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -166,7 +166,7 @@
    "amount_mm": 149.0133,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 17.6 in, 447.04 mm for the 1995-05-18 to 1995-10-18 corn season, the paper's 1995 value. Event 1 of 3 equal events (at most 150 mm each) from 61 days after the 1995-05-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 17.6 in, 447.04 mm for the 1995-05-18 to 1995-10-18 corn season, the paper's 1995 value. Event 1 of 3 equal events (at most 150 mm each) from 61 days after the 1995-05-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -175,7 +175,7 @@
    "amount_mm": 149.0133,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 17.6 in, 447.04 mm for the 1995-05-18 to 1995-10-18 corn season, the paper's 1995 value. Event 2 of 3 equal events (at most 150 mm each) from 61 days after the 1995-05-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 17.6 in, 447.04 mm for the 1995-05-18 to 1995-10-18 corn season, the paper's 1995 value. Event 2 of 3 equal events (at most 150 mm each) from 61 days after the 1995-05-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -184,7 +184,7 @@
    "amount_mm": 149.0134,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 17.6 in, 447.04 mm for the 1995-05-18 to 1995-10-18 corn season, the paper's 1995 value. Event 3 of 3 equal events (at most 150 mm each) from 61 days after the 1995-05-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 17.6 in, 447.04 mm for the 1995-05-18 to 1995-10-18 corn season, the paper's 1995 value. Event 3 of 3 equal events (at most 150 mm each) from 61 days after the 1995-05-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -259,7 +259,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -268,7 +268,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -277,7 +277,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -286,7 +286,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -295,7 +295,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -304,7 +304,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1996-04-25 to 1996-08-23 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 1996-04-25 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -381,7 +381,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -390,7 +390,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -399,7 +399,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -408,7 +408,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -417,7 +417,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -426,7 +426,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1997-03-25 to 1997-10-01 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 1997-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -491,7 +491,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -500,7 +500,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -509,7 +509,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -518,7 +518,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -527,7 +527,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -536,7 +536,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1998-04-22 to 1998-08-14 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 1998-04-22 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -603,7 +603,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -612,7 +612,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -621,7 +621,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -630,7 +630,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -639,7 +639,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -648,7 +648,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 1999-06-04 to 1999-10-22 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 1999-06-04 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -713,7 +713,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -722,7 +722,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -731,7 +731,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -740,7 +740,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -749,7 +749,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -758,7 +758,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2000-04-26 to 2000-08-21 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2000-04-26 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -823,7 +823,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -832,7 +832,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -841,7 +841,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -850,7 +850,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -859,7 +859,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -868,7 +868,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2001-03-28 to 2001-10-19 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2001-03-28 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -951,7 +951,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -960,7 +960,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -969,7 +969,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -978,7 +978,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -987,7 +987,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -996,7 +996,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2002-04-24 to 2002-08-19 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2002-04-24 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1061,7 +1061,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1070,7 +1070,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1079,7 +1079,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1088,7 +1088,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1097,7 +1097,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1106,7 +1106,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2003-04-09 to 2003-10-17 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2003-04-09 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1187,7 +1187,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 1 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 1 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1196,7 +1196,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 2 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 2 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1205,7 +1205,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 3 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 3 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1214,7 +1214,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 4 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 4 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1223,7 +1223,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 5 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 5 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1232,7 +1232,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 6 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 6 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1241,7 +1241,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 7 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 7 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1250,7 +1250,7 @@
    "amount_mm": 138.1125,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 8 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 43.5 in, 1104.9 mm for the 2004-05-04 to 2004-08-11 tomato season, the paper's 2004 value. Event 8 of 8 equal events (at most 150 mm each) from 57 days after the 2004-05-04 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1317,7 +1317,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1326,7 +1326,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1335,7 +1335,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1344,7 +1344,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1353,7 +1353,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1362,7 +1362,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2005-04-19 to 2005-10-07 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2005-04-19 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1443,7 +1443,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1452,7 +1452,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1461,7 +1461,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1470,7 +1470,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1479,7 +1479,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1488,7 +1488,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2006-05-19 to 2006-09-13 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2006-05-19 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1553,7 +1553,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1562,7 +1562,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1571,7 +1571,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1580,7 +1580,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1589,7 +1589,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1598,7 +1598,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2007-04-18 to 2007-10-23 corn season, the average. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2007-04-18 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1679,7 +1679,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1688,7 +1688,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1697,7 +1697,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1706,7 +1706,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1715,7 +1715,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1724,7 +1724,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2008-06-01 to 2008-10-03 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2008-06-01 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -1872,7 +1872,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1881,7 +1881,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1890,7 +1890,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1899,7 +1899,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1908,7 +1908,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -1917,7 +1917,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2010-05-03 to 2010-09-06 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2010-05-03 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -2046,7 +2046,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2055,7 +2055,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2064,7 +2064,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2073,7 +2073,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2082,7 +2082,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2091,7 +2091,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "published",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2012-04-30 to 2012-09-05 tomato season, the average. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2012-04-30 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -2172,7 +2172,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 1 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2181,7 +2181,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 2 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2190,7 +2190,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 3 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2199,7 +2199,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 4 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2208,7 +2208,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 5 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2217,7 +2217,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2013-03-25 to 2013-10-01 corn season, the average, as the paper's period ends in 2012. Event 6 of 6 equal events (at most 150 mm each) from 61 days after the 2013-03-25 planting to 30 days before harvest, the medians for corn seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",
@@ -2274,7 +2274,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 1 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2283,7 +2283,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 2 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2292,7 +2292,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 3 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2301,7 +2301,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 4 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2310,7 +2310,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 5 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "irrigation",
@@ -2319,7 +2319,7 @@
    "amount_mm": 142.24,
    "method": "soil",
    "provenance_class": "imputed",
-   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David on calibration#10): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
+   "provenance_note": "Tautges et al. 2019: maize and tomato in CONV, CONV+WCC and ORG were furrow irrigated with \"an average of 33.6 mm per year, with a minimum of 17.6 mm in 1995 and a maximum of 43.5 mm in 2004\", read as inches (David, 2026-10-29 call): 33.6 in, 853.44 mm for the 2014-04-27 to 2014-08-21 tomato season, the average, as the paper's period ends in 2012. Event 6 of 6 equal events (at most 150 mm each) from 57 days after the 2014-04-27 planting to 25 days before harvest, the medians for tomato seasons in the monitoring irrigation product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_irrigation_near_russell.csv). Method soil: furrow water."
   },
   {
    "event_type": "harvest",

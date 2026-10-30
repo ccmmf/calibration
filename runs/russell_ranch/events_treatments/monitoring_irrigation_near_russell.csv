@@ -1,3 +1,4 @@
-"crop","crop_code","n_seasons","n_seasons_irrigated","median_mm","p25_mm","p75_mm","median_irrigated_mm","median_events","median_first_days","median_last_days","median_interval_days","max_event_mm","radius_km","years","n_members","n_parcels"
-"corn","F16",2355,1471,156,0,454,440.2,3,61,30,24,211,25,"2016-2023",20,2752
-"tomato","T32",4963,4404,439.5,152.6,598.9,449.8,3,57,25,22,215.8,25,"2016-2023",20,2752
+"crop","crop_code","season","n_seasons","n_seasons_irrigated","median_mm","p25_mm","p75_mm","median_irrigated_mm","median_events","median_first_days","median_last_days","median_interval_days","max_event_mm","radius_km","years","n_members","n_parcels"
+"corn","F16","planting to harvest",2355,1471,156,0,454,440.2,3,61,30,24,211,25,"2016-2023",20,1420
+"tomato","T32","planting to harvest",4963,4404,439.5,152.6,598.9,449.8,3,57,25,22,215.8,25,"2016-2023",20,1902
+"alfalfa","P1","calendar year",5230,3074,158,0,604.9,579.7,4,162,116,23,207.1,25,"2016-2023",20,1508
