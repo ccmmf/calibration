@@ -946,6 +946,7 @@ fert_seasons <- function(tid, crop) do.call(rbind, lapply(names(keep_all[[tid]])
   cbind(x, phase = p2, tid = tid)
 }))
 fert_gaps <- list()
+wheat_gap_phases <- character()  # "tid phase" of files with a paper-rate wheat season, for the file note
 for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   ss <- seasons_of(keep_all[[tid]][[ph]])
   ss <- ss[ss$start >= FIRST_DATE, ]
@@ -974,6 +975,7 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
     shift <- as.numeric((if (paper) last_planting(keep_all[[tid]][[ph]], s$crop, s$start, end) else s$start) - from)
     recs <- fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
     kg_ha <- if (paper) paper_corn_n(recs) else if (wheat) paper_wheat_n(recs, tmpl$start, tid)
+    if (wheat) wheat_gap_phases <- union(wheat_gap_phases, paste(tid, ph))
     for (j in seq_along(recs)) {
       e <- recs[[j]]
       d <- as.Date(e$date) + shift
@@ -1533,6 +1535,7 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   pe <- pe[order(vapply(pe, `[[`, "", "date"), vapply(pe, `[[`, "", "event_type"))]
   slug <- gsub("-+", "-", gsub("[^a-z0-9]+", "-", tolower(ph)))
   hist_note <- history_of[[paste(tid, ph)]]
+  wheat_rate <- if (tid %in% RAINFED) "rainfed" else "irrigated"
   out <- list(
     pecan_events_version = "0.1.1",
     site_id = sprintf("%s__%s", tid, slug),
@@ -1562,6 +1565,12 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         if (tid %in% PAPER_CORN_N) paste(
           "A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and",
           "180 kg N/ha of ammonium sulfate sidedress."),
+        if (paste(tid, ph) %in% wheat_gap_phases) sprintf(paste(
+          "A wheat season with no N record takes Tautges et al. 2019's amounts: %d kg N/ha starter and",
+          "%d kg N/ha of urea (the %s rate%s), on the dates of the treatment's nearest wheat season with",
+          "a complete record."),
+          WHEAT_STARTER_N, WHEAT_UREA_N[[wheat_rate]], wheat_rate,
+          if (tid %in% PAPER_SYSTEMS) "" else "; the paper does not describe this system"),
         if (tid == "leg_corn_tomato") paste(
           "Its 2004 to 2007 tomato seasons keep the log's starter only: they were the first to follow",
           "a winter legume cover crop, and their fruit N and yield were the lowest of the tomato systems."),
