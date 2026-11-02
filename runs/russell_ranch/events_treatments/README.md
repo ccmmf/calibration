@@ -139,16 +139,15 @@ parameters if more values were needed; none were.
   median 0.039 of the aboveground biomass, stays in the field with the vines, so it counts in the
   total and goes to litter (David on calibration#10, 2026-11-02). The package weighs the hand
   harvested fruit fresh only, so red and green fruit both take the plot's
-  `tomato_fruit_moisture_%` (median 93.5%,
-  measured on the hand harvested tomatoes; there is no value for green fruit alone). Both crops'
-  shares come from the hand harvests, which "were used to establish total aboveground biomass"
-  (Wolf et al. 2018 metadata). The machine harvested strips yield less than the hand harvested
-  quadrats (tomato a median 0.92 of the quadrat's red fruit, fresh), so machine harvest over the
-  quadrat's biomass would give 0.500 for tomato and 0.37 for corn. Tautges et al. 2019 chop and
-  disk the maize stalks and disk the tomato residue, so the rest stays in the field. The
-  lookup's F16 row would remove 0.752 of corn, leaving about half the site's residue, and its
-  T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package has grain yields but no straw, so
-  it gives no wheat share.
+  `tomato_fruit_moisture_%` (median 93.5%, measured on the hand harvested tomatoes; there is no
+  value for green fruit alone). Both crops' shares come from the hand harvests, which "were used
+  to establish total aboveground biomass" (Wolf et al. 2018 metadata). The machine harvested
+  strips yield less than the hand harvested quadrats (tomato a median 0.92 of the quadrat's red
+  fruit, fresh), so machine harvest over the quadrat's biomass would give 0.500 for tomato and
+  0.37 for corn. Tautges et al. 2019 chop and disk the maize stalks and disk the tomato residue,
+  so the rest stays in the field. The lookup's F16 row would remove 0.752 of corn, leaving about
+  half the site's residue, and its T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package
+  has grain yields but no straw, so it gives no wheat share.
 - Sudangrass falls in F16, which groups corn, sorghum and sudan, but the site record overrides
   that row: in 2008 and 2009 it "was sampled prior to plowing under at every harvest and no hay
   was removed from the plots" (Wolf et al. 2018 metadata), so its harvests send everything to
