@@ -2,11 +2,15 @@
 % Please edit documentation in R/forward_sipnet.R
 \name{inject_traits}
 \alias{inject_traits}
-\title{overwrite the pft's calibrated trait columns with the proposal U.}
+\title{write the proposal U into each named soil pft: the calibrated rates are one
+shared quantity, not one per pft. fails if a named pft is absent rather than
+silently calibrating a subset.}
 \usage{
-inject_traits(baseline, soil_pft, U_traits)
+inject_traits(baseline, soil_pfts, U_traits)
 }
 \description{
-overwrite the pft's calibrated trait columns with the proposal U.
+write the proposal U into each named soil pft: the calibrated rates are one
+shared quantity, not one per pft. fails if a named pft is absent rather than
+silently calibrating a subset.
 }
 \keyword{internal}

@@ -147,15 +147,17 @@ the general package.
 
 ## The observations
 
-`build_obs()` reads the curated cal/val data and builds the target for one
-variable at the sites you name. Each site, treatment, and year becomes one slot;
-the value is the replicate mean and the variance comes from the replicate spread.
+`build_obs()` reads the curated cal/val data and stacks a target from a list of
+`targets`, one per variable with the sites that carry it. Each variable, site,
+treatment, and year becomes one slot; the value is the replicate mean and the
+variance comes from the replicate spread, or the reported standard error where a
+cell has no replicates. A single-variable target is a one-entry list; a joint multi-variable
+target adds more entries.
 
 ```{r sipnet-obs, eval = FALSE}
 obs <- build_obs(
   cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal_val",
-  target_var  = "SOC_stock_Mg_ha",
-  sites       = "salinas_socs"
+  targets = list(list(variable = "SOC_stock_Mg_ha", sites = "salinas_socs"))
 )
 ```
 
@@ -169,13 +171,14 @@ Priors come from three sources, combined into one list:
 
 ```{r sipnet-prior, eval = FALSE}
 prior <- c(
-  prior_from_postdistns("som_respiration_rate", soil_pft$posterior.files),
+  prior_from_postdistns("som_respiration_rate", "pfts/soil/post.distns.Rdata"),
   prior_from_specs(list(
     soil_respiration_Q10 = list(distn = "unif", parama = 1.4,  paramb = 3.0),
     turn_over_time       = list(distn = "unif", parama = 0.13, paramb = 1.2)
   )),
   state_prior_from_obs(obs$meta, prefix = "soilInit.",
-                       from_unit = "Mg/ha", to_unit = "kg/m2", anchor_year = 2)
+                       variable = "SOC_stock_Mg_ha",
+                       from_unit = "Mg/ha", to_unit = "kg/m2")
 )
 ```
 
@@ -183,8 +186,8 @@ prior <- c(
 
 `make_forward_sipnet()` wraps a prepared PEcAn multisite run as the `forward`
 function. It runs the ensemble through SIPNET, using the settings and the SGE
-launcher exactly as prepared, and harvests the variable back to the observation
-units.
+launcher exactly as prepared, and harvests each observed variable back to its
+observation units through the `var_map` crosswalk.
 
 ```{r sipnet-forward, eval = FALSE}
 settings <- PEcAn.settings::read.settings(
@@ -193,8 +196,10 @@ settings <- PEcAn.settings::read.settings(
 
 forward <- make_forward_sipnet(
   settings = settings, obs = obs, n_particles = 50,
-  harvest_var = "TotSoilCarb", from_unit = "kg/m2", to_unit = "Mg/ha",
-  soil_pft = "soil", state_prefix = "soilInit.",
+  var_map = list(
+    SOC_stock_Mg_ha = list(model_var = "TotSoilCarb", from = "kg/m2", to = "Mg/ha")
+  ),
+  soil_pfts = "soil", state_prefix = "soilInit.",
   state_pool = "soil_organic_carbon_content"
 )
 ```
@@ -203,7 +208,7 @@ forward <- make_forward_sipnet(
 
 This launches the SIPNET ensemble on the cluster, so it is not run here. In
 practice you run it through the numbered scripts (`scripts/010` to `040`) against
-a config; see `examples/salinas_soc/`.
+a config; see `examples/1_salinas_soc/`.
 
 ```{r sipnet-run, eval = FALSE}
 result <- calibrate(
@@ -241,9 +246,9 @@ prior to posterior shift in each parameter.
 
 To calibrate something else, you change the four pieces, not the estimator:
 
-- point `build_obs()` at a different `target_var` and `sites`,
+- give `build_obs()` the `targets` you want (variables and their sites),
 - build a prior for the parameters you want,
-- give `make_forward_sipnet()` (or your own `forward`) the variable and units,
+- give `make_forward_sipnet()` (or your own `forward`) a `var_map` for those variables,
 - keep `calibrate()` as is.
 
 The estimator only ever sees `y`, `Sigma`, and the model predictions, so it does

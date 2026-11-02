@@ -1,17 +1,21 @@
 # salinas organic cropping systems soil carbon calibration. this is the worked
 # example that runs the package on one real dataset; the soc and salinas
 # specifics live here, not in R/. run the scripts with
-# --config examples/salinas_soc/config.yml.
+# --config examples/1_salinas_soc/config.yml.
 default:
   scc: /projectnb/dietzelab/ccmmf
-  cache_dir: cache
+  cache_dir: /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/cache
   soil_pft: soil
 
   observations:
-    dir: usr/akash/cal_val
-    target_var: SOC_stock_Mg_ha
-    sites:
-      - salinas_socs
+    dir: usr/akash/cal-val-data
+    targets:
+      # 2003-2004 is the establishment drop, a one time disturbance the model
+      # should not be pushed to reproduce; the fit starts at the 2005 stock
+      - variable: SOC_stock_Mg_ha
+        sites: [salinas_socs]
+        units: Mg C ha-1
+        years: [2005, 2011]
 
   priors:
     # traits with a soil pft meta-analysis posterior are read from it.
@@ -21,25 +25,21 @@ default:
     specified:
       soil_respiration_Q10: {distn: unif, parama: 1.4,  paramb: 3.0}
       turn_over_time:       {distn: unif, parama: 0.13, paramb: 1.2}
-    # per site initial soil carbon, anchored to the year 2 observation (the first
-    # fitted year), converted from the reported Mg/ha to the model kg/m2.
+    # per system initial soil carbon, anchored to the earliest fitted observation
+    # (2005), converted from the reported Mg/ha to the model kg/m2.
     state:
       prefix: soilInit.
+      variable: SOC_stock_Mg_ha
       from_unit: Mg/ha
       to_unit: kg/m2
-      anchor_year: 2
 
   forward:
     run_dir: usr/akash/salinas_socs
-    harvest_var: TotSoilCarb
-    from_unit: kg/m2
-    to_unit: Mg/ha
+    var_map:
+      SOC_stock_Mg_ha: {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
     state_pool: soil_organic_carbon_content
 
   eki:
     n_particles: 50
     n_iterations: 3
     seed: 556688
-
-  # fit study_year 2 onward; year 0-1 is not a target.
-  fit_from_study_year: 2
