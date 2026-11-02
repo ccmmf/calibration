@@ -1566,8 +1566,8 @@ logged_passes <- function(sys, ph) {
 FALLOW_DISKINGS <- setNames(TREATMENTS$fallow_diskings, TREATMENTS$tid)
 FALLOW_MIN_DAYS <- 300  # a gap this long between a crop's end and the next wheat planting is a fallow
 FALLOW_NOTE <- paste("The paper gives the fallow four diskings, beginning after wheat harvest, but no dates,",
-                     "and the monitoring product near Russell Ranch shows at most one pass after a wheat",
-                     "harvest, so the even spacing is an assumption.")
+                     "and the monitoring product near Russell Ranch shows one pass in most gaps after a",
+                     "wheat harvest (two in 9 of 722), not four, so the even spacing is an assumption.")
 tillage_events <- function(pe, sys, ph, n_fallow) {
   out <- list()
   pls <- Filter(function(e) e$event_type == "planting", pe)

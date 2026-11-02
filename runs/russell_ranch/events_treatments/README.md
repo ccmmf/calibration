@@ -554,7 +554,7 @@ season it copies.
   3/24/2011 urea is on its wheat plots. The script moves it to 2-5, 5-3 and 6-6 (a `move_plot`
   row in `russell_source_corrections.csv`; `century_package_issues.md`, item 8), so the
   topdress counts once, as logged, in the wheat it was labelled for.
-- Also left as recorded: the spring 1999 urea that the log puts on the fallow plots of
+- Left as recorded: the spring 1999 urea that the log puts on the fallow plots of
   `irr_wheat_fallow` (56.04 kg N/ha) and `rf_wheat_fallow` (29.54), between their 1998 wheat
   harvest and their fall 1999 seeding, so it falls on bare soil, while the plots that grew wheat
   that spring have no record and take the paper's rates (`century_package_issues.md`, item 7).
