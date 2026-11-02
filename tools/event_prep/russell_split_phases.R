@@ -126,8 +126,9 @@ pre[["harvest_year_rotation_order_(even-odd)"]] <- unname(phase_of[sp(pre$new_sy
 ps <- rbind(ps, pre)
 
 # Corrections to package records (russell_source_corrections.csv), each keyed to the record it
-# changes and asserted to match exactly that record, or, for keep_as_logged, to the seasons a fill
-# rule leaves as logged and asserted to be used; the evidence column says why.
+# changes and asserted to match exactly that record, or, for add_plot, to the record on the
+# phase's other plots, or, for keep_as_logged, to the seasons a fill rule leaves as logged and
+# asserted to be used; the evidence column says why.
 CORRECTIONS <- rd_table("russell_source_corrections.csv")
 stopifnot(!anyDuplicated(CORRECTIONS$id))
 corrections <- function(file, action) CORRECTIONS[CORRECTIONS$file %in% file & CORRECTIONS$action == action, ]
