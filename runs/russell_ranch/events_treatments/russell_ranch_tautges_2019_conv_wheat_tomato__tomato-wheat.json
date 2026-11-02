@@ -472,6 +472,16 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "fertilization",
+   "date": "1998-06-09",
+   "nh4_n_kg_m2": 0.0037703,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 1,
+   "provenance_class": "imputed",
+   "provenance_note": "The package logs this Ammonium sulfate (113.11 kg N/ha) on plots 2-5 and 6-6 but not on 5-3, which grew the same crop; every other application in the log covers all three plots, so 5-3 is taken to have had it too and this event adds its share, 37.70 kg N/ha of the field average (cwt_tomato_sidedress_plot_1998 in russell_source_corrections.csv; century_package_issues.md, item 5). The logged plots' event the same day stays as published."
+  },
+  {
    "event_type": "irrigation",
    "date": "1998-06-14",
    "source": "10.1111/gcb.14762",
@@ -1638,8 +1648,8 @@
    "source": "10.1002/ecy.2105:operations_fertilizers.csv",
    "material": "Urea",
    "n_plots_treated": 3,
-   "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has this wheat season's preplant application but not its in-season topdress or sidedress, which 41 of the 43 recorded wheat seasons of the irrigated N group have (n_fill_group in russell_treatments.csv). Copies the 2011-03-24 Urea application (56.20 kg N/ha) of the wheat season last planted 2010-11-16 in conv_corn_tomato tomato-corn, the nearest with both, shifted +0 days to this season's last planting (David on calibration#10, 2026-11-02)."
+   "provenance_class": "published",
+   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
    "event_type": "harvest",

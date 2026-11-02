@@ -586,6 +586,16 @@
    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
+   "event_type": "fertilization",
+   "date": "1998-04-20",
+   "nh4_n_kg_m2": 0.0015413,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "NPK_new",
+   "n_plots_treated": 1,
+   "provenance_class": "imputed",
+   "provenance_note": "The package logs this NPK_new (46.24 kg N/ha) on plots 1-1 and 6-3 but not on 6-7, which grew the same crop; every other application in the log covers all three plots, so 6-7 is taken to have had it too and this event adds its share, 15.41 kg N/ha of the field average (lmt_tomato_starter_plot_1998 in russell_source_corrections.csv; century_package_issues.md, item 5). The logged plots' event the same day stays as published."
+  },
+  {
    "event_type": "irrigation",
    "date": "1998-04-22",
    "source": "10.1111/gcb.14762",

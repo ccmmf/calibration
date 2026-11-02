@@ -127,7 +127,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -135,7 +135,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -143,7 +143,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -151,7 +151,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 1994-06-15, spaced evenly from 1994-07-31 to the wheat planting of 1995-11-21 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -216,7 +216,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -224,7 +224,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -232,7 +232,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -240,7 +240,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 1996-06-21, spaced evenly from 1996-07-31 to the wheat planting of 1997-11-05 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -296,7 +296,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -304,7 +304,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -322,7 +322,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -330,7 +330,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -386,7 +386,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -394,7 +394,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -402,7 +402,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -410,7 +410,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2000-06-26, spaced evenly from 2000-07-31 to the wheat planting of 2001-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -477,7 +477,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -485,7 +485,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -493,7 +493,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -501,7 +501,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2002-07-09, spaced evenly from 2002-07-31 to the wheat planting of 2003-11-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -566,7 +566,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -574,7 +574,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -582,7 +582,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -590,7 +590,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2004-06-30, spaced evenly from 2004-07-31 to the wheat planting of 2005-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -655,7 +655,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -663,7 +663,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -671,7 +671,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -679,7 +679,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2006-06-30, spaced evenly from 2006-07-31 to the wheat planting of 2007-12-15 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -735,7 +735,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -743,7 +743,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -751,7 +751,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -759,7 +759,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2008-07-09, spaced evenly from 2008-07-31 to the wheat planting of 2009-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -815,7 +815,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -823,7 +823,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -831,7 +831,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -839,7 +839,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2010-07-09, spaced evenly from 2010-07-31 to the wheat planting of 2011-11-17 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -895,7 +895,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -903,7 +903,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -911,7 +911,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 3 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "tillage",
@@ -919,7 +919,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 4 of 4 after the wheat harvest of 2012-06-25, spaced evenly from 2012-07-31 to the wheat planting of 2013-11-10 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   },
   {
    "event_type": "fertilization",
@@ -986,7 +986,7 @@
    "source": "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv",
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
-   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2014-06-22, spaced evenly from 2014-07-31 to 470 days later, this file's median fallow (the run ends first) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch has no fallow passes to time them."
+   "provenance_note": "Fallow disking 1 of 4 after the wheat harvest of 2014-06-22, spaced evenly from 2014-07-31 to 470 days later, this file's median fallow (the run ends first) (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows at most one pass after a wheat harvest, so the even spacing is an assumption."
   }
  ]
 }

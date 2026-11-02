@@ -258,6 +258,16 @@ FERT_PLOT_FIXES <- setNames(fp$replacement, fp$plot)
 stopifnot(all(names(FERT_PLOT_FIXES) %in% frt$plot))
 fix <- frt$plot %in% names(FERT_PLOT_FIXES)
 frt$plot[fix] <- FERT_PLOT_FIXES[frt$plot[fix]]
+# move_plot: an application filed under the wrong plots of its system; plot and replacement list
+# the plots in the same order, separated by ";". The target plots must have no record that day.
+mvf <- corrections("operations_fertilizers.csv", "move_plot")
+for (i in seq_len(nrow(mvf))) {
+  f <- mvf[i, ]; from <- strsplit(f$plot, ";")[[1]]; to <- strsplit(f$replacement, ";")[[1]]
+  day <- frt$system_name == f$system_name & frt$date == as_date(f$date)
+  same <- day & frt$crop_fertilized == f$crop & frt$material_applied == f$material & frt$n == as.numeric(f$value)
+  stopifnot(length(from) == length(to), setequal(frt$plot[same], from), !any(day & frt$plot %in% to))
+  frt$plot[same] <- to[match(frt$plot[same], from)]
+}
 frt$phase <- unname(phase_of[sp(frt$system_name, frt$plot)])
 miss <- is.na(frt$phase)
 unmapped("operations_fertilizers.csv", frt$system_name[miss], frt$plot[miss], frt$date[miss],
@@ -286,6 +296,20 @@ fert_n <- field_mean(frt, "n")
 mats <- aggregate(material_applied ~ system_name + phase + date, data = frt,
                   FUN = function(m) paste(sort(unique(m)), collapse = "; "))
 fert_n <- merge(fert_n, mats, all.x = TRUE)
+# add_plot: an application logged on all but one plot of its phase, the missing plot growing the
+# same crop (century_package_issues.md, item 5; every other application in the log covers all
+# three). The logged plots keep their published event; the missing plot's share is a separate
+# imputed event on the same day, so the field average reaches the full rate.
+ap <- corrections("operations_fertilizers.csv", "add_plot")
+FERT_PLOT_ADDS <- do.call(rbind, lapply(seq_len(nrow(ap)), function(i) {
+  f <- ap[i, ]; d <- as_date(f$date); ph <- unname(phase_of[sp(f$system_name, f$plot)])
+  rec <- frt[frt$system_name == f$system_name & frt$date == d & frt$crop_fertilized == f$crop &
+               frt$material_applied == f$material & frt$n == as.numeric(f$value), ]
+  stopifnot(!is.na(ph), nrow(rec) > 0L, all(rec$phase == ph), !f$plot %in% rec$plot,
+            length(unique(rec$plot)) == as.numeric(n_plots[sp(f$system_name, ph)]) - 1L)
+  data.frame(id = f$id, system_name = f$system_name, phase = ph, date = d, plot = f$plot, material = f$material,
+             n = as.numeric(f$value), logged = paste(sort(unique(rec$plot)), collapse = " and "))
+}))
 
 cmp$date <- as_date(cmp$date)
 cmp$wet <- as.numeric(cmp$compost_applied_wet_weight)
@@ -322,6 +346,22 @@ fert_events <- function(sys, ph, last_year) {
         "Total N applied, field average over this phase's plots. Written as mineral N in",
         "nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not",
         "reach the model."))
+  }
+  a <- FERT_PLOT_ADDS[FERT_PLOT_ADDS$system_name == sys & FERT_PLOT_ADDS$phase == ph, ]
+  for (i in seq_len(NROW(a))) {
+    if (as.integer(format(a$date[i], "%Y")) > last_year) next
+    share <- a$n[i] / as.numeric(n_plots[sp(sys, ph)])
+    out[[length(out) + 1L]] <- list(
+      event_type = "fertilization", date = format(a$date[i]),
+      nh4_n_kg_m2 = round(share * KG_HA_TO_KG_M2, 7),
+      source = paste0(SOURCE, ":operations_fertilizers.csv"),
+      material = a$material[i], n_plots_treated = 1L, provenance_class = "imputed",
+      provenance_note = sprintf(paste(
+        "The package logs this %s (%.2f kg N/ha) on plots %s but not on %s, which grew the same crop;",
+        "every other application in the log covers all three plots, so %s is taken to have had it too",
+        "and this event adds its share, %.2f kg N/ha of the field average (%s in russell_source_corrections.csv;",
+        "century_package_issues.md, item 5). The logged plots' event the same day stays as published."),
+        a$material[i], a$n[i], a$logged[i], a$plot[i], a$plot[i], share, a$id[i]))
   }
   k <- compost[compost$system_name == sys & compost$phase == ph, ]
   for (i in seq_len(nrow(k))) {
@@ -910,7 +950,7 @@ role_seasons <- do.call(rbind, lapply(names(N_GROUP), function(tid) do.call(rbin
     pre <- dates_of(recs) <= planted + ROLE_DAYS
     data.frame(tid = tid, phase = ph, group = N_GROUP[[tid]], crop = ss$crop[i], start = ss$start[i],
                end = ss$end[i], planted = planted, preplant = any(pre), in_season = any(!pre) || sum(pre) >= 2L,
-               both = any(pre) && any(!pre))
+               both = any(pre) && any(!pre), n_pre = sum(pre))
   }))
 }))))
 ROLE_LABEL <- c(preplant = "preplant application", in_season = "in-season topdress or sidedress")
@@ -926,7 +966,7 @@ for (i in seq_len(nrow(role_seasons))) {
     k <- AS_LOGGED$system_name == SYSTEMS[[s$tid]] & tolower(AS_LOGGED$crop) == s$crop & AS_LOGGED$material == role &
       s$start >= as.Date(AS_LOGGED$date) & s$start <= as.Date(AS_LOGGED$replacement)
     if (any(k)) { as_logged_used <- c(as_logged_used, AS_LOGGED$id[k]); next }
-    cand <- peers[peers$both, ]
+    cand <- peers[peers$both & (role != "preplant" | peers$n_pre == 1L), ]  # one starter to copy
     if (!nrow(cand)) stop(sprintf("%s %s: no %s season of the %s N group has both roles to copy from", s$tid, s$phase, s$crop, s$group))
     tmpl <- cand[order(abs(as.numeric(cand$planted - s$planted)), cand$tid != s$tid), ][1, ]
     recs <- synthetic_n(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
@@ -1516,16 +1556,18 @@ logged_passes <- function(sys, ph) {
 # wheat-fallow systems "from August to the following November", and "During fallow, weeds were
 # managed with one herbicide application and four disking operations, beginning after wheat
 # harvest". Neither the paper nor the package dates the diskings (the package logs only the
-# herbicide spray), and the monitoring product has no passes to time them by: within 25 km it
-# shows one tillage episode in 681 of the 722 gaps of 300 to 600 days after a wheat harvest and no
-# tillage at all in the 6,462 idle or unclassified fallow parcel years. So the diskings are
-# spaced evenly through each fallow: from the straw disking (or the end of the crop before the
-# fallow, the 1993 hay cut) to the next wheat planting. A fallow the run ends in takes the
-# median length of the file's other fallows.
+# herbicide spray), and the monitoring product has no four passes to time them by: within 25 km
+# it shows one tillage episode, a median 150 days after the harvest, in 681 of the 722 gaps of
+# more than 300 and up to 600 days between a wheat harvest and the next planting, and no tillage
+# at all in the 6,462 idle or unclassified fallow parcel years. So, as an assumption, the
+# diskings are spaced evenly through each fallow: from the straw disking (or the end of the crop
+# before the fallow, the 1993 hay cut) to the next wheat planting, on top of the two straw passes.
+# A fallow the run ends in takes the median length of the file's other fallows.
 FALLOW_DISKINGS <- setNames(TREATMENTS$fallow_diskings, TREATMENTS$tid)
 FALLOW_MIN_DAYS <- 300  # a gap this long between a crop's end and the next wheat planting is a fallow
 FALLOW_NOTE <- paste("The paper gives the fallow four diskings, beginning after wheat harvest, but no dates,",
-                     "and the monitoring product near Russell Ranch has no fallow passes to time them.")
+                     "and the monitoring product near Russell Ranch shows at most one pass after a wheat",
+                     "harvest, so the even spacing is an assumption.")
 tillage_events <- function(pe, sys, ph, n_fallow) {
   out <- list()
   pls <- Filter(function(e) e$event_type == "planting", pe)
