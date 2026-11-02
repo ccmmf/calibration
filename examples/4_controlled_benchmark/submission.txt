@@ -1,0 +1,9 @@
+Workspace: geo:/projectnb/dietzelab/ccmmf/usr/dlebauer/pr6-benchmark-20260922-v4
+Your job-array 7695733.1-8:1 ("pr6-controlled") has been submitted
+Your job 7695753 ("pr6-output") has been submitted
+Your job 7695813 ("pr6-convert") has been submitted
+Your job 7695829 ("pr6-convert") has been submitted
+Your job 7695849 ("pr6-convert") has been submitted
+Your job 7695860 ("pr6-convert") has been submitted
+Your job 7695876 ("pr6-convert") has been submitted
+Final verification: 28 evaluation runs; 224 annual netCDF soil and GPP checks passed.

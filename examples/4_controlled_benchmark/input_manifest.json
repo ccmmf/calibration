@@ -1,0 +1,90 @@
+[
+  {
+    "site_id": "14",
+    "system": "annual",
+    "prep_years": 8,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-14.cover_none",
+    "parameters_sha256": "51d85a95528aac4ad3d5f879b9080784d83ee61e10ea9dd0d4ac9fabdcba2b90",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "74f00dc145948eceea0a7b23d443cbc94acf1d639f8db2574b1ae8bd5be86fdb",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "14",
+    "system": "annual",
+    "prep_years": 16,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-14.cover_none",
+    "parameters_sha256": "51d85a95528aac4ad3d5f879b9080784d83ee61e10ea9dd0d4ac9fabdcba2b90",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "74f00dc145948eceea0a7b23d443cbc94acf1d639f8db2574b1ae8bd5be86fdb",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "54800",
+    "system": "annual",
+    "prep_years": 8,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-54800.cover_none",
+    "parameters_sha256": "18215e732d8a934c8fa570dc63c7e027dbc5642634fb794e4bd18e31cdfcc243",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "6616800799f99cb976882ff35608589a1626fe78d93c72cd0237a62baa0af548",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "54800",
+    "system": "annual",
+    "prep_years": 16,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-54800.cover_none",
+    "parameters_sha256": "18215e732d8a934c8fa570dc63c7e027dbc5642634fb794e4bd18e31cdfcc243",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "6616800799f99cb976882ff35608589a1626fe78d93c72cd0237a62baa0af548",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "413887",
+    "system": "rice",
+    "prep_years": 8,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-413887.rice_irrigated_reference",
+    "parameters_sha256": "55936f4706eaa155f239b1db0a09c0f716751a086a9b9b8b33afe300364a1a0a",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "b35e5d5673520995dd1baf3576fa64070636e32c16a65c322743649c2acd2e07",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "413887",
+    "system": "rice",
+    "prep_years": 16,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-413887.rice_irrigated_reference",
+    "parameters_sha256": "55936f4706eaa155f239b1db0a09c0f716751a086a9b9b8b33afe300364a1a0a",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "b35e5d5673520995dd1baf3576fa64070636e32c16a65c322743649c2acd2e07",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "535358",
+    "system": "rice",
+    "prep_years": 8,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-535358.rice_irrigated_reference",
+    "parameters_sha256": "399267983743effc883c63321bb825cc2662a58f5754c69cd91d1162da6ed08d",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "731728fa4bbdc0f78872a972a3942816fadb008c7a90f704103c21098e3a1306",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  },
+  {
+    "site_id": "535358",
+    "system": "rice",
+    "prep_years": 16,
+    "source_run": "/projectnb/dietzelab/ccmmf/usr/akash/statewide_matrix/pecan_v1/output/run/ENS-00001-535358.rice_irrigated_reference",
+    "parameters_sha256": "399267983743effc883c63321bb825cc2662a58f5754c69cd91d1162da6ed08d",
+    "config_sha256": "578db8e0558897e066e57ed5d8a26446e46d8dfcf84078156aac52f3f9484e93",
+    "weather_sha256": "731728fa4bbdc0f78872a972a3942816fadb008c7a90f704103c21098e3a1306",
+    "binary_sha256": "16a626ae36bc94f995f606f7f5a32d630796971617310ada888c2ec591c6c0c9",
+    "spec_sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+  }
+]

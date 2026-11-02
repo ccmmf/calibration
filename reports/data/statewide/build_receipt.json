@@ -1,0 +1,67 @@
+{
+  "job_id": "7577927",
+  "sites": 100,
+  "combinations": 1500,
+  "files": 1202,
+  "statuses": {
+    "original_monitoring": 100,
+    "prepared_reference": 412,
+    "prepared_with_assumptions": 190,
+    "prepared": 500,
+    "inapplicable": 264,
+    "model_unsupported": 34
+  },
+  "by_treatment": {
+    "baseline": {
+      "original_monitoring": 100
+    },
+    "comparison_baseline": {
+      "prepared_reference": 100
+    },
+    "cover_none": {
+      "prepared_reference": 100
+    },
+    "cover_annual": {
+      "prepared_with_assumptions": 66,
+      "model_unsupported": 34
+    },
+    "fertilizer_reference": {
+      "prepared_reference": 100
+    },
+    "mineral_N_zero": {
+      "prepared": 100
+    },
+    "mineral_N_half": {
+      "prepared": 100
+    },
+    "mineral_N_one_half": {
+      "prepared": 100
+    },
+    "organic_substitution": {
+      "prepared_with_assumptions": 100
+    },
+    "tillage_reference": {
+      "prepared_reference": 100
+    },
+    "tillage_reduced": {
+      "prepared": 100
+    },
+    "tillage_zero": {
+      "prepared": 100
+    },
+    "rice_irrigated_reference": {
+      "inapplicable": 88,
+      "prepared_reference": 12
+    },
+    "rice_one_dry": {
+      "inapplicable": 88,
+      "prepared_with_assumptions": 12
+    },
+    "rice_two_dry": {
+      "inapplicable": 88,
+      "prepared_with_assumptions": 12
+    }
+  },
+  "cover_donors": 33,
+  "fertilizer_donors": 149
+}

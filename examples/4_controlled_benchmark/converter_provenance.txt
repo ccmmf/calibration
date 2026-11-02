@@ -1,0 +1,5 @@
+R 4.4.3
+modules: R/4.4.3 udunits/2.2.28 gdal/3.10.2
+PEcAn.SIPNET 1.9.1
+/projectnb/dietzelab/ccmmf/usr/dlebauer/R/x86_64-pc-linux-gnu-library/4.4/PEcAn.SIPNET
+converter source md5 017d8115bdd8348e6e3e69aa85811f14

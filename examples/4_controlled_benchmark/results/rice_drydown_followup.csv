@@ -1,0 +1,15 @@
+site_id,prep_years,candidate,irrigation_omission_start,irrigation_omission_end,water_drain_frac,f_anoxia,minimum_water_ratio,years_reaching_f_anoxia,minimum_days_at_or_below_f_anoxia_per_year,maximum_days_at_or_below_f_anoxia_per_year,seasonal_ch4_kg_C_ha,matching_baseline,seasonal_ch4_ratio,interpretation
+413887,8,source_baseline,,,0.0535520521170028,0.286236668022783,1.00225,0,0,0,2626.360,source_baseline,1.0,archived hydrology with continuous irrigation
+413887,8,source_14_day,06-15,06-28,0.0535520521170028,0.286236668022783,1.00225,0,0,0,2626.348,source_baseline,0.9999954309386377,original omission does not drain ponded excess
+413887,8,rapid_drain_baseline,,,1.0,0.286236668022783,0.93925,0,0,0,2578.591,rapid_drain_baseline,1.0,diagnostic proxy with complete daily drainage of excess water
+413887,8,rapid_drain_14_day,06-15,06-28,1.0,0.286236668022783,0.7564166666666666,0,0,0,2230.780,rapid_drain_baseline,0.86511587,field-length omission lowers methane without crossing fAnoxia
+413887,8,rapid_drain_42_day,05-25,07-05,1.0,0.286236668022783,0.4345833333333333,0,0,0,1473.441,rapid_drain_baseline,0.57141323,duration sensitivity outside the California window
+413887,8,rapid_drain_70_day,05-15,07-23,1.0,0.286236668022783,0.23266666666666666,4,0,12,800.901,rapid_drain_baseline,0.31059637,duration sensitivity reaches fAnoxia in only four forcing years
+413887,8,rapid_drain_full_season,05-15,09-10,1.0,0.286236668022783,0.09083333333333334,8,39,61,43.363,rapid_drain_baseline,0.01681655,diagnostic bound not a field treatment
+535358,8,source_baseline,,,0.0535520521170028,0.286236668022783,0.8163333333333332,0,0,0,1130.430,source_baseline,1.0,archived hydrology with continuous irrigation
+535358,8,source_14_day,06-15,06-28,0.0535520521170028,0.286236668022783,0.8163333333333332,0,0,0,1130.357,source_baseline,0.999935422803712,original omission does not sustain drying
+535358,8,rapid_drain_baseline,,,1.0,0.286236668022783,0.7678333333333334,0,0,0,1096.035,rapid_drain_baseline,1.0,diagnostic proxy with complete daily drainage of excess water
+535358,8,rapid_drain_14_day,06-15,06-28,1.0,0.286236668022783,0.6104166666666667,0,0,0,912.994,rapid_drain_baseline,0.83299712,field-length omission lowers methane without crossing fAnoxia
+535358,8,rapid_drain_42_day,05-25,07-05,1.0,0.286236668022783,0.26175,2,0,3,567.723,rapid_drain_baseline,0.51797890,duration sensitivity reaches fAnoxia in only two forcing years
+535358,8,rapid_drain_70_day,05-15,07-23,1.0,0.286236668022783,0.02816666666666667,7,0,43,286.637,rapid_drain_baseline,0.26152176,duration sensitivity reaches fAnoxia in seven forcing years
+535358,8,rapid_drain_full_season,05-15,09-10,1.0,0.286236668022783,0.0,8,49,89,17.208,rapid_drain_baseline,0.01570023,diagnostic bound not a field treatment

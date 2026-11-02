@@ -1,0 +1,126 @@
+{
+  "status": "soil-survey mapping diagnostic; supports physical plausibility but not field validation",
+  "accessed": "2026-09-30",
+  "soil_data_source": {
+    "provider": "USDA Natural Resources Conservation Service, Soil Data Access / SSURGO",
+    "service": "https://sdmdataaccess.sc.egov.usda.gov/Tabular/post.rest",
+    "service_help": "https://sdmdataaccess.nrcs.usda.gov/WebServiceHelp.aspx",
+    "column_definitions": "https://sdmdataaccess.nrcs.usda.gov/documents/TableColumnDescriptionsReport.pdf",
+    "database_description": "https://www.nrcs.usda.gov/resources/data-and-reports/soil-survey-geographic-database-ssurgo",
+    "mapunit_query": "SELECT '413887' AS site_id, mukey FROM SDA_Get_Mukey_from_intersection_with_WktWgs84('POINT(-121.54982 38.12346)') UNION ALL SELECT '535358' AS site_id, mukey FROM SDA_Get_Mukey_from_intersection_with_WktWgs84('POINT(-122.0026 39.68222)') UNION ALL SELECT 'Carrijo_2018_Biggs' AS site_id, mukey FROM SDA_Get_Mukey_from_intersection_with_WktWgs84('POINT(-121.7263889 39.4630556)') ORDER BY site_id",
+    "mapunit_result": [
+      {
+        "site_id": "413887",
+        "mukey": "462117"
+      },
+      {
+        "site_id": "535358",
+        "mukey": "2766097"
+      },
+      {
+        "site_id": "Carrijo_2018_Biggs",
+        "mukey": "461191"
+      }
+    ],
+    "horizon_query": "For each returned mukey, join mapunit, major component, and chorizon records and select component name and percentage; horizon name and depth; sand, silt, and clay; wthirdbar_r; wfifteenbar_r; awc_r; dbthirdbar_r; and wsatiated_r, ordered by component percentage and horizon top depth.",
+    "selected_horizons": [
+      {
+        "site_id": "413887",
+        "mukey": "462117",
+        "muname": "Rindge muck, 0 to 2 percent slopes, partially drained, MLRA 16",
+        "cokey": "27537847",
+        "component": "Rindge",
+        "component_percent": 85,
+        "horizon": "Oap",
+        "top_cm": 0,
+        "bottom_cm": 25,
+        "wthirdbar_percent": 45.7,
+        "wfifteenbar_percent": 22.2,
+        "awc_fraction": 0.27,
+        "wsatiated_percent": 52
+      },
+      {
+        "site_id": "535358",
+        "mukey": "2766097",
+        "muname": "Tehama silt loam, 0 to 3 percent slopes, MLRA 17",
+        "cokey": "26790374",
+        "component": "Tehama",
+        "component_percent": 85,
+        "horizon": "Ap",
+        "top_cm": 0,
+        "bottom_cm": 23,
+        "wthirdbar_percent": 28.5,
+        "wfifteenbar_percent": 13.3,
+        "awc_fraction": 0.21,
+        "wsatiated_percent": 42
+      },
+      {
+        "site_id": "Carrijo_2018_Biggs",
+        "mukey": "461191",
+        "muname": "Esquon-Neerdobe, 0 to 1 percent slopes",
+        "component": "Esquon",
+        "component_percent": 60,
+        "horizon": "Ap",
+        "top_cm": 0,
+        "bottom_cm": 13,
+        "clay_percent": 47,
+        "wthirdbar_percent": 27.7,
+        "wfifteenbar_percent": 16.5,
+        "awc_fraction": 0.16,
+        "wsatiated_percent": 48
+      }
+    ],
+    "selection": "For each point, the dominant major component and its surface horizon were selected because the field comparator measured VWC at 0-15 cm. The Carrijo-site Esquon surface horizon has 47% clay, close to the study's reported 45% clay.",
+    "limitations": "SSURGO values describe mapped soil components, not measurements from the modeled fields or the Carrijo plots. Point overlay and dominant-component selection do not establish the soil actually sampled at a coordinate."
+  },
+  "site_coordinate_source": {
+    "modeled_sites_path": "reports/data/statewide/sites.csv",
+    "modeled_sites_sha256": "c0019f8fcc23a1741188715c2c1554deca03ed30095ae93a3e521330781e75f3",
+    "field_site": "Carrijo et al. (2018), 39 degrees 27 minutes 47 seconds N, 121 degrees 43 minutes 35 seconds W"
+  },
+  "field_comparator": {
+    "citation": "Carrijo et al. 2018, Field Crops Research 222:101-110",
+    "doi": "https://doi.org/10.1016/j.fcr.2018.02.026",
+    "support": "0-15 cm volumetric water content",
+    "awd25_minimum_fraction": [
+      0.24,
+      0.28
+    ],
+    "awd25_duration_days": [
+      10,
+      12
+    ],
+    "awd25_water_potential_kpa": [
+      -73,
+      -69
+    ],
+    "continuous_flood_fraction": [
+      0.47,
+      0.50
+    ],
+    "awc_normalized_awd25_range_at_field_site": [
+      0.4687499999999999,
+      0.7187500000000001
+    ]
+  },
+  "model_contract": {
+    "source_soilWHC_cm": 12.0,
+    "source_fAnoxia": 0.286236668022783,
+    "source_anaerobicTransExp": 99.98298,
+    "implemented_wetness_ratio": "soilWater / soilWHC, clipped to [0,1] for the anaerobic index",
+    "semantic_interpretation": "SIPNET v2.2.0 documents soilWater as plant-available soil water and soilWHC as its cap. The plant-available mapping is therefore primary for the fixed-WHC source runs.",
+    "frozen_sipnet_revision": "3ccc41c1ad2db426b7eb857881a32ca685bf57f1",
+    "frozen_model_structure_sha256": "a1de421d84a20e01781ea2026188af2f4de9f48311704a459c56eee4f12a1f37",
+    "current_pecan_water_balance_sha256": "7ba726b1cb05456f1a1dfd036a7908c141b7dd7a44b8138c931da7caf41bf276",
+    "current_pecan_write_configs_sha256": "c8498deae0d9907291ba0ca34c1a99ab577d25869b93bf9eba99b6438cc200a0",
+    "current_pecan_model2netcdf_sha256": "8826b579b0623fbb4bd38fd2a1766df349b98bb75c41b5d78a20f84852186116",
+    "pecan_context": "PEcAn's current generic water-balance code defines zero as wilting point and WHC as field capacity minus wilting point. Its current SIPNET adapter instead integrates saturation VWC when a soil profile is supplied and labels SIPNET soilWetnessFrac as SoilMoistFrac. The archived source runs supplied no soil profile and retained the fixed 12 cm soilWHC, so the adapter behavior exposes an interface inconsistency rather than defining these runs."
+  },
+  "calculations": {
+    "primary_available_water_mapping": "theta = wfifteenbar + ratio * awc",
+    "implied_storage_depth": "12 cm soilWHC divided by SSURGO awc; diagnostic only, not an observed or configured model depth",
+    "field_available_water_ratio": "(Carrijo AWD25 VWC - field-site wfifteenbar) / field-site awc",
+    "alternative_zero_based_mapping": "ratio multiplied by SSURGO wsatiated; retained only to document why a saturation-from-zero interpretation is inconsistent with the source fixed-WHC semantics"
+  },
+  "interpretation": "Under the primary plant-available-water mapping, fAnoxia corresponds to VWC 0.299 at site 413887 and 0.193 at site 535358. The 0.25 target corresponds to VWC 0.290 and 0.186; realized June stress minima correspond to 0.286 and 0.182, while realized reproductive-stage stress minima correspond to 0.287 and 0.181. All are above mapped 15-bar water contents. A one-time drain to soilWHC followed by model-evolved drying reaches only ratios 0.838 and 0.698, corresponding to VWC 0.448 and 0.280, and does not cross fAnoxia. At the Carrijo field coordinate, AWD25 observations map to 0.469-0.719 of available water, which contains both field-reference realized minima (0.477-0.528). Thus the field-reference path is consistent with the field range under this survey mapping, while both threshold-crossing paths are physically plausible but more severe than the observed California endpoint. The zero-based saturation calculation remains below wilting, demonstrating that it is not the appropriate primary interpretation for these fixed-WHC runs. None of these survey mappings validates site hydrology or the externally forced water adjustments."
+}

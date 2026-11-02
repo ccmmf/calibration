@@ -7,6 +7,20 @@ project:
     # explicit list; the example and vignette qmds need a run workspace to build
     - index.qmd
     - reports/site_calibration.qmd
+    - reports/statewide_effects.qmd
+    - reports/controlled_benchmark.qmd
+
+  resources:
+    - reports/data/statewide/**
+    - reports/R/*.R
+    - examples/4_controlled_benchmark/*.csv
+    - examples/4_controlled_benchmark/*.json
+    - examples/4_controlled_benchmark/*.txt
+    - examples/4_controlled_benchmark/*.md
+    - examples/4_controlled_benchmark/*.R
+    - examples/4_controlled_benchmark/*.py
+    - examples/4_controlled_benchmark/*.sge
+    - examples/4_controlled_benchmark/results/**
 
 website:
   title: "Calibration"
@@ -23,9 +37,11 @@ website:
         contents:
           - href: reports/site_calibration.qmd
             text: Site-Level Calibration
+          - href: reports/statewide_effects.qmd
+            text: Statewide Treatment Effects
+          - href: reports/controlled_benchmark.qmd
+            text: Controlled Comparison Pilot
     tools:
-      - icon: exclamation-octagon
-        text: "Status: Draft"
       - icon: github
         href: https://github.com/ccmmf/calibration
 
@@ -34,6 +50,7 @@ lightbox: auto
 format:
   html:
     theme: cosmo
+    css: report-styles.css
     toc: true
     self-contained: false
     df-print: paged

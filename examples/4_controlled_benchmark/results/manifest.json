@@ -1,0 +1,99 @@
+{
+  "workspace": "geo:/projectnb/dietzelab/ccmmf/usr/dlebauer/pr6-benchmark-20260922-v4",
+  "model_array_job": "7695733.1-8:1",
+  "source_pr_revision": "70987abaecf787331b970e52ac0710b41f98384b",
+  "files": [
+    {
+      "file": "audit_logs.py",
+      "sha256": "cbc9458d2a4bec45de4563dfe79cc3df388284d94cf3e5bfabf2db0d5320a642"
+    },
+    {
+      "file": "calibrated_process_ensemble.csv",
+      "sha256": "533f003a98676fa18cd6b2935d5f979ef82410bdba2d82861e0b01c40644f809"
+    },
+    {
+      "file": "calibrated_process_ensemble.csv.provenance.txt",
+      "sha256": "eeb17a967d8c0865aafc2a43d72d2fc02e2ac7314dac1c79a14f7b9a297059c3"
+    },
+    {
+      "file": "candidate_comparisons.csv",
+      "sha256": "52dfb5f2df8ff38f8ae1abcb8a69bb71c8699fff9c92c431f208aa79ce1a821e"
+    },
+    {
+      "file": "convert.sge",
+      "sha256": "bddb4ca6a1c841e8e95ed14bf45071e7e68954679630fe53f780f5f3c1eb782a"
+    },
+    {
+      "file": "convert_pilot.R",
+      "sha256": "dc203e075d9d63c5ac6612d159e0ec4474e3ee68de75cbc0b480002b1c31e58a"
+    },
+    {
+      "file": "converter_provenance.txt",
+      "sha256": "e0b75d3b176780c7a852e2a6651c6fab493c2f37c461c7cd11a01c08bfb760e2"
+    },
+    {
+      "file": "ensemble_summary.R",
+      "sha256": "103682558699b4a0de62c98064b9b023f11f6cd8caa2d15aec73031639d0373f"
+    },
+    {
+      "file": "export_ensemble.R",
+      "sha256": "9b504a432722320675e66ae364a943925d4811ee3b049419b68f0fe10fd96b07"
+    },
+    {
+      "file": "input_manifest.json",
+      "sha256": "9e001291ec23a0f85ab6dfef22050ab79fa155acad60360a298f316423c2d67b"
+    },
+    {
+      "file": "pilot.sge",
+      "sha256": "d11506053f83eae7c4114d607601fb0de3fd1231cdf2d217bf49e81215da6455"
+    },
+    {
+      "file": "pilot_spec.json",
+      "sha256": "3c76381c5ad56137fe5fb44bc359d069594e68a1594fdec59afbebf01f84f9d2"
+    },
+    {
+      "file": "prepare_pilot.py",
+      "sha256": "07309ee90049402d606001b1b2208060cd9b88d2d90669d37f8fc5f428766db3"
+    },
+    {
+      "file": "results/conversion_checks.csv",
+      "sha256": "dd78d1ec83e393a00eb5190ca407e2d258dc9180bb788463c699de89f85bb38c"
+    },
+    {
+      "file": "results/daily_diagnostics.csv",
+      "sha256": "e5c8f1933e7c4f20b333beac496ff23a4ad838c65f5b15063518ef3ae21acca3"
+    },
+    {
+      "file": "results/log_audit.csv",
+      "sha256": "4474ce54888a5243869e89f224a4eff1a641ff5373253c624326c8c8bde4ae6f"
+    },
+    {
+      "file": "results/paired_effects.csv",
+      "sha256": "1000d251e93baffe29bbaff744afd251bb1338bead70ae01846d96a45d5fa005"
+    },
+    {
+      "file": "results/run_diagnostics.csv",
+      "sha256": "9d6d6234a85639e01e2e9ccd8207c1f728512061d0f7793160d4a269ba460104"
+    },
+    {
+      "file": "run_pilot.py",
+      "sha256": "e0715beef59289775b486318a9c1abe68fc97eddea1109ffd6ba0b4456981b4e"
+    },
+    {
+      "file": "submission.txt",
+      "sha256": "7e9f021d356382fc07a4c48c1d0ec3d1b27c1eb79e429fa0fd8c810a41585664"
+    },
+    {
+      "file": "summarize_pilot.py",
+      "sha256": "165c6ef0df76e8a6e86e7c4d7c84ca203a7443e411f752e7f1cbf08783f5ae90"
+    },
+    {
+      "file": "test_ensemble.R",
+      "sha256": "2830477252225b0cd8412a3635c69a3cdbb5a45ccdef71af1a6adea744b9c47d"
+    },
+    {
+      "file": "test_pilot.py",
+      "sha256": "0b2eb7218f3eea75843218b900f16659a8541da9b36fd581abad827a489aa2b3"
+    }
+  ]
+}

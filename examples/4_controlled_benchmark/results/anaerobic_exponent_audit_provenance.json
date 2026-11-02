@@ -1,0 +1,60 @@
+{
+  "status": "parameter-choice sensitivity; source-run pin verified; comparator not an accepted replacement",
+  "finding": "The statewide experiment intentionally fixed anaerobicTransExp at 99.98298 and removed anaerobic_trans_exp from the PFT samples so the default value would remain. The source-run value is a documented modeling choice, not a fitted value or an accidental woodCN substitution.",
+  "source_run_parameter_choice": {
+    "trait": "anaerobic_trans_exp",
+    "sipnet_parameter": "anaerobicTransExp",
+    "value": 99.98298,
+    "classification": "fixed by experiment configuration; not fitted"
+  },
+  "archived_pft_bundle": {
+    "version": "v1.0",
+    "readme_sha256": "8517f735064b56067e4f293abbe3e9f53049ede6b88e7d437c2f2920a6766c4e",
+    "default_parameter_sha256": "05a495306eeb12d17f1f1374a3f3ae92d1524be8337ae25871916af5ae169a82",
+    "soil_rice_posterior_sha256": "4bc9bf13209769cdca82f2e3565894f5ca40f403695fef0ee859064c2dff7df7",
+    "prior_table_sha256": "3783af13b728210e21baa632fc8757eeb750ef64f9aba0d0354559c4fb21469b",
+    "documented_decision": "anaerobicTransExp was fixed at 99.98298 as a common soil value so methane would be controlled by water content rather than a per-soil exponent.",
+    "generated_run_check": "The other five inspected soil_rice anaerobic, methane, and drainage parameters equal their posterior medians; anaerobicTransExp equals the fixed default."
+  },
+  "generation_contract": {
+    "settings_builder_commit": "e9a0245550a374f5803d5ef4476405fa78434d76",
+    "runner_commit": "1332e63523fa32cfa2195e06a91b45e6265ba9a7",
+    "settings_builder": "scripts/050_build_statewide_settings.R and examples/3_statewide_effects/config.yml",
+    "runner": "scripts/052_run_statewide_matrix.R",
+    "behavior": "The configuration writes 99.98298 into sipnet.default.param and the runner drops every fixed_params trait, including anaerobic_trans_exp, from the median PFT samples before PEcAn writes each run.",
+    "temporal_limitation": "The recovered commits were recorded on 2026-09-18, after the archived 2026-09-17 configuration log. Their content matches the archived bundle, settings, and generated parameter files but does not independently identify the exact uncommitted working-tree revision used at execution."
+  },
+  "comparator": {
+    "parameter": "anaerobicTransExp",
+    "value": 9.97418245481472,
+    "derivation": "Median of the archived soil_rice lognormal anaerobic_trans_exp distribution with meanlog 2.3 and sdlog 0.5.",
+    "interpretation": "Sensitivity comparator from the archived soil_rice posterior; it was intentionally excluded from the statewide source run and is not a calibrated, validated, or accepted replacement."
+  },
+  "current_adapter_context": {
+    "pecan_revision": "9c6ab9b8f3526d4c2805ffecd4f46187c57e4fc5",
+    "mapping_file": "models/sipnet/R/write.configs.SIPNET.R",
+    "observed_mapping": "c2n_wood maps to woodCN and anaerobic_trans_exp maps to anaerobicTransExp",
+    "limitation": "The package installation used on 2026-09-17 was later replaced and its exact build metadata are not preserved in the run log; this does not change the explicit fixed-parameter contract."
+  },
+  "execution": {
+    "sipnet_revision": "3ccc41c1ad2db426b7eb857881a32ca685bf57f1",
+    "sipnet_version": "2.2.0",
+    "binary_sha256": "2bda98cd132718fde6a6e5e54804adbee2d5ab5da6ae0503359a81029b1e9cee",
+    "script_sha256": "f74a960d49fddc9e72d24c9bc12b7969a9c019b0f25f7566524e654ad4ce902b",
+    "changed_input": "anaerobicTransExp only",
+    "unchanged_experiment": "Same weather, initial states, segmentation, forced water trajectory, operations, and methane-response calculations as the frozen forced-drydown diagnostic."
+  },
+  "parameter_file_sha256": [
+    {
+      "site_id": 413887,
+      "source_run": "55936f4706eaa155f239b1db0a09c0f716751a086a9b9b8b33afe300364a1a0a",
+      "comparator": "337d6f2bf00a56902317eb0ed68efcd44522e55bc59144e0d625b8a436bf73a4"
+    },
+    {
+      "site_id": 535358,
+      "source_run": "399267983743effc883c63321bb825cc2662a58f5754c69cd91d1162da6ed08d",
+      "comparator": "991cf2a0b4f24d4f92e023e31def15a82a1ab3612ecb43372cf0bff3b02bf124"
+    }
+  ],
+  "interpretation": "The fixed source-run exponent increases dry-period suppression relative to the soil_rice posterior-median comparator. Both cases leave the seasonal response far below the external field comparator. The provenance is sufficiently resolved to classify 99.98298 as an explicit fixed choice; its scientific suitability remains unverified."
+}

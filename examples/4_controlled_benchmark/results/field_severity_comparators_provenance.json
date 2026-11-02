@@ -1,0 +1,69 @@
+{
+  "status": "cross-study field-severity evidence; not validation of the modeled sites or combined timing-and-severity scenario",
+  "accessed": "2026-09-30",
+  "model_threshold": {
+    "fAnoxia": 0.286236668022783,
+    "current_threshold_stress_target_ratio": 0.25,
+    "comparison_space": "SSURGO-normalized plant-available water, (theta - wfifteenbar) / awc"
+  },
+  "sources": [
+    {
+      "study_id": "Carrijo_2018",
+      "citation": "Carrijo et al. 2018, Field Crops Research 222:101-110",
+      "doi": "https://doi.org/10.1016/j.fcr.2018.02.026",
+      "evidence": "AWD25 reached 0.24-0.28 VWC at 0-15 cm and approximately -69 to -73 kPa during a California field dry-down without a reported yield reduction."
+    },
+    {
+      "study_id": "Fernandez-Baca_2021",
+      "citation": "Fernandez-Baca et al. 2021, Frontiers in Plant Science 11:612054",
+      "doi": "https://doi.org/10.3389/fpls.2020.612054",
+      "evidence": "Four field AWD30 cycles at the Dale Bumpers National Rice Research Center ended at mean 5-cm VWC of 0.37, 0.25, 0.28, and 0.23. The study identifies the field soil as Dewitt silt loam."
+    },
+    {
+      "study_id": "Gealy_2021",
+      "citation": "Gealy, Increasing AWD irrigation severity during the reproductive stage reduces yields and alters outcrossing dynamics between rice and red rice",
+      "usda_record": "https://www.ars.usda.gov/research/publications/publication/?seqNo115=378751",
+      "calendar_record": "https://www.ars.usda.gov/research/publications/publication/?seqNo115=370626",
+      "proceedings": "https://www.swss.ws/wp-content/uploads/2020-SWSS-proceedings_Final02_1.14.2021.pdf",
+      "evidence": "A two-year field study at the same Stuttgart center reached approximately 0.30, 0.21, and 0.15 VWC (-14, -24, and -43 kPa) under low, medium, and high reproductive-stage AWD stress. High stress reduced rice and red-rice yields by as much as 50% and 60%. A companion record reports May 9 sowing in both years; first cycles began 57-66 days after sowing and lasted 7-13 days from drain to reflood."
+    }
+  ],
+  "arkansas_soil_mapping": {
+    "coordinate": {
+      "latitude": 34.47583,
+      "longitude": -91.41861,
+      "source": "facility coordinate, not the experimental plot coordinate"
+    },
+    "mapunit_query": "SELECT mukey FROM SDA_Get_Mukey_from_intersection_with_WktWgs84('POINT(-91.41861 34.47583)')",
+    "mapunit_result": {
+      "mukey": "579269",
+      "mapunit_name": "Dewitt silt loam, 0 to 1 percent slopes"
+    },
+    "selected_component": {
+      "component": "Dewitt",
+      "component_percent": 80,
+      "horizon": "Ap",
+      "top_cm": 0,
+      "bottom_cm": 18,
+      "clay_percent": 18.5,
+      "wthirdbar_percent": 28.2,
+      "wfifteenbar_percent": 12.9,
+      "awc_fraction": 0.18,
+      "wsatiated_percent": 42
+    },
+    "match_to_publication": "The point query returns the same Dewitt silt loam series identified by Fernandez-Baca et al.; the precise experimental plot coordinate remains unavailable.",
+    "data_source": {
+      "provider": "USDA Natural Resources Conservation Service, Soil Data Access / SSURGO",
+      "service": "https://sdmdataaccess.sc.egov.usda.gov/Tabular/post.rest",
+      "service_help": "https://sdmdataaccess.nrcs.usda.gov/WebServiceHelp.aspx",
+      "column_definitions": "https://sdmdataaccess.nrcs.usda.gov/documents/TableColumnDescriptionsReport.pdf"
+    }
+  },
+  "calculations": {
+    "available_water_ratio": "(endpoint VWC - 0.129) / 0.18",
+    "f_anoxia_vwc_at_arkansas_site": 0.18052260024410094,
+    "current_target_vwc_at_arkansas_site": 0.174,
+    "field_bracket": "The current 0.25 target is drier than the medium field treatment (available-water ratio 0.45) and wetter than the high field treatment (0.117)."
+  },
+  "interpretation": "The Arkansas high-stress treatment is direct field evidence that rice soil can reach an available-water ratio below fAnoxia. It supports the physical attainability of the current 0.25 target as severe field stress. It does not establish safe AWD, a California mid-season practice, or the realism of imposing the state through restart edits. The high treatment occurred during the reproductive stage and carried substantial yield penalties. The July 15-24 modeled path lies within the reported first-cycle calendar bounds, but the one-time-drain comparator does not realize the field severity."
+}
