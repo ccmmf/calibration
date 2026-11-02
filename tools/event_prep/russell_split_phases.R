@@ -162,11 +162,12 @@ alf <- rd("alfalfa_harvests_all.csv")
 # fruit; the green fruit stays in the field with the vines, so it counts in the aboveground
 # biomass and goes to litter (David on calibration#10, 2026-11-02). The package gives the hand
 # harvested red and green fruit fresh only, so both take the plot's fruit moisture
-# (tomato_fruit_moisture_%, measured on the manually harvested tomatoes). Recomputed here so the
-# table cannot drift from the package.
+# (tomato_fruit_moisture_%, measured on the manually harvested tomatoes). A sample listed twice
+# verbatim counts once: tomato_harvests_all.csv repeats every 9/4/2012 row (century_package_issues.md,
+# item 49). Recomputed here so the table cannot drift from the package.
 num <- function(x, col) suppressWarnings(as.numeric(x[[col]]))
 site_share <- function(f, part, whole) {
-  x <- rd(f); a <- part(x); w <- whole(x)
+  x <- unique(rd(f)); a <- part(x); w <- whole(x)
   ok <- !is.na(a) & !is.na(w) & a > 0 & w > 0
   median(a[ok] / w[ok])
 }

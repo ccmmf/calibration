@@ -114,7 +114,7 @@ parameters if more values were needed; none were.
 | crop | row | above removed | above to litter | below removed | below to litter | events |
 |---|---|---|---|---|---|---|
 | corn | site samples | 0.462 | 0.538 | 0 | 1 | 56 |
-| tomato | site samples | 0.556 | 0.444 | 0 | 1 | 93 |
+| tomato | site samples | 0.55 | 0.45 | 0 | 1 | 93 |
 | wheat | G2 | 0.713 | 0.287 | 0 | 1 | 150 |
 | cut for hay: the 1993 sudangrass, the 2012 wheat | hay (P, pasture) | 0.892 | 0.108 | 0 | 1 | 23 |
 | alfalfa, last cutting before another crop | P1 | 0.85 | 0.15 | 0 | 1 | 0 |
@@ -132,17 +132,19 @@ parameters if more values were needed; none were.
   P1 harvest a year with the full row, so it has no cutting values to use instead.
 - Corn removes 0.462 of its aboveground biomass: the median share of grain in aboveground dry
   biomass over the 280 plot samples of `corn_harvests_all.csv` (interquartile range 0.41 to
-  0.50). Tomato removes 0.556: the median share of red fruit in red fruit, green fruit and vine
-  dry biomass over the 501 hand harvested samples of `tomato_harvests_all.csv` (interquartile
-  range 0.50 to 0.60). The harvest takes the red fruit; the green fruit, a median 0.037 of the
-  aboveground biomass, stays in the field with the vines, so it counts in the total and goes to
-  litter (David on calibration#10, 2026-11-02). The package weighs the hand harvested fruit fresh
-  only, so red and green fruit both take the plot's `tomato_fruit_moisture_%` (median 93.5%,
+  0.50). Tomato removes 0.550: the median share of red fruit in red fruit, green fruit and vine
+  dry biomass over the 473 hand harvested samples of `tomato_harvests_all.csv` (interquartile
+  range 0.50 to 0.59), each counted once although the file lists every 9/4/2012 sample twice
+  (`century_package_issues.md`, item 49). The harvest takes the red fruit; the green fruit, a
+  median 0.039 of the aboveground biomass, stays in the field with the vines, so it counts in the
+  total and goes to litter (David on calibration#10, 2026-11-02). The package weighs the hand
+  harvested fruit fresh only, so red and green fruit both take the plot's
+  `tomato_fruit_moisture_%` (median 93.5%,
   measured on the hand harvested tomatoes; there is no value for green fruit alone). Both crops'
   shares come from the hand harvests, which "were used to establish total aboveground biomass"
   (Wolf et al. 2018 metadata). The machine harvested strips yield less than the hand harvested
   quadrats (tomato a median 0.92 of the quadrat's red fruit, fresh), so machine harvest over the
-  quadrat's biomass would give 0.503 for tomato and 0.37 for corn. Tautges et al. 2019 chop and
+  quadrat's biomass would give 0.500 for tomato and 0.37 for corn. Tautges et al. 2019 chop and
   disk the maize stalks and disk the tomato residue, so the rest stays in the field. The
   lookup's F16 row would remove 0.752 of corn, leaving about half the site's residue, and its
   T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package has grain yields but no straw, so
