@@ -41,9 +41,12 @@ rd_table <- function(f) read.csv(file.path(dirname(stacked_dir), f), stringsAsFa
 # lists as "None"; paper_irrigation is what the paper gives the system (furrow maize and tomato,
 # supplemental wheat sprinkling, none); wheat_irrigation says whether its wheat follows the
 # paper's 80 mm rule; corn_n_dates_from, fert_2014_template and history_from name the
-# treatment whose records stand in for its own where the package lacks them.
+# treatment whose records stand in for its own where the package lacks them; fallow_diskings is
+# the number of diskings the paper gives each fallow of the wheat-fallow systems; n_fill_group
+# groups the treatments whose synthetic N applications stand in for each other's missing ones.
 TREATMENTS <- rd_table("russell_treatments.csv")
-stopifnot(!anyDuplicated(TREATMENTS$tid), all(TREATMENTS$irrigated %in% c("TRUE", "FALSE")))
+stopifnot(!anyDuplicated(TREATMENTS$tid), all(TREATMENTS$irrigated %in% c("TRUE", "FALSE")),
+          all(TREATMENTS$fallow_diskings %in% c("", "4")))
 treatments_where <- function(col, value = "TRUE") TREATMENTS$tid[TREATMENTS[[col]] == value]
 treatment_links <- function(col) { v <- setNames(TREATMENTS[[col]], TREATMENTS$tid); v[v != ""] }
 SYSTEMS <- setNames(TREATMENTS$system_name, TREATMENTS$tid)
@@ -151,18 +154,28 @@ cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")
 wcc <- rd("wcc_harvests_all.csv")
 alf <- rd("alfalfa_harvests_all.csv")
-# The corn and tomato rows of russell_harvest_lookup.csv are the site's own medians: grain over
-# aboveground dry biomass (corn_harvests_all.csv) and machine harvested fruit over fruit plus vine
-# dry biomass (tomato_harvests_all.csv). Recomputed here so the table cannot drift from the package.
+# The corn and tomato rows of russell_harvest_lookup.csv are the site's own medians from the
+# manual harvests, which "were used to establish total aboveground biomass" (Wolf et al. 2018
+# metadata): grain over aboveground dry biomass (corn_harvests_all.csv), and red fruit over red
+# fruit, green fruit and vine dry biomass (tomato_harvests_all.csv). The harvest exports the red
+# fruit; the green fruit stays in the field with the vines, so it counts in the aboveground
+# biomass and goes to litter (David on calibration#10, 2026-11-02). The package gives the hand
+# harvested red and green fruit fresh only, so both take the plot's fruit moisture
+# (tomato_fruit_moisture_%, measured on the manually harvested tomatoes). Recomputed here so the
+# table cannot drift from the package.
+num <- function(x, col) suppressWarnings(as.numeric(x[[col]]))
 site_share <- function(f, part, whole) {
-  x <- rd(f); a <- suppressWarnings(as.numeric(x[[part]])); w <- suppressWarnings(as.numeric(whole(x)))
+  x <- rd(f); a <- part(x); w <- whole(x)
   ok <- !is.na(a) & !is.na(w) & a > 0 & w > 0
   median(a[ok] / w[ok])
 }
+fruit_dry <- function(x, col) num(x, col) * (1 - num(x, "tomato_fruit_moisture_%") / 100)
 SITE_SHARE <- c(
-  corn = site_share("corn_harvests_all.csv", "dry_grain_wt_kg/ha", function(x) x[["dry_total_biomass_kg/ha"]]),
-  tomato = site_share("tomato_harvests_all.csv", "tomato_mh_dry_yield_Mg/ha", function(x)
-    as.numeric(x[["tomato_mh_dry_yield_Mg/ha"]]) + as.numeric(x[["tomato_hh_vine_dry_yield_Mg/ha"]])))
+  corn = site_share("corn_harvests_all.csv", function(x) num(x, "dry_grain_wt_kg/ha"),
+                    function(x) num(x, "dry_total_biomass_kg/ha")),
+  tomato = site_share("tomato_harvests_all.csv", function(x) fruit_dry(x, "tomato_hh_red_fresh_yield_Mg/ha"),
+                      function(x) fruit_dry(x, "tomato_hh_red_fresh_yield_Mg/ha") +
+                        fruit_dry(x, "tomato_hh_green_fresh_yield_Mg/ha") + num(x, "tomato_hh_vine_dry_yield_Mg/ha")))
 for (crop in names(SITE_SHARE)) {
   r <- HARVEST_LOOKUP[HARVEST_LOOKUP$crop == crop, ]
   stopifnot(r$lookup_row == "site samples", abs(as.numeric(r$lookup_above_removed) - SITE_SHARE[[crop]]) < 1e-12,
@@ -689,7 +702,8 @@ apply_lookup <- function(e, sys) {
     e$frac_above_to_litter_0to1 <- r$above_to_litter
     e$harvest_lookup_row <- r$lookup_row
     if (nrow(hay)) e$harvest_fraction_note <- sprintf("Cut for hay, not grain (%s); the lookup's hay row.", hay$id[1])
-    else if (r$lookup_row == "site samples") e$harvest_fraction_note <- sprintf("%s (Aritra, 2026-10-31).", r$lookup_source)
+    else if (r$lookup_row == "site samples") e$harvest_fraction_note <- sprintf("%s (Aritra, 2026-10-31%s).", r$lookup_source,
+      if (crop == "tomato") "; the green fruit to litter, David on calibration#10, 2026-11-02" else "")
   }
   e$frac_below_removed_0to1 <- 0
   e$frac_below_to_litter_0to1 <- 1
@@ -863,13 +877,91 @@ stopifnot(setequal(bounded_used, BOUNDED$id), !anyDuplicated(bounded_used))
 for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]]))
   keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], fert_events(SYSTEMS[[tid]], ph, as.integer(format(LAST_DATE, "%Y"))))
 
+# Single applications the log lacks in a season that has others (David on calibration#10,
+# 2026-11-02: "Check for missing individual applications, including the 2013 irrigated wheat
+# spring topdress"). A corn, tomato or wheat season of a treatment with an n_fill_group
+# (russell_treatments.csv) has two roles: preplant, its applications up to ROLE_DAYS after its last
+# planting (the starter, or the wheat preplant), and in_season, the ones after that (the sidedress
+# or spring topdress). A second application on or before planting also counts as in_season: the
+# 2008 tomato sidedress is logged on the transplanting day. A season with records that lacks a role
+# the group's recorded seasons of that crop have in at least half of them copies that role from
+# the group's nearest season (by last planting) that has both, the treatment's own on a tie, with
+# its amounts as logged, shifted by the difference in last plantings. The group's records come
+# before the paper here because the log splits the wheat N the other way round from the paper
+# (Can_27 at 112 kg N/ha before planting and urea at 56 in spring, where Tautges et al. 2019 give
+# 56 and 112), so either paper rate would move the season off the 168 kg N/ha of both the log
+# and the paper's Table 1. The rainfed wheat-fallow system is a group of its own, at its own rates.
+# A keep_as_logged row of russell_source_corrections.csv leaves a role out where the gap looks
+# like a change in management. Seasons with no record at all are filled further below.
+ROLE_DAYS <- 7
+N_GROUP <- treatment_links("n_fill_group")
+synthetic_n <- function(pe, st, en) Filter(function(e) e$event_type == "fertilization" && is.null(e$org_c_kg_m2) &&
+  !identical(e$provenance_class, "imputed") && as.Date(e$date) >= st - FERT_LEAD_DAYS && as.Date(e$date) <= en, pe)
+role_seasons <- do.call(rbind, lapply(names(N_GROUP), function(tid) do.call(rbind, lapply(names(keep_all[[tid]]), function(ph) {
+  pe <- keep_all[[tid]][[ph]]
+  ss <- seasons_of(pe)
+  ss <- ss[ss$crop %in% c("corn", "tomato", "wheat") & !is.na(ss$end) & ss$end <= LOGS_END & ss$start >= FIRST_DATE, ]
+  do.call(rbind, lapply(seq_len(nrow(ss)), function(i) {
+    recs <- synthetic_n(pe, ss$start[i], ss$end[i])
+    if (!length(recs)) return(NULL)
+    planted <- last_planting(pe, ss$crop[i], ss$start[i], ss$end[i])
+    pre <- dates_of(recs) <= planted + ROLE_DAYS
+    data.frame(tid = tid, phase = ph, group = N_GROUP[[tid]], crop = ss$crop[i], start = ss$start[i],
+               end = ss$end[i], planted = planted, preplant = any(pre), in_season = any(!pre) || sum(pre) >= 2L,
+               both = any(pre) && any(!pre))
+  }))
+}))))
+ROLE_LABEL <- c(preplant = "preplant application", in_season = "in-season topdress or sidedress")
+AS_LOGGED <- corrections("operations_fertilizers.csv", "keep_as_logged")
+stopifnot(all(AS_LOGGED$material %in% names(ROLE_LABEL)))
+as_logged_used <- character()
+role_fills <- 0L
+for (i in seq_len(nrow(role_seasons))) {
+  s <- role_seasons[i, ]
+  peers <- role_seasons[role_seasons$group == s$group & role_seasons$crop == s$crop, ]
+  for (role in names(ROLE_LABEL)) {
+    if (s[[role]] || mean(peers[[role]]) < 0.5) next
+    k <- AS_LOGGED$system_name == SYSTEMS[[s$tid]] & tolower(AS_LOGGED$crop) == s$crop & AS_LOGGED$material == role &
+      s$start >= as.Date(AS_LOGGED$date) & s$start <= as.Date(AS_LOGGED$replacement)
+    if (any(k)) { as_logged_used <- c(as_logged_used, AS_LOGGED$id[k]); next }
+    cand <- peers[peers$both, ]
+    if (!nrow(cand)) stop(sprintf("%s %s: no %s season of the %s N group has both roles to copy from", s$tid, s$phase, s$crop, s$group))
+    tmpl <- cand[order(abs(as.numeric(cand$planted - s$planted)), cand$tid != s$tid), ][1, ]
+    recs <- synthetic_n(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
+    pre <- dates_of(recs) <= tmpl$planted + ROLE_DAYS
+    shift <- as.numeric(s$planted - tmpl$planted)
+    for (e in recs[if (role == "preplant") pre else !pre]) {
+      d <- as.Date(e$date) + shift
+      if (d < s$start - FERT_LEAD_DAYS || d > s$end)
+        stop(sprintf("%s %s: the copied %s would land outside the %s season planted %s", s$tid, s$phase, role, s$crop, format(s$start)))
+      note <- sprintf(paste(
+        "Fertilization gap: the log has this %s season's %s but not its %s, which %d of the %d recorded %s seasons",
+        "of the %s N group have (n_fill_group in russell_treatments.csv). Copies the %s %s application",
+        "(%.2f kg N/ha) of the %s season last planted %s in %s %s, the nearest with both, shifted %+d days to",
+        "this season's last planting (David on calibration#10, 2026-11-02)."),
+        s$crop, ROLE_LABEL[[setdiff(names(ROLE_LABEL), role)]], ROLE_LABEL[[role]], sum(peers[[role]]), nrow(peers),
+        s$crop, s$group, e$date, e$material, e$nh4_n_kg_m2 / KG_HA_TO_KG_M2, s$crop, format(tmpl$planted),
+        tmpl$tid, tmpl$phase, shift)
+      e$date <- format(d)
+      e$provenance_class <- "imputed"
+      e$provenance_note <- note
+      keep_all[[s$tid]][[s$phase]] <- c(keep_all[[s$tid]][[s$phase]], list(e))
+      role_fills <- role_fills + 1L
+      cat(sprintf("%-18s %-28s %s planted %s: %s copied from %s %s %s (%s, %.2f kg N/ha)\n", s$tid, s$phase, s$crop,
+                  format(s$planted), role, tmpl$tid, tmpl$phase, format(tmpl$planted), e$material, e$nh4_n_kg_m2 / KG_HA_TO_KG_M2))
+    }
+  }
+}
+stopifnot(setequal(as_logged_used, AS_LOGGED$id))
+cat(sprintf("single fertilization applications filled: %d\n", role_fills))
+
 # The logs end in 2013, so a season reaching into 2014 copies the fertilization of the most
 # recent same-crop season of the treatment (of COMPARABLE's when it has none), shifted by the
 # difference in first planting dates; only the copied events that land in 2014 inside the season
 # are kept. A season none of whose records would land there is skipped as a template because
-# the log has gaps (no 2013 corn N in any corn/tomato system; only the preplant of the
-# Irrigated Wheat/Fallow wheat planted in 2012, which lands in 2013); a treatment that never
-# fertilized the crop gets nothing.
+# the log has gaps (no 2013 corn N in any corn/tomato system); a treatment that never fertilized
+# the crop gets nothing. The copies include the single application fills above, so a 2014
+# season inherits a filled starter or topdress, and its note says so.
 fert_2014 <- function(tid, pe) {
   out <- list()
   ss <- seasons_of(pe)
@@ -898,13 +990,14 @@ fert_2014 <- function(tid, pe) {
     if (is.null(tmpl)) next
     shift <- as.numeric(s$start - tmpl$start)
     for (e in copies(tmpl$tid, tmpl$phase, tmpl$start, tmpl$end)) {
+      filled <- identical(e$provenance_class, "imputed")  # a single application fill (above)
       e$date <- format(as.Date(e$date) + shift)
       e$provenance_class <- "imputed"
       e$provenance_note <- sprintf(paste(
         "The package's operation logs end in 2013. Copies the %s application of the %s %s season",
-        "(planted %s) of %s %s, shifted %+d days to this season's planting."),
+        "(planted %s) of %s %s, shifted %+d days to this season's planting.%s"),
         format(as.Date(e$date) - shift), s$crop, format(tmpl$start, "%Y"), format(tmpl$start), tmpl$tid,
-        tmpl$phase, shift)
+        tmpl$phase, shift, if (filled) " That application is itself a fill: the log lacks it." else "")
       out[[length(out) + 1L]] <- e
     }
   }
@@ -1059,9 +1152,11 @@ for (tid in names(fert_gaps)) {
 
 # CONV+WCC tomato in 2004 to 2007 has only its NPK starter in the log, although Tautges et al.
 # (2019) sidedress CONV and CONV+WCC tomatoes to 112 kg N/ha. It is left as logged
-# (Aritra, 2026-10-29): those are the first years the system grew a winter legume cover crop before
-# tomato (Wolf et al. 2018 metadata), and its tomatoes then had the lowest fruit N and yield of the
-# four tomato systems, so the missing sidedress looks like a change in management, not a gap.
+# (Aritra, 2026-10-29; the keep_as_logged row lmt_tomato_sidedress_2004_2007 keeps the single
+# application fill above off it): those are the first years the system grew a winter legume cover
+# crop before tomato (Wolf et al. 2018 metadata), and its tomatoes then had the lowest fruit N and
+# yield of the four tomato systems, so the missing sidedress looks like a change in management, not
+# a gap.
 
 # Compost the package lacks in an organic rotation year that is not a wheat year: the 2008
 # sudangrass year of Organic Corn/Tomato corn/CC-tomato/CC. Organic Corn/Tomato has compost in
@@ -1415,11 +1510,27 @@ logged_passes <- function(sys, ph) {
   }
   out
 }
-tillage_events <- function(pe, sys, ph) {
+# Fallow diskings (fallow_diskings in russell_treatments.csv). Tautges et al. (2019) fallow the
+# wheat-fallow systems "from August to the following November", and "During fallow, weeds were
+# managed with one herbicide application and four disking operations, beginning after wheat
+# harvest". Neither the paper nor the package dates the diskings (the package logs only the
+# herbicide spray), and the monitoring product has no passes to time them by: within 25 km it
+# shows one tillage episode in 681 of the 722 gaps of 300 to 600 days after a wheat harvest and no
+# tillage at all in the 6,462 idle or unclassified fallow parcel years. So the diskings are
+# spaced evenly through each fallow: from the straw disking (or the end of the crop before the
+# fallow, the 1993 hay cut) to the next wheat planting. A fallow the run ends in takes the
+# median length of the file's other fallows.
+FALLOW_DISKINGS <- setNames(TREATMENTS$fallow_diskings, TREATMENTS$tid)
+FALLOW_MIN_DAYS <- 300  # a gap this long between a crop's end and the next wheat planting is a fallow
+FALLOW_NOTE <- paste("The paper gives the fallow four diskings, beginning after wheat harvest, but no dates,",
+                     "and the monitoring product near Russell Ranch has no fallow passes to time them.")
+tillage_events <- function(pe, sys, ph, n_fallow) {
   out <- list()
-  pl <- dates_of(Filter(function(e) e$event_type == "planting", pe))
+  pls <- Filter(function(e) e$event_type == "planting", pe)
+  pl <- dates_of(pls)
   ends <- Filter(function(e) e$event_type == "harvest", pe)
   inc <- integer()
+  straw <- list()
   for (e in ends) {
     crop <- tolower(e$crop_display); d <- as.Date(e$date)
     if ((crop %in% GREEN_MANURE && is.null(e$harvest_lookup_row)) || isTRUE(e$not_harvested)) {
@@ -1441,7 +1552,40 @@ tillage_events <- function(pe, sys, ph) {
                          format(t), format(min(nxt) - 1), format(min(nxt)))
         t <- min(nxt) - 1
       }
-      if (t > d) out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Disking after the %s harvest of %s", crop, format(d)), moved)
+      if (t > d) {
+        out[[length(out) + 1L]] <- tillage_event(t, r, sprintf("Disking after the %s harvest of %s", crop, format(d)), moved)
+        if (crop == "wheat") straw[[e$date]] <- t
+      }
+    }
+  }
+  if (n_fallow > 0L) {
+    ed <- dates_of(ends)
+    fallows <- do.call(rbind, lapply(seq_along(ends), function(i) {
+      d <- ed[i]; nxt <- which(pl > d)
+      nxt <- if (length(nxt)) nxt[which.min(pl[nxt])] else NA_integer_
+      if (!is.na(nxt) && (tolower(pls[[nxt]]$crop_display) != "wheat" || pl[nxt] - d <= FALLOW_MIN_DAYS ||
+                          any(ed > d & ed < pl[nxt]))) return(NULL)
+      if (is.na(nxt) && any(ed > d)) return(NULL)
+      data.frame(i = i, start = if (is.null(straw[[ends[[i]]$date]])) d else straw[[ends[[i]]$date]],
+                 end = if (is.na(nxt)) as.Date(NA) else pl[nxt])
+    }))
+    if (!is.null(fallows) && any(is.na(fallows$end))) {
+      closed <- fallows[!is.na(fallows$end), ]
+      stopifnot(nrow(closed) > 0L)
+      open_days <- round(median(as.numeric(closed$end - closed$start)))
+    }
+    for (j in seq_len(NROW(fallows))) {
+      f <- fallows[j, ]; e <- ends[[f$i]]
+      len <- if (is.na(f$end)) open_days else as.numeric(f$end - f$start)
+      to <- if (is.na(f$end)) sprintf("%d days later, this file's median fallow (the run ends first)", open_days) else
+        sprintf("the wheat planting of %s", format(f$end))
+      for (k in seq_len(n_fallow)) {
+        t <- f$start + round(k * len / (n_fallow + 1))
+        if (t > LAST_DATE) break
+        out[[length(out) + 1L]] <- tillage_event(t, til_row("any", "all"), sprintf(
+          "Fallow disking %d of %d after the %s harvest of %s, spaced evenly from %s to %s", k, n_fallow,
+          tolower(e$crop_display), e$date, format(f$start), to), FALLOW_NOTE)
+      }
     }
   }
   ss <- seasons_of(pe); ss <- ss[ss$crop %in% c("corn", "tomato"), ]
@@ -1482,7 +1626,8 @@ tillage_events <- function(pe, sys, ph) {
 for (tid in names(SYSTEMS)) {
   n <- 0L
   for (ph in names(keep_all[[tid]])) {
-    tl <- tillage_events(keep_all[[tid]][[ph]], SYSTEMS[[tid]], ph)
+    tl <- tillage_events(keep_all[[tid]][[ph]], SYSTEMS[[tid]], ph,
+                         if (FALLOW_DISKINGS[[tid]] == "") 0L else as.integer(FALLOW_DISKINGS[[tid]]))
     n <- n + length(tl)
     keep_all[[tid]][[ph]] <- c(keep_all[[tid]][[ph]], tl)
   }
@@ -1595,7 +1740,8 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "(prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack,",
         "including all of 2014, are filled from plot_system.csv and the cutting samples.",
         "Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for",
-        "corn and tomato, the shared harvest lookup for the rest), alfalfa cuttings",
+        "corn and tomato, whose green fruit stays in the field, the shared harvest lookup for the",
+        "rest), alfalfa cuttings",
         "leave the stand alive, cover crops and the 2008 and 2009 sudangrass go wholly to",
         "litter, and the 1993 sudangrass uniformity crop is cut for hay. No",
         "irrigation comes from the generator; it follows the rules below. Events no record",
@@ -1606,6 +1752,10 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         "order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no",
         "record, of a crop the treatment fertilizes in at least half its seasons, copies the",
         "treatment's nearest same-crop season with records (a fertilization gap).",
+        if (tid %in% names(N_GROUP)) paste(
+          "A season with records but without its preplant or its in-season application copies that",
+          "application, as logged, from the nearest season with both of the treatments that share its",
+          "synthetic N management (n_fill_group)."),
         if (tid %in% names(FERT_LIKE)) sprintf(paste(
           "Its %s seasons take the dates of the same-year (or nearest) %s %s season instead, as Tautges",
           "et al. 2019 sidedress CONV+WCC maize like CONV maize."), names(FERT_LIKE[[tid]]), FERT_LIKE[[tid]], names(FERT_LIKE[[tid]])),
@@ -1658,6 +1808,10 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
           "except that the herbicide incorporation passes the package logs (operations_pesticides.csv)",
           "keep their dates and the wheat straw disking comes before August, as the paper has it."),
           til$radius_km[1], til$years[1], TILLAGE_SOURCE),
+        if (FALLOW_DISKINGS[[tid]] != "") sprintf(paste(
+          "Each fallow gets the paper's %s diskings, spaced evenly from the straw disking (or the 1993",
+          "hay cut) to the next wheat planting, as neither the paper nor the monitoring product dates them."),
+          FALLOW_DISKINGS[[tid]]),
         if (!is.null(hist_note)) sprintf("Before 2012 these plots were %s; those events carry history_of.", hist_note)),
         collapse = " ")),
     events = pe)

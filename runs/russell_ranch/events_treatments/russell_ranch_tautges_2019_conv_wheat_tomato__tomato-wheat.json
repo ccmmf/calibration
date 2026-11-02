@@ -7,7 +7,7 @@
   "rotation_phase": "tomato-wheat",
   "generator": "calibration:tools/event_prep/russell_split_phases.R",
   "stacked_input": "generator_stacked/russell_ranch_tautges_2019_conv_wheat_tomato.json",
-  "note": "One rotation phase of the treatment. Planting and harvest events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for corn and tomato, the shared harvest lookup for the rest), alfalfa cuttings leave the stand alive, cover crops and the 2008 and 2009 sudangrass go wholly to litter, and the 1993 sudangrass uniformity crop is cut for hay. No irrigation comes from the generator; it follows the rules below. Events no record gives are tagged provenance_class imputed, or assumed where they rest on a stated reading of the paper or package (the inches irrigation and the 80 mm wheat on its midpoint date, the 1999 tomato dates, compost years without an analysis), as described in runs/russell_ranch/events_treatments/README.md; they are filled in the order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in (853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches, applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation product near Russell Ranch; 2013 and 2014 take the average, imputed. The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed. The file starts with the 1993 sudangrass uniformity crop, grown on every plot before the experiment: irrigated with the monitoring product's median irrigated F16 (corn, sorghum or sudan) season, 440.2 mm, on the sudangrass schedule (equal soil events of at most 150 mm from planting), unfertilized, and cut for hay (the lookup's hay row). Wheat irrigation follows Tautges et al. 2019's rule for the irrigated wheat systems instead of the generator: 80 mm per year at the season midpoint, applied to the soil, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. The paper gives the rule for IWF and IWF+N only; this system's wheat is irrigated the same way, imputed. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv), except that the herbicide incorporation passes the package logs (operations_pesticides.csv) keep their dates and the wheat straw disking comes before August, as the paper has it."
+  "note": "One rotation phase of the treatment. Planting and harvest events come from the stacked generator output, assigned to this phase by the plot ids in the Century package; planting amounts are still the generator's prior fills (prior_filled). Plantings, harvests and alfalfa cuttings the operation logs lack, including all of 2014, are filled from plot_system.csv and the cutting samples. Harvests take russell_harvest_lookup.csv (harvest_lookup_row: the site's own samples for corn and tomato, whose green fruit stays in the field, the shared harvest lookup for the rest), alfalfa cuttings leave the stand alive, cover crops and the 2008 and 2009 sudangrass go wholly to litter, and the 1993 sudangrass uniformity crop is cut for hay. No irrigation comes from the generator; it follows the rules below. Events no record gives are tagged provenance_class imputed, or assumed where they rest on a stated reading of the paper or package (the inches irrigation and the 80 mm wheat on its midpoint date, the 1999 tomato dates, compost years without an analysis), as described in runs/russell_ranch/events_treatments/README.md; they are filled in the order given in tools/event_prep/README.md. Fertilization is rebuilt from the package; a season with no record, of a crop the treatment fertilizes in at least half its seasons, copies the treatment's nearest same-crop season with records (a fertilization gap). A season with records but without its preplant or its in-season application copies that application, as logged, from the nearest season with both of the treatments that share its synthetic N management (n_fill_group). Corn and tomato irrigation follows Tautges et al. 2019 instead of the generator: 33.6 in (853.44 mm) a season, 17.6 in in 1995 and 43.5 in in 2004, the paper's \"mm\" read as inches, applied to the soil in equal events of at most 150 mm timed from the monitoring irrigation product near Russell Ranch; 2013 and 2014 take the average, imputed. The paper does not describe this system, so its corn and tomato take the maize systems' amounts, imputed. The file starts with the 1993 sudangrass uniformity crop, grown on every plot before the experiment: irrigated with the monitoring product's median irrigated F16 (corn, sorghum or sudan) season, 440.2 mm, on the sudangrass schedule (equal soil events of at most 150 mm from planting), unfertilized, and cut for hay (the lookup's hay row). Wheat irrigation follows Tautges et al. 2019's rule for the irrigated wheat systems instead of the generator: 80 mm per year at the season midpoint, applied to the soil, none in 1995, 1998, 2000, 2005 and 2008-2012, and 80 mm, imputed, in 2013 and 2014. The paper gives the rule for IWF and IWF+N only; this system's wheat is irrigated the same way, imputed. Tillage events are the operations Tautges et al. 2019 describe, one event each, timed and sized from medians of the monitoring tillage product within 25 km of Russell Ranch, 2016-2023 (calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv), except that the herbicide incorporation passes the package logs (operations_pesticides.csv) keep their dates and the wheat straw disking comes before August, as the paper has it."
  },
  "events": [
   {
@@ -69,6 +69,16 @@
    "tillage_eff_0to1": 0.9537,
    "provenance_class": "imputed",
    "provenance_note": "Bed preparation before the tomato planted 1994-05-04 (Tautges et al. 2019). tillage_eff_0to1 is the median of 1829 monitoring tillage events for tomato, 90 days before the planting, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1994-04-30",
+   "nh4_n_kg_m2": 0.005655,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Ammonium sulfate",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has this tomato season's in-season topdress or sidedress but not its preplant application, which 51 of the 60 recorded tomato seasons of the irrigated N group have (n_fill_group in russell_treatments.csv). Copies the 1995-04-18 Ammonium sulfate application (56.55 kg N/ha) of the tomato season last planted 1995-04-22 in conv_wheat_tomato wheat-tomato, the nearest with both, shifted -353 days to this season's last planting (David on calibration#10, 2026-11-02)."
   },
   {
    "event_type": "irrigation",
@@ -150,10 +160,10 @@
    "date": "1994-08-27",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -321,12 +331,12 @@
    "date": "1996-08-16",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
+   "frac_above_removed_0to1": 0.556,
    "merged_dates": "1996-08-16;1996-08-22;1996-08-23",
    "merge_note": "One operation recorded on 3 dates; dated by the day most plots share (earliest on a tie). Fractions from the harvest lookup.",
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -493,12 +503,12 @@
    "date": "1998-08-14",
    "source": "10.1002/ecy.2105:plot_system.csv",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
+   "frac_above_removed_0to1": 0.556,
    "provenance_class": "published",
    "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (1998-08-14), the date most of the phase's plots share.",
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -509,6 +519,16 @@
    "tillage_eff_0to1": 0.5799,
    "provenance_class": "imputed",
    "provenance_note": "Disking after the tomato harvest of 1998-08-14 (Tautges et al. 2019). tillage_eff_0to1 is the median of 2592 monitoring tillage events for tomato, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "1998-09-30",
+   "nh4_n_kg_m2": 0.011197,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 38 of the 43 recorded wheat seasons of the irrigated N group have (n_fill_group in russell_treatments.csv). Copies the 1999-10-12 Can_27 application (111.97 kg N/ha) of the wheat season last planted 1999-11-14 in conv_wheat_tomato wheat-tomato, the nearest with both, shifted -377 days to this season's last planting (David on calibration#10, 2026-11-02)."
   },
   {
    "event_type": "planting",
@@ -655,10 +675,10 @@
    "date": "2000-08-24",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -669,6 +689,16 @@
    "tillage_eff_0to1": 0.5799,
    "provenance_class": "imputed",
    "provenance_note": "Disking after the tomato harvest of 2000-08-24 (Tautges et al. 2019). tillage_eff_0to1 is the median of 2592 monitoring tillage events for tomato, 32 days after the harvest, on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2000-10-25",
+   "nh4_n_kg_m2": 0.011197,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Can_27",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 38 of the 43 recorded wheat seasons of the irrigated N group have (n_fill_group in russell_treatments.csv). Copies the 1999-10-12 Can_27 application (111.97 kg N/ha) of the wheat season last planted 1999-11-14 in conv_wheat_tomato wheat-tomato, the nearest with both, shifted +379 days to this season's last planting (David on calibration#10, 2026-11-02)."
   },
   {
    "event_type": "planting",
@@ -829,10 +859,10 @@
    "date": "2002-08-19",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1031,12 +1061,12 @@
    "date": "2004-08-10",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
+   "frac_above_removed_0to1": 0.556,
    "merged_dates": "2004-08-10;2004-08-11",
    "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie). Fractions from the harvest lookup.",
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1208,10 +1238,10 @@
    "date": "2006-09-13",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1392,10 +1422,10 @@
    "date": "2008-10-03",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1567,10 +1597,10 @@
    "date": "2010-09-06",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1600,6 +1630,16 @@
    "crop_display": "Wheat",
    "leaf_c_kg_m2": 0.0038,
    "prior_filled": "leaf_c_kg_m2<-prior:crop_baselines/processing_tomato/events/planting"
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2011-03-24",
+   "nh4_n_kg_m2": 0.00562,
+   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+   "material": "Urea",
+   "n_plots_treated": 3,
+   "provenance_class": "imputed",
+   "provenance_note": "Fertilization gap: the log has this wheat season's preplant application but not its in-season topdress or sidedress, which 41 of the 43 recorded wheat seasons of the irrigated N group have (n_fill_group in russell_treatments.csv). Copies the 2011-03-24 Urea application (56.20 kg N/ha) of the wheat season last planted 2010-11-16 in conv_corn_tomato tomato-corn, the nearest with both, shifted +0 days to this season's last planting (David on calibration#10, 2026-11-02)."
   },
   {
    "event_type": "harvest",
@@ -1732,10 +1772,10 @@
    "date": "2012-09-05",
    "source": "10.1002/ecy.2105",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_removed_0to1": 0.556,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1902,12 +1942,12 @@
    "date": "2014-08-22",
    "source": "10.1002/ecy.2105:plot_system.csv",
    "crop_display": "Tomato",
-   "frac_above_removed_0to1": 0.561,
+   "frac_above_removed_0to1": 0.556,
    "provenance_class": "published",
    "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (2014-08-22), the date most of the phase's plots share.",
-   "frac_above_to_litter_0to1": 0.439,
+   "frac_above_to_litter_0to1": 0.444,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median share of machine harvested fruit in fruit plus vine dry biomass, n = 501; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, green fruit and vine dry biomass, the fruit dried at the plot's fruit moisture, n = 501; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
