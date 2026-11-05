@@ -1,0 +1,19 @@
+practice,outcome,table6,evidence_status,evidence_direction,contrast_direction,model_note
+cover,Soil C,↑↑,verified,increase,increase,
+cover,N2O,↓,variable,"increase or variable, NOT the predicted decrease",increase,
+cover,CH4,↓,unsupported,-,none,"Modeled methane is production only, proportional to soil and litter carbon, and occurs only at the 12 locations with rice soil parameters."
+noncrop_c,Soil C,↑↑,verified,increase,increase,
+noncrop_c,N2O,↑,disputed,"decrease observed, increase predicted",decrease,
+noncrop_c,CH4,↑,variable,depends on the form of carbon added,none,"Modeled methane is production only, proportional to soil and litter carbon, and occurs only at the 12 locations with rice soil parameters."
+tillage,Soil C,↑↑,variable,"increase, but shallow-sampling and offset caveats",increase,
+tillage,N2O,↓,disputed,sources disagree on sign,none,"Tillage only scales decomposition in SIPNET, so less tillage lowers N2O-N by construction."
+tillage,CH4,↔,verified,small increase in uptake,decrease,"Modeled methane has no uptake term; it is production only, proportional to soil and litter carbon, at the 12 locations with rice soil parameters."
+less_n,Soil C,↔,variable,"slows loss, does not reverse it",decrease,Modeled soil carbon does not respond to the N rate.
+less_n,N2O,↓↓,verified,"increase with N, strongly",decrease,The modeled emission factor is flat in N rate (see the N2O-N diagnostics).
+less_n,CH4,↔,unsupported,qualitative direction only,none,
+less_flooding,Soil C,↔,variable,comparator-dependent,none,
+less_flooding,N2O,↔,verified,draining raises N2O; flooding lowers it,increase,The drying barely reaches the model (see the methane row).
+less_flooding,CH4,↓↓,verified,strong decrease when flooding is reduced,decrease,The drying barely reaches the model: methane changes by less than 0.2% at each location.
+perennial,Soil C,↑↑,variable,"increase, but only after about ten years",increase,No annual to perennial scenario was simulated.
+perennial,N2O,↓,disputed,large source measured where a decrease was predicted,increase,No annual to perennial scenario was simulated.
+perennial,CH4,↔,variable,uptake under perennial cover,decrease,No annual to perennial scenario was simulated.
