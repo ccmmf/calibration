@@ -1,0 +1,6 @@
+quantity,value,units,source,note
+Mineral soil organic carbon in the top 30 cm,245.09,MMT C,"CARB Natural and Working Lands Carbon Inventory 2025, updated methods proposal for croplands, as listed in ccmmf/organization#228",Inventory year not stated in #228.
+Drained organic soil organic carbon,24.47,MMT C,"CARB Natural and Working Lands Carbon Inventory 2025, updated methods proposal for croplands, as listed in ccmmf/organization#228",These soils give most cropland soil CO2 emissions.
+Cropland soil organic carbon,270,MMT C,ccmmf/organization#228,Rounded sum of the two rows above (269.56).
+Cropland N2O,22.8,Gg N2O yr-1,"CARB contract 23RD017, Scientific Evaluation of Nitrogenous Emissions from Soils, final report 2025-05-27, as listed in ccmmf/organization#228",Equal to 6.8 MMT CO2e yr-1.
+Rice methane,0.9,MMT CO2e yr-1,"CARB California methane inventory 2000-2021 by sector and activity, as listed in ccmmf/organization#228",Approximate value as stated in #228.

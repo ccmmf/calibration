@@ -1,0 +1,9 @@
+|Quantity                                 |MAGiC                                                            |CARB                                                                                               |
+|:----------------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|
+|Soil carbon stock (MMT C)                |201.2 ± 33.7 (Dec 2023; soil plus litter, whole modeled profile) |213.5 (2022, Appendix Fig. 59); report text: 245.09 mineral, top 30 cm, plus 24.47 drained organic |
+|Soil carbon change (MMT C)               |-37.2 ± 32.8 (Jan 2016 to Dec 2023)                              |-16.9 (2016 to 2022); 4.2 (2014 to 2022)                                                           |
+|Perennial crop biomass (MMT C)           |1.15 ± 0.31 (Dec 2023, woody crops); 10.69 in Jan 2016           |64.52 (2022, Appendix Fig. 66)                                                                     |
+|Perennial crop biomass density (Mg C/ha) |0.7 (Dec 2023); 6.4 (Jan 2016)                                   |33.9                                                                                               |
+|Perennial crop biomass change (MMT C)    |-9.54 ± 0.74 (Jan 2016 to Dec 2023)                              |5.07 (2016 to 2022)                                                                                |
+|Area (Mha)                               |3.49 covered (1.68 woody, 1.80 annual)                           |1.90 perennial (2022)                                                                              |
+|N2O and CH4                              |pending in v0.1.0                                                |22.8 Gg N2O/yr; rice CH4 about 0.9 MMT CO2e/yr                                                     |

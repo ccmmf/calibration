@@ -9,9 +9,11 @@ project:
     - reports/site_calibration.qmd
     - reports/statewide_effects.qmd
     - reports/controlled_benchmark.qmd
+    - reports/inventory_comparison.qmd
 
   resources:
     - reports/data/statewide/**
+    - reports/data/inventory/**
     - reports/R/*.R
     - examples/4_controlled_benchmark/*.csv
     - examples/4_controlled_benchmark/*.json
@@ -41,6 +43,8 @@ website:
             text: Statewide Treatment Effects
           - href: reports/controlled_benchmark.qmd
             text: Controlled Comparison Pilot
+          - href: reports/inventory_comparison.qmd
+            text: MAGiC Inventory against CARB
     tools:
       - icon: github
         href: https://github.com/ccmmf/calibration

@@ -1,0 +1,107 @@
+---
+title: "MAGiC inventory against CARB's cropland inventory"
+subtitle: "MAGiC historical inventory v0.1.0 (2023) and the CARB Natural and Working Lands inventory (2025)"
+date: 2026-11-06
+format:
+  html:
+    toc: true
+    fig-cap-location: bottom
+---
+
+## What this compares
+
+This page compares the MAGiC historical inventory with CARB's cropland carbon
+inventory at the state level (organization#226, with the CARB values listed in
+organization#228). MAGiC v0.1.0 is a review candidate. It covers 385,234 fields
+and 3.49 million hectares; another 9,679 fields (41,261 ha) are left out because
+covariates were missing, so its totals cover those fields rather than all of
+California's cropland. Its soil carbon is SIPNET soil plus litter carbon
+(`TotSoilCarb`) and its biomass is standing aboveground biomass (`AGB`), both
+as December 2023 monthly means, with the change from January 2016. MAGiC values
+are means ± SD over the 20 parameter members. N₂O and CH₄ are not in this
+release yet.
+
+The CARB numbers are copied from the data behind the cropland figures of the
+2025 inventory's Supplementary Document C, and from the totals listed in
+organization#228. Units are kept as published: million metric tons of carbon
+(MMT C) and acres, converted to hectares only for densities.
+
+## Results
+
+{{< include generated/inventory/comparison_table.md >}}
+
+![CARB cropland soil and biomass carbon by year (orange) with the MAGiC start and end values (blue). MAGiC points are January 2016 and December 2023, mean ± SD over 20 parameter members; MAGiC biomass includes annual crops, which start January 2016 with standing biomass (see below).](generated/inventory/inventory_series.png){#fig-inventory width=85% fig-alt="Two panels. Soil carbon: the CARB series runs between about 209 and 264 MMT C from 2001 to 2022; MAGiC is 238 in January 2016 and 201 in December 2023. Biomass carbon: CARB rises from 35 to 65 MMT C; MAGiC is 18 in January 2016 and 1 in December 2023."}
+
+## What stands out
+
+**The soil carbon stock is close at the start.** MAGiC begins January 2016
+at 238 ± 5 MMT C against CARB's 230 for 2016.
+
+**MAGiC then loses soil carbon that CARB does not.** By December 2023 MAGiC
+is at 201 ± 34 MMT C, a loss of 37 MMT C (about 16%) in eight years. CARB's
+series is roughly flat: +4.2 MMT C from 2014 to 2022, and −16.9 from 2016 to
+2022 only because 2016 was a high year. The MAGiC loss varies widely across
+parameter members (SD 33 MMT C), so it depends strongly on the parameters, and
+part of it may be drift away from the initial conditions.
+
+**Perennial crop biomass is far below CARB's and falls over the run.** MAGiC
+woody crops hold 0.7 Mg C/ha at the end of 2023, against 33.9 Mg C/ha for
+CARB's 2022 perennial cropland, and they fall by about 90% from 6.4 Mg C/ha in
+January 2016 while CARB's rise by 5 MMT C from 2016 to 2022. PEcAn computes
+SIPNET's `AGB` as plant wood plus leaf carbon, so the modeled orchards and
+vineyards hold almost no wood. This points to the woody pools in the initial
+conditions or in allocation, not to a difference in what the two inventories
+count.
+
+**Annual crops start the run with a canopy.** They hold 4.0 Mg C/ha of
+standing biomass on January 2016, when winter fields should be close to bare.
+This is the initial-condition problem fixed in organization#296, after this
+inventory was run.
+
+## Comparability
+
+- **Pools and depth.** MAGiC soil carbon is the SIPNET soil plus litter pools
+  with no sampling depth. CARB reports soil organic carbon: its methods text
+  gives 245.09 MMT C in the top 30 cm of mineral soil plus 24.47 MMT C in
+  drained organic soils (270 in all, organization#228), while Appendix
+  Figure 59 gives 213.5 MMT C for 2022. The year of the methods-text values is
+  not stated, and the two CARB figures are not reconciled here.
+- **Time.** MAGiC values are monthly means at the end points; CARB gives
+  annual estimates, and its biomass is interpolated in some years (Appendix
+  Figure 59 caption). In 2014 CARB switched orchard acreage from NASS to the
+  DWR crop map.
+- **Biomass.** MAGiC biomass is standing aboveground leaf and wood carbon at a
+  December end point. CARB's cropland biomass is almost all perennial: 64.5 of
+  65.0 MMT C in 2022.
+- **Area.** MAGiC woody crops cover 1.68 Mha and CARB perennial cropland
+  1.90 Mha in 2022. CARB's annual cropland area is not in the figure data, so
+  total areas are not compared.
+- **Uncertainty.** MAGiC SDs are spread across parameter members only. The
+  CARB figure data give an uncertainty only for 2022 perennial biomass
+  (95% intervals, Appendix Figure 65).
+- **Release status.** v0.1.0 is a review candidate; its provenance manifest
+  lists the initial-condition and covariate sources as partly unresolved.
+
+## Next steps
+
+- Check the woody pools: the initial wood carbon and the allocation of the
+  woody perennial plant types.
+- Rerun the inventory with the organization#296 initial conditions, then
+  compare again.
+- Compare by region: CARB reports soil and biomass change for nine regions
+  (Appendix Figures 62 and 69), which the MAGiC county summaries can be
+  grouped into.
+- Add N₂O and CH₄ when MAGiC releases them: CARB lists 22.8 Gg N₂O per year for
+  cropland and about 0.9 MMT CO₂e per year of rice methane, and the evidence
+  workbook already holds the Hu et al. (2026) and CARB rice methane estimates.
+
+## Reproducibility
+
+The [frozen inputs](data/inventory/manifest.json) record the source of each file
+and its checksum: the MAGiC v0.1.0 state tables from
+`s3://carb/inventories/v0.1.0/2023/` (their checksums match the release), the
+CARB values extracted with
+[`extract_carb_appendix_c.R`](R/extract_carb_appendix_c.R), and the
+organization#228 totals. Run
+`Rscript reports/R/build_inventory_comparison.R` from the repository root, then
+`quarto render reports/inventory_comparison.qmd`. No model is run.
