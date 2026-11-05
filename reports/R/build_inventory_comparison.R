@@ -193,12 +193,13 @@ p <- ggplot2::ggplot() +
   ggplot2::scale_colour_manual(values = c("CARB 2025 inventory" = "#D55E00", "MAGiC v0.1.0" = "#0072B2")) +
   ggplot2::expand_limits(y = 0) +
   ggplot2::labs(x = NULL, y = "Million metric tons of carbon", colour = NULL,
-                caption = paste0("MAGiC: Jan 2016 and Dec 2023, mean ± SD over 20 parameter members, ",
-                                 "fixed fields; biomass is woody perennial crops only. CARB: annual totals,\nwhich change with cropland ",
-                                 "area; biomass is interpolated in some years.")) +
+                caption = paste0("MAGiC: Jan 2016 and Dec 2023, mean ± SD over 20 parameter\nmembers, ",
+                                 "fixed fields; biomass is woody perennial crops only.\nCARB: annual totals, ",
+                                 "which change with cropland area;\nbiomass is interpolated in some years.")) +
   ggplot2::theme_minimal(base_size = 14) +
   ggplot2::theme(legend.position = "top", panel.grid.minor = ggplot2::element_blank(),
-                 strip.text = ggplot2::element_text(face = "bold", hjust = 0))
+                 strip.text = ggplot2::element_text(face = "bold", hjust = 0),
+                 plot.caption.position = "plot", plot.caption = ggplot2::element_text(hjust = 0))
 ggplot2::ggsave(file.path(out, "inventory_series.png"), p, width = 7.5, height = 7, dpi = 180,
                 bg = "white")
 writeLines(c("Frozen input checksums verified; the quoted values above are reproduced.",
