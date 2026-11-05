@@ -25,7 +25,7 @@ and no tillage, and organic amendments replacing mineral fertilizer.** Their rep
 than the selected synthesis estimates. However, differences in carbon pools,
 treatment exposure, and comparison periods limit interpretation of the magnitude.
 The rice scenarios produce very small methane changes. Modeled N₂O-N responses
-are reported as exploratory diagnostics because nitrogen parameters were not calibrated.
+are reported as exploratory diagnostics: nitrogen parameters were not calibrated, and for most of them the model structure limits the response.
 
 The paired simulations provide a working basis for testing management responses.
 The companion pilot evaluates controlled crop-system comparisons using this
@@ -68,9 +68,13 @@ and converted back to ratios; they are not ratios of regional totals.
 
 {{< include generated/effects_table.md >}}
 
+Status says whether each comparison can be judged yet; the three levels are
+defined in [Which comparisons can be judged](#which-comparisons-can-be-judged).
+
 For cover and tillage, the model carbon quantity is **soil plus litter**: the
 SIPNET soil and litter pools, which PEcAn reports together as `TotSoilCarb`.
-The literature values are measured SOC stocks to 30 cm. The
+The literature values are measured SOC: 0–30 cm for tillage (Sun et al. 2020)
+and a mean sampling depth of 22 cm for cover crops (Poeplau and Don 2015). The
 organic-substitution ratio uses model **soil carbon alone**. The cover estimate is the
 final paired difference divided by the number of prepared cover years; tillage
 uses the eight-year simulation window. These are the existing calculations,
@@ -78,7 +82,7 @@ not interchangeable estimates of a common annual SOC accumulation rate.
 The correspondence between model pools and measured sampling depth also needs
 resolution before quantitative agreement is assessed.
 
-![Model estimates (blue circles) and literature estimates (orange diamonds) for carbon and methane responses. Cover crop is compared with no cover crop, tillage practices with conventional tillage, organic amendments with mineral fertilizer, and irrigation interruptions with continuous flooding. Literature bars show one among-unit SD for carbon rates and approximate 95% intervals for response ratios; model estimates have no parameter-uncertainty intervals. For carbon rates, model points are soil plus litter carbon and literature points are measured SOC stocks to 30 cm.](generated/effects.png){#fig-effects width=85% fig-alt="Blue circles show the model and orange diamonds the literature. Carbon effects are positive; methane response ratios are nearly one. Carbon-rate bars show one literature SD; ratio bars show approximate 95 percent intervals. Location counts are given in the coverage table."}
+![Model estimates (blue circles) and literature estimates (orange diamonds) for carbon and methane responses. Cover crop is compared with no cover crop, tillage practices with conventional tillage, organic amendments with mineral fertilizer, and irrigation interruptions with continuous flooding. Literature bars show one among-unit SD for carbon rates and approximate 95% intervals for response ratios; model estimates have no parameter-uncertainty intervals. For carbon rates, model points are soil plus litter carbon and literature points are measured SOC, 0–30 cm for tillage and a mean depth of 22 cm for cover crops.](generated/effects.png){#fig-effects width=85% fig-alt="Blue circles show the model and orange diamonds the literature. Carbon effects are positive; methane response ratios are nearly one. Carbon-rate bars show one literature SD; ratio bars show approximate 95 percent intervals. Location counts are given in the coverage table."}
 
 In @fig-effects, literature bars show the archived among-unit SD for carbon
 rates and approximately 95% confidence intervals (mean ± 1.96 SE, transformed
@@ -98,6 +102,16 @@ matches the no-tillage row; the reduced-tillage row compares modeled reduced
 versus conventional tillage against that same no-tillage value. Their relative magnitudes
 identify useful comparisons to revisit after matching pools and durations;
 they do not by themselves establish underprediction of measured SOC.
+
+Litter does not explain the gap. Recomputed from the same end-of-window values
+with soil carbon alone, the averages barely change. The averages also hide
+skew. One cover-crop location with a single prepared cover year contributes
+4.5 Mg C ha⁻¹ per cover year, and the five largest locations make up three
+quarters of the cover total, so the median of 0.04 is the more typical
+response. The largest no-tillage effects come from locations that started with
+200 to 312 Mg C ha⁻¹ of soil carbon in 2016, against a median of 58.
+
+{{< include generated/carbon_pools_table.md >}}
 
 Replacing mineral fertilizer with organic amendments increases modeled soil carbon
 by about 6% across the design points, compared with 27% in the selected synthesis.
@@ -131,7 +145,8 @@ practice increases carbon.
 ## Nitrous oxide diagnostics
 
 The modeled N₂O-N flux is evaluated here as a diagnostic because nitrogen parameters
-were not calibrated and the comparison populations differ from the syntheses.
+were not calibrated, the model structure limits the response, and the comparison
+populations differ from the syntheses.
 
 The modeled no-tillage response is −2.4% over 2016–2020. The curated dry-climate
 N₂O evidence is duration-dependent: approximately **38% higher** emissions for
@@ -142,8 +157,12 @@ the short-duration aggregate includes crop systems that need eligibility
 checks against the source, including flooded rice.
 
 The fertilizer diagnostic has an almost flat emission-factor response to N
-rate at the tested parameters. This does not establish that other
-parameterizations have the same response.
+rate. Two of these limits are structural rather than a matter of parameter
+values. Model N₂O-N is total mineral N volatilization, first order in the
+mineral N pool, so the emission factor stays flat as the N rate rises at any
+parameter values, apart from N limitation, and the emission-factor level is an
+upper bound on measured N₂O-N. Tillage acts only on decomposition, so no
+tillage lowers mineralization and N₂O-N by construction.
 
 ## Methods and scope of inference
 
@@ -215,12 +234,32 @@ runtime dependency. No model is executed during rendering.
 ## Additional N₂O-N comparisons
 
 The following comparisons retain the archived model and literature values.
-They are exploratory because the nitrogen parameters were not calibrated and
-the treatment and measurement definitions are not fully matched.
+They are exploratory because the nitrogen parameters were not calibrated, the
+rice drying does not reach the model, and the treatment and measurement definitions are not fully matched.
 The rice literature entries use an assumed sensitivity spread rather than an
 empirical uncertainty interval; no interval is plotted for them.
 
 {{< include generated/proxy_table.md >}}
+
+## Which comparisons can be judged
+
+Each comparison is marked **comparable** when the model and the evidence
+describe the same quantity, pools, depth and period, so the magnitude can be
+judged; **qualified** when the direction can be judged now but the magnitude
+only after the listed matching; and **blocked** when the model is missing the
+process, or the treatment does not reach the model, so the result cannot be
+judged against the literature yet. A blocked result can still move, even in the
+opposite direction: for no tillage, modeled N₂O-N falls by construction. None
+is comparable yet. The four carbon comparisons are qualified. The rice
+comparisons, methane and N₂O-N, are blocked because the drying does not reach
+the model. The other four N₂O-N comparisons (no tillage, both emission-factor
+slopes, emission-factor level) are blocked because of how the model represents
+N₂O-N; calibrating the nitrogen parameters alone would not unblock those four.
+The statuses and reasons are kept in
+[`data/comparison_status.csv`](data/comparison_status.csv), and the generator
+stops if any comparison lacks one.
+
+{{< include generated/status_table.md >}}
 
 ## References
 
