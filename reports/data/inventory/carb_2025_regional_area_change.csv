@@ -1,0 +1,19 @@
+"region","land_type","period","area_change_million_acres"
+"Central Coast","Cropland","2001-2013",0.008144766347
+"Central Coast","Cropland","2014-2022",0.09313095417
+"Inland Deserts","Cropland","2001-2013",-0.2476651246
+"Inland Deserts","Cropland","2014-2022",0.03017764587
+"Los Angeles","Cropland","2001-2013",0.004652722517
+"Los Angeles","Cropland","2014-2022",0.01409004769
+"North Coast","Cropland","2001-2013",-0.1124710769
+"North Coast","Cropland","2014-2022",0.01305546688
+"Sacramento Valley","Cropland","2001-2013",-0.2241015013
+"Sacramento Valley","Cropland","2014-2022",0.106645444
+"San Diego","Cropland","2001-2013",0.03048788668
+"San Diego","Cropland","2014-2022",0.01410561533
+"San Francisco Bay Area","Cropland","2001-2013",0.007962847365
+"San Francisco Bay Area","Cropland","2014-2022",0.05362940449
+"San Joaquin Valley","Cropland","2001-2013",-0.3565674315
+"San Joaquin Valley","Cropland","2014-2022",0.3057659998
+"Sierra Nevada","Cropland","2001-2013",-0.1195890463
+"Sierra Nevada","Cropland","2014-2022",0.02427951223

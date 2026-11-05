@@ -1,5 +1,5 @@
 {
-  "retrieved_utc": "2026-11-05T19:50:32+00:00",
+  "retrieved_utc": "2026-11-05T20:15:06+00:00",
   "magic_release": "s3://carb/inventories/v0.1.0/2023 (review candidate; checksums match its SHA256SUMS)",
   "carb_workbook_sha256": "be946d69ef3837406251f4a4ca71baba97f6de4813ad0e0b6c77b58a3065082f",
   "files": [
@@ -35,8 +35,8 @@
     },
     {
       "file": "carb_2025_perennial_biomass_area.csv",
-      "source": "same workbook, sheet CL_Fig6 (Appendix Figure 66)",
-      "sha256": "73dc3bd186dc16cdb1ec8be0afee37d370ed591def201c1008d72ecd6820e4d7"
+      "source": "same workbook, sheet CL_Fig6 (Appendix Figure 66); years the caption says were left empty, held as 0 in the workbook, are NA here",
+      "sha256": "cccad6190c94211393a4ad703f3d0d8dcb47a85dcced45d263887a5ba2ebefb9"
     },
     {
       "file": "carb_2025_perennial_biomass_2022.csv",
@@ -52,6 +52,18 @@
       "file": "carb_reference_values.csv",
       "source": "values listed in ccmmf/organization#228",
       "sha256": "6988a8d689cb958e24ea7b51edfe3a2914ebbbb87ccd124c51fcb303a8c8ad15"
+    },
+    {
+      "file": "carb_2025_regional_soil_density_change.csv",
+      "source": "same workbook, sheet CL_Fig8 (Appendix Figure 70)",
+      "sha256": "fd3e983810f9f2c3e20039c60852d1b2fb3782a1981e7aeb09af5d08f6e4d159"
+    },
+    {
+      "file": "carb_2025_regional_area_change.csv",
+      "source": "same workbook, sheet CL_Fig3 (Appendix Figure 63)",
+      "sha256": "94c5793ab5b7cbffeb91a6ebe17be11e17d9ad0d9f6df848a11872ee800ade54"
     }
-  ]
+  ],
+  "carb_workbook": "CARB_2025_NWL_Carbon_Inventory_Appendix_C-Croplands_figure_data.xlsx: data behind the cropland figures of CARB's Natural and Working Lands Carbon Inventory (2025), Supplementary Document C; local copy, sha256 below",
+  "carb_methods": "UpdatedMethodsProposal_croplands_2025.pdf (CARB, January 2025), attached to ccmmf/organization#228: defines cropland biomass as roots, trunks and branches of woody perennial crops and soil carbon as the top 30 cm"
 }

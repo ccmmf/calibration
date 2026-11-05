@@ -1,106 +1,106 @@
 "year","category","acres","biomass_mmt_c"
-2001,"Almond",0,0
-2001,"Pistachio",0,0
-2001,"Walnut",0,0
-2001,"Citrus",0,0
-2001,"Vineyard",0,0
-2001,"Other Perennial",0,0
+2001,"Almond",NA,NA
+2001,"Pistachio",NA,NA
+2001,"Walnut",NA,NA
+2001,"Citrus",NA,NA
+2001,"Vineyard",NA,NA
+2001,"Other Perennial",NA,NA
 2002,"Almond",996456.997505363,14.254535
 2002,"Pistachio",278012.2353174,1.7382659
 2002,"Walnut",305998.402400845,12.99536
 2002,"Citrus",209818.637325521,2.2306208
 2002,"Vineyard",786674.38814446,3.6053235
 2002,"Other Perennial",316791.224147187,0
-2003,"Almond",0,0
-2003,"Pistachio",0,0
-2003,"Walnut",0,0
-2003,"Citrus",0,0
-2003,"Vineyard",0,0
-2003,"Other Perennial",0,0
-2004,"Almond",0,0
-2004,"Pistachio",0,0
-2004,"Walnut",0,0
-2004,"Citrus",0,0
-2004,"Vineyard",0,0
-2004,"Other Perennial",0,0
-2005,"Almond",0,0
-2005,"Pistachio",0,0
-2005,"Walnut",0,0
-2005,"Citrus",0,0
-2005,"Vineyard",0,0
-2005,"Other Perennial",0,0
-2006,"Almond",0,0
-2006,"Pistachio",0,0
-2006,"Walnut",0,0
-2006,"Citrus",0,0
-2006,"Vineyard",0,0
-2006,"Other Perennial",0,0
+2003,"Almond",NA,NA
+2003,"Pistachio",NA,NA
+2003,"Walnut",NA,NA
+2003,"Citrus",NA,NA
+2003,"Vineyard",NA,NA
+2003,"Other Perennial",NA,NA
+2004,"Almond",NA,NA
+2004,"Pistachio",NA,NA
+2004,"Walnut",NA,NA
+2004,"Citrus",NA,NA
+2004,"Vineyard",NA,NA
+2004,"Other Perennial",NA,NA
+2005,"Almond",NA,NA
+2005,"Pistachio",NA,NA
+2005,"Walnut",NA,NA
+2005,"Citrus",NA,NA
+2005,"Vineyard",NA,NA
+2005,"Other Perennial",NA,NA
+2006,"Almond",NA,NA
+2006,"Pistachio",NA,NA
+2006,"Walnut",NA,NA
+2006,"Citrus",NA,NA
+2006,"Vineyard",NA,NA
+2006,"Other Perennial",NA,NA
 2007,"Almond",996456.997505363,16.173288
 2007,"Pistachio",278012.2353174,2.1661262
 2007,"Walnut",305998.402400845,11.86404
 2007,"Citrus",209818.637325521,1.8918686
 2007,"Vineyard",786674.38814446,3.513995
 2007,"Other Perennial",316791.224147187,0
-2008,"Almond",0,0
-2008,"Pistachio",0,0
-2008,"Walnut",0,0
-2008,"Citrus",0,0
-2008,"Vineyard",0,0
-2008,"Other Perennial",0,0
-2009,"Almond",0,0
-2009,"Pistachio",0,0
-2009,"Walnut",0,0
-2009,"Citrus",0,0
-2009,"Vineyard",0,0
-2009,"Other Perennial",0,0
-2010,"Almond",0,0
-2010,"Pistachio",0,0
-2010,"Walnut",0,0
-2010,"Citrus",0,0
-2010,"Vineyard",0,0
-2010,"Other Perennial",0,0
-2011,"Almond",0,0
-2011,"Pistachio",0,0
-2011,"Walnut",0,0
-2011,"Citrus",0,0
-2011,"Vineyard",0,0
-2011,"Other Perennial",0,0
+2008,"Almond",NA,NA
+2008,"Pistachio",NA,NA
+2008,"Walnut",NA,NA
+2008,"Citrus",NA,NA
+2008,"Vineyard",NA,NA
+2008,"Other Perennial",NA,NA
+2009,"Almond",NA,NA
+2009,"Pistachio",NA,NA
+2009,"Walnut",NA,NA
+2009,"Citrus",NA,NA
+2009,"Vineyard",NA,NA
+2009,"Other Perennial",NA,NA
+2010,"Almond",NA,NA
+2010,"Pistachio",NA,NA
+2010,"Walnut",NA,NA
+2010,"Citrus",NA,NA
+2010,"Vineyard",NA,NA
+2010,"Other Perennial",NA,NA
+2011,"Almond",NA,NA
+2011,"Pistachio",NA,NA
+2011,"Walnut",NA,NA
+2011,"Citrus",NA,NA
+2011,"Vineyard",NA,NA
+2011,"Other Perennial",NA,NA
 2012,"Almond",1154395.81057078,19.154158
 2012,"Pistachio",200074.184870592,3.2638045
 2012,"Walnut",339112.549781573,14.761223
 2012,"Citrus",151117.073641402,1.7205481
 2012,"Vineyard",917465.68508059,3.8047732
 2012,"Other Perennial",190123.794790748,0
-2013,"Almond",0,0
-2013,"Pistachio",0,0
-2013,"Walnut",0,0
-2013,"Citrus",0,0
-2013,"Vineyard",0,0
-2013,"Other Perennial",0,0
+2013,"Almond",NA,NA
+2013,"Pistachio",NA,NA
+2013,"Walnut",NA,NA
+2013,"Citrus",NA,NA
+2013,"Vineyard",NA,NA
+2013,"Other Perennial",NA,NA
 2014,"Almond",1267408.86373187,22.175586
 2014,"Pistachio",376877.418125819,3.7591132
 2014,"Walnut",434112.732607926,8.082253
 2014,"Citrus",354963.964634082,2.740009
 2014,"Vineyard",1071382.04261487,4.299288
 2014,"Other Perennial",568231.501189816,11.621761
-2015,"Almond",0,0
-2015,"Pistachio",0,0
-2015,"Walnut",0,0
-2015,"Citrus",0,0
-2015,"Vineyard",0,0
-2015,"Other Perennial",0,0
+2015,"Almond",NA,NA
+2015,"Pistachio",NA,NA
+2015,"Walnut",NA,NA
+2015,"Citrus",NA,NA
+2015,"Vineyard",NA,NA
+2015,"Other Perennial",NA,NA
 2016,"Almond",1333571.55201455,25.308704
 2016,"Pistachio",399603.057585362,6.1037165
 2016,"Walnut",454133.383588163,9.026317
 2016,"Citrus",336083.309620706,2.9909808
 2016,"Vineyard",1015655.89953953,3.7494428
 2016,"Other Perennial",753528.215906294,12.270106
-2017,"Almond",0,0
-2017,"Pistachio",0,0
-2017,"Walnut",0,0
-2017,"Citrus",0,0
-2017,"Vineyard",0,0
-2017,"Other Perennial",0,0
+2017,"Almond",NA,NA
+2017,"Pistachio",NA,NA
+2017,"Walnut",NA,NA
+2017,"Citrus",NA,NA
+2017,"Vineyard",NA,NA
+2017,"Other Perennial",NA,NA
 2018,"Almond",1530877.58827033,25.51242
 2018,"Pistachio",474298.813611401,5.3183545
 2018,"Walnut",480900.826930212,9.327448
