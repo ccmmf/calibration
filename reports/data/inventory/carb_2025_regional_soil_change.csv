@@ -1,0 +1,19 @@
+"region","land_type","period","soil_c_net_change_mmt_c"
+"Central Coast","Cropland","2001-2013",0.866549
+"Central Coast","Cropland","2014-2022",1.876138
+"Inland Deserts","Cropland","2001-2013",-3.9810205
+"Inland Deserts","Cropland","2014-2022",-0.041217
+"Los Angeles","Cropland","2001-2013",0.3527144
+"Los Angeles","Cropland","2014-2022",0.2982939
+"North Coast","Cropland","2001-2013",-2.9701065
+"North Coast","Cropland","2014-2022",-0.554281
+"Sacramento Valley","Cropland","2001-2013",-7.764746
+"Sacramento Valley","Cropland","2014-2022",-0.291286
+"San Diego","Cropland","2001-2013",0.76607144
+"San Diego","Cropland","2014-2022",0.2516377
+"San Francisco Bay Area","Cropland","2001-2013",-0.113212
+"San Francisco Bay Area","Cropland","2014-2022",1.845413
+"San Joaquin Valley","Cropland","2001-2013",-2.995784
+"San Joaquin Valley","Cropland","2014-2022",0.340424
+"Sierra Nevada","Cropland","2001-2013",-3.9687805
+"Sierra Nevada","Cropland","2014-2022",0.430167
