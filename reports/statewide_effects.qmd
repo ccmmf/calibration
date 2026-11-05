@@ -261,6 +261,48 @@ stops if any comparison lacks one.
 
 {{< include generated/status_table.md >}}
 
+## Direction check against Table 6
+
+Table 6 of the conceptual framework lists the expected direction of each
+practice's effect on soil carbon, N₂O and CH₄ (organization#164). Each cell has
+been audited against the literature as verified, variable, disputed or
+unsupported. [`data/table6_evidence.csv`](data/table6_evidence.csv) copies the
+Table 6 arrow, the audit status and the audited direction from the
+`audited_matrix` tab of the evidence workbook (read on 2026-11-06). Three
+columns are added here: the expected direction for each model contrast (for
+less N and less flooding the audited direction is turned around to match the
+contrast), the scope, and a model note.
+
+For each practice contrast and outcome, the model direction is the sign of the
+mean log response across locations. It counts as an increase or a decrease only
+when the mean change is at least 1% and at least two thirds of locations share
+the sign. A smaller mean is no change, and a larger mean that fewer than two
+thirds of locations share is mixed. The 1% band is a convention, not a detection
+limit; the line after the table shows what changes with 0.5% or 2%. Soil carbon
+is the soil pool alone at the end of 2023, not soil plus litter as in the carbon
+section. Rice N₂O-N and CH₄ use the flooded-season totals, as the archived
+comparisons and Jiang et al. (2019) do; everything else uses 2016–2023.
+
+A verdict of agrees, disagrees or no model response is given only where the
+evidence is verified, the cell is in scope, and the archived comparison is not
+blocked in the status table above. Methane is in scope for rice systems only
+(decided 2026-09-16), so the methane cells of the other practices are out of
+scope. The rice drying cells are blocked because the drying barely reaches the
+model. Where the evidence is variable or disputed, the table says whether the
+model matches the leading direction, if the audit gives one.
+
+{{< include generated/direction_table.md >}}
+
+{{< include generated/direction_sensitivity.md >}}
+
+Four verdicts can be given, and all four agree: soil carbon rises under cover
+crops and under organic amendments in place of mineral fertilizer, and N₂O-N
+falls with less N fertilizer at both the half and zero rate. Soil carbon under
+less tillage also rises, the leading direction of evidence that is not settled.
+The audited evidence, the scope and the model notes for each cell are below.
+
+{{< include generated/table6_evidence_table.md >}}
+
 ## References
 
 The frozen evidence files retain each source, quantity, and extraction locator.

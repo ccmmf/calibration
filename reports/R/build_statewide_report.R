@@ -202,3 +202,149 @@ utils::write.csv(points, file.path(out, "location_display_values.csv"), row.name
 writeLines(c("Archived estimators reproduced for all six main comparisons.",
              "All finite location effects retained; no axis limits or trimming.",
              capture.output(utils::sessionInfo())), file.path(out, "verification.txt"))
+# Direction check against Table 6 (organization#164). Each practice contrast is summarized
+# once per outcome: the mean log response across locations, and the share of locations with
+# that sign. A direction needs a mean change of at least `band` and at least two thirds of
+# locations agreeing; smaller means are "no change", and a larger mean that fewer than two
+# thirds of locations share is "mixed". Soil C is the soil pool alone at the end of 2023.
+# Rice N2O and CH4 use the flooded-season totals, as the archived comparisons and Jiang et
+# al. (2019) do; everything else uses 2016-2023. No verdict is given where the cell is out of
+# scope, where the archived comparison is blocked (comparison_status.csv), or where the
+# audited evidence is not verified.
+evidence <- utils::read.csv("reports/data/table6_evidence.csv", stringsAsFactors = FALSE,
+                            check.names = FALSE)
+practice_names <- c(cover = "+Cover crops", noncrop_c = "+Non-crop C",
+  tillage = "Less tillage", less_n = "Less N fertilizer",
+  less_flooding = "Less flooding (rice drying)", perennial = "Annual to perennial")
+stopifnot(all(evidence$practice %in% names(practice_names)),
+          !anyDuplicated(evidence[c("practice", "outcome")]),
+          all(evidence$evidence_status %in% c("verified", "variable", "disputed", "unsupported")),
+          all(evidence$contrast_direction %in% c("increase", "decrease", "none")),
+          all(evidence$scope == "in scope" | startsWith(evidence$scope, "out of scope")),
+          all(table(factor(evidence$practice, levels = names(practice_names))) == 3),
+          setequal(evidence$outcome, c("Soil C", "N2O", "CH4")))
+contrasts <- data.frame(
+  practice = c("cover", "noncrop_c", "tillage", "tillage", "less_n", "less_n",
+               "less_flooding", "less_flooding"),
+  contrast = c("Cover crop / none", "Organic for mineral fertilizer",
+               "Reduced / conventional", "No / conventional", "Half / reference N rate",
+               "Zero / reference N rate", "One drying / flooded", "Two dryings / flooded"),
+  treatment = c("cover_annual", "organic_substitution", "tillage_reduced", "tillage_zero",
+                "mineral_N_half", "mineral_N_zero", "rice_one_dry", "rice_two_dry"),
+  reference = c("cover_none", "fertilizer_reference", "tillage_reference", "tillage_reference",
+                "fertilizer_reference", "fertilizer_reference", "rice_irrigated_reference",
+                "rice_irrigated_reference"))
+# The archived comparison behind a contrast and outcome, where there is one; its status
+# (comparison_status.csv) decides whether a direction can be judged.
+archived_pair <- function(treatment, outcome) {
+  key <- paste(treatment, outcome)
+  ids <- c("cover_annual Soil C" = "cover_soc", "organic_substitution Soil C" = "org_sub",
+           "tillage_reduced Soil C" = "till_reduced_soc", "tillage_zero Soil C" = "till_zero_soc",
+           "tillage_zero N2O" = "till_zero_n2o", "rice_one_dry N2O" = "rice_one_n2o",
+           "rice_two_dry N2O" = "rice_two_n2o", "rice_one_dry CH4" = "rice_one_ch4",
+           "rice_two_dry CH4" = "rice_two_ch4")
+  if (key %in% names(ids)) ids[[key]] else NA_character_
+}
+pair_status <- stats::setNames(status$status, retained$pair_id)
+outcome_metric <- function(outcome, practice) {
+  season <- practice == "less_flooding"
+  switch(outcome, "Soil C" = "soil_lrr_end",
+         N2O = if (season) "lrr_n2o_season" else "lrr_n2o_full",
+         CH4 = if (season) "lrr_ch4_season" else "lrr_ch4_full")
+}
+classify <- function(x, band) {
+  m <- mean(x)
+  if (abs(expm1(m)) < band) return("no change")
+  if (mean(sign(x) == sign(m)) < 2 / 3) return("mixed")
+  if (m > 0) "increase" else "decrease"
+}
+verdicts <- c("agrees", "disagrees", "no model response", "mixed model response")
+agreement <- function(model, ev, blocked) {
+  if (ev$scope != "in scope") return("out of scope")
+  if (blocked) return("blocked")
+  if (ev$evidence_status == "unsupported") return("no evidence")
+  expected <- ev$contrast_direction
+  if (ev$evidence_status != "verified") {
+    if (expected == "none") return("evidence not settled")
+    return(if (model == expected) "agrees, evidence not settled" else "differs, evidence not settled")
+  }
+  if (model == expected || (expected == "none" && model == "no change")) return("agrees")
+  if (model == "no change") return("no model response")
+  if (model == "mixed") return("mixed model response")
+  "disagrees"
+}
+direction_rows <- function(band) {
+  do.call(rbind, lapply(seq_len(nrow(contrasts)), function(i) {
+    k <- contrasts[i, ]
+    pairs <- effects[effects$treatment == k$treatment & effects$reference == k$reference &
+                       effects$pair_ok, ]
+    do.call(rbind, lapply(c("Soil C", "N2O", "CH4"), function(outcome) {
+      x <- pairs[[outcome_metric(outcome, k$practice)]]
+      x <- x[is.finite(x)]
+      ev <- evidence[evidence$practice == k$practice & evidence$outcome == outcome, ]
+      pid <- archived_pair(k$treatment, outcome)
+      blocked <- !is.na(pid) && pair_status[[pid]] == "blocked"
+      model <- classify(x, band)
+      data.frame(practice = k$practice, contrast = k$contrast, outcome = outcome,
+        locations = length(x), mean_change_pct = 100 * expm1(mean(x)),
+        share_same_sign = mean(sign(x) == sign(mean(x))), model = model,
+        archived_pair = pid, evidence_status = ev$evidence_status,
+        expected = ev$contrast_direction, scope = ev$scope,
+        agreement = agreement(model, ev, blocked), note = ev$model_note)
+    }))
+  }))
+}
+directions <- direction_rows(0.01)
+# The report text quotes these verdicts; stop if the results no longer give them.
+verdict_of <- function(contrast, outcome) {
+  directions$agreement[directions$contrast == contrast & directions$outcome == outcome]
+}
+stopifnot(verdict_of("Cover crop / none", "Soil C") == "agrees",
+          verdict_of("Organic for mineral fertilizer", "Soil C") == "agrees",
+          verdict_of("Half / reference N rate", "N2O") == "agrees",
+          verdict_of("Zero / reference N rate", "N2O") == "agrees",
+          all(directions$agreement[directions$practice == "less_flooding" &
+                                     directions$outcome != "Soil C"] == "blocked"),
+          all(directions$agreement[directions$outcome == "CH4" &
+                                     directions$practice != "less_flooding"] == "out of scope"),
+          sum(directions$agreement %in% verdicts) == 4)
+utils::write.csv(directions, file.path(out, "direction_check.csv"), row.names = FALSE)
+pct <- function(v) ifelse(abs(v) < 0.1, sprintf("%+.2f%%", v), sprintf("%+.1f%%", v))
+cell <- function(d) {
+  if (d$model %in% c("increase", "decrease")) {
+    sprintf("%s, %s (%.0f%% of %d locations) — %s", d$model, pct(d$mean_change_pct),
+            100 * d$share_same_sign, d$locations, d$agreement)
+  } else {
+    sprintf("%s, %s (%d locations) — %s", d$model, pct(d$mean_change_pct), d$locations,
+            d$agreement)
+  }
+}
+wide <- do.call(rbind, lapply(split(directions, factor(directions$contrast,
+                                                        levels = contrasts$contrast)), function(d) {
+  data.frame(Practice = practice_names[[d$practice[1]]], Contrast = d$contrast[1],
+             `Soil C` = cell(d[d$outcome == "Soil C", ]), `N2O-N` = cell(d[d$outcome == "N2O", ]),
+             CH4 = cell(d[d$outcome == "CH4", ]), check.names = FALSE)
+}))
+wide <- rbind(wide, data.frame(Practice = practice_names[["perennial"]], Contrast = "—",
+  `Soil C` = "not simulated", `N2O-N` = "not simulated", CH4 = "not simulated",
+  check.names = FALSE))
+write_table(wide, "direction_table.md")
+write_table(data.frame(Practice = unname(practice_names[evidence$practice]),
+  Outcome = sub("N2O", "N2O-N", evidence$outcome), `Table 6` = evidence$table6,
+  `Audited evidence` = paste0(evidence$evidence_status, ": ", evidence$evidence_direction),
+  Scope = evidence$scope, `Model note` = evidence$model_note, check.names = FALSE),
+  "table6_evidence_table.md")
+# How the verdicts change if the no-change band is 0.5% or 2% instead of 1%.
+judged <- directions$agreement %in% verdicts
+flip_text <- vapply(c(0.005, 0.02), function(b) {
+  alt <- direction_rows(b)
+  hit <- alt$agreement != directions$agreement & (judged | alt$agreement %in% verdicts)
+  if (!any(hit)) {
+    return(sprintf("With a %.1f%% band, none of the %d verdicts changes.", 100 * b, sum(judged)))
+  }
+  sprintf("With a %.1f%% band, %d of the %d verdicts %s: %s.", 100 * b, sum(hit), sum(judged),
+          if (sum(hit) == 1) "changes" else "change",
+          paste0(directions$contrast[hit], " ", directions$outcome[hit], " becomes ",
+                 alt$agreement[hit], collapse = "; "))
+}, character(1))
+writeLines(paste(flip_text, collapse = " "), file.path(out, "direction_sensitivity.md"))

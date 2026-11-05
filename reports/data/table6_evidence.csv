@@ -1,0 +1,19 @@
+practice,outcome,table6,evidence_status,evidence_direction,contrast_direction,scope,model_note
+cover,Soil C,↑↑,verified,increase,increase,in scope,
+cover,N2O,↓,variable,"increase or variable, NOT the predicted decrease",none,in scope,
+cover,CH4,↓,unsupported,-,none,"out of scope: methane is in scope for rice systems only (David, 2026-09-16)","Modeled methane is production only, proportional to soil and litter carbon, and occurs only at the 12 locations with rice soil parameters."
+noncrop_c,Soil C,↑↑,verified,increase,increase,in scope,
+noncrop_c,N2O,↑,disputed,"decrease observed, increase predicted",none,in scope,
+noncrop_c,CH4,↑,variable,depends on the form of carbon added,none,"out of scope: methane is in scope for rice systems only (David, 2026-09-16)","Modeled methane is production only, proportional to soil and litter carbon, and occurs only at the 12 locations with rice soil parameters."
+tillage,Soil C,↑↑,variable,"increase, but shallow-sampling and offset caveats",increase,in scope,
+tillage,N2O,↓,disputed,sources disagree on sign,none,in scope,"Tillage only scales decomposition in SIPNET, so less tillage lowers N2O-N by construction."
+tillage,CH4,↔,verified,small increase in uptake,decrease,"out of scope: methane is in scope for rice systems only (David, 2026-09-16)","Modeled methane has no uptake term; it is production only, proportional to soil and litter carbon, at the 12 locations with rice soil parameters."
+less_n,Soil C,↔,variable,"slows loss, does not reverse it",decrease,in scope,"Modeled soil carbon barely responds to the N rate: no change at half rate; at zero N it falls at 2 of 99 locations (by 7.0% at one), through N limitation of growth."
+less_n,N2O,↓↓,verified,"increase with N, strongly",decrease,in scope,The modeled emission factor is flat in N rate (see the N2O-N diagnostics).
+less_n,CH4,↔,unsupported,qualitative direction only,none,"out of scope: methane is in scope for rice systems only (David, 2026-09-16)",
+less_flooding,Soil C,↔,variable,comparator-dependent,none,in scope,
+less_flooding,N2O,↔,verified,draining raises N2O; flooding lowers it,increase,in scope,The drying barely reaches the model (see the methane row).
+less_flooding,CH4,↓↓,verified,strong decrease when flooding is reduced,decrease,in scope,The drying barely reaches the model: methane changes by less than 0.2% at each location.
+perennial,Soil C,↑↑,variable,"increase, but only after about ten years",increase,in scope,No annual to perennial scenario was simulated.
+perennial,N2O,↓,disputed,large source measured where a decrease was predicted,increase,in scope,No annual to perennial scenario was simulated.
+perennial,CH4,↔,variable,uptake under perennial cover,decrease,"out of scope: methane is in scope for rice systems only (David, 2026-09-16)",No annual to perennial scenario was simulated.
