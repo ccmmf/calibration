@@ -250,9 +250,11 @@ process, or the treatment does not reach the model, so the result cannot be
 judged against the literature yet. A blocked result can still move, even in the
 opposite direction: for no tillage, modeled N₂O-N falls by construction. None
 is comparable yet. The four carbon comparisons are qualified. The rice
-comparisons are blocked because the drying does not reach the model, and the
-N₂O-N comparisons because of how the model represents N₂O-N; calibrating the
-nitrogen parameters alone would not unblock them. The statuses and reasons are kept in
+comparisons, methane and N₂O-N, are blocked because the drying does not reach
+the model. The other four N₂O-N comparisons (no tillage, both emission-factor
+slopes, emission-factor level) are blocked because of how the model represents
+N₂O-N; calibrating the nitrogen parameters alone would not unblock those four.
+The statuses and reasons are kept in
 [`data/comparison_status.csv`](data/comparison_status.csv), and the generator
 stops if any comparison lacks one.
 
