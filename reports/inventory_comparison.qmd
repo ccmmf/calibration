@@ -44,7 +44,7 @@ to year.
 
 {{< include generated/inventory/comparison_table.md >}}
 
-![CARB cropland soil and biomass carbon by year (orange) with the MAGiC start and end values (blue). MAGiC points are January 2016 and December 2023, mean ± SD over 20 parameter members, for a fixed set of fields; CARB totals change with cropland area. MAGiC biomass includes annual crops, which start January 2016 with standing biomass (see below).](generated/inventory/inventory_series.png){#fig-inventory width=85% fig-alt="Two panels. Soil carbon: the CARB series runs between about 209 and 264 MMT C from 2001 to 2022; MAGiC is 238 in January 2016 and 201 in December 2023. Biomass carbon: CARB rises from 35 to 65 MMT C; MAGiC is 18 in January 2016 and 1 in December 2023."}
+![CARB cropland soil and biomass carbon by year (orange) with the MAGiC start and end values (blue). MAGiC points are January 2016 and December 2023, mean ± SD over 20 parameter members, for a fixed set of fields; CARB totals change with cropland area. MAGiC biomass is woody perennial crops only, like CARB's.](generated/inventory/inventory_series.png){#fig-inventory width=85% fig-alt="Two panels. Soil carbon: the CARB series runs between about 209 and 264 MMT C from 2001 to 2022; MAGiC is 238 in January 2016 and 201 in December 2023. Biomass carbon: CARB rises from 35 to 65 MMT C; MAGiC woody perennial biomass is 10.7 in January 2016 and 1.15 in December 2023."}
 
 ## What stands out
 

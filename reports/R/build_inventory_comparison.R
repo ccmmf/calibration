@@ -170,15 +170,17 @@ utils::write.csv(regional[c("region", "soil_c_density_change_t_per_acre", "mg_c_
 carb_plot <- stocks[stocks$pool %in% c("Soil", "Biomass"), ]
 carb_plot$pool <- factor(carb_plot$pool, levels = c("Soil", "Biomass"),
                          labels = c("Soil carbon", "Biomass carbon"))
-endpoint <- function(output, col) m(output, "all crops", col)
+endpoint <- function(output, col, pft = "all crops") m(output, pft, col)
 magic_plot <- data.frame(
   pool = factor(rep(c("Soil carbon", "Biomass carbon"), each = 2),
                 levels = c("Soil carbon", "Biomass carbon")),
   year = c(2016, 2023.95, 2016, 2023.95),
   mean = c(endpoint("TotSoilCarb", "start_mean"), endpoint("TotSoilCarb", "end_mean"),
-           endpoint("AGB", "start_mean"), endpoint("AGB", "end_mean")),
+           endpoint("AGB", "start_mean", "woody perennial crop"),
+           endpoint("AGB", "end_mean", "woody perennial crop")),
   sd = c(endpoint("TotSoilCarb", "start_sd"), endpoint("TotSoilCarb", "end_sd"),
-         endpoint("AGB", "start_sd"), endpoint("AGB", "end_sd")))
+         endpoint("AGB", "start_sd", "woody perennial crop"),
+         endpoint("AGB", "end_sd", "woody perennial crop")))
 p <- ggplot2::ggplot() +
   ggplot2::geom_line(data = carb_plot, ggplot2::aes(year, mmt_c, colour = "CARB 2025 inventory")) +
   ggplot2::geom_point(data = carb_plot, ggplot2::aes(year, mmt_c, colour = "CARB 2025 inventory"),
@@ -192,7 +194,7 @@ p <- ggplot2::ggplot() +
   ggplot2::expand_limits(y = 0) +
   ggplot2::labs(x = NULL, y = "Million metric tons of carbon", colour = NULL,
                 caption = paste0("MAGiC: Jan 2016 and Dec 2023, mean ± SD over 20 parameter members, ",
-                                 "fixed fields. CARB: annual totals,\nwhich change with cropland ",
+                                 "fixed fields; biomass is woody perennial crops only. CARB: annual totals,\nwhich change with cropland ",
                                  "area; biomass is interpolated in some years.")) +
   ggplot2::theme_minimal(base_size = 14) +
   ggplot2::theme(legend.position = "top", panel.grid.minor = ggplot2::element_blank(),
