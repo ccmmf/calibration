@@ -70,7 +70,8 @@ and converted back to ratios; they are not ratios of regional totals.
 
 For cover and tillage, the model carbon quantity is **soil plus litter**: the
 SIPNET soil and litter pools, which PEcAn reports together as `TotSoilCarb`.
-The literature values are measured SOC stocks to 30 cm. The
+The literature values are measured SOC: 0–30 cm for tillage (Sun et al. 2020)
+and a mean sampling depth of 22 cm for cover crops (Poeplau and Don 2015). The
 organic-substitution ratio uses model **soil carbon alone**. The cover estimate is the
 final paired difference divided by the number of prepared cover years; tillage
 uses the eight-year simulation window. These are the existing calculations,
@@ -78,7 +79,7 @@ not interchangeable estimates of a common annual SOC accumulation rate.
 The correspondence between model pools and measured sampling depth also needs
 resolution before quantitative agreement is assessed.
 
-![Model estimates (blue circles) and literature estimates (orange diamonds) for carbon and methane responses. Cover crop is compared with no cover crop, tillage practices with conventional tillage, organic amendments with mineral fertilizer, and irrigation interruptions with continuous flooding. Literature bars show one among-unit SD for carbon rates and approximate 95% intervals for response ratios; model estimates have no parameter-uncertainty intervals. For carbon rates, model points are soil plus litter carbon and literature points are measured SOC stocks to 30 cm.](generated/effects.png){#fig-effects width=85% fig-alt="Blue circles show the model and orange diamonds the literature. Carbon effects are positive; methane response ratios are nearly one. Carbon-rate bars show one literature SD; ratio bars show approximate 95 percent intervals. Location counts are given in the coverage table."}
+![Model estimates (blue circles) and literature estimates (orange diamonds) for carbon and methane responses. Cover crop is compared with no cover crop, tillage practices with conventional tillage, organic amendments with mineral fertilizer, and irrigation interruptions with continuous flooding. Literature bars show one among-unit SD for carbon rates and approximate 95% intervals for response ratios; model estimates have no parameter-uncertainty intervals. For carbon rates, model points are soil plus litter carbon and literature points are measured SOC, 0–30 cm for tillage and a mean depth of 22 cm for cover crops.](generated/effects.png){#fig-effects width=85% fig-alt="Blue circles show the model and orange diamonds the literature. Carbon effects are positive; methane response ratios are nearly one. Carbon-rate bars show one literature SD; ratio bars show approximate 95 percent intervals. Location counts are given in the coverage table."}
 
 In @fig-effects, literature bars show the archived among-unit SD for carbon
 rates and approximately 95% confidence intervals (mean ± 1.96 SE, transformed
@@ -221,6 +222,20 @@ The rice literature entries use an assumed sensitivity spread rather than an
 empirical uncertainty interval; no interval is plotted for them.
 
 {{< include generated/proxy_table.md >}}
+
+## Which comparisons can be judged
+
+Each comparison is marked **comparable** when the model and the evidence
+describe the same quantity, pools, depth and period, so the magnitude can be
+judged; **qualified** when the direction can be judged now but the magnitude
+only after the listed matching; and **blocked** when the model does not yet
+produce the response, so neither can be judged. None is comparable yet: the
+four carbon comparisons are qualified, and the rice and N₂O-N comparisons are
+blocked. The statuses and reasons are kept in
+[`data/comparison_status.csv`](data/comparison_status.csv), and the generator
+stops if any comparison lacks one.
+
+{{< include generated/status_table.md >}}
 
 ## References
 

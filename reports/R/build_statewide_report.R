@@ -55,13 +55,22 @@ write_table <- function(x, name) {
   writeLines(as.character(knitr::kable(x, format = "pipe", row.names = FALSE)),
              file.path(out, name))
 }
+# Whether each pair can be judged yet (organization#288): comparable, qualified or blocked.
+status <- utils::read.csv("reports/data/comparison_status.csv", stringsAsFactors = FALSE)
+stopifnot(!anyDuplicated(status$pair_id), setequal(status$pair_id, names(labels)),
+          all(status$status %in% c("comparable", "qualified", "blocked")),
+          all(nzchar(status$reason)), all(nzchar(status$follow_up)))
+status <- status[match(retained$pair_id, status$pair_id), ]
 values <- data.frame(Comparison = retained$comparison,
   Quantity = retained$display_units,
   Model = ifelse(retained$is_ratio, fmt_ratio(retained$display_model),
                    fmt(retained$display_model)), Literature = fmt(retained$display_evidence),
-  check.names = FALSE)
+  Status = status$status, check.names = FALSE)
 write_table(values[seq_len(6), ], "effects_table.md")
 write_table(values[-seq_len(6), ], "proxy_table.md")
+write_table(data.frame(Comparison = retained$comparison, Status = status$status,
+                       Why = status$reason, `Next step` = status$follow_up,
+                       check.names = FALSE), "status_table.md")
 
 # Preserve archived site populations and reproduce only their archived estimators.
 for (id in main_ids) {
@@ -77,9 +86,10 @@ panel_names <- c("Carbon difference (Mg C/ha per reported year)",
                  "Soil carbon response ratio", "Seasonal methane response ratio")
 main <- retained[seq_len(6), ]
 main$panel <- factor(rep(panel_names, c(3, 1, 2)), levels = panel_names)
-main$label <- c("Cover crop; per cover year", "Reduced tillage", "No tillage",
-                "Organic amendments", "One irrigation interruption",
-                "Two irrigation interruptions")
+main$label <- paste0(c("Cover crop; per cover year", "Reduced tillage", "No tillage",
+                       "Organic amendments", "One irrigation interruption",
+                       "Two irrigation interruptions"),
+                     "\n(", status$status[seq_len(6)], ")")
 main$label <- factor(main$label, levels = rev(main$label))
 # Literature bars retain their distinct meanings: SD or approximate 95% CI.
 main$half_width <- ifelse(main$target_spread_type == "sd", main$target_spread,
@@ -112,7 +122,8 @@ p <- ggplot2::ggplot(main, ggplot2::aes(y = label)) +
   ggplot2::scale_colour_manual(values = c(Model = "#0072B2", Literature = "#D55E00")) +
   ggplot2::scale_shape_manual(values = c(Model = 16, Literature = 18)) +
   ggplot2::labs(x = NULL, y = NULL, colour = NULL, shape = NULL,
-                caption = "Carbon: model is soil + litter C; literature is measured SOC to 30 cm.") +
+                caption = paste0("Carbon: model is soil + litter C; literature is measured SOC,\n",
+                                 "0-30 cm for tillage, mean depth 22 cm for cover crops.")) +
   plot_theme
 ggplot2::ggsave(file.path(out, "effects.png"), p, width = 7.5, height = 8, dpi = 180, bg = "white")
 
