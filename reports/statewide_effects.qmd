@@ -25,7 +25,7 @@ and no tillage, and organic amendments replacing mineral fertilizer.** Their rep
 than the selected synthesis estimates. However, differences in carbon pools,
 treatment exposure, and comparison periods limit interpretation of the magnitude.
 The rice scenarios produce very small methane changes. Modeled N₂O-N responses
-are reported as exploratory diagnostics because nitrogen parameters were not calibrated.
+are reported as exploratory diagnostics: nitrogen parameters were not calibrated, and for most of them the model structure limits the response.
 
 The paired simulations provide a working basis for testing management responses.
 The companion pilot evaluates controlled crop-system comparisons using this
@@ -145,7 +145,8 @@ practice increases carbon.
 ## Nitrous oxide diagnostics
 
 The modeled N₂O-N flux is evaluated here as a diagnostic because nitrogen parameters
-were not calibrated and the comparison populations differ from the syntheses.
+were not calibrated, the model structure limits the response, and the comparison
+populations differ from the syntheses.
 
 The modeled no-tillage response is −2.4% over 2016–2020. The curated dry-climate
 N₂O evidence is duration-dependent: approximately **38% higher** emissions for
@@ -233,8 +234,8 @@ runtime dependency. No model is executed during rendering.
 ## Additional N₂O-N comparisons
 
 The following comparisons retain the archived model and literature values.
-They are exploratory because the nitrogen parameters were not calibrated and
-the treatment and measurement definitions are not fully matched.
+They are exploratory because the nitrogen parameters were not calibrated, the
+rice drying does not reach the model, and the treatment and measurement definitions are not fully matched.
 The rice literature entries use an assumed sensitivity spread rather than an
 empirical uncertainty interval; no interval is plotted for them.
 
