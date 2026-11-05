@@ -1,1 +1,1 @@
-With a 0.5% band, 1 of 24 verdicts change: Reduced / conventional CH4 becomes disagrees. With a 2.0% band, 4 of 24 verdicts change: Cover crop / none Soil C becomes no model response; No / conventional CH4 becomes no model response; One drying / flooded N2O becomes no model response; Two dryings / flooded N2O becomes no model response.
+With a 0.5% band, none of the 4 verdicts changes. With a 2.0% band, 1 of the 4 verdicts changes: Cover crop / none Soil C becomes no model response.
