@@ -1,0 +1,4 @@
+"pair_id","n","total_mean","soil_mean","soil_median","top5_share","comparison","display_evidence"
+"cover_soc",65,0.132431093406594,0.116174692307692,0.0401249999999997,0.763991473494933,"Cover crop / no cover crop",0.32
+"till_reduced_soc",99,0.118228282828283,0.114758333333333,0.0777000000000001,0.242817030958778,"Reduced / conventional tillage",0.2162
+"till_zero_soc",99,0.14614154040404,0.141818181818182,0.0947749999999994,0.234022435897436,"No tillage / conventional tillage",0.2162
