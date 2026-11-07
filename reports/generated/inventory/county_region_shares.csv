@@ -1,0 +1,73 @@
+"county","region","carb_cropland_acres_summed_2014_2022","share"
+"Alameda","San Francisco Bay Area",94876.086502204,1
+"Alpine","Sierra Nevada",359.167671956,1
+"Amador","Sierra Nevada",77290.436662711,1
+"Butte","Sacramento Valley",2248564.65118336,1
+"Calaveras","Sierra Nevada",41828.466918814,1
+"Colusa","Sacramento Valley",2909307.51454605,1
+"Contra Costa","San Francisco Bay Area",260136.137810003,1
+"Del Norte","North Coast",9785.150711394,1
+"El Dorado","Sierra Nevada",67435.231576693,1
+"Fresno","San Joaquin Valley",11354683.1911687,0.997779754803078
+"Fresno","Sierra Nevada",25266.278150466,0.00222024519692158
+"Glenn","Sacramento Valley",2433699.68484764,1
+"Humboldt","North Coast",39057.427173231,1
+"Imperial","Inland Deserts",2482337.43694113,1
+"Inyo","Inland Deserts",49535.560216163,0.999932660537274
+"Inyo","Sierra Nevada",3.33592265,6.73394627254593e-05
+"Kern","San Joaquin Valley",8113663.98344624,0.977474453425639
+"Kern","Inland Deserts",126591.370325085,0.0152507955430954
+"Kern","Sierra Nevada",60384.425463222,0.00727467065378938
+"Kern","Central Coast",0.667184529,8.03774760883452e-08
+"Kings","San Joaquin Valley",4621572.1161647,1
+"Lake","North Coast",279823.418934419,1
+"Lassen","Sierra Nevada",358595.450050815,1
+"Los Angeles","Inland Deserts",433576.093839616,0.950271982840026
+"Los Angeles","Los Angeles",22689.166705908,0.0497280171599744
+"Madera","San Joaquin Valley",3323637.55861017,0.998206005643003
+"Madera","Sierra Nevada",5973.303096897,0.00179399435699658
+"Marin","San Francisco Bay Area",67803.072647526,1
+"Mariposa","Sierra Nevada",6796.386412083,1
+"Mendocino","North Coast",321614.301101002,1
+"Merced","San Joaquin Valley",4587188.53919322,1
+"Modoc","Sierra Nevada",472950.878477355,1
+"Mono","Sierra Nevada",9918.587617477,0.522622074846683
+"Mono","Inland Deserts",9059.92112689,0.477377925153317
+"Monterey","Central Coast",2250718.10058662,1
+"Napa","San Francisco Bay Area",620765.611064681,1
+"Nevada","Sierra Nevada",12683.400309389,1
+"Orange","Los Angeles",55359.191585879,1
+"Placer","Sacramento Valley",325848.921324323,0.989657506211245
+"Placer","Sierra Nevada",3405.309840746,0.0103424937887549
+"Plumas","Sierra Nevada",49235.994362495,1
+"Riverside","Inland Deserts",1025467.96002357,0.665306529982409
+"Riverside","Los Angeles",515878.643098879,0.334693470017591
+"Sacramento","Sacramento Valley",1313500.63978545,1
+"San Benito","Central Coast",447948.582991897,1
+"San Bernardino","Los Angeles",117230.104169288,0.550276116186524
+"San Bernardino","Inland Deserts",95808.588081624,0.449723883813476
+"San Diego","San Diego",609734.826863285,1
+"San Joaquin","San Joaquin Valley",4401190.39091345,1
+"San Luis Obispo","Central Coast",1426363.35403267,0.999986279458431
+"San Luis Obispo","San Joaquin Valley",19.570746213,1.37205415691819e-05
+"San Mateo","San Francisco Bay Area",58144.0198119,1
+"Santa Barbara","Central Coast",1225059.77048118,1
+"Santa Clara","San Francisco Bay Area",268467.715832783,1
+"Santa Cruz","Central Coast",198919.955648075,1
+"Shasta","Sacramento Valley",149451.558661885,1
+"Sierra","Sierra Nevada",25865.854648416,1
+"Siskiyou","North Coast",750937.983173268,1
+"Solano","Sacramento Valley",1037364.74975823,0.833805782718673
+"Solano","San Francisco Bay Area",206767.602473535,0.166194217281327
+"Sonoma","San Francisco Bay Area",1081028.64129576,1
+"Stanislaus","San Joaquin Valley",3565083.18906918,1
+"Sutter","Sacramento Valley",2540145.86296153,1
+"Tehama","Sacramento Valley",970726.581304728,1
+"Trinity","North Coast",13353.920761383,1
+"Tulare","San Joaquin Valley",6594268.86313981,0.999825231417475
+"Tulare","Sierra Nevada",1152.672472931,0.000174768582524561
+"Tuolumne","Sierra Nevada",9854.982692114,1
+"Ventura","Central Coast",989823.404114022,0.970542762778518
+"Ventura","Los Angeles",30042.429803802,0.0294572372214821
+"Yolo","Sacramento Valley",2726155.13075632,1
+"Yuba","Sacramento Valley",822582.037141533,1

@@ -12,7 +12,7 @@ format:
 ## What this compares
 
 This page compares the MAGiC historical inventory with CARB's cropland carbon
-inventory at the state level
+inventory at the state level and for CARB's nine regions
 ([organization#226](https://github.com/ccmmf/organization/issues/226), with the
 CARB values listed in
 [organization#228](https://github.com/ccmmf/organization/issues/228)). MAGiC
@@ -26,9 +26,10 @@ monthly means, with the change from January 2016. MAGiC values are summarized
 over the 20 parameter members. N₂O and CH₄ are not in this release yet.
 
 The CARB numbers are copied from the data behind the cropland figures of the
-2025 inventory's Supplementary Document C, and from the totals listed in
-organization#228. CARB defines cropland soil carbon as the organic carbon in the
-top 30 cm of soil, and cropland biomass as the carbon in the roots, trunks and
+2025 inventory's Supplementary Document C, from the totals listed in
+organization#228 and, for the regions, from CARB's aggregated inventory data
+table. CARB defines cropland soil carbon as the organic carbon in the top 30 cm
+of soil, and cropland biomass as the carbon in the roots, trunks and
 branches of woody perennial crops; annual crop biomass is not counted (CARB
 methods document, January 2025, attached to organization#228). Units are kept
 as published, million metric tons of carbon (MMT C) and acres; acres are
@@ -54,8 +55,8 @@ loss of 10.7 Mg C/ha (16%). Every one of the 20 parameter members loses soil
 carbon, but by very different amounts: the median member loses 25.9 MMT C and
 the range is 0.5 to 95 MMT C, so the size of the loss depends strongly on the
 parameters. CARB's soil carbon density also falls over 2014–2022, in 7 of its 9
-regions, but by less: 3.0 Mg C/ha in the San Joaquin Valley and 4.3 Mg C/ha in
-the Sacramento Valley, where most cropland is. CARB's statewide total shows no
+regions, but by less where most cropland is: 3.0 Mg C/ha in the San Joaquin
+Valley and 4.3 Mg C/ha in the Sacramento Valley. CARB's statewide total shows no
 clear trend (+0.50 MMT C per year, 95% CI −1.67 to 2.67) because cropland area
 grew by 0.27 Mha over the same years.
 
@@ -81,6 +82,101 @@ standing biomass in January 2016, when winter fields should be close to bare.
 This is consistent with the initial-condition problem fixed in
 [organization#296](https://github.com/ccmmf/organization/issues/296) after this
 inventory was run.
+
+## By region
+
+CARB reports cropland soil carbon density change for nine regions, those of
+California's Fifth Climate Change Assessment (CARB 2025 inventory, Appendix B,
+Regional Assessment). The regions cut across county lines, so each MAGiC county
+is split among regions by the share of its CARB cropland in each region over
+2014–2022, taken from CARB's
+[aggregated inventory data table](https://ww2.arb.ca.gov/sites/default/files/2026-04/NWL_Carbon_Inventory_2025_aggregated_data_table.xlsx).
+Summed by its own region column, that table reproduces CARB's published
+regional changes in soil carbon (Appendix Figures 69 and 70, density to within
+0.1 Mg C/ha) and cropland area (Figure 63); this checks the table, not the
+county split. Every county that spans regions is split by these shares. Four have
+less than 95% of their cropland in one region: Riverside (67% of its cropland in
+the Inland Deserts), San Bernardino (55% in the Los Angeles region), Solano (83%
+in the Sacramento Valley) and Mono (52% in the Sierra Nevada). Every other
+county has at least 95% of its cropland in one region; Los Angeles County's is
+95% in the Inland Deserts region and Ventura's 97% in the Central Coast. Within
+each parameter member, a region's MAGiC change is the total change over its
+counties and both crop strata divided by their area; the table summarizes the 20
+members. CARB's published change is 2022 minus 2014 (Appendix Figure 70). Its
+annual regional densities move from year to year, so the table also gives the
+trend through all nine years, times eight years. To show what the split itself
+does, the table also gives CARB's change computed the way MAGiC's is, from CARB's
+county totals with each split county shared out at the county's density. In the
+two valleys this moves CARB's change by 0.03 Mg C/ha or less. In Los Angeles it
+turns a gain of 1.6 into a loss of 0.9, and it moves the Inland Deserts by 0.3
+and the San Francisco Bay Area by 0.2, so those three regions are sensitive to
+the split.
+
+Soil carbon density change by region, in Mg C/ha, with regions ordered by MAGiC
+area. MAGiC is January 2016 to December 2023; CARB is 2022 minus 2014, the same
+change under MAGiC's county split, and the 2014–2022 trend. Areas are MAGiC's field area and CARB's mean cropland area over
+2014–2022.
+
+{{< include generated/inventory/regional_table.md >}}
+
+![Soil carbon density change by region. Blue dots are the 20 MAGiC parameter members and the blue diamond their mean; the orange square is CARB's 2022 minus 2014 change. The open orange circle is CARB's trend from 2014 to 2022, times eight years, and the orange bar its 95% interval.](generated/inventory/regional_density_change.png){#fig-regions width=85% fig-alt="Dot plot of soil carbon density change for nine regions. Blue dots are MAGiC members and blue diamonds their mean. Orange squares are CARB's 2022 minus 2014 change, and open orange circles on orange bars are CARB's trend from 2014 to 2022, times eight years, with its 95% interval. In the San Joaquin and Sacramento valleys all MAGiC members lose soil carbon, with mean losses of 11.7 and 13.5 Mg C/ha against CARB's 3.0 and 4.3. In each of the other regions MAGiC members spread from losses of more than 15 Mg C/ha to gains. CARB's largest losses are in the North Coast and Sierra Nevada, and it gains in the San Francisco Bay Area and Los Angeles regions."}
+
+**In the Central Valley MAGiC loses more soil carbon than CARB.** The
+Sacramento and San Joaquin valleys hold 76% of MAGiC's field area, and every
+member loses soil carbon in both: 13.5 Mg C/ha on average in the Sacramento
+Valley and 11.7 in the San Joaquin Valley (median members 9.6 and 8.4), against
+CARB's 4.3 and 3.0. In the San Joaquin Valley CARB's trend interval (−4.7 to
+1.0 Mg C/ha over eight years) excludes the median MAGiC member, and 13 of the
+20 members lose more than it allows. In the Sacramento Valley CARB's annual
+density moves between 68.9 and 84.3 Mg C/ha, and its trend interval (−15.3 to
+5.0) is wide enough to include the MAGiC mean and 12 of the 20 members. The
+county split barely matters in either valley.
+
+**Outside the valleys the two inventories do not line up, and they cover
+different land.** MAGiC members disagree on the direction there: between 9 and
+16 of the 20 lose soil carbon in each of the other seven regions. CARB's density
+rises in the San Francisco Bay Area (1.7 Mg C/ha) and Los Angeles (1.6) regions,
+where the MAGiC mean falls by 7.5 and 9.4, although CARB's trends there are
+close to zero (−0.5 and −0.1), and under MAGiC's county split CARB's Los Angeles
+change is a loss of 0.9, so part of that contrast comes from the split. CARB's
+largest losses are in the North Coast (16.9) and Sierra Nevada (9.0), more than
+MAGiC's 6.5 and 6.1; CARB's trend intervals there exclude both the MAGiC mean
+and median, so MAGiC loses less than CARB in those regions. But in those two
+regions MAGiC's field area is 1.7 and 2.3 times CARB's cropland area, so much of
+what MAGiC models there is land CARB does not count as cropland, and CARB's
+North Coast density ranges from 88.7 to 122.1 Mg C/ha between years.
+
+**Woody crop biomass falls in every region.** Every member loses woody biomass
+in every region, from regional means of 5.0 to 24.6 Mg C/ha in January 2016 to
+0.4 to 2.4 Mg C/ha in December 2023. In the San Joaquin Valley, which holds 70%
+of MAGiC's woody area, it falls from 5.9 to 0.7 Mg C/ha. The loss of wood
+described above is not confined to one region. CARB's regional biomass is not
+compared, because CARB reports it per acre of all cropland (Appendix Figure
+64), not per acre of perennial cropland.
+
+Limits of the regional comparison:
+
+- **Time.** MAGiC is January 2016 to December 2023; CARB's regional change is
+  2022 minus 2014. Both span eight years, but they overlap only over 2016–2022.
+- **Area.** MAGiC's fields are fixed, while CARB's cropland grew in every region
+  over 2014–2022 (Appendix Figure 63), so CARB's regional density also changes
+  as land enters and leaves cropland. MAGiC's field area ranges from 0.5 times
+  CARB's cropland area (San Diego) to 2.3 times (Sierra Nevada).
+- **Pools and depth.** As for the state: MAGiC soil carbon is soil plus litter
+  initialized from the SoilGrids 0–30 cm map; CARB's is soil organic carbon in
+  the top 30 cm.
+- **County split.** Fields in a split county are assumed to be spread like
+  CARB's cropland and to share the county's density. Placing each county wholly
+  in the region holding most of its cropland instead changes a region's MAGiC
+  mean by at most 0.6 Mg C/ha (Los Angeles). The density assumption matters
+  more: applied to CARB's own county data, the split moves CARB's change by up
+  to 2.5 Mg C/ha (Los Angeles), 0.3 in the Inland Deserts and 0.2 in the San
+  Francisco Bay Area, and by 0.04 or less elsewhere.
+- **Missing fields.** Every county with CARB cropland in 2014–2022 has MAGiC
+  fields, but Alpine, Plumas and Sierra counties have no MAGiC woody fields.
+  The 9,679 fields left out of MAGiC for missing covariates are not in its
+  county tables, so their regions are unknown. CARB cropland with no county (at
+  most 236 acres in a year) is left out of the split.
 
 ## Comparability
 
@@ -114,9 +210,6 @@ inventory was run.
   management events and the initial wood carbon of the woody design points.
 - Rerun the inventory with the organization#296 initial conditions, then
   compare again.
-- Compare by region: CARB reports soil and biomass change for nine regions
-  (Appendix Figures 62, 69 and 70), which the MAGiC county summaries can be
-  grouped into.
 - Add N₂O and CH₄ when MAGiC releases them: CARB lists 22.8 Gg N₂O per year for
   cropland and about 0.9 MMT CO₂e per year of rice methane, and the project's
   practice-change evidence workbook already holds rice methane estimates from Hu
@@ -125,10 +218,12 @@ inventory was run.
 ## Reproducibility
 
 The [frozen inputs](data/inventory/manifest.json) record the source of each file
-and its checksum: the MAGiC v0.1.0 state tables from
-`s3://carb/inventories/v0.1.0/2023/` (their checksums match the release), the
-CARB values extracted with
-[`extract_carb_appendix_c.R`](R/extract_carb_appendix_c.R), and the
+and its checksum: the MAGiC v0.1.0 state tables and by-member county tables
+from `s3://carb/inventories/v0.1.0/2023/` (their checksums match the release),
+the CARB values extracted with
+[`extract_carb_appendix_c.R`](R/extract_carb_appendix_c.R), CARB's cropland
+area and soil carbon by county, region and year extracted from its aggregated
+data table with [`extract_carb_regions.R`](R/extract_carb_regions.R), and the
 organization#228 totals. Run
 `Rscript reports/R/build_inventory_comparison.R` from the repository root, then
 `quarto render reports/inventory_comparison.qmd`. The build stops if an input
