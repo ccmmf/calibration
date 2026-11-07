@@ -22,8 +22,11 @@
 #   russell_source_corrections.csv  keyed corrections to package records, each with its evidence
 #   russell_harvest_lookup.csv      the harvest fraction rows used here: the site's own samples for
 #                                   corn and tomato, the shared harvest lookup for the rest
+# The fill helpers it shares with the other generators are in fill_order.R, next to this script.
 
 suppressMessages(library(jsonlite))
+script_file <- sub("^--file=", "", grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE))
+source(file.path(if (length(script_file)) dirname(script_file) else "tools/event_prep", "fill_order.R"))
 
 args <- commandArgs(trailingOnly = TRUE)
 if (!length(args) %in% 3:5)
@@ -73,12 +76,14 @@ stopifnot(!anyDuplicated(HARVEST_LOOKUP$crop),
 # that in 2008 and 2009 it was sampled before plowing under and no hay was removed, so it is a
 # green manure, all to litter. The 1993 uniformity crop was cut for hay (a hay_harvest correction).
 GREEN_MANURE <- c("cover crop", "sudangrass")
+# A green manure, an incorporated cover crop and an unharvested crop end in the field
+ALL_TO_LITTER <- harvest_fractions(above_removed = 0, below_removed = 0, above_to_litter = 1, below_to_litter = 1)
 WCC_WINDOW_DAYS <- 240  # a cover crop is incorporated within this many days of planting
 # Alfalfa is cut several times a year. An intermediate cutting removes the lookup's
 # aboveground share and leaves the rest as living stubble, with the roots alive (David on
 # calibration#10: "0.85, 0, 0, 0"); only the stand's last cutting before another crop takes the
 # full P1 row.
-ALFALFA_CUT <- c(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
+ALFALFA_CUT <- harvest_fractions(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
 CROP_DISPLAY <- c(corn = "Corn", tomato = "Tomato", wheat = "Wheat", alfalfa = "Alfalfa",
                   sudangrass = "Sudangrass", "cover crop" = "Cover Crop")
 # The experiment's first operations are in fall 1993, and its fertilization rules start then. The
@@ -231,7 +236,10 @@ pct <- function(param) {
   })
 }
 c_pct <- pct("Total C"); n_pct <- pct("Total N")
-c_mean <- mean(c_pct); n_mean <- mean(n_pct)
+# A year's %C or %N: its own analysis, else the mean of measured years; `from` names which
+COMPOST_MEAN <- "the mean of measured years"
+compost_pct <- function(p, yr) first_available(setNames(list(unname(p[names(p) == yr]), mean(p)),
+                                                        c(paste("the", yr, "analysis"), COMPOST_MEAN)))
 
 # The three plots of a phase stand in for one simulated field, so every amount is a field
 # average: the sum over the plots treated on a date divided by the phase's plot count. When
@@ -337,13 +345,12 @@ fert_events <- function(sys, ph, last_year) {
   f <- fert_n[fert_n$system_name == sys & fert_n$phase == ph, ]
   for (i in seq_len(nrow(f))) {
     if (as.integer(format(f$date[i], "%Y")) > last_year) next
-    out[[length(out) + 1L]] <- list(
+    out[[length(out) + 1L]] <- set_provenance(list(
       event_type = "fertilization", date = format(f$date[i]),
       nh4_n_kg_m2 = round(f$value[i] * KG_HA_TO_KG_M2, 7),
       source = paste0(SOURCE, ":operations_fertilizers.csv"),
-      material = f$material_applied[i], n_plots_treated = f$n_plots_treated[i],
-      provenance_class = "published",
-      provenance_note = paste(
+      material = f$material_applied[i], n_plots_treated = f$n_plots_treated[i]),
+      "published", paste(
         "Total N applied, field average over this phase's plots. Written as mineral N in",
         "nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not",
         "reach the model."))
@@ -352,12 +359,11 @@ fert_events <- function(sys, ph, last_year) {
   for (i in seq_len(NROW(a))) {
     if (as.integer(format(a$date[i], "%Y")) > last_year) next
     share <- a$n[i] / as.numeric(n_plots[sp(sys, ph)])
-    out[[length(out) + 1L]] <- list(
+    out[[length(out) + 1L]] <- set_provenance(list(
       event_type = "fertilization", date = format(a$date[i]),
       nh4_n_kg_m2 = round(share * KG_HA_TO_KG_M2, 7),
       source = paste0(SOURCE, ":operations_fertilizers.csv"),
-      material = a$material[i], n_plots_treated = 1L, provenance_class = "imputed",
-      provenance_note = sprintf(paste(
+      material = a$material[i], n_plots_treated = 1L), "imputed", sprintf(paste(
         "The package logs this %s (%.2f kg N/ha) on plots %s but not on %s, which grew the same crop;",
         "every other application in the log covers all three plots, so %s is taken to have had it too",
         "and this event adds its share, %.2f kg N/ha of the field average (%s in russell_source_corrections.csv;",
@@ -368,24 +374,19 @@ fert_events <- function(sys, ph, last_year) {
   for (i in seq_len(nrow(k))) {
     yr <- format(k$date[i], "%Y")
     if (as.integer(yr) > last_year) next
-    cp <- if (yr %in% names(c_pct)) c_pct[[yr]] else c_mean
-    np <- if (yr %in% names(n_pct)) n_pct[[yr]] else n_mean
-    measured <- yr %in% names(c_pct) && yr %in% names(n_pct)
+    cp <- compost_pct(c_pct, yr); np <- compost_pct(n_pct, yr)
     mass <- k$value[i] * TON_AC_TO_KG_M2
-    out[[length(out) + 1L]] <- list(
+    out[[length(out) + 1L]] <- set_provenance(list(
       event_type = "fertilization", date = format(k$date[i]),
-      org_c_kg_m2 = round(mass * cp / 100, 7), org_n_kg_m2 = round(mass * np / 100, 7),
+      org_c_kg_m2 = round(mass * cp$value / 100, 7), org_n_kg_m2 = round(mass * np$value / 100, 7),
       source = paste0(SOURCE, ":operations_compost.csv+compost_analyses_summary.csv"),
       material = "composted poultry manure", n_plots_treated = k$n_plots_treated[i],
-      compost_wet_tons_acre = round(k$value[i], 4), compost_total_c_pct = round(cp, 4),
-      compost_total_n_pct = round(np, 4),
-      provenance_class = if (measured) "derived" else "assumed",
-      provenance_note = sprintf(paste(
+      compost_wet_tons_acre = round(k$value[i], 4), compost_total_c_pct = round(cp$value, 4),
+      compost_total_n_pct = round(np$value, 4)),
+      if (COMPOST_MEAN %in% c(cp$from, np$from)) "assumed" else "derived", sprintf(paste(
         "Wet tons/acre (US short ton) x %%C and %%N on the reported tonnage. C from %s, N from %s.",
         "This basis reproduces Tautges et al. 2019: ~2.1 Mg C/ha per application year",
-        "(40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."),
-        if (yr %in% names(c_pct)) paste("the", yr, "analysis") else "the mean of measured years",
-        if (yr %in% names(n_pct)) paste("the", yr, "analysis") else "the mean of measured years"))
+        "(40.4 Mg C/ha over 19 years) and 150-200 kg N/ha."), cp$from, np$from))
   }
   out
 }
@@ -510,16 +511,15 @@ ASSUMED_DATES <- corrections("plot_system.csv", "assumed_date")
 # A filled planting takes the median amounts of the generator's plantings of the same crop in
 # the phase, or across the site when the phase has none.
 planting_amount <- function(crop, phase_pool) {
-  for (pool in list(list(phase_pool, "this phase's"), list(site_plantings, "the site's"))) {
-    same <- Filter(function(e) tolower(e$crop_display) == crop, pool[[1]])
-    if (!length(same)) next
-    f <- intersect(AMOUNT_FIELDS, unique(unlist(lapply(same, names))))
-    vals <- setNames(lapply(f, function(k)
-      round(median(vapply(same, function(e) if (is.null(e[[k]])) NA_real_ else as.numeric(e[[k]]), 0), na.rm = TRUE), 4)), f)
-    return(list(fields = vals, note = sprintf("%s<-median of %s %d generator %s plantings",
-                                              paste(f, collapse = "+"), pool[[2]], length(same), CROP_DISPLAY[[crop]])))
-  }
-  stop("no ", crop, " planting to take an amount from")
+  same_crop <- function(pool) Filter(function(e) tolower(e$crop_display) == crop, pool)
+  pick <- first_available(list("this phase's" = same_crop(phase_pool), "the site's" = same_crop(site_plantings)))
+  if (is.null(pick)) stop("no ", crop, " planting to take an amount from")
+  same <- pick$value
+  f <- intersect(AMOUNT_FIELDS, unique(unlist(lapply(same, names))))
+  vals <- setNames(lapply(f, function(k)
+    round(median(vapply(same, function(e) if (is.null(e[[k]])) NA_real_ else as.numeric(e[[k]]), 0), na.rm = TRUE), 4)), f)
+  list(fields = vals, note = sprintf("%s<-median of %s %d generator %s plantings",
+                                     paste(f, collapse = "+"), pick$from, pick$n, CROP_DISPLAY[[crop]]))
 }
 
 # Plantings that plot_system.csv records but operations_planting.csv lacks (25 cash crop
@@ -550,16 +550,15 @@ missing_plantings <- function(sys, ph, pe) {
       amt <- planting_amount(crop, pl)
       assumed <- ASSUMED_DATES[tolower(ASSUMED_DATES$crop) == crop & as_date(ASSUMED_DATES$date) == d &
                                  ASSUMED_DATES$system_name %in% c("", sys), ]
-      out[[length(out) + 1L]] <- c(
+      out[[length(out) + 1L]] <- set_provenance(c(
         list(event_type = "planting", date = format(d), source = paste0(SOURCE, ":plot_system.csv"),
              crop_code = CROP_DISPLAY[[crop]], crop_display = CROP_DISPLAY[[crop]]),
-        amt$fields,
-        list(prior_filled = amt$note, provenance_class = if (nrow(assumed)) "assumed" else "published",
-             provenance_note = paste(c(sprintf(paste(
-               "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted",
-               "(%s), the date most of the phase's plots share."), paste(unique(s$raw), collapse = "; ")),
-               if (nrow(assumed)) sprintf("The package's own notes call this date assigned, not recorded (%s): %s",
-                                          assumed$id[1], assumed$evidence[1])), collapse = " ")))
+        amt$fields, list(prior_filled = amt$note)),
+        if (nrow(assumed)) "assumed" else "published", paste(c(sprintf(paste(
+          "Missing from operations_planting.csv; date from plot_system.csv crop_*_date_planted",
+          "(%s), the date most of the phase's plots share."), paste(unique(s$raw), collapse = "; ")),
+          if (nrow(assumed)) sprintf("The package's own notes call this date assigned, not recorded (%s): %s",
+                                     assumed$id[1], assumed$evidence[1])), collapse = " "))
     }
   }
   out
@@ -579,10 +578,10 @@ missing_cuttings <- function(sys, ph, pe) {
   for (g in unique(cl)) {
     d <- shared_date(a$date[cl == g])
     if (any(abs(as.numeric(have - d)) <= 7)) next
-    out[[length(out) + 1L]] <- list(
+    out[[length(out) + 1L]] <- set_provenance(list(
       event_type = "harvest", date = format(d), source = paste0(SOURCE, ":alfalfa_harvests_all.csv"),
-      crop_display = "Alfalfa", provenance_class = "published",
-      provenance_note = "Missing from operations_harvest.csv; dated by the alfalfa_harvests_all.csv sample taken at the cutting.")
+      crop_display = "Alfalfa"), "published",
+      "Missing from operations_harvest.csv; dated by the alfalfa_harvests_all.csv sample taken at the cutting.")
   }
   out
 }
@@ -609,32 +608,30 @@ missing_harvests <- function(sys, ph, pe) {
                        ps_harvests$date > pd & as.numeric(ps_harvests$date - pd) <= SEASON_DAYS, ]
     hay <- HAY[HAY$system_name == sys & tolower(HAY$crop) == crop & as_date(HAY$date) > pd &
                  as.numeric(as_date(HAY$date) - pd) <= SEASON_DAYS, ]
+    # frac_above_removed_0to1 = NA keeps the field's place until apply_lookup sets the fractions
     if (!nrow(m) && nrow(hay)) {
-      out[[length(out) + 1L]] <- list(
+      out[[length(out) + 1L]] <- set_provenance(list(
         event_type = "harvest", date = format(as_date(hay$date[1])), source = paste0(SOURCE, ":metadata"),
-        crop_display = p$crop_display, frac_above_removed_0to1 = NA, provenance_class = "imputed",
-        provenance_note = sprintf("No harvest in operations_harvest.csv; a hay cut (%s): %s", hay$id[1], hay$evidence[1]))
+        crop_display = p$crop_display, frac_above_removed_0to1 = NA), "imputed",
+        sprintf("No harvest in operations_harvest.csv; a hay cut (%s): %s", hay$id[1], hay$evidence[1]))
       next
     }
     if (!nrow(m)) {
       if (pd > LAST_DATE - 240) next  # still growing when the run ends
       cat(sprintf("%s %s: %s planted %s has no harvest record; ends on an imputed date\n",
                   sys, ph, p$crop_display, p$date))
-      out[[length(out) + 1L]] <- list(
-        event_type = "harvest", date = NA_character_, source = paste0(SOURCE, ":operations_planting.csv"),
-        crop_display = p$crop_display, frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
-        frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1, not_harvested = TRUE,
-        provenance_class = "imputed",
-        provenance_note = "No harvest in operations_harvest.csv or plot_system.csv; the crop ends with all biomass to litter.",
-        impute = list(kind = "harvest_doy", crop = crop, after = p$date))
+      e <- set_provenance(c(
+        list(event_type = "harvest", date = NA_character_, source = paste0(SOURCE, ":operations_planting.csv"),
+             crop_display = p$crop_display), ALL_TO_LITTER, list(not_harvested = TRUE)), "imputed",
+        "No harvest in operations_harvest.csv or plot_system.csv; the crop ends with all biomass to litter.")
+      e$impute <- list(kind = "harvest_doy", crop = crop, after = p$date)
+      out[[length(out) + 1L]] <- e
       next
     }
     hd <- shared_date(m$date)
-    out[[length(out) + 1L]] <- list(
+    out[[length(out) + 1L]] <- set_provenance(list(
       event_type = "harvest", date = format(hd), source = paste0(SOURCE, ":plot_system.csv"),
-      crop_display = p$crop_display, frac_above_removed_0to1 = NA,
-      provenance_class = "published",
-      provenance_note = sprintf(paste(
+      crop_display = p$crop_display, frac_above_removed_0to1 = NA), "published", sprintf(paste(
         "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested",
         "(%s), the date most of the phase's plots share."),
         paste(unique(m$raw), collapse = "; ")))
@@ -676,19 +673,18 @@ cover_crop_ends <- function(sys, ph, pe) {
     s <- cc_dates[cc_dates$system == sys & cc_dates$phase == ph & cc_dates$date > pd &
                     as.numeric(cc_dates$date - pd) <= WCC_WINDOW_DAYS, ]
     nxt <- cash[cash > pd]
-    ev <- list(event_type = "harvest", date = NA_character_, crop_display = "Cover Crop",
-               frac_above_removed_0to1 = 0, frac_below_removed_0to1 = 0,
-               frac_above_to_litter_0to1 = 1, frac_below_to_litter_0to1 = 1)
+    ev <- c(list(event_type = "harvest", date = NA_character_, crop_display = "Cover Crop"), ALL_TO_LITTER)
     ok <- s[!s$unusable, ]
     b <- BOUNDED[0, ]
     if (nrow(ok)) {
-      src <- names(CC_NOTES)[names(CC_NOTES) %in% ok$src][1]
-      ok <- ok[ok$src == src, ]
+      # the sample date first, the plot table's when the planting has no sample
+      pick <- first_available(lapply(setNames(nm = names(CC_NOTES)), function(f) ok[ok$src == f, ]))
+      src <- pick$from; ok <- pick$value
       d <- shared_date(as.Date(tapply(ok$date, ok$plot, min), origin = "1970-01-01"))
       if (!any(nxt < d)) {
-        out[[length(out) + 1L]] <- modifyList(ev, list(
-          date = format(d), source = paste0(SOURCE, ":", src), provenance_class = "published",
-          provenance_note = paste("Cover crop termination.", CC_NOTES[[src]])))
+        ev$date <- format(d)
+        out[[length(out) + 1L]] <- set_provenance(ev, "published", paste("Cover crop termination.", CC_NOTES[[src]]),
+                                                  source = paste0(SOURCE, ":", src))
         next
       }
       note <- sprintf("The recorded date (%s, %s) is after the next cash crop planting.", format(d), src)
@@ -704,12 +700,12 @@ cover_crop_ends <- function(sys, ph, pe) {
       note <- if (nrow(b)) sprintf("No incorporation date for this planting; %s (russell_source_corrections.csv).",
                                    b$evidence) else "No incorporation date for this planting."
     }
-    out[[length(out) + 1L]] <- modifyList(ev, list(
-      source = paste0(SOURCE, ":operations_planting.csv"), provenance_class = "imputed",
-      provenance_note = paste("Cover crop termination.", note),
-      impute = c(if (length(nxt)) list(kind = "cc_gap", next_cash = format(min(nxt)), after = p$date)
-                 else list(kind = "cc_doy", after = p$date),
-                 if (nrow(b)) list(bound_id = b$id, within = format(as_date(c(b$date, b$replacement)))))))
+    ev <- set_provenance(ev, "imputed", paste("Cover crop termination.", note),
+                         source = paste0(SOURCE, ":operations_planting.csv"))
+    ev$impute <- c(if (length(nxt)) list(kind = "cc_gap", next_cash = format(min(nxt)), after = p$date)
+                   else list(kind = "cc_doy", after = p$date),
+                   if (nrow(b)) list(bound_id = b$id, within = format(as_date(c(b$date, b$replacement)))))
+    out[[length(out) + 1L]] <- ev
   }
   out
 }
@@ -732,24 +728,29 @@ apply_lookup <- function(e, sys) {
   if (isTRUE(e$not_harvested)) return(e)
   crop <- tolower(e$crop_display)
   hay <- hay_for(sys, crop, e$date)
-  if (crop %in% GREEN_MANURE && !nrow(hay)) {
-    e$frac_above_removed_0to1 <- 0
-    e$frac_above_to_litter_0to1 <- 1
+  green <- crop %in% GREEN_MANURE && !nrow(hay)
+  if (!green) {
+    r <- HARVEST_LOOKUP[HARVEST_LOOKUP$crop == if (nrow(hay)) "hay" else crop, ]
+    if (!nrow(r)) stop(sprintf("%s harvest on %s has no harvest lookup row", e$crop_display, e$date))
+  }
+  fr <- if (green) ALL_TO_LITTER else
+    harvest_fractions(above_removed = r$above_removed, below_removed = 0,
+                      above_to_litter = r$above_to_litter, below_to_litter = 1)
+  # The aboveground pair, then the row and its note, then the roots: the order the files have
+  above <- c("frac_above_removed_0to1", "frac_above_to_litter_0to1")
+  e[above] <- fr[above]
+  if (green) {
     if (crop == "sudangrass")
       e$harvest_fraction_note <- paste("Plowed under with no hay removed (2008 and 2009 sudangrass,",
                                        "Wolf et al. 2018 metadata), which overrides the F16 lookup row.")
   } else {
-    r <- HARVEST_LOOKUP[HARVEST_LOOKUP$crop == if (nrow(hay)) "hay" else crop, ]
-    if (!nrow(r)) stop(sprintf("%s harvest on %s has no harvest lookup row", e$crop_display, e$date))
-    e$frac_above_removed_0to1 <- r$above_removed
-    e$frac_above_to_litter_0to1 <- r$above_to_litter
     e$harvest_lookup_row <- r$lookup_row
     if (nrow(hay)) e$harvest_fraction_note <- sprintf("Cut for hay, not grain (%s); the lookup's hay row.", hay$id[1])
     else if (r$lookup_row == "site samples") e$harvest_fraction_note <- sprintf("%s (Aritra, 2026-10-31%s).", r$lookup_source,
       if (crop == "tomato") "; the green fruit to litter, David on calibration#10, 2026-11-02" else "")
   }
-  e$frac_below_removed_0to1 <- 0
-  e$frac_below_to_litter_0to1 <- 1
+  below <- setdiff(names(fr), above)
+  e[below] <- fr[below]
   e$prior_filled <- NULL
   e
 }
@@ -767,10 +768,7 @@ alfalfa_cuts <- function(pe) {
     if (length(nxt) && !any(ad > ad[j] & ad < min(nxt))) {
       e$harvest_fraction_note <- "Last cutting before the next planting: ends the stand with the full P1 row."
     } else {
-      e$frac_above_removed_0to1 <- ALFALFA_CUT[["above_removed"]]
-      e$frac_below_removed_0to1 <- ALFALFA_CUT[["below_removed"]]
-      e$frac_above_to_litter_0to1 <- ALFALFA_CUT[["above_to_litter"]]
-      e$frac_below_to_litter_0to1 <- ALFALFA_CUT[["below_to_litter"]]
+      e[names(ALFALFA_CUT)] <- ALFALFA_CUT
       e$harvest_fraction_note <- paste("Intermediate cutting: removes the P1 aboveground share and leaves",
                                        "the stubble and roots alive.")
     }
@@ -878,11 +876,13 @@ med <- do.call(rbind, lapply(names(SYSTEMS), function(tid) do.call(rbind, lapply
     r
   }))
 }))))
+# The system's own records when it has MIN_MEDIAN_N of them, otherwise the whole site's
 median_for <- function(sys, kind) {
-  v <- med$value[med$system == sys & med$kind == kind]
-  if (length(v) >= MIN_MEDIAN_N) return(list(v = round(median(v)), n = length(v), level = sys))
-  v <- med$value[med$kind == kind]
-  list(v = round(median(v)), n = length(v), level = "all systems")
+  m <- med[med$kind == kind, ]
+  pick <- first_available(setNames(list(m$value[m$system == sys], m$value), c(sys, "all systems")),
+                          min_n = c(MIN_MEDIAN_N, 1L))
+  if (is.null(pick)) stop("no recorded ", kind, " to take a median from")
+  list(v = round(median(pick$value)), n = pick$n, level = pick$from)
 }
 impute_date <- function(e, sys) {
   k <- e$impute; e$impute <- NULL
@@ -986,8 +986,7 @@ for (i in seq_len(nrow(role_seasons))) {
         s$crop, s$group, e$date, e$material, e$nh4_n_kg_m2 / KG_HA_TO_KG_M2, s$crop, format(tmpl$planted),
         tmpl$tid, tmpl$phase, shift)
       e$date <- format(d)
-      e$provenance_class <- "imputed"
-      e$provenance_note <- note
+      e <- set_provenance(e, "imputed", note)
       keep_all[[s$tid]][[s$phase]] <- c(keep_all[[s$tid]][[s$phase]], list(e))
       role_fills <- role_fills + 1L
       cat(sprintf("%-18s %-28s %s planted %s: %s copied from %s %s %s (%s, %.2f kg N/ha)\n", s$tid, s$phase, s$crop,
@@ -1011,36 +1010,34 @@ fert_2014 <- function(tid, pe) {
   ss <- ss[is.na(ss$end) | ss$end > LOGS_END, ]
   for (i in seq_len(nrow(ss))) {
     s <- ss[i, ]; end <- if (is.na(s$end)) LAST_DATE else s$end
-    tmpl <- NULL
     copies <- function(t2, p2, st, en) Filter(function(e) {
       d <- as.Date(e$date); d2 <- d + as.numeric(s$start - st)
       e$event_type == "fertilization" && d >= st - FERT_LEAD_DAYS && d <= en &&
         d2 > LOGS_END && d2 <= LAST_DATE && d2 >= s$start - FERT_LEAD_DAYS && d2 <= end
     }, keep_all[[t2]][[p2]])
-    for (t2 in c(tid, COMPARABLE[tid][!is.na(COMPARABLE[tid])])) {
-      cand <- do.call(rbind, lapply(names(keep_all[[t2]]), function(p2) {
-        x <- seasons_of(keep_all[[t2]][[p2]])
-        x <- x[x$crop == s$crop & !is.na(x$end) & x$end <= LOGS_END, ]
-        if (!nrow(x)) return(NULL)
-        x$n_copies <- vapply(seq_len(nrow(x)), function(j) length(copies(t2, p2, x$start[j], x$end[j])), 0L)
-        cbind(x, phase = p2, tid = t2)
-      }))
-      if (is.null(cand)) next
-      cand <- cand[cand$n_copies > 0, ]
-      if (nrow(cand)) tmpl <- cand[which.max(cand$start), ]
-      break
-    }
-    if (is.null(tmpl)) next
+    crop_seasons <- function(t2) do.call(rbind, lapply(names(keep_all[[t2]]), function(p2) {
+      x <- seasons_of(keep_all[[t2]][[p2]])
+      x <- x[x$crop == s$crop & !is.na(x$end) & x$end <= LOGS_END, ]
+      if (!nrow(x)) return(NULL)
+      x$n_copies <- vapply(seq_len(nrow(x)), function(j) length(copies(t2, p2, x$start[j], x$end[j])), 0L)
+      cbind(x, phase = p2, tid = t2)
+    }))
+    # the treatment's own seasons of the crop, COMPARABLE's when it has none ending by 2013
+    from <- c(tid, COMPARABLE[tid][!is.na(COMPARABLE[tid])])
+    pick <- first_available(setNames(lapply(from, crop_seasons), from))
+    if (is.null(pick)) next
+    cand <- pick$value[pick$value$n_copies > 0, ]
+    if (!nrow(cand)) next
+    tmpl <- cand[which.max(cand$start), ]
     shift <- as.numeric(s$start - tmpl$start)
     for (e in copies(tmpl$tid, tmpl$phase, tmpl$start, tmpl$end)) {
       filled <- identical(e$provenance_class, "imputed")  # a single application fill (above)
       e$date <- format(as.Date(e$date) + shift)
-      e$provenance_class <- "imputed"
-      e$provenance_note <- sprintf(paste(
+      e <- set_provenance(e, "imputed", sprintf(paste(
         "The package's operation logs end in 2013. Copies the %s application of the %s %s season",
         "(planted %s) of %s %s, shifted %+d days to this season's planting.%s"),
         format(as.Date(e$date) - shift), s$crop, format(tmpl$start, "%Y"), format(tmpl$start), tmpl$tid,
-        tmpl$phase, shift, if (filled) " That application is itself a fill: the log lacks it." else "")
+        tmpl$phase, shift, if (filled) " That application is itself a fill: the log lacks it." else ""))
       out[[length(out) + 1L]] <- e
     }
   }
@@ -1152,37 +1149,35 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
       }
       if (wheat) {
         late <- as.Date(e$date) > tmpl$start
-        e <- list(
+        note <- sprintf(paste(
+          "Fertilization gap: %s. Amount from Tautges et al. 2019, which give the fertilized wheat systems",
+          "56 kg N/ha 15-15-15 starter at planting and %d kg N/ha urea in March (%s); this is %s%s.",
+          "Dated like the %s %s application of the wheat season planted %s in %s %s, the nearest with",
+          "a complete record, shifted %+d days (Aritra, 2026-10-31)."),
+          why, WHEAT_UREA_N[[if (tid %in% RAINFED) "rainfed" else "irrigated"]],
+          if (tid %in% RAINFED) "rainfed" else "irrigated", if (late) sprintf("%.2f kg N/ha of the urea", kg_ha[j]) else "the starter",
+          if (tid %in% PAPER_SYSTEMS) "" else "; the paper does not describe this system, so its wheat takes the irrigated rate",
+          format(d - shift), e$material, format(tmpl$start), tmpl$tid, tmpl$phase, shift)
+        e <- set_provenance(list(
           event_type = "fertilization", date = format(d), nh4_n_kg_m2 = round(kg_ha[j] * KG_HA_TO_KG_M2, 7),
-          source = "10.1111/gcb.14762", material = if (late) "urea" else "15-15-15 starter",
-          provenance_class = "imputed",
-          provenance_note = sprintf(paste(
-            "Fertilization gap: %s. Amount from Tautges et al. 2019, which give the fertilized wheat systems",
-            "56 kg N/ha 15-15-15 starter at planting and %d kg N/ha urea in March (%s); this is %s%s.",
-            "Dated like the %s %s application of the wheat season planted %s in %s %s, the nearest with",
-            "a complete record, shifted %+d days (Aritra, 2026-10-31)."),
-            why, WHEAT_UREA_N[[if (tid %in% RAINFED) "rainfed" else "irrigated"]],
-            if (tid %in% RAINFED) "rainfed" else "irrigated", if (late) sprintf("%.2f kg N/ha of the urea", kg_ha[j]) else "the starter",
-            if (tid %in% PAPER_SYSTEMS) "" else "; the paper does not describe this system, so its wheat takes the irrigated rate",
-            format(d - shift), e$material, format(tmpl$start), tmpl$tid, tmpl$phase, shift))
+          source = "10.1111/gcb.14762", material = if (late) "urea" else "15-15-15 starter"), "imputed", note)
       } else if (paper) {
         side <- identical(e$material, "Urea")
-        e <- list(
+        note <- sprintf(paste(
+          "Fertilization gap: %s. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize",
+          "56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one",
+          "or two applications; this is %s. Dated like the %s %s application of the corn season last",
+          "planted %s in %s %s, shifted %+d days to this season's last planting."),
+          why, if (side) sprintf("%.2f kg N/ha of the sidedress", kg_ha[j]) else "the starter",
+          format(d - shift), e$material, format(from), tmpl$tid, tmpl$phase, shift)
+        e <- set_provenance(list(
           event_type = "fertilization", date = format(d), nh4_n_kg_m2 = round(kg_ha[j] * KG_HA_TO_KG_M2, 7),
-          source = "10.1111/gcb.14762", material = if (side) "ammonium sulfate" else "8-24-6 starter",
-          provenance_class = "imputed",
-          provenance_note = sprintf(paste(
-            "Fertilization gap: %s. Amount from Tautges et al. 2019, which give CONV and CONV+WCC maize",
-            "56 kg N/ha 8-24-6 starter at planting and ammonium sulfate sidedressed to 180 kg N/ha in one",
-            "or two applications; this is %s. Dated like the %s %s application of the corn season last",
-            "planted %s in %s %s, shifted %+d days to this season's last planting."),
-            why, if (side) sprintf("%.2f kg N/ha of the sidedress", kg_ha[j]) else "the starter",
-            format(d - shift), e$material, format(from), tmpl$tid, tmpl$phase, shift))
+          source = "10.1111/gcb.14762", material = if (side) "ammonium sulfate" else "8-24-6 starter"), "imputed", note)
       } else {
         e$date <- format(d)
-        e$provenance_class <- "imputed"
-        e$provenance_note <- sprintf("Fertilization gap: %s. Copies the %s application of the %s season planted %s in %s %s, shifted %+d days.",
-                                     why, format(d - shift), s$crop, format(tmpl$start), tmpl$tid, tmpl$phase, shift)
+        e <- set_provenance(e, "imputed", sprintf(
+          "Fertilization gap: %s. Copies the %s application of the %s season planted %s in %s %s, shifted %+d days.",
+          why, format(d - shift), s$crop, format(tmpl$start), tmpl$tid, tmpl$phase, shift))
       }
       fert_gaps[[tid]][[ph]] <- c(fert_gaps[[tid]][[ph]], list(e))
     }
@@ -1233,12 +1228,11 @@ for (tid in COMPOST_SYSTEMS) {
       if (is.na(d)) stop(sprintf("%s %s: the %s compost has no date in %d", tid, ph, src, yr))
       if (on_growing_wheat(pe, d)) { wheat_years <- c(wheat_years, sprintf("%s %d", ph, yr)); next }
       e$date <- format(d)
-      e$provenance_class <- "imputed"
-      e$provenance_note <- sprintf(paste(
+      e <- set_provenance(e, "imputed", sprintf(paste(
         "Compost gap: the package has no compost for this phase in %d, although it has compost in",
         "each of its other years that are not wheat years and Tautges et al. 2019 give the organic",
         "system annual compost (Aritra, 2026-10-29). Copies the %s application, the nearest recorded",
-        "year (%s wet t/ac), on the same date of %d."), yr, src, format(e$compost_wet_tons_acre), yr)
+        "year (%s wet t/ac), on the same date of %d."), yr, src, format(e$compost_wet_tons_acre), yr))
       pe[[length(pe) + 1L]] <- e
       filled <- c(filled, sprintf("%s %s", ph, e$date))
     }
@@ -1257,14 +1251,12 @@ for (tid in names(keep_all)) for (ph in names(keep_all[[tid]])) {
   keep_all[[tid]][[ph]] <- lapply(keep_all[[tid]][[ph]], function(e) {
     if (!is_compost(e) || !identical(e$provenance_class, "imputed")) return(e)
     yr <- substr(e$date, 1, 4)
-    cp <- if (yr %in% names(c_pct)) c_pct[[yr]] else c_mean
-    np <- if (yr %in% names(n_pct)) n_pct[[yr]] else n_mean
+    cp <- compost_pct(c_pct, yr); np <- compost_pct(n_pct, yr)
     mass <- e$compost_wet_tons_acre * TON_AC_TO_KG_M2
-    e$org_c_kg_m2 <- round(mass * cp / 100, 7); e$org_n_kg_m2 <- round(mass * np / 100, 7)
-    e$compost_total_c_pct <- round(cp, 4); e$compost_total_n_pct <- round(np, 4)
+    e$org_c_kg_m2 <- round(mass * cp$value / 100, 7); e$org_n_kg_m2 <- round(mass * np$value / 100, 7)
+    e$compost_total_c_pct <- round(cp$value, 4); e$compost_total_n_pct <- round(np$value, 4)
     e$provenance_note <- paste(e$provenance_note, sprintf("C is from %s, N from %s, as for the records.",
-      if (yr %in% names(c_pct)) paste("the", yr, "analysis") else "the mean of measured years",
-      if (yr %in% names(n_pct)) paste("the", yr, "analysis") else "the mean of measured years"))
+                                                          cp$from, np$from))
     e
   })
 }
@@ -1300,11 +1292,10 @@ for (tid in IRRIGATED_WHEAT) {
       yr <- as.integer(format(x$end[i], "%Y"))
       if (yr %in% NO_IRRIGATION_YEARS) next
       mid <- x$start[i] + floor(as.numeric(x$end[i] - x$start[i]) / 2)
-      pe[[length(pe) + 1L]] <- list(
+      pe[[length(pe) + 1L]] <- set_provenance(list(
         event_type = "irrigation", date = format(mid), source = "10.1111/gcb.14762",
-        amount_mm = WHEAT_SUPPLEMENTAL_MM, method = "soil",
-        provenance_class = if (tid %in% WHEAT_PAPER_SYSTEMS && yr <= 2012) "assumed" else "imputed",
-        provenance_note = sprintf(paste(
+        amount_mm = WHEAT_SUPPLEMENTAL_MM, method = "soil"),
+        if (tid %in% WHEAT_PAPER_SYSTEMS && yr <= 2012) "assumed" else "imputed", sprintf(paste(
           "Tautges et al. 2019: irrigated wheat systems got supplemental irrigation of 80 mm per year",
           "except in 1995, 1998, 2000, 2005 and 2008-2012. One event at the midpoint of the %s to %s",
           "season%s. Method soil: the metadata says every irrigated system was furrow flood irrigated",
@@ -1382,11 +1373,10 @@ for (tid in names(SYSTEMS)) {
       when <- first + round(seq(0, as.numeric(last - first), length.out = k))
       amt <- rep(round(total / k, 4), k); amt[k] <- round(total - sum(amt[-k]), 4)
       for (j in seq_len(k)) {
-        pe[[length(pe) + 1L]] <- list(
+        pe[[length(pe) + 1L]] <- set_provenance(list(
           event_type = "irrigation", date = format(when[j]), source = if (suda) IRRIGATION_SOURCE else "10.1111/gcb.14762",
-          amount_mm = amt[j], method = "soil",
-          provenance_class = if (in_paper && as.integer(yr) <= 2012) "assumed" else "imputed",
-          provenance_note = paste(c(if (suda) sprintf(paste(
+          amount_mm = amt[j], method = "soil"),
+          if (in_paper && as.integer(yr) <= 2012) "assumed" else "imputed", paste(c(if (suda) sprintf(paste(
             "No paper value for sudangrass; the median irrigated F16 (corn, sorghum or sudan) season of the",
             "monitoring irrigation product within %d km of Russell Ranch, %s (%s): %s mm for the %s to %s",
             "sudangrass season, a lower bound (ET based), %s"), r$radius_km, r$years, r$products, format(total),
@@ -1441,10 +1431,9 @@ for (tid in FURROW_SYSTEMS) {
       when <- first + round(seq(0, as.numeric(last - first), length.out = k))
       amt <- rep(round(total / k, 4), k); amt[k] <- round(total - sum(amt[-k]), 4)
       for (j in seq_len(k)) {
-        pe[[length(pe) + 1L]] <- list(
+        pe[[length(pe) + 1L]] <- set_provenance(list(
           event_type = "irrigation", date = format(when[j]), source = IRRIGATION_SOURCE,
-          amount_mm = amt[j], method = "soil", provenance_class = "imputed",
-          provenance_note = sprintf(paste(
+          amount_mm = amt[j], method = "soil"), "imputed", sprintf(paste(
             "No paper value for alfalfa; the median irrigated P1 (alfalfa) calendar year of the monitoring",
             "irrigation product within %d km of Russell Ranch, %s (%s): %s mm in %s, a lower bound (ET based).",
             "Event %d of %d equal events (at most %d mm each) from %d days after 1 January to %d days",
@@ -1511,10 +1500,9 @@ til <- read.csv(tillage_csv, stringsAsFactors = FALSE)
 TILLAGE_SOURCE <- if (length(args) >= 4L) tillage_csv else
   "calibration:runs/russell_ranch/events_treatments/monitoring_tillage_near_russell.csv"
 til_row <- function(op, crop) { r <- til[til$operation == op & til$crop == crop, ]; stopifnot(nrow(r) == 1L); r }
-tillage_event <- function(d, r, what, moved = NULL) list(
+tillage_event <- function(d, r, what, moved = NULL) set_provenance(list(
   event_type = "tillage", date = format(d), source = TILLAGE_SOURCE,
-  tillage_eff_0to1 = r$median_tillage_eff, provenance_class = "imputed",
-  provenance_note = paste(c(sprintf(paste(
+  tillage_eff_0to1 = r$median_tillage_eff), "imputed", paste(c(sprintf(paste(
     "%s (Tautges et al. 2019). tillage_eff_0to1 is the median of %d monitoring tillage events%s",
     "on parcels within %d km of Russell Ranch (%s; %s)."), what, r$n_events,
     if (r$crop == "all") "" else sprintf(" for %s, %d days %s the %s,", r$crop, r$median_days,
@@ -1767,6 +1755,7 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   pe <- keep_all[[tid]][[ph]]
   pe <- Filter(function(e) as.Date(e$date) <= LAST_DATE, pe)
   stopifnot(!any(vapply(pe, function(e) is.na(e$date), TRUE)))
+  check_harvest_fractions(pe)
   pe <- pe[order(vapply(pe, `[[`, "", "date"), vapply(pe, `[[`, "", "event_type"))]
   slug <- gsub("-+", "-", gsub("[^a-z0-9]+", "-", tolower(ph)))
   hist_note <- history_of[[paste(tid, ph)]]
