@@ -56,7 +56,8 @@ fields by hand:
   frame rows), and returns it with `from`, the name of the one taken, and `n`, its count. Name
   the candidates by source (the paper, the monitoring product, guidance) or by pool (this phase,
   the site); `min_n = c(5, 1)` takes the first only when it has at least five records and
-  otherwise falls back to the second. Russell uses it for the medians that date imputed events,
+  otherwise falls back to the second. It returns NULL when no candidate has enough, so the caller
+  must handle that. Russell uses it for the medians that date imputed events,
   filled planting amounts, the cover crop end date, the 2014 fertilization template and the
   compost %C and %N.
 - `set_provenance(e, class, note, source)` tags an event. `class` must be one of

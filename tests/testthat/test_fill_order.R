@@ -78,6 +78,9 @@ test_that("a filled event must say where it came from and what it rests on", {
   e <- list(event_type = "tillage", date = "2004-06-01")
   expect_error(set_provenance(e, "imputed", "Median of 40 events."), "needs a source")
   expect_error(set_provenance(e, "imputed", "Median of 40 events.", source = NA_character_), "needs a source")
+  # a field whose name starts with "source" is not a source
+  expect_error(set_provenance(list(event_type = "tillage", source_file = "x.csv"), "published"),
+               "needs a source")
   expect_error(set_provenance(c(e, source = NA_character_), "published"), "needs a source")
   expect_error(set_provenance(e, "published", source = ""), "needs a source")
   e$source <- "monitoring"

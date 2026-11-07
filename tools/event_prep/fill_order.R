@@ -59,15 +59,17 @@ first_available <- function(candidates, min_n = 1L) {
 #' @param e event, a named list
 #' @param class one of PROVENANCE_CLASSES
 #' @param note what the value rests on: the record, rule, median or copied season used. Needed for
-#'   every class but published.
+#'   every class but published. Without one, an existing provenance_note is kept.
 #' @param source a DOI and file, or a monitoring product path; needed unless `e` has one
 #' @return `e`, tagged
 set_provenance <- function(e, class, note = NULL, source = NULL) {
   if (!is.character(class) || length(class) != 1L || !class %in% PROVENANCE_CLASSES)
     stop(sprintf("provenance_class must be one of %s, not %s",
                  paste(PROVENANCE_CLASSES, collapse = ", "), paste(deparse(class), collapse = "")))
-  if (!is.null(source)) e$source <- source
-  if (!is.character(e$source) || length(e$source) != 1L || is.na(e$source) || !nzchar(e$source))
+  # [[ ]] rather than $: $ partially matches, so a `source_file` field would pass for `source`
+  if (!is.null(source)) e[["source"]] <- source
+  src <- e[["source"]]
+  if (!is.character(src) || length(src) != 1L || is.na(src) || !nzchar(src))
     stop(sprintf("a %s event needs a source", class))
   if (!is.null(note) && (!is.character(note) || length(note) != 1L || is.na(note)))
     stop("provenance_note must be a single string")
