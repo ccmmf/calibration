@@ -17,8 +17,10 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `russell_split_phases.R` | Russell Ranch, one file per treatment and rotation phase | `generator_stacked/` + Century Experiment package (`10.1002/ecy.2105`) + `russell_treatments.csv`, `russell_source_corrections.csv`, `russell_harvest_lookup.csv` |
 | `russell_monitoring_tillage.R` | `monitoring_tillage_near_russell.csv`, tillage timing and intensity near Russell Ranch | monitoring tillage, harvest and planting v5.0 + crop table v4.1 |
 | `russell_monitoring_irrigation.R` | `monitoring_irrigation_near_russell.csv`, corn, tomato and alfalfa season irrigation totals and timing near Russell Ranch | monitoring irrigation, harvest and planting v5.0 + crop table v4.1 |
+| `salinas_build_events.R` | Salinas SOCS, one file per system (`runs/salinas_socs/events_socs_sys1.json` to `sys8`) and `fill_summary.csv` | the cal-val-data management calendar (`white_salinas_2020`, `calval-metadata` branch) + `monitoring_near_salinas.csv` |
+| `salinas_monitoring.R` | `monitoring_near_salinas.csv`, planting and harvest days, planting leaf C, irrigation rates, tillage timing and intensity and fertilization timing near SOCS | monitoring planting, harvest, tillage and irrigation v5.0, fertilization v2.0 + crop table v4.1 |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
-| `fill_order.R` | no file: the fill helpers the generators share (below), sourced by `russell_split_phases.R` | |
+| `fill_order.R` | no file: the fill helpers the generators share (below), sourced by `russell_split_phases.R` and `salinas_build_events.R` | |
 
 ## Order for US-Twt
 
@@ -47,8 +49,8 @@ fill it in this order (David, calibration#10):
 This applies to amounts as well as dates. Every filled or imputed event says where it came
 from (`source`, `provenance_class`, `provenance_note`).
 
-The helpers for this are in `fill_order.R`, base R only. `russell_split_phases.R` sources it
-from its own directory; a new generator should do the same and use them rather than set these
+The helpers for this are in `fill_order.R`, base R only. `russell_split_phases.R` and
+`salinas_build_events.R` source it from their own directory; a new generator should do the same and use them rather than set these
 fields by hand:
 
 - `first_available(candidates, min_n)` takes the first of a named list of candidates, in order
@@ -82,6 +84,7 @@ How the generators here follow it:
 | generator | step 1 | step 2 | step 3 |
 |---|---|---|---|
 | `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests (the 1993 sudangrass uniformity crop included), its corn and tomato hand harvest samples for those crops' harvest fractions (the tomato's green fruit left in the field), the cutting and cover crop samples, the package's per-system medians for dates it does not give, its records for fertilization gaps, single applications missing from a season that has others (copied within the treatments that share synthetic N management) and 2014 fertilization, its logged herbicide incorporation passes, and its metadata for the irrigation method (furrow flood) and the 1993 and 2012 hay cuts; Tautges et al. 2019 for the corn and wheat N rates where the log has none, the wheat irrigation of every irrigated system, every corn and tomato season's irrigation amount (its "mm" read as inches), the organic 2008 sudangrass compost year the package lacks (annual compost; the nearest recorded year is copied), the tillage operations, the month of the wheat straw disking and the four fallow diskings of the wheat-fallow systems. Its fixes to package records are rows in `russell_source_corrections.csv`, with the evidence (see `runs/russell_ranch/events_treatments/README.md`) | the monitoring product within 25 km of Russell Ranch: tillage timing and intensity (`russell_monitoring_tillage.R`; it shows one pass in most gaps after a wheat harvest, two in 9 of 722, so the fallow diskings take only its intensity, and their even spacing through the fallow is an assumption); the irrigated corn and tomato seasons as a lower bound that rules out reading the paper's irrigation as centimetres, and their median last irrigation before harvest, which ends the corn and tomato schedule (it starts at planting); the sudangrass (F16) and alfalfa (P1) irrigation, which the paper does not give (`russell_monitoring_irrigation.R`); the shared harvest lookup the monitoring harvest product carries, for wheat, alfalfa and hay (`russell_harvest_lookup.csv`) | planting amounts: the generator's priors (ccmmf/scenarios `data/management_priors.yaml`, a processing tomato baseline from the UC Davis Cost Study 2023), a filled planting taking their median in its phase, as agreed on calibration#10; the monitoring planting medians near the site are close (0.0038 to 0.0053 kg C/m2 leaf C against 0.0034) |
+| `salinas_build_events.R` | the calendar's rows only, with their dates where the papers print one (Brennan and Boyd 2012 Table 2, Brennan and Smith 2017), the published N rates, compost tonnage and cover crop irrigation (Fig. 2: total, days and last day), White et al. 2020b's harvest indices (lettuce 0.26, broccoli 0.24) and its C of the compost (317 g C/kg) and of the two pelleted fertilizers (their C:N, averaged as the product used each year is not reported); each winter cover crop ends at its spring flail mowing and spading, wholly to litter, as do the unharvested 2004 spinach and 2005 broccoli | the monitoring product within 25 km of SOCS (`salinas_monitoring.R`), by class and planting month as it has no lettuce, spinach or broccoli class (lettuce T30 planted in May, spinach T30 in July, broccoli T4 in July or August, cover crops G6 in October or November): the median day of a planting, harvest or tillage when it falls inside the row's window (otherwise the window's midpoint, assumed), planting leaf C, tillage intensity, and the vegetables' irrigation as the median rate of irrigated seasons times the season (broccoli takes T30's July and August rate, T4 being irrigated in only 11 % of its July and August seasons) | the drip interval, every 3 days (ccmmf/scenarios `irrigation_drip`); the liquid fertilizer's C has no source and goes in as mineral N without C. Details and counts in `runs/salinas_socs/README.md` |
 | `us_twt_build_events.R`, `us_twt_merge_2010_2023.R` | Knox et al. 2016 for 2010-2016, and its tillage offsets from planting, carried forward | 2017-2023 events for parcel 590073 | |
 | `us_twt_irrigation_schedule.R` | | the 2017-2023 monitoring rate and interval, applied to 2010-2016 | |
 | `step3_assemble_events.R`, `step3_delta_assemble.R` | | the parcel's monitoring events | |
@@ -174,6 +177,8 @@ fertilization `v2.0` moves every event date and puts all N in NH4 with NO3 at ze
 tillage, irrigation, harvest and planting `v5.0` and the crop table `crops/v4.1` (paths in
 their headers), which give `monitoring_tillage_near_russell.csv` and
 `monitoring_irrigation_near_russell.csv` in `runs/russell_ranch/events_treatments/`.
+`salinas_monitoring.R` reads the same v5.0 products and crop table plus fertilization `v2.0`,
+which give `runs/salinas_socs/monitoring_near_salinas.csv`.
 
 `management/irrigation/CHANGELOG.txt` is the only changelog in the bucket; the other
 products carry no version notes.
