@@ -25,6 +25,7 @@ changes <- read_csv("magic_v0.1.0_2023_state_differences_by_ensemble_soc_agb.csv
 stocks <- read_csv("carb_2025_cropland_stocks.csv")
 perennial <- read_csv("carb_2025_perennial_biomass_area.csv")
 density_change <- read_csv("carb_2025_regional_soil_density_change.csv")
+soil_change <- read_csv("carb_2025_regional_soil_change.csv")
 area_change <- read_csv("carb_2025_regional_area_change.csv")
 reference <- read_csv("carb_reference_values.csv")
 key <- c("model_output", "pft", "ensemble")
@@ -283,7 +284,8 @@ stopifnot(isTRUE(all.equal(member_totals$delta_total_county / 1e6, state_soil$ch
 split_effect <- max(abs(soil_regions$change_mean - majority_regions$change_mean))
 
 # CARB by region from the aggregated table: area and density by year. Its 2022 minus 2014 changes
-# must reproduce Appendix Figures 70 and 63, which checks the region assignment against CARB's own.
+# must reproduce Appendix Figures 69, 70 and 63. That checks the table's region column against
+# CARB's figures, not the county split applied to MAGiC (see carb_change_same_split below).
 carb_years <- stats::aggregate(cbind(acres, soil_c_mt_c) ~ region + year,
                                county_region[county_region$region != "UNDEFINED", ], sum)
 carb_years$t_per_acre <- carb_years$soil_c_mt_c / carb_years$acres
@@ -306,10 +308,34 @@ carb_regions <- do.call(rbind, lapply(regions, function(name) {
 }))
 fig70_t <- function(name) one(regional$soil_c_density_change_t_per_acre[regional$region == name])
 fig63 <- area_change[area_change$period == "2014-2022", ]
-stopifnot(nrow(fig63) == 9,
+fig69 <- soil_change[soil_change$period == "2014-2022", ]
+fig69_mmt <- function(name) one(fig69$soil_c_net_change_mmt_c[fig69$region == name])
+stock_change_mmt <- vapply(regions, function(name) {
+  (carb_year(name, 2022, "soil_c_mt_c") - carb_year(name, 2014, "soil_c_mt_c")) / 1e6
+}, 0)
+stopifnot(nrow(fig63) == 9, nrow(fig69) == 9, identical(carb_regions$region, regions),
           max(abs(carb_regions$endpoint_t_per_acre - vapply(regions, fig70_t, 0))) < 0.05,
           max(abs(carb_regions$area_change_macres -
-                    fig63$area_change_million_acres[match(regions, fig63$region)])) < 0.001)
+                    fig63$area_change_million_acres[match(regions, fig63$region)])) < 0.001,
+          max(abs(stock_change_mmt - vapply(regions, fig69_mmt, 0))) < 0.001)
+
+# CARB under MAGiC's county split: CARB's county totals, each split county shared out by the same
+# cropland shares at the county's density. The difference from CARB's own region sums is what the
+# split alone does to a region's change.
+carb_county <- stats::aggregate(cbind(acres, soil_c_mt_c) ~ county + year, assigned, sum)
+carb_split <- merge(carb_county, shares[c("county", "region", "share")], by = "county")
+carb_split$acres <- carb_split$acres * carb_split$share
+carb_split$soil_c_mt_c <- carb_split$soil_c_mt_c * carb_split$share
+carb_split <- stats::aggregate(cbind(acres, soil_c_mt_c) ~ region + year, carb_split, sum)
+split_density <- function(name, year) {
+  d <- carb_split[carb_split$region == name & carb_split$year == year, ]
+  one(d$soil_c_mt_c / d$acres)
+}
+carb_regions$carb_change_same_split <- vapply(regions, function(name) {
+  (split_density(name, 2022) - split_density(name, 2014)) * t_per_acre_to_mg_per_ha
+}, 0)
+carb_regions$split_shift <- carb_regions$carb_change_same_split -
+  carb_regions$endpoint_t_per_acre * t_per_acre_to_mg_per_ha
 
 by_region <- merge(merge(soil_regions, carb_regions, by = "region"),
                    regional[c("region", "mg_c_per_ha")], by = "region")
@@ -324,6 +350,11 @@ share <- function(name, region) one(shares$share[shares$county == name & shares$
 largest_share <- stats::aggregate(share ~ county, shares, max)
 others <- by_region[!by_region$region %in% valleys, ]
 no_woody <- setdiff(unique(county$county), unique(county$county[county$pft == "woody perennial crop"]))
+# Members whose change falls inside CARB's 95% trend interval.
+inside <- function(name) {
+  x <- soil_members$change_density[soil_members$region == name]
+  sum(x >= r(name, "trend_8yr_lower") & x <= r(name, "trend_8yr_upper"))
+}
 # The By region text quotes these; stop if the frozen data no longer give them.
 stopifnot(
   near(valley_share, 0.76, 0.005),
@@ -356,6 +387,20 @@ stopifnot(
   near(r("Sierra Nevada", "carb_change"), -9.0, 0.05),
   near(r("North Coast", "change_mean"), -6.5, 0.05),
   near(r("Sierra Nevada", "change_mean"), -6.1, 0.05),
+  inside("San Joaquin Valley") == 7, inside("Sacramento Valley") == 12,
+  r("North Coast", "change_median") > r("North Coast", "trend_8yr_upper"),
+  r("North Coast", "change_mean") > r("North Coast", "trend_8yr_upper"),
+  r("Sierra Nevada", "change_median") > r("Sierra Nevada", "trend_8yr_upper"),
+  r("Sierra Nevada", "change_mean") > r("Sierra Nevada", "trend_8yr_upper"),
+  max(abs(by_region$split_shift[by_region$region %in% valleys])) < 0.035,
+  sum(soil_members$change_density[soil_members$region == "San Joaquin Valley"] <
+        r("San Joaquin Valley", "trend_8yr_lower")) == 13,
+  by_region$region[which.max(abs(by_region$split_shift))] == "Los Angeles",
+  near(r("Los Angeles", "split_shift"), -2.5, 0.05),
+  near(r("Los Angeles", "carb_change_same_split"), -0.9, 0.05),
+  near(r("Inland Deserts", "split_shift"), 0.3, 0.05),
+  near(r("San Francisco Bay Area", "split_shift"), 0.2, 0.05),
+  sort(abs(by_region$split_shift), decreasing = TRUE)[4] < 0.045,
   near(r("North Coast", "area_ratio"), 1.7, 0.05), near(r("Sierra Nevada", "area_ratio"), 2.3, 0.05),
   near(r("North Coast", "density_min"), 88.7, 0.05), near(r("North Coast", "density_max"), 122.1, 0.05),
   all(woody_regions$members_losing == 20),
@@ -393,11 +438,12 @@ region_table <- data.frame(
   `MAGiC member range` = paste0(fmt(by_region$change_min), " to ", fmt(by_region$change_max)),
   `Members losing` = paste(by_region$members_losing, "of 20"),
   `CARB, 2022 minus 2014` = fmt(by_region$carb_change),
+  `CARB under the same county split` = fmt(by_region$carb_change_same_split),
   `CARB trend over 8 years (95% CI)` = paste0(fmt(by_region$trend_8yr), " (", fmt(by_region$trend_8yr_lower),
                                               " to ", fmt(by_region$trend_8yr_upper), ")"),
   check.names = FALSE)
 writeLines(as.character(knitr::kable(region_table, format = "pipe", row.names = FALSE,
-                                     align = c("l", rep("r", 6)))),
+                                     align = c("l", rep("r", 7)))),
            file.path(out, "regional_table.md"))
 utils::write.csv(by_region, file.path(out, "regional_soil_density_change.csv"), row.names = FALSE)
 utils::write.csv(woody_regions, file.path(out, "regional_woody_biomass.csv"), row.names = FALSE)
