@@ -141,13 +141,16 @@ rate rather than taking a season total.
   calendar has rows, one harvest per harvest row plus one per cover crop, every calendar row in its
   events and a cover crop irrigation row once per application day; plantings and ends alternate
   with the same crop, so one crop grows at a time, once a year; every event lies in 2003 to 2011;
-  every harvest passes `check_harvest_fractions()`; every event has a source and a class.
+  every tillage falls after the harvest it follows and before the planting it prepares; every
+  harvest passes `check_harvest_fractions()`; every event has a source and a class.
 - All eight files validate against `events_schema_v0.1.1` (PEcAn `develop`) with `jsonvalidate`,
   and `tools/event_prep/write_events_in.R` writes an `events.in` for each with as many lines as
   events: 30 `irrig ... 0` (sprinkler) lines in `socs_sys3`, every drip line `1`.
 - `tests/testthat/test_salinas_events.R` checks the harvest fractions, the compost and N totals
   against the papers, the cover crop water against Fig. 2, the drip schedule inside each season
-  and the `events.in` written from `socs_sys3`.
+  and the `events.in` written from `socs_sys3`; on a one-year calendar, that the builder dates a
+  fall incorporation after the broccoli harvest in its window and the spring spading before the
+  lettuce planting, and stops when the harvest falls after that window.
 - Rerunning both scripts reproduces `monitoring_near_salinas.csv`, the eight files and
   `fill_summary.csv` byte for byte.
 
