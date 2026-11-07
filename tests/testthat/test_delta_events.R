@@ -143,4 +143,7 @@ test_that("US-Twt tillage cites the record for each implement in every year", {
   src <- setNames(field(till, "source"), field(till, "implement"))
   expect_true(all(src[names(src) == "disking"] == "calval:managements/delta-tillage-0001"))
   expect_true(all(src[names(src) == "ring rolling"] == "calval:managements/delta-tillage-0002"))
+  # Knox's years rest on assumed offsets; later years carry the practice where no record covers them
+  yr <- as.integer(substr(dates(till), 1, 4))
+  expect_equal(field(till, "provenance_class"), ifelse(yr <= 2015L, "assumed", "imputed"))
 })

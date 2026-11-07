@@ -1889,8 +1889,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2016 planting with tillage_eff 0.5."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2016, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5."
   },
   {
    "event_type": "tillage",
@@ -1898,8 +1898,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2016 planting with tillage_eff 0.2."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2016, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2."
   },
   {
    "event_type": "planting",
@@ -2169,8 +2169,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2017 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2017, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "tillage",
@@ -2178,8 +2178,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2017 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2017, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "planting",
@@ -2270,8 +2270,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2018 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2018, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "tillage",
@@ -2279,8 +2279,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2018 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2018, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "planting",
@@ -2492,8 +2492,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2019 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2019, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "irrigation",
@@ -2519,8 +2519,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2019 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2019, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "planting",
@@ -2822,8 +2822,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2020 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2020, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "irrigation",
@@ -2849,8 +2849,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2020 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2020, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "irrigation",
@@ -3125,8 +3125,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2021 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2021, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "irrigation",
@@ -3152,8 +3152,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2021 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2021, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "planting",
@@ -3446,8 +3446,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2022 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2022, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "irrigation",
@@ -3464,8 +3464,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2022 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2022, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "irrigation",
@@ -3551,8 +3551,8 @@
    "tillage_eff_0to1": 0.5,
    "implement": "disking",
    "source": "calval:managements/delta-tillage-0001",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports disking before planting without dates; placed 21 d before the 2023 planting with tillage_eff 0.5. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's disking before planting (2010-2015, no dates) is carried into 2023, which no record covers, so the event is imputed; dated 21 d before that year's planting with tillage_eff 0.5. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "tillage",
@@ -3560,8 +3560,8 @@
    "tillage_eff_0to1": 0.2,
    "implement": "ring rolling",
    "source": "calval:managements/delta-tillage-0002",
-   "provenance_class": "assumed",
-   "provenance_note": "Knox reports ring rolling before planting without dates; placed 7 d before the 2023 planting with tillage_eff 0.2. Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Knox's ring rolling before planting (2010-2015, no dates) is carried into 2023, which no record covers, so the event is imputed; dated 7 d before that year's planting with tillage_eff 0.2. The monitoring product's tillage detections for this parcel are not used."
   },
   {
    "event_type": "planting",
