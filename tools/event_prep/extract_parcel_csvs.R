@@ -1,10 +1,11 @@
 #!/usr/bin/env Rscript
 # Subset the statewide monitoring product to one parcel and write the per-parcel
-# CSVs the US-Bi1 and US-Twt builders (*_build_events.R) read. It previously lived
+# CSVs the Delta builders (*_build_events.R) read. It previously lived
 # only on SCC, so the chain could not be re-run from a clean checkout.
 #
 # Usage: extract_parcel_csvs.R <label> <parcel_id>
 #        extract_parcel_csvs.R us_bi1 328163
+#        extract_parcel_csvs.R us_bi2 565118
 #        extract_parcel_csvs.R us_twt 590073
 
 suppressPackageStartupMessages({ library(arrow); library(dplyr) })
@@ -55,7 +56,7 @@ if (!length(ifiles)) stop("no irrigation shards under ", idir, " -- run pull_inp
 irr <- do.call(rbind, lapply(ifiles, function(x)
   open_dataset(x) |> filter(parcel_id == PARCEL) |> collect() |> as.data.frame()))
 
-# The US-Bi1 and US-Twt builders (parcel_csv, irrigation_member_rows in delta_inputs.R)
+# The Delta builders (parcel_csv, irrigation_member_rows in delta_inputs.R)
 # read a `date` column of plain YYYY-MM-DD and an `ens_id` on irrigation.
 for (nm in c("plant", "harv", "irr")) {
   d <- get(nm)

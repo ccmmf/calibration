@@ -43,12 +43,19 @@ test_that("US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that l
   expect_equal(dates(of_type(ev, "planting")), "2017-01-01")
   # an assumed date with the monitoring product's leaf C: the weaker part makes it imputed
   expect_equal(field(of_type(ev, "planting"), "provenance_class"), "imputed")
+  # backfilled leaf C is a median, not a mean (David's rule)
+  expect_match(field(of_type(ev, "planting"), "prior_filled"), "^leaf_c_kg_m2<-median of")
   cuts <- read.csv(file.path(root, "tools", "event_prep", "us_bi1_cuttings.csv"), colClasses = "character")
+  # every date says what it is read from
+  expect_equal(names(cuts), c("date", "basis", "note"))
+  expect_true(all(nchar(cuts$note) > 40))
   expect_equal(dates(of_type(ev, "harvest")), cuts$date)
   expect_equal(nrow(cuts), 39L)
   expect_equal(as.vector(table(substr(cuts$date, 1, 4))), c(6L, 6L, 6L, 6L, 6L, 3L, 6L))
-  published <- Filter(function(e) e$provenance_class == "published", of_type(ev, "harvest"))
-  expect_equal(dates(published), "2020-06-04")
+  # the recorded mowing has a published date but the lookup's fractions, so it is assumed
+  cls <- setNames(field(of_type(ev, "harvest"), "provenance_class"), dates(of_type(ev, "harvest")))
+  expect_equal(unname(cls[names(cls) == "2020-06-04"]), "assumed")
+  expect_true(all(cls[names(cls) != "2020-06-04"] == "imputed"))
   expect_length(c(of_type(ev, "tillage"), of_type(ev, "fertilization")), 0L)
 
   ln <- sipnet_lines("us_bi1")
@@ -70,7 +77,7 @@ test_that("US-Bi2 has one corn cycle a year with 118 kg N/ha of UAN at planting"
   expect_true(all(field(of_type(ev, "planting"), "crop_code") == "F16"))
   expect_equal(dates(of_type(ev, "fertilization")), dates(of_type(ev, "planting")))
   expect_true(all(dates(of_type(ev, "planting")) < dates(of_type(ev, "harvest"))))
-  expect_length(c(of_type(ev, "irrigation"), of_type(ev, "tillage")), 0L)
+  expect_length(of_type(ev, "tillage"), 0L)
   # the site record's days in 2019 and Anthony and Silver 2021 Fig. 2's in 2019 and 2020
   expect_true(all(c("2019-05-01", "2020-05-04") %in% dates(of_type(ev, "planting"))))
   expect_true("2019-09-11" %in% dates(of_type(ev, "harvest")))
@@ -78,12 +85,46 @@ test_that("US-Bi2 has one corn cycle a year with 118 kg N/ha of UAN at planting"
   expect_false(any(c("2019-02-05", "2019-05-22") %in% dates(ev)))
 
   ln <- sipnet_lines("us_bi2")
+  codes <- vapply(lines_of(ln, "irrig"), function(l) l$values[2], 0)
+  expect_equal(sum(codes == 1), sum(field(of_type(ev, "irrigation"), "method") == "soil"))
   fert <- lines_of(ln, "fert")
   n_kg_ha <- tapply(vapply(fert, function(l) l$values[3], 0) * 10, vapply(fert, `[[`, 0L, "year"), sum)
   expect_equal(as.vector(n_kg_ha), rep(118, 8))
   expect_true(all(vapply(fert, function(l) all(l$values[1:2] == 0), TRUE)))
   for (h in lines_of(ln, "harv")) expect_equal(h$values, c(0.892, 0, 0.108, 1))
   expect_equal(as.vector(table(vapply(lines_of(ln, "plant"), `[[`, 0L, "year"))), rep(1L, 8))
+})
+
+test_that("US-Bi2 gets its water: the product's 2021 and 2022 irrigation and the record's winter floods", {
+  ev <- read_events("us_bi2")$events
+  irr <- of_type(ev, "irrigation")
+  product <- Filter(function(e) startsWith(e$source, "monitoring_product:irrigation/v1.1"), irr)
+  expect_equal(dates(product), c("2021-09-08", "2022-10-16"))
+  floods <- Filter(function(e) startsWith(e$source, "calval:managements/delta-flooding-"), irr)
+  expect_equal(length(product) + length(floods), length(irr))
+  expect_true(all(field(irr, "provenance_class") == "imputed"))
+  expect_true(all(field(floods, "method") == "soil"))
+  expect_true(all(grepl("^Flood irrigation", field(floods, "provenance_note"))))
+  # each dated window of the site record, held weekly from its first day to its last
+  windows <- list("delta-flooding-0012" = c("2017-12-01", "2018-02-28"),
+                  "delta-flooding-0013" = c("2018-11-01", "2019-03-31"),
+                  "delta-flooding-0009" = c("2019-12-01", "2019-12-31"),
+                  "delta-flooding-0014" = c("2020-11-01", "2021-03-31"))
+  expect_setequal(unique(sub("^calval:managements/", "", field(floods, "source"))), names(windows))
+  for (id in names(windows)) {
+    got <- dates(Filter(function(e) e$source == paste0("calval:managements/", id), floods))
+    expect_equal(got, format(seq(as.Date(windows[[id]][1]), as.Date(windows[[id]][2]), by = 7)), info = id)
+  }
+  # the floods fall in the fallow: the last crop event before each is a harvest
+  crop <- Filter(function(e) e$event_type %in% c("planting", "harvest"), ev)
+  for (d in dates(floods)) {
+    before <- Filter(function(e) e$date < d, crop)
+    expect_equal(before[[length(before)]]$event_type, "harvest", info = d)
+  }
+  # held by the same rule as US-Twt's floods
+  twt_rule <- Filter(function(e) e$provenance_class == "imputed" && grepl("^Flood irrigation", e$provenance_note),
+                     of_type(read_events("us_twt")$events, "irrigation"))
+  expect_equal(unique(vapply(floods, `[[`, 0, "amount_mm")), unique(vapply(twt_rule, `[[`, 0, "amount_mm")))
 })
 
 test_that("US-Twt flood water reaches SIPNET as soil irrigation, never canopy", {
@@ -109,14 +150,16 @@ test_that("US-Twt floods follow the WTD onsets and are held to their drains", {
   ev <- read_events("us_twt")$events
   irr <- of_type(ev, "irrigation")
   wtd <- read.csv(file.path(root, "tools", "event_prep", "us_twt_wtd_water_dates.csv"), colClasses = "character")
-  derived <- Filter(function(e) e$provenance_class == "derived", irr)
-  expect_equal(dates(derived), wtd$flood_onset[nzchar(wtd$flood_onset)])
-  expect_length(derived, 14L)
-  expect_true(all(field(derived, "source") == "ameriflux:US-Twt BASE-BADM 7-5 WTD"))
-  rule <- Filter(function(e) e$provenance_class == "imputed", irr)
-  expect_true(all(startsWith(field(rule, "source"), "monitoring_product:irrigation/v1.1")))
+  onsets <- Filter(function(e) startsWith(e$source, "ameriflux:US-Twt BASE-BADM 7-5 WTD"), irr)
+  expect_equal(dates(onsets), wtd$flood_onset[nzchar(wtd$flood_onset)])
+  expect_length(onsets, 14L)
+  # a WTD date carrying the rule's 70 mm: imputed, and its source names both
+  expect_true(all(field(onsets, "provenance_class") == "imputed"))
+  expect_true(all(grepl("; monitoring_product:irrigation/v1.1", field(onsets, "source"), fixed = TRUE)))
+  expect_false("derived" %in% field(irr, "provenance_class"))
+  rule <- Filter(function(e) e$provenance_class == "imputed" && startsWith(e$source, "monitoring_product:irrigation/v1.1"), irr)
   # each flood: weekly from its onset (or the first day of the run) to the last week before its drain
-  d <- as.Date(dates(c(derived, rule)))
+  d <- as.Date(dates(c(onsets, rule)))
   for (i in seq_len(nrow(wtd))) {
     start <- as.Date(if (nzchar(wtd$flood_onset[i])) wtd$flood_onset[i] else "2010-01-01")
     span <- sort(d[d >= start & d < as.Date(wtd$drain[i])])
@@ -124,7 +167,7 @@ test_that("US-Twt floods follow the WTD onsets and are held to their drains", {
   }
   # the 2016 winter flood is no longer cut at the end of 2016
   expect_equal(max(d), as.Date("2017-03-09"))
-  expect_equal(unique(vapply(c(derived, rule), `[[`, 0, "amount_mm")), 70)
+  expect_equal(unique(vapply(c(onsets, rule), `[[`, 0, "amount_mm")), 70)
 })
 
 test_that("US-Twt Knox events cite their row and take the weakest class among their parts", {
@@ -146,4 +189,15 @@ test_that("US-Twt tillage cites the record for each implement in every year", {
   # Knox's years rest on assumed offsets; later years carry the practice where no site record covers them
   yr <- as.integer(substr(dates(till), 1, 4))
   expect_equal(field(till, "provenance_class"), ifelse(yr <= 2015L, "assumed", "imputed"))
+})
+
+test_that("US-Twt's 2017 fill takes medians of the product's other years", {
+  ev <- read_events("us_twt")$events
+  fill <- Filter(function(e) substr(e$date, 1, 4) == "2017" && !is.null(e$prior_filled) &&
+                   grepl("2017_excluded_year", e$prior_filled), ev)
+  expect_setequal(vapply(fill, `[[`, "", "event_type"), c("planting", "harvest", "fertilization"))
+  expect_true(all(grepl("median", field(fill, "provenance_note"))))
+  fert <- of_type(fill, "fertilization")[[1]]
+  # one of the six R1 applications is organic only; the median leaves organic N and C at 0
+  expect_equal(c(fert$org_n_kg_m2, fert$org_c_kg_m2), c(0, 0))
 })

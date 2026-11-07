@@ -173,11 +173,11 @@ cp <- plant[plant$code == CROP & plant$season == 2, ]
 p17 <- date_of_doy(mon_y, median_doy(doy_of(cp$date)))
 plantings[as.character(mon_y)] <- p17
 add(set_provenance(list(event_type = "planting", date = p17, crop_code = CROP, crop_display = CROP,
-                        leaf_c_kg_m2 = round(mean(as.numeric(cp$C_LEAF)), 8),
+                        leaf_c_kg_m2 = round(median(as.numeric(cp$C_LEAF)), 8),
                         prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y)),
                    "imputed", paste0(fill_note, sprintf(paste(
                      "dated by the median day of year of the parcel's %d R1 plantings (%s to %s), leaf C",
-                     "their mean."), nrow(cp), substr(min(cp$date), 1, 4), substr(max(cp$date), 1, 4))),
+                     "their median."), nrow(cp), substr(min(cp$date), 1, 4), substr(max(cp$date), 1, 4))),
                    "monitoring_product:planting/v1.0"))
 
 for (i in which(in_monitoring(harv$date))) {
@@ -191,10 +191,10 @@ for (i in which(in_monitoring(harv$date))) {
 }
 ch <- harv[harv$CLASS_SUBCLASS == CROP & harv$season == 2, ]
 add(set_provenance(c(list(event_type = "harvest", date = date_of_doy(mon_y, median_doy(doy_of(ch$date))), crop_display = CROP),
-                     harvest_fractions(round(mean(ch$frac_above_removed_0to1), 4), round(mean(ch$frac_below_removed_0to1), 4),
-                                       round(mean(ch$frac_above_to_litter_0to1), 4), round(mean(ch$frac_below_to_litter_0to1), 4)),
+                     harvest_fractions(round(median(ch$frac_above_removed_0to1), 4), round(median(ch$frac_below_removed_0to1), 4),
+                                       round(median(ch$frac_above_to_litter_0to1), 4), round(median(ch$frac_below_to_litter_0to1), 4)),
                      list(prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y))),
-                   "imputed", paste0(fill_note, sprintf("dated by the median day of year of the parcel's %d R1 harvests, fractions their mean.", nrow(ch))),
+                   "imputed", paste0(fill_note, sprintf("dated by the median day of year of the parcel's %d R1 harvests, fractions their median.", nrow(ch))),
                    "monitoring_product:harvest/v1.0"))
 
 fert_src <- paste0("monitoring_product:fertilization/v1.0:", args$fertilization_member)
@@ -210,12 +210,13 @@ for (i in which(in_monitoring(fert$date))) {
 cf <- fert[grepl(CROP, fert$crop_code), ]
 if (nrow(cf)) add(set_provenance(list(
   event_type = "fertilization", date = date_of_doy(mon_y, median_doy(doy_of(cf$date))),
-  nh4_n_kg_m2 = round(mean(cf$nh4_n_kg_m2), 8), no3_n_kg_m2 = round(mean(cf$no3_n_kg_m2), 8),
-  org_n_kg_m2 = round(mean(cf$org_n_kg_m2), 8), org_c_kg_m2 = round(mean(cf$org_c_kg_m2), 8),
+  nh4_n_kg_m2 = round(median(cf$nh4_n_kg_m2), 8), no3_n_kg_m2 = round(median(cf$no3_n_kg_m2), 8),
+  org_n_kg_m2 = round(median(cf$org_n_kg_m2), 8), org_c_kg_m2 = round(median(cf$org_c_kg_m2), 8),
   prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y)),
   "imputed", sprintf(paste("The planting and harvest products have no %d; dated by the median day of year of",
-                           "the parcel's %d R1 applications in the fertilization product, amounts their mean."),
-                     mon_y, nrow(cf)), fert_src))
+                           "the parcel's %d R1 applications in the fertilization product, each amount the median",
+                           "of that amount over them (David's rule); %d of the %d carry organic N and C."),
+                     mon_y, nrow(cf), sum(cf$org_n_kg_m2 > 0), nrow(cf)), fert_src))
 
 irr_src <- paste0("monitoring_product:irrigation/v1.1:", args$irrigation_member)
 for (i in seq_len(nrow(irr))) {
@@ -253,8 +254,9 @@ for (i in seq_len(nrow(wtd))) {
   for (k in seq_along(d)) {
     e <- list(event_type = "irrigation", date = format(d[k], "%Y-%m-%d"), amount_mm = FLOOD_MM, method = FLOOD_METHOD)
     add(if (k == 1L && onset) {
-      set_provenance(e, "derived", source = WTD, note = paste(
-        FLOOD_NOTE, w$onset_note, sprintf("Held by %s, to the WTD-derived drain on %s.", rule, w$drain)))
+      set_provenance(e, "imputed", source = paste0(WTD, "; ", irr_src), note = paste(
+        FLOOD_NOTE, w$onset_note, sprintf("Held by %s, to the WTD-derived drain on %s.", rule, w$drain),
+        "The date is derived from the WTD record but the amount is the rule's, so the event is imputed."))
     } else {
       set_provenance(e, "imputed", source = irr_src, note = paste(FLOOD_NOTE, if (onset)
         sprintf("Holds the %s flood that began %s (WTD onset) until the WTD-derived drain on %s;", w$season, w$flood_onset, w$drain)

@@ -98,6 +98,7 @@ for f in $shards; do
 done
 
 echo
-say "done. next: extract_parcel_csvs.R to build the per-parcel CSVs the US-Bi1 and US-Twt builders read:"
+say "done. next: extract_parcel_csvs.R to build the per-parcel CSVs the Delta builders read:"
 say "  Rscript extract_parcel_csvs.R us_bi1 328163"
+say "  Rscript extract_parcel_csvs.R us_bi2 565118"
 say "  Rscript extract_parcel_csvs.R us_twt 590073"
