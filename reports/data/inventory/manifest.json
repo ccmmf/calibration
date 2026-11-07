@@ -62,8 +62,26 @@
       "file": "carb_2025_regional_area_change.csv",
       "source": "same workbook, sheet CL_Fig3 (Appendix Figure 63)",
       "sha256": "94c5793ab5b7cbffeb91a6ebe17be11e17d9ad0d9f6df848a11872ee800ade54"
+    },
+    {
+      "file": "magic_v0.1.0_2023_county_predictions_by_ensemble_soc_agb.csv",
+      "source": "s3://carb/inventories/v0.1.0/2023/state-county/county_predictions_by_ensemble_soc_agb.csv (retrieved 2026-11-07; checksum matches the release SHA256SUMS)",
+      "sha256": "3ddd341d72ebbbb37dc990eeed7111736ac4f4e9b4002bf3dc778a8148fd3435"
+    },
+    {
+      "file": "magic_v0.1.0_2023_county_differences_by_ensemble_soc_agb.csv",
+      "source": "s3://carb/inventories/v0.1.0/2023/state-county/county_differences_by_ensemble_soc_agb.csv (retrieved 2026-11-07; checksum matches the release SHA256SUMS)",
+      "sha256": "f45456afba71e7bf907addf421622539196e447ba84ac61291a3d639843b74bc"
+    },
+    {
+      "file": "carb_2025_cropland_county_region.csv",
+      "source": "CARB 2025 NWL Carbon Inventory aggregated data table (see carb_aggregated_table), sheet Aggregated Data, Land Cover Cropland, 2014-2022, acres and soil carbon summed by year, county and region via reports/R/extract_carb_regions.R; the region is CARB's own assignment to the nine California Fifth Climate Change Assessment regions (see carb_regions)",
+      "sha256": "321d186e95c6b7511927fdc5e70509254cc1db30ab279032f67a76c98054b1f0"
     }
   ],
   "carb_workbook": "CARB_2025_NWL_Carbon_Inventory_Appendix_C-Croplands_figure_data.xlsx: data behind the cropland figures of CARB's Natural and Working Lands Carbon Inventory (2025), Supplementary Document C; local copy, sha256 below",
+  "carb_workbook_url": "https://ww2.arb.ca.gov/sites/default/files/2026-01/CARB_2025_NWL_Carbon_Inventory_Appendix_C-Croplands_figure_data.xlsx (downloaded 2026-11-07; same sha256 as carb_workbook_sha256)",
+  "carb_aggregated_table": "https://ww2.arb.ca.gov/sites/default/files/2026-04/NWL_Carbon_Inventory_2025_aggregated_data_table.xlsx (CARB, aggregated data for the 2025 NWL Carbon Inventory; downloaded 2026-11-07T15:18Z; sha256 b77699ab20d12d5b968f0b56cecf46c177906f76094ba568f0fcfe92dcf43c3e; 30 MB, not copied here)",
+  "carb_regions": "CARB 2025 NWL Carbon Inventory Appendix B: Technical Documentation, Regional Assessment, p. 15 and Appendix Figure 1 (https://ww2.arb.ca.gov/sites/default/files/2026-04/CARB_2025_NWL_Carbon_Inventory_Appendix_B-Technical_Documentation.pdf, sha256 5eefb755df1425c7851fa2f912f79517104eafa1d614d41903e52d53a3b0e4f4): the nine regions are those of California's Fifth Climate Change Assessment; they cut across county lines, so the county split comes from the aggregated table",
   "carb_methods": "UpdatedMethodsProposal_croplands_2025.pdf (CARB, January 2025), attached to ccmmf/organization#228: defines cropland biomass as roots, trunks and branches of woody perennial crops and soil carbon as the top 30 cm"
 }
