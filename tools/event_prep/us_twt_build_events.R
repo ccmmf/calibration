@@ -95,21 +95,25 @@ for (i in seq_len(nrow(knox))) {
   window <- identical(tolower(r$estimated), "true")
   cls <- if (window) "derived" else "published"
   wnote <- if (window) sprintf("source reports a window %s..%s; earliest date used", md, d10(r$max_date))
+  dnote <- if (window) paste0("Knox et al. 2016 Table 1 window (", r$event_id, "): ", wnote, ".")
+           else paste0("Knox et al. 2016 Table 1 date (", r$event_id, ").")
   src <- paste0("calval:managements/", r$event_id)
   if (r$mgmttype == "planting") {
     plantings[as.character(y)] <- md
     add(set_provenance(list(event_type = "planting", date = md, crop_code = CROP, crop_display = r$crop_name,
                             leaf_c_kg_m2 = LEAF_C,
                             prior_filled = "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median"),
-                       cls, wnote, src))
+                       "imputed", paste(dnote, "Leaf C is the median of the parcel's R1 plantings in the",
+                                        "monitoring product, so the event is imputed."), src))
   } else if (r$mgmttype == "harvest") {
-    note <- paste(c(if (!is.null(wnote)) paste0(wnote, "."), STRAW_NOTE, if (y %in% RESIDUE_UNRESOLVED_YEARS) sprintf(paste(
+    note <- paste(c(dnote, STRAW_NOTE, if (y %in% RESIDUE_UNRESOLVED_YEARS) sprintf(paste(
       "Knox does not state the %d residue treatment, so this year's fraction is carried from the",
-      "others rather than sourced."), y)), collapse = " ")
+      "others rather than sourced."), y), paste("The fractions come from prior:rice_harvest_index,",
+      "not from Knox, so the event is assumed.")), collapse = " ")
     e <- c(list(event_type = "harvest", date = md, crop_display = r$crop_name), STRAW_LEFT,
            list(prior_filled = "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index"))
     if (y %in% RESIDUE_UNRESOLVED_YEARS) e$residue_treatment_resolved <- FALSE
-    add(set_provenance(e, cls, note, src))
+    add(set_provenance(e, "assumed", note, src))
   } else if (r$mgmttype == "fertilization") {
     rate <- as.numeric(r$level); n <- n_from_grade(rate, r$reported_material)
     add(set_provenance(list(event_type = "fertilization", date = md, nh4_n_kg_m2 = n, no3_n_kg_m2 = 0,
@@ -121,11 +125,10 @@ stopifnot(identical(names(plantings), as.character(LITERATURE_YEARS)))
 
 ## ------------------------------------------------------------- 2016, from the Knox medians
 lit <- function(t) Filter(function(e) e$event_type == t, events)
-med_doy <- function(dates) as.integer(median(doy_of(dates)))
 fill_y <- LITERATURE_FILL_YEAR
 lit_plant <- vapply(lit("planting"), `[[`, "", "date")
 lit_harv <- vapply(lit("harvest"), `[[`, "", "date")
-p16 <- date_of_doy(fill_y, med_doy(lit_plant)); h16 <- date_of_doy(fill_y, med_doy(lit_harv))
+p16 <- date_of_doy(fill_y, median_doy(doy_of(lit_plant))); h16 <- date_of_doy(fill_y, median_doy(doy_of(lit_harv)))
 plantings[as.character(fill_y)] <- p16
 no_2016 <- sprintf(paste("No record dates the %d crop: Knox et al. 2016 end with 2015 and the monitoring product",
                          "(planting and harvest v1.0) has no %d rows for this parcel."), fill_y, fill_y)
@@ -143,7 +146,7 @@ stopifnot(length(recent) == 3L)
 rate <- median(vapply(recent, function(e) e$reported_rate_lb_ac, 0))
 grade <- recent[[length(recent)]]$reported_grade
 n <- n_from_grade(rate, grade)
-add(set_provenance(list(event_type = "fertilization", date = date_of_doy(fill_y, med_doy(vapply(recent, `[[`, "", "date"))),
+add(set_provenance(list(event_type = "fertilization", date = date_of_doy(fill_y, median_doy(doy_of(vapply(recent, `[[`, "", "date")))),
                         nh4_n_kg_m2 = n, no3_n_kg_m2 = 0, org_n_kg_m2 = 0, reported_rate_lb_ac = rate,
                         reported_grade = grade, prior_filled = "date,rate<-synthesized:median(2013-2015)"),
                    "imputed", paste(no_2016, "Rate and day are the medians of the 2013-2015 single application regime;",
@@ -162,7 +165,8 @@ for (i in which(in_monitoring(plant$date))) {
   plantings[substr(r$date, 1, 4)] <- r$date
   add(set_provenance(list(event_type = "planting", date = r$date, crop_code = r$code, crop_display = r$code,
                           leaf_c_kg_m2 = round(as.numeric(r$C_LEAF), 8)),
-                     "published", source = "monitoring_product:planting/v1.0"))
+                     "published", sprintf("Monitoring product planting row for parcel %s, %s.", PARCEL, substr(r$date, 1, 4)),
+                     source = "monitoring_product:planting/v1.0"))
 }
 cp <- plant[plant$code == CROP & plant$season == 2, ]
 p17 <- date_of_doy(mon_y, median_doy(doy_of(cp$date)))
@@ -180,7 +184,9 @@ for (i in which(in_monitoring(harv$date))) {
   add(set_provenance(c(list(event_type = "harvest", date = r$date, crop_display = r$CLASS_SUBCLASS),
                        harvest_fractions(round(r$frac_above_removed_0to1, 4), round(r$frac_below_removed_0to1, 4),
                                          round(r$frac_above_to_litter_0to1, 4), round(r$frac_below_to_litter_0to1, 4))),
-                     "published", source = "monitoring_product:harvest/v1.0"))
+                     "published", sprintf("Monitoring product harvest row for parcel %s, %s, with its four fractions.",
+                                          PARCEL, substr(r$date, 1, 4)),
+                     source = "monitoring_product:harvest/v1.0"))
 }
 ch <- harv[harv$CLASS_SUBCLASS == CROP & harv$season == 2, ]
 add(set_provenance(c(list(event_type = "harvest", date = date_of_doy(mon_y, median_doy(doy_of(ch$date))), crop_display = CROP),
@@ -196,7 +202,9 @@ for (i in which(in_monitoring(fert$date))) {
   add(set_provenance(list(event_type = "fertilization", date = r$date, nh4_n_kg_m2 = round(r$nh4_n_kg_m2, 8),
                           no3_n_kg_m2 = round(r$no3_n_kg_m2, 8), org_n_kg_m2 = round(r$org_n_kg_m2, 8),
                           org_c_kg_m2 = round(r$org_c_kg_m2, 8)),
-                     "published", source = fert_src))
+                     "published", sprintf("Monitoring product fertilization row (%s) for parcel %s, %s.",
+                                          args$fertilization_member, PARCEL, substr(r$date, 1, 4)),
+                     source = fert_src))
 }
 cf <- fert[grepl(CROP, fert$crop_code), ]
 if (nrow(cf)) add(set_provenance(list(

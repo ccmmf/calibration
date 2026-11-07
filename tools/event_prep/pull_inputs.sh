@@ -28,7 +28,7 @@ HARVEST_VERSION=${HARVEST_VERSION:-v1.0}
 IRRIGATION_VERSION=${IRRIGATION_VERSION:-v1.1}
 FERTILIZATION_VERSION=${FERTILIZATION_VERSION:-v1.0}
 # US-Bi2 takes its planting and harvest days from v5.0 (us_bi2_build_events.R), which has 2017.
-US_BI2_VERSION=${US_BI2_VERSION:-v5.0}
+US_BI2_VERSION=v5.0   # pinned: us_bi2_build_events.R reads v5.0's schema (parcel_id, crop_code)
 
 s3() { aws --endpoint-url "$S3_ENDPOINT" s3 "$@"; }
 say() { printf '  %s\n' "$*"; }

@@ -93,7 +93,8 @@
    "leaf_c_kg_m2": 0.02455947,
    "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "calval:managements/delta-planting-0006",
-   "provenance_class": "published"
+   "provenance_class": "imputed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-planting-0006). Leaf C is the median of the parcel's R1 plantings in the monitoring product, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -252,8 +253,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "calval:managements/delta-harvest-0004",
-   "provenance_class": "derived",
-   "provenance_note": "source reports a window 2010-10-28..2010-10-29; earliest date used. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+   "provenance_class": "assumed",
+   "provenance_note": "Knox et al. 2016 Table 1 window (delta-harvest-0004): source reports a window 2010-10-28..2010-10-29; earliest date used. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The fractions come from prior:rice_harvest_index, not from Knox, so the event is assumed."
   },
   {
    "event_type": "irrigation",
@@ -446,7 +447,8 @@
    "leaf_c_kg_m2": 0.02455947,
    "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "calval:managements/delta-planting-0007",
-   "provenance_class": "published"
+   "provenance_class": "imputed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-planting-0007). Leaf C is the median of the parcel's R1 plantings in the monitoring product, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -578,8 +580,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "calval:managements/delta-harvest-0005",
-   "provenance_class": "derived",
-   "provenance_note": "source reports a window 2011-10-12..2011-10-14; earliest date used. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+   "provenance_class": "assumed",
+   "provenance_note": "Knox et al. 2016 Table 1 window (delta-harvest-0005): source reports a window 2011-10-12..2011-10-14; earliest date used. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The fractions come from prior:rice_harvest_index, not from Knox, so the event is assumed."
   },
   {
    "event_type": "irrigation",
@@ -763,7 +765,8 @@
    "leaf_c_kg_m2": 0.02455947,
    "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "calval:managements/delta-planting-0008",
-   "provenance_class": "published"
+   "provenance_class": "imputed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-planting-0008). Leaf C is the median of the parcel's R1 plantings in the monitoring product, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -922,8 +925,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "calval:managements/delta-harvest-0006",
-   "provenance_class": "derived",
-   "provenance_note": "source reports a window 2012-11-13..2012-11-15; earliest date used. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+   "provenance_class": "assumed",
+   "provenance_note": "Knox et al. 2016 Table 1 window (delta-harvest-0006): source reports a window 2012-11-13..2012-11-15; earliest date used. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The fractions come from prior:rice_harvest_index, not from Knox, so the event is assumed."
   },
   {
    "event_type": "irrigation",
@@ -1050,7 +1053,8 @@
    "leaf_c_kg_m2": 0.02455947,
    "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "calval:managements/delta-planting-0009",
-   "provenance_class": "published"
+   "provenance_class": "imputed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-planting-0009). Leaf C is the median of the parcel's R1 plantings in the monitoring product, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -1200,8 +1204,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "calval:managements/delta-harvest-0007",
-   "provenance_class": "published",
-   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+   "provenance_class": "assumed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-harvest-0007). Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The fractions come from prior:rice_harvest_index, not from Knox, so the event is assumed."
   },
   {
    "event_type": "irrigation",
@@ -1418,7 +1422,8 @@
    "leaf_c_kg_m2": 0.02455947,
    "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "calval:managements/delta-planting-0010",
-   "provenance_class": "published"
+   "provenance_class": "imputed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-planting-0010). Leaf C is the median of the parcel's R1 plantings in the monitoring product, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -1551,8 +1556,8 @@
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "residue_treatment_resolved": false,
    "source": "calval:managements/delta-harvest-0008",
-   "provenance_class": "published",
-   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. Knox does not state the 2014 residue treatment, so this year's fraction is carried from the others rather than sourced."
+   "provenance_class": "assumed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-harvest-0008). Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. Knox does not state the 2014 residue treatment, so this year's fraction is carried from the others rather than sourced. The fractions come from prior:rice_harvest_index, not from Knox, so the event is assumed."
   },
   {
    "event_type": "irrigation",
@@ -1706,7 +1711,8 @@
    "leaf_c_kg_m2": 0.02455947,
    "prior_filled": "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "calval:managements/delta-planting-0011",
-   "provenance_class": "published"
+   "provenance_class": "imputed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-planting-0011). Leaf C is the median of the parcel's R1 plantings in the monitoring product, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -1820,8 +1826,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "calval:managements/delta-harvest-0009",
-   "provenance_class": "published",
-   "provenance_note": "Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
+   "provenance_class": "assumed",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-harvest-0009). Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The fractions come from prior:rice_harvest_index, not from Knox, so the event is assumed."
   },
   {
    "event_type": "irrigation",
@@ -2255,7 +2261,8 @@
    "org_n_kg_m2": 0.01864148,
    "org_c_kg_m2": 0.44075223,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2018."
   },
   {
    "event_type": "tillage",
@@ -2282,7 +2289,8 @@
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.02478044,
    "source": "monitoring_product:planting/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product planting row for parcel 590073, 2018."
   },
   {
    "event_type": "irrigation",
@@ -2355,7 +2363,8 @@
    "org_n_kg_m2": 0,
    "org_c_kg_m2": 0,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2018."
   },
   {
    "event_type": "irrigation",
@@ -2465,7 +2474,8 @@
    "frac_above_to_litter_0to1": 0.2,
    "frac_below_to_litter_0to1": 1,
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product harvest row for parcel 590073, 2018, with its four fractions."
   },
   {
    "event_type": "irrigation",
@@ -2519,7 +2529,8 @@
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.02443199,
    "source": "monitoring_product:planting/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product planting row for parcel 590073, 2019."
   },
   {
    "event_type": "irrigation",
@@ -2610,7 +2621,8 @@
    "org_n_kg_m2": 0,
    "org_c_kg_m2": 0,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2019."
   },
   {
    "event_type": "irrigation",
@@ -2729,7 +2741,8 @@
    "frac_above_to_litter_0to1": 0.2,
    "frac_below_to_litter_0to1": 1,
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product harvest row for parcel 590073, 2019, with its four fractions."
   },
   {
    "event_type": "irrigation",
@@ -2855,7 +2868,8 @@
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.02455947,
    "source": "monitoring_product:planting/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product planting row for parcel 590073, 2020."
   },
   {
    "event_type": "irrigation",
@@ -2910,7 +2924,8 @@
    "org_n_kg_m2": 0,
    "org_c_kg_m2": 0,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2020."
   },
   {
    "event_type": "irrigation",
@@ -3047,7 +3062,8 @@
    "frac_above_to_litter_0to1": 0.2,
    "frac_below_to_litter_0to1": 1,
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product harvest row for parcel 590073, 2020, with its four fractions."
   },
   {
    "event_type": "irrigation",
@@ -3146,7 +3162,8 @@
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.02333066,
    "source": "monitoring_product:planting/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product planting row for parcel 590073, 2021."
   },
   {
    "event_type": "irrigation",
@@ -3255,7 +3272,8 @@
    "org_n_kg_m2": 0,
    "org_c_kg_m2": 0,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2021."
   },
   {
    "event_type": "irrigation",
@@ -3374,7 +3392,8 @@
    "frac_above_to_litter_0to1": 0.2,
    "frac_below_to_litter_0to1": 1,
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product harvest row for parcel 590073, 2021, with its four fractions."
   },
   {
    "event_type": "irrigation",
@@ -3473,7 +3492,8 @@
    "crop_display": "G2",
    "leaf_c_kg_m2": 0.01151624,
    "source": "monitoring_product:planting/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product planting row for parcel 590073, 2022."
   },
   {
    "event_type": "irrigation",
@@ -3492,7 +3512,8 @@
    "org_n_kg_m2": 0,
    "org_c_kg_m2": 0,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2022."
   },
   {
    "event_type": "irrigation",
@@ -3521,7 +3542,8 @@
    "frac_above_to_litter_0to1": 0.2,
    "frac_below_to_litter_0to1": 1,
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product harvest row for parcel 590073, 2022, with its four fractions."
   },
   {
    "event_type": "tillage",
@@ -3548,7 +3570,8 @@
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.03383203,
    "source": "monitoring_product:planting/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product planting row for parcel 590073, 2023."
   },
   {
    "event_type": "irrigation",
@@ -3603,7 +3626,8 @@
    "org_n_kg_m2": 0,
    "org_c_kg_m2": 0,
    "source": "monitoring_product:fertilization/v1.0:ens_001",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product fertilization row (ens_001) for parcel 590073, 2023."
   },
   {
    "event_type": "irrigation",
@@ -3731,7 +3755,8 @@
    "frac_above_to_litter_0to1": 0.2,
    "frac_below_to_litter_0to1": 1,
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "published"
+   "provenance_class": "published",
+   "provenance_note": "Monitoring product harvest row for parcel 590073, 2023, with its four fractions."
   },
   {
    "event_type": "irrigation",

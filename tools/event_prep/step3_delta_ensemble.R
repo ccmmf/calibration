@@ -23,7 +23,8 @@ dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 rows <- list(); first <- NULL
 for (m in seq_len(n_members)) {
   out <- file.path(out_dir, sprintf("events_ens_%03d.json", m))
-  log <- system2("Rscript", c(builder, managements, out, m), stdout = TRUE, stderr = TRUE)
+  log <- system2(file.path(R.home("bin"), "Rscript"), shQuote(c(builder, managements, out, m)),
+                 stdout = TRUE, stderr = TRUE)
   if (!is.null(attr(log, "status")) || !file.exists(out)) {
     writeLines(log); stop(sprintf("%s failed for member %d", basename(builder), m))
   }

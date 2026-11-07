@@ -101,12 +101,13 @@ for (y in YEARS) {
             leaf_c_kg_m2 = round(leaf_c, 8),
             prior_filled = sprintf("leaf_c_kg_m2<-%s%s", leaf$from, if (leaf$n > 1L) sprintf(" (%d)", leaf$n) else ""))
   e <- if (plant_date != p$date) {
-    set_provenance(e, "derived", source = paste0(ANTHONY, ", Fig. 2"), note = paste(
+    set_provenance(e, "imputed", source = paste0(ANTHONY, ", Fig. 2"), note = paste(
       "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1",
       "to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014).",
       if (y == 2019) "The record puts the 2019 planting in May-June (delta-planting-0014)."
       else "The sensors came out in April-May 2020 for the field work.",
-      sprintf("The monitoring product has %s.", p$date)))
+      sprintf("The monitoring product has %s.", p$date),
+      "Leaf C is the season's v5.0 planting, so the event is imputed (the date is derived)."))
   } else {
     set_provenance(e, "imputed", source = sprintf(PRODUCT, "planting"), note = paste(c(
       sprintf("The monitoring product's planting day; the site record gives %s.",
