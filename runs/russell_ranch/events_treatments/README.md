@@ -742,8 +742,9 @@ the `alf_corn_tomato` history:
 - The script stops if a `plot_system.csv` planting or cash crop harvest in the run has no event
   of the same crop and kind within 30 days in its phase file (history events do not count), if
   a cash crop season of an irrigated system is left without irrigation other than as described
-  above, if a copied single application would land outside its season, or if a row of
-  `russell_source_corrections.csv` does not match the records it names.
+  above, if a copied single application would land outside its season, if a harvest lacks one
+  of its four fractions (`check_harvest_fractions`, see `tools/event_prep/README.md`), or if a
+  row of `russell_source_corrections.csv` does not match the records it names.
 - Rerunning the script reproduces every output byte for byte.
 
 ## Rebuild
