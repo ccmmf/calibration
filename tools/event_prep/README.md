@@ -106,7 +106,8 @@ How the generators here follow it:
 | `us_twt_build_events.R` | Knox et al. 2016 for 2010-2015 and their medians for 2016; its disking and ring rolling, placed before every planting; the AmeriFlux WTD flood onsets and drains, 2010 to March 2017 | 2017-2023 events for parcel 590073; the flood rate and interval (70 mm every 7 d) that holds each WTD flood; leaf C at the Knox plantings | |
 
 At the towers a value from the monitoring product is tagged `imputed` where the site record has
-the operation but not its date or amount (US-Bi2 planting and harvest days, US-Bi1 irrigation),
+the operation but not its date or amount (US-Bi2 planting and harvest days, leaf C at the US-Bi1,
+US-Bi2 and Knox plantings, US-Bi1 irrigation),
 and `published` only where no site record covers the season (US-Twt 2017-2023), as
 `fill_order.R` defines it. An event's class is the weakest of what it rests on, in the order
 published, derived, assumed, imputed: a harvest on a recorded date with assumed fractions is
@@ -121,7 +122,7 @@ cal-val-data develop 8f88e95 and member 1 of the monitoring product.
 
 | events | what | class |
 |---|---|---|
-| 1 planting | 2017-01-01, P1, leaf C 0.00994096 kg C/m2, the mean of the parcel's 6 P1 plantings in the monitoring product (planting v1.0). It sets the state of a stand that went in about 2013 (in alfalfa about three years when the tower went in on 2016-08-12; Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8) and is not an operation: the roots start at seedling scale, so 2017 behaves as spin-up. Starting instead from an initial condition with a plant is David's call | assumed |
+| 1 planting | 2017-01-01, P1, leaf C 0.00994096 kg C/m2, the mean of the parcel's 6 P1 plantings in the monitoring product (planting v1.0). It sets the state of a stand that went in about 2013 (in alfalfa about three years when the tower went in on 2016-08-12; Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8) and is not an operation: the roots start at seedling scale, so 2017 behaves as spin-up. Starting instead from an initial condition with a plant is David's call. The date is assumed; leaf C from the monitoring product is the weaker part, so the event is imputed | imputed |
 | 39 cuttings | `us_bi1_cuttings.csv`, 6 a year and 3 in 2022, each `harvest_fractions(0.85, 0, 0, 0)`. 36 dated from the tower NDVI cycles in Wang 2024 (UC Berkeley PhD dissertation) Fig. 3.1, to within about 3 to 5 days; 2017-04-23 and 2017-05-22 from the daily NEE in Hemes et al. 2019 Fig. S2; 2020-06-04 recorded ("Mowed five days ago, baling today" on 2020-06-09, AmeriFlux BADM, `delta-harvest-0012`) | 38 imputed, 1 published |
 | 18 irrigation | the monitoring product's (irrigation v1.1, `irr_ens_001`), canopy, 142.86 mm each, as before. The site record has the field irrigated mainly below the surface from the adjacent ditches, with sporadic flash floods (`delta-irrigation-0008`, `0009`), and no dates or amounts | imputed |
 
@@ -154,7 +155,7 @@ to the run's flood and water table configuration); the record's 2019 tillage and
 
 | events | what | class |
 |---|---|---|
-| 2010-2015 plantings, harvests, fertilization | Knox et al. 2016 Table 1 through the cal-val-data rows; a reported window takes its first day. Leaf C at planting is the median of the parcel's 5 R1 plantings in the monitoring product, 0.02455947 kg C/m2. Harvests `harvest_fractions(0.5, 0, 0.5, 1)`: grain removed, straw chopped and left (the 2014 residue treatment is not reported); the 0.5 comes from `prior:rice_harvest_index`, not from Knox. Every event notes its Knox row | plantings imputed (leaf C from the monitoring product), harvests assumed (fractions from the prior), fertilization published or derived |
+| 2010-2015 plantings, harvests, fertilization | Knox et al. 2016 Table 1 through the cal-val-data rows; a reported window takes its first day. Leaf C at planting is the median of the parcel's 5 R1 plantings in the monitoring product, 0.02455947 kg C/m2. Harvests `harvest_fractions(0.5, 0, 0.5, 1)`: grain removed, straw chopped and left (the 2014 residue treatment is not reported); the 0.5 comes from `prior:rice_harvest_index`, not from Knox. Fertilization N is computed from the reported rate (lb/ac) and the product grade's %N. Every event notes its Knox row | plantings imputed (leaf C from the monitoring product), harvests assumed (fractions from the prior), fertilization derived (N from rate and grade) |
 | 2016 planting, harvest, fertilization | no record: the medians of the Knox years (2016-04-18, 2016-10-06; 100 lb/ac of 15-15-15 on 2016-05-30, the 2013-2015 regime). Tagged `imputed` (was `assumed`) | imputed |
 | 2017-2023 plantings, harvests, fertilization | the monitoring product (planting and harvest v1.0, fertilization v1.0 `ens_001`), its four harvest fractions written out (0.8, 0, 0.2, 1). 2017, which the planting and harvest products lack, takes the median day of its other R1 years and their mean amounts. The fertilization events now carry the product's organic C, which the old file left out (0.44 kg C/m2 with 0.019 kg N/m2 on 2018-02-02, 0.073 kg C/m2 on the 2017 fill) | published; 2017 imputed |
 | 14 flood onsets | the AmeriFlux US-Twt BASE-BADM 7-5 water table record, `us_twt_wtd_water_dates.csv`: 7 growing season and 7 winter onsets, 2010-06-15 to 2016-11-17 | derived |

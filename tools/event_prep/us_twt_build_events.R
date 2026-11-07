@@ -93,9 +93,8 @@ for (i in seq_len(nrow(knox))) {
   if (!nzchar(md) || !as.integer(substr(md, 1, 4)) %in% LITERATURE_YEARS) next
   y <- as.integer(substr(md, 1, 4))
   window <- identical(tolower(r$estimated), "true")
-  cls <- if (window) "derived" else "published"
-  wnote <- if (window) sprintf("source reports a window %s..%s; earliest date used", md, d10(r$max_date))
-  dnote <- if (window) paste0("Knox et al. 2016 Table 1 window (", r$event_id, "): ", wnote, ".")
+  dnote <- if (window) sprintf("Knox et al. 2016 Table 1 window (%s): source reports a window %s..%s; earliest date used.",
+                               r$event_id, md, d10(r$max_date))
            else paste0("Knox et al. 2016 Table 1 date (", r$event_id, ").")
   src <- paste0("calval:managements/", r$event_id)
   if (r$mgmttype == "planting") {
@@ -118,7 +117,9 @@ for (i in seq_len(nrow(knox))) {
     rate <- as.numeric(r$level); n <- n_from_grade(rate, r$reported_material)
     add(set_provenance(list(event_type = "fertilization", date = md, nh4_n_kg_m2 = n, no3_n_kg_m2 = 0,
                             org_n_kg_m2 = 0, reported_rate_lb_ac = rate, reported_grade = r$reported_material),
-                       cls, paste(c(wnote, fert_note(rate, r$reported_material, n)), collapse = "; "), src))
+                       "derived", paste(dnote, paste0(fert_note(rate, r$reported_material, n), "."),
+                                        "N is computed from the reported rate and the grade's %N, so the event is derived."),
+                       src))
   }
 }
 stopifnot(identical(names(plantings), as.character(LITERATURE_YEARS)))

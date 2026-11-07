@@ -57,13 +57,14 @@ events <- list(set_provenance(list(
   event_type = "planting", date = RUN_START, crop_code = CROP, crop_display = "Alfalfa",
   leaf_c_kg_m2 = round(mean(leaf$value), 8),
   prior_filled = sprintf("leaf_c_kg_m2<-mean of %s (%d, planting v1.0)", leaf$from, leaf$n)),
-  "assumed", source = paste0(STAND_SOURCE, "; monitoring_product:planting/v1.0"),
+  "imputed", source = paste0(STAND_SOURCE, "; monitoring_product:planting/v1.0"),
   note = paste(
     "Sets the state of the alfalfa stand at the start of the run; it is not a planting operation.",
     "The field had been in alfalfa about three years when the tower went in on 2016-08-12",
     sprintf("(%s), so the stand dates from about 2013 and is kept for the whole run:", STAND_SOURCE),
     "the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale,",
-    sprintf("so 2017 behaves as spin-up. Leaf C is the mean of %s (%d).", leaf$from, leaf$n))))
+    "so 2017 behaves as spin-up. The date is assumed; leaf C is the mean of",
+    sprintf("%s (%d), the weaker part, so the event is imputed.", leaf$from, leaf$n))))
 
 ## ------------------------------------------------------------- cuttings
 cuts <- read.csv(file.path(here, "us_bi1_cuttings.csv"), colClasses = "character")
