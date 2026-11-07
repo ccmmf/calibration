@@ -156,3 +156,59 @@ test_that("SIPNET gets the lettuce harvest and the cover crop ends as written", 
   irrig_code <- sub(".* ", "", grep(" irrig ", lines, value = TRUE))
   expect_equal(sum(irrig_code == "0"), 6L + 2L + 3L + 1L + 7L + 5L + 3L + 3L)
 })
+
+# The builder on a one-year calendar, the same in every system: the broccoli harvest is dated in
+# or after the window of the fall residue incorporation, and the lettuce planting falls inside the
+# window of the spring spading
+build_one_year <- function(root, broccoli_harvest) {
+  builder <- testthat::test_path("..", "..", "tools", "event_prep", "salinas_build_events.R")
+  skip_if_not(file.exists(builder), "tools/event_prep/salinas_build_events.R is not in this tree")
+  dir.create(file.path(root, "cv", "data"), recursive = TRUE)
+  dir.create(file.path(root, "out"))
+  rows <- data.frame(
+    id = c("planting-lettuce", "harvest-lettuce", "planting-broccoli", "harvest-broccoli", "tillage-spring",
+           "tillage-fall"),
+    mgmttype = c("planting", "harvest", "planting", "harvest", "tillage", "tillage"),
+    min_date = c("2005-05-01", "2005-07-01", "2005-07-25", broccoli_harvest, "2005-04-15", "2005-09-21"),
+    max_date = c("2005-05-01", "2005-07-01", "2005-07-25", broccoli_harvest, "2005-05-20", "2005-09-29"),
+    crop_name = c("romaine_lettuce", "romaine_lettuce", "broccoli", "broccoli", "", ""),
+    attributes_keyvalue = c("", "harvested_component=heart; harvest_index=0.26", "",
+                            "harvested_component=floret; harvest_index=0.24", "implement=spader", paste(
+                              "implement=flail_mower+disc_harrow+spring_tooth_harrow+spader+ring_roller;",
+                              "relative_timing=before_planting; relative_to=cover_crop_or_fallow")))
+  cal <- do.call(rbind, lapply(SYSTEMS, function(s)
+    data.frame(event_id = paste(rows$id, s, sep = "-"), sites.name = "salinas_socs", treatments.name = s, rows[-1],
+               cover_crop = "FALSE", level = "", units = "", notes = "", citation = "10.2134/agronj2011.0330")))
+  write.csv(cal, file.path(root, "cv", "data", "managements.csv"), row.names = FALSE)
+  write.csv(data.frame(name = SYSTEMS, definition = "test"), file.path(root, "cv", "data", "treatments.csv"),
+            row.names = FALSE)
+  write.csv(data.frame(common.name = c("romaine lettuce", "baby leaf spinach", "broccoli", "legume-rye mix",
+                                       "mustard", "cereal rye")),
+            file.path(root, "cv", "data", "crops.csv"), row.names = FALSE)
+  file.copy(file.path(dir, "monitoring_near_salinas.csv"), file.path(root, "out"))
+  out <- suppressWarnings(system2(file.path(R.home("bin"), "Rscript"),
+                                  shQuote(c(normalizePath(builder), file.path(root, "cv"), file.path(root, "out"))),
+                                  stdout = TRUE, stderr = TRUE))
+  list(status = attr(out, "status"), log = paste(out, collapse = "\n"), events = function(s) jsonlite::fromJSON(
+    file.path(root, "out", sprintf("events_%s.json", s)), simplifyVector = FALSE)$events)
+}
+
+test_that("a fall incorporation follows the harvest it incorporates and the spring spading precedes the planting", {
+  b <- build_one_year(withr::local_tempdir(), "2005-09-27")
+  expect_null(b$status, info = b$log)
+  mon <- read.csv(file.path(dir, "monitoring_near_salinas.csv"))
+  broccoli_eff <- mon$value[mon$slot == "broccoli" & mon$quantity == "postharvest_tillage_eff"]
+  for (s in SYSTEMS) {
+    ev <- b$events(s)
+    on <- function(id) Filter(function(e) e$calval_event_id == paste(id, s, sep = "-"), ev)[[1]]
+    expect_gt(as.Date(on("tillage-fall")$date), as.Date("2005-09-27"))
+    expect_equal(on("tillage-fall")$tillage_eff_0to1, round(broccoli_eff, 4))
+    expect_lt(as.Date(on("tillage-spring")$date), as.Date(on("planting-lettuce")$date))
+  }
+})
+
+test_that("the builder stops when a fall incorporation would come before a harvest of its year", {
+  b <- build_one_year(withr::local_tempdir(), "2005-10-05")
+  expect_false(is.null(b$status))
+  expect_match(b$log, "tillage-fall-socs_sys1 on 2005-09-[0-9]+ is not after the harvest it follows")
+})
