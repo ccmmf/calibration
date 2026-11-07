@@ -232,15 +232,15 @@ for (i in seq_len(nrow(irr))) {
 ## ------------------------------------------------------------- flooding, 2010 to early 2017
 # Each flood the tower's water table record shows, from its onset to its drain, held by repeated
 # applications: SIPNET has no persistent flood state or drain event, and a 0 mm irrigation does
-# nothing. The amount and interval are the mean amount and modal interval of the monitoring
+# nothing. The amount and interval are the median amount and modal interval of the monitoring
 # product's flood events for this parcel, 2017-2023.
 mon_flood <- irr[irr$method == "flood", ]
-FLOOD_MM <- round(mean(mon_flood$amount_mm))
+FLOOD_MM <- round(median(mon_flood$amount_mm))
 gaps <- as.integer(diff(as.Date(mon_flood$date)))
 FLOOD_EVERY_D <- as.integer(names(which.max(table(gaps))))
-rule <- sprintf(paste("%d mm every %d d, the mean amount (%.1f mm) and modal interval of the monitoring product's",
+rule <- sprintf(paste("%d mm every %d d, the median amount (%.1f mm) and modal interval of the monitoring product's",
                       "%d flood events for this parcel, 2017-2023 (%s)"),
-                FLOOD_MM, FLOOD_EVERY_D, mean(mon_flood$amount_mm), nrow(mon_flood), irr_src)
+                FLOOD_MM, FLOOD_EVERY_D, median(mon_flood$amount_mm), nrow(mon_flood), irr_src)
 
 wtd <- read.csv(file.path(here, "us_twt_wtd_water_dates.csv"), colClasses = "character")
 stopifnot(all(nzchar(wtd$drain)), sum(!nzchar(wtd$flood_onset)) == 1L, !nzchar(wtd$flood_onset[1]),

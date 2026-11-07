@@ -108,7 +108,8 @@ test_that("US-Bi2 gets its water: the product's 2021 and 2022 irrigation and the
   # each dated window of the site record, held weekly from its first day to its last
   windows <- list("delta-flooding-0012" = c("2017-12-01", "2018-02-28"),
                   "delta-flooding-0013" = c("2018-11-01", "2019-03-31"),
-                  "delta-flooding-0009" = c("2019-12-01", "2019-12-31"),
+                  # 0009 dates only the December 2019 onset; it is held to the other winters' 31 March drain
+                  "delta-flooding-0009" = c("2019-12-01", "2020-03-31"),
                   "delta-flooding-0014" = c("2020-11-01", "2021-03-31"))
   expect_setequal(unique(sub("^calval:managements/", "", field(floods, "source"))), names(windows))
   for (id in names(windows)) {
@@ -167,7 +168,8 @@ test_that("US-Twt floods follow the WTD onsets and are held to their drains", {
   }
   # the 2016 winter flood is no longer cut at the end of 2016
   expect_equal(max(d), as.Date("2017-03-09"))
-  expect_equal(unique(vapply(c(onsets, rule), `[[`, 0, "amount_mm")), 70)
+  # the median of the monitoring product's 2017-2023 flood amounts (69.46 mm), rounded
+  expect_equal(unique(vapply(c(onsets, rule), `[[`, 0, "amount_mm")), 69)
 })
 
 test_that("US-Twt Knox events cite their row and take the weakest class among their parts", {

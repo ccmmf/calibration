@@ -6,7 +6,7 @@
   "crop": "F16",
   "irrigation_member": "irr_ens_001",
   "generator": "tools/event_prep/us_bi2_build_events.R",
-  "note": "One corn cycle a year, 2016-2023, from the site record first (cal-val-data, US-Bi2__management_field) and the monitoring product's planting and harvest v5.0 days where the record gives none. The monitoring product's 2019 G6 cycle (planted 2019-02-05, harvested 2019-05-22) is dropped: the field is continuous corn and was flooded and anoxic until mid March 2019. UAN at 118 kg N/ha once a year at planting (Anthony and Silver 2021) replaces the fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the shared lookup's hay row for silage, an assumption for David. No tillage: the monitoring product's tillage is not used. Water, as decided on 2026-07-16: the irrigation product's 2021 and 2022 events, and the record's dated winter floods (delta-flooding-0009, 0012, 0013, 0014) held by 70 mm every 7 d as soil irrigation. The spud ditch sub-irrigation (delta-irrigation-0004 to 0007) is subsurface water left to the water table and the run's flood configuration, which this file does not set. See tools/event_prep/README.md."
+  "note": "One corn cycle a year, 2016-2023, from the site record first (cal-val-data, US-Bi2__management_field) and the monitoring product's planting and harvest v5.0 days where the record gives none. The monitoring product's 2019 G6 cycle (planted 2019-02-05, harvested 2019-05-22) is dropped: the field is continuous corn and was flooded and anoxic until mid March 2019. UAN at 118 kg N/ha once a year at planting (Anthony and Silver 2021) replaces the fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the shared lookup's hay row for silage, an assumption for David. No tillage: the monitoring product's tillage is not used. Water, as decided on 2026-07-16: the irrigation product's 2021 and 2022 events, and the record's dated winter floods (delta-flooding-0009, 0012, 0013, 0014) held by 69 mm every 7 d as soil irrigation. The spud ditch sub-irrigation (delta-irrigation-0004 to 0007) is subsurface water left to the water table and the run's flood configuration, which this file does not set. See tools/event_prep/README.md."
  },
  "events": [
   {
@@ -84,119 +84,119 @@
   {
    "event_type": "irrigation",
    "date": "2017-12-01",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2017-12-08",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2017-12-15",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2017-12-22",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2017-12-29",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-01-05",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-01-12",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-01-19",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-01-26",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-02-02",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-02-09",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-02-16",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-02-23",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0012",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0012, 2017-12-01 to 2018-02-28: the record reports the field flooded through this window (Hemes et al. 2019). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -237,200 +237,200 @@
   {
    "event_type": "irrigation",
    "date": "2018-11-01",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-11-08",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-11-15",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-11-22",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-11-29",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-12-06",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-12-13",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-12-20",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2018-12-27",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-01-03",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-01-10",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-01-17",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-01-24",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-01-31",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-02-07",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-02-14",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-02-21",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-02-28",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-03-07",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-03-14",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-03-21",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-03-28",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0013",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0013, 2018-11-01 to 2019-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -471,47 +471,164 @@
   {
    "event_type": "irrigation",
    "date": "2019-12-01",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0009",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2019-12-31: the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of the window. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-12-08",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0009",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2019-12-31: the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of the window. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-12-15",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0009",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2019-12-31: the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of the window. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-12-22",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0009",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2019-12-31: the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of the window. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2019-12-29",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0009",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2019-12-31: the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of the window. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-01-05",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-01-12",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-01-19",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-01-26",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-02-02",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-02-09",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-02-16",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-02-23",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-01",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-08",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-15",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-22",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
+  },
+  {
+   "event_type": "irrigation",
+   "date": "2020-03-29",
+   "amount_mm": 69,
+   "method": "soil",
+   "source": "calval:managements/delta-flooding-0009",
+   "provenance_class": "imputed",
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0009, 2019-12-01 to 2020-03-31: the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or the spring 2020 drain (delta-drainage-0006), so the flood is held to 2020-03-31, the drain day of the other recorded winters that run to spring (delta-flooding-0013, 0014). Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "fertilization",
@@ -552,200 +669,200 @@
   {
    "event_type": "irrigation",
    "date": "2020-11-01",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-11-08",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-11-15",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-11-22",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-11-29",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-12-06",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-12-13",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-12-20",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2020-12-27",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-01-03",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-01-10",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-01-17",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-01-24",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-01-31",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-02-07",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-02-14",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-02-21",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-02-28",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-03-07",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-03-14",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-03-21",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "irrigation",
    "date": "2021-03-28",
-   "amount_mm": 70,
+   "amount_mm": 69,
    "method": "soil",
    "source": "calval:managements/delta-flooding-0014",
    "provenance_class": "imputed",
-   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the window's first day to its last; the record gives no onset, drain or depth, so the event is imputed."
+   "provenance_note": "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. Holds the winter flood of delta-flooding-0014, 2020-11-01 to 2021-03-31: the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1) after the year's corn, not a reported duration. Dated and sized by the rule, 69 mm every 7 d, the hold rule US-Twt uses (the median amount and modal interval of the monitoring product's flood events for parcel 590073, 2017-2023), from the first day to the last; the record gives no onset date, drain or depth, so the event is imputed."
   },
   {
    "event_type": "fertilization",

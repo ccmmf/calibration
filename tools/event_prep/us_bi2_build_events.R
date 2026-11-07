@@ -38,12 +38,12 @@ BIF <- "10.17190/AMF/1419513 (AmeriFlux US-Bi2 BIF)"
 PRODUCT <- "monitoring_product:%s/v5.0 (parcel 565118)"
 KG_HA_TO_KG_M2 <- 1e-4
 
-# The hold rule us_twt_build_events.R uses: 70 mm every 7 d, the mean amount and modal interval of
-# the monitoring product's flood events for US-Twt (parcel 590073, irrigation v1.1, irr_ens_001,
-# 2017-2023). A reported winter flood window is held from its first day to its last.
-FLOOD_MM <- 70; FLOOD_EVERY_D <- 7L; FLOOD_METHOD <- "soil"
-FLOOD_RULE <- paste("70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the",
-                    "monitoring product's flood events for parcel 590073, 2017-2023)")
+# The hold rule us_twt_build_events.R uses: 69 mm every 7 d, the median amount (69.46 mm, rounded)
+# and modal interval of the monitoring product's flood events for US-Twt (parcel 590073, irrigation
+# v1.1, irr_ens_001, 2017-2023). A reported winter flood window is held from its first day to its last.
+FLOOD_MM <- 69; FLOOD_EVERY_D <- 7L; FLOOD_METHOD <- "soil"
+FLOOD_RULE <- sprintf(paste("%d mm every %d d, the hold rule US-Twt uses (the median amount and modal interval of",
+                            "the monitoring product's flood events for parcel 590073, 2017-2023)"), FLOOD_MM, FLOOD_EVERY_D)
 
 # Days read from the fertilization line of Anthony and Silver 2021 Fig. 2, to within 1 to 2 days.
 # UAN went on once a year at planting, so the corn was planted the same day. In 2020 the
@@ -186,7 +186,9 @@ for (i in seq_len(nrow(irr))) {
 # Winter floods: every US-Bi2 flooding row of the site record with a dated window, held by the
 # US-Twt rule from the window's first day to its last. The record gives no onset, drain or depth
 # for any of them; delta-flooding-0008 (autumn flooding of the fallow field) has no dates and is not
-# written. The windows mean different things, which the notes keep apart.
+# written. The windows mean different things, which the notes keep apart. A window that bounds only
+# the onset (0009, December 2019) is held to the drain day of the other recorded winters that run
+# to spring (0013 and 0014, 31 March), in the following year (2026-11-08 decision).
 mg <- read.csv(args$managements, colClasses = "character", na.strings = character())
 fl <- mg[mg$sites.name == "US-Bi2__management_field" & startsWith(mg$event_id, "delta-flooding-"), ]
 fl <- fl[substr(fl$min_date, 1, 2) == "20" & substr(fl$max_date, 1, 2) == "20", ]
@@ -205,12 +207,18 @@ WINDOW_NOTE <- c(
     "the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1)",
     "after the year's corn, not a reported duration"),
   "flood-onset timing constraint" = paste(
-    "the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and",
-    "the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of",
-    "the window"))
+    "the record dates only the onset (December 2019, after the 2019-09-11 harvest), not the duration or",
+    "the spring 2020 drain (delta-drainage-0006), so the flood is held to %s, the drain day of the other",
+    "recorded winters that run to spring (delta-flooding-0013, 0014)"))
+spring <- unique(substr(fl$max_date[WINDOWS[fl$event_id] == "seasonal occurrence constraint"], 6, 10))
+stopifnot(identical(spring, "03-31"))
 for (i in seq_len(nrow(fl))) {
   w <- fl[i, ]
-  start <- as.Date(substr(w$min_date, 1, 10)); end <- as.Date(substr(w$max_date, 1, 10))
+  kind <- WINDOWS[[w$event_id]]
+  start <- as.Date(substr(w$min_date, 1, 10))
+  end <- as.Date(if (kind == "flood-onset timing constraint")
+    sprintf("%d-%s", as.integer(format(start, "%Y")) + 1L, spring) else substr(w$max_date, 1, 10))
+  window_note <- if (kind == "flood-onset timing constraint") sprintf(WINDOW_NOTE[[kind]], end) else WINDOW_NOTE[[kind]]
   y <- format(start, "%Y"); y_next <- as.character(as.integer(y) + 1L)
   # the flood falls between that year's harvest and the next year's planting
   stopifnot(format(start) > harvest_on[[y]], format(end) < plant_on[[y_next]])
@@ -218,9 +226,9 @@ for (i in seq_len(nrow(fl))) {
     add(set_provenance(list(event_type = "irrigation", date = d, amount_mm = FLOOD_MM, method = FLOOD_METHOD),
                        "imputed", source = paste0("calval:managements/", w$event_id), note = paste(
       "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder.",
-      sprintf("Holds the winter flood of %s, %s to %s: %s.", w$event_id, start, end, WINDOW_NOTE[[WINDOWS[[w$event_id]]]]),
-      sprintf("Dated and sized by the rule, %s, from the window's first day to its last;", FLOOD_RULE),
-      "the record gives no onset, drain or depth, so the event is imputed.")))
+      sprintf("Holds the winter flood of %s, %s to %s: %s.", w$event_id, start, end, window_note),
+      sprintf("Dated and sized by the rule, %s, from the first day to the last;", FLOOD_RULE),
+      "the record gives no onset date, drain or depth, so the event is imputed.")))
 }
 
 ## ------------------------------------------------------------- write
