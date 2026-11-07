@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pull the monitoring product from CCMMF S3 into the layout the step3_* scripts expect.
+# Pull the monitoring product from CCMMF S3 into the layout the *_build_events.R builders expect.
 #
 #   ./pull_inputs.sh --list     show every version available per product, then exit
 #   ./pull_inputs.sh            pull the pinned versions for the default parcels
@@ -27,6 +27,8 @@ PLANTING_VERSION=${PLANTING_VERSION:-v1.0}
 HARVEST_VERSION=${HARVEST_VERSION:-v1.0}
 IRRIGATION_VERSION=${IRRIGATION_VERSION:-v1.1}
 FERTILIZATION_VERSION=${FERTILIZATION_VERSION:-v1.0}
+# US-Bi2 takes its planting and harvest days from v5.0 (us_bi2_build_events.R), which has 2017.
+US_BI2_VERSION=v5.0   # pinned: us_bi2_build_events.R reads v5.0's schema (parcel_id, crop_code)
 
 s3() { aws --endpoint-url "$S3_ENDPOINT" s3 "$@"; }
 say() { printf '  %s\n' "$*"; }
@@ -39,9 +41,10 @@ if [ "${1:-}" = "--list" ]; then
   cat <<'EOF'
 
 Pinned by this script: planting v1.0, harvest v1.0, irrigation v1.1,
-fertilization v1.0. A newer version is not automatically a drop-in replacement
--- fertilization v2.0 changes both the event dates and the N speciation. Only
-move the pin after re-running the step3 scripts and diffing runs/*/events.json.
+fertilization v1.0, and planting and harvest v5.0 for US-Bi2. A newer version is
+not automatically a drop-in replacement -- fertilization v2.0 changes both the
+event dates and the N speciation. Only move the pin after re-running the
+builders and diffing runs/*/events.json.
 EOF
   exit 0
 fi
@@ -58,8 +61,9 @@ say "parcels   ${PARCELS[*]}"
 echo
 
 # --- statewide per-year products -------------------------------------------
-# Small enough to take whole; the step3 scripts need several years each.
-for spec in "planting:$PLANTING_VERSION" "harvest:$HARVEST_VERSION" "tillage:v1.0"; do
+# Small enough to take whole; the builders need several years each.
+for spec in "planting:$PLANTING_VERSION" "harvest:$HARVEST_VERSION" "tillage:v1.0" \
+            "planting:$US_BI2_VERSION" "harvest:$US_BI2_VERSION"; do
   p=${spec%%:*}; v=${spec##*:}
   say "$p $v -> $MGMT/$p/$v"
   s3 sync "s3://$S3_BUCKET/management/$p/$v/" "$MGMT/$p/$v/" --only-show-errors
@@ -94,5 +98,7 @@ for f in $shards; do
 done
 
 echo
-say "done. next: extract_parcel_csvs.R to build the per-parcel CSVs, e.g."
+say "done. next: extract_parcel_csvs.R to build the per-parcel CSVs the Delta builders read:"
+say "  Rscript extract_parcel_csvs.R us_bi1 328163"
 say "  Rscript extract_parcel_csvs.R us_bi2 565118"
+say "  Rscript extract_parcel_csvs.R us_twt 590073"
