@@ -82,8 +82,8 @@
    "reported_rate_lb_ac": 100,
    "reported_grade": "11-52-0",
    "source": "calval:managements/delta-fertilization-0003",
-   "provenance_class": "published",
-   "provenance_note": "100 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0003). 100 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "planting",
@@ -106,7 +106,7 @@
    "reported_grade": "30-0-20",
    "source": "calval:managements/delta-fertilization-0004",
    "provenance_class": "derived",
-   "provenance_note": "source reports a window 2010-06-05..2010-06-09; earliest date used; 150 lb/ac of 30-0-20 -> 0.00504383 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_note": "Knox et al. 2016 Table 1 window (delta-fertilization-0004): source reports a window 2010-06-05..2010-06-09; earliest date used. 150 lb/ac of 30-0-20 -> 0.00504383 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "irrigation",
@@ -436,8 +436,8 @@
    "reported_rate_lb_ac": 100,
    "reported_grade": "11-52-0",
    "source": "calval:managements/delta-fertilization-0005",
-   "provenance_class": "published",
-   "provenance_note": "100 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0005). 100 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "planting",
@@ -459,8 +459,8 @@
    "reported_rate_lb_ac": 200,
    "reported_grade": "30-0-20",
    "source": "calval:managements/delta-fertilization-0006",
-   "provenance_class": "published",
-   "provenance_note": "200 lb/ac of 30-0-20 -> 0.0067251 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0006). 200 lb/ac of 30-0-20 -> 0.0067251 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "irrigation",
@@ -754,8 +754,8 @@
    "reported_rate_lb_ac": 100,
    "reported_grade": "11-52-0",
    "source": "calval:managements/delta-fertilization-0007",
-   "provenance_class": "published",
-   "provenance_note": "100 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0007). 100 lb/ac of 11-52-0 -> 0.00123294 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "planting",
@@ -777,8 +777,8 @@
    "reported_rate_lb_ac": 200,
    "reported_grade": "30-0-20",
    "source": "calval:managements/delta-fertilization-0008",
-   "provenance_class": "published",
-   "provenance_note": "200 lb/ac of 30-0-20 -> 0.0067251 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0008). 200 lb/ac of 30-0-20 -> 0.0067251 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "irrigation",
@@ -1065,8 +1065,8 @@
    "reported_rate_lb_ac": 100,
    "reported_grade": "15-15-15",
    "source": "calval:managements/delta-fertilization-0009",
-   "provenance_class": "published",
-   "provenance_note": "100 lb/ac of 15-15-15 -> 0.00168127 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0009). 100 lb/ac of 15-15-15 -> 0.00168127 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "irrigation",
@@ -1434,8 +1434,8 @@
    "reported_rate_lb_ac": 150,
    "reported_grade": "15-15-15",
    "source": "calval:managements/delta-fertilization-0010",
-   "provenance_class": "published",
-   "provenance_note": "150 lb/ac of 15-15-15 -> 0.00252191 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0010). 150 lb/ac of 15-15-15 -> 0.00252191 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "irrigation",
@@ -1723,8 +1723,8 @@
    "reported_rate_lb_ac": 100,
    "reported_grade": "15-15-15",
    "source": "calval:managements/delta-fertilization-0011",
-   "provenance_class": "published",
-   "provenance_note": "100 lb/ac of 15-15-15 -> 0.00168127 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form"
+   "provenance_class": "derived",
+   "provenance_note": "Knox et al. 2016 Table 1 date (delta-fertilization-0011). 100 lb/ac of 15-15-15 -> 0.00168127 kg N m-2, all as ammonium (these are ammonium/urea-based products); source reports product and rate, not N form. N is computed from the reported rate and the grade's %N, so the event is derived."
   },
   {
    "event_type": "irrigation",

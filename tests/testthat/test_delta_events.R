@@ -41,6 +41,8 @@ test_that("every Delta event says where it came from and stays in its run window
 test_that("US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive", {
   ev <- read_events("us_bi1")$events
   expect_equal(dates(of_type(ev, "planting")), "2017-01-01")
+  # an assumed date with the monitoring product's leaf C: the weaker part makes it imputed
+  expect_equal(field(of_type(ev, "planting"), "provenance_class"), "imputed")
   cuts <- read.csv(file.path(root, "tools", "event_prep", "us_bi1_cuttings.csv"), colClasses = "character")
   expect_equal(dates(of_type(ev, "harvest")), cuts$date)
   expect_equal(nrow(cuts), 39L)
@@ -123,6 +125,15 @@ test_that("US-Twt floods follow the WTD onsets and are held to their drains", {
   # the 2016 winter flood is no longer cut at the end of 2016
   expect_equal(max(d), as.Date("2017-03-09"))
   expect_equal(unique(vapply(c(derived, rule), `[[`, 0, "amount_mm")), 70)
+})
+
+test_that("US-Twt Knox events cite their row and take the weakest class among their parts", {
+  ev <- Filter(function(e) e$event_type != "tillage" && startsWith(e$source, "calval:managements/"),
+               read_events("us_twt")$events)
+  expect_true(all(startsWith(field(ev, "provenance_note"), "Knox et al. 2016 Table 1")))
+  # leaf C from the monitoring product, fractions from a prior, N from the reported rate and grade
+  cls <- lapply(split(field(ev, "provenance_class"), field(ev, "event_type")), unique)
+  expect_equal(cls, list(fertilization = "derived", harvest = "assumed", planting = "imputed"))
 })
 
 test_that("US-Twt tillage cites the record for each implement in every year", {

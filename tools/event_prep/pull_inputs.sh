@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pull the monitoring product from CCMMF S3 into the layout the step3_* scripts expect.
+# Pull the monitoring product from CCMMF S3 into the layout the *_build_events.R builders expect.
 #
 #   ./pull_inputs.sh --list     show every version available per product, then exit
 #   ./pull_inputs.sh            pull the pinned versions for the default parcels
@@ -98,5 +98,6 @@ for f in $shards; do
 done
 
 echo
-say "done. next: extract_parcel_csvs.R to build the per-parcel CSVs, e.g."
-say "  Rscript extract_parcel_csvs.R us_bi2 565118"
+say "done. next: extract_parcel_csvs.R to build the per-parcel CSVs the US-Bi1 and US-Twt builders read:"
+say "  Rscript extract_parcel_csvs.R us_bi1 328163"
+say "  Rscript extract_parcel_csvs.R us_twt 590073"

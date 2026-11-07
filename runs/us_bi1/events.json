@@ -17,8 +17,8 @@
    "leaf_c_kg_m2": 0.00994096,
    "prior_filled": "leaf_c_kg_m2<-mean of the parcel's monitoring P1 plantings (6, planting v1.0)",
    "source": "Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8; monitoring_product:planting/v1.0",
-   "provenance_class": "assumed",
-   "provenance_note": "Sets the state of the alfalfa stand at the start of the run; it is not a planting operation. The field had been in alfalfa about three years when the tower went in on 2016-08-12 (Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8), so the stand dates from about 2013 and is kept for the whole run: the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale, so 2017 behaves as spin-up. Leaf C is the mean of the parcel's monitoring P1 plantings (6)."
+   "provenance_class": "imputed",
+   "provenance_note": "Sets the state of the alfalfa stand at the start of the run; it is not a planting operation. The field had been in alfalfa about three years when the tower went in on 2016-08-12 (Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8), so the stand dates from about 2013 and is kept for the whole run: the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale, so 2017 behaves as spin-up. The date is assumed; leaf C is the mean of the parcel's monitoring P1 plantings (6), the weaker part, so the event is imputed."
   },
   {
    "event_type": "harvest",
