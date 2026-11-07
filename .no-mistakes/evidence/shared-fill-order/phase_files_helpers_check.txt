@@ -1,0 +1,41 @@
+phase files: 23 
+
+OK russell_ranch_tautges_2019_alf_corn_tomato__corn-tomato-alfalfa-alfalfa-alfalfa-tomato.json harvests= 18 tagged= 62  imputed=45 published=17
+OK russell_ranch_tautges_2019_alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.json harvests= 29 tagged= 50  imputed=33 published=17
+OK russell_ranch_tautges_2019_conv_corn_tomato__corn-tomato.json                    harvests= 21 tagged=211  assumed=96 imputed=70 published=45
+OK russell_ranch_tautges_2019_conv_corn_tomato__tomato-corn.json                    harvests= 22 tagged=225  assumed=101 imputed=76 published=48
+OK russell_ranch_tautges_2019_conv_wheat_tomato__tomato-wheat.json                  harvests= 22 tagged=174  imputed=128 published=46
+OK russell_ranch_tautges_2019_conv_wheat_tomato__wheat-tomato.json                  harvests= 22 tagged=163  assumed=1 imputed=116 published=46
+OK russell_ranch_tautges_2019_irr_wheat_control__fallow-wheat.json                  harvests= 11 tagged= 67  assumed=5 imputed=58 published=4
+OK russell_ranch_tautges_2019_irr_wheat_control__wheat-fallow.json                  harvests= 12 tagged= 67  assumed=5 imputed=56 published=6
+OK russell_ranch_tautges_2019_irr_wheat_fallow__fallow-wheat.json                   harvests= 11 tagged= 88  assumed=5 imputed=63 published=20
+OK russell_ranch_tautges_2019_irr_wheat_fallow__wheat-fallow.json                   harvests= 12 tagged= 90  assumed=5 imputed=60 published=25
+OK russell_ranch_tautges_2019_irr_wheat_legume__cc-wheat.json                       harvests= 16 tagged= 35  imputed=25 published=10
+OK russell_ranch_tautges_2019_irr_wheat_legume__wheat-cc.json                       harvests= 16 tagged= 38  imputed=24 published=14
+OK russell_ranch_tautges_2019_leg_corn_tomato__corn-cc-tomato-cc.json               harvests= 35 tagged=241  assumed=96 imputed=101 published=44
+OK russell_ranch_tautges_2019_leg_corn_tomato__tomato-cc-corn-cc.json               harvests= 36 tagged=243  assumed=95 imputed=104 published=44
+OK russell_ranch_tautges_2019_org_corn_tomato__corn-cc-tomato-cc.json               harvests= 41 tagged=242  assumed=103 derived=7 imputed=102 published=30
+OK russell_ranch_tautges_2019_org_corn_tomato__tomato-cc-corn-cc.json               harvests= 42 tagged=251  assumed=109 derived=8 imputed=102 published=32
+OK russell_ranch_tautges_2019_rf_wheat_control__fallow-wheat.json                   harvests= 11 tagged= 61  imputed=57 published=4
+OK russell_ranch_tautges_2019_rf_wheat_control__wheat-fallow.json                   harvests= 12 tagged= 60  imputed=55 published=5
+OK russell_ranch_tautges_2019_rf_wheat_fallow__fallow-wheat.json                    harvests= 11 tagged= 82  imputed=60 published=22
+OK russell_ranch_tautges_2019_rf_wheat_fallow__wheat-fallow.json                    harvests= 12 tagged= 84  imputed=58 published=26
+OK russell_ranch_tautges_2019_rf_wheat_legume__cc-wheat.json                        harvests= 22 tagged= 40  imputed=25 published=15
+OK russell_ranch_tautges_2019_rf_wheat_legume__wheat-cc.json                        harvests= 22 tagged= 42  imputed=24 published=18
+OK russell_ranch_tautges_2019_transitional__tomato-corn.json                        harvests= 36 tagged=222  assumed=5 derived=8 imputed=170 published=39
+
+All 23 phase files pass check_harvest_fractions (492 harvests) and set_provenance (2838 tagged events).
+
+== adversarial: the same files with one harvest broken ==
+alfalfa cutting with only frac_above_removed_0to1:
+  Alfalfa harvest on 2013-05-17 lacks frac_below_removed_0to1, frac_above_to_litter_0to1, frac_below_to_litter_0to1; write.events.SIPNET would fill it from 1 - removed 
+alfalfa cutting with 0.85 removed + 0.5 to litter:
+  Alfalfa harvest on 2013-05-17: aboveground removed and to litter add up to more than 1 
+alfalfa cutting with a NA fraction:
+  Alfalfa harvest on 2013-05-17: frac_below_to_litter_0to1 must be a number from 0 to 1 
+re-tagging an imputed event without a note:
+  a imputed event needs a provenance_note saying what it rests on 
+re-tagging it with source = NA:
+  a imputed event needs a source 
+tagging with a class outside PROVENANCE_CLASSES ('estimated'):
+  provenance_class must be one of published, derived, assumed, imputed, not "estimated" 

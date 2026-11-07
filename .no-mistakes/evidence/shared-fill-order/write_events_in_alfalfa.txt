@@ -1,0 +1,45 @@
+$ Rscript tools/event_prep/write_events_in.R runs/russell_ranch/events_treatments/russell_ranch_tautges_2019_alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.json .nm-scratch/sipnet_alf
+2026-11-07 21:12:48.148208 ERROR  [PEcAn.data.land::validate_events_json] : 
+   events_json does not conform to schema: 
+   runs/russell_ranch/events_treatments/russell_ranch_tautges_2019_alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.json; 
+   /pecan_events_version: must be equal to constant; <root>: must be array; 
+   <root>: must match exactly one schema in oneOf 
+  wrote .nm-scratch/sipnet_alf/events-alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.in 
+  lines 77 | json events 77 OK 
+  irrigation lines checked 16 , method code corrected on 0 
+  verification: all irrigation methods match the JSON 
+[exit 0]
+(the schema ERROR line above is PEcAn's events-schema version check; it is logged, not fatal, and the phase files are unchanged by this branch)
+
+== Each alfalfa harvest in the JSON and the harv line write.events.SIPNET wrote for it ==
+2013-04-10 json=(0.85, 0, 0, 0) -> 2013  100 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2013-05-17 json=(0.85, 0, 0, 0) -> 2013  137 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2013-06-19 json=(0.85, 0, 0, 0) -> 2013  170 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2013-07-31 json=(0.85, 0, 0, 0) -> 2013  212 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2013-09-08 json=(0.85, 0, 0, 0) -> 2013  251 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2013-10-04 json=(0.85, 0, 0, 0) -> 2013  277 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-04-17 json=(0.85, 0, 0, 0) -> 2014  107 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-05-16 json=(0.85, 0, 0, 0) -> 2014  136 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-06-12 json=(0.85, 0, 0, 0) -> 2014  163 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-07-10 json=(0.85, 0, 0, 0) -> 2014  191 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-08-09 json=(0.85, 0, 0, 0) -> 2014  221 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-09-11 json=(0.85, 0, 0, 0) -> 2014  254 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+2014-10-08 json=(0.85, 0, 0, 0) -> 2014  281 harv   0.85 0 0 0
+     Intermediate cutting: removes the P1 aboveground share and leaves the stubble and roots alive. 
+
+== alfalfa intermediate cuttings written as 'harv 0.85 0 0 0' ==
+13
+== any harv line with the 1 - removed fill (0.85 0 0.15 1)? ==
+0

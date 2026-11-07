@@ -1,0 +1,51 @@
+### Generator copied to a folder with spaces, run from an unrelated cwd (/home/aritra/.no-mistakes/worktrees/488f3f2806f4/01M6VA0KPMDEG4MBGD7RQXVP6N/.nm-scratch)
+
+== HEAD 242e6ce (with the fix): no arguments ==
+$ cd .nm-scratch && Rscript "head/Google Drive/event prep/russell_split_phases.R"
+Error: usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv [irrigation_medians_csv]]
+Execution halted
+[exit 1]
+
+== HEAD 242e6ce (with the fix): real arguments, inputs under a path with spaces, Century folder absent ==
+$ Rscript "head/Google Drive/event prep/russell_split_phases.R" "Google Drive/runs/generator_stacked" "Google Drive/RR_2014_datasets" "Google Drive/out"
+Error in file(file, "rt", encoding = fileEncoding) : 
+  cannot open the connection
+Calls: rd -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt", encoding = fileEncoding) :
+  cannot open file 'Google Drive/RR_2014_datasets/plot_system.csv': No such file or directory
+Execution halted
+[exit 1]
+
+== 5a6a832 (before the review fix): no arguments ==
+$ cd .nm-scratch && Rscript "prefix/Google Drive/event prep/russell_split_phases.R"
+Error in file(filename, "r", encoding = encoding) : 
+  cannot open the connection
+Calls: source -> file
+In addition: Warning message:
+In file(filename, "r", encoding = encoding) :
+  cannot open file 'prefix/Google~+~Drive/event~+~prep/fill_order.R': No such file or directory
+Execution halted
+[exit 1]
+
+== 5a6a832 (before the review fix): real arguments, inputs under a path with spaces, Century folder absent ==
+$ Rscript "prefix/Google Drive/event prep/russell_split_phases.R" "Google Drive/runs/generator_stacked" "Google Drive/RR_2014_datasets" "Google Drive/out"
+Error in file(filename, "r", encoding = encoding) : 
+  cannot open the connection
+Calls: source -> file
+In addition: Warning message:
+In file(filename, "r", encoding = encoding) :
+  cannot open file 'prefix/Google~+~Drive/event~+~prep/fill_order.R': No such file or directory
+Execution halted
+[exit 1]
+
+== README rebuild command from the repo root (Century folder not available on this machine) ==
+$ Rscript tools/event_prep/russell_split_phases.R runs/russell_ranch/events_treatments/generator_stacked <missing>/RR_2014_datasets .nm-scratch/rebuild
+Error in file(file, "rt", encoding = fileEncoding) : 
+  cannot open the connection
+Calls: rd -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt", encoding = fileEncoding) :
+  cannot open file '.nm-scratch/missing/RR_2014_datasets/plot_system.csv': No such file or directory
+Execution halted
+[exit 1]

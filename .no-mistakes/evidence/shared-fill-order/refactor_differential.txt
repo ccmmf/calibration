@@ -1,0 +1,67 @@
+Base bb842cc vs HEAD 242e6ce: refactored russell_split_phases.R functions on the same inputs
+(identical() compares values, types and field order)
+
+apply_lookup_as_is         identical=TRUE   items= 492  error results base/head=0/0
+apply_lookup_stripped      identical=TRUE   items= 492  error results base/head=0/0
+apply_lookup_placeholder   identical=TRUE   items= 492  error results base/head=0/0
+alfalfa_cuts               identical=TRUE   items=3511  error results base/head=0/0
+planting_amount            identical=TRUE   items= 138  error results base/head=0/0
+median_for                 identical=FALSE  items=  36  error results base/head=0/12
+fert_events                identical=TRUE   items=  29  error results base/head=0/0
+
+== median_for for a kind no system has (the one documented error-path change) ==
+base: list(v = NA_real_, n = 0L, level = "all systems") 
+head: ERROR: no recorded till_doy to take a median from 
+
+== median_for: base vs head where they agree (first system, first two kinds) ==
+List of 2
+ $ :List of 3
+  ..$ v    : num 184
+  ..$ n    : int 50
+  ..$ level: chr "all systems"
+ $ :List of 3
+  ..$ v    : num 164
+  ..$ n    : int 7
+  ..$ level: chr "Alfalfa/Corn/Tomato"
+
+== a harvest after apply_lookup from a stripped event: field order (HEAD) ==
+event_type, date, source, crop_display, frac_above_removed_0to1, provenance_class, provenance_note, frac_above_to_litter_0to1, harvest_lookup_row, harvest_fraction_note, frac_below_removed_0to1, frac_below_to_litter_0to1
+
+== compost events from fert_events: years, %C source, class (HEAD) ==
+1994-10-15 derived 22.1 2.9 C from the 1994 analysis, N from the 1994 analysis 
+1995-10-15 assumed 18.7 2.85 C from the 1995 analysis, N from the mean of measured years 
+1996-10-15 assumed 20.7 3.1 C from the mean of measured years, N from the 1996 analysis 
+1997-10-15 derived 25.3 2.4 C from the 1997 analysis, N from the 1997 analysis 
+1998-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+1999-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2000-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2001-10-15 derived 19.9 3.3 C from the 2001 analysis, N from the 2001 analysis 
+2002-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2003-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2004-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2005-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2006-10-15 derived 21.4 2.8 C from the 2006 analysis, N from the 2006 analysis 
+2007-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2008-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2009-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2010-10-15 assumed 16.8 2.85 C from the 2010 analysis, N from the mean of measured years 
+2011-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2012-10-15 assumed 20.7 2.6 C from the mean of measured years, N from the 2012 analysis 
+2013-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+2014-10-15 assumed 20.7 2.85 C from the mean of measured years, N from the mean of measured years 
+
+median_for: 24 identical, 12 differ only as documented (base NA median with n = 0, HEAD stops), 0 other differences
+committed plot_system.csv harvest field orders:
+
+                                                       event_type, date, crop_display, frac_above_removed_0to1, frac_below_removed_0to1, frac_above_to_litter_0to1, frac_below_to_litter_0to1, source, provenance_class, provenance_note 
+                                                                                                                                                                                                                                       2 
+                                event_type, date, source, crop_display, frac_above_removed_0to1, provenance_class, provenance_note, frac_above_to_litter_0to1, harvest_fraction_note, frac_below_removed_0to1, frac_below_to_litter_0to1 
+                                                                                                                                                                                                                                       5 
+                                   event_type, date, source, crop_display, frac_above_removed_0to1, provenance_class, provenance_note, frac_above_to_litter_0to1, harvest_lookup_row, frac_below_removed_0to1, frac_below_to_litter_0to1 
+                                                                                                                                                                                                                                      20 
+                       event_type, date, source, crop_display, frac_above_removed_0to1, provenance_class, provenance_note, frac_above_to_litter_0to1, harvest_lookup_row, frac_below_removed_0to1, frac_below_to_litter_0to1, history_of 
+                                                                                                                                                                                                                                       2 
+            event_type, date, source, crop_display, frac_above_removed_0to1, provenance_class, provenance_note, frac_above_to_litter_0to1, harvest_lookup_row, harvest_fraction_note, frac_below_removed_0to1, frac_below_to_litter_0to1 
+                                                                                                                                                                                                                                      44 
+event_type, date, source, crop_display, frac_above_removed_0to1, provenance_class, provenance_note, frac_above_to_litter_0to1, harvest_lookup_row, harvest_fraction_note, frac_below_removed_0to1, frac_below_to_litter_0to1, history_of 
+                                                                                                                                                                                                                                       2 

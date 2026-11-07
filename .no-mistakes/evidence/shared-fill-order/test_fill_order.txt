@@ -1,0 +1,43 @@
+ℹ Testing calibration
+✔ | F W  S  OK | Context
+
+⠏ |          0 | fill_order                                                     
+⠹ |         23 | fill_order                                                     
+⠴ |         36 | fill_order                                                     
+⠇ |         49 | fill_order                                                     
+✔ |         51 | fill_order
+
+══ Results ═════════════════════════════════════════════════════════════════════
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 51 ]
+
+expectations passed: 51  failed: 0  skipped tests: 0  errors: 0 
+                                                                                test
+             first_available takes the first candidate that has a value and names it
+     first_available falls back to the broader pool when the narrow one is too small
+                                  first_available returns only the values it counted
+                    first_available counts events in a list and rows in a data frame
+                                         first_available needs every candidate named
+                    set_provenance tags an event and keeps its fields where they are
+                            set_provenance rejects a class the generators do not use
+                     a filled event must say where it came from and what it rests on
+                 a generator finds fill_order.R next to it when its path has a space
+                       harvest_fractions writes all four fractions in SIPNET's order
+                                                   harvest_fractions has no defaults
+                 harvest_fractions rejects shares outside 0 to 1 or adding up past 1
+                       check_harvest_fractions stops on a harvest missing a fraction
+ a perennial cutting reaches SIPNET as written, not with its transfer as 1 - removed
+ nb passed failed skipped error
+  5      5      0   FALSE FALSE
+  3      3      0   FALSE FALSE
+  6      6      0   FALSE FALSE
+  3      3      0   FALSE FALSE
+  2      2      0   FALSE FALSE
+  6      6      0   FALSE FALSE
+  3      3      0   FALSE FALSE
+  7      7      0   FALSE FALSE
+  2      2      0   FALSE FALSE
+  2      2      0   FALSE FALSE
+  2      2      0   FALSE FALSE
+  4      4      0   FALSE FALSE
+  3      3      0   FALSE FALSE
+  3      3      0   FALSE FALSE
