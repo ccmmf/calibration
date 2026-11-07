@@ -6,12 +6,10 @@
 # guidance. Only operations on the calendar rows become events, plus the end of each crop the
 # calendar implies (a cover crop's termination); nothing is inserted (ccmmf/organization#297).
 #
-# usage: salinas_build_events.R <calendar> <out_dir> [monitoring_csv]
-#   calendar: a cal-val-data checkout, or a directory holding its managements.csv,
-#     treatments.csv and crops.csv. The files in runs/salinas_socs were built from the
-#     calval-metadata branch (cal-val-data PR #24).
-#   monitoring_csv: written by salinas_monitoring.R; defaults to monitoring_near_salinas.csv in
-#     out_dir.
+# usage: salinas_build_events.R <cal-val-data checkout> <out_dir>
+#   The checkout's data/ holds managements.csv, treatments.csv and crops.csv. The files in
+#     runs/salinas_socs were built from the calval-metadata branch (cal-val-data PR #24).
+#   out_dir must hold monitoring_near_salinas.csv, written by salinas_monitoring.R.
 # Writes events_<system>.json for socs_sys1 to socs_sys8 and fill_summary.csv, the count of
 # every filled or assumed value, into out_dir. The fill helpers it shares with the other
 # generators are in fill_order.R, next to this script.
@@ -22,10 +20,12 @@ script_file <- gsub("~+~", " ", sub("^--file=", "", grep("^--file=", commandArgs
 source(file.path(if (length(script_file)) dirname(script_file) else "tools/event_prep", "fill_order.R"))
 
 args <- commandArgs(trailingOnly = TRUE)
-if (!length(args) %in% 2:3) stop("usage: salinas_build_events.R <calendar> <out_dir> [monitoring_csv]")
-cal_dir <- if (file.exists(file.path(args[1], "data", "managements.csv"))) file.path(args[1], "data") else args[1]
+if (length(args) != 2L) stop("usage: salinas_build_events.R <cal-val-data checkout> <out_dir>")
+cal_dir <- file.path(args[1], "data")
+if (!file.exists(file.path(cal_dir, "managements.csv")))
+  stop(args[1], " is not a cal-val-data checkout: no data/managements.csv")
 out_dir <- args[2]
-mon_csv <- if (length(args) == 3L) args[3] else file.path(out_dir, "monitoring_near_salinas.csv")
+mon_csv <- file.path(out_dir, "monitoring_near_salinas.csv")
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
 rd <- function(f) read.csv(file.path(cal_dir, f), stringsAsFactors = FALSE, colClasses = "character",
@@ -42,7 +42,7 @@ LAST_DATE <- as.Date("2011-12-31")
 # The calendar's sources
 BB2012 <- "10.2134/agronj2011.0330"       # Brennan and Boyd 2012
 WHITE_2020B <- "10.1371/journal.pone.0228677"
-MON_SOURCE <- if (length(args) == 3L) mon_csv else "calibration:runs/salinas_socs/monitoring_near_salinas.csv"
+MON_SOURCE <- "calibration:runs/salinas_socs/monitoring_near_salinas.csv"
 PRIORS_SOURCE <- "ccmmf/scenarios:data/management_priors.yaml"
 
 # Crops: the calendar's crop key, the crops.csv common name, and the monitoring slot
