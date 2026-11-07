@@ -1,0 +1,7 @@
+# Extract CARB's county x region cropland table from CARB's live 2025 aggregated data table
+$ curl -o NWL_Carbon_Inventory_2025_aggregated_data_table.xlsx https://ww2.arb.ca.gov/sites/default/files/2026-04/NWL_Carbon_Inventory_2025_aggregated_data_table.xlsx
+downloaded sha256: b77699ab20d12d5b968f0b56cecf46c177906f76094ba568f0fcfe92dcf43c3e   (manifest records b77699ab20d12d5b968f0b56cecf46c177906f76094ba568f0fcfe92dcf43c3e)
+$ rm reports/data/inventory/carb_2025_cropland_county_region.csv; Rscript reports/R/extract_carb_regions.R <xlsx>   -> exit 0
+source sha256: b77699ab20d12d5b968f0b56cecf46c177906f76094ba568f0fcfe92dcf43c3e 
+regenerated csv sha256: 321d186e95c6b7511927fdc5e70509254cc1db30ab279032f67a76c98054b1f0
+committed  csv sha256: 321d186e95c6b7511927fdc5e70509254cc1db30ab279032f67a76c98054b1f0   -> byte identical (cmp)

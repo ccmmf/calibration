@@ -1,0 +1,2 @@
+Output created: ../_site/reports/inventory_comparison.html
+warning lines in render log: 0

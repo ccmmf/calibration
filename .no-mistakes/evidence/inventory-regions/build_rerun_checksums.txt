@@ -1,0 +1,19 @@
+# Build from an empty reports/generated/inventory in a git-archive copy of HEAD (9729b04)
+$ Rscript reports/R/build_inventory_comparison.R   -> exit 0 (all stopifnot guards passed)
+reports/generated/inventory/carb_regional_density_change_2014_2022.csv rebuilt=c0b08ad39d37e2e0 committed=c0b08ad39d37e2e0 IDENTICAL
+reports/generated/inventory/comparison_table.md rebuilt=2ccce16be30a5caf committed=2ccce16be30a5caf IDENTICAL
+reports/generated/inventory/county_region_shares.csv rebuilt=0291db125b6126cb committed=0291db125b6126cb IDENTICAL
+reports/generated/inventory/inventory_series.png rebuilt=5e3cd25157428da4 committed=5e3cd25157428da4 IDENTICAL
+reports/generated/inventory/magic_state_totals.csv rebuilt=7cdbef2f3e47c978 committed=7cdbef2f3e47c978 IDENTICAL
+reports/generated/inventory/regional_density_change.png rebuilt=99324e75b629ba99 committed=99324e75b629ba99 IDENTICAL
+reports/generated/inventory/regional_soil_density_change.csv rebuilt=7bb8cb5705976947 committed=7bb8cb5705976947 IDENTICAL
+reports/generated/inventory/regional_table.md rebuilt=d6f8cf0e4dc4db11 committed=d6f8cf0e4dc4db11 IDENTICAL
+reports/generated/inventory/regional_woody_biomass.csv rebuilt=9ca191c1ded954d8 committed=9ca191c1ded954d8 IDENTICAL
+reports/generated/inventory/verification.txt rebuilt=d32ef5358765c675 committed=d32ef5358765c675 IDENTICAL
+
+# Outputs that already existed on PR #14 (fb55d86): rebuilt checksum vs PR #14
+reports/generated/inventory/carb_regional_density_change_2014_2022.csv c0b08ad39d37e2e0 vs c0b08ad39d37e2e0 UNCHANGED
+reports/generated/inventory/comparison_table.md 2ccce16be30a5caf vs 2ccce16be30a5caf UNCHANGED
+reports/generated/inventory/inventory_series.png 5e3cd25157428da4 vs 5e3cd25157428da4 UNCHANGED
+reports/generated/inventory/magic_state_totals.csv 7cdbef2f3e47c978 vs 7cdbef2f3e47c978 UNCHANGED
+reports/generated/inventory/verification.txt d32ef5358765c675 vs d32ef5358765c675 UNCHANGED

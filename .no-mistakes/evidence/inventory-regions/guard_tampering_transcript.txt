@@ -1,0 +1,17 @@
+# Adversarial: tampered inputs in separate throwaway copies; each build must stop non-zero
+g1 one digit changed in MAGiC county differences table, manifest untouched:
+Error: identical(digest::digest(file = file.path(input, record$file),  .... is not TRUE
+  exit=1
+g2 San Joaquin Valley CARB soil carbon x1.25 in 2017-2019 only (2014 and 2022 untouched), manifest re-hashed:
+Error: near(r("San Joaquin Valley", "trend_8yr_lower"), -4.7, 0.05) is not TRUE
+  exit=1
+g3 Solano's Sacramento Valley acres halved (soil C kept), manifest re-hashed:
+Error: max(abs(carb_regions$endpoint_t_per_acre - vapply(regions, fig70_t,  .... is not TRUE
+  exit=1
+g4 one Fresno member's soil carbon change x10, manifest re-hashed:
+Error: isTRUE(all.equal(county_sums$delta_total_county, county_sums$delta_total_state)) is not TRUE
+  exit=1
+g5 Solano's Sacramento Valley acres and soil C both x0.9 (density kept), manifest re-hashed:
+Error: max(abs(carb_regions$area_change_macres - fig63$area_change_million_acres[match(regions,  .... is not TRUE
+  exit=1
+After the failed g2 build, regional_table.md and regional_density_change.png were left as shipped (no partial output).

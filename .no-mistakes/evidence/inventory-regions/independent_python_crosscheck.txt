@@ -1,0 +1,32 @@
+Fig70 worst gap 0.0391 t C/acre (0.0967 Mg C/ha); Fig69 worst 0.0004 MMT C; Fig63 worst 0.00014 Macres; Fig59 worst 0.0000 MMT C
+counties split across regions: 13 ['Fresno', 'Inyo', 'Kern', 'Los Angeles', 'Madera', 'Mono', 'Placer', 'Riverside', 'San Bernardino', 'San Luis Obispo', 'Solano', 'Tulare', 'Ventura']
+counties <95% in one region: ['Mono', 'Riverside', 'San Bernardino', 'Solano']
+
+region                   MAGiC kha CARB kha ratio   mean median          range lose CARB 22-14        trend8 (95% CI) maj diff
+San Joaquin Valley            1883     2094  0.90  -11.7   -8.4  -29.5 to  -0.5   20       -3.0   -1.8 (  -4.7 to   1.0)     0.00
+Sacramento Valley              760      786  0.97  -13.5   -9.6  -31.5 to  -2.0   20       -4.3   -5.2 ( -15.3 to   5.0)     0.03
+Inland Deserts                 237      190  1.25   -5.5   -3.3  -16.3 to   1.7   16       -2.3   -2.1 (  -5.0 to   0.8)     0.41
+Central Coast                  230      294  0.78   -4.9   -1.9  -21.3 to   7.3   14       -1.7   -2.0 (  -7.2 to   3.2)     0.01
+Sierra Nevada                  127       55  2.30   -6.1   -3.8  -19.7 to   2.4   15       -9.0  -17.4 ( -27.1 to  -7.6)     0.51
+North Coast                    109       64  1.71   -6.5   -4.1  -21.5 to   2.5   15      -16.9  -28.0 ( -45.4 to -10.6)     0.00
+San Francisco Bay Area          99      120  0.83   -7.5   -4.7  -24.0 to   3.1   15        1.7   -0.5 (  -9.6 to   8.5)     0.53
+Los Angeles                     27       33  0.80   -9.4   -6.5  -27.2 to   1.6   15        1.6   -0.1 (  -5.2 to   5.0)     0.56
+San Diego                       14       27  0.51   -2.4    2.6  -22.6 to   8.8    9       -2.7   -3.1 ( -10.6 to   4.4)     0.00
+
+valley share of MAGiC area 0.758; state MAGiC soil area 3.486 Mha
+max majority-assignment effect: 0.559
+SJV CI excludes MAGiC median: True
+Sac CI includes MAGiC mean: True ; Sac density range 68.9 84.3
+
+woody AGB by region (Jan 2016 -> Dec 2023, Mg C/ha, members losing):
+  Central Coast             11.8 ->  1.0  20/20  kha 88
+  Inland Deserts            17.0 ->  1.4  20/20  kha 20
+  Los Angeles               19.1 ->  1.6  20/20  kha 8
+  North Coast                7.2 ->  0.6  20/20  kha 17
+  Sacramento Valley          5.0 ->  0.6  20/20  kha 296
+  San Diego                 24.6 ->  2.4  20/20  kha 11
+  San Francisco Bay Area     6.0 ->  0.4  20/20  kha 55
+  San Joaquin Valley         5.9 ->  0.7  20/20  kha 1182
+  Sierra Nevada              7.7 ->  0.6  20/20  kha 7
+woody all members lose in every region: True
+SJV share of woody area: 0.702
