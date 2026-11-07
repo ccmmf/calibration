@@ -407,30 +407,30 @@ utils::write.csv(stats::setNames(shares[order(shares$county, -shares$share), ],
 
 # Figure: each MAGiC member's regional change against CARB's change and trend.
 level <- rev(by_region$region)
-soil_members$y <- match(soil_members$region, level) + 0.15
+soil_members$y <- match(soil_members$region, level) + 0.2
 by_region$y <- match(by_region$region, level)
 q <- ggplot2::ggplot() +
   ggplot2::geom_vline(xintercept = 0, colour = "grey60") +
   ggplot2::geom_point(data = soil_members, ggplot2::aes(change_density, y, colour = "MAGiC member"),
                       shape = 16, size = 1.6, alpha = 0.5) +
-  ggplot2::geom_point(data = by_region, ggplot2::aes(change_mean, y + 0.15, colour = "MAGiC mean"),
+  ggplot2::geom_point(data = by_region, ggplot2::aes(change_mean, y + 0.2, colour = "MAGiC mean"),
                       shape = 18, size = 4) +
   ggplot2::geom_errorbar(data = by_region, ggplot2::aes(xmin = trend_8yr_lower, xmax = trend_8yr_upper,
-                                                        y = y - 0.15, colour = "CARB trend, 95% CI"),
+                                                        y = y - 0.3, colour = "CARB trend, 95% CI"),
                          width = 0.15, orientation = "y") +
-  ggplot2::geom_point(data = by_region, ggplot2::aes(carb_change, y - 0.15, colour = "CARB 2022 minus 2014"),
+  ggplot2::geom_point(data = by_region, ggplot2::aes(carb_change, y - 0.08, colour = "CARB 2022 minus 2014"),
                       shape = 15, size = 2.6) +
-  ggplot2::geom_point(data = by_region, ggplot2::aes(trend_8yr, y - 0.15, colour = "CARB trend, 95% CI"),
-                      shape = 21, fill = "white", size = 2.4, stroke = 1.1) +
+  ggplot2::geom_point(data = by_region, ggplot2::aes(trend_8yr, y - 0.3, colour = "CARB trend, 95% CI"),
+                      shape = 1, size = 2.4, stroke = 1.1) +
   ggplot2::scale_y_continuous(breaks = seq_along(level), labels = level,
-                              expand = ggplot2::expansion(add = 0.4)) +
+                              expand = ggplot2::expansion(add = 0.5)) +
   ggplot2::scale_colour_manual(
     values = c("MAGiC member" = "#0072B2", "MAGiC mean" = "#0072B2",
                "CARB 2022 minus 2014" = "#D55E00", "CARB trend, 95% CI" = "#D55E00"),
     breaks = c("MAGiC member", "MAGiC mean", "CARB 2022 minus 2014", "CARB trend, 95% CI")) +
   ggplot2::guides(colour = ggplot2::guide_legend(nrow = 2, override.aes = list(
-    shape = c(16, 18, 15, 21), size = c(1.6, 4, 2.6, 2.4), alpha = c(0.5, 1, 1, 1),
-    fill = "white", stroke = c(0.5, 0.5, 0.5, 1.1), linetype = c(0, 0, 0, 1)))) +
+    shape = c(16, 18, 15, 1), size = c(1.6, 4, 2.6, 2.4), alpha = c(0.5, 1, 1, 1),
+    stroke = c(0.5, 0.5, 0.5, 1.1), linetype = c(0, 0, 0, 1)))) +
   ggplot2::labs(x = "Soil carbon density change (Mg C/ha)", y = NULL, colour = NULL,
                 caption = paste0("MAGiC: January 2016 to December 2023, soil plus litter, 20 parameter\n",
                                  "members, fixed fields. CARB: soil organic carbon in the top 30 cm; the\n",
