@@ -100,8 +100,10 @@ date_of_doy <- function(y, doy) format(as.Date(paste0(y, "-01-01")) + (round(doy
 write_events <- function(site, provenance, events, path) {
   events <- events[order(vapply(events, `[[`, "", "date"), vapply(events, `[[`, "", "event_type"))]
   check_harvest_fractions(events)
-  untagged <- vapply(events, function(e) is.null(e$provenance_class) || is.null(e$source), TRUE)
-  if (any(untagged)) stop(sum(untagged), " events lack a source or provenance_class")
+  # [[ ]] rather than $, which partially matches; every Delta event carries a note, published ones too
+  untagged <- vapply(events, function(e) is.null(e[["provenance_class"]]) || is.null(e[["source"]]) ||
+                       is.null(e[["provenance_note"]]) || !nzchar(e[["provenance_note"]]), TRUE)
+  if (any(untagged)) stop(sum(untagged), " events lack a source, provenance_class or provenance_note")
   doc <- list(pecan_events_version = "0.1.1", site_id = site, provenance = provenance, events = events)
   dir.create(dirname(path), showWarnings = FALSE, recursive = TRUE)
   write(jsonlite::toJSON(doc, auto_unbox = TRUE, pretty = 1, digits = NA), path)

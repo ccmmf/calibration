@@ -135,8 +135,8 @@
    "leaf_c_kg_m2": 0.00454173,
    "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
    "source": "10.1111/gcb.15802 (Anthony and Silver 2021), Fig. 2",
-   "provenance_class": "derived",
-   "provenance_note": "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1 to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014). The record puts the 2019 planting in May-June (delta-planting-0014). The monitoring product has 2019-05-17."
+   "provenance_class": "imputed",
+   "provenance_note": "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1 to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014). The record puts the 2019 planting in May-June (delta-planting-0014). The monitoring product has 2019-05-17. Leaf C is the season's v5.0 planting, so the event is imputed (the date is derived)."
   },
   {
    "event_type": "harvest",
@@ -171,8 +171,8 @@
    "leaf_c_kg_m2": 0.00499347,
    "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
    "source": "10.1111/gcb.15802 (Anthony and Silver 2021), Fig. 2",
-   "provenance_class": "derived",
-   "provenance_note": "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1 to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014). The sensors came out in April-May 2020 for the field work. The monitoring product has 2020-04-05."
+   "provenance_class": "imputed",
+   "provenance_note": "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1 to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014). The sensors came out in April-May 2020 for the field work. The monitoring product has 2020-04-05. Leaf C is the season's v5.0 planting, so the event is imputed (the date is derived)."
   },
   {
    "event_type": "harvest",

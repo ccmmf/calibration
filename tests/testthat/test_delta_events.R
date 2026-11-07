@@ -32,8 +32,8 @@ test_that("every Delta event says where it came from and stays in its run window
     expect_true(all(dates(doc$events) >= window[1] & dates(doc$events) <= window[2]), info = site)
     expect_true(all(field(doc$events, "provenance_class") %in% PROVENANCE_CLASSES), info = site)
     expect_true(all(nzchar(field(doc$events, "source"))), info = site)
-    filled <- field(doc$events, "provenance_class") != "published"
-    expect_false(anyNA(field(doc$events, "provenance_note")[filled]), info = site)
+    notes <- field(doc$events, "provenance_note")
+    expect_false(anyNA(notes) || !all(nzchar(notes)), info = site)
     expect_no_error(check_harvest_fractions(doc$events))
   }
 })

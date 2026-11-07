@@ -135,7 +135,7 @@ sheep grazing (`delta-grazing-0002`: no dates or stocking, and SIPNET has no gra
 
 | events | what | class |
 |---|---|---|
-| 8 plantings | one corn (F16) a year. 2019-05-01 and 2020-05-04 are read from the fertilization line of Anthony and Silver 2021 Fig. 2 (to within 1 to 2 days; UAN goes on at planting); 2019 also lies in the record's May-June (`delta-planting-0014`). The product has 2019-05-17 and 2020-04-05, the second a month before the application. The other years take the v5.0 day; the record gives only the year (`delta-planting-0012` to `0018`). The product labels 2016 G2; it is written as corn, assumed, to keep the field's continuous corn. Leaf C is the season's v5.0 F16 planting, 0.0041 to 0.0051 kg C/m2 (2016: the median of the parcel's 7, 0.00497966) | 2 derived, 6 imputed |
+| 8 plantings | one corn (F16) a year. 2019-05-01 and 2020-05-04 are read from the fertilization line of Anthony and Silver 2021 Fig. 2 (to within 1 to 2 days; UAN goes on at planting); 2019 also lies in the record's May-June (`delta-planting-0014`). The product has 2019-05-17 and 2020-04-05, the second a month before the application. The other years take the v5.0 day; the record gives only the year (`delta-planting-0012` to `0018`). The product labels 2016 G2; it is written as corn, assumed, to keep the field's continuous corn. Leaf C is the season's v5.0 F16 planting, 0.0041 to 0.0051 kg C/m2 (2016: the median of the parcel's 7, 0.00497966). Leaf C makes every planting imputed, the 2019 and 2020 dates being derived | 8 imputed |
 | 8 fertilization | UAN, 118 kg N/ha (0.0118 kg N/m2, written as `nh4_n_kg_m2`; SIPNET adds NH4 and NO3 into one pool) on the planting day. The rate is published for 2017-2020 (`delta-fertilization-0013`, `0014`, Anthony and Silver 2021) and carried to 2016 and 2021-2023 | 2 derived, 6 imputed |
 | 8 harvests | 2019-09-11 recorded (`delta-harvest-0016`; the paper delayed the 2019 harvest, so the product's 2019-10-03 is not ruled out); the other years the v5.0 day. Silage (`delta-harvest-0014`): `harvest_fractions(0.892, 0, 0.108, 1)`, the shared lookup's hay row in place of the F16 grain row (0.752), assumed, a proposal for David | 1 assumed, 7 imputed |
 
@@ -154,7 +154,7 @@ to the run's flood and water table configuration); the record's 2019 tillage and
 
 | events | what | class |
 |---|---|---|
-| 2010-2015 plantings, harvests, fertilization | Knox et al. 2016 Table 1 through the cal-val-data rows; a reported window takes its first day. Leaf C at planting is the median of the parcel's 5 R1 plantings in the monitoring product, 0.02455947 kg C/m2. Harvests `harvest_fractions(0.5, 0, 0.5, 1)`: grain removed, straw chopped and left (the 2014 residue treatment is not reported) | published or derived |
+| 2010-2015 plantings, harvests, fertilization | Knox et al. 2016 Table 1 through the cal-val-data rows; a reported window takes its first day. Leaf C at planting is the median of the parcel's 5 R1 plantings in the monitoring product, 0.02455947 kg C/m2. Harvests `harvest_fractions(0.5, 0, 0.5, 1)`: grain removed, straw chopped and left (the 2014 residue treatment is not reported); the 0.5 comes from `prior:rice_harvest_index`, not from Knox. Every event notes its Knox row | plantings imputed (leaf C from the monitoring product), harvests assumed (fractions from the prior), fertilization published or derived |
 | 2016 planting, harvest, fertilization | no record: the medians of the Knox years (2016-04-18, 2016-10-06; 100 lb/ac of 15-15-15 on 2016-05-30, the 2013-2015 regime). Tagged `imputed` (was `assumed`) | imputed |
 | 2017-2023 plantings, harvests, fertilization | the monitoring product (planting and harvest v1.0, fertilization v1.0 `ens_001`), its four harvest fractions written out (0.8, 0, 0.2, 1). 2017, which the planting and harvest products lack, takes the median day of its other R1 years and their mean amounts. The fertilization events now carry the product's organic C, which the old file left out (0.44 kg C/m2 with 0.019 kg N/m2 on 2018-02-02, 0.073 kg C/m2 on the 2017 fill) | published; 2017 imputed |
 | 14 flood onsets | the AmeriFlux US-Twt BASE-BADM 7-5 water table record, `us_twt_wtd_water_dates.csv`: 7 growing season and 7 winter onsets, 2010-06-15 to 2016-11-17 | derived |
@@ -261,7 +261,7 @@ Then pull. With no arguments it fetches the three Delta parcels; otherwise pass 
 | fertilization | `v1.0` | `v2.0` |
 
 These match the `source` strings recorded in each event, so an events.json says which
-version produced it. US-Bi2 reads planting and harvest `v5.0` (`US_BI2_VERSION`), which has the
+version produced it. US-Bi2 reads planting and harvest `v5.0` (pinned in `pull_inputs.sh`; the builder reads v5.0's schema), which has the
 2017 season `v1.0` lacks. A newer version is not a drop-in replacement: for parcel 565118,
 fertilization `v2.0` moves every event date and puts all N in NH4 with NO3 at zero, where
 `v1.0` splits N evenly. Moving a pin is a deliberate change — override
