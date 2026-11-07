@@ -18,6 +18,7 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `russell_monitoring_tillage.R` | `monitoring_tillage_near_russell.csv`, tillage timing and intensity near Russell Ranch | monitoring tillage, harvest and planting v5.0 + crop table v4.1 |
 | `russell_monitoring_irrigation.R` | `monitoring_irrigation_near_russell.csv`, corn, tomato and alfalfa season irrigation totals and timing near Russell Ranch | monitoring irrigation, harvest and planting v5.0 + crop table v4.1 |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
+| `fill_order.R` | no file: the fill helpers the generators share (below), sourced by `russell_split_phases.R` | |
 
 ## Order for US-Twt
 
@@ -45,6 +46,36 @@ fill it in this order (David, calibration#10):
 
 This applies to amounts as well as dates. Every filled or imputed event says where it came
 from (`source`, `provenance_class`, `provenance_note`).
+
+The helpers for this are in `fill_order.R`, base R only. `russell_split_phases.R` sources it
+from its own directory; a new generator should do the same and use them rather than set these
+fields by hand:
+
+- `first_available(candidates, min_n)` takes the first of a named list of candidates, in order
+  of preference, that has at least `min_n` records (non-missing values, list elements or data
+  frame rows), and returns it with `from`, the name of the one taken, and `n`, its count. Name
+  the candidates by source (the paper, the monitoring product, guidance) or by pool (this phase,
+  the site); `min_n = c(5, 1)` takes the first only when it has at least five records and
+  otherwise falls back to the second. It returns NULL when no candidate has enough, so the caller
+  must handle that. Russell uses it for the medians that date imputed events,
+  filled planting amounts, the cover crop end date, the 2014 fertilization template and the
+  compost %C and %N.
+- `set_provenance(e, class, note, source)` tags an event. `class` must be one of
+  `PROVENANCE_CLASSES`: `published` (a source records the value), `derived` (computed from
+  recorded values), `assumed` (rests on a stated reading of a source) or `imputed` (no record
+  gives it). Every class but `published` needs a note, and every event a `source`. Fields the
+  event already has keep their place in it.
+- `harvest_fractions(above_removed, below_removed, above_to_litter, below_to_litter)` returns all
+  four `frac_*_0to1` fields and has no defaults. `PEcAn.SIPNET::write.events.SIPNET` fills a
+  missing transfer to litter as 1 - removed, so an alfalfa cutting given only 0.85 removed sends
+  the rest of the shoots and all the roots to litter and ends the stand; written as
+  `harvest_fractions(0.85, 0, 0, 0)` it leaves them alive.
+- `check_harvest_fractions(events)` stops if a harvest lacks one of the four fractions or has one
+  outside 0 to 1, or if removed and to litter add up to more than 1. Run it on the events before
+  writing them.
+
+`tests/testthat/test_fill_order.R` covers them, including a cutting written through
+`write.events.SIPNET`.
 
 How the generators here follow it:
 
