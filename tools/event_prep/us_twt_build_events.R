@@ -274,7 +274,7 @@ for (y in sort(names(plantings))) {
                             tillage_eff_0to1 = t$eff, implement = t$implement),
                        if (carried) "imputed" else "assumed", source = paste0("calval:managements/", t$record), note = paste(c(
       if (carried)
-        sprintf(paste("Knox's %s before planting (2010-2015, no dates) is carried into %s, which no record covers,",
+        sprintf(paste("Knox's %s before planting (2010-2015, no dates) is carried into %s, which no site record covers,",
                       "so the event is imputed; dated %d d before that year's planting with"), t$implement, y, t$days_before)
       else
         sprintf("Knox reports %s before planting without dates; placed %d d before the %s planting with", t$implement,
