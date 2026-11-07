@@ -24,6 +24,18 @@ test_that("first_available falls back to the broader pool when the narrow one is
   expect_equal(first_available(doy, min_n = c(5, 1))$from, "system")
 })
 
+test_that("first_available returns only the values it counted", {
+  doy <- list(system = c(150, NA, NA, NA, NA, 160, 170, 180, 190), site = 1:20)
+  pick <- first_available(doy, min_n = c(5, 1))
+  expect_equal(pick$from, "system")
+  expect_equal(pick$n, 5L)
+  expect_equal(pick$value, c(150, 160, 170, 180, 190))
+  expect_length(pick$value, pick$n)
+  expect_equal(median(pick$value), 170)
+  dates <- first_available(list(paper = as.Date(c(NA, "2004-04-01"))))
+  expect_equal(dates$value, as.Date("2004-04-01"))
+})
+
 test_that("first_available counts events in a list and rows in a data frame", {
   plantings <- list(phase = list(), site = list(list(date = "2010-05-01"), list(date = "2011-05-03")))
   pick <- first_available(plantings)
@@ -65,10 +77,27 @@ test_that("set_provenance rejects a class the generators do not use", {
 test_that("a filled event must say where it came from and what it rests on", {
   e <- list(event_type = "tillage", date = "2004-06-01")
   expect_error(set_provenance(e, "imputed", "Median of 40 events."), "needs a source")
+  expect_error(set_provenance(e, "imputed", "Median of 40 events.", source = NA_character_), "needs a source")
+  expect_error(set_provenance(c(e, source = NA_character_), "published"), "needs a source")
+  expect_error(set_provenance(e, "published", source = ""), "needs a source")
   e$source <- "monitoring"
   expect_error(set_provenance(e, "imputed"), "needs a provenance_note")
   expect_error(set_provenance(e, "assumed", ""), "needs a provenance_note")
   expect_no_error(set_provenance(e, "published"))
+})
+
+test_that("a generator finds fill_order.R next to it when its path has a space", {
+  skip_if_not_installed("jsonlite")
+  generator <- testthat::test_path("..", "..", "tools", "event_prep", "russell_split_phases.R")
+  skip_if_not(file.exists(generator), "tools/event_prep/russell_split_phases.R is not in this tree")
+  dir <- file.path(withr::local_tempdir(), "Google Drive", "event prep")
+  dir.create(dir, recursive = TRUE)
+  file.copy(c(generator, helpers), dir)
+  out <- suppressWarnings(system2(file.path(R.home("bin"), "Rscript"),
+                                  shQuote(file.path(dir, "russell_split_phases.R")),
+                                  stdout = TRUE, stderr = TRUE))
+  expect_false(any(grepl("cannot open", out)), info = paste(out, collapse = "\n"))
+  expect_match(paste(out, collapse = "\n"), "usage: russell_split_phases.R")
 })
 
 test_that("harvest_fractions writes all four fractions in SIPNET's order", {

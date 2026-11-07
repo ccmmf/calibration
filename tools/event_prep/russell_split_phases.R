@@ -25,7 +25,8 @@
 # The fill helpers it shares with the other generators are in fill_order.R, next to this script.
 
 suppressMessages(library(jsonlite))
-script_file <- sub("^--file=", "", grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE))
+script_file <- gsub("~+~", " ", sub("^--file=", "", grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)),
+                    fixed = TRUE)
 source(file.path(if (length(script_file)) dirname(script_file) else "tools/event_prep", "fill_order.R"))
 
 args <- commandArgs(trailingOnly = TRUE)
@@ -238,8 +239,12 @@ pct <- function(param) {
 c_pct <- pct("Total C"); n_pct <- pct("Total N")
 # A year's %C or %N: its own analysis, else the mean of measured years; `from` names which
 COMPOST_MEAN <- "the mean of measured years"
-compost_pct <- function(p, yr) first_available(setNames(list(unname(p[names(p) == yr]), mean(p)),
-                                                        c(paste("the", yr, "analysis"), COMPOST_MEAN)))
+compost_pct <- function(p, yr) {
+  pick <- first_available(setNames(list(unname(p[names(p) == yr]), mean(p)),
+                                   c(paste("the", yr, "analysis"), COMPOST_MEAN)))
+  if (is.null(pick)) stop("no compost analysis for ", yr, " and no mean of measured years to take")
+  pick
+}
 
 # The three plots of a phase stand in for one simulated field, so every amount is a field
 # average: the sum over the plots treated on a date divided by the phase's plot count. When

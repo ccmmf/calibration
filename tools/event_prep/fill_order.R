@@ -35,7 +35,7 @@ HARVEST_FRACTIONS <- c("frac_above_removed_0to1", "frac_below_removed_0to1",
 #'   of a list, rows of a data frame), recycled over the candidates; c(5, 1) takes the first
 #'   candidate when it has at least 5 and otherwise falls back to the second if it has any.
 #' @return list(value, from = the candidate's name, n = its record count), or NULL when no
-#'   candidate has enough.
+#'   candidate has enough. A vector's value keeps only its non-missing values, so it has n.
 first_available <- function(candidates, min_n = 1L) {
   if (!is.list(candidates) || !length(candidates) || is.null(names(candidates)) ||
       !all(nzchar(names(candidates))))
@@ -43,7 +43,8 @@ first_available <- function(candidates, min_n = 1L) {
   min_n <- rep_len(min_n, length(candidates))
   for (i in seq_along(candidates)) {
     x <- candidates[[i]]
-    n <- if (is.list(x)) NROW(x) else sum(!is.na(x))
+    if (!is.list(x)) x <- x[!is.na(x)]
+    n <- NROW(x)
     if (n > 0L && n >= min_n[i]) return(list(value = x, from = names(candidates)[i], n = n))
   }
   NULL
@@ -66,7 +67,7 @@ set_provenance <- function(e, class, note = NULL, source = NULL) {
     stop(sprintf("provenance_class must be one of %s, not %s",
                  paste(PROVENANCE_CLASSES, collapse = ", "), paste(deparse(class), collapse = "")))
   if (!is.null(source)) e$source <- source
-  if (!is.character(e$source) || length(e$source) != 1L || !nzchar(e$source))
+  if (!is.character(e$source) || length(e$source) != 1L || is.na(e$source) || !nzchar(e$source))
     stop(sprintf("a %s event needs a source", class))
   if (!is.null(note) && (!is.character(note) || length(note) != 1L || is.na(note)))
     stop("provenance_note must be a single string")
