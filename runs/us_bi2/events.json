@@ -1,236 +1,300 @@
 {
-  "pecan_events_version": "0.1.1",
-  "site_id": "US-Bi2",
-  "provenance": {
-    "parcel_id": 565118,
-    "member": "ens_001",
-    "generator": "adey2:step3_assemble_events",
-    "note": "single-member; 2017 synthesized (corn); irrigation zeros are real; flood config handled separately"
+ "pecan_events_version": "0.1.1",
+ "site_id": "US-Bi2",
+ "provenance": {
+  "parcel_id": 565118,
+  "crop": "F16",
+  "generator": "tools/event_prep/us_bi2_build_events.R",
+  "note": "One corn cycle a year, 2016-2023, from the site record first (cal-val-data, US-Bi2__management_field) and the monitoring product's planting and harvest v5.0 days where the record gives none. The monitoring product's 2019 G6 cycle (planted 2019-02-05, harvested 2019-05-22) is dropped: the field is continuous corn and was flooded and anoxic until mid March 2019. UAN at 118 kg N/ha once a year at planting (Anthony and Silver 2021) replaces the fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the shared lookup's hay row for silage, an assumption for David. No tillage: the monitoring product's tillage is not used. No irrigation events: v5.0 has none for this parcel, and the spud ditch irrigation and winter flooding the record describes are left to the run's flood and water table configuration. See tools/event_prep/README.md."
+ },
+ "events": [
+  {
+   "event_type": "fertilization",
+   "date": "2016-06-01",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "imputed",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013), carried to 2016. The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
   },
-  "events": [
-    {
-      "event_type": "planting",
-      "date": "2016-06-01",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "G2",
-      "crop_display": "G2",
-      "leaf_c_kg_m2": 0.02079758
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2016-06-25",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.01311958,
-      "no3_n_kg_m2": 0.01311958,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "harvest",
-      "date": "2016-09-23",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "G2",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2017-05-04",
-      "source": "synthesized:median_doy(2018-2023 F16)",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.01999472,
-      "prior_filled": "date<-synthesized:2017_excluded_year"
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2017-06-08",
-      "source": "synthesized:median_doy(2018-2023 F16)",
-      "nh4_n_kg_m2": 0.0121744,
-      "no3_n_kg_m2": 0.0121744,
-      "org_n_kg_m2": 0,
-      "prior_filled": "date<-synthesized:2017_excluded_year"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2017-10-13",
-      "source": "synthesized:median_doy(2018-2023 F16)",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8,
-      "prior_filled": "date<-synthesized:2017_excluded_year"
-    },
-    {
-      "event_type": "planting",
-      "date": "2018-04-09",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.01868568
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2018-07-02",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.01156293,
-      "no3_n_kg_m2": 0.01156293,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "harvest",
-      "date": "2018-10-08",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2019-02-05",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "G6",
-      "crop_display": "G6",
-      "leaf_c_kg_m2": 0.0070965
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2019-03-05",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.01074077,
-      "no3_n_kg_m2": 0.01074077,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2019-03-05",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00641738,
-      "no3_n_kg_m2": 0.00641738,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "planting",
-      "date": "2019-05-17",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.0198329
-    },
-    {
-      "event_type": "harvest",
-      "date": "2019-05-22",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "G6",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "harvest",
-      "date": "2019-10-03",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2020-04-05",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.02110408
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2020-06-07",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.00858245,
-      "no3_n_kg_m2": 0.00858245,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "harvest",
-      "date": "2020-09-23",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2021-05-03",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.02151273
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2021-06-08",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.01391238,
-      "no3_n_kg_m2": 0.01391238,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2021-09-08",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 124.1428,
-      "method": "canopy"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2021-10-21",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2022-05-14",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.02100643
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2022-06-07",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.01387999,
-      "no3_n_kg_m2": 0.01387999,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "irrigation",
-      "date": "2022-10-16",
-      "source": "monitoring_product:irrigation/v1.1",
-      "amount_mm": 124.1428,
-      "method": "canopy"
-    },
-    {
-      "event_type": "harvest",
-      "date": "2022-10-19",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8
-    },
-    {
-      "event_type": "planting",
-      "date": "2023-05-05",
-      "source": "monitoring_product:planting/v1.0",
-      "crop_code": "F16",
-      "crop_display": "F16",
-      "leaf_c_kg_m2": 0.01782648
-    },
-    {
-      "event_type": "fertilization",
-      "date": "2023-06-22",
-      "source": "akash:fertilization.parquet",
-      "nh4_n_kg_m2": 0.0143679,
-      "no3_n_kg_m2": 0.0143679,
-      "org_n_kg_m2": 0
-    },
-    {
-      "event_type": "harvest",
-      "date": "2023-11-03",
-      "source": "monitoring_product:harvest/v1.0",
-      "crop_display": "F16",
-      "frac_above_removed_0to1": 0.8
-    }
-  ]
+  {
+   "event_type": "planting",
+   "date": "2016-06-01",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00497966,
+   "prior_filled": "leaf_c_kg_m2<-the parcel's v5.0 F16 plantings, median (7)",
+   "source": "monitoring_product:planting/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's planting day; the site record gives no planting this year. The product labels this crop G2; written as corn, assumed, to keep the field's continuous corn (the site record has corn every year from 2017, delta-planting-0012 to 0018)."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2016-09-23",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The product labels this crop G2; written as corn, assumed, to keep the field's continuous corn (the site record has corn every year from 2017, delta-planting-0012 to 0018). The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2017-06-15",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "imputed",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013). The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2017-06-15",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00507021,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "monitoring_product:planting/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's planting day; the site record gives the year only (delta-planting-0012)."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2017-10-20",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2018-04-09",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "imputed",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013). The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2018-04-09",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00420632,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "monitoring_product:planting/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's planting day; the site record gives the year only (delta-planting-0013)."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2018-10-08",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2019-05-01",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "derived",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013). The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2019-05-01",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00454173,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021), Fig. 2",
+   "provenance_class": "derived",
+   "provenance_note": "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1 to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014). The record puts the 2019 planting in May-June (delta-planting-0014). The monitoring product has 2019-05-17."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2019-09-11",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "10.17190/AMF/1419513 (AmeriFlux US-Bi2 BIF); cal-val-data delta-harvest-0016",
+   "provenance_class": "assumed",
+   "provenance_note": "The date is recorded: the corn biomass harvest on the crop height measurement day (delta-harvest-0016). The paper delayed its 2019 harvest, so the monitoring product's 2019-10-03 is not ruled out. The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2020-05-04",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "derived",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013). The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2020-05-04",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00499347,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021), Fig. 2",
+   "provenance_class": "derived",
+   "provenance_note": "Planted on the day UAN was applied, read from the fertilization line of Fig. 2 (to within 1 to 2 days); the paper applies UAN once a year at planting (delta-fertilization-0014). The sensors came out in April-May 2020 for the field work. The monitoring product has 2020-04-05."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2020-09-23",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2021-05-03",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "imputed",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013), carried to 2021. The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2021-05-03",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00513408,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "monitoring_product:planting/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's planting day; the site record gives the year only (delta-planting-0016)."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2021-10-21",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2022-05-14",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "imputed",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013), carried to 2022. The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2022-05-14",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00497966,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "monitoring_product:planting/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's planting day; the site record gives the year only (delta-planting-0017)."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2022-10-19",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The fractions are assumed (harvest_fraction_note)."
+  },
+  {
+   "event_type": "fertilization",
+   "date": "2023-05-05",
+   "nh4_n_kg_m2": 0.0118,
+   "no3_n_kg_m2": 0,
+   "org_n_kg_m2": 0,
+   "material": "urea-ammonium nitrate (UAN)",
+   "source": "10.1111/gcb.15802 (Anthony and Silver 2021)",
+   "provenance_class": "imputed",
+   "provenance_note": "UAN once a year at planting (delta-fertilization-0014), on the planting day. 118 kg N/ha, the rate Anthony and Silver 2021 give for 2017-2020 (delta-fertilization-0013), carried to 2023. The N is written as nh4_n_kg_m2; SIPNET adds NH4 and NO3 into one mineral N pool. The fertilization product's rows for this parcel are not used."
+  },
+  {
+   "event_type": "planting",
+   "date": "2023-05-05",
+   "crop_code": "F16",
+   "crop_display": "Corn",
+   "leaf_c_kg_m2": 0.00407206,
+   "prior_filled": "leaf_c_kg_m2<-this season's v5.0 F16 planting",
+   "source": "monitoring_product:planting/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's planting day; the site record gives the year only (delta-planting-0018)."
+  },
+  {
+   "event_type": "harvest",
+   "date": "2023-11-03",
+   "crop_display": "Corn",
+   "frac_above_removed_0to1": 0.892,
+   "frac_below_removed_0to1": 0,
+   "frac_above_to_litter_0to1": 0.108,
+   "frac_below_to_litter_0to1": 1,
+   "harvest_lookup_row": "P (hay)",
+   "harvest_fraction_note": "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298).",
+   "source": "monitoring_product:harvest/v5.0 (parcel 565118)",
+   "provenance_class": "imputed",
+   "provenance_note": "The monitoring product's harvest day; the site record gives no harvest date this year. The fractions are assumed (harvest_fraction_note)."
+  }
+ ]
 }
