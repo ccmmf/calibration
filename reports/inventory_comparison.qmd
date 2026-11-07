@@ -91,10 +91,11 @@ is split among regions by the share of its CARB cropland in each region over
 2014–2022, taken from CARB's
 [aggregated inventory data table](https://ww2.arb.ca.gov/sites/default/files/2026-04/NWL_Carbon_Inventory_2025_aggregated_data_table.xlsx),
 which reproduces CARB's published regional density changes to within 0.1
-Mg C/ha. Four counties are split: Riverside (67% of its cropland in the Inland
-Deserts), San Bernardino (55% in the Los Angeles region), Solano (83% in the
-Sacramento Valley) and Mono (52% in the Sierra Nevada). Every other county has
-at least 95% of its cropland in one region; Los Angeles County's is 95% in the
+Mg C/ha. Every county that spans regions is split by these shares. Four have
+less than 95% of their cropland in one region: Riverside (67% of its cropland in
+the Inland Deserts), San Bernardino (55% in the Los Angeles region), Solano (83%
+in the Sacramento Valley) and Mono (52% in the Sierra Nevada). Every other
+county has at least 95% of its cropland in one region; Los Angeles County's is 95% in the
 Inland Deserts region and Ventura's 97% in the Central Coast. Within each parameter member, a region's MAGiC change is the
 total change over its counties and both crop strata divided by their area; the
 table summarizes the 20 members. CARB's published change is 2022 minus 2014
@@ -108,7 +109,7 @@ area. MAGiC is January 2016 to December 2023; CARB is 2022 minus 2014 and the
 
 {{< include generated/inventory/regional_table.md >}}
 
-![Soil carbon density change by region. Blue dots are the 20 MAGiC parameter members and the blue diamond their mean; the orange square is CARB's 2022 minus 2014 change and the orange bar the 95% interval of its 2014–2022 trend, times eight years.](generated/inventory/regional_density_change.png){#fig-regions width=85% fig-alt="Dot plot of soil carbon density change for nine regions. In the San Joaquin and Sacramento valleys all MAGiC members lose soil carbon, with mean losses of 11.7 and 13.5 Mg C/ha against CARB's 3.0 and 4.3. In each of the other regions MAGiC members spread from losses of more than 15 Mg C/ha to gains. CARB's largest losses are in the North Coast and Sierra Nevada, and it gains in the San Francisco Bay Area and Los Angeles regions."}
+![Soil carbon density change by region. Blue dots are the 20 MAGiC parameter members and the blue diamond their mean; the orange square is CARB's 2022 minus 2014 change. The open orange circle is CARB's trend from 2014 to 2022, times eight years, and the orange bar its 95% interval.](generated/inventory/regional_density_change.png){#fig-regions width=85% fig-alt="Dot plot of soil carbon density change for nine regions. Blue dots are MAGiC members and blue diamonds their mean. Orange squares are CARB's 2022 minus 2014 change, and open orange circles on orange bars are CARB's trend from 2014 to 2022, times eight years, with its 95% interval. In the San Joaquin and Sacramento valleys all MAGiC members lose soil carbon, with mean losses of 11.7 and 13.5 Mg C/ha against CARB's 3.0 and 4.3. In each of the other regions MAGiC members spread from losses of more than 15 Mg C/ha to gains. CARB's largest losses are in the North Coast and Sierra Nevada, and it gains in the San Francisco Bay Area and Los Angeles regions."}
 
 **In the Central Valley MAGiC loses more soil carbon than CARB.** The
 Sacramento and San Joaquin valleys hold 76% of MAGiC's field area, and every
@@ -135,7 +136,9 @@ North Coast density ranges from 88.7 to 122.1 Mg C/ha between years.
 in every region, from regional means of 5.0 to 24.6 Mg C/ha in January 2016 to
 0.4 to 2.4 Mg C/ha in December 2023. In the San Joaquin Valley, which holds 70%
 of MAGiC's woody area, it falls from 5.9 to 0.7 Mg C/ha. The loss of wood
-described above is not confined to one region.
+described above is not confined to one region. CARB's regional biomass is not
+compared, because CARB reports it per acre of all cropland, not per acre of
+perennial cropland.
 
 Limits of the regional comparison:
 

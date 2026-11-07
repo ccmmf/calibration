@@ -420,6 +420,8 @@ q <- ggplot2::ggplot() +
                          width = 0.15, orientation = "y") +
   ggplot2::geom_point(data = by_region, ggplot2::aes(carb_change, y - 0.15, colour = "CARB 2022 minus 2014"),
                       shape = 15, size = 2.6) +
+  ggplot2::geom_point(data = by_region, ggplot2::aes(trend_8yr, y - 0.15, colour = "CARB trend, 95% CI"),
+                      shape = 21, fill = "white", size = 2.4, stroke = 1.1) +
   ggplot2::scale_y_continuous(breaks = seq_along(level), labels = level,
                               expand = ggplot2::expansion(add = 0.4)) +
   ggplot2::scale_colour_manual(
@@ -427,8 +429,8 @@ q <- ggplot2::ggplot() +
                "CARB 2022 minus 2014" = "#D55E00", "CARB trend, 95% CI" = "#D55E00"),
     breaks = c("MAGiC member", "MAGiC mean", "CARB 2022 minus 2014", "CARB trend, 95% CI")) +
   ggplot2::guides(colour = ggplot2::guide_legend(nrow = 2, override.aes = list(
-    shape = c(16, 18, 15, NA), size = c(1.6, 4, 2.6, 0.5), alpha = c(0.5, 1, 1, 1),
-    linetype = c(0, 0, 0, 1)))) +
+    shape = c(16, 18, 15, 21), size = c(1.6, 4, 2.6, 2.4), alpha = c(0.5, 1, 1, 1),
+    fill = "white", stroke = c(0.5, 0.5, 0.5, 1.1), linetype = c(0, 0, 0, 1)))) +
   ggplot2::labs(x = "Soil carbon density change (Mg C/ha)", y = NULL, colour = NULL,
                 caption = paste0("MAGiC: January 2016 to December 2023, soil plus litter, 20 parameter\n",
                                  "members, fixed fields. CARB: soil organic carbon in the top 30 cm; the\n",
