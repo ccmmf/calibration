@@ -70,7 +70,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 1 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 1 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "planting",
@@ -91,7 +91,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 2 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 2 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -101,7 +101,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 3 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 3 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -111,7 +111,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 4 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 4 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -121,7 +121,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 5 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 5 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -131,7 +131,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 6 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 6 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -141,7 +141,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 7 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 7 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -151,7 +151,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 8 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 8 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -161,7 +161,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 9 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 9 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -171,7 +171,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 10 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 10 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -181,7 +181,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 11 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 11 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -191,7 +191,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 12 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 12 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -201,7 +201,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 13 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 13 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -211,7 +211,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 14 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 14 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -221,7 +221,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 15 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 15 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -231,7 +231,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 16 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 16 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -241,7 +241,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 17 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 17 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "irrigation",
@@ -251,7 +251,7 @@
    "method": "soil",
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/scenarios:data/management_priors.yaml",
    "provenance_class": "imputed",
-   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 18 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip."
+   "provenance_note": "No paper gives the amount. 142.9 mm for the romaine lettuce season (2004-05-08 to 2004-07-01, 54 days): the median irrigation rate, 2.646 mm a day, of irrigated seasons of T30 planted in May within 25 km of SOCS, 2015-2024 (n = 5641; 56 % of seasons irrigated), an ET based lower bound. Event 18 of 18, one every 3 days from planting (scenarios irrigation_drip guidance). Method soil: drip, which the calendar assumes for this year (irrigation-0020)."
   },
   {
    "event_type": "harvest",
