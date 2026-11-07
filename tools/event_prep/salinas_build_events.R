@@ -416,7 +416,10 @@ build_system <- function(sys) {
         if (is.na(method)) part("assumed", paste(
           "Method soil: the papers do not report the spinach's irrigation method; taken as the drip the",
           "site's other vegetables had."), NULL, "method", "spinach method taken as drip") else
-          part("published", "Method soil: drip.")), sys, src_of(i), what = display_of(crop)))
+          if (grepl("drip assumed", r$notes[i], fixed = TRUE))
+            part("assumed", sprintf("Method soil: drip, which the calendar assumes for this year (%s).", r$event_id[i]),
+                 NULL, "method", "calendar: drip assumed in 2004")
+          else part("published", "Method soil: drip.")), sys, src_of(i), what = display_of(crop)))
     }
   }
 

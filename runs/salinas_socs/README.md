@@ -91,6 +91,7 @@ Totals over the eight files; `fill_summary.csv` breaks them down by system.
 | vegetable irrigation amount | monitoring T30 rate x season days (lettuce 1064, broccoli 1008, spinach 104) | imputed | 2176 |
 | vegetable irrigation day | every 3 days from planting (guidance) | imputed | 2176 |
 | spinach irrigation method | not reported; `soil`, the drip of the other vegetables | assumed | 104 |
+| 2004 lettuce irrigation method | drip, which the calendar assumes for 2004 (`irrigation-0043`) | assumed | 144 |
 | tillage date | the calendar's spading on the cover crop termination day | assumed | 42 |
 | tillage date | monitoring median days after harvest or before planting | imputed | 44 |
 | tillage date | window midpoint | assumed | 90 |
@@ -162,6 +163,22 @@ Rscript tools/event_prep/salinas_build_events.R <cal-val-data checkout> runs/sal
 ```
 
 `<monitoring_dir>` holds the products as listed in the header of `salinas_monitoring.R`.
+
+## Open questions for David
+
+- **Systems 3 to 8 reach SIPNET as one system.** Every cover crop planting takes the same
+  monitoring leaf C (G6, 0.00416 kg C/m2), so `socs_sys3` to `sys8` differ only in `crop_code`,
+  which `write.events.SIPNET` does not write; their `events.in` files are identical. The trial's
+  design factors, species and 1x versus 3x seeding (rye 90 and 270, mustard 11 and 33, legume-rye
+  140 and 420 kg/ha), do not reach the model. Seed C from the published rates (about 0.45 g C per
+  g seed: rye 0.004 and 0.012, mustard 0.0005 and 0.0015, legume-rye 0.006 and 0.019 kg C/m2)
+  would separate them; otherwise the SOC target should pool these six systems.
+- **Vegetable season lengths.** Planting takes the monitoring median day and harvest its window's
+  midpoint, so seasons run 54 days for lettuce in most years (35 in 2009, 38 in 2011), 37 for
+  spinach and 52 to 56 for broccoli in four years (74 in 2010, 83 in 2006). Lettuce and broccoli
+  were transplanted and the spinach is baby leaf, so these are shorter than the product's medians
+  (78, 85 and 72 days, which include direct seeded crops) for a reason; broccoli is the short
+  one. Irrigation scales with season length.
 
 ## Using them
 
