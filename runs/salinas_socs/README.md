@@ -153,7 +153,7 @@ rate rather than taking a season total.
 
 ```bash
 Rscript tools/event_prep/salinas_monitoring.R <monitoring_dir> runs/salinas_socs/monitoring_near_salinas.csv
-Rscript tools/event_prep/salinas_build_events.R <cal-val-data checkout or its data/> runs/salinas_socs
+Rscript tools/event_prep/salinas_build_events.R <cal-val-data checkout> runs/salinas_socs
 ```
 
 `<monitoring_dir>` holds the products as listed in the header of `salinas_monitoring.R`.
