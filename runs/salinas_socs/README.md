@@ -36,8 +36,10 @@ monitoring product's median timing for the crop and operation near SOCS when it 
 the window (`imputed`), otherwise the window's midpoint (`assumed`; the note gives the window).
 Windows the calendar orders around another event are first narrowed to the dates chosen for it:
 preplant compost and pellets to before the crop's planting (and, before the second crop, after
-the lettuce harvest), liquid fertilizer to the crop's season, and tillage the calendar puts
-after a harvest to after it. Planting and harvest medians are days of year; tillage medians are
+the lettuce harvest), liquid fertilizer to the crop's season, and tillage to after the harvest
+it follows (for the fall residue incorporation, the last vegetable harvested by the end of its
+window) and before the planting it prepares (the lettuce for the spring spading, a cover crop sown
+that fall). Planting and harvest medians are days of year; tillage medians are
 days after the harvest or before the planting they belong to, as for Russell Ranch, because the
 product's tillage days of year wrap the new year.
 

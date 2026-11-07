@@ -54,6 +54,7 @@ CROPS <- data.frame(
   stringsAsFactors = FALSE)
 stopifnot(all(CROPS$display %in% crops$common.name))
 VEGETABLES <- CROPS$key[CROPS$slot != "cover_crop"]
+COVER_CROPS <- CROPS$key[CROPS$slot == "cover_crop"]
 display_of <- function(k) CROPS$display[match(k, CROPS$key)]
 slot_of <- function(k) CROPS$slot[match(k, CROPS$key)]
 
@@ -226,13 +227,23 @@ build_system <- function(sys) {
     a <- as.Date(r$min_date[i]); y <- yr(a)
     after <- identical(k$relative_timing, "after_harvest")
     fall <- identical(k$relative_to, "cover_crop_or_fallow")
-    # Which monitoring operation stands in: the first tillage after the harvest of the crop it
-    # follows, or, for the spring spading before the lettuce, the last tillage before its planting
+    # The crop events the row is ordered around: the harvest of the crop it follows (for the fall
+    # residue incorporation, the last vegetable harvested by the end of its window) and the
+    # planting it prepares (the lettuce for the spring spading, a cover crop sown that fall).
+    # Which monitoring operation stands in: the first tillage after that harvest, or, for the
+    # spring spading, the last tillage before the lettuce planting
+    prev <- NULL; nxt <- NULL
     if (after || fall) {
-      prev <- if (after) data.frame(crop = k$relative_to, date = when(ended, k$relative_to, y)) else last_vegetable(a)
+      prev <- if (after) data.frame(crop = k$relative_to, date = when(ended, k$relative_to, y)) else
+        last_vegetable(as.Date(r$max_date[i]) + 1)
+      if (fall) {
+        nxt <- sown[sown$crop %in% COVER_CROPS & yr(sown$date) == y, ]
+        if (!nrow(nxt)) nxt <- NULL
+      }
       op <- if (is.null(prev)) NULL else list(slot = slot_of(prev$crop), q = "postharvest", crop = prev$crop)
     } else {
       stopifnot(grepl("spader", imp), as.integer(format(a, "%m")) <= 4L)
+      nxt <- data.frame(crop = "romaine_lettuce", date = when(sown, "romaine_lettuce", y))
       op <- list(slot = "lettuce", q = "preplant", crop = "romaine_lettuce")
     }
     c_doy <- if (is.null(op)) NULL else {
@@ -240,14 +251,17 @@ build_system <- function(sys) {
       x <- cand(op$slot, paste0(op$q, "_tillage_days"), sprintf(
         "the %s tillage event %s %s", if (post) "first" else "last",
         if (post) "after a harvest of" else "before a planting of", display_of(op$crop)))
-      anchor <- if (post) prev$date else when(sown, op$crop, y)
+      anchor <- if (post) prev$date else nxt$date
       x$date <- anchor + if (post) round(x$value) else -round(x$value)
       x$desc <- sprintf("%d days %s the %s %s (%s), %s", as.integer(round(x$value)), if (post) "after" else "before",
                         display_of(op$crop), if (post) "harvest" else "planting", anchor, x$date)
       x
     }
-    td <- pick_date(r[i, ], c_doy, lo = if (after) prev$date + 1,
-                    why = if (after) sprintf("to after the %s harvest (%s)", display_of(prev$crop), prev$date))
+    td <- pick_date(r[i, ], c_doy, lo = if (!is.null(prev)) prev$date + 1, hi = if (!is.null(nxt)) nxt$date - 1,
+                    why = paste("to", paste(c(
+                      if (!is.null(prev)) sprintf("after the %s harvest (%s)", display_of(prev$crop), prev$date),
+                      if (!is.null(nxt)) sprintf("before the %s planting (%s)", display_of(nxt$crop), nxt$date)),
+                      collapse = " and ")))
     if (identical(td$part$class, "published") && grepl("(assumed)", r$notes[i], fixed = TRUE))
       td$part <- part("assumed", sprintf(paste("Date from the calendar (%s), which takes the spading as the",
                                                "termination day; the paper does not date it."), r$event_id[i]),
@@ -267,7 +281,7 @@ build_system <- function(sys) {
               "after" else "before", display_of(op$crop)))))
     # A flail mowing and spading in spring ends the winter cover crop sown before it
     if (grepl("flail_mower", imp) && !fall) {
-      cc <- sown[sown$crop %in% CROPS$key[CROPS$slot == "cover_crop"] & sown$date < td$date, ]
+      cc <- sown[sown$crop %in% COVER_CROPS & sown$date < td$date, ]
       cc <- cc[which.max(cc$date), ]
       stopifnot(nrow(cc) == 1L, td$date - cc$date < 200)
       e <- c(list(event_type = "harvest", date = format(td$date), calval_event_id = r$event_id[i],
@@ -436,6 +450,22 @@ check_system <- function(sys, b) {
   pl <- ev[type == "planting"]
   key <- paste(vapply(pl, `[[`, "", "crop_code"), substr(vapply(pl, `[[`, "", "date"), 1, 4))
   stopifnot(!anyDuplicated(key))
+  # Each tillage on its side of the crop events its row is ordered around: after the harvest it
+  # follows (a fall residue incorporation after every vegetable harvest of its year) and before the
+  # planting it prepares (the spring spading before the lettuce, a fall pass before a cover crop
+  # sown that fall)
+  dates_of <- function(t, crops, y) as.Date(vapply(Filter(function(e) e$event_type == t && e$crop_code %in% crops &&
+                                                             startsWith(e$date, y), ev), `[[`, "", "date"))
+  for (e in ev[type == "tillage"]) {
+    k <- kv(r$attributes_keyvalue[r$event_id == e$calval_event_id])
+    fall <- identical(k$relative_to, "cover_crop_or_fallow")
+    follows <- if (fall) VEGETABLES else if (identical(k$relative_timing, "after_harvest")) k$relative_to
+    prepares <- if (fall) COVER_CROPS else if (is.null(k$relative_timing)) "romaine_lettuce"
+    d <- as.Date(e$date); y <- substr(e$date, 1, 4)
+    if (!all(dates_of("harvest", follows, y) < d) || !all(dates_of("planting", prepares, y) > d))
+      stop(sprintf("%s: the tillage of %s on %s is not after the harvest it follows and before the planting it prepares",
+                   sys, e$calval_event_id, d))
+  }
   for (e in ev) stopifnot(!is.null(e$source), e$provenance_class %in% PROVENANCE_CLASSES,
                           e$provenance_class == "published" || nzchar(e$provenance_note))
   invisible(TRUE)
