@@ -267,16 +267,21 @@ for (i in seq_len(nrow(wtd))) {
 ## ------------------------------------------------------------- tillage, every year
 for (y in sort(names(plantings))) {
   p <- as.Date(plantings[[y]])
+  carried <- !as.integer(y) %in% LITERATURE_YEARS
   for (k in seq_len(nrow(TILLAGE))) {
     t <- TILLAGE[k, ]
     add(set_provenance(list(event_type = "tillage", date = format(p - t$days_before, "%Y-%m-%d"),
                             tillage_eff_0to1 = t$eff, implement = t$implement),
-                       "assumed", source = paste0("calval:managements/", t$record), note = paste(c(
-      sprintf("Knox reports %s before planting without dates; placed %d d before the %s planting with", t$implement,
-              t$days_before, y),
+                       if (carried) "imputed" else "assumed", source = paste0("calval:managements/", t$record), note = paste(c(
+      if (carried)
+        sprintf(paste("Knox's %s before planting (2010-2015, no dates) is carried into %s, which no record covers,",
+                      "so the event is imputed; dated %d d before that year's planting with"), t$implement, y, t$days_before)
+      else
+        sprintf("Knox reports %s before planting without dates; placed %d d before the %s planting with", t$implement,
+                t$days_before, y),
       sprintf("tillage_eff %s.", t$eff),
       if (as.integer(y) >= as.integer(substr(MONITORING_START, 1, 4)))
-        "Knox's practice is carried forward into the monitoring years; the monitoring product's tillage detections for this parcel are not used."),
+        "The monitoring product's tillage detections for this parcel are not used."),
       collapse = " ")))
   }
 }

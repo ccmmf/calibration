@@ -55,7 +55,8 @@ if (!length(ifiles)) stop("no irrigation shards under ", idir, " -- run pull_inp
 irr <- do.call(rbind, lapply(ifiles, function(x)
   open_dataset(x) |> filter(parcel_id == PARCEL) |> collect() |> as.data.frame()))
 
-# step3 reads a `date` column of plain YYYY-MM-DD and an `ens_id` on irrigation.
+# The US-Bi1 and US-Twt builders (parcel_csv, irrigation_member_rows in delta_inputs.R)
+# read a `date` column of plain YYYY-MM-DD and an `ens_id` on irrigation.
 for (nm in c("plant", "harv", "irr")) {
   d <- get(nm)
   if (!is.null(d) && nrow(d)) { d$date <- as.character(as.Date(d$date)); assign(nm, d[order(d$date), ]) }
