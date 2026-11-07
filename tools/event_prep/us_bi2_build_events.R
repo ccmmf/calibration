@@ -5,18 +5,25 @@
 #
 # usage: us_bi2_build_events.R <managements.csv> <out.json> [member]
 #   managements.csv: cal-val-data data/managements.csv (develop), the site record
-#   member: accepted for step3_delta_ensemble.R; nothing here varies by member
+#   member: the monitoring product's irrigation member, irr_ens_NNN (1 by default)
 # Reads the planting and harvest v5.0 products under $PRODUCTS_INVENTORY/management
-# (pull_inputs.sh).
+# (pull_inputs.sh) and $CCMMF_WORK/us_bi2_events/own_irrigation.csv (extract_parcel_csvs.R
+# us_bi2 565118, irrigation v1.1).
 #
 # The site record (cal-val-data, US-Bi2__management_field) has corn planted every year from 2017
 # to 2023, UAN applied once a year at planting at 118 kg N/ha (Anthony and Silver 2021), the 2019
 # planting in May-June and the 2019 harvest on 2019-09-11, and the corn usually cut for silage.
 # The monitoring product disagrees where the two overlap: it has a G6 winter cereal planted
 # 2019-02-05 and harvested 2019-05-22, five days after the corn went in, when the field was
-# flooded and anoxic until mid March 2019; N from the fertilization product at a median of about
-# 215 kg N/ha a year, 304 in 2019; and the 2019 harvest on 2019-10-03. So the G6 cycle and every
+# flooded and anoxic until mid March 2019; N from the fertilization product (member 1) at 172 to
+# 343 kg N/ha a year, 343 in 2019; and the 2019 harvest on 2019-10-03. So the G6 cycle and every
 # fertilization product row are dropped, and the product gives only the days the record lacks.
+#
+# Water (decided 2026-07-16, Akash and Alexey): the irrigation product's zeros in the other years
+# are real, its 2021 and 2022 events are kept, and the field's water table is represented by the
+# winter floods and the run's flood configuration, since SIPNET does not draw water up from a water
+# table and a run without them goes too dry. The winters the record dates are written as floods
+# held by the rule US-Twt uses; the spud ditch sub-irrigation is not written.
 
 script_file <- gsub("~+~", " ", sub("^--file=", "", grep("^--file=", commandArgs(trailingOnly = FALSE), value = TRUE)),
                     fixed = TRUE)
@@ -30,6 +37,13 @@ ANTHONY <- "10.1111/gcb.15802 (Anthony and Silver 2021)"
 BIF <- "10.17190/AMF/1419513 (AmeriFlux US-Bi2 BIF)"
 PRODUCT <- "monitoring_product:%s/v5.0 (parcel 565118)"
 KG_HA_TO_KG_M2 <- 1e-4
+
+# The hold rule us_twt_build_events.R uses: 70 mm every 7 d, the mean amount and modal interval of
+# the monitoring product's flood events for US-Twt (parcel 590073, irrigation v1.1, irr_ens_001,
+# 2017-2023). A reported winter flood window is held from its first day to its last.
+FLOOD_MM <- 70; FLOOD_EVERY_D <- 7L; FLOOD_METHOD <- "soil"
+FLOOD_RULE <- paste("70 mm every 7 d, the hold rule US-Twt uses (the mean amount and modal interval of the",
+                    "monitoring product's flood events for parcel 590073, 2017-2023)")
 
 # Days read from the fertilization line of Anthony and Silver 2021 Fig. 2, to within 1 to 2 days.
 # UAN went on once a year at planting, so the corn was planted the same day. In 2020 the
@@ -147,9 +161,71 @@ for (y in YEARS) {
   add(h[c("event_type", "date", setdiff(names(h), c("event_type", "date")))])
 }
 
+## ------------------------------------------------------------- water
+year_of <- function(t) setNames(vapply(Filter(function(e) e$event_type == t, events), `[[`, "", "date"),
+                                vapply(Filter(function(e) e$event_type == t, events), function(e) substr(e$date, 1, 4), ""))
+plant_on <- year_of("planting"); harvest_on <- year_of("harvest")
+
+# Surface irrigation: the monitoring product's events for this parcel, kept (2026-07-16). The record
+# has the field irrigated through spud ditches (delta-irrigation-0003) but not on these dates; v5.0
+# has no irrigation rows for this parcel.
+irr_src <- paste0("monitoring_product:irrigation/v1.1:", args$irrigation_member)
+irr <- irrigation_member_rows(parcel_csv("us_bi2", "irrigation"), args$irrigation_member,
+                              sprintf("%d-01-01", min(YEARS)), sprintf("%d-12-31", max(YEARS)))
+for (i in seq_len(nrow(irr))) {
+  r <- irr[i, ]
+  add(set_provenance(list(event_type = "irrigation", date = r$date, amount_mm = round(as.numeric(r$amount_mm), 4),
+                          method = r$method),
+                     "imputed", source = irr_src, note = paste(
+    "Date, amount and method from the monitoring product for this parcel (irrigation v1.1), kept as",
+    "decided on 2026-07-16: the product's zero years are real zeros and its 2021 and 2022 events stay.",
+    "The site record has the field irrigated (spud ditches, delta-irrigation-0003) but not on this",
+    "date, so the event is imputed. Irrigation v5.0 has no rows for this parcel.")))
+}
+
+# Winter floods: every US-Bi2 flooding row of the site record with a dated window, held by the
+# US-Twt rule from the window's first day to its last. The record gives no onset, drain or depth
+# for any of them; delta-flooding-0008 (autumn flooding of the fallow field) has no dates and is not
+# written. The windows mean different things, which the notes keep apart.
+mg <- read.csv(args$managements, colClasses = "character", na.strings = character())
+fl <- mg[mg$sites.name == "US-Bi2__management_field" & startsWith(mg$event_id, "delta-flooding-"), ]
+fl <- fl[substr(fl$min_date, 1, 2) == "20" & substr(fl$max_date, 1, 2) == "20", ]
+fl <- fl[order(fl$min_date), ]
+WINDOWS <- c(
+  "delta-flooding-0012" = "reported event duration",
+  "delta-flooding-0013" = "seasonal occurrence constraint",
+  "delta-flooding-0009" = "flood-onset timing constraint",
+  "delta-flooding-0014" = "seasonal occurrence constraint")
+stopifnot(identical(sort(fl$event_id), sort(names(WINDOWS))),
+          identical(vapply(fl$attributes_json, function(j) fromJSON(j)$interval_semantics, "", USE.NAMES = FALSE),
+                    unname(WINDOWS[fl$event_id])))
+WINDOW_NOTE <- c(
+  "reported event duration" = "the record reports the field flooded through this window (Hemes et al. 2019)",
+  "seasonal occurrence constraint" = paste(
+    "the window is the field's November-March winter flood regime (Anthony and Silver 2024, Table 1)",
+    "after the year's corn, not a reported duration"),
+  "flood-onset timing constraint" = paste(
+    "the window bounds only the onset (December 2019, after the 2019-09-11 harvest); the duration and",
+    "the spring 2020 drain (delta-drainage-0006) are not dated, so the flood is held only to the end of",
+    "the window"))
+for (i in seq_len(nrow(fl))) {
+  w <- fl[i, ]
+  start <- as.Date(substr(w$min_date, 1, 10)); end <- as.Date(substr(w$max_date, 1, 10))
+  y <- format(start, "%Y"); y_next <- as.character(as.integer(y) + 1L)
+  # the flood falls between that year's harvest and the next year's planting
+  stopifnot(format(start) > harvest_on[[y]], format(end) < plant_on[[y_next]])
+  for (d in format(seq(start, end, by = FLOOD_EVERY_D), "%Y-%m-%d"))
+    add(set_provenance(list(event_type = "irrigation", date = d, amount_mm = FLOOD_MM, method = FLOOD_METHOD),
+                       "imputed", source = paste0("calval:managements/", w$event_id), note = paste(
+      "Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder.",
+      sprintf("Holds the winter flood of %s, %s to %s: %s.", w$event_id, start, end, WINDOW_NOTE[[WINDOWS[[w$event_id]]]]),
+      sprintf("Dated and sized by the rule, %s, from the window's first day to its last;", FLOOD_RULE),
+      "the record gives no onset, drain or depth, so the event is imputed.")))
+}
+
 ## ------------------------------------------------------------- write
 write_events(SITE, list(
-  parcel_id = PARCEL, crop = CORN,
+  parcel_id = PARCEL, crop = CORN, irrigation_member = args$irrigation_member,
   generator = "tools/event_prep/us_bi2_build_events.R",
   note = paste(
     "One corn cycle a year, 2016-2023, from the site record first (cal-val-data,",
@@ -160,7 +236,9 @@ write_events(SITE, list(
     "fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from",
     "Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the",
     "shared lookup's hay row for silage, an assumption for David. No tillage: the monitoring",
-    "product's tillage is not used. No irrigation events: v5.0 has none for this parcel, and the",
-    "spud ditch irrigation and winter flooding the record describes are left to the run's flood",
-    "and water table configuration. See tools/event_prep/README.md.")),
+    "product's tillage is not used. Water, as decided on 2026-07-16: the irrigation product's 2021",
+    "and 2022 events, and the record's dated winter floods (delta-flooding-0009, 0012, 0013, 0014)",
+    sprintf("held by %d mm every %d d as soil irrigation. The spud ditch sub-irrigation", FLOOD_MM, FLOOD_EVERY_D),
+    "(delta-irrigation-0004 to 0007) is subsurface water left to the water table and the run's flood",
+    "configuration, which this file does not set. See tools/event_prep/README.md.")),
   events, args$out)

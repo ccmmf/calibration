@@ -55,20 +55,21 @@ leaf <- first_available(list("the parcel's monitoring P1 plantings" = as.numeric
 if (is.null(leaf)) stop("no P1 plantings for parcel ", PARCEL, " in the monitoring product")
 events <- list(set_provenance(list(
   event_type = "planting", date = RUN_START, crop_code = CROP, crop_display = "Alfalfa",
-  leaf_c_kg_m2 = round(mean(leaf$value), 8),
-  prior_filled = sprintf("leaf_c_kg_m2<-mean of %s (%d, planting v1.0)", leaf$from, leaf$n)),
+  leaf_c_kg_m2 = round(median(leaf$value), 8),
+  prior_filled = sprintf("leaf_c_kg_m2<-median of %s (%d, planting v1.0)", leaf$from, leaf$n)),
   "imputed", source = paste0(STAND_SOURCE, "; monitoring_product:planting/v1.0"),
   note = paste(
     "Sets the state of the alfalfa stand at the start of the run; it is not a planting operation.",
     "The field had been in alfalfa about three years when the tower went in on 2016-08-12",
     sprintf("(%s), so the stand dates from about 2013 and is kept for the whole run:", STAND_SOURCE),
     "the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale,",
-    "so 2017 behaves as spin-up. The date is assumed; leaf C is the mean of",
-    sprintf("%s (%d), the weaker part, so the event is imputed.", leaf$from, leaf$n))))
+    "so 2017 behaves as spin-up. The date is assumed; leaf C is the median (David's rule) of",
+    sprintf("%s (%d, 2018-2023), the weaker part, so the event is imputed.", leaf$from, leaf$n))))
 
 ## ------------------------------------------------------------- cuttings
 cuts <- read.csv(file.path(here, "us_bi1_cuttings.csv"), colClasses = "character")
-stopifnot(!anyDuplicated(cuts$date), all(cuts$date >= RUN_START & cuts$date <= RUN_END),
+stopifnot(identical(names(cuts), c("date", "basis", "note")), all(nzchar(cuts$note)),
+          !anyDuplicated(cuts$date), all(cuts$date >= RUN_START & cuts$date <= RUN_END),
           all(cuts$basis %in% c("wang2024_ndvi", "hemes2019_nee", "badm_mowing")),
           identical(cuts$date[cuts$basis == "badm_mowing"], substr(rec["delta-harvest-0012", "min_date"], 1, 10)))
 for (i in seq_len(nrow(cuts))) {
@@ -76,16 +77,18 @@ for (i in seq_len(nrow(cuts))) {
   e <- c(list(event_type = "harvest", date = d, crop_display = "Alfalfa"), CUT,
          list(harvest_lookup_row = "P1", harvest_fraction_note = CUT_NOTE))
   events[[length(events) + 1L]] <- switch(cuts$basis[i],
-    badm_mowing = set_provenance(e, "published", source = BADM, note = paste(
-      "Mowing the site record fixes from 'Mowed five days ago, baling today' on 2020-06-09; a cycle in",
-      "the tower NDVI (Wang 2024) falls on the same date.")),
+    badm_mowing = set_provenance(e, "assumed", source = BADM, note = paste(
+      "The date is recorded: mowing the site record fixes from 'Mowed five days ago, baling today' on",
+      "2020-06-09. The fractions are the shared lookup's P1 share (0.85, IPCC) with nothing sent to",
+      "litter (David on calibration#10), so the event is assumed.", cuts$note[i])),
     hemes2019_nee = set_provenance(e, "imputed", source = HEMES, note = paste(
-      "No record dates this cutting; dated from the drop in daily NEE in Hemes et al. 2019 Fig. S2.",
-      "The site record gives about six cuttings a year (delta-harvest-0010).")),
+      "No record dates this cutting; dated from the jump in daily NEE in Hemes et al. 2019 Fig. S2,",
+      "so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010).",
+      cuts$note[i])),
     wang2024_ndvi = set_provenance(e, "imputed", source = WANG, note = paste(
       "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024",
-      "Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year",
-      "(delta-harvest-0010).")))
+      "Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six",
+      "cuttings a year (delta-harvest-0010).", cuts$note[i])))
 }
 
 ## ------------------------------------------------------------- irrigation

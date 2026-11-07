@@ -14,11 +14,11 @@
    "date": "2017-01-01",
    "crop_code": "P1",
    "crop_display": "Alfalfa",
-   "leaf_c_kg_m2": 0.00994096,
-   "prior_filled": "leaf_c_kg_m2<-mean of the parcel's monitoring P1 plantings (6, planting v1.0)",
+   "leaf_c_kg_m2": 0.00896323,
+   "prior_filled": "leaf_c_kg_m2<-median of the parcel's monitoring P1 plantings (6, planting v1.0)",
    "source": "Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8; monitoring_product:planting/v1.0",
    "provenance_class": "imputed",
-   "provenance_note": "Sets the state of the alfalfa stand at the start of the run; it is not a planting operation. The field had been in alfalfa about three years when the tower went in on 2016-08-12 (Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8), so the stand dates from about 2013 and is kept for the whole run: the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale, so 2017 behaves as spin-up. The date is assumed; leaf C is the mean of the parcel's monitoring P1 plantings (6), the weaker part, so the event is imputed."
+   "provenance_note": "Sets the state of the alfalfa stand at the start of the run; it is not a planting operation. The field had been in alfalfa about three years when the tower went in on 2016-08-12 (Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8), so the stand dates from about 2013 and is kept for the whole run: the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale, so 2017 behaves as spin-up. The date is assumed; leaf C is the median (David's rule) of the parcel's monitoring P1 plantings (6, 2018-2023), the weaker part, so the event is imputed."
   },
   {
    "event_type": "harvest",
@@ -32,7 +32,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "10.1016/j.agrformet.2019.01.017 (Hemes et al. 2019), Fig. S2 (daily NEE)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the drop in daily NEE in Hemes et al. 2019 Fig. S2. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the jump in daily NEE in Hemes et al. 2019 Fig. S2, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Hemes et al. 2019 accepted manuscript Fig. S2a (p. 45), Bouldin alfalfa daily NEE: NEE jumps from about +1 (2017-04-17 to 04-20) to about +7.8 g C m-2 d-1 (04-23 to 04-26), the release that follows a cutting. Read in the organization#298 research and rechecked on 2026-11-08 by digitizing the figure's embedded image (about 3 days per pixel). The NDVI record (Wang 2024 Fig. 3.1) starts on 2017-06-05, so it does not cover this cutting."
   },
   {
    "event_type": "harvest",
@@ -46,7 +46,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "10.1016/j.agrformet.2019.01.017 (Hemes et al. 2019), Fig. S2 (daily NEE)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the drop in daily NEE in Hemes et al. 2019 Fig. S2. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the jump in daily NEE in Hemes et al. 2019 Fig. S2, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Hemes et al. 2019 accepted manuscript Fig. S2a (p. 45), Bouldin alfalfa daily NEE: NEE jumps from about -7.1 (2017-05-19) to +6.7 to +7.8 g C m-2 d-1 (05-22 to 05-29), the release that follows a cutting. Read in the organization#298 research and rechecked on 2026-11-08 by digitizing the figure's embedded image (about 3 days per pixel). The NDVI record (Wang 2024 Fig. 3.1) starts on 2017-06-05, so it does not cover this cutting."
   },
   {
    "event_type": "harvest",
@@ -60,7 +60,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2017 panel: NDVI falls from about 0.61 (last high value, 2017-06-23) to 0.25 (2017-06-27); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -83,7 +83,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2017 panel: NDVI falls from about 0.60 (last high value, 2017-07-24) to 0.23 (2017-07-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -115,7 +115,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2017 panel: NDVI falls from about 0.55 (last high value, 2017-08-25) to 0.30 (2017-08-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -138,7 +138,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2017 panel: NDVI falls from about 0.52 (last high value, 2017-09-29) to 0.31 (2017-10-04); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -161,7 +161,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2018 panel: NDVI falls from about 0.61 (last high value, 2018-04-23) to 0.31 (2018-04-27); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -175,7 +175,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2018 panel: NDVI falls from about 0.64 (last high value, 2018-05-23) to 0.30 (2018-05-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -189,7 +189,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2018 panel: NDVI falls from about 0.59 (last high value, 2018-06-21) to 0.30 (2018-06-25); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -203,7 +203,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2018 panel: NDVI falls from about 0.65 (last high value, 2018-07-20) to 0.37 (2018-07-30); the cutting is dated within that fall. The curve has a gap in the record on 07-26 and 07-27 and the cut falls inside it. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -217,7 +217,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2018 panel: NDVI falls from about 0.64 (last high value, 2018-09-13) to 0.31 (2018-09-17); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -231,7 +231,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2018 panel: NDVI falls from about 0.65 (last high value, 2018-10-23) to 0.37 (2018-10-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -254,7 +254,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2019 panel: NDVI falls from about 0.66 (last high value, 2019-04-29) to 0.36 (2019-05-04); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -268,7 +268,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2019 panel: NDVI falls from about 0.69 (last high value, 2019-06-07) to 0.36 (2019-06-11); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -282,7 +282,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2019 panel: NDVI falls from about 0.65 (last high value, 2019-07-24) to 0.30 (2019-07-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -296,7 +296,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2019 panel: NDVI falls from about 0.60 (last high value, 2019-08-14) to 0.40 (2019-08-17); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -310,7 +310,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2019 panel: NDVI falls from about 0.70 (last high value, 2019-09-20) to 0.38 (2019-09-25); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -324,7 +324,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2019 panel: NDVI falls from about 0.66 (last high value, 2019-10-18) to 0.38 (2019-10-23); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -347,7 +347,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2020 panel: NDVI falls from about 0.69 (last high value, 2020-04-24) to 0.37 (2020-04-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -360,8 +360,8 @@
    "harvest_lookup_row": "P1",
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "10.17190/AMF/1480317 (AmeriFlux US-Bi1 BADM); cal-val-data delta-harvest-0012",
-   "provenance_class": "published",
-   "provenance_note": "Mowing the site record fixes from 'Mowed five days ago, baling today' on 2020-06-09; a cycle in the tower NDVI (Wang 2024) falls on the same date."
+   "provenance_class": "assumed",
+   "provenance_note": "The date is recorded: mowing the site record fixes from 'Mowed five days ago, baling today' on 2020-06-09. The fractions are the shared lookup's P1 share (0.85, IPCC) with nothing sent to litter (David on calibration#10), so the event is assumed. AmeriFlux US-Bi1 BADM (10.17190/AMF/1480317), crop height comment on 2020-06-09: 'Mowed five days ago, baling today' (delta-harvest-0012). Wang 2024 Fig. 3.1, 2020 panel: NDVI falls from about 0.70 (2020-06-03) to 0.38 (2020-06-07)."
   },
   {
    "event_type": "harvest",
@@ -375,7 +375,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2020 panel: NDVI falls from about 0.64 (last high value, 2020-07-05) to 0.31 (2020-07-10); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -398,7 +398,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2020 panel: NDVI falls from about 0.65 (last high value, 2020-08-01) to 0.37 (2020-08-04); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -421,7 +421,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2020 panel: NDVI falls from about 0.69 (last high value, 2020-09-05) to 0.40 (2020-09-08); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -444,7 +444,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2020 panel: NDVI falls from about 0.70 (last high value, 2020-10-07) to 0.51 (2020-10-12); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -458,7 +458,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2021 panel: NDVI falls from about 0.67 (last high value, 2021-04-25) to 0.39 (2021-04-29); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -472,7 +472,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2021 panel: NDVI falls from about 0.70 (last high value, 2021-05-28) to 0.32 (2021-05-31); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -495,7 +495,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2021 panel: NDVI falls from about 0.70 (last high value, 2021-06-24) to 0.37 (2021-06-28); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -518,7 +518,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2021 panel: NDVI falls from about 0.66 (last high value, 2021-07-21) to 0.35 (2021-07-25); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -541,7 +541,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2021 panel: NDVI falls from about 0.67 (last high value, 2021-08-19) to 0.38 (2021-08-24); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -564,7 +564,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2021 panel: NDVI falls from about 0.69 (last high value, 2021-10-12) to 0.43 (2021-10-17); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -578,7 +578,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2022 panel: NDVI falls from about 0.69 (last high value, 2022-05-04) to 0.39 (2022-05-09); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -592,7 +592,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2022 panel: NDVI falls from about 0.67 (last high value, 2022-06-03) to 0.40 (2022-06-08); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "irrigation",
@@ -615,7 +615,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2022 panel: NDVI falls from about 0.63 (last high value, 2022-07-05) to 0.42 (2022-07-11); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized. The last cutting of 2022: after it the 2022 panel never regrows to the 0.6-0.7 canopy that precedes every other cutting. NDVI stays at about 0.30-0.45 through September (the record has a gap in early to mid August), rises slowly to about 0.50 by mid October, and falls to about 0.35-0.40 in late October and again in late December; neither fall is from a regrown canopy, so no cutting is written (the late October fall could be a late cutting or the start of grazing). 2022 is also the only year of the run with a net source of annual NEE at the tower (+307.6 g C m-2, FLUXNET-1F, cal-val-data)."
   },
   {
    "event_type": "irrigation",
@@ -656,7 +656,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2023 panel: NDVI falls from about 0.65 (last high value, 2023-05-09) to 0.30 (2023-05-13); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -670,7 +670,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2023 panel: NDVI falls from about 0.66 (last high value, 2023-06-11) to 0.29 (2023-06-16); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -684,7 +684,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2023 panel: NDVI falls from about 0.63 (last high value, 2023-07-13) to 0.29 (2023-07-22); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -698,7 +698,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2023 panel: NDVI falls from about 0.62 (last high value, 2023-08-15) to 0.31 (2023-08-20); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -712,7 +712,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2023 panel: NDVI falls from about 0.55 (last high value, 2023-09-19) to 0.29 (2023-09-23); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   },
   {
    "event_type": "harvest",
@@ -726,7 +726,7 @@
    "harvest_fraction_note": "Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and roots left alive (David on calibration#10).",
    "source": "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)",
    "provenance_class": "imputed",
-   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days. The site record gives about six cuttings a year (delta-harvest-0010)."
+   "provenance_note": "No record dates this cutting; dated from the fall in the tower NDVI cycle in Wang 2024 Fig. 3.1, to within about 3 to 5 days, so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010). Wang 2024 Fig. 3.1 (dissertation p. 52), 2023 panel: NDVI falls from about 0.61 (last high value, 2023-10-18) to 0.39 (2023-10-22); the cutting is dated within that fall. Digitized from the figure image in the organization#298 research (2026-11-03); the fall checked by eye against the figure on 2026-11-08, the date not re-digitized."
   }
  ]
 }
