@@ -1587,8 +1587,10 @@ logged_passes <- function(sys, ph) {
 # more than 300 and up to 600 days between a wheat harvest and the next planting, and no tillage
 # at all in the 6,462 idle or unclassified fallow parcel years. So, as an assumption, the
 # diskings are spaced evenly through each fallow: from the straw disking (or the end of the crop
-# before the fallow, the 1993 hay cut) to the next wheat planting, on top of the two straw passes.
-# A fallow the run ends in takes the median length of the file's other fallows.
+# before the fallow, the 1993 hay cut) to the next wheat planting, on top of the two straw passes:
+# six passes a fallow, as David reads the paper (calibration#10, 2026-11-02), the two straw
+# passes being one event. A fallow the run ends in takes the median length of the file's other
+# fallows.
 FALLOW_DISKINGS <- setNames(TREATMENTS$fallow_diskings, TREATMENTS$tid)
 FALLOW_MIN_DAYS <- 300  # a gap this long between a crop's end and the next wheat planting is a fallow
 FALLOW_NOTE <- paste("The paper gives the fallow four diskings, beginning after wheat harvest, but no dates,",
