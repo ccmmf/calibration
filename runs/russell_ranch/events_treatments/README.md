@@ -14,9 +14,9 @@ Events the operation logs lack are filled, and dates and amounts no record gives
 in the order set out in [`tools/event_prep/README.md`, "Filling missing events"](../../../tools/event_prep/README.md#filling-missing-events):
 the package's own records and Tautges et al. (2019) first, then the monitoring product, then
 guidance. Fertilization gaps, single applications missing from a season that has others, and
-2014 fertilization copy the package's own records, except corn and wheat seasons with no N in the
-log (Legume/Corn/Tomato corn in every year, Conventional Corn/Tomato corn in 2013, four wheat
-seasons in 1997 to 1999), which take Tautges' rates. Every
+2014 fertilization copy the package's own records, except corn and irrigated wheat seasons with no
+N in the log (Legume/Corn/Tomato corn in every year, Conventional Corn/Tomato corn in 2013, three
+irrigated wheat seasons in 1997 to 1999), which take Tautges' rates. Every
 corn and tomato season and the wheat of every irrigated system are irrigated as Tautges gives,
 the corn and tomato on a schedule from planting to the monitoring product's last irrigation
 before harvest; sudangrass and alfalfa, for which the paper gives no amount, take the
@@ -77,7 +77,7 @@ represent a treatment, run both of its phases; observations are per treatment.
 | irrigation, rainfed wheat | 18 sprinkler events of ~600 mm per system | none after the 1993 uniformity crop, which was irrigated everywhere; Tautges Table 1 lists irrigation "None" |
 | irrigation, irrigated systems | one sprinkler event of several hundred mm per cash crop window | none from the generator: its 207 events are dropped. Every corn and tomato season follows Tautges et al. 2019 (33.6 in a season, the paper's "mm" read as inches) and every irrigated system's wheat its 80 mm rule (none in its no-irrigation years); sudangrass and alfalfa, which it gives nothing for, take the monitoring product's medians near the site. All of it is soil irrigation, in events of at most 150 mm (below) |
 | tillage | none | one event per operation Tautges et al. 2019 describe, timed and sized from the monitoring product near Russell Ranch, the herbicide incorporation passes the package logs, on their logged dates, and the four fallow diskings of each wheat-fallow fallow, spaced evenly (below) |
-| fertilization the log lacks | none | copied from comparable records; corn and wheat with no N record take the paper's rates; a single application missing from a season copies that application from the nearest season with the same synthetic N management; an application logged on two of three plots adds the third plot's share; the organic 2008 sudangrass year copies the nearest recorded compost (below) |
+| fertilization the log lacks | none | copied from comparable records; corn and irrigated wheat with no N record take the paper's rates, rainfed wheat its treatment's logged rates; a single application missing from a season copies that application from the nearest season with the same synthetic N management; an application logged on two of three plots adds the third plot's share; the organic 2008 sudangrass year copies the nearest recorded compost (below) |
 | harvest fractions | drawn from a grain-harvest prior | the site's own samples for corn and tomato, harvest lookup rows for the rest; the 2012 wheat and the 1993 sudangrass, cut for hay, take the hay row; alfalfa cuttings leave the stand alive (below) |
 | cover crops | planted, never terminated | end on their incorporation date, all to litter (below) |
 | plantings and harvests missing from the logs | none, so crops were harvested that were never planted and planted ones never harvested | filled from `plot_system.csv` and the alfalfa cutting samples, the 1993 sudangrass uniformity crop and the Transitional plots' 1998 crops included (below) |
@@ -265,9 +265,9 @@ spaced evenly through the fallow (see "Tillage"); for the timing of the corn and
 irrigation; for the sudangrass and alfalfa irrigation, which the paper does not give; and as
 the check on the unit of the paper's maize and tomato irrigation (below). Amounts differ by kind:
 fertilization gaps, single missing applications and 2014 fertilization copy the package's own
-records, except corn and wheat seasons with no N in the log, which take the paper's rates; the
-corn and tomato and the wheat of every irrigated system are irrigated as Tautges et al. 2019
-gives; and a filled planting's amounts are medians of the generator's priors (above).
+records, except corn and irrigated wheat seasons with no N in the log, which take the paper's
+rates; the corn and tomato and the wheat of every irrigated system are irrigated as Tautges et
+al. 2019 gives; and a filled planting's amounts are medians of the generator's priors (above).
 
 | what | rule | events |
 |---|---|---|
@@ -276,7 +276,7 @@ gives; and a filled planting's amounts are medians of the generator's priors (ab
 | unharvested wheat | the median day of a recorded wheat harvest, day 182 (about 1 July), all biomass to litter, `not_harvested: true` | 1 |
 | wheat cut for hay | the logged `leg_corn_tomato` cut, 6/25/2012 (above) | 1 |
 | 2014 fertilization | the most recent same-crop season of the treatment with fertilization records that land in 2014 once shifted to the 2014 planting, its single application fills included | 19 |
-| fertilization gap | a season the log has no fertilization for, dated from comparable records; corn and wheat N take Tautges et al. 2019's rates on the copied dates, compost copies the record (see "Fertilization gaps") | 51 (N 45, all at the paper's rates: corn 37, wheat 8; compost 6) |
+| fertilization gap | a season the log has no fertilization for, dated from comparable records; corn and irrigated wheat N take Tautges et al. 2019's rates on the copied dates, rainfed wheat N and compost copy the record (see "Fertilization gaps") | 51 (N 45: corn 37 and irrigated wheat 6 at the paper's rates, rainfed wheat 2 as logged; compost 6) |
 | single application | a season with records but without its preplant or its in-season application copies that application, as logged, from the nearest season with both of the treatments that share its synthetic N management (see "Fertilization gaps") | 17 (wheat preplant 7, wheat topdress 1, tomato starter 9) |
 | missing plot share | an application logged on two of a phase's three plots, the third growing the same crop, adds that plot's share as a separate event (`add_plot` rows in `russell_source_corrections.csv`; see "Fertilization gaps") | 2 |
 | compost year | an organic rotation year that is not a wheat year and has no compost record copies the nearest recorded year's compost (see "Fertilization gaps") | 1 (2008) |
@@ -455,17 +455,32 @@ season it copies.
   records: `conv_corn_tomato` 2013 corn (dated from 2007, at the paper's rates as above), four
   wheat seasons (below) and the six corn and tomato compost years in Compost, which copy the
   record: 16 events.
-- Wheat with no N record takes the paper's rates in the same way (Aritra, 2026-10-31): Tautges
-  et al. 2019 give fertilized wheat "56 kg/ha 15-15-15 starter fertilizer at planting, and an
-  additional 90 and 112 kg/ha urea in March" in the rainfed and irrigated systems, which make
-  Table 1's 146 (RWF+N) and 168 (IWF+N) kg N/ha, so these are N rates. The four seasons, the 1997
-  to 1998 wheat in `conv_wheat_tomato` `wheat-tomato` and `irr_wheat_fallow` `wheat-fallow` and
-  the 1998 to 1999 `irr_wheat_fallow` and `rf_wheat_fallow` `fallow-wheat` wheat, take the dates
-  of the nearest season of the treatment with a complete record (one application on or before
-  planting, the starter, and the rest after it, the urea): 168 kg N/ha each in the irrigated
-  systems (`conv_wheat_tomato`, which the paper does not describe, takes the irrigated rate) and
-  146 in `rf_wheat_fallow`, 8 events, `source` `10.1111/gcb.14762`. The logged complete seasons
-  carry about 168 (irrigated) and 112 (rainfed) kg N/ha.
+- Irrigated wheat with no N record takes the paper's rates in the same way (Aritra, 2026-10-31):
+  Tautges et al. 2019 give fertilized wheat "56 kg/ha 15-15-15 starter fertilizer at planting, and
+  an additional 90 and 112 kg/ha urea in March" in the rainfed and irrigated systems, which make
+  Table 1's 146 (RWF+N) and 168 (IWF+N) kg N/ha, so these are N rates. The three irrigated
+  seasons, the 1997 to 1998 wheat in `conv_wheat_tomato` `wheat-tomato` and `irr_wheat_fallow`
+  `wheat-fallow` and the 1998 to 1999 `irr_wheat_fallow` `fallow-wheat` wheat, take the dates of
+  the nearest season of the treatment with a complete record (one application on or before
+  planting, the starter, and the rest after it, the urea) and 168 kg N/ha each
+  (`conv_wheat_tomato`, which the paper does not describe, takes the irrigated rate): 6 events,
+  `source` `10.1111/gcb.14762`. The log's complete irrigated seasons carry the same total, 168.17
+  to 169.8 kg N/ha, split the other way round (about 112 before planting and 56 in spring;
+  `century_package_issues.md`, item 61).
+- The one rainfed season, the 1998 to 1999 `rf_wheat_fallow` `fallow-wheat` wheat (plots 2-9, 5-8
+  and 7-2), copies its treatment's nearest complete season as logged instead: Can_27 at 84.13 kg
+  N/ha on 1998-10-01 and urea at 27.84 on 1999-03-13, 111.97 kg N/ha, from the season planted
+  1999-11-13, 2 events. The paper's rainfed rate, 56 plus 90 = 146 kg N/ha, is not what the log
+  records in any year: all 17 complete `rf_wheat_fallow` seasons, 1993-94 to 2012-13, carry 111.68
+  to 113.33 kg N/ha (ammonium nitrate or Can_27 at 83.84 to 85.33 before planting, urea at 27.84 to
+  28.36 in spring), the two partial ones (1997-98 and 2001-02) log the same spring urea, and no
+  wheat row in the log is 15-15-15 (items 59 and 61). The log records each application, product
+  and rate, plot by plot; Table 1 and the Methods summarize the system. Both are step 1 of the fill
+  order, and where they disagree in every season the records can be checked against, the records
+  are taken. The season was fertilized: its 1999 machine harvested dry grain yield, 6,045 kg/ha, is well
+  above the unfertilized Rainfed Wheat Control's 4,565 (`wheat_harvests_all.csv`). The urea logged
+  on 3/4/1999 at 29.54 kg N/ha on the system's fallow plots stays where it is logged, in the
+  `wheat-fallow` file (item 7; see "Synthetic N and unplaced records").
 - A season with some records but not all gets the missing application (David on
   calibration#10, 2026-11-02). Each corn, tomato and wheat season of a treatment with an
   `n_fill_group` in `russell_treatments.csv` has a preplant application, up to 7 days after its
@@ -557,7 +572,8 @@ season it copies.
 - Left as recorded: the spring 1999 urea that the log puts on the fallow plots of
   `irr_wheat_fallow` (56.04 kg N/ha) and `rf_wheat_fallow` (29.54), between their 1998 wheat
   harvest and their fall 1999 seeding, so it falls on bare soil, while the plots that grew wheat
-  that spring have no record and take the paper's rates (`century_package_issues.md`, item 7).
+  that spring have no record and are filled as fertilization gaps, the irrigated at the paper's
+  rates and the rainfed like its treatment's logged seasons (`century_package_issues.md`, item 7).
 - Also left as recorded: Can_27 at 111.97 kg N/ha, labelled Wheat, on the `conv_corn_tomato`
   `tomato-corn` plots on 11/12/2012, after their 2012 tomato harvest and 133 days before their
   2013 corn, on plots that grew no wheat. The Conventional Wheat/Tomato plots seeded to wheat that
