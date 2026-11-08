@@ -75,3 +75,22 @@ test_that("a wheat-fallow fallow gets the two straw passes and four fallow diski
       }
     }
 })
+
+test_that("the wheat and cover crop systems get no tillage in the summer fallow after the cover crop", {
+  # Tautges et al. 2019 fallow the wheat "with the exception of RWF+WCC", whose cover crop is
+  # terminated in March or April and whose soil then "remained fallow until planting of wheat";
+  # the package logs the fallow herbicide on the wheat-fallow systems only.
+  for (tid in c("rf_wheat_legume", "irr_wheat_legume"))
+    for (ph in c("wheat-cc", "cc-wheat")) {
+      ev <- russell_events(tid, ph)
+      summer <- tillage_between(ev, "Cover Crop", "Wheat")
+      expect_gt(length(summer), 0L)
+      expect_equal(unique(lengths(summer)), 0L, info = paste(tid, ph))
+      # after the wheat harvest only the straw disking, before the cover crop is sown
+      expect_equal(unique(lengths(tillage_between(ev, "Wheat", "Cover Crop"))), 1L, info = paste(tid, ph))
+      # the cover crop's termination diskings are one event on its end date
+      ends <- dates(of_type(ev, "harvest", "Cover Crop"))
+      til <- dates(of_type(ev, "tillage"))
+      expect_true(all(vapply(ends, function(d) sum(til == d) == 1L, TRUE)), info = paste(tid, ph))
+    }
+})

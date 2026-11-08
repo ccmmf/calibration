@@ -686,9 +686,21 @@ the `alf_corn_tomato` history:
 - Left out: the in-season cultivations Tautges et al. 2019 describe that the package does not
   log (one per crop phase in the conventional systems, three to four in ORG), which have no
   date, so ORG has no in-season cultivation and conventional corn none; and alfalfa, which the
-  paper does not cover; and diskings in the summer fallow after the cover crop in
-  `rf_wheat_legume`, which the paper treats apart ("with the exception of RWF+WCC") and gives only
-  the two to three termination diskings, and in `irr_wheat_legume`, which it does not describe.
+  paper does not cover.
+- No fallow diskings in the wheat and cover crop systems, `rf_wheat_legume` (RWF+WCC) and
+  `irr_wheat_legume`: their files have the straw disking after the wheat harvest and the cover
+  crop's termination pass, and no tillage from the cover crop's end to the next wheat planting.
+  Tautges et al. 2019 (section 2.3, p. 3756) fallow the wheat "from August to the following
+  November with the exception of RWF+WCC", and the fallow's "one herbicide application and four
+  disking operations" begin "after wheat harvest". For RWF+WCC they describe instead a cover crop
+  "planted in November following wheat harvest", "terminated with two to three diskings, as
+  necessary" in March or April, after which "Soils remained fallow until planting of wheat in
+  November", with no pass named for that summer fallow. The package agrees: the fallow herbicide,
+  Round-up logged against a Fallow crop in `operations_pesticides.csv` (116 plot rows on 14 dates,
+  1995 to 2004, 81 of them in January to March, when the RWF+WCC plots carry the cover crop), is
+  on the four wheat-fallow systems only, and the package has no pesticide row at all for Rainfed
+  or Irrigated Wheat/Legume. `irr_wheat_legume`, which the paper does not describe, follows
+  RWF+WCC.
 
 ## Known limitations
 
@@ -720,9 +732,10 @@ the `alf_corn_tomato` history:
   CONV+WCC and 1.16 in ORG, against 1.09 in the wheat-fallow systems and 1.03 to 1.04 in the wheat
   and cover crop systems. The fallow diskings' dates are spaced, not recorded. David counts the
   paper's passes as six a fallow, the two straw passes and the four diskings, as built (above);
-  whether the wheat and cover crop systems' summer fallow was disked is open. One event per
-  operation is kept (Aritra, 2026-10-31): the paper says each operation happened, and the
-  product, detecting tillage from imagery, likely misses some.
+  the wheat and cover crop systems' summer fallow gets none, as the paper and the package's
+  fallow herbicide records have it (above). One event per operation is kept (Aritra,
+  2026-10-31): the paper says each operation happened, and the product, detecting tillage from
+  imagery, likely misses some.
 - **Compost basis.** Compost C and N multiply the reported wet tonnage by the %C and %N of
   dry combustion analyses ("Total C and N of incorporated aboveground biomass and composted
   manure were determined each year, using dry combustion analysis", Tautges et al. 2019), the
