@@ -661,11 +661,12 @@ the `alf_corn_tomato` history:
   Neither has four passes to time, so the even spacing is an assumption: each fallow, 456 to 502
   days from the straw disking to the next wheat planting, gets four at equal intervals (84
   fallows, plus the four the run ends in, which get one each in 2014). The four come on top of
-  the two straw diskings, reading the straw incorporation and the fallow weed control as
-  separate operations; if the paper's four include the straw passes, half of these 340 events
-  go (open for David). The `fallow-wheat`
-  phases' first fallow follows the 1993 sudangrass hay cut rather than a wheat harvest and gets
-  them too.
+  the two straw diskings: David reads the paper as six passes a fallow, "two straw incorporation
+  passes + four fallow disking" (calibration#10, 2026-11-02), which is how the files were built.
+  The two straw passes are one event (below), so each closed fallow has five tillage events from
+  the wheat harvest to the next wheat planting: the straw disking by 31 July, then the four
+  diskings. The `fallow-wheat` phases' first fallow follows the 1993 sudangrass hay cut rather
+  than a wheat harvest and gets the four too.
 - A logged pass is dated by the day its plots share, with dates within 3 days taken as one
   pass. The phases have 42 `Mulch_Beds`, 36 `Incorporate` and 2 `Perfecta` passes, all in the
   files: one `Mulch_Beds` pass, `transitional` 2006-05-11, falls on a compost incorporation and
@@ -717,11 +718,11 @@ the `alf_corn_tomato` history:
   each event's intensity to a multiplier on heterotrophic respiration that decays with a 30 day
   time constant, so over 1994 to 2013 that multiplier averages 1.12 to 1.13 in CONV, 1.14 in
   CONV+WCC and 1.16 in ORG, against 1.09 in the wheat-fallow systems and 1.03 to 1.04 in the wheat
-  and cover crop systems. The fallow diskings' dates are spaced, not recorded; whether the
-  paper's four include the two straw passes, and whether the wheat and cover crop systems'
-  summer fallow was disked, are open. One event per operation is
-  kept (Aritra, 2026-10-31): the paper says each operation happened, and the product, detecting
-  tillage from imagery, likely misses some.
+  and cover crop systems. The fallow diskings' dates are spaced, not recorded. David counts the
+  paper's passes as six a fallow, the two straw passes and the four diskings, as built (above);
+  whether the wheat and cover crop systems' summer fallow was disked is open. One event per
+  operation is kept (Aritra, 2026-10-31): the paper says each operation happened, and the
+  product, detecting tillage from imagery, likely misses some.
 - **Compost basis.** Compost C and N multiply the reported wet tonnage by the %C and %N of
   dry combustion analyses ("Total C and N of incorporated aboveground biomass and composted
   manure were determined each year, using dry combustion analysis", Tautges et al. 2019), the

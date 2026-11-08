@@ -46,3 +46,32 @@ test_that("irrigated wheat with no N record keeps the paper's 56 kg N/ha starter
   gap <- wheat_season_fert(russell_events("irr_wheat_fallow", "fallow-wheat"), as.Date("1998-11-02"))
   expect_equal(sort(n_kg_ha(gap)), c(56, 112), tolerance = 1e-6)
 })
+
+# For each harvest of `from` whose next planting is of `to`, the tillage events between them
+tillage_between <- function(ev, from, to) {
+  pl <- of_type(ev, "planting"); pd <- dates(pl)
+  til <- dates(of_type(ev, "tillage"))
+  out <- list()
+  for (h in of_type(ev, "harvest", from)) {
+    hd <- as.Date(h$date); nxt <- which(pd > hd)
+    if (!length(nxt)) next
+    k <- nxt[which.min(pd[nxt])]
+    if (identical(pl[[k]]$crop_display, to)) out[[h$date]] <- til[til > hd & til < pd[k]]
+  }
+  out
+}
+
+test_that("a wheat-fallow fallow gets the two straw passes and four fallow diskings, six in all", {
+  # David on calibration#10 (2026-11-02): "two straw incorporation passes + four fallow disking".
+  # The straw passes are one event by 31 July, the four diskings four events after it.
+  for (tid in c("irr_wheat_control", "irr_wheat_fallow", "rf_wheat_control", "rf_wheat_fallow"))
+    for (ph in c("wheat-fallow", "fallow-wheat")) {
+      fallows <- tillage_between(russell_events(tid, ph), "Wheat", "Wheat")
+      expect_gt(length(fallows), 0L)
+      for (h in names(fallows)) {
+        jul31 <- as.Date(sprintf("%s-07-31", substr(h, 1, 4)))
+        expect_equal(sum(fallows[[h]] <= jul31), 1L, info = paste(tid, ph, h))
+        expect_equal(sum(fallows[[h]] > jul31), 4L, info = paste(tid, ph, h))
+      }
+    }
+})
