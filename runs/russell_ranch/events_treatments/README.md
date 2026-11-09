@@ -745,9 +745,9 @@ the `alf_corn_tomato` history:
   and cover crop systems. The fallow diskings' dates are spaced, not recorded. David counts the
   paper's passes as six a fallow, the two straw passes and the four diskings, as built (above);
   the wheat and cover crop systems' summer fallow gets none: the paper names no pass there, and
-  the package logs the fallow herbicide on the wheat-fallow systems only (above). One event per operation is kept (Aritra,
-  2026-10-31): the paper says each operation happened, and the product, detecting tillage from
-  imagery, likely misses some.
+  the package logs the fallow herbicide on the wheat-fallow systems only (above). One event per
+  operation is kept (Aritra, 2026-10-31): the paper says each operation happened, and the
+  product, detecting tillage from imagery, likely misses some.
 - **Compost basis.** Compost C and N multiply the reported wet tonnage by the %C and %N of
   dry combustion analyses ("Total C and N of incorporated aboveground biomass and composted
   manure were determined each year, using dry combustion analysis", Tautges et al. 2019), the
