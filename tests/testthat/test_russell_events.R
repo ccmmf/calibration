@@ -22,10 +22,8 @@ wheat_season_fert <- function(ev, planted) {
   fert[dates(fert) >= planted - 90 & dates(fert) <= harvested]
 }
 
-test_that("rainfed wheat with no N record carries its treatment's logged rate, not the paper's 146", {
+test_that("rainfed wheat carries the logged rate, not the paper's 146", {
   # Rainfed Wheat/Fallow (RWF+N): the log has every season at about 112 kg N/ha, the paper 146.
-  # The 1998 to 1999 wheat (plots 2-9, 5-8, 7-2) has no record and copies the nearest complete
-  # season as logged.
   totals <- unlist(lapply(c("wheat-fallow", "fallow-wheat"), function(ph) {
     ev <- russell_events("rf_wheat_fallow", ph)
     pl <- dates(of_type(ev, "planting", "Wheat"))
@@ -33,12 +31,27 @@ test_that("rainfed wheat with no N record carries its treatment's logged rate, n
     vapply(pl, function(p) sum(n_kg_ha(wheat_season_fert(ev, p))), 0)
   }))
   expect_length(totals, 20L)
-  expect_true(all(totals > 111.5 & totals < 113.5), info = paste(round(totals, 2), collapse = " "))
+  expect_true(all(totals > 111.5 & totals < 114), info = paste(round(totals, 2), collapse = " "))
+})
 
-  gap <- wheat_season_fert(russell_events("rf_wheat_fallow", "fallow-wheat"), as.Date("1998-11-02"))
-  expect_equal(sum(n_kg_ha(gap)), 84.13 + 27.84, tolerance = 1e-6)
-  expect_setequal(vapply(gap, `[[`, "", "material"), c("Can_27", "Urea"))
-  expect_true(all(vapply(gap, function(e) identical(e$provenance_class, "imputed"), TRUE)))
+test_that("the spring 1999 rainfed urea is on the wheat plots, not the fallow ones", {
+  # The log files the 3/4/1999 urea under the fallow plots 1-9, 5-9 and 8-2; the wheat that spring
+  # was on 2-9, 5-8 and 7-2 (rwf_wheat_urea_plot_1999). Their season keeps that logged urea and
+  # copies only its missing preplant.
+  wheat <- wheat_season_fert(russell_events("rf_wheat_fallow", "fallow-wheat"), as.Date("1998-11-02"))
+  urea <- Filter(function(e) identical(e$material, "Urea"), wheat)
+  expect_length(urea, 1L)
+  expect_equal(urea[[1]]$date, "1999-03-04")
+  expect_equal(n_kg_ha(urea), 29.54, tolerance = 1e-6)
+  expect_identical(urea[[1]]$provenance_class, "published")
+  pre <- Filter(function(e) !identical(e$material, "Urea"), wheat)
+  expect_length(pre, 1L)
+  expect_identical(pre[[1]]$provenance_class, "imputed")
+  expect_equal(sum(n_kg_ha(wheat)), 84.13 + 29.54, tolerance = 1e-6)
+
+  fallow <- of_type(russell_events("rf_wheat_fallow", "wheat-fallow"), "fertilization")
+  on_bare_soil <- dates(fallow) > as.Date("1998-08-01") & dates(fallow) < as.Date("1999-09-01")
+  expect_false(any(on_bare_soil))
 })
 
 test_that("irrigated wheat with no N record keeps the paper's 56 kg N/ha starter and 112 urea", {
