@@ -1,0 +1,75 @@
+# Adversarial runs of the target generator on scratch copies of its inputs
+
+## adv_norow
+# russell_source_corrections.csv without the rwf_wheat_urea_plot_1999 row
+19d18
+< rwf_wheat_urea_plot_1999,operations_fertilizers.csv,move_plot,Rainfed Wheat/Fallow,1-9;5-9;8-2,3/4/1999,Wheat,Urea,29.54,2-9;5-8;7-2,"labelled Wheat, but 1-9, 5-9 and 8-2 harvest
+$ Rscript tools/event_prep/russell_split_phases.R <scratch>/adv_norow/generator_stacked <scratch>/RR_2014_datasets <scratch>/adv_norow/out
+exit 0; files written: 24
+
+## adv_amount
+# the row names 29.5 kg N/ha instead of the logged 29.54
+19c19
+< rwf_wheat_urea_plot_1999,operations_fertilizers.csv,move_plot,Rainfed Wheat/Fallow,1-9;5-9;8-2,3/4/1999,Wheat,Urea,29.54,2-9;5-8;7-2,"labelled Wheat, but 1-9, 5-9 and 8-2 harvest
+---
+> rwf_wheat_urea_plot_1999,operations_fertilizers.csv,move_plot,Rainfed Wheat/Fallow,1-9;5-9;8-2,3/4/1999,Wheat,Urea,29.5,2-9;5-8;7-2,"labelled Wheat, but 1-9, 5-9 and 8-2 harveste
+$ Rscript tools/event_prep/russell_split_phases.R <scratch>/adv_amount/generator_stacked <scratch>/RR_2014_datasets <scratch>/adv_amount/out
+exit 1; files written: 0
+Error: setequal(frt$plot[same], from) is not TRUE
+Execution halted
+
+## adv_plot
+# the row names from-plots 2-9;5-9;8-2 (2-9 has no 3/4/1999 rainfed urea)
+19c19
+< rwf_wheat_urea_plot_1999,operations_fertilizers.csv,move_plot,Rainfed Wheat/Fallow,1-9;5-9;8-2,3/4/1999,Wheat,Urea,29.54,2-9;5-8;7-2,"labelled Wheat, but 1-9, 5-9 and 8-2 harvest
+---
+> rwf_wheat_urea_plot_1999,operations_fertilizers.csv,move_plot,Rainfed Wheat/Fallow,2-9;5-9;8-2,3/4/1999,Wheat,Urea,29.54,2-9;5-8;7-2,"labelled Wheat, but 1-9, 5-9 and 8-2 harvest
+$ Rscript tools/event_prep/russell_split_phases.R <scratch>/adv_plot/generator_stacked <scratch>/RR_2014_datasets <scratch>/adv_plot/out
+exit 1; files written: 0
+Error: setequal(frt$plot[same], from) is not TRUE
+Execution halted
+
+## adv_norow outputs vs the previous build (1ac7c8f): the move row is the only cause of the change
+IDENTICAL phase_year_summary.csv
+IDENTICAL russell_ranch_tautges_2019_alf_corn_tomato__corn-tomato-alfalfa-alfalfa-alfalfa-tomato.json
+IDENTICAL russell_ranch_tautges_2019_alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.json
+IDENTICAL russell_ranch_tautges_2019_conv_corn_tomato__corn-tomato.json
+IDENTICAL russell_ranch_tautges_2019_conv_corn_tomato__tomato-corn.json
+IDENTICAL russell_ranch_tautges_2019_conv_wheat_tomato__tomato-wheat.json
+IDENTICAL russell_ranch_tautges_2019_conv_wheat_tomato__wheat-tomato.json
+IDENTICAL russell_ranch_tautges_2019_irr_wheat_control__fallow-wheat.json
+IDENTICAL russell_ranch_tautges_2019_irr_wheat_control__wheat-fallow.json
+IDENTICAL russell_ranch_tautges_2019_irr_wheat_fallow__fallow-wheat.json
+IDENTICAL russell_ranch_tautges_2019_irr_wheat_fallow__wheat-fallow.json
+IDENTICAL russell_ranch_tautges_2019_irr_wheat_legume__cc-wheat.json
+IDENTICAL russell_ranch_tautges_2019_irr_wheat_legume__wheat-cc.json
+IDENTICAL russell_ranch_tautges_2019_leg_corn_tomato__corn-cc-tomato-cc.json
+IDENTICAL russell_ranch_tautges_2019_leg_corn_tomato__tomato-cc-corn-cc.json
+IDENTICAL russell_ranch_tautges_2019_org_corn_tomato__corn-cc-tomato-cc.json
+IDENTICAL russell_ranch_tautges_2019_org_corn_tomato__tomato-cc-corn-cc.json
+IDENTICAL russell_ranch_tautges_2019_rf_wheat_control__fallow-wheat.json
+IDENTICAL russell_ranch_tautges_2019_rf_wheat_control__wheat-fallow.json
+IDENTICAL russell_ranch_tautges_2019_rf_wheat_fallow__fallow-wheat.json
+IDENTICAL russell_ranch_tautges_2019_rf_wheat_fallow__wheat-fallow.json
+IDENTICAL russell_ranch_tautges_2019_rf_wheat_legume__cc-wheat.json
+IDENTICAL russell_ranch_tautges_2019_rf_wheat_legume__wheat-cc.json
+IDENTICAL russell_ranch_tautges_2019_transitional__tomato-corn.json
+# adv_norow console: the gap rule fills the 1998-99 rainfed season again, as logged (84.13 + 27.84 = 111.97), not the paper's 146
+rf_wheat_fallow    wheat-fallow                 wheat planted 1997-11-04: preplant copied from rf_wheat_fallow fallow-wheat 1996-11-11 (Ammonium nitrate, 85.33 kg N/ha)
+rf_wheat_fallow    wheat-fallow                 wheat planted 2001-11-10: preplant copied from rf_wheat_fallow fallow-wheat 2000-11-20 (Can_27, 84.13 kg N/ha)
+single fertilization applications filled: 17
+rf_wheat_fallow    fertilization gaps filled: 2 events
+
+## guard: no move row (so the rainfed gap exists) + a scratch package whose 2000-01 rainfed season is edited to the paper's 146 (Can_27 84.13 -> 118.16, + 27.84 urea)
+345,347c345,347
+< 2-9,Rainfed Wheat/Fallow,11/13/2000,Wheat,Can_27,,311.6,84.13,0,0,0
+< 5-8,Rainfed Wheat/Fallow,11/13/2000,Wheat,Can_27,,311.6,84.13,0,0,0
+< 7-2,Rainfed Wheat/Fallow,11/13/2000,Wheat,Can_27,,311.6,84.13,0,0,0
+---
+> 2-9,Rainfed Wheat/Fallow,11/13/2000,Wheat,Can_27,,311.6,118.16,0,0,0
+> 5-8,Rainfed Wheat/Fallow,11/13/2000,Wheat,Can_27,,311.6,118.16,0,0,0
+> 7-2,Rainfed Wheat/Fallow,11/13/2000,Wheat,Can_27,,311.6,118.16,0,0,0
+$ Rscript tools/event_prep/russell_split_phases.R <scratch>/adv_norow/generator_stacked <scratch>/data_guard <scratch>/adv_norow/out_guard
+exit 1; files written: 0
+Error: all(abs(logged - (WHEAT_STARTER_N + WHEAT_UREA_N_RAINFED)) >  .... is not TRUE
+Execution halted

@@ -1,0 +1,140 @@
+# 1998-99 Rainfed Wheat/Fallow season, previous build (1ac7c8f, before rwf_wheat_urea_plot_1999) vs target build (0ff1904)
+# both built with: Rscript tools/event_prep/russell_split_phases.R <stacked> <scratch>/RR_2014_datasets <scratch>/out
+
+========== PREVIOUS build (1ac7c8f, before the move) ==========
+
+-- rf_wheat_fallow fallow-wheat (plots 2-9, 5-8, 7-2): plantings/harvests 1998-06 .. 1999-12
+   1998-11-02 planting   Wheat
+   1999-07-01 harvest    Wheat
+
+-- fallow-wheat: fertilization of the wheat planted 1998-11-02 (1998-08-04 .. harvest 1999-07-01)
+       date crop material n_kg_ha provenance_class                                      source
+ 1998-10-01        Can_27   84.13          imputed 10.1002/ecy.2105:operations_fertilizers.csv
+ 1999-03-13          Urea   27.84          imputed 10.1002/ecy.2105:operations_fertilizers.csv
+                                                                                                                                                             note
+ Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 19 of 20 seasons. Copies, as logged, the 1999-10-12 Can
+ Fertilization gap: the log has no fertilization for this wheat season, which its treatment fertilizes in 19 of 20 seasons. Copies, as logged, the 2000-03-23 Ure
+   season total N: 111.97 kg N/ha
+
+-- rf_wheat_fallow wheat-fallow (plots 1-9, 5-9, 8-2): plantings/harvests 1998 .. 1999
+   1998-07-07 harvest    Wheat
+   1999-11-13 planting   Wheat
+
+-- wheat-fallow: fertilization on bare soil, between the 1998 wheat harvest and the 1999-11-13 seeding (1998-08-01 .. 1999-09-01)
+       date crop material n_kg_ha provenance_class                                      source
+ 1999-03-04          Urea   29.54        published 10.1002/ecy.2105:operations_fertilizers.csv
+                                                                                                                                                             note
+ Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not r
+
+========== TARGET build (0ff1904) ==========
+
+-- rf_wheat_fallow fallow-wheat (plots 2-9, 5-8, 7-2): plantings/harvests 1998-06 .. 1999-12
+   1998-11-02 planting   Wheat
+   1999-07-01 harvest    Wheat
+
+-- fallow-wheat: fertilization of the wheat planted 1998-11-02 (1998-08-04 .. harvest 1999-07-01)
+       date crop material n_kg_ha provenance_class                                      source
+ 1998-10-01        Can_27   84.13          imputed 10.1002/ecy.2105:operations_fertilizers.csv
+ 1999-03-04          Urea   29.54        published 10.1002/ecy.2105:operations_fertilizers.csv
+                                                                                                                                                             note
+ Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 17 of the 20 recorded wheat seasons o
+ Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not r
+   season total N: 113.67 kg N/ha
+
+-- rf_wheat_fallow wheat-fallow (plots 1-9, 5-9, 8-2): plantings/harvests 1998 .. 1999
+   1998-07-07 harvest    Wheat
+   1999-11-13 planting   Wheat
+
+-- wheat-fallow: fertilization on bare soil, between the 1998 wheat harvest and the 1999-11-13 seeding (1998-08-01 .. 1999-09-01)
+   (none)
+
+# target: the two fertilization events of the 1998-11-02 wheat, as written to the committed JSON
+[
+  {
+    "event_type": "fertilization",
+    "date": "1998-10-01",
+    "nh4_n_kg_m2": 0.008413,
+    "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+    "material": "Can_27",
+    "n_plots_treated": 3,
+    "provenance_class": "imputed",
+    "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 17 of the 20 recorded wheat seasons of the rainfed N group have (n_fill_group in russell_treatments.csv). Copies the 1999-10-12 Can_27 application (84.13 kg N/ha) of the wheat season last planted 1999-11-13 in rf_wheat_fallow wheat-fallow, the nearest with both, shifted -376 days to this season's last planting (David on calibration#10, 2026-11-02)."
+  },
+  {
+    "event_type": "fertilization",
+    "date": "1999-03-04",
+    "nh4_n_kg_m2": 0.002954,
+    "source": "10.1002/ecy.2105:operations_fertilizers.csv",
+    "material": "Urea",
+    "n_plots_treated": 3,
+    "provenance_class": "published",
+    "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
+  }
+] 
+
+# target: Irrigated Wheat/Fallow, whose 3/4/1999 urea stays as logged (byte-identical in both builds)
+irr_wheat_fallow fallow-wheat (events 1998-06 .. 1999-12):
+  1998-09-30 fertilization          15-15-15 starter 56.00 kg N/ha imputed
+  1998-11-02 planting      Wheat     
+  1999-03-13 fertilization          urea 112.00 kg N/ha imputed
+  1999-07-01 harvest       Wheat     
+irr_wheat_fallow wheat-fallow (events 1998-06 .. 1999-12):
+  1998-07-07 harvest       Wheat     
+  1999-03-04 fertilization          Urea 56.04 kg N/ha published
+  1999-10-12 fertilization          Can_27 111.97 kg N/ha published
+  1999-11-14 planting      Wheat     
+
+# Raw Century package (operations_fertilizers.csv, plot_system.csv) evidence for rwf_wheat_urea_plot_1999
+
+## operations_fertilizers.csv: Rainfed Wheat/Fallow rows, 1997-10 .. 2000-04
+plot,system_name,date,crop_fertilized,material_applied,fertilizer_brand,total_applied_material_kg/ha,nitrogen_applied_kg/ha,phosphorus_applied_kg/ha,potassium_applied_kg/ha,sulfur_applied_kg/ha
+1-9,Rainfed Wheat/Fallow,2/28/1998,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",60.86,28,0,0,0
+5-9,Rainfed Wheat/Fallow,2/28/1998,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",60.86,28,0,0,0
+8-2,Rainfed Wheat/Fallow,2/28/1998,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",60.86,28,0,0,0
+1-9,Rainfed Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",64.22,29.54,0,0,0
+5-9,Rainfed Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",64.22,29.54,0,0,0
+8-2,Rainfed Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",64.22,29.54,0,0,0
+1-9,Rainfed Wheat/Fallow,10/12/1999,Wheat,Can_27,,311.6,84.13,0,0,0
+5-9,Rainfed Wheat/Fallow,10/12/1999,Wheat,Can_27,,311.6,84.13,0,0,0
+8-2,Rainfed Wheat/Fallow,10/12/1999,Wheat,Can_27,,311.6,84.13,0,0,0
+1-9,Rainfed Wheat/Fallow,3/23/2000,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",60.53,27.84,0,0,0
+5-9,Rainfed Wheat/Fallow,3/23/2000,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",60.53,27.84,0,0,0
+8-2,Rainfed Wheat/Fallow,3/23/2000,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",60.53,27.84,0,0,0
+
+## plot_system.csv: the six Rainfed Wheat/Fallow plots, plantings and harvests 1997 .. 2000
+plot,new_system_name,old_system_name,main_crops,harvest_year_rotation_order_(even-odd),harvest_year,crop_A_planned,crop_A_planted,crop_A_date_planted,crop_A_planned_harvest,crop_A_harvested,crop_A_date_harvested,crop_B_planned,crop_B_planted,crop_B_date_planted,crop_B_planned_harvest,crop_B_harvested,crop_B_date_harvested,Century_Experiment_Core,anomalies
+1-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1997,NA,NA,NA,NA,NA,NA,Wheat,Wheat,1997-11-04,NA,NA,NA,Y,
+2-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1997,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1997-06-17,Y,"Control wheat plots (RWC/IWC) not hand harvested, so only 15 main wheat plots hand harvested (2-5, 2-8, 2-9, 3-7, 4-2, 4-6, 4-8, 5-2, 5-3, 5-8, 6-6, 7-2, 7-5, 8-1, 8-5). “Hand harvest” was actually done by machine baling, counting the number of bales in the plot, weighing a subset of bales and taking the average bale weight, and extrapolating to harvest area of the entire plot. Only dry weights recorded. Machine harvest still occurred. "
+5-8,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1997,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1997-06-17,Y,"Control wheat plots (RWC/IWC) not hand harvested, so only 15 main wheat plots hand harvested (2-5, 2-8, 2-9, 3-7, 4-2, 4-6, 4-8, 5-2, 5-3, 5-8, 6-6, 7-2, 7-5, 8-1, 8-5). “Hand harvest” was actually done by machine baling, counting the number of bales in the plot, weighing a subset of bales and taking the average bale weight, and extrapolating to harvest area of the entire plot. Only dry weights recorded. Machine harvest still occurred. "
+5-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1997,NA,NA,NA,NA,NA,NA,Wheat,Wheat,1997-11-04,NA,NA,NA,Y,
+7-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1997,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1997-06-17,Y,"Control wheat plots (RWC/IWC) not hand harvested, so only 15 main wheat plots harvested (2-5, 2-8, 2-9, 3-7, 4-2, 4-6, 4-8, 5-2, 5-3, 5-8, 6-6, 7-2, 7-5, 8-1, 8-5). “Hand harvest” was actually done by machine baling, counting the number of bales in the plot, weighing a subset of bales and taking the average bale weight, and extrapolating to harvest area of the entire plot. Only dry weights recorded. Wheat machine harvest still occurred. "
+8-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1997,NA,NA,NA,NA,NA,NA,Wheat,Wheat,1997-11-04,NA,NA,NA,Y,
+1-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1998,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1998-07-07,Y,"OD straw weight not calculated. Harvest area changed to 300 sq. ft., it appears, but no notes were made about harvest method. "
+2-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1998,NA,NA,NA,NA,NA,NA,Wheat,Wheat,11/2/1998 - 11/6/1998,NA,NA,NA,Y,
+5-8,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1998,NA,NA,NA,NA,NA,NA,Wheat,Wheat,11/2/1998 - 11/6/1998,NA,NA,NA,Y,
+5-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1998,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1998-07-07,Y,"OD straw weight not calculated. Harvest area changed to 300 sq. ft., it appears, but no notes were made about harvest method. "
+7-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1998,NA,NA,NA,NA,NA,NA,Wheat,Wheat,11/2/1998 - 11/6/1998,NA,NA,NA,Y,
+8-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1998,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1998-07-07,Y,"OD straw weight not calculated. Harvest area changed to 300 sq. ft., it appears, but no notes were made about harvest method. "
+1-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1999,NA,NA,NA,NA,NA,NA,Wheat,Wheat,1999-11-13,NA,NA,NA,Y,
+2-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1999,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1999-07-01,Y,"Harvest area changed to 300 sq. ft. (12’ x 25’), it appears, but no notes were made about harvest method. Only fresh weight recorded for straw. OD weights pulled from entered dataset. "
+5-8,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1999,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1999-07-01,Y,"Harvest area changed to 300 sq. ft. (12’ x 25’), it appears, but no notes were made about harvest method. Only fresh weight recorded for straw. OD weights pulled from entered dataset. "
+5-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1999,NA,NA,NA,NA,NA,NA,Wheat,Wheat,1999-11-13,NA,NA,NA,Y,
+7-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,1999,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,1999-07-01,Y,"Harvest area changed to 300 sq. ft. (12’ x 25’), it appears, but no notes were made about harvest method. Only fresh weight recorded for straw. OD weights pulled from entered dataset. "
+8-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,1999,NA,NA,NA,NA,NA,NA,Wheat,Wheat,1999-11-13,NA,NA,NA,Y,
+1-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,2000,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,2000-06-26,Y,Harvest area changed to 0.914 sq m (36” x 1 m). Only OD straw weight recorded. 
+2-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,2000,NA,NA,NA,NA,NA,NA,Wheat,Wheat,2000-11-20,NA,NA,NA,Y,
+5-8,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,2000,NA,NA,NA,NA,NA,NA,Wheat,Wheat,2000-11-20,NA,NA,NA,Y,
+5-9,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,2000,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,2000-06-26,Y,Harvest area changed to 0.914 sq m (36” x 1 m). Only OD straw weight recorded. 
+7-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,fallow-wheat,2000,NA,NA,NA,NA,NA,NA,Wheat,Wheat,2000-11-20,NA,NA,NA,Y,
+8-2,Rainfed Wheat/Fallow,Rainfed Wheat/Fallow,Wheat,wheat-fallow,2000,NA,NA,NA,NA,NA,NA,Fallow,Fallow,NA,Wheat,Wheat,2000-06-26,Y,Harvest area changed to 0.914 sq m (36” x 1 m). Only OD straw weight recorded. 
+
+## operations_fertilizers.csv: every system's 3/4/1999 rows
+2-5,Conventional Wheat/Tomato,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",121.84,56.04,0,0,0
+5-3,Conventional Wheat/Tomato,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",121.84,56.04,0,0,0
+6-6,Conventional Wheat/Tomato,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",121.84,56.04,0,0,0
+2-6,Irrigated Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",121.84,56.04,0,0,0
+3-4,Irrigated Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",121.84,56.04,0,0,0
+8-4,Irrigated Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",121.84,56.04,0,0,0
+1-9,Rainfed Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",64.22,29.54,0,0,0
+5-9,Rainfed Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",64.22,29.54,0,0,0
+8-2,Rainfed Wheat/Fallow,3/4/1999,Wheat,Urea,"YaraVera, Granular Urea, 46% as N",64.22,29.54,0,0,0

@@ -1,0 +1,59 @@
+# Fresh rebuild of the Russell Ranch phase files at target 0ff1904 (tools/event_prep/russell_split_phases.R)
+# inputs: committed generator_stacked/ + russell_*.csv tables, Century package RR_2014_datasets from ecy2105-sup-0002-datas1.zip (sha256 d10f0f527a519ad4...), extracted in a disposable /tmp dir
+$ Rscript tools/event_prep/russell_split_phases.R runs/russell_ranch/events_treatments/generator_stacked <scratch>/RR_2014_datasets <scratch>/out_target
+exit 0; stderr empty; 24 files written
+
+# byte-for-byte comparison with the committed outputs
+IDENTICAL  3eb3910a18bda189  phase_year_summary.csv
+IDENTICAL  30f341f921d3d39a  russell_ranch_tautges_2019_alf_corn_tomato__corn-tomato-alfalfa-alfalfa-alfalfa-tomato.json
+IDENTICAL  07e194bcea5b8151  russell_ranch_tautges_2019_alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.json
+IDENTICAL  1f9e6b4140c6d4d9  russell_ranch_tautges_2019_conv_corn_tomato__corn-tomato.json
+IDENTICAL  d96ef56b3c8ed772  russell_ranch_tautges_2019_conv_corn_tomato__tomato-corn.json
+IDENTICAL  f6c808d9a3e21bd4  russell_ranch_tautges_2019_conv_wheat_tomato__tomato-wheat.json
+IDENTICAL  5684a66a8999d09a  russell_ranch_tautges_2019_conv_wheat_tomato__wheat-tomato.json
+IDENTICAL  1abf23acc3a3fb73  russell_ranch_tautges_2019_irr_wheat_control__fallow-wheat.json
+IDENTICAL  642f57a998add7a7  russell_ranch_tautges_2019_irr_wheat_control__wheat-fallow.json
+IDENTICAL  a961685f3ea778a2  russell_ranch_tautges_2019_irr_wheat_fallow__fallow-wheat.json
+IDENTICAL  3084ae139c88ad60  russell_ranch_tautges_2019_irr_wheat_fallow__wheat-fallow.json
+IDENTICAL  9999623561f7f2a5  russell_ranch_tautges_2019_irr_wheat_legume__cc-wheat.json
+IDENTICAL  807843c316272246  russell_ranch_tautges_2019_irr_wheat_legume__wheat-cc.json
+IDENTICAL  a9dff4e932bd09f0  russell_ranch_tautges_2019_leg_corn_tomato__corn-cc-tomato-cc.json
+IDENTICAL  a6bd6f242392b6cc  russell_ranch_tautges_2019_leg_corn_tomato__tomato-cc-corn-cc.json
+IDENTICAL  fe3e04df7db8268f  russell_ranch_tautges_2019_org_corn_tomato__corn-cc-tomato-cc.json
+IDENTICAL  8bbd6628e56af318  russell_ranch_tautges_2019_org_corn_tomato__tomato-cc-corn-cc.json
+IDENTICAL  c4d48a9505cc1ca5  russell_ranch_tautges_2019_rf_wheat_control__fallow-wheat.json
+IDENTICAL  7c345d4561f05e51  russell_ranch_tautges_2019_rf_wheat_control__wheat-fallow.json
+IDENTICAL  295e6adc512bef92  russell_ranch_tautges_2019_rf_wheat_fallow__fallow-wheat.json
+IDENTICAL  c7f49f71147fcfa9  russell_ranch_tautges_2019_rf_wheat_fallow__wheat-fallow.json
+IDENTICAL  69df499861256bfc  russell_ranch_tautges_2019_rf_wheat_legume__cc-wheat.json
+IDENTICAL  a0d9bc92dd3eff93  russell_ranch_tautges_2019_rf_wheat_legume__wheat-cc.json
+IDENTICAL  7f33d60707fbbf7a  russell_ranch_tautges_2019_transitional__tomato-corn.json
+
+identical: 24, differing: 0
+
+# rf_wheat_fallow lines of the generator console output
+rf_wheat_fallow    split-day plantings/harvests merged away: 3
+rf_wheat_fallow    filled plantings 5, alfalfa cuttings 0, harvests 5; cover crop ends 0
+irr_wheat_legume   CC-wheat                                     Cover Crop 2004-04-08 imputed: 226 days before the next cash crop planting (2004-11-20), the median gap between a recorded cover crop end and the next cash crop planting (Irrigated Wheat/Legume, n = 13).
+leg_corn_tomato    corn/CC-tomato/CC                            Cover Crop 2004-03-21 imputed: 42 days before the next cash crop planting (2004-05-02), the median gap between a recorded cover crop end and the next cash crop planting (Legume/Corn/Tomato, n = 25).
+leg_corn_tomato    tomato/CC-corn/CC                            Cover Crop 2004-03-24 imputed: 42 days before the next cash crop planting (2004-05-05), the median gap between a recorded cover crop end and the next cash crop planting (Legume/Corn/Tomato, n = 25).
+org_corn_tomato    corn/CC-tomato/CC                            Cover Crop 2004-03-26 imputed: 37 days before the next cash crop planting (2004-05-02), the median gap between a recorded cover crop end and the next cash crop planting (Organic Corn/Tomato, n = 37).
+org_corn_tomato    tomato/CC-corn/CC                            Cover Crop 2004-03-29 imputed: 37 days before the next cash crop planting (2004-05-05), the median gap between a recorded cover crop end and the next cash crop planting (Organic Corn/Tomato, n = 37).
+rf_wheat_legume    CC-wheat                                     Cover Crop 2004-04-09 imputed: 226 days before the next cash crop planting (2004-11-21), the median gap between a recorded cover crop end and the next cash crop planting (Rainfed Wheat/Legume, n = 20).
+transitional       tomato-corn                                  Cover Crop 2000-03-26 imputed: 40 days before the next cash crop planting (2000-05-05), the median gap between a recorded cover crop end and the next cash crop planting (Transitional, n = 12).
+transitional       tomato-corn                                  Cover Crop 2004-03-23 imputed: 40 days before the next cash crop planting (2004-05-02), the median gap between a recorded cover crop end and the next cash crop planting (Transitional, n = 12).
+rf_wheat_fallow    fallow-wheat                 wheat planted 1998-11-02: preplant copied from rf_wheat_fallow wheat-fallow 1999-11-13 (Can_27, 84.13 kg N/ha)
+rf_wheat_fallow    wheat-fallow                 wheat planted 1997-11-04: preplant copied from rf_wheat_fallow fallow-wheat 1996-11-11 (Ammonium nitrate, 85.33 kg N/ha)
+rf_wheat_fallow    wheat-fallow                 wheat planted 2001-11-10: preplant copied from rf_wheat_fallow fallow-wheat 2000-11-20 (Can_27, 84.13 kg N/ha)
+single fertilization applications filled: 18
+rf_wheat_fallow    2014 fertilization copied from earlier seasons: 2 events
+conv_corn_tomato   fertilization gaps filled: 2 events
+conv_wheat_tomato  fertilization gaps filled: 2 events
+irr_wheat_fallow   fertilization gaps filled: 4 events
+leg_corn_tomato    fertilization gaps filled: 35 events
+org_corn_tomato    fertilization gaps filled: 6 events
+rf_wheat_fallow    generator irrigation dropped: 18 events
+rf_wheat_fallow    corn, tomato and sudangrass irrigation (paper inches, monitoring for sudangrass): 2 seasons, 6 events
+rf_wheat_fallow    tillage events: 106
+rf_wheat_fallow    fallow-wheat                                 101 events -> russell_ranch_tautges_2019_rf_wheat_fallow__fallow-wheat.json
+rf_wheat_fallow    wheat-fallow                                 101 events -> russell_ranch_tautges_2019_rf_wheat_fallow__wheat-fallow.json

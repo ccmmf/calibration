@@ -1,0 +1,73 @@
+# Regression check: the target's tests/testthat/test_russell_events.R run against each build's committed outputs
+
+## target 0ff1904 (worktree), with test_fill_order.R
+$ Rscript -e "devtools::load_all(); testthat::test_file(\"tests/testthat/test_russell_events.R\"); testthat::test_file(\"tests/testthat/test_fill_order.R\")"
+russell_events: ...................................................................................................................................................................................................
+
+══ DONE ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+fill_order: ....................................................
+
+══ DONE ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+                  file                                                                                      test  nb failed skipped error
+ test_russell_events.R                                rainfed wheat carries the logged rate, not the paper's 146   2      0   FALSE FALSE
+ test_russell_events.R                   the spring 1999 rainfed urea is on the wheat plots, not the fallow ones   8      0   FALSE FALSE
+ test_russell_events.R        irrigated wheat with no N record keeps the paper's 56 kg N/ha starter and 112 urea   1      0   FALSE FALSE
+ test_russell_events.R      a wheat-fallow fallow gets the two straw passes and four fallow diskings, six in all 168      0   FALSE FALSE
+ test_russell_events.R the wheat and cover crop systems get no tillage in the summer fallow after the cover crop  16      0   FALSE FALSE
+     test_fill_order.R                   first_available takes the first candidate that has a value and names it   5      0   FALSE FALSE
+     test_fill_order.R           first_available falls back to the broader pool when the narrow one is too small   3      0   FALSE FALSE
+     test_fill_order.R                                        first_available returns only the values it counted   6      0   FALSE FALSE
+     test_fill_order.R                          first_available counts events in a list and rows in a data frame   3      0   FALSE FALSE
+     test_fill_order.R                                               first_available needs every candidate named   2      0   FALSE FALSE
+     test_fill_order.R                          set_provenance tags an event and keeps its fields where they are   6      0   FALSE FALSE
+     test_fill_order.R                                  set_provenance rejects a class the generators do not use   3      0   FALSE FALSE
+     test_fill_order.R                           a filled event must say where it came from and what it rests on   8      0   FALSE FALSE
+     test_fill_order.R                       a generator finds fill_order.R next to it when its path has a space   2      0   FALSE FALSE
+     test_fill_order.R                             harvest_fractions writes all four fractions in SIPNET's order   2      0   FALSE FALSE
+     test_fill_order.R                                                         harvest_fractions has no defaults   2      0   FALSE FALSE
+     test_fill_order.R                       harvest_fractions rejects shares outside 0 to 1 or adding up past 1   4      0   FALSE FALSE
+     test_fill_order.R                             check_harvest_fractions stops on a harvest missing a fraction   3      0   FALSE FALSE
+     test_fill_order.R       a perennial cutting reaches SIPNET as written, not with its transfer as 1 - removed   3      0   FALSE FALSE
+
+## previous 1ac7c8f (git archive snapshot, its own committed outputs, target's test file copied in)
+russell_events: ...123..45.........................................................................................................................................................................................
+
+══ Failed ════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+── 1. Failure ('test_russell_events.R:44:3'): the spring 1999 rainfed urea is on the wheat plots, not the fallow ones ────────────────────────────────
+urea[[1]]$date (`actual`) not equal to "1999-03-04" (`expected`).
+
+`actual`:   "1999-03-13"
+`expected`: "1999-03-04"
+
+── 2. Failure ('test_russell_events.R:45:3'): the spring 1999 rainfed urea is on the wheat plots, not the fallow ones ────────────────────────────────
+n_kg_ha(urea) (`actual`) not equal to 29.54 (`expected`).
+
+  `actual`: 27.8
+`expected`: 29.5
+
+── 3. Failure ('test_russell_events.R:46:3'): the spring 1999 rainfed urea is on the wheat plots, not the fallow ones ────────────────────────────────
+urea[[1]]$provenance_class (`actual`) not identical to "published" (`expected`).
+
+`actual`:   "imputed"  
+`expected`: "published"
+
+── 4. Failure ('test_russell_events.R:50:3'): the spring 1999 rainfed urea is on the wheat plots, not the fallow ones ────────────────────────────────
+sum(n_kg_ha(wheat)) (`actual`) not equal to 84.13 + 29.54 (`expected`).
+
+  `actual`: 112.0
+`expected`: 113.7
+
+── 5. Failure ('test_russell_events.R:54:3'): the spring 1999 rainfed urea is on the wheat plots, not the fallow ones ────────────────────────────────
+any(on_bare_soil) is not FALSE
+
+`actual`:   TRUE 
+`expected`: FALSE
+
+══ DONE ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+I believe in you!
+                                                                                      test  nb failed
+                                rainfed wheat carries the logged rate, not the paper's 146   2      0
+                   the spring 1999 rainfed urea is on the wheat plots, not the fallow ones   8      5
+        irrigated wheat with no N record keeps the paper's 56 kg N/ha starter and 112 urea   1      0
+      a wheat-fallow fallow gets the two straw passes and four fallow diskings, six in all 168      0
+ the wheat and cover crop systems get no tillage in the summer fallow after the cover crop  16      0
