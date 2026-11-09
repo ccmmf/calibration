@@ -470,20 +470,21 @@ season it copies.
 - Rainfed wheat follows the log, not the paper's rainfed rate (Aritra, 2026-11-10). The paper's 56
   plus 90 = 146 kg N/ha is not what the log records in any year: all 17 complete `rf_wheat_fallow`
   seasons, 1993-94 to 2012-13, carry 111.68 to 113.33 kg N/ha (ammonium nitrate or Can_27 at 83.84
-  to 85.33 before planting, urea at 27.84 to 28.36 in spring), the two partial ones (1997-98 and
-  2001-02) log the same spring urea, and no wheat row in the log is 15-15-15 (items 59 and 61). The
-  log records each application, product and rate, plot by plot; Table 1 and the Methods summarize
-  the system. Both are step 1 of the fill order, and for the rainfed season total, which disagrees
-  in every season the records can be checked against, the records are taken. A rainfed wheat
-  season with no N record would copy its treatment's nearest complete season as logged; none is
-  left once the spring 1999 urea is moved to the wheat plots (see "Synthetic N and unplaced
-  records"). The 1998 to 1999 `fallow-wheat` wheat (plots 2-9, 5-8 and 7-2) then has that logged
-  urea, 29.54 kg N/ha on 1999-03-04, and its missing preplant as a single application (below):
-  Can_27 at 84.13 on 1998-10-01, from the season planted 1999-11-13, 113.67 kg N/ha in all. The
-  season was fertilized: its 1999 machine harvested dry grain yield, 6,045 kg/ha, is well above the
-  unfertilized Rainfed Wheat Control's 4,565 (`wheat_harvests_all.csv`). The irrigated gaps keep
-  the paper's split, 56 before planting and 112 in spring (above): their total agrees with the log,
-  though the log's complete irrigated seasons split it the other way round.
+  to 85.33 before planting, urea at 27.84 to 28.36 in spring), the three partial ones (1997-98,
+  2001-02 and, with the moved urea below, 1998-99) log only the spring urea, 27.84 to 29.54, and no
+  wheat row in the log is 15-15-15 (items 59 and 61). The log records each application, product and
+  rate, plot by plot; Table 1 and the Methods summarize the system. Both are step 1 of the fill
+  order, and for the rainfed season total, which disagrees in every season the records can be
+  checked against, the records are taken. A rainfed wheat season with no N record would copy its
+  treatment's nearest complete season as logged; none is left once the spring 1999 urea is moved to
+  the wheat plots (see "Synthetic N and unplaced records"). The 1998 to 1999 `fallow-wheat` wheat
+  (plots 2-9, 5-8 and 7-2) then has that logged urea, 29.54 kg N/ha on 1999-03-04, and its missing
+  preplant as a single application (below): Can_27 at 84.13 on 1998-10-01, from the season planted
+  1999-11-13, 113.67 kg N/ha in all. The season was fertilized: its 1999 machine harvested dry grain
+  yield, 6,045 kg/ha, is well above the unfertilized Rainfed Wheat Control's 4,565
+  (`wheat_harvests_all.csv`). The irrigated gaps keep the paper's split, 56 before planting and 112
+  in spring (above): their total agrees with the log, though the log's complete irrigated seasons
+  split it the other way round.
 - A season with some records but not all gets the missing application (David on
   calibration#10, 2026-11-02). Each corn, tomato and wheat season of a treatment with an
   `n_fill_group` in `russell_treatments.csv` has a preplant application, up to 7 days after its
@@ -493,7 +494,7 @@ season it copies.
   records that lacks a role that at least half the group's recorded seasons of the crop have
   copies it, as logged, from the group's nearest season (by last planting) that has both, the
   treatment's own on a tie, shifted by the difference in last plantings (a starter is copied only
-  from a season with one preplant record): 17 events, tagged `imputed`. The groups are
+  from a season with one preplant record): 18 events, tagged `imputed`. The groups are
   `irrigated` (`conv_corn_tomato`, `leg_corn_tomato`, `conv_wheat_tomato`, `alf_corn_tomato` and
   `irr_wheat_fallow`, whose logs show the same products at the same rates) and `rainfed`
   (`rf_wheat_fallow`, at its own lower rates). The group's records come before the paper's rates
@@ -509,9 +510,10 @@ season it copies.
   filled: the conventional corn starter is logged 22 to 42 days after the last planting in 8 of
   its 14 seasons (item 13), so fewer than half show a preplant; every recorded corn season has
   both its products.
-  - Wheat preplant, 7: `conv_wheat_tomato` `tomato-wheat` wheat planted 1998 and 2000 and
+  - Wheat preplant, 8: `conv_wheat_tomato` `tomato-wheat` wheat planted 1998 and 2000 and
     `wheat-tomato` 2001, `irr_wheat_fallow` `fallow-wheat` 2000 and `wheat-fallow` 2001 (Can_27,
-    111.97 kg N/ha), and `rf_wheat_fallow` `wheat-fallow` 1997 and 2001 (85.33 and 84.13).
+    111.97 kg N/ha), and `rf_wheat_fallow` `wheat-fallow` 1997 and 2001 and `fallow-wheat` 1998
+    (85.33, 84.13 and 84.13).
   - Wheat spring topdress, 1: the `irr_wheat_fallow` `fallow-wheat` wheat planted 2012-11-12
     takes the 3/20/2013 urea of the `conv_wheat_tomato` wheat planted the same day (56.2 kg
     N/ha). The `conv_wheat_tomato` `tomato-wheat` wheat planted 2010-11-16 has its own logged
@@ -768,14 +770,14 @@ the `alf_corn_tomato` history:
 
 - All 23 files validate against `events_schema_v0.1.1` from PEcAn `develop` (the stacked
   organic and transitional files still fail it), and `PEcAn.SIPNET::write.events.SIPNET`
-  writes an `events.in` for each: 492 `harv`, 496 `plant`, 413 `fert`, 1035 `irrig` and 1075
+  writes an `events.in` for each: 492 `harv`, 496 `plant`, 412 `fert`, 1035 `irrig` and 1075
   `till` lines, one per event; every irrigation line carries SIPNET code 1 (soil), and the 13
   alfalfa cuttings are `harv 0.85 0 0 0`.
 - The 323 recorded fertilization events match the package (their phase-year totals,
   recomputed independently from `operations_fertilizers.csv` and `operations_compost.csv`, agree
-  in every phase-year, with the moved 2011 urea on its wheat plots); the other 90 are imputed (19
-  for 2014, 51 for seasons with no record, 17 single applications, 2 missing plot shares, 1 for
-  the compost year).
+  in every phase-year, with the moved 1999 and 2011 urea on their wheat plots); the other 89 are
+  imputed (19 for 2014, 49 for seasons with no record, 18 single applications, 2 missing plot
+  shares, 1 for the compost year).
 - Every planting before 2014 has an end (a same-crop harvest within 365 days, or a cover crop
   end), every harvest has a planting before it, no cover crop ends after the next cash
   crop planting, and no phase has overlapping seasons of two cash crops.
