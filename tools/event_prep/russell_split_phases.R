@@ -1067,7 +1067,8 @@ for (tid in names(SYSTEMS)) {
 # 2013 conventional corn N and the compost of the organic corn and tomato seasons the package
 # lacks (a sudangrass year is filled below). Copies are shifted by the difference in planting
 # dates, and only the ones landing inside the season are kept. A corn season of the paper's maize
-# systems and every wheat season keep the template's dates but take the paper's amounts (below).
+# systems and an irrigated wheat season keep the template's dates but take the paper's amounts; a
+# rainfed wheat season copies the template's amounts as logged (below).
 FERT_LIKE <- lapply(treatment_links("corn_n_dates_from"), function(t2) c(corn = t2))
 # With no record in the log, the amount is the paper's (David, 2026-10-29 call). Tautges et al.
 # (2019): maize in CONV and CONV+WCC was planted "with 56 kg N/ha 8-24-6 starter fertilizer" and
@@ -1098,9 +1099,11 @@ paper_corn_n <- function(recs) {
 # seasons have the same parts (century_package_issues.md, items 59 and 61). The records are the
 # measured applications and the paper's rainfed figure a summary that matches none of them, so a
 # rainfed wheat season with no record copies its treatment's nearest complete season as logged.
+# With the spring 1999 urea moved to the wheat plots (rwf_wheat_urea_plot_1999), no rainfed season
+# in the package is left without a record; the rule and its guard stay for a rebuilt package.
 WHEAT_STARTER_N <- 56
 WHEAT_UREA_N <- 112          # irrigated
-WHEAT_UREA_N_RAINFED <- 90   # the paper's, not used: the log has none of its seasons at 56 + 90
+WHEAT_UREA_N_RAINFED <- 90   # the paper's; not applied, only checked against the log by the guard below
 PAPER_SYSTEMS <- TREATMENTS$tid[TREATMENTS$tautges_code != ""]
 wheat_complete <- function(recs, planted) {
   d <- dates_of(recs)

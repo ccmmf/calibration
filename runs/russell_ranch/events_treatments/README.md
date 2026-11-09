@@ -276,8 +276,8 @@ al. 2019 gives; and a filled planting's amounts are medians of the generator's p
 | unharvested wheat | the median day of a recorded wheat harvest, day 182 (about 1 July), all biomass to litter, `not_harvested: true` | 1 |
 | wheat cut for hay | the logged `leg_corn_tomato` cut, 6/25/2012 (above) | 1 |
 | 2014 fertilization | the most recent same-crop season of the treatment with fertilization records that land in 2014 once shifted to the 2014 planting, its single application fills included | 19 |
-| fertilization gap | a season the log has no fertilization for, dated from comparable records; corn and irrigated wheat N take Tautges et al. 2019's rates on the copied dates, rainfed wheat N and compost copy the record (see "Fertilization gaps") | 51 (N 45: corn 37 and irrigated wheat 6 at the paper's rates, rainfed wheat 2 as logged; compost 6) |
-| single application | a season with records but without its preplant or its in-season application copies that application, as logged, from the nearest season with both of the treatments that share its synthetic N management (see "Fertilization gaps") | 17 (wheat preplant 7, wheat topdress 1, tomato starter 9) |
+| fertilization gap | a season the log has no fertilization for, dated from comparable records; corn and irrigated wheat N take Tautges et al. 2019's rates on the copied dates, rainfed wheat N and compost copy the record (see "Fertilization gaps") | 49 (N 43: corn 37 and irrigated wheat 6 at the paper's rates; compost 6) |
+| single application | a season with records but without its preplant or its in-season application copies that application, as logged, from the nearest season with both of the treatments that share its synthetic N management (see "Fertilization gaps") | 18 (wheat preplant 8, wheat topdress 1, tomato starter 9) |
 | missing plot share | an application logged on two of a phase's three plots, the third growing the same crop, adds that plot's share as a separate event (`add_plot` rows in `russell_source_corrections.csv`; see "Fertilization gaps") | 2 |
 | compost year | an organic rotation year that is not a wheat year and has no compost record copies the nearest recorded year's compost (see "Fertilization gaps") | 1 (2008) |
 | wheat irrigation | Tautges et al. 2019's rule for IWF and IWF+N, in every irrigated system: 80 mm at the season midpoint, none in its no-irrigation years; IWF and IWF+N through 2012 are tagged assumed (the paper's amount on an imputed date), 2013 and 2014, after its period, and the systems it does not describe imputed | 47 events (20 assumed, 27 imputed), 43 seasons without |
@@ -452,9 +452,9 @@ season it copies.
   sidedressed with urea rather than the paper's ammonium sulfate).
 - Any other season ending by 2013, of a crop its treatment fertilizes in at least half of its
   seasons, that has no record is dated from the treatment's nearest same-crop season with
-  records: `conv_corn_tomato` 2013 corn (dated from 2007, at the paper's rates as above), four
-  wheat seasons (below) and the six corn and tomato compost years in Compost, which copy the
-  record: 16 events.
+  records: `conv_corn_tomato` 2013 corn (dated from 2007, at the paper's rates as above), three
+  irrigated wheat seasons (below) and the six corn and tomato compost years in Compost, which copy
+  the record: 14 events.
 - Irrigated wheat with no N record takes the paper's rates in the same way (Aritra, 2026-10-31):
   Tautges et al. 2019 give fertilized wheat "56 kg/ha 15-15-15 starter fertilizer at planting, and
   an additional 90 and 112 kg/ha urea in March" in the rainfed and irrigated systems, which make
@@ -467,20 +467,23 @@ season it copies.
   `source` `10.1111/gcb.14762`. The log's complete irrigated seasons carry the same total, 168.17
   to 169.8 kg N/ha, split the other way round (about 112 before planting and 56 in spring;
   `century_package_issues.md`, item 61).
-- The one rainfed season, the 1998 to 1999 `rf_wheat_fallow` `fallow-wheat` wheat (plots 2-9, 5-8
-  and 7-2), copies its treatment's nearest complete season as logged instead: Can_27 at 84.13 kg
-  N/ha on 1998-10-01 and urea at 27.84 on 1999-03-13, 111.97 kg N/ha, from the season planted
-  1999-11-13, 2 events. The paper's rainfed rate, 56 plus 90 = 146 kg N/ha, is not what the log
-  records in any year: all 17 complete `rf_wheat_fallow` seasons, 1993-94 to 2012-13, carry 111.68
-  to 113.33 kg N/ha (ammonium nitrate or Can_27 at 83.84 to 85.33 before planting, urea at 27.84 to
-  28.36 in spring), the two partial ones (1997-98 and 2001-02) log the same spring urea, and no
-  wheat row in the log is 15-15-15 (items 59 and 61). The log records each application, product
-  and rate, plot by plot; Table 1 and the Methods summarize the system. Both are step 1 of the fill
-  order, and where they disagree in every season the records can be checked against, the records
-  are taken. The season was fertilized: its 1999 machine harvested dry grain yield, 6,045 kg/ha, is well
-  above the unfertilized Rainfed Wheat Control's 4,565 (`wheat_harvests_all.csv`). The urea logged
-  on 3/4/1999 at 29.54 kg N/ha on the system's fallow plots stays where it is logged, in the
-  `wheat-fallow` file (item 7; see "Synthetic N and unplaced records").
+- Rainfed wheat follows the log, not the paper's rainfed rate (Aritra, 2026-11-10). The paper's 56
+  plus 90 = 146 kg N/ha is not what the log records in any year: all 17 complete `rf_wheat_fallow`
+  seasons, 1993-94 to 2012-13, carry 111.68 to 113.33 kg N/ha (ammonium nitrate or Can_27 at 83.84
+  to 85.33 before planting, urea at 27.84 to 28.36 in spring), the two partial ones (1997-98 and
+  2001-02) log the same spring urea, and no wheat row in the log is 15-15-15 (items 59 and 61). The
+  log records each application, product and rate, plot by plot; Table 1 and the Methods summarize
+  the system. Both are step 1 of the fill order, and for the rainfed season total, which disagrees
+  in every season the records can be checked against, the records are taken. A rainfed wheat
+  season with no N record would copy its treatment's nearest complete season as logged; none is
+  left once the spring 1999 urea is moved to the wheat plots (see "Synthetic N and unplaced
+  records"). The 1998 to 1999 `fallow-wheat` wheat (plots 2-9, 5-8 and 7-2) then has that logged
+  urea, 29.54 kg N/ha on 1999-03-04, and its missing preplant as a single application (below):
+  Can_27 at 84.13 on 1998-10-01, from the season planted 1999-11-13, 113.67 kg N/ha in all. The
+  season was fertilized: its 1999 machine harvested dry grain yield, 6,045 kg/ha, is well above the
+  unfertilized Rainfed Wheat Control's 4,565 (`wheat_harvests_all.csv`). The irrigated gaps keep
+  the paper's split, 56 before planting and 112 in spring (above): their total agrees with the log,
+  though the log's complete irrigated seasons split it the other way round.
 - A season with some records but not all gets the missing application (David on
   calibration#10, 2026-11-02). Each corn, tomato and wheat season of a treatment with an
   `n_fill_group` in `russell_treatments.csv` has a preplant application, up to 7 days after its
@@ -569,11 +572,18 @@ season it copies.
   3/24/2011 urea is on its wheat plots. The script moves it to 2-5, 5-3 and 6-6 (a `move_plot`
   row in `russell_source_corrections.csv`; `century_package_issues.md`, item 8), so the
   topdress counts once, as logged, in the wheat it was labelled for.
-- Left as recorded: the spring 1999 urea that the log puts on the fallow plots of
-  `irr_wheat_fallow` (56.04 kg N/ha) and `rf_wheat_fallow` (29.54), between their 1998 wheat
-  harvest and their fall 1999 seeding, so it falls on bare soil, while the plots that grew wheat
-  that spring have no record and are filled as fertilization gaps, the irrigated at the paper's
-  rates and the rainfed like its treatment's logged seasons (`century_package_issues.md`, item 7).
+- The spring 1999 urea (3/4/1999, 29.54 kg N/ha, labelled Wheat) is logged on the
+  `rf_wheat_fallow` `wheat-fallow` plots 1-9, 5-9 and 8-2, which harvested wheat in 1998 and lay
+  fallow until their fall 1999 seeding, while the `fallow-wheat` plots 2-9, 5-8 and 7-2, in wheat
+  that spring, have no N record for the season. The fallow plots already have their 1998 spring
+  urea (28 on 2/28/1998), so a wrong year does not fit, and Conventional Wheat/Tomato's 3/4/1999
+  urea is on its wheat plots. As in 2011, the script moves it to 2-9, 5-8 and 7-2 (Aritra,
+  2026-11-10; `rwf_wheat_urea_plot_1999` in `russell_source_corrections.csv`;
+  `century_package_issues.md`, item 7).
+- Left as recorded: the same day's urea on the `irr_wheat_fallow` fallow plots (56.04 kg N/ha),
+  between their 1998 wheat harvest and their fall 1999 seeding, so it falls on bare soil, while
+  the plots that grew wheat that spring have no record and take the paper's rates. A wrong year
+  fits these plots, whose 1998 wheat has no N (item 7).
 - Also left as recorded: Can_27 at 111.97 kg N/ha, labelled Wheat, on the `conv_corn_tomato`
   `tomato-corn` plots on 11/12/2012, after their 2012 tomato harvest and 133 days before their
   2013 corn, on plots that grew no wheat. The Conventional Wheat/Tomato plots seeded to wheat that
@@ -732,8 +742,8 @@ the `alf_corn_tomato` history:
   CONV+WCC and 1.16 in ORG, against 1.09 in the wheat-fallow systems and 1.03 to 1.04 in the wheat
   and cover crop systems. The fallow diskings' dates are spaced, not recorded. David counts the
   paper's passes as six a fallow, the two straw passes and the four diskings, as built (above);
-  the wheat and cover crop systems' summer fallow gets none, as the paper and the package's
-  fallow herbicide records have it (above). One event per operation is kept (Aritra,
+  the wheat and cover crop systems' summer fallow gets none: the paper names no pass there, and
+  the package logs the fallow herbicide on the wheat-fallow systems only (above). One event per operation is kept (Aritra,
   2026-10-31): the paper says each operation happened, and the product, detecting tillage from
   imagery, likely misses some.
 - **Compost basis.** Compost C and N multiply the reported wet tonnage by the %C and %N of
