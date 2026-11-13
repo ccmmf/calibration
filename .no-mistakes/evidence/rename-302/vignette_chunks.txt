@@ -1,0 +1,16 @@
+## vignette chunk sipnet-obs, verbatim (path redirected):
+list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs"))
+ERROR: !is.null(tg$units) is not TRUE 
+
+## same chunk with the config's units added (units is required by build_obs, before and after this change):
+2026-11-14 01:58:57.620847 INFO   [build_obs] : 
+   72 observation slots across 1 variable(s) and 1 site(s) 
+obs variables: soil_organic_carbon_content ; slots: 72 
+
+## vignette chunk sipnet-prior: its state_prior_from_obs(...) call
+state_prior_from_obs(obs$meta, prefix = "soilInit.", variable = "soil_organic_carbon_content", 
+    from_unit = "Mg/ha", to_unit = "kg/m2")
+state prior entries: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+
+## vignette chunk sipnet-forward: its var_map
+var_map keys: soil_organic_carbon_content ; every obs variable has a var_map entry: TRUE 

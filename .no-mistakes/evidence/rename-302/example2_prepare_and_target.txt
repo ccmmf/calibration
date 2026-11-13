@@ -1,0 +1,41 @@
+## Example 2 (joint SOC + N2O), NEW config (this change, file used as-is) on NEW cal-val-data ce3870e
+CALIBRATION_DATA_ROOT=<tmp>/new
+$ Rscript scripts/010_prepare_observations.R -c examples/2_joint_soc_n2o/config.yml
+2026-11-14 01:56:59.628698 INFO   [build_obs] : 
+   74 observation slots across 2 variable(s) and 2 site(s) 
+2026-11-14 01:56:59.642461 INFO   [console] : 
+   cached obs -> 
+   <tmp>/new/cal_val_joint/cache/obs.rds 
+[exit 0]
+$ Rscript scripts/012_build_target.R -c examples/2_joint_soc_n2o/config.yml
+2026-11-14 01:56:59.802557 INFO   [.shrink_to_pd] : 
+   period mean covariance for SOC_periodmean_salinas was singular (rank 6 
+   of 8 ); correlations shrunk by 0.05 toward the diagonal, marginal 
+   variances kept 
+2026-11-14 01:57:00.105405 INFO   [console] : 
+   17 target slots across 2 variables 
+2026-11-14 01:57:00.106088 INFO   [console] : 
+   cached target -> 
+   <tmp>/new/cal_val_joint/cache/target.rds 
+[exit 0]
+
+## Example 2, OLD config (bb842cc) on OLD cal-val-data 2da13da
+CALIBRATION_DATA_ROOT=<tmp>/old
+$ Rscript scripts/010_prepare_observations.R -c <tmp>/cfg_old/examples/2_joint_soc_n2o/config.yml
+2026-11-14 01:57:00.755312 INFO   [build_obs] : 
+   74 observation slots across 2 variable(s) and 2 site(s) 
+2026-11-14 01:57:00.767681 INFO   [console] : 
+   cached obs -> 
+   <tmp>/old/cal_val_joint/cache/obs.rds 
+[exit 0]
+$ Rscript scripts/012_build_target.R -c <tmp>/cfg_old/examples/2_joint_soc_n2o/config.yml
+2026-11-14 01:57:00.927827 INFO   [.shrink_to_pd] : 
+   period mean covariance for SOC_periodmean_salinas was singular (rank 6 
+   of 8 ); correlations shrunk by 0.05 toward the diagonal, marginal 
+   variances kept 
+2026-11-14 01:57:01.249561 INFO   [console] : 
+   17 target slots across 2 variables 
+2026-11-14 01:57:01.250317 INFO   [console] : 
+   cached target -> 
+   <tmp>/old/cal_val_joint/cache/target.rds 
+[exit 0]

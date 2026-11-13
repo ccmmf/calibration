@@ -1,0 +1,13 @@
+== Example 1 forward harvest ==
+G dims: 2 56 ; columns cover every obs slot: TRUE 
+e.g. slot soil_organic_carbon_content__salinas_socs__socs_sys3__y2005__d0_30 : member 1 = 13 Mg/ha (TotSoilCarb 1.3 kg/m2 x 10)
+all 2x56 values = (member + k/10) kg/m2 converted to Mg/ha (netCDF float, tol 1e-6): TRUE 
+
+-- old var_map (key SOC_stock_Mg_ha ) against the renamed obs: --
+ERROR: values must be length 1,
+ but FUN(X[[1]]) result is length 0 
+
+== Example 2 forward harvest (raw slots, then 012 transform) ==
+raw G dims: 1 74 ; covers every raw slot: TRUE 
+SOC slot values (Mg/ha): 50 ; N2O slot values (g ha-1 day-1): 86.4 
+fitted G dims: 1 17 ; columns == target slots: TRUE 

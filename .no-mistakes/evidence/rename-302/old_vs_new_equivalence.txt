@@ -1,0 +1,25 @@
+== Example 1: new config + new data vs old config + old data ==
+slots new/old: 56 56 
+variables new: soil_organic_carbon_content  old: SOC_stock_Mg_ha 
+first new slot: soil_organic_carbon_content__salinas_socs__socs_sys1__y2005__d0_30 
+first old slot: SOC_stock_Mg_ha__salinas_socs__socs_sys1__y2005__d0_30 
+y values identical: TRUE 
+slot names identical after old->new rename: TRUE 
+Sigma values identical: TRUE 
+meta identical after rename: TRUE 
+meta columns differing before rename: slot, variable 
+state prior (config priors$state.variable = soil_organic_carbon_content ): 8 entries: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+state prior identical to old: TRUE 
+anchor lnorm meanlog per system: soilInit.socs_sys1=0.9298 soilInit.socs_sys2=1.1949 soilInit.socs_sys3=1.2547 soilInit.socs_sys4=1.3293 soilInit.socs_sys5=1.2865 soilInit.socs_sys6=1.3471 soilInit.socs_sys7=1.1949 soilInit.socs_sys8=1.2483 
+forward var_map keys: soil_organic_carbon_content 
+every obs variable has a var_map entry: TRUE 
+target variable == state variable == var_map key: TRUE 
+
+== Example 2: new config + new data vs old config + old data ==
+source_variables new: soil_organic_carbon_content N2O_flux 
+source_variables old: SOC_stock_Mg_ha N2O_flux_g_N_ha_d 
+slots new/old: 74 74  per variable: N2O_chamber_daily 18, SOC_stock_salinas 56 
+raw obs (y, Sigma, meta) identical: TRUE 
+fitted target (012) identical: TRUE  slots: 17 
+state prior (variable SOC_stock_salinas anchor 2005 ): 8 entries; identical to old: TRUE 
+every raw obs variable has a forward var_map entry: TRUE 

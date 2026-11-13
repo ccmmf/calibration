@@ -1,0 +1,20 @@
+33 variable names in cal-val-data 2da13da variables.csv but not in ce3870e:
+ SOC_stock_Mg_ha bulk_density_g_cm3 SOC_conc_mg_kg total_N_conc_mg_kg N2O_flux_g_N_ha_d total_C_pct total_N_pct nitrate_N_mg_kg cover_crop_shoot_dry_matter_Mg_ha total_carbon_pct total_nitrogen_pct soil_organic_matter_pct soil_nh4_n_mg_kg soil_no3_n_mg_kg corn_grain_dry_yield_kg_ha corn_total_biomass_kg_ha corn_grain_mh_dry_yield_kg_ha tomato_red_fresh_yield_Mg_ha tomato_green_fresh_yield_Mg_ha tomato_vine_dry_yield_Mg_ha tomato_mh_dry_yield_Mg_ha wheat_hh_dry_grain_yield_kg_ha wheat_mh_dry_grain_yield_kg_ha alfalfa_dry_yield_kg_ha cover_crop_dry_biomass_kg_ha sudangrass_dry_yield_kg_ha soil_carbon_content soil_nitrogen_content CO2_flux_g_m2_d CH4_flux_mg_m2_d N2O_flux_mg_m2_d CO2_flux rice_grain_yield_t_ha 
+
+retired names still present in ce3870e observations.csv variable column: 0 rows
+
+N2O_flux at modesto_almond_usda (ce3870e): 54 rows; reported_units: g N2O-N ha-1 day-1 ; observation_level: replicate 
+N2O_flux_g_N_ha_d at modesto_almond_usda (2da13da): 54 rows; reported_units: g N2O-N ha-1 day-1 
+== git grep -w for each retired name in this branch (HEAD 7471e59) vs base (bb842cc) ==
+-- bb842cc:
+   bb842cc:examples/1_salinas_soc/config.yml:15:      - variable: SOC_stock_Mg_ha
+   bb842cc:examples/1_salinas_soc/config.yml:32:      variable: SOC_stock_Mg_ha
+   bb842cc:examples/1_salinas_soc/config.yml:39:      SOC_stock_Mg_ha: {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
+   bb842cc:examples/2_joint_soc_n2o/config.yml:24:        source_variables: [SOC_stock_Mg_ha]
+   bb842cc:examples/2_joint_soc_n2o/config.yml:31:        source_variables: [N2O_flux_g_N_ha_d]
+   bb842cc:examples/3_statewide_effects/template.xml:49:    <variable>soil_carbon_content</variable>
+   bb842cc:vignettes/calibration_demo.qmd:160:  targets = list(list(variable = "SOC_stock_Mg_ha", sites = "salinas_socs"))
+   bb842cc:vignettes/calibration_demo.qmd:180:                       variable = "SOC_stock_Mg_ha",
+   bb842cc:vignettes/calibration_demo.qmd:200:    SOC_stock_Mg_ha = list(model_var = "TotSoilCarb", from = "kg/m2", to = "Mg/ha")
+-- HEAD:
+   HEAD:examples/3_statewide_effects/template.xml:49:    <variable>soil_carbon_content</variable>

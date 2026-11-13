@@ -1,0 +1,17 @@
+## Example 1 (Salinas SOC), NEW config (this change) on NEW cal-val-data ce3870e
+$ Rscript scripts/010_prepare_observations.R -c <tmp>/cfg1_new.yml
+2026-11-14 01:56:51.975906 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+2026-11-14 01:56:51.996661 INFO   [console] : 
+   cached obs -> 
+   <tmp>/new/cache1/obs.rds 
+[exit 0]
+
+## Example 1, OLD config (bb842cc) on OLD cal-val-data 2da13da
+$ Rscript scripts/010_prepare_observations.R -c <tmp>/cfg1_old.yml
+2026-11-14 01:56:52.599503 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+2026-11-14 01:56:52.617575 INFO   [console] : 
+   cached obs -> 
+   <tmp>/old/cache1/obs.rds 
+[exit 0]
