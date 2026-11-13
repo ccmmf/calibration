@@ -1,0 +1,32 @@
+== example 1: 010 output, old config on cal-val-data 2da13da vs new config on ce3870e
+slots old/new: 56 / 56 
+variables old: SOC_stock_Mg_ha  new: soil_organic_carbon_content 
+first new slot: soil_organic_carbon_content__salinas_socs__socs_sys1__y2005__d0_30 
+[PASS] 56 slots each
+[PASS] y identical up to the variable name
+[PASS] Sigma identical up to the variable name
+[PASS] meta identical up to the variable name
+== example 1: priors$state block -> state_prior_from_obs
+state prior params: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+[PASS] state prior identical to the old one
+[PASS] old state variable name no longer anchors on the new obs
+== example 1: forward var_map crosswalk through read_output_to_G (synthetic model output)
+[PASS] every obs variable has a var_map entry
+G dims: 2 56  member1 values: 15  member2: 30 (1.5 and 3 kg/m2 -> Mg/ha)
+[PASS] G covers every observation slot
+[PASS] TotSoilCarb kg/m2 converted to Mg/ha (x10)
+old var_map key on new obs -> values must be length 1,
+[PASS] old var_map key cannot map the renamed variable
+== example 2: 010 obs.rds and 012 target.rds, old config/old data vs new config/new data
+obs.rds : slots 74  variables N2O_chamber_daily, SOC_stock_salinas 
+[PASS] obs.rds identical (y, Sigma, meta, transform)
+target.rds : slots 17  variables SOC_periodmean_salinas, N2O_contrast_modesto 
+[PASS] target.rds identical (y, Sigma, meta, transform)
+[PASS] 74 raw slots
+example 2 state prior params: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+[PASS] example 2 state prior identical
+[PASS] example 2 var_map keys are target labels present in obs
+== units: N2O_flux at modesto_almond_usda in ce3870e
+reported_units: g N2O-N ha-1 day-1 
+[PASS] single unit matching the config
+ALL CHECKS PASSED

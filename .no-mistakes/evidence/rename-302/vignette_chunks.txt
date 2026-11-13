@@ -1,16 +1,20 @@
-## vignette chunk sipnet-obs, verbatim (path redirected):
-list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs"))
-ERROR: !is.null(tg$units) is not TRUE 
-
-## same chunk with the config's units added (units is required by build_obs, before and after this change):
-2026-11-14 01:58:57.620847 INFO   [build_obs] : 
+---- sipnet-obs chunk as run (cluster root -> disposable root)
+obs <- build_obs(
+  cal_val_dir = "$TMP/scc_new/usr/akash/cal-val-data",
+  targets = list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs",
+                      units = "Mg C ha-1"))
+)
+2026-11-14 02:09:44.708261 INFO   [build_obs] : 
    72 observation slots across 1 variable(s) and 1 site(s) 
-obs variables: soil_organic_carbon_content ; slots: 72 
-
-## vignette chunk sipnet-prior: its state_prior_from_obs(...) call
-state_prior_from_obs(obs$meta, prefix = "soilInit.", variable = "soil_organic_carbon_content", 
-    from_unit = "Mg/ha", to_unit = "kg/m2")
-state prior entries: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
-
-## vignette chunk sipnet-forward: its var_map
-var_map keys: soil_organic_carbon_content ; every obs variable has a var_map entry: TRUE 
+obs slots: 72  variable: soil_organic_carbon_content  years: 2003 2011 
+[PASS] vignette sipnet-obs builds a target from cal-val-data ce3870e
+---- sipnet-prior state call: state_prior_from_obs(obs$meta, prefix = "soilInit.", variable = "soil_organic_carbon_content", from_unit = "Mg/ha", to_unit = "kg/m2") 
+state prior params: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+[PASS] vignette state prior anchors on the renamed variable
+[PASS] vignette var_map keys cover every obs variable
+G dims: 1 72  values: 20 Mg/ha from 2 kg/m2
+[PASS] vignette var_map harvests every slot
+---- sipnet-obs without units (state at 7471e59): build_obs(cal_val_dir = "$TMP/scc_new/usr/akash/cal-val-data", targets = list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs"))) 
+-> !is.null(tg$units) is not TRUE 
+[PASS] without units the chunk stops on the units check
+ALL VIGNETTE CHECKS PASSED

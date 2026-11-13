@@ -1,0 +1,253 @@
+== example 1: 010 output, old config on cal-val-data 2da13da vs new config on ce3870e
+slots old/new: 56 / 56 
+variables old: SOC_stock_Mg_ha  new: soil_organic_carbon_content 
+first new slot: soil_organic_carbon_content__salinas_socs__socs_sys1__y2005__d0_30 
+[PASS] 56 slots each
+[PASS] y identical up to the variable name
+[PASS] Sigma identical up to the variable name
+[PASS] meta identical up to the variable name
+== example 1: priors$state block -> state_prior_from_obs
+state prior params: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+              param distn meanlog  sdlog
+ soilInit.socs_sys1 lnorm  0.9298 0.0885
+ soilInit.socs_sys2 lnorm  1.1949 0.1025
+ soilInit.socs_sys3 lnorm  1.2547 0.0739
+ soilInit.socs_sys4 lnorm  1.3293 0.0896
+ soilInit.socs_sys5 lnorm  1.2865 0.1257
+ soilInit.socs_sys6 lnorm  1.3471 0.0695
+ soilInit.socs_sys7 lnorm  1.1949 0.0617
+ soilInit.socs_sys8 lnorm  1.2483 0.0604
+[PASS] state prior identical to the old one
+2026-11-14 02:08:57.718012 SEVERE [state_prior_from_obs] : 
+   no SOC_stock_Mg_ha slots to anchor an initial state on 
+old state variable on new meta -> no  SOC_stock_Mg_ha  slots to anchor an initial state on 
+[PASS] old state variable name no longer anchors on the new obs
+== example 1: forward var_map crosswalk through read_output_to_G (synthetic model output)
+[PASS] every obs variable has a var_map entry
+2026-11-14 02:08:58.026716 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys1/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys1/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys1/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys1/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys1/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys1/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys1/2011.nc 
+2026-11-14 02:08:58.069643 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.165233 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys2/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys2/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys2/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys2/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys2/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys2/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys2/2011.nc 
+2026-11-14 02:08:58.185262 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.193915 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys3/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys3/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys3/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys3/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys3/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys3/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys3/2011.nc 
+2026-11-14 02:08:58.213985 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.220504 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys4/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys4/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys4/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys4/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys4/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys4/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys4/2011.nc 
+2026-11-14 02:08:58.242462 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.248985 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys5/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys5/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys5/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys5/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys5/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys5/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys5/2011.nc 
+2026-11-14 02:08:58.27098 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.277548 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys6/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys6/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys6/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys6/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys6/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys6/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys6/2011.nc 
+2026-11-14 02:08:58.297185 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.305798 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys7/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys7/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys7/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys7/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys7/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys7/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys7/2011.nc 
+2026-11-14 02:08:58.326206 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.332658 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00001-socs_sys8/2005.nc, 
+   $TMP/model_out/ENS-00001-socs_sys8/2006.nc, 
+   $TMP/model_out/ENS-00001-socs_sys8/2007.nc, 
+   $TMP/model_out/ENS-00001-socs_sys8/2008.nc, 
+   $TMP/model_out/ENS-00001-socs_sys8/2009.nc, 
+   $TMP/model_out/ENS-00001-socs_sys8/2010.nc, 
+   $TMP/model_out/ENS-00001-socs_sys8/2011.nc 
+2026-11-14 02:08:58.354221 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 1.5e+00 1.5e+00 
+2026-11-14 02:08:58.360646 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys1/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys1/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys1/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys1/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys1/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys1/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys1/2011.nc 
+2026-11-14 02:08:58.382076 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.3886 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys2/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys2/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys2/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys2/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys2/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys2/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys2/2011.nc 
+2026-11-14 02:08:58.408358 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.416927 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys3/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys3/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys3/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys3/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys3/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys3/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys3/2011.nc 
+2026-11-14 02:08:58.43708 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.443506 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys4/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys4/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys4/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys4/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys4/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys4/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys4/2011.nc 
+2026-11-14 02:08:58.478925 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.485589 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys5/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys5/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys5/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys5/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys5/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys5/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys5/2011.nc 
+2026-11-14 02:08:58.508058 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.51781 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys6/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys6/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys6/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys6/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys6/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys6/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys6/2011.nc 
+2026-11-14 02:08:58.542198 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.549362 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys7/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys7/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys7/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys7/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys7/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys7/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys7/2011.nc 
+2026-11-14 02:08:58.573837 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+2026-11-14 02:08:58.580966 INFO   [PEcAn.utils::read.output] : 
+   Reading the following files: 
+   $TMP/model_out/ENS-00002-socs_sys8/2005.nc, 
+   $TMP/model_out/ENS-00002-socs_sys8/2006.nc, 
+   $TMP/model_out/ENS-00002-socs_sys8/2007.nc, 
+   $TMP/model_out/ENS-00002-socs_sys8/2008.nc, 
+   $TMP/model_out/ENS-00002-socs_sys8/2009.nc, 
+   $TMP/model_out/ENS-00002-socs_sys8/2010.nc, 
+   $TMP/model_out/ENS-00002-socs_sys8/2011.nc 
+2026-11-14 02:08:58.607505 INFO   [PEcAn.utils::read.output] : Result summary:
+                Mean  Median
+posix       1.1e+08 1.1e+08
+TotSoilCarb 3.0e+00 3.0e+00 
+G dims: 2 56  member1 values: 15  member2: 30 (1.5 and 3 kg/m2 -> Mg/ha)
+[PASS] G covers every observation slot
+[PASS] TotSoilCarb kg/m2 converted to Mg/ha (x10)
+old var_map key on new obs -> values must be length 1,
+ but FUN(X[[1]]) result is length 0 
+[PASS] old var_map key cannot map the renamed variable
+== example 2: 010 obs.rds and 012 target.rds, old config/old data vs new config/new data
+obs.rds : slots 74  variables N2O_chamber_daily, SOC_stock_salinas 
+[PASS] obs.rds identical (y, Sigma, meta, transform)
+target.rds : slots 17  variables SOC_periodmean_salinas, N2O_contrast_modesto 
+[PASS] target.rds identical (y, Sigma, meta, transform)
+[PASS] 74 raw slots
+example 2 state prior params: soilInit.socs_sys1 soilInit.socs_sys2 soilInit.socs_sys3 soilInit.socs_sys4 soilInit.socs_sys5 soilInit.socs_sys6 soilInit.socs_sys7 soilInit.socs_sys8 
+[PASS] example 2 state prior identical
+[PASS] example 2 var_map keys are target labels present in obs
+== units: N2O_flux at modesto_almond_usda in ce3870e
+reported_units: g N2O-N ha-1 day-1 
+[PASS] single unit matching the config
+ALL CHECKS PASSED

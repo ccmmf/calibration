@@ -1,0 +1,28 @@
+===== Rscript scripts/010_prepare_observations.R -c ex1_new_on_new.yml
+2026-11-14 02:07:53.808743 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+2026-11-14 02:07:53.86385 INFO   [console] : 
+   cached obs -> /tmp/nm-test-302/cache/ex1_new_on_new/obs.rds 
+exit=0
+===== Rscript scripts/010_prepare_observations.R -c ex1_old_on_old.yml
+2026-11-14 02:07:54.63916 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+2026-11-14 02:07:54.685017 INFO   [console] : 
+   cached obs -> /tmp/nm-test-302/cache/ex1_old_on_old/obs.rds 
+exit=0
+===== Rscript scripts/010_prepare_observations.R -c ex1_new_on_old.yml
+2026-11-14 02:07:55.421698 SEVERE [target_rows] : 
+   no rows for target soil_organic_carbon_content at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  soil_organic_carbon_content  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+exit=1
+===== Rscript scripts/010_prepare_observations.R -c ex1_old_on_new.yml
+2026-11-14 02:07:56.21948 SEVERE [target_rows] : 
+   no rows for target SOC_stock_Mg_ha at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_Mg_ha  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+exit=1

@@ -1,0 +1,44 @@
+===== [new config, new data (ce3870e)] CALIBRATION_DATA_ROOT=$TMP/root_new Rscript scripts/010_prepare_observations.R -c examples/2_joint_soc_n2o/config.yml
+2026-11-14 02:08:05.730462 INFO   [build_obs] : 
+   74 observation slots across 2 variable(s) and 2 site(s) 
+2026-11-14 02:08:05.744144 INFO   [console] : 
+   cached obs -> $TMP/root_new/cal_val_joint/cache/obs.rds 
+exit=0
+===== [new config, new data (ce3870e)] CALIBRATION_DATA_ROOT=$TMP/root_new Rscript scripts/012_build_target.R -c examples/2_joint_soc_n2o/config.yml
+   variances kept 
+2026-11-14 02:08:06.258859 INFO   [console] : 
+   17 target slots across 2 variables 
+2026-11-14 02:08:06.259541 INFO   [console] : 
+   cached target -> 
+   $TMP/root_new/cal_val_joint/cache/target.rds 
+exit=0
+===== [old config, old data (2da13da)] CALIBRATION_DATA_ROOT=$TMP/root_old Rscript scripts/010_prepare_observations.R -c $TMP/base/examples/2_joint_soc_n2o/config.yml
+2026-11-14 02:08:06.976423 INFO   [build_obs] : 
+   74 observation slots across 2 variable(s) and 2 site(s) 
+2026-11-14 02:08:06.990672 INFO   [console] : 
+   cached obs -> $TMP/root_old/cal_val_joint/cache/obs.rds 
+exit=0
+===== [old config, old data (2da13da)] CALIBRATION_DATA_ROOT=$TMP/root_old Rscript scripts/012_build_target.R -c $TMP/base/examples/2_joint_soc_n2o/config.yml
+   variances kept 
+2026-11-14 02:08:07.496956 INFO   [console] : 
+   17 target slots across 2 variables 
+2026-11-14 02:08:07.49779 INFO   [console] : 
+   cached target -> 
+   $TMP/root_old/cal_val_joint/cache/target.rds 
+exit=0
+===== [new config, old data (2da13da)] CALIBRATION_DATA_ROOT=$TMP/root_old Rscript scripts/010_prepare_observations.R -c examples/2_joint_soc_n2o/config.yml
+2026-11-14 02:08:08.194877 SEVERE [target_rows] : 
+   no rows for target SOC_stock_salinas at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_salinas  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+exit=1
+===== [old config, new data (ce3870e)] CALIBRATION_DATA_ROOT=$TMP/root_new Rscript scripts/010_prepare_observations.R -c $TMP/base/examples/2_joint_soc_n2o/config.yml
+2026-11-14 02:08:08.861862 SEVERE [target_rows] : 
+   no rows for target SOC_stock_salinas at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_salinas  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+exit=1
