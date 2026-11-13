@@ -156,7 +156,7 @@ target adds more entries.
 
 ```{r sipnet-obs, eval = FALSE}
 obs <- build_obs(
-  cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal_val",
+  cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal-val-data",
   targets = list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs",
                       units = "Mg C ha-1"))
 )
