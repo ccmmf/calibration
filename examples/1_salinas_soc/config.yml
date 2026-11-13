@@ -8,11 +8,13 @@ default:
   soil_pft: soil
 
   observations:
+    # variable names are cal-val-data's after organization#302 (cal-val-data#29);
+    # an older checkout stops with "no rows for target".
     dir: usr/akash/cal-val-data
     targets:
       # 2003-2004 is the establishment drop, a one time disturbance the model
       # should not be pushed to reproduce; the fit starts at the 2005 stock
-      - variable: SOC_stock_Mg_ha
+      - variable: soil_organic_carbon_content
         sites: [salinas_socs]
         units: Mg C ha-1
         years: [2005, 2011]
@@ -29,14 +31,14 @@ default:
     # (2005), converted from the reported Mg/ha to the model kg/m2.
     state:
       prefix: soilInit.
-      variable: SOC_stock_Mg_ha
+      variable: soil_organic_carbon_content
       from_unit: Mg/ha
       to_unit: kg/m2
 
   forward:
     run_dir: usr/akash/salinas_socs
     var_map:
-      SOC_stock_Mg_ha: {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
+      soil_organic_carbon_content: {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
     state_pool: soil_organic_carbon_content
 
   eki:

@@ -17,18 +17,20 @@ default:
   soil_pft: [soil, soil_nfixer]
 
   observations:
+    # variable names are cal-val-data's after organization#302 (cal-val-data#29);
+    # an older checkout stops with "no rows for target".
     dir: cal-val-data
     targets:
       - variable: SOC_stock_salinas
         sites: [salinas_socs]
-        source_variables: [SOC_stock_Mg_ha]
+        source_variables: [soil_organic_carbon_content]
         units: Mg C ha-1
         years: [2005, 2011]
         variance: pooled_cv
       # raw per date per treatment cells; 012 contracts them to per date contrasts
       - variable: N2O_chamber_daily
         sites: [modesto_almond_usda]
-        source_variables: [N2O_flux_g_N_ha_d]
+        source_variables: [N2O_flux]
         units: g N2O-N ha-1 day-1
         cell_period: date
         variance: pooled_cv

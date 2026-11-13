@@ -157,7 +157,7 @@ target adds more entries.
 ```{r sipnet-obs, eval = FALSE}
 obs <- build_obs(
   cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal_val",
-  targets = list(list(variable = "SOC_stock_Mg_ha", sites = "salinas_socs"))
+  targets = list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs"))
 )
 ```
 
@@ -177,7 +177,7 @@ prior <- c(
     turn_over_time       = list(distn = "unif", parama = 0.13, paramb = 1.2)
   )),
   state_prior_from_obs(obs$meta, prefix = "soilInit.",
-                       variable = "SOC_stock_Mg_ha",
+                       variable = "soil_organic_carbon_content",
                        from_unit = "Mg/ha", to_unit = "kg/m2")
 )
 ```
@@ -197,7 +197,7 @@ settings <- PEcAn.settings::read.settings(
 forward <- make_forward_sipnet(
   settings = settings, obs = obs, n_particles = 50,
   var_map = list(
-    SOC_stock_Mg_ha = list(model_var = "TotSoilCarb", from = "kg/m2", to = "Mg/ha")
+    soil_organic_carbon_content = list(model_var = "TotSoilCarb", from = "kg/m2", to = "Mg/ha")
   ),
   soil_pfts = "soil", state_prefix = "soilInit.",
   state_pool = "soil_organic_carbon_content"
