@@ -1,0 +1,44 @@
+### Vignette (branch) chunks sipnet-obs, sipnet-prior, sipnet-forward var_map on renamed cal-val-data (ce3870e) at /projectnb/dietzelab/ccmmf/usr/akash/cal-val-data
+---- sipnet-obs chunk ----
+obs <- build_obs(
+  cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal-val-data",
+  targets = list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs",
+                      units = "Mg C ha-1", years = c(2005, 2011)))
+)
+2026-11-14 02:26:28.395336 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+vignette obs slots: 56  variable: soil_organic_carbon_content  years: 2005 2011 
+identical to example 1 010 obs.rds (y, Sigma, meta): TRUE TRUE TRUE 
+---- sipnet-prior chunk ----
+prior params: 11  soilInit params: 8 
+state prior identical to example 1 020 prior.rds: TRUE 
+---- sipnet-forward chunk var_map ----
+var_map keys: soil_organic_carbon_content   obs variables: soil_organic_carbon_content 
+forward harvest G: 1 56  covers every slot: TRUE 
+[exit 0]
+
+### Adversarial: base vignette (bb842cc) sipnet-obs chunk, renamed cal-val-data also mounted at its old path usr/akash/cal_val
+---- sipnet-obs chunk ----
+obs <- build_obs(
+  cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal_val",
+  targets = list(list(variable = "SOC_stock_Mg_ha", sites = "salinas_socs"))
+)
+Error in target_rows(raw_all, tg) : !is.null(tg$units) is not TRUE
+Calls: eval ... <Anonymous> -> list2 -> lapply -> FUN -> target_rows -> stopifnot
+Execution halted
+[exit 1]
+
+### Contrast: vignette at 6b1f2ad (before the years = c(2005, 2011) follow-up) on the same renamed cal-val-data
+---- sipnet-obs chunk ----
+obs <- build_obs(
+  cal_val_dir = "/projectnb/dietzelab/ccmmf/usr/akash/cal-val-data",
+  targets = list(list(variable = "soil_organic_carbon_content", sites = "salinas_socs",
+                      units = "Mg C ha-1"))
+)
+2026-11-14 02:26:36.199643 INFO   [build_obs] : 
+   72 observation slots across 1 variable(s) and 1 site(s) 
+vignette obs slots: 72  variable: soil_organic_carbon_content  years: 2003 2011 
+identical to example 1 010 obs.rds (y, Sigma, meta): FALSE FALSE FALSE 
+---- sipnet-prior chunk ----
+prior params: 11  soilInit params: 8 
+[exit 0]

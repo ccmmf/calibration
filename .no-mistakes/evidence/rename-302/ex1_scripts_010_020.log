@@ -1,0 +1,33 @@
+### Example 1, branch config, cal-val-data PR #29 head (ce3870e)
+$ [cal-val-data=new] Rscript scripts/010_prepare_observations.R -c examples/1_salinas_soc/config.yml
+2026-11-14 02:24:45.793083 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+2026-11-14 02:24:45.817201 INFO   [console] : 
+   cached obs -> 
+   /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/cache/obs.rds 
+[exit 0]
+$ [cal-val-data=new] Rscript scripts/020_build_priors.R -c examples/1_salinas_soc/config.yml
+2026-11-14 02:24:46.195716 INFO   [PEcAn.settings::read.settings] : 
+   Loading inpufile= 
+   /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/settings.xml 
+2026-11-14 02:24:46.41771 INFO   [console] : 
+   cached prior ( 11 params) -> 
+   /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/cache/prior.rds 
+[exit 0]
+
+### Example 1, base config (bb842cc), cal-val-data pre-rename (2da13da)
+$ [cal-val-data=old] Rscript scripts/010_prepare_observations.R -c /tmp/nm-test-PWlYFq/cfg/ex1_old.yml
+2026-11-14 02:24:47.207962 INFO   [build_obs] : 
+   56 observation slots across 1 variable(s) and 1 site(s) 
+2026-11-14 02:24:47.234616 INFO   [console] : 
+   cached obs -> 
+   /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/cache/obs.rds 
+[exit 0]
+$ [cal-val-data=old] Rscript scripts/020_build_priors.R -c /tmp/nm-test-PWlYFq/cfg/ex1_old.yml
+2026-11-14 02:24:47.630499 INFO   [PEcAn.settings::read.settings] : 
+   Loading inpufile= 
+   /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/settings.xml 
+2026-11-14 02:24:47.850158 INFO   [console] : 
+   cached prior ( 11 params) -> 
+   /projectnb/dietzelab/ccmmf/usr/akash/salinas_socs/cache/prior.rds 
+[exit 0]

@@ -1,0 +1,27 @@
+### Example 1 forward var_map (branch config) on obs built from renamed cal-val-data (ce3870e)
+$ read_output_to_G(<synthetic SIPNET ENS-* netCDF>, obs$meta, config$forward$var_map, window)
+var_map keys: soil_organic_carbon_content 
+obs variables: soil_organic_carbon_content 
+G dims (members x slots): 2 56 
+every obs slot has a G column: TRUE 
+G = synthetic TotSoilCarb kg/m2 x 10 (Mg/ha) for every slot: TRUE (netCDF float precision) 
+  soil_organic_carbon_content__salinas_socs__socs_sys1__y2005__d0_30
+1                                                                 41
+2                                                                 51
+  soil_organic_carbon_content__salinas_socs__socs_sys1__y2006__d0_30
+1                                                                 41
+2                                                                 51
+  soil_organic_carbon_content__salinas_socs__socs_sys1__y2007__d0_30
+1                                                                 41
+2                                                                 51
+[exit 0]
+
+### Adversarial: base config var_map (key SOC_stock_Mg_ha) on obs built from renamed cal-val-data
+var_map keys: SOC_stock_Mg_ha 
+obs variables: soil_organic_carbon_content 
+Error in vapply(md$variable, function(v) var_map[[v]]$model_var, character(1)) : 
+  values must be length 1,
+ but FUN(X[[1]]) result is length 0
+Calls: read_output_to_G -> lapply -> FUN -> unique -> vapply
+Execution halted
+[exit 1]

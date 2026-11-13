@@ -1,0 +1,36 @@
+== Example 1: obs.rds, branch config + new data vs base config + old data
+slots new/old: 56 56 
+variables new: soil_organic_carbon_content  old: SOC_stock_Mg_ha 
+units new: Mg C ha-1   years new: 2005 2011 
+first slot new: soil_organic_carbon_content__salinas_socs__socs_sys1__y2005__d0_30 
+          old: SOC_stock_Mg_ha__salinas_socs__socs_sys1__y2005__d0_30 
+y identical after renaming old slot names:      TRUE 
+Sigma identical after renaming old slot names:  TRUE 
+meta identical after renaming old variable:     TRUE 
+unrenamed y values identical:                   TRUE 
+
+== Example 1: prior.rds (020) state prior from config priors$state
+params: som_respiration_rate, soil_respiration_Q10, turn_over_time, soilInit.socs_sys1, soilInit.socs_sys2, soilInit.socs_sys3, soilInit.socs_sys4, soilInit.socs_sys5, soilInit.socs_sys6, soilInit.socs_sys7, soilInit.socs_sys8 
+soilInit params: 8 
+prior lists identical new vs old: TRUE 
+                   distn meanlog  sdlog
+soilInit.socs_sys1 lnorm  0.9298 0.0885
+soilInit.socs_sys2 lnorm  1.1949 0.1025
+soilInit.socs_sys3 lnorm  1.2547 0.0739
+soilInit.socs_sys4 lnorm  1.3293 0.0896
+soilInit.socs_sys5 lnorm  1.2865 0.1257
+soilInit.socs_sys6 lnorm  1.3471 0.0695
+soilInit.socs_sys7 lnorm  1.1949 0.0617
+soilInit.socs_sys8 lnorm  1.2483 0.0604
+
+== Example 2: obs.rds (010)
+slots new/old: 74 74 
+                   
+                    g N2O-N ha-1 day-1 Mg C ha-1
+  N2O_chamber_daily                 18         0
+  SOC_stock_salinas                  0        56
+y identical: TRUE  Sigma identical: TRUE  meta identical: TRUE 
+
+== Example 2: target.rds (012)
+target slots new/old: 17 17  variables: SOC_periodmean_salinas N2O_contrast_modesto 
+target object identical new vs old: TRUE 

@@ -1,0 +1,53 @@
+### Adversarial: branch configs on cal-val-data without the rename
+## pre-rename PR #29 parent state (2da13da)
+$ [cal-val-data=old] Rscript scripts/010_prepare_observations.R -c examples/1_salinas_soc/config.yml
+2026-11-14 02:25:17.468107 SEVERE [target_rows] : 
+   no rows for target soil_organic_carbon_content at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  soil_organic_carbon_content  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+[exit 1]
+$ [cal-val-data=old] Rscript scripts/010_prepare_observations.R -c examples/2_joint_soc_n2o/config.yml
+2026-11-14 02:25:18.108168 SEVERE [target_rows] : 
+   no rows for target SOC_stock_salinas at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_salinas  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+[exit 1]
+## current cal-val-data develop (5575ed2 Merge pull request #21 from ccmmf/salinas-cover-crop-biomass)
+$ [cal-val-data=dev] Rscript scripts/010_prepare_observations.R -c examples/1_salinas_soc/config.yml
+2026-11-14 02:25:18.749971 SEVERE [target_rows] : 
+   no rows for target soil_organic_carbon_content at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  soil_organic_carbon_content  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+[exit 1]
+$ [cal-val-data=dev] Rscript scripts/010_prepare_observations.R -c examples/2_joint_soc_n2o/config.yml
+2026-11-14 02:25:19.393008 SEVERE [target_rows] : 
+   no rows for target SOC_stock_salinas at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_salinas  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+[exit 1]
+
+### Adversarial: base configs (bb842cc, retired names) on renamed cal-val-data (ce3870e)
+$ [cal-val-data=new] Rscript scripts/010_prepare_observations.R -c /tmp/nm-test-PWlYFq/cfg/ex1_old.yml
+2026-11-14 02:25:19.996071 SEVERE [target_rows] : 
+   no rows for target SOC_stock_Mg_ha at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_Mg_ha  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+[exit 1]
+$ [cal-val-data=new] Rscript scripts/010_prepare_observations.R -c /tmp/nm-test-PWlYFq/cfg/ex2_old.yml
+2026-11-14 02:25:20.615128 SEVERE [target_rows] : 
+   no rows for target SOC_stock_salinas at site(s) salinas_socs 
+Error in PEcAn.logger::logger.severe("no rows for target ", tg$variable,  : 
+  no rows for target  SOC_stock_salinas  at site(s)  salinas_socs
+Calls: build_obs ... list2 -> lapply -> FUN -> target_rows -> <Anonymous>
+Execution halted
+[exit 1]

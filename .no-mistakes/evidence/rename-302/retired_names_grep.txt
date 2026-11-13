@@ -1,0 +1,16 @@
+retired names (variable values in cal-val-data 2da13da observations.csv absent at ce3870e): 32
+alfalfa_dry_yield_kg_ha bulk_density_g_cm3 CH4_flux_mg_m2_d CO2_flux_g_m2_d corn_grain_dry_yield_kg_ha corn_grain_mh_dry_yield_kg_ha corn_total_biomass_kg_ha cover_crop_dry_biomass_kg_ha cover_crop_shoot_dry_matter_Mg_ha N2O_flux_g_N_ha_d N2O_flux_mg_m2_d nitrate_N_mg_kg rice_grain_yield_t_ha SOC_conc_mg_kg SOC_stock_Mg_ha soil_carbon_content soil_nh4_n_mg_kg soil_nitrogen_content soil_no3_n_mg_kg soil_organic_matter_pct sudangrass_dry_yield_kg_ha tomato_green_fresh_yield_Mg_ha tomato_mh_dry_yield_Mg_ha tomato_red_fresh_yield_Mg_ha tomato_vine_dry_yield_Mg_ha total_C_pct total_carbon_pct total_N_conc_mg_kg total_N_pct total_nitrogen_pct wheat_hh_dry_grain_yield_kg_ha wheat_mh_dry_grain_yield_kg_ha
+
+$ git grep -n -w -F -f retired.txt c14bd95
+HEAD:examples/3_statewide_effects/template.xml:49:    <variable>soil_carbon_content</variable>
+
+$ git grep -n -w -F -f retired.txt bb842cc
+bb842cc:examples/1_salinas_soc/config.yml:15:      - variable: SOC_stock_Mg_ha
+bb842cc:examples/1_salinas_soc/config.yml:32:      variable: SOC_stock_Mg_ha
+bb842cc:examples/1_salinas_soc/config.yml:39:      SOC_stock_Mg_ha: {model_var: TotSoilCarb, from: kg/m2, to: Mg/ha}
+bb842cc:examples/2_joint_soc_n2o/config.yml:24:        source_variables: [SOC_stock_Mg_ha]
+bb842cc:examples/2_joint_soc_n2o/config.yml:31:        source_variables: [N2O_flux_g_N_ha_d]
+bb842cc:examples/3_statewide_effects/template.xml:49:    <variable>soil_carbon_content</variable>
+bb842cc:vignettes/calibration_demo.qmd:160:  targets = list(list(variable = "SOC_stock_Mg_ha", sites = "salinas_socs"))
+bb842cc:vignettes/calibration_demo.qmd:180:                       variable = "SOC_stock_Mg_ha",
+bb842cc:vignettes/calibration_demo.qmd:200:    SOC_stock_Mg_ha = list(model_var = "TotSoilCarb", from = "kg/m2", to = "Mg/ha")
