@@ -7,7 +7,7 @@
 # tagging each filled event with where it came from, and writing harvest fractions that SIPNET
 # cannot misread. Base R only; a generator sources this file from its own directory.
 
-#' Provenance classes an event can carry
+#' Event provenance classes
 #'
 #' published  a source records the value: the paper, its data, or the monitoring product for
 #'            this field and season
