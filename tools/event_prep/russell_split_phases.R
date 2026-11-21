@@ -1067,7 +1067,8 @@ for (tid in names(SYSTEMS)) {
 # 2013 conventional corn N and the compost of the organic corn and tomato seasons the package
 # lacks (a sudangrass year is filled below). Copies are shifted by the difference in planting
 # dates, and only the ones landing inside the season are kept. A corn season of the paper's maize
-# systems and every wheat season keep the template's dates but take the paper's amounts (below).
+# systems and an irrigated wheat season keep the template's dates but take the paper's amounts; a
+# rainfed wheat season copies the template's amounts as logged (below).
 FERT_LIKE <- lapply(treatment_links("corn_n_dates_from"), function(t2) c(corn = t2))
 # With no record in the log, the amount is the paper's (David, 2026-10-29 call). Tautges et al.
 # (2019): maize in CONV and CONV+WCC was planted "with 56 kg N/ha 8-24-6 starter fertilizer" and
@@ -1085,24 +1086,33 @@ paper_corn_n <- function(recs) {
   n <- vapply(recs, function(e) e$nh4_n_kg_m2, 0)
   ifelse(side, CORN_SIDEDRESS_N * n / sum(n[side]), CORN_STARTER_N)
 }
-# Wheat in the same way (Aritra, 2026-10-31): Tautges et al. (2019) give the fertilized wheat
-# systems "56 kg/ha 15-15-15 starter fertilizer at planting, and an additional 90 and 112 kg/ha
-# urea in March" (rainfed and irrigated), N rates that make Table 1's 146 (RWF+N) and 168 (IWF+N)
-# kg N/ha. A wheat season with no record takes the dates of the nearest same-treatment wheat
-# season with a complete record, one application on or before planting (the starter) and the rest
-# after it (the urea, shared as the template shared its own N); Conventional Wheat/Tomato, which
-# the paper does not describe, takes the irrigated rate.
+# Irrigated wheat in the same way (Aritra, 2026-10-31): Tautges et al. (2019) give the fertilized
+# wheat systems "56 kg/ha 15-15-15 starter fertilizer at planting, and an additional 90 and 112
+# kg/ha urea in March" (rainfed and irrigated), N rates that make Table 1's 146 (RWF+N) and 168
+# (IWF+N) kg N/ha. An irrigated wheat season with no record takes the dates of the nearest
+# same-treatment wheat season with a complete record, one application on or before planting (the
+# starter) and the rest after it (the urea, shared as the template shared its own N); Conventional
+# Wheat/Tomato, which the paper does not describe, takes the irrigated rate. The log's complete
+# irrigated seasons carry the same total, 168.17 to 169.8 kg N/ha. The rainfed rate is not what
+# the log records: every complete Rainfed Wheat/Fallow (RWF+N) season, 1993-94 to 2012-13, carries
+# 111.68 to 113.33 kg N/ha (about 84 before planting and 28 in spring), none 146, and its partial
+# seasons have the same parts (century_package_issues.md, items 59 and 61). The records are the
+# measured applications and the paper's rainfed figure a summary that matches none of them, so a
+# rainfed wheat season with no record copies its treatment's nearest complete season as logged.
+# With the spring 1999 urea moved to the wheat plots (rwf_wheat_urea_plot_1999), no rainfed season
+# in the package is left without a record; the rule and its guard stay for a rebuilt package.
 WHEAT_STARTER_N <- 56
-WHEAT_UREA_N <- c(rainfed = 90, irrigated = 112)
+WHEAT_UREA_N <- 112          # irrigated
+WHEAT_UREA_N_RAINFED <- 90   # the paper's; not applied, only checked against the log by the guard below
 PAPER_SYSTEMS <- TREATMENTS$tid[TREATMENTS$tautges_code != ""]
 wheat_complete <- function(recs, planted) {
   d <- dates_of(recs)
   sum(d <= planted) == 1L && any(d > planted)
 }
-paper_wheat_n <- function(recs, planted, tid) {
+paper_wheat_n <- function(recs, planted) {
   late <- dates_of(recs) > planted
   n <- vapply(recs, function(e) e$nh4_n_kg_m2, 0)
-  ifelse(late, WHEAT_UREA_N[[if (tid %in% RAINFED) "rainfed" else "irrigated"]] * n / sum(n[late]), WHEAT_STARTER_N)
+  ifelse(late, WHEAT_UREA_N * n / sum(n[late]), WHEAT_STARTER_N)
 }
 fert_records <- function(pe, st, en) Filter(function(e) e$event_type == "fertilization" &&
   !identical(e$provenance_class, "imputed") && as.Date(e$date) >= st - FERT_LEAD_DAYS && as.Date(e$date) <= en, pe)
@@ -1113,8 +1123,17 @@ fert_seasons <- function(tid, crop) do.call(rbind, lapply(names(keep_all[[tid]])
   x$n_fert <- vapply(seq_len(nrow(x)), function(j) length(fert_records(keep_all[[tid]][[p2]], x$start[j], x$end[j])), 0L)
   cbind(x, phase = p2, tid = tid)
 }))
+# kg N/ha of each of a treatment's wheat seasons with a complete record, as logged
+wheat_logged_totals <- function(tid) {
+  x <- fert_seasons(tid, "wheat")
+  tot <- vapply(seq_len(NROW(x)), function(k) {
+    r <- fert_records(keep_all[[tid]][[x$phase[k]]], x$start[k], x$end[k])
+    if (wheat_complete(r, x$start[k])) sum(vapply(r, function(e) e$nh4_n_kg_m2, 0)) / KG_HA_TO_KG_M2 else NA_real_
+  }, 0)
+  tot[!is.na(tot)]
+}
 fert_gaps <- list()
-wheat_gap_phases <- character()  # "tid phase" of files with a paper-rate wheat season, for the file note
+wheat_gap_phases <- character()  # "tid phase" of files with a wheat gap season, for the file note
 for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   ss <- seasons_of(keep_all[[tid]][[ph]])
   ss <- ss[ss$start >= FIRST_DATE, ]
@@ -1139,33 +1158,49 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
     if (is.null(cand) || !nrow(cand)) next
     tmpl <- cand[which.min(abs(as.numeric(cand$start - s$start))), ]
     paper <- tid %in% PAPER_CORN_N && s$crop == "corn"
+    paper_wheat <- wheat && !tid %in% RAINFED
     from <- if (paper) last_planting(keep_all[[tmpl$tid]][[tmpl$phase]], s$crop, tmpl$start, tmpl$end) else tmpl$start
     shift <- as.numeric((if (paper) last_planting(keep_all[[tid]][[ph]], s$crop, s$start, end) else s$start) - from)
     recs <- fert_records(keep_all[[tmpl$tid]][[tmpl$phase]], tmpl$start, tmpl$end)
-    kg_ha <- if (paper) paper_corn_n(recs) else if (wheat) paper_wheat_n(recs, tmpl$start, tid)
+    kg_ha <- if (paper) paper_corn_n(recs) else if (paper_wheat) paper_wheat_n(recs, tmpl$start)
     if (wheat) wheat_gap_phases <- union(wheat_gap_phases, paste(tid, ph))
+    if (wheat && !paper_wheat) {
+      logged <- wheat_logged_totals(tid)
+      # the reason the rainfed paper rate is not used must still hold
+      stopifnot(length(logged) > 0L, all(abs(logged - (WHEAT_STARTER_N + WHEAT_UREA_N_RAINFED)) > 10))
+    }
     for (j in seq_along(recs)) {
       e <- recs[[j]]
       d <- as.Date(e$date) + shift
       if (d < s$start - FERT_LEAD_DAYS || d > end || d > LAST_DATE) {
-        if (paper || wheat) stop(sprintf("%s %s: a paper %s N application would land outside the %s season",
+        if (paper || wheat) stop(sprintf("%s %s: a filled %s N application would land outside the %s season",
                                          tid, ph, s$crop, format(s$start)))
         next
       }
-      if (wheat) {
+      if (paper_wheat) {
         late <- as.Date(e$date) > tmpl$start
         note <- sprintf(paste(
           "Fertilization gap: %s. Amount from Tautges et al. 2019, which give the fertilized wheat systems",
           "56 kg N/ha 15-15-15 starter at planting and %d kg N/ha urea in March (%s); this is %s%s.",
           "Dated like the %s %s application of the wheat season planted %s in %s %s, the nearest with",
           "a complete record, shifted %+d days (Aritra, 2026-10-31)."),
-          why, WHEAT_UREA_N[[if (tid %in% RAINFED) "rainfed" else "irrigated"]],
-          if (tid %in% RAINFED) "rainfed" else "irrigated", if (late) sprintf("%.2f kg N/ha of the urea", kg_ha[j]) else "the starter",
+          why, WHEAT_UREA_N, "irrigated", if (late) sprintf("%.2f kg N/ha of the urea", kg_ha[j]) else "the starter",
           if (tid %in% PAPER_SYSTEMS) "" else "; the paper does not describe this system, so its wheat takes the irrigated rate",
           format(d - shift), e$material, format(tmpl$start), tmpl$tid, tmpl$phase, shift)
         e <- set_provenance(list(
           event_type = "fertilization", date = format(d), nh4_n_kg_m2 = round(kg_ha[j] * KG_HA_TO_KG_M2, 7),
           source = "10.1111/gcb.14762", material = if (late) "urea" else "15-15-15 starter"), "imputed", note)
+      } else if (wheat) {
+        e$date <- format(d)
+        e <- set_provenance(e, "imputed", sprintf(paste(
+          "Fertilization gap: %s. Copies, as logged, the %s %s application (%.2f kg N/ha) of the wheat season",
+          "planted %s in %s %s, the nearest with a complete record, shifted %+d days. Not Tautges et al.",
+          "2019's rainfed rate (%d kg N/ha starter and %d kg N/ha urea, %d a season): the treatment's %d",
+          "complete logged wheat seasons carry %.2f to %.2f kg N/ha, none %d. The log records what was",
+          "applied; the paper's rate is a summary."),
+          why, format(d - shift), e$material, e$nh4_n_kg_m2 / KG_HA_TO_KG_M2, format(tmpl$start), tmpl$tid,
+          tmpl$phase, shift, WHEAT_STARTER_N, WHEAT_UREA_N_RAINFED, WHEAT_STARTER_N + WHEAT_UREA_N_RAINFED,
+          length(logged), min(logged), max(logged), WHEAT_STARTER_N + WHEAT_UREA_N_RAINFED))
       } else if (paper) {
         side <- identical(e$material, "Urea")
         note <- sprintf(paste(
@@ -1555,8 +1590,13 @@ logged_passes <- function(sys, ph) {
 # more than 300 and up to 600 days between a wheat harvest and the next planting, and no tillage
 # at all in the 6,462 idle or unclassified fallow parcel years. So, as an assumption, the
 # diskings are spaced evenly through each fallow: from the straw disking (or the end of the crop
-# before the fallow, the 1993 hay cut) to the next wheat planting, on top of the two straw passes.
-# A fallow the run ends in takes the median length of the file's other fallows.
+# before the fallow, the 1993 hay cut) to the next wheat planting, on top of the two straw passes:
+# six passes a fallow, as David reads the paper (calibration#10, 2026-11-02), the two straw
+# passes being one event. A fallow the run ends in takes the median length of the file's other
+# fallows. The wheat and cover crop systems get none (fallow_diskings blank): the paper fallows
+# the wheat "with the exception of RWF+WCC" and names no pass in RWF+WCC's summer fallow after
+# the cover crop, and the package logs the fallow herbicide (Round-up on a Fallow crop) on the
+# four wheat-fallow systems only.
 FALLOW_DISKINGS <- setNames(TREATMENTS$fallow_diskings, TREATMENTS$tid)
 FALLOW_MIN_DAYS <- 300  # a gap this long between a crop's end and the next wheat planting is a fallow
 FALLOW_NOTE <- paste("The paper gives the fallow four diskings, beginning after wheat harvest, but no dates,",
@@ -1764,7 +1804,6 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
   pe <- pe[order(vapply(pe, `[[`, "", "date"), vapply(pe, `[[`, "", "event_type"))]
   slug <- gsub("-+", "-", gsub("[^a-z0-9]+", "-", tolower(ph)))
   hist_note <- history_of[[paste(tid, ph)]]
-  wheat_rate <- if (tid %in% RAINFED) "rainfed" else "irrigated"
   out <- list(
     pecan_events_version = "0.1.1",
     site_id = sprintf("%s__%s", tid, slug),
@@ -1801,11 +1840,15 @@ for (tid in names(SYSTEMS)) for (ph in names(keep_all[[tid]])) {
         if (tid %in% PAPER_CORN_N) paste(
           "A corn season with no N record takes Tautges et al. 2019's amounts: 56 kg N/ha starter and",
           "180 kg N/ha of ammonium sulfate sidedress."),
-        if (paste(tid, ph) %in% wheat_gap_phases) sprintf(paste(
+        if (paste(tid, ph) %in% wheat_gap_phases && tid %in% RAINFED) sprintf(paste(
+          "A wheat season with no N record copies, as logged, the treatment's nearest wheat season with a",
+          "complete record, not Tautges et al. 2019's rainfed rate (%d kg N/ha), which none of the",
+          "treatment's logged seasons carries (they carry about 112)."), WHEAT_STARTER_N + WHEAT_UREA_N_RAINFED),
+        if (paste(tid, ph) %in% wheat_gap_phases && !tid %in% RAINFED) sprintf(paste(
           "A wheat season with no N record takes Tautges et al. 2019's amounts: %d kg N/ha starter and",
           "%d kg N/ha of urea (the %s rate%s), on the dates of the treatment's nearest wheat season with",
           "a complete record."),
-          WHEAT_STARTER_N, WHEAT_UREA_N[[wheat_rate]], wheat_rate,
+          WHEAT_STARTER_N, WHEAT_UREA_N, "irrigated",
           if (tid %in% PAPER_SYSTEMS) "" else "; the paper does not describe this system"),
         if (tid == "leg_corn_tomato") paste(
           "Its 2004 to 2007 tomato seasons keep the log's starter only: they were the first to follow",

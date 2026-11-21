@@ -230,7 +230,7 @@
    "material": "Ammonium nitrate",
    "n_plots_treated": 3,
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 17 of the 19 recorded wheat seasons of the rainfed N group have (n_fill_group in russell_treatments.csv). Copies the 1996-10-14 Ammonium nitrate application (85.33 kg N/ha) of the wheat season last planted 1996-11-11 in rf_wheat_fallow fallow-wheat, the nearest with both, shifted +358 days to this season's last planting (David on calibration#10, 2026-11-02)."
+   "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 17 of the 20 recorded wheat seasons of the rainfed N group have (n_fill_group in russell_treatments.csv). Copies the 1996-10-14 Ammonium nitrate application (85.33 kg N/ha) of the wheat season last planted 1996-11-11 in rf_wheat_fallow fallow-wheat, the nearest with both, shifted +358 days to this season's last planting (David on calibration#10, 2026-11-02)."
   },
   {
    "event_type": "planting",
@@ -287,16 +287,6 @@
    "tillage_eff_0to1": 0.3708,
    "provenance_class": "imputed",
    "provenance_note": "Fallow disking 2 of 4 after the wheat harvest of 1998-07-07, spaced evenly from 1998-07-31 to the wheat planting of 1999-11-13 (Tautges et al. 2019). tillage_eff_0to1 is the median of 51733 monitoring tillage events on parcels within 25 km of Russell Ranch (2016-2023; tillage v5.0, harvest v5.0, planting v5.0, crops v4.1). The paper gives the fallow four diskings, beginning after wheat harvest, but no dates, and the monitoring product near Russell Ranch shows one pass in most gaps after a wheat harvest (two in 9 of 722), not four, so the even spacing is an assumption."
-  },
-  {
-   "event_type": "fertilization",
-   "date": "1999-03-04",
-   "nh4_n_kg_m2": 0.002954,
-   "source": "10.1002/ecy.2105:operations_fertilizers.csv",
-   "material": "Urea",
-   "n_plots_treated": 3,
-   "provenance_class": "published",
-   "provenance_note": "Total N applied, field average over this phase's plots. Written as mineral N in nh4_n_kg_m2; SIPNET reads nh4 + no3 as one mineral pool, so the split does not reach the model."
   },
   {
    "event_type": "tillage",
@@ -402,7 +392,7 @@
    "material": "Can_27",
    "n_plots_treated": 3,
    "provenance_class": "imputed",
-   "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 17 of the 19 recorded wheat seasons of the rainfed N group have (n_fill_group in russell_treatments.csv). Copies the 2000-11-13 Can_27 application (84.13 kg N/ha) of the wheat season last planted 2000-11-20 in rf_wheat_fallow fallow-wheat, the nearest with both, shifted +355 days to this season's last planting (David on calibration#10, 2026-11-02)."
+   "provenance_note": "Fertilization gap: the log has this wheat season's in-season topdress or sidedress but not its preplant application, which 17 of the 20 recorded wheat seasons of the rainfed N group have (n_fill_group in russell_treatments.csv). Copies the 2000-11-13 Can_27 application (84.13 kg N/ha) of the wheat season last planted 2000-11-20 in rf_wheat_fallow fallow-wheat, the nearest with both, shifted +355 days to this season's last planting (David on calibration#10, 2026-11-02)."
   },
   {
    "event_type": "planting",
