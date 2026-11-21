@@ -18,7 +18,7 @@ derivation is reviewable and re-runnable; previously the files named a generator
 | `russell_monitoring_tillage.R` | `monitoring_tillage_near_russell.csv`, tillage timing and intensity near Russell Ranch | monitoring tillage, harvest and planting v5.0 + crop table v4.1 |
 | `russell_monitoring_irrigation.R` | `monitoring_irrigation_near_russell.csv`, corn, tomato and alfalfa season irrigation totals and timing near Russell Ranch | monitoring irrigation, harvest and planting v5.0 + crop table v4.1 |
 | `write_events_in.R` | `events.in` from `events.json` | `PEcAn.SIPNET::write.events.SIPNET` equivalent |
-| `fill_order.R` | no file: the fill helpers the generators share (below), sourced by `russell_split_phases.R` | |
+| `fill_order.R` | No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions | NA: does not read source datasets itself |
 
 ## Order for US-Twt
 
@@ -33,7 +33,7 @@ write_events_in.R            # emit events.in for SIPNET
 
 When a site's records lack an event that is known to have happened (a crop that was
 harvested, a cover crop that was incorporated), or lack its date or amount, the generators
-fill it in this order (David, calibration#10):
+fill it in this order:
 
 1. **The paper or its source data.** Use what they record, including dates relative to
    another recorded operation (a termination before the next planting) and medians over the
@@ -43,6 +43,10 @@ fill it in this order (David, calibration#10):
    dates and amounts for comparable crops and operations in the same area.
 3. **Guidance documents**, as a last resort; ideally their information is already in the
    monitoring product, as it is for fertilization.
+
+The order goes from the most direct evidence to the most general: the paper and its data
+record what happened on these plots, the monitoring product estimates it field by field, and
+guidance gives typical practice for a crop and region.
 
 This applies to amounts as well as dates. Every filled or imputed event says where it came
 from (`source`, `provenance_class`, `provenance_note`).

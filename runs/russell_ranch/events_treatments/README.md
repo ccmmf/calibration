@@ -105,8 +105,8 @@ calibration sites use (`s3://carb/management/plant_traits/harvest_lookup.csv`, d
 md5 `defbff0c0b86ae9ff6db07d520813538`), the values the monitoring harvest product carries,
 rounded to three decimals as Akash gave them on calibration#10. Corn and tomato take what the
 site's own samples say the harvest removed instead (Aritra, 2026-10-31; below), and the script
-recomputes both from the package. This departs on purpose from the shared lookup David asked for
-on calibration#10: the site's samples are source data, which comes first in David's fill order
+recomputes both from the package. This departs on purpose from the shared lookup agreed
+on calibration#10: the site's samples are source data, which comes first in the fill order
 (`tools/event_prep/README.md`, "Filling missing events"), and the residue left in the field is
 what feeds soil carbon. Every row takes 100% of the biomass as removed or to litter, so
 a harvest ends the crop; an intermediate alfalfa cutting does not (below). David suggested DSSAT
@@ -605,7 +605,7 @@ cultivating between the beds after tomato transplanting. Its metadata describes 
 2007 standard versus conservation tillage split (all included data are from the standard
 halves). Tautges et al. 2019 (Methods 2.1 to 2.3) describe the operations and when they happen
 relative to harvest, planting, cover crop termination and compost, but not on which day, apart
-from the wheat straw, or how intense they are. So, in David's order, the logged passes keep the
+from the wheat straw, or how intense they are. So, in the fill order, the logged passes keep the
 package's dates, the wheat straw disking keeps the paper's month, the fallow diskings, which
 nothing dates, are spaced evenly through the fallow, and the other dates and every intensity come
 from the monitoring tillage product near Russell Ranch:
@@ -677,8 +677,8 @@ the `alf_corn_tomato` history:
 
 - **Harvest fractions differ from the other sites.** Corn and tomato take the site's own shares
   (above), so Russell no longer uses the shared lookup's F16 and T32 rows, departing from the
-  shared lookup David asked for on calibration#10: the site's samples are source data, which
-  comes first in David's fill order, and the residue left in the field is what feeds soil carbon
+  shared lookup agreed on calibration#10: the site's samples are source data, which
+  comes first in the fill order, and the residue left in the field is what feeds soil carbon
   (Aritra, 2026-10-31).
   Wheat still takes G2, which removes 0.713 although the paper incorporates the straw; the package
   has no straw weights to replace it with.
