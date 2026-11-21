@@ -40,10 +40,10 @@
    "calval_event_id": "planting-0002",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0002). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0002). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -572,10 +572,10 @@
    "calval_event_id": "planting-0024",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0024). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0024). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -1136,10 +1136,10 @@
    "calval_event_id": "planting-0046",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0046). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0046). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -1800,10 +1800,10 @@
    "calval_event_id": "planting-0070",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0070). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0070). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -2364,10 +2364,10 @@
    "calval_event_id": "planting-0092",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0092). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0092). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -2978,10 +2978,10 @@
    "calval_event_id": "planting-0114",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0114). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0114). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -3522,10 +3522,10 @@
    "calval_event_id": "planting-0136",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0136). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0136). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -4166,10 +4166,10 @@
    "calval_event_id": "planting-0160",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0160). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0160). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",

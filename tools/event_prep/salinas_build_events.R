@@ -53,6 +53,14 @@ CROPS <- data.frame(
   slot = c("lettuce", "spinach", "broccoli", "cover_crop", "cover_crop", "cover_crop"),
   stringsAsFactors = FALSE)
 stopifnot(all(CROPS$display %in% crops$common.name))
+# Cover crop seeding: systems 3 to 8 pair each species at 1x and 3x (kg/ha, Brennan and Boyd 2012, as
+# cal-val-data data_raw/white_salinas_2020 gives them). About 2.7 times as many plants emerged at 3x
+# (calibration#18 review), so a 3x cover crop starts with 2.7 times the planting leaf C. Systems 1 and 2,
+# which sow legume-rye in two years only, have no published rate and keep the base leaf C.
+SEEDING_3X <- c(socs_sys4 = "legume-rye, 420 kg/ha (1x 140, socs_sys3)",
+                socs_sys6 = "mustard, 33 kg/ha (1x 11, socs_sys5)",
+                socs_sys8 = "rye, 270 kg/ha (1x 90, socs_sys7)")
+EMERGENCE_3X <- 2.7
 VEGETABLES <- CROPS$key[CROPS$slot != "cover_crop"]
 COVER_CROPS <- CROPS$key[CROPS$slot == "cover_crop"]
 display_of <- function(k) CROPS$display[match(k, CROPS$key)]
@@ -118,7 +126,7 @@ tag <- function(e, parts, sys, row_source, what = display_of(e$crop_code)) {
   set_provenance(e, cls, paste(vapply(parts, `[[`, "", "note"), collapse = " "), paste(srcs, collapse = " + "))
 }
 
-# One date for a calendar row (David's order): the row's own date when it has one; for a window,
+# One date for a calendar row (the fill order, tools/event_prep/README.md): the row's own date when it has one; for a window,
 # the monitoring product's median day for the crop and operation near SOCS when that falls inside
 # it, otherwise the window's midpoint. lo and hi narrow the window by the order the calendar
 # states (after a harvest, before a planting), using the dates already chosen for those events.
@@ -187,8 +195,12 @@ build_system <- function(sys) {
       "November within %d km of SOCS, %s (n = %d), the closest class: the product has no cover crop",
       "class."), lc$radius_km, lc$years, lc$n) else sprintf(
       "leaf_c_kg_m2 is the median planting leaf C of %s (n = %d).", mon_where(lc), lc$n)
+    seed3x <- cover && sys %in% names(SEEDING_3X)
+    if (seed3x) leaf_note <- sprintf(paste(
+      "%s Times %.1f for the 3x seeding (%s): about %.1f times as many plants emerged as at 1x, so the",
+      "stand starts that much larger."), leaf_note, EMERGENCE_3X, SEEDING_3X[[sys]], EMERGENCE_3X)
     e <- c(base(i, "planting", pd$date), list(crop_code = k, crop_display = display_of(k),
-                                               leaf_c_kg_m2 = round(lc$value, 5)))
+                                               leaf_c_kg_m2 = round(lc$value * (if (seed3x) EMERGENCE_3X else 1), 5)))
     add(tag(e, list(pd$part, part("imputed", leaf_note, MON_SOURCE, "leaf_c_kg_m2",
                                   sprintf("monitoring %s (%s) median", lc$crop_code, slot_of(k)))), sys, src_of(i)))
     sown <- rbind(sown, data.frame(crop = k, date = pd$date))

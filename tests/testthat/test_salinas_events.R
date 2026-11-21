@@ -212,3 +212,12 @@ test_that("the builder stops when a fall incorporation would come before a harve
   expect_false(is.null(b$status))
   expect_match(b$log, "tillage-fall-socs_sys1 on 2005-09-[0-9]+ is not after the harvest it follows")
 })
+
+test_that("a 3x cover crop starts with 2.7 times the 1x planting leaf C", {
+  leaf <- function(s) unique(vapply(Filter(function(e) e$crop_code %in% c("legume-rye", "mustard", "rye"),
+                                           events_of(s, "planting")), function(e) e$leaf_c_kg_m2, 0))
+  base <- leaf("socs_sys3")
+  expect_length(base, 1L)
+  for (s in c("socs_sys1", "socs_sys2", "socs_sys5", "socs_sys7")) expect_equal(leaf(s), base, info = s)
+  for (s in c("socs_sys4", "socs_sys6", "socs_sys8")) expect_equal(leaf(s), round(base * 2.7, 5), tolerance = 1e-5, info = s)
+})

@@ -40,10 +40,10 @@
    "calval_event_id": "planting-0004",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0004). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0004). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -572,10 +572,10 @@
    "calval_event_id": "planting-0026",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0026). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0026). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -1136,10 +1136,10 @@
    "calval_event_id": "planting-0048",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0048). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0048). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -1800,10 +1800,10 @@
    "calval_event_id": "planting-0072",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0072). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0072). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -2364,10 +2364,10 @@
    "calval_event_id": "planting-0094",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0094). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0094). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -2978,10 +2978,10 @@
    "calval_event_id": "planting-0116",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0116). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0116). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -3522,10 +3522,10 @@
    "calval_event_id": "planting-0138",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0138). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0138). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -4166,10 +4166,10 @@
    "calval_event_id": "planting-0162",
    "crop_code": "mustard",
    "crop_display": "mustard",
-   "leaf_c_kg_m2": 0.00416,
+   "leaf_c_kg_m2": 0.01123,
    "source": "10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0162). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0162). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (mustard, 33 kg/ha (1x 11, socs_sys5)): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
