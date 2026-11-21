@@ -3,7 +3,7 @@
 # of the monitoring product. Management uncertainty comes only from the product's irrigation
 # (irr_ens_NNN) and fertilization (ens_NNN) members, and only where the builder uses them: US-Bi1
 # its irrigation, US-Bi2 its two 2021 and 2022 irrigation events, US-Twt its 2017-2023 irrigation and
-# fertilization. Everything else is the same in every member as in runs/<site>/events.json, which
+# 2022 fertilization. Everything else is the same in every member as in runs/<site>/events.json, which
 # is member 1.
 #
 # usage: step3_delta_ensemble.R <us_bi1|us_bi2|us_twt> <managements.csv> <out_dir> [n_members]

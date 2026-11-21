@@ -43,6 +43,8 @@ STRAW_NOTE <- paste(
   "harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of",
   "aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which",
   "is not rice- or site-specific and would remove the straw the source says stayed.")
+STRAW_FILL <- "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index"
+LEAF_FILL <- "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median"
 RESIDUE_UNRESOLVED_YEARS <- 2014L   # delta-residue_treatment-0003
 
 # Knox describes disking and then ring rolling before planting, without dates. They go on at
@@ -102,7 +104,7 @@ for (i in seq_len(nrow(knox))) {
     plantings[as.character(y)] <- md
     add(set_provenance(list(event_type = "planting", date = md, crop_code = CROP, crop_display = r$crop_name,
                             leaf_c_kg_m2 = LEAF_C,
-                            prior_filled = "leaf_c_kg_m2<-prior:us_twt_monitoring_product_median"),
+                            prior_filled = LEAF_FILL),
                        "imputed", paste(dnote, "Leaf C is the median of the parcel's R1 plantings in the",
                                         "monitoring product, so the event is imputed."), src))
   } else if (r$mgmttype == "harvest") {
@@ -111,7 +113,7 @@ for (i in seq_len(nrow(knox))) {
       "others rather than sourced."), y), paste("The fractions come from prior:rice_harvest_index,",
       "not from Knox, so the event is assumed.")), collapse = " ")
     e <- c(list(event_type = "harvest", date = md, crop_display = r$crop_name), STRAW_LEFT,
-           list(prior_filled = "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index"))
+           list(prior_filled = STRAW_FILL))
     if (y %in% RESIDUE_UNRESOLVED_YEARS) e$residue_treatment_resolved <- FALSE
     add(set_provenance(e, "assumed", note, src))
   } else if (r$mgmttype == "fertilization") {
@@ -135,11 +137,12 @@ plantings[as.character(fill_y)] <- p16
 no_2016 <- sprintf(paste("No record dates the %d crop: Knox et al. 2016 end with 2015 and the monitoring product",
                          "(planting and harvest v1.0) has no %d rows for this parcel."), fill_y, fill_y)
 add(set_provenance(list(event_type = "planting", date = p16, crop_code = CROP, crop_display = CROP,
-                        leaf_c_kg_m2 = LEAF_C, prior_filled = "date<-synthesized:median_doy(2010-2015)"),
+                        leaf_c_kg_m2 = LEAF_C,
+                        prior_filled = paste("date<-synthesized:median_doy(2010-2015);", LEAF_FILL)),
                    "imputed", paste(no_2016, sprintf("Dated by the median day of year of the %d Knox plantings, %s.",
                                                      length(lit_plant), "2010-2015")), KNOX))
 add(set_provenance(c(list(event_type = "harvest", date = h16, crop_display = CROP), STRAW_LEFT,
-                     list(prior_filled = "date<-synthesized:median_doy(2010-2015)")),
+                     list(prior_filled = paste("date<-synthesized:median_doy(2010-2015);", STRAW_FILL))),
                    "imputed", paste(no_2016, "Dated by the median day of year of the Knox harvests, 2010-2015.", STRAW_NOTE),
                    KNOX))
 # fertilization: the single application regime of 2013-2015, its median rate and day
@@ -182,7 +185,7 @@ p17 <- date_of_doy(mon_y, median_doy(doy_of(cp$date)))
 plantings[as.character(mon_y)] <- p17
 add(set_provenance(list(event_type = "planting", date = p17, crop_code = CROP, crop_display = CROP,
                         leaf_c_kg_m2 = round(median(as.numeric(cp$C_LEAF)), 8),
-                        prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y)),
+                        prior_filled = sprintf("date<-synthesized:%d_excluded_year; %s", mon_y, LEAF_FILL)),
                    "imputed", paste0(fill_note, sprintf(paste(
                      "dated by the median day of year of the parcel's %d R1 plantings (%s to %s), leaf C",
                      "their median."), nrow(cp), substr(min(cp$date), 1, 4), substr(max(cp$date), 1, 4))),
@@ -194,10 +197,11 @@ for (i in which(in_monitoring(harv$date))) {
   r <- harv[i, ]
   if (r$CLASS_SUBCLASS == CROP) {
     add(set_provenance(c(list(event_type = "harvest", date = r$date, crop_display = r$CLASS_SUBCLASS), STRAW_LEFT,
-                         list(prior_filled = "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index")),
-                       "assumed", paste(sprintf("Date from the monitoring product harvest row for parcel %s, %s.", PARCEL,
+                         list(prior_filled = STRAW_FILL)),
+                       "imputed", paste(sprintf("Date from the monitoring product harvest row for parcel %s, %s.", PARCEL,
                                                 substr(r$date, 1, 4)), KNOX_CARRIED, STRAW_NOTE,
-                                        sprintf("The product's fractions (%s) are not used.", product_fracs(r))),
+                                        sprintf("The product's fractions (%s) are not used.", product_fracs(r)),
+                                        "The practice is carried into a year Knox does not cover, so the event is imputed."),
                        source = "monitoring_product:harvest/v1.0"))
   } else {
     add(set_provenance(c(list(event_type = "harvest", date = r$date, crop_display = r$CLASS_SUBCLASS),
@@ -212,7 +216,7 @@ for (i in which(in_monitoring(harv$date))) {
 ch <- harv[harv$CLASS_SUBCLASS == CROP & harv$season == 2, ]
 h17 <- date_of_doy(mon_y, median_doy(doy_of(ch$date)))
 add(set_provenance(c(list(event_type = "harvest", date = h17, crop_display = CROP), STRAW_LEFT,
-                     list(prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y))),
+                     list(prior_filled = sprintf("date<-synthesized:%d_excluded_year; %s", mon_y, STRAW_FILL))),
                    "imputed", paste(paste0(fill_note, sprintf("dated by the median day of year of the parcel's %d R1 harvests.", nrow(ch))),
                                     KNOX_CARRIED, STRAW_NOTE),
                    "monitoring_product:harvest/v1.0"))

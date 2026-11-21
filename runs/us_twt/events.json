@@ -1907,7 +1907,7 @@
    "crop_code": "R1",
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.02455947,
-   "prior_filled": "date<-synthesized:median_doy(2010-2015)",
+   "prior_filled": "date<-synthesized:median_doy(2010-2015); leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "10.1002/2015JG003247",
    "provenance_class": "imputed",
    "provenance_note": "No record dates the 2016 crop: Knox et al. 2016 end with 2015 and the monitoring product (planting and harvest v1.0) has no 2016 rows for this parcel. Dated by the median day of year of the 6 Knox plantings, 2010-2015."
@@ -2005,7 +2005,7 @@
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 0.5,
    "frac_below_to_litter_0to1": 1,
-   "prior_filled": "date<-synthesized:median_doy(2010-2015)",
+   "prior_filled": "date<-synthesized:median_doy(2010-2015); frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "10.1002/2015JG003247",
    "provenance_class": "imputed",
    "provenance_note": "No record dates the 2016 crop: Knox et al. 2016 end with 2015 and the monitoring product (planting and harvest v1.0) has no 2016 rows for this parcel. Dated by the median day of year of the Knox harvests, 2010-2015. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
@@ -2187,7 +2187,7 @@
    "crop_code": "R1",
    "crop_display": "R1",
    "leaf_c_kg_m2": 0.02455947,
-   "prior_filled": "date<-synthesized:2017_excluded_year",
+   "prior_filled": "date<-synthesized:2017_excluded_year; leaf_c_kg_m2<-prior:us_twt_monitoring_product_median",
    "source": "monitoring_product:planting/v1.0",
    "provenance_class": "imputed",
    "provenance_note": "The planting and harvest products have no 2017 for this parcel; dated by the median day of year of the parcel's 5 R1 plantings (2018 to 2023), leaf C their median."
@@ -2249,7 +2249,7 @@
    "frac_below_removed_0to1": 0,
    "frac_above_to_litter_0to1": 0.5,
    "frac_below_to_litter_0to1": 1,
-   "prior_filled": "date<-synthesized:2017_excluded_year",
+   "prior_filled": "date<-synthesized:2017_excluded_year; frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "monitoring_product:harvest/v1.0",
    "provenance_class": "imputed",
    "provenance_note": "The planting and harvest products have no 2017 for this parcel; dated by the median day of year of the parcel's 5 R1 harvests. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed."
@@ -2467,8 +2467,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "assumed",
-   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2018. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2018. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used. The practice is carried into a year Knox does not cover, so the event is imputed."
   },
   {
    "event_type": "irrigation",
@@ -2737,8 +2737,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "assumed",
-   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2019. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2019. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used. The practice is carried into a year Knox does not cover, so the event is imputed."
   },
   {
    "event_type": "irrigation",
@@ -3061,8 +3061,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "assumed",
-   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2020. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2020. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used. The practice is carried into a year Knox does not cover, so the event is imputed."
   },
   {
    "event_type": "irrigation",
@@ -3394,8 +3394,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "assumed",
-   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2021. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2021. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used. The practice is carried into a year Knox does not cover, so the event is imputed."
   },
   {
    "event_type": "irrigation",
@@ -3760,8 +3760,8 @@
    "frac_below_to_litter_0to1": 1,
    "prior_filled": "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index",
    "source": "monitoring_product:harvest/v1.0",
-   "provenance_class": "assumed",
-   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2023. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used."
+   "provenance_class": "imputed",
+   "provenance_note": "Date from the monitoring product harvest row for parcel 590073, 2023. Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year instead of the monitoring product's value, since the paper is the more direct source. Grain removed, straw chopped and left on the field as Knox et al. (2016) describe. 0.5 is the harvest index for medium-grain Calrose rice (M-104, M-206), so grain is about half of aboveground biomass. Replaces the monitoring product's generic annual-crop default of 0.8, which is not rice- or site-specific and would remove the straw the source says stayed. The product's fractions (0.8, 0, 0.2, 1) are not used. The practice is carried into a year Knox does not cover, so the event is imputed."
   },
   {
    "event_type": "irrigation",

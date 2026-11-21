@@ -188,11 +188,17 @@ which is subsurface water left to the water table and the run's flood configurat
 **Flooding in the runs.** Every run gets the same SIPNET flags, `FLOODING` and `ANAEROBIC`
 included, whether or not the site floods. With `FLOODING` on, SIPNET drains each day only
 `waterDrainFrac` of the soil water above holding capacity, so a high value drains freely and a low
-one holds the water up. A site floods by lowering `waterDrainFrac` at planting and restoring it at
-harvest, with a stop and restart between the segments, so no field stays flooded longer than the
-real one; the same applies to the ensembles. The events here stand in for the water only. That run
-setup is not in this repository yet: the workflow manifest sets the model options that SIPNET
-receives, and `runs/template.xml` only records them.
+one holds the water up. A field floods by lowering `waterDrainFrac` while it is flooded and
+restoring it when it drains, with a stop and restart between the segments, so no field stays
+flooded longer than the real one; the same applies to the ensembles. For rice the flooded period
+is planting to harvest. The events here stand in for the water only. That run setup is not in
+this repository yet: the workflow manifest sets the model options that SIPNET receives, and
+`runs/template.xml` only records them.
+
+Open: US-Bi2's floods and US-Twt's winter floods fall between harvest and the next planting, and
+US-Bi2's corn is not flooded, so planting to harvest does not fit them. Should their segments
+follow the flood windows instead, from each flood's first day (or WTD onset) to its drain, as the
+flood events here do?
 
 ### US-Twt, Twitchell rice, parcel 590073, 2010-2023 (403 events)
 
@@ -200,11 +206,11 @@ receives, and `runs/template.xml` only records them.
 |---|---|---|
 | 2010-2015 plantings, harvests, fertilization | Knox et al. 2016 Table 1 through the cal-val-data rows; a reported window takes its first day. Leaf C at planting is the median of the parcel's 5 R1 plantings in the monitoring product, 0.02455947 kg C/m2. Harvests `harvest_fractions(0.5, 0, 0.5, 1)`: grain removed, straw chopped and left (the 2014 residue treatment is not reported); the 0.5 comes from `prior:rice_harvest_index`, not from Knox. Fertilization N is computed from the reported rate (lb/ac) and the product grade's %N. Every event notes its Knox row | plantings imputed (leaf C from the monitoring product), harvests assumed (fractions from the prior), fertilization derived (N from rate and grade) |
 | 2016 planting, harvest, fertilization | no record: the medians of the Knox years (2016-04-18, 2016-10-06; 100 lb/ac of 15-15-15 on 2016-05-30, the 2013-2015 regime). Tagged `imputed` (was `assumed`) | imputed |
-| 2017-2023 plantings, harvests, fertilization | dates from the monitoring product (planting and harvest v1.0); 2017, which those products lack, takes the median day of its other R1 years, with leaf C 0.02455947 kg C/m2. Where Knox report a practice for the rice it carries into the years they do not cover, instead of the product's values: every rice harvest is `harvest_fractions(0.5, 0, 0.5, 1)` (the product has 0.8, 0, 0.2, 1), and every rice year gets one application of the 2013-2015 regime, 100 lb/ac of 15-15-15 (16.8 kg N/ha) on its median day, 30 or 31 May (the product has 125 to 153 kg N/ha). The product's R1 applications are not used, including member 1's organic one on 2018-02-02 (0.44 kg C/m2, 186 kg N/ha organic N). 2022, which the product has as G2, keeps its harvest (0.8, 0, 0.2, 1) and its one application (115 kg N/ha mineral N) | plantings 6 published, 1 imputed (2017); harvests 5 assumed (fractions from the prior), 1 imputed (2017), 1 published (2022); fertilization 6 imputed, 1 published (2022) |
+| 2017-2023 plantings, harvests, fertilization | dates from the monitoring product (planting and harvest v1.0); 2017, which those products lack, takes the median day of its other R1 years, with leaf C 0.02455947 kg C/m2. Where Knox report a practice for the rice it carries into the years they do not cover, instead of the product's values: every rice harvest is `harvest_fractions(0.5, 0, 0.5, 1)` (the product has 0.8, 0, 0.2, 1), and every rice year gets one application of the 2013-2015 regime, 100 lb/ac of 15-15-15 (16.8 kg N/ha) on its median day, 30 or 31 May (the product has 125 to 153 kg N/ha). The product's R1 applications are not used, including member 1's organic one on 2018-02-02 (0.44 kg C/m2, 186 kg N/ha organic N). 2022, which the product has as G2, keeps its harvest (0.8, 0, 0.2, 1) and its one application (115 kg N/ha mineral N) | plantings 6 published, 1 imputed (2017); harvests 6 imputed (Knox's practice carried; 2017 also dated by the median), 1 published (2022); fertilization 6 imputed, 1 published (2022) |
 | 14 flood onsets | dated from the AmeriFlux US-Twt BASE-BADM 7-5 water table record, `us_twt_wtd_water_dates.csv`: 7 growing season and 7 winter onsets, 2010-06-15 to 2016-11-17. The date is derived but the 69 mm is the rule's, so each onset is imputed and its `source` names both | imputed |
 | 179 flood repeats | each WTD flood held from its onset (or, for the winter flood in place on 2010-01-01, from the first day) to its WTD drain by 69 mm every 7 d, the median amount (69.46 mm, rounded) and modal interval of the product's 129 flood events for the parcel in 2017-2023 (70 mm, from the mean, before 2026-11-08). The 2016-11-17 winter flood now runs to its drain on 2017-03-11 (17 events) instead of stopping at 2016-12-31 (7) | imputed |
 | 137 monitoring irrigation | the product's irrigation v1.1 (`irr_ens_001`), 2017-2023: 129 flood events, written as soil irrigation, and 8 canopy events of 157.44 mm. The four in July to October 2017 fall inside the rice season planted 2017-05-20 (the fill) and harvested 2017-11-14, and rice here is grown flooded, so they are read as flood and written as soil irrigation; the four in 2022, when the product has G2, stay canopy | 133 published, 4 assumed (2017) |
-| 28 tillage | Knox's disking (`delta-tillage-0001`, tillage_eff 0.5) and ring rolling (`delta-tillage-0002`, 0.2) at 21 and 7 d before every planting, the monitoring years included (decided 2026-08-29, literature first). Ring rolling in 2017-2023 cited `delta-tillage-0001` before. In 2010-2015 Knox reports the operations and only the offsets are assumed; in 2016-2023 the practice is carried from Knox 2010-2015 into years no site record covers and dated from that year's imputed or monitoring planting | 12 assumed (2010-2015), 16 imputed (2016-2023) |
+| 28 tillage | Knox's disking (`delta-tillage-0001`, tillage_eff 0.5) and ring rolling (`delta-tillage-0002`, 0.2) at 21 and 7 d before every planting, the monitoring years included (decided 2026-08-29, literature first). Ring rolling in 2017-2023 cited `delta-tillage-0001` before. In 2010-2015 Knox reports the operations and only the offsets are assumed; in 2016-2023 the practice is carried from Knox 2010-2015 into years no site record covers and dated from that year's imputed or monitoring planting; whether it should carry is open (below) | 12 assumed (2010-2015), 16 imputed (2016-2023) |
 
 Leaf C changed in two places when the means became medians (a median, less swayed by one odd year
 than a mean, for values backfilled from the monitoring product): the US-Bi1 planting from 0.00994096 to
@@ -216,8 +222,8 @@ moved to the median too: 69.46 mm, which rounds to
 fraction, a value the paper reports carries into the years it does not cover; the monitoring
 product comes in only for what the paper never reports (here the dates, and the 2022 grain crop).
 That settles the 0.8 removal, the 125 to 153 kg N/ha, the 2018-02-02 organic application and the
-2017 fill. The 2017 canopy water is read as the rice flood. By the same rule Knox's disking and
-ring rolling carry into 2016-2023 (16 events), dated from each year's planting.
+2017 fill. The 2017 canopy water is read as the rice flood. The rule does not cover tillage
+(below).
 
 All flood water is `method: "soil"` (SIPNET method 1), with "Flood irrigation" in the note:
 SIPNET's flood method (2) is a placeholder the build in use rejects, and `write.events.SIPNET`
@@ -235,8 +241,9 @@ follow-up.**
 
 The monitoring product does record tillage for this parcel (tillage v1.0 has 5 NDTI detections
 in 2018-2022, v5.0 has 6 in 2017-2022), although the 2026-08-29 merge said it records none.
-Knox's pattern is carried forward instead, as decided then; whether to use the detections is
-open.
+Knox's pattern is carried forward instead, as decided then, 2022 included, although the product
+has a G2 grain crop that year and Knox describes only rice. Whether 2016-2023 should carry Knox's
+disking and ring rolling (16 events), take the detections, or have no tillage is open.
 
 ## Notes
 

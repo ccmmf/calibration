@@ -221,16 +221,22 @@ test_that("US-Twt carries Knox's rice harvest fraction and fertilizer regime int
                                "frac_above_to_litter_0to1", "frac_below_to_litter_0to1")])
   # every rice harvest keeps the straw as in the Knox years; 2022, a G2 grain crop, keeps the product's
   for (e in harv[rice]) expect_equal(unname(fr(e)), c(0.5, 0, 0.5, 1), info = e$date)
+  # a carried practice is imputed, the weakest class, as the carried fertilization and tillage are
+  expect_true(all(field(harv[rice], "provenance_class") == "imputed"))
+  expect_true(all(grepl("rice_harvest_index", field(harv[rice], "prior_filled"))))
   expect_equal(dates(harv[!rice]), "2022-10-25")
   expect_equal(unname(fr(harv[!rice][[1]])), c(0.8, 0, 0.2, 1))
-  # one application of the 2013-2015 regime in every rice year, the same as the 2016 fill
+  # one application of the 2013-2015 regime in every rice year: 100 lb/ac of 15-15-15 on 30 or 31 May
   fert <- of_type(late, "fertilization")
-  knox16 <- Filter(function(e) e$date == "2016-05-30", of_type(ev, "fertilization"))[[1]]
   yrs <- substr(dates(fert), 1, 4)
   knox <- fert[yrs != "2022"]
   expect_equal(sort(unique(substr(dates(knox), 1, 4))), c("2017", "2018", "2019", "2020", "2021", "2023"))
   expect_length(knox, 6L)
-  expect_true(all(field(knox, "nh4_n_kg_m2") == knox16$nh4_n_kg_m2))
+  expect_true(all(substr(dates(knox), 6, 10) %in% c("05-30", "05-31")))
+  expect_true(all(field(knox, "reported_rate_lb_ac") == "100"))
+  expect_true(all(field(knox, "reported_grade") == "15-15-15"))
+  # 1 lb/ac = 1.12085 kg/ha and 15-15-15 is 15 % N: 16.8 kg N/ha, 0.00168 kg N/m2
+  expect_equal(as.numeric(field(knox, "nh4_n_kg_m2")), rep(100 * 1.12085 * 0.15 * 1e-4, 6L), tolerance = 1e-5)
   expect_true(all(field(knox, "org_n_kg_m2") == 0))
   expect_true(all(field(knox, "source") == "10.1002/2015JG003247"))
   # no organic application from the product survives, and 2022 keeps the product's one row
