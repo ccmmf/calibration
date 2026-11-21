@@ -43,7 +43,7 @@ test_that("US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that l
   expect_equal(dates(of_type(ev, "planting")), "2017-01-01")
   # an assumed date with the monitoring product's leaf C: the weaker part makes it imputed
   expect_equal(field(of_type(ev, "planting"), "provenance_class"), "imputed")
-  # backfilled leaf C is a median, not a mean (David's rule)
+  # backfilled leaf C is a median, not a mean
   expect_match(field(of_type(ev, "planting"), "prior_filled"), "^leaf_c_kg_m2<-median of")
   cuts <- read.csv(file.path(root, "tools", "event_prep", "us_bi1_cuttings.csv"), colClasses = "character")
   # every date says what it is read from
@@ -57,8 +57,13 @@ test_that("US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that l
   expect_equal(unname(cls[names(cls) == "2020-06-04"]), "assumed")
   expect_true(all(cls[names(cls) != "2020-06-04"] == "imputed"))
   expect_length(c(of_type(ev, "tillage"), of_type(ev, "fertilization")), 0L)
+  # the water comes up from the ditches, so the product's irrigation goes on as soil, not canopy
+  irr <- of_type(ev, "irrigation")
+  expect_length(irr, 18L)
+  expect_true(all(field(irr, "method") == "soil"))
 
   ln <- sipnet_lines("us_bi1")
+  expect_true(all(vapply(lines_of(ln, "irrig"), function(l) l$values[2], 0) == 1))
   plant <- lines_of(ln, "plant")
   expect_length(plant, 1L)
   expect_equal(c(plant[[1]]$year, plant[[1]]$doy), c(2017L, 1L))
@@ -135,10 +140,16 @@ test_that("US-Twt flood water reaches SIPNET as soil irrigation, never canopy", 
   flood <- grepl("^Flood irrigation", field(irr, "provenance_note"))
   expect_false("flood" %in% method)
   expect_true(all(method[flood] == "soil"))
-  # the only canopy events are the monitoring product's own, which it does not call flood
+  # the only canopy events are the monitoring product's own, which it does not call flood, outside
+  # a rice season: its four 2017 canopy events fall inside the rice season and are read as flood
   expect_true(all(!flood[method == "canopy"]))
   expect_true(all(startsWith(field(irr, "source")[method == "canopy"], "monitoring_product:irrigation/v1.1")))
-  expect_equal(sum(method == "canopy"), 8L)
+  expect_equal(sum(method == "canopy"), 4L)
+  expect_true(all(substr(dates(irr)[method == "canopy"], 1, 4) == "2022"))
+  rice_canopy <- grepl("inside the rice season", field(irr, "provenance_note"))
+  expect_equal(sum(rice_canopy), 4L)
+  expect_true(all(method[rice_canopy] == "soil" & flood[rice_canopy]))
+  expect_true(all(field(irr, "provenance_class")[rice_canopy] == "assumed"))
 
   ln <- sipnet_lines("us_twt")
   codes <- vapply(lines_of(ln, "irrig"), function(l) l$values[2], 0)
@@ -193,13 +204,36 @@ test_that("US-Twt tillage cites the record for each implement in every year", {
   expect_equal(field(till, "provenance_class"), ifelse(yr <= 2015L, "assumed", "imputed"))
 })
 
-test_that("US-Twt's 2017 fill takes medians of the product's other years", {
+test_that("US-Twt's 2017 fill is dated from the product's other years", {
   ev <- read_events("us_twt")$events
   fill <- Filter(function(e) substr(e$date, 1, 4) == "2017" && !is.null(e$prior_filled) &&
                    grepl("2017_excluded_year", e$prior_filled), ev)
-  expect_setequal(vapply(fill, `[[`, "", "event_type"), c("planting", "harvest", "fertilization"))
-  expect_true(all(grepl("median", field(fill, "provenance_note"))))
-  fert <- of_type(fill, "fertilization")[[1]]
-  # one of the six R1 applications is organic only; the median leaves organic N and C at 0
-  expect_equal(c(fert$org_n_kg_m2, fert$org_c_kg_m2), c(0, 0))
+  expect_setequal(vapply(fill, `[[`, "", "event_type"), c("planting", "harvest"))
+  expect_true(all(grepl("median day of year", field(fill, "provenance_note"))))
+})
+
+test_that("US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023", {
+  ev <- read_events("us_twt")$events
+  late <- Filter(function(e) e$date >= "2017-01-01", ev)
+  harv <- of_type(late, "harvest")
+  rice <- vapply(harv, function(e) e$crop_display == "R1", TRUE)
+  fr <- function(e) unlist(e[c("frac_above_removed_0to1", "frac_below_removed_0to1",
+                               "frac_above_to_litter_0to1", "frac_below_to_litter_0to1")])
+  # every rice harvest keeps the straw as in the Knox years; 2022, a G2 grain crop, keeps the product's
+  for (e in harv[rice]) expect_equal(unname(fr(e)), c(0.5, 0, 0.5, 1), info = e$date)
+  expect_equal(dates(harv[!rice]), "2022-10-25")
+  expect_equal(unname(fr(harv[!rice][[1]])), c(0.8, 0, 0.2, 1))
+  # one application of the 2013-2015 regime in every rice year, the same as the 2016 fill
+  fert <- of_type(late, "fertilization")
+  knox16 <- Filter(function(e) e$date == "2016-05-30", of_type(ev, "fertilization"))[[1]]
+  yrs <- substr(dates(fert), 1, 4)
+  knox <- fert[yrs != "2022"]
+  expect_equal(sort(unique(substr(dates(knox), 1, 4))), c("2017", "2018", "2019", "2020", "2021", "2023"))
+  expect_length(knox, 6L)
+  expect_true(all(field(knox, "nh4_n_kg_m2") == knox16$nh4_n_kg_m2))
+  expect_true(all(field(knox, "org_n_kg_m2") == 0))
+  expect_true(all(field(knox, "source") == "10.1002/2015JG003247"))
+  # no organic application from the product survives, and 2022 keeps the product's one row
+  expect_false(any(vapply(fert, function(e) isTRUE(e$org_c_kg_m2 > 0), TRUE)))
+  expect_true(startsWith(fert[yrs == "2022"][[1]]$source, "monitoring_product:fertilization/v1.0"))
 })

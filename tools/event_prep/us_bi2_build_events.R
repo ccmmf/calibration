@@ -54,14 +54,14 @@ FIG2 <- c("2019" = "2019-05-01", "2020" = "2020-05-04")
 # The site record says the corn is usually cut for silage (delta-harvest-0014), which takes the
 # whole aboveground plant, not the grain the F16 row (0.752 removed) stands for. The shared harvest
 # lookup has no silage row; its hay row (class P, PFT hay, swat, n = 8; 0.892 as rounded on
-# calibration#10, the row russell_harvest_lookup.csv carries) stands in, an assumption put to
-# David on organization#298.
+# calibration#10, the row russell_harvest_lookup.csv carries) stands in, agreed on
+# calibration#19 (2026-11-17).
 SILAGE <- harvest_fractions(above_removed = 0.892, below_removed = 0, above_to_litter = 0.108, below_to_litter = 1)
 SILAGE_NOTE <- paste(
   "Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which",
   "takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row",
-  "(0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752);",
-  "a proposal for David (organization#298).")
+  "(0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752),",
+  "as agreed on calibration#19.")
 
 ## ------------------------------------------------------------- site record
 rec <- site_record(args$managements, c(
@@ -243,7 +243,7 @@ write_events(SITE, list(
     "March 2019. UAN at 118 kg N/ha once a year at planting (Anthony and Silver 2021) replaces the",
     "fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from",
     "Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the",
-    "shared lookup's hay row for silage, an assumption for David. No tillage: the monitoring",
+    "shared lookup's hay row for silage, as agreed on calibration#19. No tillage: the monitoring",
     "product's tillage is not used. Water, as decided on 2026-07-16: the irrigation product's 2021",
     "and 2022 events, and the record's dated winter floods (delta-flooding-0009, 0012, 0013, 0014)",
     sprintf("held by %d mm every %d d as soil irrigation. The spud ditch sub-irrigation", FLOOD_MM, FLOOD_EVERY_D),

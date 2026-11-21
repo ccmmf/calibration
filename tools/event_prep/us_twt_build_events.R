@@ -1,7 +1,8 @@
 #!/usr/bin/env Rscript
 # Build the US-Twt (Twitchell rice, parcel 590073) events.json, one series for 2010-2023:
-# 2010-2015 from Knox et al. 2016, 2016 from their medians, 2017-2023 from the monitoring
-# product, and the flooding of 2010 to early 2017 from the tower's water table record.
+# 2010-2015 from Knox et al. 2016, 2016 from their medians, 2017-2023 dated by the monitoring
+# product with Knox's rice harvest fraction and fertilizer regime carried into those years, and the
+# flooding of 2010 to early 2017 from the tower's water table record.
 #
 # usage: us_twt_build_events.R <managements.csv> <out.json> [member]
 #   managements.csv: cal-val-data data/managements.csv (develop); its Knox et al. 2016 rows
@@ -147,13 +148,20 @@ stopifnot(length(recent) == 3L)
 rate <- median(vapply(recent, function(e) e$reported_rate_lb_ac, 0))
 grade <- recent[[length(recent)]]$reported_grade
 n <- n_from_grade(rate, grade)
-add(set_provenance(list(event_type = "fertilization", date = date_of_doy(fill_y, median_doy(doy_of(vapply(recent, `[[`, "", "date")))),
+KNOX_FERT_DOY <- median_doy(doy_of(vapply(recent, `[[`, "", "date")))
+add(set_provenance(list(event_type = "fertilization", date = date_of_doy(fill_y, KNOX_FERT_DOY),
                         nh4_n_kg_m2 = n, no3_n_kg_m2 = 0, org_n_kg_m2 = 0, reported_rate_lb_ac = rate,
                         reported_grade = grade, prior_filled = "date,rate<-synthesized:median(2013-2015)"),
                    "imputed", paste(no_2016, "Rate and day are the medians of the 2013-2015 single application regime;",
                                     fert_note(rate, grade, n)), KNOX))
 
 ## ------------------------------------------------------------- 2017-2023, the monitoring product
+# The product dates the plantings, harvests and irrigation of these years. Where Knox et al. 2016
+# report a practice for the rice, it carries into the years they do not cover rather than switching
+# to the product: the rice harvest fraction (STRAW_LEFT) and the 2013-2015 single application
+# fertilizer regime. A year in another crop (2022 is G2) keeps the product's values.
+KNOX_CARRIED <- paste("Knox et al. (2016) report the practice for 2010-2015 only; it is carried into this year",
+                      "instead of the monitoring product's value, since the paper is the more direct source.")
 harv <- parcel_csv(LABEL, "harvest")
 irr <- irrigation_member_rows(parcel_csv(LABEL, "irrigation"), args$irrigation_member, MONITORING_START, RUN_END)
 fert <- fertilization_member_rows(PARCEL, args$fertilization_member)
@@ -180,53 +188,82 @@ add(set_provenance(list(event_type = "planting", date = p17, crop_code = CROP, c
                      "their median."), nrow(cp), substr(min(cp$date), 1, 4), substr(max(cp$date), 1, 4))),
                    "monitoring_product:planting/v1.0"))
 
+product_fracs <- function(r) sprintf("%s, %s, %s, %s", r$frac_above_removed_0to1, r$frac_below_removed_0to1,
+                                     r$frac_above_to_litter_0to1, r$frac_below_to_litter_0to1)
 for (i in which(in_monitoring(harv$date))) {
   r <- harv[i, ]
-  add(set_provenance(c(list(event_type = "harvest", date = r$date, crop_display = r$CLASS_SUBCLASS),
-                       harvest_fractions(round(r$frac_above_removed_0to1, 4), round(r$frac_below_removed_0to1, 4),
-                                         round(r$frac_above_to_litter_0to1, 4), round(r$frac_below_to_litter_0to1, 4))),
-                     "published", sprintf("Monitoring product harvest row for parcel %s, %s, with its four fractions.",
-                                          PARCEL, substr(r$date, 1, 4)),
-                     source = "monitoring_product:harvest/v1.0"))
+  if (r$CLASS_SUBCLASS == CROP) {
+    add(set_provenance(c(list(event_type = "harvest", date = r$date, crop_display = r$CLASS_SUBCLASS), STRAW_LEFT,
+                         list(prior_filled = "frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index")),
+                       "assumed", paste(sprintf("Date from the monitoring product harvest row for parcel %s, %s.", PARCEL,
+                                                substr(r$date, 1, 4)), KNOX_CARRIED, STRAW_NOTE,
+                                        sprintf("The product's fractions (%s) are not used.", product_fracs(r))),
+                       source = "monitoring_product:harvest/v1.0"))
+  } else {
+    add(set_provenance(c(list(event_type = "harvest", date = r$date, crop_display = r$CLASS_SUBCLASS),
+                         harvest_fractions(round(r$frac_above_removed_0to1, 4), round(r$frac_below_removed_0to1, 4),
+                                           round(r$frac_above_to_litter_0to1, 4), round(r$frac_below_to_litter_0to1, 4))),
+                       "published", sprintf(paste("Monitoring product harvest row for parcel %s, %s, with its four fractions;",
+                                                  "the crop is %s, not rice, so Knox's practice does not apply."),
+                                            PARCEL, substr(r$date, 1, 4), r$CLASS_SUBCLASS),
+                       source = "monitoring_product:harvest/v1.0"))
+  }
 }
 ch <- harv[harv$CLASS_SUBCLASS == CROP & harv$season == 2, ]
-add(set_provenance(c(list(event_type = "harvest", date = date_of_doy(mon_y, median_doy(doy_of(ch$date))), crop_display = CROP),
-                     harvest_fractions(round(median(ch$frac_above_removed_0to1), 4), round(median(ch$frac_below_removed_0to1), 4),
-                                       round(median(ch$frac_above_to_litter_0to1), 4), round(median(ch$frac_below_to_litter_0to1), 4)),
+h17 <- date_of_doy(mon_y, median_doy(doy_of(ch$date)))
+add(set_provenance(c(list(event_type = "harvest", date = h17, crop_display = CROP), STRAW_LEFT,
                      list(prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y))),
-                   "imputed", paste0(fill_note, sprintf("dated by the median day of year of the parcel's %d R1 harvests, fractions their median.", nrow(ch))),
+                   "imputed", paste(paste0(fill_note, sprintf("dated by the median day of year of the parcel's %d R1 harvests.", nrow(ch))),
+                                    KNOX_CARRIED, STRAW_NOTE),
                    "monitoring_product:harvest/v1.0"))
 
 fert_src <- paste0("monitoring_product:fertilization/v1.0:", args$fertilization_member)
-for (i in which(in_monitoring(fert$date))) {
+rice_fert <- grepl(CROP, fert$crop_code)
+rice_years <- sort(unique(c(substr(plant$date[in_monitoring(plant$date) & plant$code == CROP], 1, 4), as.character(mon_y))))
+for (y in rice_years) {
+  dropped <- fert[rice_fert & substr(fert$date, 1, 4) == y, ]
+  add(set_provenance(list(event_type = "fertilization", date = date_of_doy(as.integer(y), KNOX_FERT_DOY),
+                          nh4_n_kg_m2 = n, no3_n_kg_m2 = 0, org_n_kg_m2 = 0, reported_rate_lb_ac = rate,
+                          reported_grade = grade, prior_filled = "date,rate<-synthesized:median(2013-2015)"),
+                     "imputed", paste(KNOX_CARRIED, "Rate and day are the medians of the 2013-2015 single application regime;",
+                                      paste0(fert_note(rate, grade, n), "."),
+                                      if (nrow(dropped)) sprintf("The product's %d R1 application(s) this year are not used.", nrow(dropped))
+                                      else "The product has no R1 application this year."), KNOX))
+}
+for (i in which(in_monitoring(fert$date) & !rice_fert)) {
   r <- fert[i, ]
   add(set_provenance(list(event_type = "fertilization", date = r$date, nh4_n_kg_m2 = round(r$nh4_n_kg_m2, 8),
                           no3_n_kg_m2 = round(r$no3_n_kg_m2, 8), org_n_kg_m2 = round(r$org_n_kg_m2, 8),
                           org_c_kg_m2 = round(r$org_c_kg_m2, 8)),
-                     "published", sprintf("Monitoring product fertilization row (%s) for parcel %s, %s.",
-                                          args$fertilization_member, PARCEL, substr(r$date, 1, 4)),
+                     "published", sprintf("Monitoring product fertilization row (%s) for parcel %s, %s, crop %s, not rice.",
+                                          args$fertilization_member, PARCEL, substr(r$date, 1, 4), r$crop_code),
                      source = fert_src))
 }
-cf <- fert[grepl(CROP, fert$crop_code), ]
-if (nrow(cf)) add(set_provenance(list(
-  event_type = "fertilization", date = date_of_doy(mon_y, median_doy(doy_of(cf$date))),
-  nh4_n_kg_m2 = round(median(cf$nh4_n_kg_m2), 8), no3_n_kg_m2 = round(median(cf$no3_n_kg_m2), 8),
-  org_n_kg_m2 = round(median(cf$org_n_kg_m2), 8), org_c_kg_m2 = round(median(cf$org_c_kg_m2), 8),
-  prior_filled = sprintf("date<-synthesized:%d_excluded_year", mon_y)),
-  "imputed", sprintf(paste("The planting and harvest products have no %d; dated by the median day of year of",
-                           "the parcel's %d R1 applications in the fertilization product, each amount the median",
-                           "of that amount over them (David's rule); %d of the %d carry organic N and C."),
-                     mon_y, nrow(cf), sum(cf$org_n_kg_m2 > 0), nrow(cf)), fert_src))
-
 irr_src <- paste0("monitoring_product:irrigation/v1.1:", args$irrigation_member)
+# rice seasons of the monitoring years: each R1 planting to the next harvest
+rice_plant <- sort(c(plant$date[in_monitoring(plant$date) & plant$code == CROP], p17))
+all_harv <- sort(c(harv$date[in_monitoring(harv$date)], h17))
+rice_season <- function(d) {
+  p <- rice_plant[rice_plant <= d]
+  if (!length(p)) return(NULL)
+  p <- max(p); h <- all_harv[all_harv >= p]
+  if (!length(h) || min(h) < d) return(NULL)
+  c(p, min(h))
+}
 for (i in seq_len(nrow(irr))) {
   r <- irr[i, ]
   flood <- r$method == "flood"
-  add(set_provenance(list(event_type = "irrigation", date = r$date, amount_mm = round(r$amount_mm, 4),
-                          method = if (flood) FLOOD_METHOD else r$method),
-                     "published", source = irr_src, note = if (flood)
-                       paste(FLOOD_NOTE, "The monitoring product gives the method as flood.")
-                     else sprintf("The monitoring product gives %s irrigation here, not flood; kept as given.", r$method)))
+  season <- if (!flood) rice_season(r$date)
+  e <- list(event_type = "irrigation", date = r$date, amount_mm = round(r$amount_mm, 4),
+            method = if (flood || !is.null(season)) FLOOD_METHOD else r$method)
+  add(if (flood) set_provenance(e, "published", source = irr_src,
+                                note = paste(FLOOD_NOTE, "The monitoring product gives the method as flood."))
+      else if (!is.null(season)) set_provenance(e, "assumed", source = irr_src, note = paste(
+        FLOOD_NOTE, sprintf("The monitoring product gives %s irrigation here, inside the rice season planted %s and",
+                            r$method, season[1]),
+        sprintf("harvested %s; rice at this site is grown flooded, so the water is read as flood irrigation.", season[2])))
+      else set_provenance(e, "published", source = irr_src,
+                          note = sprintf("The monitoring product gives %s irrigation here, outside a rice season; kept as given.", r$method)))
 }
 
 ## ------------------------------------------------------------- flooding, 2010 to early 2017
@@ -295,8 +332,9 @@ write_events(SITE, list(
   generator = "tools/event_prep/us_twt_build_events.R",
   note = paste(
     "One continuous 2010-2023 series. 2010-2015 management is from Knox et al. 2016 (cal-val-data),",
-    "2016 from their medians, and 2017-2023 from the statewide monitoring product, which does not",
-    "cover this parcel before 2017. Floods from 2010 to March 2017 follow the AmeriFlux WTD record,",
+    "2016 from their medians, and 2017-2023 dated by the statewide monitoring product, which does not",
+    "cover this parcel before 2017, with Knox's rice harvest fraction and fertilizer regime carried",
+    "into those years. Floods from 2010 to March 2017 follow the AmeriFlux WTD record,",
     sprintf("each held by %d mm every %d d from its onset to its drain; all flood water is soil", FLOOD_MM, FLOOD_EVERY_D),
     "irrigation (method 1). Tillage in every year follows Knox's disking and ring rolling before",
     "planting. Per-event source and provenance_class record which applies to each event.",

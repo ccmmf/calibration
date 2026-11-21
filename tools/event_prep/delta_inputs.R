@@ -83,7 +83,7 @@ v5_parcel_rows <- function(product, parcel) {
   d[order(d$date), , drop = FALSE]
 }
 
-#' David's circular median day of year; assumes one crop cycle a year
+#' Circular median day of year, so dates either side of 1 January stay together; assumes one crop cycle a year
 median_doy <- function(doy) {
   doy <- na.omit(doy); doy[doy == 366] <- 365
   stopifnot(all(doy >= 1 & doy <= 365)); doy <- sort(doy)

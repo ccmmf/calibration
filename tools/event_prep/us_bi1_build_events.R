@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # Build the US-Bi1 (Bouldin alfalfa, parcel 328163) events.json, 2017-2023: one alfalfa stand
-# for the whole run, cut about six times a year, irrigated as the monitoring product has it.
+# for the whole run, cut about six times a year, irrigated on the monitoring product's days.
 #
 # usage: us_bi1_build_events.R <managements.csv> <out.json> [member]
 #   managements.csv: cal-val-data data/managements.csv (develop), the site record
@@ -26,10 +26,10 @@ LABEL <- "us_bi1"; SITE <- "US-Bi1"; PARCEL <- 328163L; CROP <- "P1"
 RUN_START <- "2017-01-01"; RUN_END <- "2023-12-31"
 
 # An intermediate cutting removes the shared harvest lookup's P1 share (0.85) and leaves the rest
-# as living stubble, with the roots alive (David on calibration#10: "0.85, 0, 0, 0").
+# as living stubble, with the roots alive, so the stand regrows after every cutting.
 CUT <- harvest_fractions(above_removed = 0.85, below_removed = 0, above_to_litter = 0, below_to_litter = 0)
 CUT_NOTE <- paste("Alfalfa cutting: the shared harvest lookup's P1 share (0.85) removed, the stubble and",
-                  "roots left alive (David on calibration#10).")
+                  "roots left alive so the stand regrows.")
 STAND_SOURCE <- "Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8"
 WANG <- "Wang 2024, UC Berkeley PhD dissertation, Fig. 3.1 (US-Bi1 tower NDVI)"
 HEMES <- "10.1016/j.agrformet.2019.01.017 (Hemes et al. 2019), Fig. S2 (daily NEE)"
@@ -47,8 +47,8 @@ stopifnot(rec["delta-harvest-0012", "sites.name"] == SITE,
 ## ------------------------------------------------------------- planting
 # One planting on the first day of the run. It sets the stand's state at the start rather than
 # recording an operation: the stand went in about 2013, so its roots here are seedling scale and
-# 2017 behaves as spin-up. Whether to start from an initial condition with a plant instead is
-# David's call (organization#298).
+# 2017 behaves as spin-up. Starting from an initial condition with a plant instead is open
+# (organization#298).
 plant <- parcel_csv(LABEL, "planting")
 p1 <- plant[plant$code == CROP & plant$season == 2, ]
 leaf <- first_available(list("the parcel's monitoring P1 plantings" = as.numeric(p1$C_LEAF)))
@@ -63,7 +63,7 @@ events <- list(set_provenance(list(
     "The field had been in alfalfa about three years when the tower went in on 2016-08-12",
     sprintf("(%s), so the stand dates from about 2013 and is kept for the whole run:", STAND_SOURCE),
     "the monitoring product's yearly P1 plantings are not used. The roots start at seedling scale,",
-    "so 2017 behaves as spin-up. The date is assumed; leaf C is the median (David's rule) of",
+    "so 2017 behaves as spin-up. The date is assumed; leaf C is the median, less swayed by one odd year than a mean, of",
     sprintf("%s (%d, 2018-2023), the weaker part, so the event is imputed.", leaf$from, leaf$n))))
 
 ## ------------------------------------------------------------- cuttings
@@ -80,7 +80,7 @@ for (i in seq_len(nrow(cuts))) {
     badm_mowing = set_provenance(e, "assumed", source = BADM, note = paste(
       "The date is recorded: mowing the site record fixes from 'Mowed five days ago, baling today' on",
       "2020-06-09. The fractions are the shared lookup's P1 share (0.85, IPCC) with nothing sent to",
-      "litter (David on calibration#10), so the event is assumed.", cuts$note[i])),
+      "litter so the stand regrows, so the event is assumed.", cuts$note[i])),
     hemes2019_nee = set_provenance(e, "imputed", source = HEMES, note = paste(
       "No record dates this cutting; dated from the jump in daily NEE in Hemes et al. 2019 Fig. S2,",
       "so the event is imputed. The site record gives about six cuttings a year (delta-harvest-0010).",
@@ -92,19 +92,21 @@ for (i in seq_len(nrow(cuts))) {
 }
 
 ## ------------------------------------------------------------- irrigation
-# Kept as the monitoring product has it. The site record (delta-irrigation-0008, 0009) has the
-# field irrigated mainly below the surface from the adjacent ditches, with sporadic flash floods,
-# but gives no dates or amounts, so the product's events fill them.
+# The site record (delta-irrigation-0008, 0009) has the field irrigated mainly below the surface
+# from the adjacent ditches, with sporadic flash floods, but gives no dates or amounts, so the
+# product's events fill them. Its method, canopy, is not used: water that comes up from below or
+# floods the field goes on as soil irrigation (method 1), as every flood does at the Delta sites.
 irr <- irrigation_member_rows(parcel_csv(LABEL, "irrigation"), args$irrigation_member, RUN_START, RUN_END)
 for (i in seq_len(nrow(irr))) {
   r <- irr[i, ]
   events[[length(events) + 1L]] <- set_provenance(list(
-    event_type = "irrigation", date = r$date, amount_mm = round(as.numeric(r$amount_mm), 4), method = r$method),
+    event_type = "irrigation", date = r$date, amount_mm = round(as.numeric(r$amount_mm), 4), method = "soil"),
     "imputed", source = paste0("monitoring_product:irrigation/v1.1:", args$irrigation_member),
     note = paste(
-      "Date, amount and method from the monitoring product for this parcel. The site record",
-      "(delta-irrigation-0008, 0009) has the field irrigated mainly below the surface from the",
-      "adjacent ditches, with sporadic flash floods, and gives no dates or amounts."))
+      sprintf("Date and amount from the monitoring product for this parcel, which gives the method as %s.", r$method),
+      "The site record (delta-irrigation-0008, 0009) has the field irrigated mainly below the surface",
+      "from the adjacent ditches, with sporadic flash floods, and gives no dates or amounts, so the",
+      "water goes on as soil irrigation (method 1), not canopy."))
 }
 
 ## ------------------------------------------------------------- write
@@ -118,5 +120,6 @@ write_events(SITE, list(
     "2019 Fig. S2), except the recorded 2020-06-04 mowing. No tillage and no fertilization: the",
     "stand is not tilled and the site record gives no fertilizer. Winter sheep grazing",
     "(delta-grazing-0002) is left out: the record has no dates or stocking and SIPNET has no",
-    "grazing event. Irrigation is the monitoring product's. See tools/event_prep/README.md.")),
+    "grazing event. Irrigation is on the monitoring product's days and amounts, as soil irrigation,",
+    "since the site record has the water coming from the ditches. See tools/event_prep/README.md.")),
   events, args$out)

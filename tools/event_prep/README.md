@@ -40,7 +40,7 @@ A builder takes an optional third argument, the member of the monitoring product
 `step3_delta_ensemble.R <site> $MG <out_dir> 20` runs the builder once per member, so every
 member has the structure of the committed file, which is member 1. Only the product's events
 vary: US-Bi1's irrigation, US-Bi2's two 2021 and 2022 irrigation events, and US-Twt's 2017-2023
-irrigation and fertilization and with them its 2010-2017 flood amount (each member's own median,
+irrigation and 2022 fertilization and with them its 2010-2017 flood amount (each member's own median,
 55 to 81 mm across the 20). US-Bi2's winter floods use member 1's 69 mm and do not vary.
 
 These replace `step3_assemble_events.R` (US-Bi2) and `step3_delta_assemble.R` (US-Bi1, US-Twt
@@ -106,9 +106,9 @@ How the generators here follow it:
 | generator | step 1 | step 2 | step 3 |
 |---|---|---|---|
 | `russell_split_phases.R` | the Century package: `plot_system.csv` for missing plantings and harvests (the 1993 sudangrass uniformity crop included), its corn and tomato hand harvest samples for those crops' harvest fractions (the tomato's green fruit left in the field), the cutting and cover crop samples, the package's per-system medians for dates it does not give, its records for fertilization gaps, single applications missing from a season that has others (copied within the treatments that share synthetic N management) and 2014 fertilization, its logged herbicide incorporation passes, and its metadata for the irrigation method (furrow flood) and the 1993 and 2012 hay cuts; Tautges et al. 2019 for the corn and wheat N rates where the log has none, the wheat irrigation of every irrigated system, every corn and tomato season's irrigation amount (its "mm" read as inches), the organic 2008 sudangrass compost year the package lacks (annual compost; the nearest recorded year is copied), the tillage operations, the month of the wheat straw disking and the four fallow diskings of the wheat-fallow systems. Its fixes to package records are rows in `russell_source_corrections.csv`, with the evidence (see `runs/russell_ranch/events_treatments/README.md`) | the monitoring product within 25 km of Russell Ranch: tillage timing and intensity (`russell_monitoring_tillage.R`; it shows one pass in most gaps after a wheat harvest, two in 9 of 722, so the fallow diskings take only its intensity, and their even spacing through the fallow is an assumption); the irrigated corn and tomato seasons as a lower bound that rules out reading the paper's irrigation as centimetres, and their median last irrigation before harvest, which ends the corn and tomato schedule (it starts at planting); the sudangrass (F16) and alfalfa (P1) irrigation, which the paper does not give (`russell_monitoring_irrigation.R`); the shared harvest lookup the monitoring harvest product carries, for wheat, alfalfa and hay (`russell_harvest_lookup.csv`) | planting amounts: the generator's priors (ccmmf/scenarios `data/management_priors.yaml`, a processing tomato baseline from the UC Davis Cost Study 2023), a filled planting taking their median in its phase, as agreed on calibration#10; the monitoring planting medians near the site are close (0.0038 to 0.0053 kg C/m2 leaf C against 0.0034) |
-| `us_bi1_build_events.R` | the stand's age (Paw U et al. 2018), so one stand for the run; the recorded 2020-06-04 mowing; about six cuttings a year (`delta-harvest-0010`); cutting dates read from the tower NDVI (Wang 2024 Fig. 3.1) and daily NEE (Hemes et al. 2019 Fig. S2) | the planting leaf C (median of the parcel's P1 plantings); the irrigation, kept as it was; the shared harvest lookup's P1 share for the cuttings, with nothing sent to litter (calibration#10) | |
+| `us_bi1_build_events.R` | the stand's age (Paw U et al. 2018), so one stand for the run; the recorded 2020-06-04 mowing; about six cuttings a year (`delta-harvest-0010`); cutting dates read from the tower NDVI (Wang 2024 Fig. 3.1) and daily NEE (Hemes et al. 2019 Fig. S2) | the planting leaf C (median of the parcel's P1 plantings); the irrigation days and amounts, written as soil irrigation because the site record has the water coming from the ditches; the shared harvest lookup's P1 share for the cuttings, with nothing sent to litter (calibration#10) | |
 | `us_bi2_build_events.R` | the site record: corn every year, UAN 118 kg N/ha once at planting, the 2019-09-11 harvest, silage, the dated winter flood windows; the 2019 and 2020 planting and fertilization days from Anthony and Silver 2021 Fig. 2 | the parcel's v5.0 planting and harvest days and planting leaf C where the record gives none; its 2021 and 2022 irrigation (v1.1); the US-Twt flood rule (69 mm every 7 d) that holds each winter flood; the shared harvest lookup's hay row for silage | |
-| `us_twt_build_events.R` | Knox et al. 2016 for 2010-2015 and their medians for 2016; its disking and ring rolling, placed before every planting; the AmeriFlux WTD flood onsets and drains, 2010 to March 2017 | 2017-2023 events for parcel 590073; the flood rate and interval (69 mm every 7 d) that holds each WTD flood; leaf C at the Knox plantings | |
+| `us_twt_build_events.R` | Knox et al. 2016 for 2010-2015 and their medians for 2016; its disking and ring rolling, placed before every planting; the AmeriFlux WTD flood onsets and drains, 2010 to March 2017 | 2017-2023 dates for parcel 590073, with Knox's rice harvest fraction and fertilizer regime carried into those years, and the 2022 grain crop as the product has it; the flood rate and interval (69 mm every 7 d) that holds each WTD flood; leaf C at the Knox plantings | |
 
 The Delta builders tag events by their own rule, which is narrower than `fill_order.R`'s
 definition (there, the monitoring product for the field and season counts as `published`):
@@ -125,7 +125,7 @@ definition (there, the monitoring product for the field and season counts as `pu
 - An event's class is the weakest of what it rests on, in the order published, derived, assumed,
   imputed. So a US-Twt flood onset, a WTD date carrying the rule's 69 mm, is `imputed`, and the
   US-Bi1 2020-06-04 cutting, a recorded date with the lookup's P1 fractions (0.85 removed, from
-  IPCC, and nothing to litter, David's call), is `assumed`. Russell (`russell_split_phases.R`)
+  IPCC, and nothing to litter so the stand regrows), is `assumed`. Russell (`russell_split_phases.R`)
   tags its alfalfa cuttings `published`, or leaves them untagged, with the same fractions; making
   the two agree is a follow-up for calibration#15.
 
@@ -140,9 +140,9 @@ cal-val-data develop 8f88e95 and member 1 of the monitoring product.
 
 | events | what | class |
 |---|---|---|
-| 1 planting | 2017-01-01, P1, leaf C 0.00896323 kg C/m2, the median of the parcel's 6 P1 plantings in the monitoring product (planting v1.0, 2018-2023; the parcel's seventh planting, 2016, is F16). It sets the state of a stand that went in about 2013 (in alfalfa about three years when the tower went in on 2016-08-12; Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8) and is not an operation: the roots start at seedling scale, so 2017 behaves as spin-up. Starting instead from an initial condition with a plant is David's call. The date is assumed; leaf C from the monitoring product is the weaker part, so the event is imputed | imputed |
+| 1 planting | 2017-01-01, P1, leaf C 0.00896323 kg C/m2, the median of the parcel's 6 P1 plantings in the monitoring product (planting v1.0, 2018-2023; the parcel's seventh planting, 2016, is F16). It sets the state of a stand that went in about 2013 (in alfalfa about three years when the tower went in on 2016-08-12; Paw U et al. 2018, Field Campaign Report, Appendix B, p. B-SI-8) and is not an operation: the roots start at seedling scale, so 2017 behaves as spin-up. Starting instead from an initial condition with a plant is still open. The date is assumed; leaf C from the monitoring product is the weaker part, so the event is imputed | imputed |
 | 39 cuttings | `us_bi1_cuttings.csv`, 6 a year and 3 in 2022, each `harvest_fractions(0.85, 0, 0, 0)`. 36 dated from the tower NDVI cycles in Wang 2024 (UC Berkeley PhD dissertation) Fig. 3.1, p. 52, to within about 3 to 5 days; 2017-04-23 and 2017-05-22 from the daily NEE in Hemes et al. 2019 Fig. S2a (accepted manuscript p. 45), which the NDVI record (from 2017-06-05) does not cover; 2020-06-04 recorded ("Mowed five days ago, baling today" on 2020-06-09, AmeriFlux BADM, `delta-harvest-0012`). The table's `note` column gives, for each date, the figure, panel and feature it is read from and how it was checked | 38 imputed, 1 assumed (2020-06-04) |
-| 18 irrigation | the monitoring product's (irrigation v1.1, `irr_ens_001`), canopy, 142.86 mm each, as before. The site record has the field irrigated mainly below the surface from the adjacent ditches, with sporadic flash floods (`delta-irrigation-0008`, `0009`), and no dates or amounts | imputed |
+| 18 irrigation | the monitoring product's days and amounts (irrigation v1.1, `irr_ens_001`), 142.86 mm each, written as soil irrigation (method 1). The site record has the field irrigated mainly below the surface from the adjacent ditches, with sporadic flash floods (`delta-irrigation-0008`, `0009`), and no dates or amounts, so the product's method, canopy, is not used | imputed |
 
 Why 2022 has three cuttings: after the 2022-07-06 fall the 2022 panel of Fig. 3.1 never regrows to
 the 0.6 to 0.7 NDVI canopy that precedes every other cutting. It stays at about 0.30 to 0.45
@@ -167,7 +167,7 @@ sheep grazing (`delta-grazing-0002`: no dates or stocking, and SIPNET has no gra
 |---|---|---|
 | 8 plantings | one corn (F16) a year. 2019-05-01 and 2020-05-04 are read from the fertilization line of Anthony and Silver 2021 Fig. 2 (to within 1 to 2 days; UAN goes on at planting); 2019 also lies in the record's May-June (`delta-planting-0014`). The product has 2019-05-17 and 2020-04-05, the second a month before the application. The other years take the v5.0 day; the record gives only the year (`delta-planting-0012` to `0018`). The product labels 2016 G2; it is written as corn, assumed, to keep the field's continuous corn. Leaf C is the season's v5.0 F16 planting, 0.0041 to 0.0051 kg C/m2 (2016: the median of the parcel's 7, 0.00497966). Leaf C makes every planting imputed, the 2019 and 2020 dates being derived | 8 imputed |
 | 8 fertilization | UAN, 118 kg N/ha (0.0118 kg N/m2, written as `nh4_n_kg_m2`; SIPNET adds NH4 and NO3 into one pool) on the planting day. The rate is published for 2017-2020 (`delta-fertilization-0013`, `0014`, Anthony and Silver 2021) and carried to 2016 and 2021-2023 | 2 derived, 6 imputed |
-| 8 harvests | 2019-09-11 recorded (`delta-harvest-0016`; the paper delayed the 2019 harvest, so the product's 2019-10-03 is not ruled out); the other years the v5.0 day. Silage (`delta-harvest-0014`): `harvest_fractions(0.892, 0, 0.108, 1)`, the shared lookup's hay row in place of the F16 grain row (0.752), assumed, a proposal for David | 1 assumed, 7 imputed |
+| 8 harvests | 2019-09-11 recorded (`delta-harvest-0016`; the paper delayed the 2019 harvest, so the product's 2019-10-03 is not ruled out); the other years the v5.0 day. Silage (`delta-harvest-0014`): `harvest_fractions(0.892, 0, 0.108, 1)`, the shared lookup's hay row in place of the F16 grain row (0.752), assumed, agreed on calibration#19 (2026-11-17) | 1 assumed, 7 imputed |
 | 2 irrigation | the monitoring product's (irrigation v1.1, `irr_ens_001`), 2021-09-08 and 2022-10-16, 124.14 mm canopy each, kept as decided on 2026-07-16 (Akash and Alexey): the product's zero years are real zeros and these two stay. The record has the field irrigated through spud ditches (`delta-irrigation-0003`) but not on these dates; v5.0 has no irrigation rows for the parcel | imputed |
 | 75 flood events | every winter flood the record dates, held by the US-Twt rule, 69 mm every 7 d from the first day of the window to its last, `method: "soil"`, "Flood irrigation" in the note: `delta-flooding-0012`, 2017-12-01 to 2018-02-28, a reported duration (Hemes et al. 2019), 13 events, 897 mm; `0013`, 2018-11-01 to 2019-03-31, and `0014`, 2020-11-01 to 2021-03-31, the field's November-March regime (Anthony and Silver 2024 Table 1) after that year's corn, 22 events and 1518 mm each; `0009`, whose December 2019 window dates only the onset, held from 2019-12-01 to 2020-03-31, the 31 March drain of the other recorded winters that run to spring (`0013`, `0014`; decided 2026-11-08), 18 events, 1242 mm. The record gives no onset date, drain or depth for any of them | imputed |
 
@@ -185,46 +185,39 @@ which is subsurface water left to the water table and the run's flood configurat
 2019 tillage and disking (`delta-tillage-0003`, May-June; `0004`, September-October) and
 2020-06-09 furrowing (`delta-furrowing-0001`), whose dates and intensities are not resolved.
 
-**Open: the run's flood configuration.** The events stand in for the floods only. The run still
-needs SIPNET's flood setup (`--flooding` and `--anaerobic`, with a low `waterDrainFrac` to hold the
-water table up), which is not in this repository's run config (`runs/us_bi2/us_bi2_user_config.yaml`,
-`runs/template.xml`).
+**Flooding in the runs.** Every run gets the same SIPNET flags, `FLOODING` and `ANAEROBIC`
+included, whether or not the site floods. With `FLOODING` on, SIPNET drains each day only
+`waterDrainFrac` of the soil water above holding capacity, so a high value drains freely and a low
+one holds the water up. A site floods by lowering `waterDrainFrac` at planting and restoring it at
+harvest, with a stop and restart between the segments, so no field stays flooded longer than the
+real one; the same applies to the ensembles. The events here stand in for the water only. That run
+setup is not in this repository yet: the workflow manifest sets the model options that SIPNET
+receives, and `runs/template.xml` only records them.
 
-### US-Twt, Twitchell rice, parcel 590073, 2010-2023 (404 events)
+### US-Twt, Twitchell rice, parcel 590073, 2010-2023 (403 events)
 
 | events | what | class |
 |---|---|---|
 | 2010-2015 plantings, harvests, fertilization | Knox et al. 2016 Table 1 through the cal-val-data rows; a reported window takes its first day. Leaf C at planting is the median of the parcel's 5 R1 plantings in the monitoring product, 0.02455947 kg C/m2. Harvests `harvest_fractions(0.5, 0, 0.5, 1)`: grain removed, straw chopped and left (the 2014 residue treatment is not reported); the 0.5 comes from `prior:rice_harvest_index`, not from Knox. Fertilization N is computed from the reported rate (lb/ac) and the product grade's %N. Every event notes its Knox row | plantings imputed (leaf C from the monitoring product), harvests assumed (fractions from the prior), fertilization derived (N from rate and grade) |
 | 2016 planting, harvest, fertilization | no record: the medians of the Knox years (2016-04-18, 2016-10-06; 100 lb/ac of 15-15-15 on 2016-05-30, the 2013-2015 regime). Tagged `imputed` (was `assumed`) | imputed |
-| 2017-2023 plantings, harvests, fertilization | the monitoring product (planting and harvest v1.0, fertilization v1.0 `ens_001`), its four harvest fractions written out (0.8, 0, 0.2, 1). 2017, which the planting and harvest products lack, takes the median day of its other R1 years and the median of each amount (David's rule): leaf C 0.02455947 kg C/m2, fractions 0.8, 0, 0.2, 1, and 133.7 kg N/ha mineral N with no organic N or C, since one of the six R1 applications carries organic N. The fertilization events now carry the product's organic C, which the old file left out (0.44 kg C/m2 with 0.019 kg N/m2 on 2018-02-02) | published; 2017 imputed |
+| 2017-2023 plantings, harvests, fertilization | dates from the monitoring product (planting and harvest v1.0); 2017, which those products lack, takes the median day of its other R1 years, with leaf C 0.02455947 kg C/m2. Where Knox report a practice for the rice it carries into the years they do not cover, instead of the product's values: every rice harvest is `harvest_fractions(0.5, 0, 0.5, 1)` (the product has 0.8, 0, 0.2, 1), and every rice year gets one application of the 2013-2015 regime, 100 lb/ac of 15-15-15 (16.8 kg N/ha) on its median day, 30 or 31 May (the product has 125 to 153 kg N/ha). The product's R1 applications are not used, including member 1's organic one on 2018-02-02 (0.44 kg C/m2, 186 kg N/ha organic N). 2022, which the product has as G2, keeps its harvest (0.8, 0, 0.2, 1) and its one application (115 kg N/ha mineral N) | plantings 6 published, 1 imputed (2017); harvests 5 assumed (fractions from the prior), 1 imputed (2017), 1 published (2022); fertilization 6 imputed, 1 published (2022) |
 | 14 flood onsets | dated from the AmeriFlux US-Twt BASE-BADM 7-5 water table record, `us_twt_wtd_water_dates.csv`: 7 growing season and 7 winter onsets, 2010-06-15 to 2016-11-17. The date is derived but the 69 mm is the rule's, so each onset is imputed and its `source` names both | imputed |
 | 179 flood repeats | each WTD flood held from its onset (or, for the winter flood in place on 2010-01-01, from the first day) to its WTD drain by 69 mm every 7 d, the median amount (69.46 mm, rounded) and modal interval of the product's 129 flood events for the parcel in 2017-2023 (70 mm, from the mean, before 2026-11-08). The 2016-11-17 winter flood now runs to its drain on 2017-03-11 (17 events) instead of stopping at 2016-12-31 (7) | imputed |
-| 137 monitoring irrigation | the product's irrigation v1.1 (`irr_ens_001`), 2017-2023: 129 flood events and 8 canopy events of 157.44 mm (four in July-October 2017, a year the planting product has no crop for the parcel, and four in 2022, when it has G2), kept as canopy | published |
+| 137 monitoring irrigation | the product's irrigation v1.1 (`irr_ens_001`), 2017-2023: 129 flood events, written as soil irrigation, and 8 canopy events of 157.44 mm. The four in July to October 2017 fall inside the rice season planted 2017-05-20 (the fill) and harvested 2017-11-14, and rice here is grown flooded, so they are read as flood and written as soil irrigation; the four in 2022, when the product has G2, stay canopy | 133 published, 4 assumed (2017) |
 | 28 tillage | Knox's disking (`delta-tillage-0001`, tillage_eff 0.5) and ring rolling (`delta-tillage-0002`, 0.2) at 21 and 7 d before every planting, the monitoring years included (decided 2026-08-29, literature first). Ring rolling in 2017-2023 cited `delta-tillage-0001` before. In 2010-2015 Knox reports the operations and only the offsets are assumed; in 2016-2023 the practice is carried from Knox 2010-2015 into years no site record covers and dated from that year's imputed or monitoring planting | 12 assumed (2010-2015), 16 imputed (2016-2023) |
 
-Leaf C changed in two places when the means became medians (David's rule, median not mean, for
-values backfilled from the monitoring product): the US-Bi1 planting from 0.00994096 to
-0.00896323 kg C/m2 and the US-Twt 2017 fill from 0.02618692 to 0.02455947 kg C/m2. The 2017 fill's
-fertilization went from a mean of 114.4 kg N/ha mineral N plus 31.1 kg N/ha and 0.073 kg C/m2
-organic to the medians above. The flood rule moved to the median too: 69.46 mm, which rounds to
+Leaf C changed in two places when the means became medians (a median, less swayed by one odd year
+than a mean, for values backfilled from the monitoring product): the US-Bi1 planting from 0.00994096 to
+0.00896323 kg C/m2 and the US-Twt 2017 fill from 0.02618692 to 0.02455947 kg C/m2. The flood rule
+moved to the median too: 69.46 mm, which rounds to
 69 mm where the mean (69.65 mm) gave 70, so every rule flood event at US-Twt and US-Bi2 is 69 mm.
 
-**Open questions for David (US-Twt from 2017).** The monitoring years differ from the Knox years
-in ways nobody has decided:
-
-- Harvests remove the product's 0.8 of the aboveground biomass (0.8, 0, 0.2, 1), where the Knox
-  years leave the straw (0.5, 0, 0.5, 1).
-- Mineral N is 125 to 153 kg N/ha a year in the product's rice years (2018-2021, 2023; 115 in
-  2022, which it calls G2), against 17 to 80 in Knox's 2010-2015.
-- Member 1 adds 0.44 kg C/m2 of organic C with 186 kg N/ha of organic N on 2018-02-02, in the
-  season Knox's fields are reflooded, although the file has no flood events between 2017-03-09
-  and 2018-05-30.
-- The 2017 fill: a mean took a share of that organic-only row; the median now leaves it out.
-  Which is meant?
-- 2017 is a rice year (the 2017-05-20 planting fill) with no growing season flood: the product's
-  only 2017 irrigation is four canopy events of 157.44 mm, July to October.
-- Should Knox's disking and ring rolling carry into 2016-2023 at all (16 events), or should those
-  years take the product's tillage detections, or none?
+**US-Twt from 2017, settled 2026-11-17.** For both the fertilization rate and the harvest
+fraction, a value the paper reports carries into the years it does not cover; the monitoring
+product comes in only for what the paper never reports (here the dates, and the 2022 grain crop).
+That settles the 0.8 removal, the 125 to 153 kg N/ha, the 2018-02-02 organic application and the
+2017 fill. The 2017 canopy water is read as the rice flood. By the same rule Knox's disking and
+ring rolling carry into 2016-2023 (16 events), dated from each year's planting.
 
 All flood water is `method: "soil"` (SIPNET method 1), with "Flood irrigation" in the note:
 SIPNET's flood method (2) is a placeholder the build in use rejects, and `write.events.SIPNET`
