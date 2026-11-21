@@ -1,0 +1,9 @@
+# commit hygiene for the target commit
+subject: Describe fill order
+author: Aritra Dey <adey01027@gmail.com>
+Signed-off-by: Aritra Dey <adey01027@gmail.com>
+
+subject words: 3
+AI attribution lines: 0
+tool name in subject: 0
+files touched: runs/russell_ranch/events_treatments/README.md tools/event_prep/README.md tools/event_prep/fill_order.R tools/event_prep/russell_split_phases.R 

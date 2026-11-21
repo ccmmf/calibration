@@ -1,0 +1,16 @@
+# Does 202db11 change any R code, or only comments? (R parser, comments dropped)
+$ Rscript tokens.R <git archive b8fe7eb> <worktree 202db11>
+tools/event_prep/fill_order.R
+  code tokens b8fe7eb: 671   202db11: 671   identical token stream: TRUE
+  parsed expressions identical (keep.source=FALSE): TRUE
+  comment tokens b8fe7eb: 65   202db11: 65
+tools/event_prep/russell_split_phases.R
+  code tokens b8fe7eb: 19179   202db11: 19179   identical token stream: TRUE
+  parsed expressions identical (keep.source=FALSE): TRUE
+  comment tokens b8fe7eb: 358   202db11: 358
+exit 0
+
+# control: same check against a scratch copy where only TON_AC_TO_KG_M2 is changed to metric tons (1000 kg) -- must report FALSE
+tools/event_prep/russell_split_phases.R
+  code tokens b8fe7eb: 19179   202db11: 19179   identical token stream: FALSE
+  parsed expressions identical (keep.source=FALSE): FALSE

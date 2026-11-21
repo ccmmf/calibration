@@ -1,0 +1,90 @@
+# Reader-visible text (pandoc -t plain for READMEs; R parser COMMENT tokens for .R), counts per file
+
+'David's order'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       1       0
+                  tools/event_prep/fill_order.R       2       0
+        tools/event_prep/russell_split_phases.R       2       0
+
+'David's fill order'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       2       0
+                  tools/event_prep/fill_order.R       0       0
+        tools/event_prep/russell_split_phases.R       0       0
+
+'David's rule'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       0       0
+                  tools/event_prep/fill_order.R       0       0
+        tools/event_prep/russell_split_phases.R       1       0
+
+'lookup David asked for'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       2       0
+                  tools/event_prep/fill_order.R       0       0
+        tools/event_prep/russell_split_phases.R       0       0
+
+'(David, calibration#10)'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       1       0
+ runs/russell_ranch/events_treatments/README.md       0       0
+                  tools/event_prep/fill_order.R       0       0
+        tools/event_prep/russell_split_phases.R       0       0
+
+'shared lookup agreed on calibration#10'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       0       2
+                  tools/event_prep/fill_order.R       0       0
+        tools/event_prep/russell_split_phases.R       0       0
+
+'the fill order'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       1       4
+                  tools/event_prep/fill_order.R       0       1
+        tools/event_prep/russell_split_phases.R       0       1
+
+'David on calibration#10 (left for follow-up)'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       0       0
+ runs/russell_ranch/events_treatments/README.md       4       4
+                  tools/event_prep/fill_order.R       0       0
+        tools/event_prep/russell_split_phases.R       3       3
+
+'David (any mention)'
+                                           file b8fe7eb 202db11
+                     tools/event_prep/README.md       1       0
+ runs/russell_ranch/events_treatments/README.md      15      10
+                  tools/event_prep/fill_order.R       2       0
+        tools/event_prep/russell_split_phases.R       8       5
+  (drop = the removed attributions above)
+
+# checks
+  no "David's order" left                                 PASS
+  no "David's fill order" left                            PASS
+  no "David's rule" left                                  PASS
+  no "lookup David asked for" left                        PASS
+  README fill list no longer attributed to David          PASS
+  "shared lookup agreed on calibration#10" replaces it    PASS
+  "the fill order" used                                   PASS
+  "David on calibration#10" citations untouched           PASS
+  reason paragraph present in tools/event_prep/README.md  PASS
+  short-ton comment gives the reason                      PASS
+exit 0
+
+# tools/event_prep/README.md table row for fill_order.R, parsed from pandoc's JSON AST
+b8fe7eb: ["fill_order.R", "no file: the fill helpers the generators share (below), sourced by russell_split_phases.R", ""]
+202db11: ["fill_order.R", "No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions", "NA: does not read source datasets itself"]
+suggested (David's review, per intent): ["fill_order.R", "No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions", "NA: does not read source datasets itself"]
+  table row matches the suggestion exactly        PASS
+
+# any remaining "David's" in the four files at 202db11 (reader-visible text)
+  tools/event_prep/README.md                         0
+  runs/russell_ranch/events_treatments/README.md     0
+  tools/event_prep/fill_order.R                      0
+  tools/event_prep/russell_split_phases.R            0

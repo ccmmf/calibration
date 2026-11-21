@@ -1,0 +1,36 @@
+# fill_order.R helpers at 202db11, exercised through their functions
+$ Rscript -e "testthat::test_file(\"tests/testthat/test_fill_order.R\", reporter = \"summary\")"
+fill_order: ....................................................
+
+══ DONE ════════════════════════════════════════════════════════════════════════
+                                                                                test
+             first_available takes the first candidate that has a value and names it
+     first_available falls back to the broader pool when the narrow one is too small
+                                  first_available returns only the values it counted
+                    first_available counts events in a list and rows in a data frame
+                                         first_available needs every candidate named
+                    set_provenance tags an event and keeps its fields where they are
+                            set_provenance rejects a class the generators do not use
+                     a filled event must say where it came from and what it rests on
+                 a generator finds fill_order.R next to it when its path has a space
+                       harvest_fractions writes all four fractions in SIPNET's order
+                                                   harvest_fractions has no defaults
+                 harvest_fractions rejects shares outside 0 to 1 or adding up past 1
+                       check_harvest_fractions stops on a harvest missing a fraction
+ a perennial cutting reaches SIPNET as written, not with its transfer as 1 - removed
+ nb failed skipped error
+  5      0   FALSE FALSE
+  3      0   FALSE FALSE
+  6      0   FALSE FALSE
+  3      0   FALSE FALSE
+  2      0   FALSE FALSE
+  6      0   FALSE FALSE
+  3      0   FALSE FALSE
+  8      0   FALSE FALSE
+  2      0   FALSE FALSE
+  2      0   FALSE FALSE
+  2      0   FALSE FALSE
+  4      0   FALSE FALSE
+  3      0   FALSE FALSE
+  3      0   FALSE FALSE
+exit 0

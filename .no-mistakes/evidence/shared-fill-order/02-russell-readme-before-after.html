@@ -1,0 +1,106 @@
+<html><head><meta charset=utf-8><link rel=stylesheet href=style.css></head><body><h1>runs/russell_ranch/events_treatments/README.md: fill order wording</h1><p>Rendered with pandoc (GitHub-flavored markdown): b8fe7eb (left) vs 202db11 (right). Only the three changed paragraphs are shown.</p>
+<div class=pair><div class='col before'><h3 class=lab>before, b8fe7eb, lines 99,113</h3><h2 id="harvest-fractions">Harvest fractions</h2>
+<p>Every harvest takes a row of <code>russell_harvest_lookup.csv</code>,
+which holds each row's exact value and source;
+<code>harvest_lookup_row</code> on each event names the one used. The
+generator's draw from a grain-harvest prior is dropped. Wheat, alfalfa
+and hay take the harvest lookup the other calibration sites use
+(<code>s3://carb/management/plant_traits/harvest_lookup.csv</code>,
+dated 2026-08-06, md5 <code>defbff0c0b86ae9ff6db07d520813538</code>),
+the values the monitoring harvest product carries, rounded to three
+decimals as Akash gave them on calibration#10. Corn and tomato take what
+the site's own samples say the harvest removed instead (Aritra,
+2026-10-31; below), and the script recomputes both from the package.
+This departs on purpose from the shared lookup David asked for on
+calibration#10: the site's samples are source data, which comes first in
+David's fill order (<code>tools/event_prep/README.md</code>, "Filling
+missing events"), and the residue left in the field is what feeds soil
+carbon. Every row takes 100% of the biomass as removed or to litter, so
+a harvest ends the crop; an intermediate alfalfa cutting does not
+(below). David suggested DSSAT parameters if more values were needed;
+none were.</p></div><div class='col after'><h3 class=lab>after, 202db11, lines 99,113</h3><h2 id="harvest-fractions">Harvest fractions</h2>
+<p>Every harvest takes a row of <code>russell_harvest_lookup.csv</code>,
+which holds each row's exact value and source;
+<code>harvest_lookup_row</code> on each event names the one used. The
+generator's draw from a grain-harvest prior is dropped. Wheat, alfalfa
+and hay take the harvest lookup the other calibration sites use
+(<code>s3://carb/management/plant_traits/harvest_lookup.csv</code>,
+dated 2026-08-06, md5 <code>defbff0c0b86ae9ff6db07d520813538</code>),
+the values the monitoring harvest product carries, rounded to three
+decimals as Akash gave them on calibration#10. Corn and tomato take what
+the site's own samples say the harvest removed instead (Aritra,
+2026-10-31; below), and the script recomputes both from the package.
+This departs on purpose from the shared lookup agreed on calibration#10:
+the site's samples are source data, which comes first in the fill order
+(<code>tools/event_prep/README.md</code>, "Filling missing events"), and
+the residue left in the field is what feeds soil carbon. Every row takes
+100% of the biomass as removed or to litter, so a harvest ends the crop;
+an intermediate alfalfa cutting does not (below). David suggested DSSAT
+parameters if more values were needed; none were.</p></div></div>
+<div class=pair><div class='col before'><h3 class=lab>before, b8fe7eb, lines 599,615</h3><h2 id="tillage">Tillage</h2>
+<p>The package has no tillage or cultivation table, but it logs dated
+soil passes in <code>operations_pesticides.csv</code>:
+<code>Mulch_Beds</code> (153 rows) and <code>Perfecta</code> (6),
+herbicide incorporated into the beds, as a rule before planting (the
+2013 passes come after the tomato transplanting), and
+<code>Incorporate</code> (189), herbicide incorporated by cultivating
+between the beds after tomato transplanting. Its metadata describes the
+2003 to 2007 standard versus conservation tillage split (all included
+data are from the standard halves). Tautges et al. 2019 (Methods 2.1 to
+2.3) describe the operations and when they happen relative to harvest,
+planting, cover crop termination and compost, but not on which day,
+apart from the wheat straw, or how intense they are. So, in David's
+order, the logged passes keep the package's dates, the wheat straw
+disking keeps the paper's month, the fallow diskings, which nothing
+dates, are spaced evenly through the fallow, and the other dates and
+every intensity come from the monitoring tillage product near Russell
+Ranch: <code>monitoring_tillage_near_russell.csv</code>, made by
+<code>tools/event_prep/russell_monitoring_tillage.R</code> from the v5.0
+tillage, harvest and planting products and the v4.1 crop table, for the
+11,290 parcels within 25 km, 2016 to 2023. One event per operation,
+1,045 in all, plus 30 copied into the <code>alf_corn_tomato</code>
+history:</p></div><div class='col after'><h3 class=lab>after, 202db11, lines 599,615</h3><h2 id="tillage">Tillage</h2>
+<p>The package has no tillage or cultivation table, but it logs dated
+soil passes in <code>operations_pesticides.csv</code>:
+<code>Mulch_Beds</code> (153 rows) and <code>Perfecta</code> (6),
+herbicide incorporated into the beds, as a rule before planting (the
+2013 passes come after the tomato transplanting), and
+<code>Incorporate</code> (189), herbicide incorporated by cultivating
+between the beds after tomato transplanting. Its metadata describes the
+2003 to 2007 standard versus conservation tillage split (all included
+data are from the standard halves). Tautges et al. 2019 (Methods 2.1 to
+2.3) describe the operations and when they happen relative to harvest,
+planting, cover crop termination and compost, but not on which day,
+apart from the wheat straw, or how intense they are. So, in the fill
+order, the logged passes keep the package's dates, the wheat straw
+disking keeps the paper's month, the fallow diskings, which nothing
+dates, are spaced evenly through the fallow, and the other dates and
+every intensity come from the monitoring tillage product near Russell
+Ranch: <code>monitoring_tillage_near_russell.csv</code>, made by
+<code>tools/event_prep/russell_monitoring_tillage.R</code> from the v5.0
+tillage, harvest and planting products and the v4.1 crop table, for the
+11,290 parcels within 25 km, 2016 to 2023. One event per operation,
+1,045 in all, plus 30 copied into the <code>alf_corn_tomato</code>
+history:</p></div></div>
+<div class=pair><div class='col before'><h3 class=lab>before, b8fe7eb, lines 675,684</h3><h2 id="known-limitations">Known limitations</h2>
+<ul>
+<li><strong>Harvest fractions differ from the other sites.</strong> Corn
+and tomato take the site's own shares (above), so Russell no longer uses
+the shared lookup's F16 and T32 rows, departing from the shared lookup
+David asked for on calibration#10: the site's samples are source data,
+which comes first in David's fill order, and the residue left in the
+field is what feeds soil carbon (Aritra, 2026-10-31). Wheat still takes
+G2, which removes 0.713 although the paper incorporates the straw; the
+package has no straw weights to replace it with.</li>
+</ul></div><div class='col after'><h3 class=lab>after, 202db11, lines 675,684</h3><h2 id="known-limitations">Known limitations</h2>
+<ul>
+<li><strong>Harvest fractions differ from the other sites.</strong> Corn
+and tomato take the site's own shares (above), so Russell no longer uses
+the shared lookup's F16 and T32 rows, departing from the shared lookup
+agreed on calibration#10: the site's samples are source data, which
+comes first in the fill order, and the residue left in the field is what
+feeds soil carbon (Aritra, 2026-10-31). Wheat still takes G2, which
+removes 0.713 although the paper incorporates the straw; the package has
+no straw weights to replace it with.</li>
+</ul></div></div>
+</body></html>
