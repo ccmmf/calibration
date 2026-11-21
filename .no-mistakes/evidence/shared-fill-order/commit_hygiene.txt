@@ -1,9 +1,12 @@
-# commit hygiene for the target commit
-subject: Describe fill order
-author: Aritra Dey <adey01027@gmail.com>
-Signed-off-by: Aritra Dey <adey01027@gmail.com>
+# Commit rules on the branch (bb842cc..202db11): subject 2-3 words without the tool name, Signed-off-by, no AI attribution
+sha      subject                      words  tool-name    signed-off ai-attrib  author
+5a6a832  Share fill helpers           3      no           yes        none       Aritra Dey
+242e6ce  review fixes                 2      no           NO         none       Aritra Dey
+6dea0ad  document fixes               2      no           NO         none       Aritra Dey
+2df171f  Tighten source check         3      no           yes        none       Aritra Dey
+b8fe7eb  Apply suggestion from @dlebauer 4      no           NO         none       David LeBauer
+202db11  Describe fill order          3      no           yes        none       Aritra Dey
 
-subject words: 3
-AI attribution lines: 0
-tool name in subject: 0
-files touched: runs/russell_ranch/events_treatments/README.md tools/event_prep/README.md tools/event_prep/fill_order.R tools/event_prep/russell_split_phases.R 
+notes: b8fe7eb is David's GitHub suggestion commit (his subject, his authorship).
+       242e6ce and 6dea0ad (pipeline review/document fix commits) have no Signed-off-by; the user declined changing unsigned pipeline fix commits in review round 2.
+       202db11, the commit under test, is signed off: Signed-off-by: Aritra Dey <adey01027@gmail.com>

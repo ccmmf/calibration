@@ -1,16 +1,25 @@
-# Does 202db11 change any R code, or only comments? (R parser, comments dropped)
-$ Rscript tokens.R <git archive b8fe7eb> <worktree 202db11>
-tools/event_prep/fill_order.R
-  code tokens b8fe7eb: 671   202db11: 671   identical token stream: TRUE
-  parsed expressions identical (keep.source=FALSE): TRUE
-  comment tokens b8fe7eb: 65   202db11: 65
-tools/event_prep/russell_split_phases.R
-  code tokens b8fe7eb: 19179   202db11: 19179   identical token stream: TRUE
-  parsed expressions identical (keep.source=FALSE): TRUE
-  comment tokens b8fe7eb: 358   202db11: 358
+# Does 202db11 change any R code, or only comments? (R parser; comments dropped before comparing)
+$ Rscript tokens.R <git archive b8fe7eb> <worktree 202db11> tools/event_prep/fill_order.R tools/event_prep/russell_split_phases.R
+tools/event_prep/fill_order.R 
+  code tokens old: 671   new: 671   identical token stream: TRUE 
+  parsed expressions identical (keep.source=FALSE): TRUE 
+  comment tokens old: 65   new: 65   comments changed: 3 
+tools/event_prep/russell_split_phases.R 
+  code tokens old: 19179   new: 19179   identical token stream: TRUE 
+  parsed expressions identical (keep.source=FALSE): TRUE 
+  comment tokens old: 358   new: 358   comments changed: 3 
 exit 0
 
-# control: same check against a scratch copy where only TON_AC_TO_KG_M2 is changed to metric tons (1000 kg) -- must report FALSE
-tools/event_prep/russell_split_phases.R
-  code tokens b8fe7eb: 19179   202db11: 19179   identical token stream: FALSE
-  parsed expressions identical (keep.source=FALSE): FALSE
+# control: same check against a scratch copy where only TON_AC_TO_KG_M2 is changed to metric tons (1000 kg); must report FALSE and exit 1
+tools/event_prep/russell_split_phases.R 
+  code tokens old: 19179   new: 19179   identical token stream: FALSE 
+  parsed expressions identical (keep.source=FALSE): FALSE 
+  comment tokens old: 358   new: 358   comments changed: 3 
+exit 1
+
+# files the commit touches:
+   runs/russell_ranch/events_treatments/README.md | 10 +++++-----
+   tools/event_prep/README.md                     |  8 ++++++--
+   tools/event_prep/fill_order.R                  |  6 +++---
+   tools/event_prep/russell_split_phases.R        |  6 +++---
+   4 files changed, 17 insertions(+), 13 deletions(-)

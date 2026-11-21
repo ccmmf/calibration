@@ -1,5 +1,5 @@
-<html><head><meta charset=utf-8><link rel=stylesheet href=style.css></head><body><h1>tools/event_prep/README.md: fill_order.R table row and "Filling missing events"</h1><p>Rendered with pandoc (GitHub-flavored markdown): b8fe7eb (left) vs 202db11 (right). The table shows the header and its last two rows.</p>
-<div class=pair><div class='col before'><h3 class=lab>before, b8fe7eb, table lines 7-8, 20-21</h3><table>
+<!doctype html><html><head><meta charset="utf-8"><title>tools/event_prep/README.md: fill_order.R table row and 'Filling missing events' (rendered with pandoc, GFM)</title><link rel="stylesheet" href="style.css"></head><body>
+<h1 class="t">tools/event_prep/README.md: fill_order.R table row and 'Filling missing events' (rendered with pandoc, GFM)</h1><div class="grid"><div class="col before"><h2 class="c">before: b8fe7eb</h2><table>
 <thead>
 <tr class="header">
 <th>script</th>
@@ -15,38 +15,17 @@
 </tr>
 <tr class="even">
 <td><code>fill_order.R</code></td>
-<td>no file: the fill helpers the generators share (below), sourced by
-<code>russell_split_phases.R</code></td>
+<td><mark class=old>no file: the fill helpers the generators share
+(below), sourced by <code>russell_split_phases.R</code></mark></td>
 <td></td>
 </tr>
 </tbody>
-</table></div><div class='col after'><h3 class=lab>after, 202db11, table lines 7-8, 20-21</h3><table>
-<thead>
-<tr class="header">
-<th>script</th>
-<th>produces</th>
-<th>source of truth</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>write_events_in.R</code></td>
-<td><code>events.in</code> from <code>events.json</code></td>
-<td><code>PEcAn.SIPNET::write.events.SIPNET</code> equivalent</td>
-</tr>
-<tr class="even">
-<td><code>fill_order.R</code></td>
-<td>No output files; provides reusable functions for selecting fallback
-data, recording provenance, and checking harvest fractions</td>
-<td>NA: does not read source datasets itself</td>
-</tr>
-</tbody>
-</table></div></div>
-<div class=pair><div class='col before'><h3 class=lab>before, b8fe7eb, lines 32,49</h3><h2 id="filling-missing-events">Filling missing events</h2>
+</table>
+<h2 id="filling-missing-events">Filling missing events</h2>
 <p>When a site's records lack an event that is known to have happened (a
 crop that was harvested, a cover crop that was incorporated), or lack
-its date or amount, the generators fill it in this order (David,
-calibration#10):</p>
+its date or amount, the generators fill it in this order
+<mark class=old>(David, calibration#10)</mark>:</p>
 <ol type="1">
 <li><strong>The paper or its source data.</strong> Use what they record,
 including dates relative to another recorded operation (a termination
@@ -63,7 +42,30 @@ fertilization.</li>
 </ol>
 <p>This applies to amounts as well as dates. Every filled or imputed
 event says where it came from (<code>source</code>,
-<code>provenance_class</code>, <code>provenance_note</code>).</p></div><div class='col after'><h3 class=lab>after, 202db11, lines 32,53</h3><h2 id="filling-missing-events">Filling missing events</h2>
+<code>provenance_class</code>, <code>provenance_note</code>).</p></div><div class="col after"><h2 class="c">after: 202db11 (commit under test)</h2><table>
+<thead>
+<tr class="header">
+<th>script</th>
+<th>produces</th>
+<th>source of truth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>write_events_in.R</code></td>
+<td><code>events.in</code> from <code>events.json</code></td>
+<td><code>PEcAn.SIPNET::write.events.SIPNET</code> equivalent</td>
+</tr>
+<tr class="even">
+<td><code>fill_order.R</code></td>
+<td><mark>No output files; provides reusable functions for selecting
+fallback data, recording provenance, and checking harvest
+fractions</mark></td>
+<td><mark>NA: does not read source datasets itself</mark></td>
+</tr>
+</tbody>
+</table>
+<h2 id="filling-missing-events">Filling missing events</h2>
 <p>When a site's records lack an event that is known to have happened (a
 crop that was harvested, a cover crop that was incorporated), or lack
 its date or amount, the generators fill it in this order:</p>
@@ -81,11 +83,11 @@ operations in the same area.</li>
 information is already in the monitoring product, as it is for
 fertilization.</li>
 </ol>
-<p>The order goes from the most direct evidence to the most general: the
-paper and its data record what happened on these plots, the monitoring
-product estimates it field by field, and guidance gives typical practice
-for a crop and region.</p>
+<p><mark>The order goes from the most direct evidence to the most
+general: the paper and its data</mark> <mark>record what happened on
+these plots, the monitoring product estimates it field by field,
+and</mark> <mark>guidance gives typical practice for a crop and
+region.</mark></p>
 <p>This applies to amounts as well as dates. Every filled or imputed
 event says where it came from (<code>source</code>,
-<code>provenance_class</code>, <code>provenance_note</code>).</p></div></div>
-</body></html>
+<code>provenance_class</code>, <code>provenance_note</code>).</p></div></div></body></html>

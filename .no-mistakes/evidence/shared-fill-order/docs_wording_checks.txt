@@ -1,90 +1,37 @@
-# Reader-visible text (pandoc -t plain for READMEs; R parser COMMENT tokens for .R), counts per file
+# Docs/comment wording in the four files 202db11 touches (counts over each file with line breaks joined, so wrapped phrases count)
+phrase                              b8fe7eb  202db11
+David's order                                   5        0
+David's fill order                              2        0
+David's rule                                    1        0
+the shared lookup David asked for               2        0
+David asked for                                 2        0
+(David, calibration#10)                         1        0
+the fill order                                  1        6
+the shared lookup agreed on calibration#10      0        2
+David on calibration#10                         8        8
 
-'David's order'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       1       0
-                  tools/event_prep/fill_order.R       2       0
-        tools/event_prep/russell_split_phases.R       2       0
+# required: the README table row for fill_order.R is David's suggested text, verbatim
+21:| `fill_order.R` | No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions | NA: does not read source datasets itself |
+  -> row present verbatim at HEAD
 
-'David's fill order'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       2       0
-                  tools/event_prep/fill_order.R       0       0
-        tools/event_prep/russell_split_phases.R       0       0
+# required: one paragraph giving the order's reason (tools/event_prep/README.md)
+  The order goes from the most direct evidence to the most general: the paper and its data
+  record what happened on these plots, the monitoring product estimates it field by field, and
+  guidance gives typical practice for a crop and region.
 
-'David's rule'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       0       0
-                  tools/event_prep/fill_order.R       0       0
-        tools/event_prep/russell_split_phases.R       1       0
+# required: the short ton comment gives the reason, not a person's rule (russell_split_phases.R)
+  61:# US short ton per acre: a US field record in tons per acre means short tons, the US unit; the
+  62-# package does not say which ton it means (century_package_issues.md, item 19).
 
-'lookup David asked for'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       2       0
-                  tools/event_prep/fill_order.R       0       0
-        tools/event_prep/russell_split_phases.R       0       0
+# required: b8fe7eb (David's own suggestion, in fill_order.R) kept: title 'Event provenance classes'
+  tools/event_prep/fill_order.R:10:#' Event provenance classes
 
-'(David, calibration#10)'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       1       0
- runs/russell_ranch/events_treatments/README.md       0       0
-                  tools/event_prep/fill_order.R       0       0
-        tools/event_prep/russell_split_phases.R       0       0
+# out of scope, must be left for the follow-up: 'David on calibration#10, <date>' style citations unchanged in count (8 -> 8 above), e.g.
+  runs/russell_ranch/events_treatments/README.md:130:  stubble and roots alive (David on calibration#10). Only the last cutting before the next
+  runs/russell_ranch/events_treatments/README.md:141:  total and goes to litter (David on calibration#10, 2026-11-02; Tautges et al. 2019: "green
+  runs/russell_ranch/events_treatments/README.md:636:- The fallow diskings (David on calibration#10, 2026-11-02, with the fill order): Tautges et al.
+  tools/event_prep/russell_split_phases.R:170:# biomass and goes to litter (David on calibration#10, 2026-11-02). The package gives the hand
 
-'shared lookup agreed on calibration#10'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       0       2
-                  tools/event_prep/fill_order.R       0       0
-        tools/event_prep/russell_split_phases.R       0       0
-
-'the fill order'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       1       4
-                  tools/event_prep/fill_order.R       0       1
-        tools/event_prep/russell_split_phases.R       0       1
-
-'David on calibration#10 (left for follow-up)'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       0       0
- runs/russell_ranch/events_treatments/README.md       4       4
-                  tools/event_prep/fill_order.R       0       0
-        tools/event_prep/russell_split_phases.R       3       3
-
-'David (any mention)'
-                                           file b8fe7eb 202db11
-                     tools/event_prep/README.md       1       0
- runs/russell_ranch/events_treatments/README.md      15      10
-                  tools/event_prep/fill_order.R       2       0
-        tools/event_prep/russell_split_phases.R       8       5
-  (drop = the removed attributions above)
-
-# checks
-  no "David's order" left                                 PASS
-  no "David's fill order" left                            PASS
-  no "David's rule" left                                  PASS
-  no "lookup David asked for" left                        PASS
-  README fill list no longer attributed to David          PASS
-  "shared lookup agreed on calibration#10" replaces it    PASS
-  "the fill order" used                                   PASS
-  "David on calibration#10" citations untouched           PASS
-  reason paragraph present in tools/event_prep/README.md  PASS
-  short-ton comment gives the reason                      PASS
-exit 0
-
-# tools/event_prep/README.md table row for fill_order.R, parsed from pandoc's JSON AST
-b8fe7eb: ["fill_order.R", "no file: the fill helpers the generators share (below), sourced by russell_split_phases.R", ""]
-202db11: ["fill_order.R", "No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions", "NA: does not read source datasets itself"]
-suggested (David's review, per intent): ["fill_order.R", "No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions", "NA: does not read source datasets itself"]
-  table row matches the suggestion exactly        PASS
-
-# any remaining "David's" in the four files at 202db11 (reader-visible text)
-  tools/event_prep/README.md                         0
-  runs/russell_ranch/events_treatments/README.md     0
-  tools/event_prep/fill_order.R                      0
-  tools/event_prep/russell_split_phases.R            0
+# repo-wide: any other "David's ..." left at 202db11 (outside the four files)?
+  HEAD:tools/event_prep/step3_assemble_events.R:31:# David's circular median day-of-year. Assumes a single crop cycle.
+  (a circular-median attribution in the US-Twt step3 script, not about the fill order; outside this PR's four files)
