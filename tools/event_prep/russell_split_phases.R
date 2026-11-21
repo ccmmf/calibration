@@ -58,7 +58,7 @@ RAINFED <- treatments_where("irrigated", "FALSE")
 CASH_CROPS <- c("corn", "tomato", "wheat", "alfalfa", "sudangrass")
 SEASON_DAYS <- 365  # longest planting-to-harvest span that counts as one cash crop window
 SOURCE <- "10.1002/ecy.2105"
-# US short ton per acre: David's rule (2026-09 meeting) is that per acre means short tons; the
+# US short ton per acre: a US field record in tons per acre means short tons, the US unit; the
 # package does not say which ton it means (century_package_issues.md, item 19).
 TON_AC_TO_KG_M2 <- 907.18474 / 4046.8564224
 KG_HA_TO_KG_M2 <- 1e-4
@@ -1413,7 +1413,7 @@ for (tid in names(SYSTEMS)) {
                                  tid, n[["seasons"]], n[["events"]]))
 }
 
-# Alfalfa, for which the paper gives no amount. David's order (calibration#10) takes amounts, like
+# Alfalfa, for which the paper gives no amount. The fill order takes amounts, like
 # dates, from the monitoring product next: each calendar year of cuttings takes the product's
 # median irrigated P1 (alfalfa) year within 25 km of Russell Ranch (irrigation_csv), a lower
 # bound, in equal soil events of at most IRR_EVENT_MAX_MM spaced evenly from its median days
@@ -1496,7 +1496,7 @@ for (tid in setdiff(names(SYSTEMS), RAINFED)) {
 # incorporated) and unharvested crop at its end, and of each compost application on its date (one
 # pass with another incorporation that day), with the median over all tillage events.
 # tillage_eff_0to1 is the median for the operation. Where the paper or the package gives a date,
-# it comes first (David's order): the paper incorporates wheat straw by two shallow diskings
+# it comes first (the fill order): the paper incorporates wheat straw by two shallow diskings
 # after the July harvest, "then fallowed from August", so that disking comes no later than July
 # 31; and the package logs dated soil passes in operations_pesticides.csv (LOGGED_PASSES), each
 # added as an event. The organic system's three to four cultivations are not logged and are left

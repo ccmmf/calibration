@@ -1,7 +1,7 @@
 # Shared helpers for filling missing management events in the events.json generators.
 #
-# A generator fills an event the records lack, or its date or amount, in David's order
-# (calibration#10; README.md here, "Filling missing events"): 1. the paper or its source data,
+# A generator fills an event the records lack, or its date or amount, from the most direct
+# source that has it (README.md here, "Filling missing events"): 1. the paper or its source data,
 # 2. the monitoring product, 3. guidance documents. These helpers hold what every generator
 # repeats: taking the first source in that order that has the value and saying which one it was,
 # tagging each filled event with where it came from, and writing harvest fractions that SIPNET
@@ -25,7 +25,7 @@ HARVEST_FRACTIONS <- c("frac_above_removed_0to1", "frac_below_removed_0to1",
 
 #' Take the first candidate, in order of preference, that has enough records
 #'
-#' Name the candidates by where they come from. Across David's order that is the paper or its
+#' Name the candidates by where they come from. Across the fill order that is the paper or its
 #' data, then the monitoring product, then guidance; within one source, the narrowest pool of
 #' records first (this phase, then the site).
 #'
