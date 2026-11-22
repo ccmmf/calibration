@@ -190,15 +190,20 @@ included, whether or not the site floods. With `FLOODING` on, SIPNET drains each
 `waterDrainFrac` of the soil water above holding capacity, so a high value drains freely and a low
 one holds the water up. A field floods by lowering `waterDrainFrac` while it is flooded and
 restoring it when it drains, with a stop and restart between the segments, so no field stays
-flooded longer than the real one; the same applies to the ensembles. For rice the flooded period
-is planting to harvest. The events here stand in for the water only. That run setup is not in
-this repository yet: the workflow manifest sets the model options that SIPNET receives, and
-`runs/template.xml` only records them.
+flooded longer than the real one; the same applies to the ensembles. The rule's example was rice
+flooded from planting to harvest, but at US-Twt the WTD record (`us_twt_wtd_water_dates.csv`)
+shows each 2010-2016 growing-season flood starting 32 to 67 d after planting and draining 30 to
+48 d before harvest, as Knox et al. (2016) report (45 to 60 d after planting, 30 to 45 d before
+harvest), so there the segments would follow each flood's onset and drain, as the events already
+do. The events here stand in for the water only. That run setup is not in this repository yet:
+the workflow manifest sets the model options that SIPNET receives, and `runs/template.xml` only
+records them.
 
-Open: US-Bi2's floods and US-Twt's winter floods fall between harvest and the next planting, and
-US-Bi2's corn is not flooded, so planting to harvest does not fit them. Should their segments
-follow the flood windows instead, from each flood's first day (or WTD onset) to its drain, as the
-flood events here do?
+Open: should every site's segments follow its flood windows, rice growing seasons and winter
+floods alike, from each flood's first day (or WTD onset) to its drain as the flood events here
+do, rather than planting and harvest? US-Twt's growing-season floods start after planting and
+drain before harvest; US-Bi2's floods and US-Twt's winter floods fall between harvest and the next
+planting, and US-Bi2's corn is not flooded. Planting to harvest fits none of them.
 
 ### US-Twt, Twitchell rice, parcel 590073, 2010-2023 (403 events)
 
