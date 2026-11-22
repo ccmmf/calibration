@@ -1,0 +1,30 @@
+US-Bi2 previous vs new builder output
+events: 101 -> 101 
+
+harvest_fraction_note 
+                    8 
+top-level field differs: provenance 
+
+example harvest_fraction_note, event 3 2016-09-23 
+  before: Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752); a proposal for David (organization#298). 
+  after:  Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752), as agreed on calibration#19. 
+
+identical with note fields removed: TRUE 
+
+US-Twt events before 2017, previous vs new, notes removed: identical = FALSE ( 221 events )
+US-Twt total events: 404 -> 403 (dropped: product R1 applications incl. 2018-02-02 organic, replaced by one Knox regime application a year)
+previous 2017-2023 fertilization:
+  2017-07-05 N kg/ha: 133.7 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+  2018-02-02 N kg/ha: 186.4 orgC: 0.4407522 monitoring_product:fertilization/v1.0:ens_001 
+  2018-07-15 N kg/ha: 129.8 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+  2019-07-07 N kg/ha: 140.9 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+  2020-06-29 N kg/ha: 125 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+  2021-07-05 N kg/ha: 153.1 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+  2022-05-02 N kg/ha: 114.8 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+  2023-07-05 N kg/ha: 137.6 orgC: 0 monitoring_product:fertilization/v1.0:ens_001 
+US-Bi2 provenance$ note 
+  before: One corn cycle a year, 2016-2023, from the site record first (cal-val-data, US-Bi2__management_field) and the monitoring product's planting and harvest v5.0 days where the record gives none. The monitoring product's 2019 G6 cycle (planted 2019-02-05, harvested 2019-05-22) is dropped: the field is continuous corn and was flooded and anoxic until mid March 2019. UAN at 118 kg N/ha once a year at planting (Anthony and Silver 2021) replaces the fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the shared lookup's hay row for silage, an assumption for David. No tillage: the monitoring product's tillage is not used. Water, as decided on 2026-07-16: the irrigation product's 2021 and 2022 events, and the record's dated winter floods (delta-flooding-0009, 0012, 0013, 0014) held by 69 mm every 7 d as soil irrigation. The spud ditch sub-irrigation (delta-irrigation-0004 to 0007) is subsurface water left to the water table and the run's flood configuration, which this file does not set. See tools/event_prep/README.md. 
+  after:  One corn cycle a year, 2016-2023, from the site record first (cal-val-data, US-Bi2__management_field) and the monitoring product's planting and harvest v5.0 days where the record gives none. The monitoring product's 2019 G6 cycle (planted 2019-02-05, harvested 2019-05-22) is dropped: the field is continuous corn and was flooded and anoxic until mid March 2019. UAN at 118 kg N/ha once a year at planting (Anthony and Silver 2021) replaces the fertilization product's rows. The 2019 and 2020 planting and fertilization days are read from Anthony and Silver 2021 Fig. 2; the 2019 harvest is the recorded 2019-09-11. Harvests use the shared lookup's hay row for silage, as agreed on calibration#19. No tillage: the monitoring product's tillage is not used. Water, as decided on 2026-07-16: the irrigation product's 2021 and 2022 events, and the record's dated winter floods (delta-flooding-0009, 0012, 0013, 0014) held by 69 mm every 7 d as soil irrigation. The spud ditch sub-irrigation (delta-irrigation-0004 to 0007) is subsurface water left to the water table and the run's flood configuration, which this file does not set. See tools/event_prep/README.md. 
+US-Twt pre-2016-12-31 keys equal: TRUE 
+planting 2016-04-18 10.1002/2015JG003247 prior_filled : date<-synthesized:median_doy(2010-2015) -> date<-synthesized:median_doy(2010-2015); leaf_c_kg_m2<-prior:us_twt_monitoring_product_median 
+harvest 2016-10-06 10.1002/2015JG003247 prior_filled : date<-synthesized:median_doy(2010-2015) -> date<-synthesized:median_doy(2010-2015); frac_above_removed_0to1,frac_above_to_litter_0to1<-prior:rice_harvest_index 

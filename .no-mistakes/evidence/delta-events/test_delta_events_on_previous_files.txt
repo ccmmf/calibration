@@ -1,0 +1,312 @@
+✔ | F W  S  OK | Context
+
+⠏ |          0 | delta_events                                                   
+⠋ |          1 | delta_events                                                   
+⠴ |          6 | delta_events                                                   
+⠸ |         14 | delta_events                                                   
+⠋ | 1       30 | delta_events                                                   
+⠙ | 2       30 | delta_events                                                   
+⠙ | 2       70 | delta_events                                                   
+⠴ | 2       84 | delta_events                                                   
+⠼ | 2      113 | delta_events                                                   
+⠸ | 2      162 | delta_events                                                   
+⠸ | 2      182 | delta_events                                                   
+⠹ | 5      188 | delta_events                                                   
+⠦ | 5      202 | delta_events                                                   
+⠏ | 5      215 | delta_events                                                   
+⠦ | 7      220 | delta_events                                                   
+⠸ | 14      220 | delta_events                                                  
+⠙ | 19      223 | delta_events                                                  
+✖ | 22      224 | delta_events [3.9s]
+────────────────────────────────────────────────────────────────────────────────
+Failure ('test_delta_events.R:63:3'): US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive
+all(field(irr, "method") == "soil") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:66:3'): US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive
+all(...) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:147:3'): US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+sum(method == "canopy") not equal to 4L.
+1/1 mismatches
+[1] 8 - 4 == 4
+
+Failure ('test_delta_events.R:148:3'): US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+all(substr(dates(irr)[method == "canopy"], 1, 4) == "2022") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:150:3'): US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+sum(rice_canopy) not equal to 4L.
+1/1 mismatches
+[1] 0 - 4 == -4
+
+Failure ('test_delta_events.R:211:3'): US-Twt's 2017 fill is dated from the product's other years
+vapply(fill, `[[`, "", "event_type") (`actual`) and c("planting", "harvest") (`expected`) don't have the same values.
+* Only in `actual`: "fertilization"
+
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2017-11-14
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2018-11-15
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2019-10-27
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2020-11-13
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2021-11-14
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2023-11-26
+
+Failure ('test_delta_events.R:225:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(harv[rice], "provenance_class") == "imputed") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:226:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(grepl("rice_harvest_index", field(harv[rice], "prior_filled"))) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:234:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+`knox` has length 7, not length 6.
+
+Failure ('test_delta_events.R:235:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(substr(dates(knox), 6, 10) %in% c("05-30", "05-31")) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:236:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "reported_rate_lb_ac") == "100") is not TRUE
+
+`actual`:   <NA>
+`expected`: TRUE
+
+Failure ('test_delta_events.R:237:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "reported_grade") == "15-15-15") is not TRUE
+
+`actual`:   <NA>
+`expected`: TRUE
+
+Failure ('test_delta_events.R:239:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+as.numeric(field(knox, "nh4_n_kg_m2")) not equal to rep(100 * 1.12085 * 0.15 * 1e-04, 6L).
+Lengths differ: 7 is not 6
+
+Failure ('test_delta_events.R:240:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "org_n_kg_m2") == 0) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:241:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "source") == "10.1002/2015JG003247") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:243:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+any(vapply(fert, function(e) isTRUE(e$org_c_kg_m2 > 0), TRUE)) is not FALSE
+
+`actual`:   TRUE 
+`expected`: FALSE
+────────────────────────────────────────────────────────────────────────────────
+Maximum number of failures exceeded; quitting at end of file.
+ℹ Increase this number with (e.g.) `testthat::set_max_fails(Inf)` 
+
+══ Results ═════════════════════════════════════════════════════════════════════
+Duration: 4.4 s
+
+── Failed tests ────────────────────────────────────────────────────────────────
+Failure ('test_delta_events.R:63:3'): US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive
+all(field(irr, "method") == "soil") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:66:3'): US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive
+all(...) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:147:3'): US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+sum(method == "canopy") not equal to 4L.
+1/1 mismatches
+[1] 8 - 4 == 4
+
+Failure ('test_delta_events.R:148:3'): US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+all(substr(dates(irr)[method == "canopy"], 1, 4) == "2022") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:150:3'): US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+sum(rice_canopy) not equal to 4L.
+1/1 mismatches
+[1] 0 - 4 == -4
+
+Failure ('test_delta_events.R:211:3'): US-Twt's 2017 fill is dated from the product's other years
+vapply(fill, `[[`, "", "event_type") (`actual`) and c("planting", "harvest") (`expected`) don't have the same values.
+* Only in `actual`: "fertilization"
+
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2017-11-14
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2018-11-15
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2019-10-27
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2020-11-13
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2021-11-14
+
+Failure ('test_delta_events.R:223:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+unname(fr(e)) not equal to c(0.5, 0, 0.5, 1).
+2/4 mismatches (average diff: 0.3)
+[1] 0.8 - 0.5 ==  0.3
+[3] 0.2 - 0.5 == -0.3
+2023-11-26
+
+Failure ('test_delta_events.R:225:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(harv[rice], "provenance_class") == "imputed") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:226:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(grepl("rice_harvest_index", field(harv[rice], "prior_filled"))) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:234:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+`knox` has length 7, not length 6.
+
+Failure ('test_delta_events.R:235:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(substr(dates(knox), 6, 10) %in% c("05-30", "05-31")) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:236:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "reported_rate_lb_ac") == "100") is not TRUE
+
+`actual`:   <NA>
+`expected`: TRUE
+
+Failure ('test_delta_events.R:237:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "reported_grade") == "15-15-15") is not TRUE
+
+`actual`:   <NA>
+`expected`: TRUE
+
+Failure ('test_delta_events.R:239:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+as.numeric(field(knox, "nh4_n_kg_m2")) not equal to rep(100 * 1.12085 * 0.15 * 1e-04, 6L).
+Lengths differ: 7 is not 6
+
+Failure ('test_delta_events.R:240:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "org_n_kg_m2") == 0) is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:241:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+all(field(knox, "source") == "10.1002/2015JG003247") is not TRUE
+
+`actual`:   FALSE
+`expected`: TRUE 
+
+Failure ('test_delta_events.R:243:3'): US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+any(vapply(fert, function(e) isTRUE(e$org_c_kg_m2 > 0), TRUE)) is not FALSE
+
+`actual`:   TRUE 
+`expected`: FALSE
+
+[ FAIL 22 | WARN 0 | SKIP 0 | PASS 224 ]
+══ Terminated early ════════════════════════════════════════════════════════════
+                                                                                           test
+1                         every Delta event says where it came from and stays in its run window
+2            US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive
+3                          US-Bi2 has one corn cycle a year with 118 kg N/ha of UAN at planting
+4  US-Bi2 gets its water: the product's 2021 and 2022 irrigation and the record's winter floods
+5                            US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+6                              US-Twt floods follow the WTD onsets and are held to their drains
+7                US-Twt Knox events cite their row and take the weakest class among their parts
+8                              US-Twt tillage cites the record for each implement in every year
+9                                    US-Twt's 2017 fill is dated from the product's other years
+10             US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+   nb failed error
+1  18      0 FALSE
+2  57      2 FALSE
+3  22      0 FALSE
+4  86      0 FALSE
+5  12      3 FALSE
+6  22      0 FALSE
+7   2      0 FALSE
+8   5      0 FALSE
+9   2      1 FALSE
+10 20     16 FALSE

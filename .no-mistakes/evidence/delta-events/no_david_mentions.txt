@@ -1,0 +1,12 @@
+$ grep -c David on freshly rebuilt outputs (HEAD builders) and on builders/README
+/tmp/nm_delta_test/out_new/us_bi1.json: 0
+/tmp/nm_delta_test/out_new/us_bi2.json: 0
+/tmp/nm_delta_test/out_new/us_twt.json: 0
+/tmp/nm_delta_test/out_prev/us_bi1.json: 41
+/tmp/nm_delta_test/out_prev/us_bi2.json: 9
+/tmp/nm_delta_test/out_prev/us_twt.json: 1
+tools/event_prep/us_bi2_build_events.R:0
+tools/event_prep/us_bi1_build_events.R:0
+tools/event_prep/delta_inputs.R:0
+tools/event_prep/us_twt_build_events.R:0
+tools/event_prep/README.md:0

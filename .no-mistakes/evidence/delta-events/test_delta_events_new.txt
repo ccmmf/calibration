@@ -1,0 +1,47 @@
+✔ | F W  S  OK | Context
+
+⠏ |          0 | delta_events                                                   
+⠹ |          3 | delta_events                                                   
+⠹ |         13 | delta_events                                                   
+⠙ |         32 | delta_events                                                   
+⠧ |         58 | delta_events                                                   
+⠴ |         76 | delta_events                                                   
+⠴ |         86 | delta_events                                                   
+⠼ |        105 | delta_events                                                   
+⠼ |        125 | delta_events                                                   
+⠋ |        141 | delta_events                                                   
+⠹ |        163 | delta_events                                                   
+⠹ |        183 | delta_events                                                   
+⠹ |        193 | delta_events                                                   
+⠹ |        203 | delta_events                                                   
+⠧ |        218 | delta_events                                                   
+⠼ |        225 | delta_events                                                   
+⠙ |        242 | delta_events                                                   
+✔ |        246 | delta_events [2.8s]
+
+══ Results ═════════════════════════════════════════════════════════════════════
+Duration: 2.8 s
+
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 246 ]
+                                                                                           test
+1                         every Delta event says where it came from and stays in its run window
+2            US-Bi1 is one alfalfa stand: a single planting and 39 cuttings that leave it alive
+3                          US-Bi2 has one corn cycle a year with 118 kg N/ha of UAN at planting
+4  US-Bi2 gets its water: the product's 2021 and 2022 irrigation and the record's winter floods
+5                            US-Twt flood water reaches SIPNET as soil irrigation, never canopy
+6                              US-Twt floods follow the WTD onsets and are held to their drains
+7                US-Twt Knox events cite their row and take the weakest class among their parts
+8                              US-Twt tillage cites the record for each implement in every year
+9                                    US-Twt's 2017 fill is dated from the product's other years
+10             US-Twt carries Knox's rice harvest fraction and fertilizer regime into 2017-2023
+   nb failed skipped error
+1  18      0   FALSE FALSE
+2  57      0   FALSE FALSE
+3  22      0   FALSE FALSE
+4  86      0   FALSE FALSE
+5  12      0   FALSE FALSE
+6  22      0   FALSE FALSE
+7   2      0   FALSE FALSE
+8   5      0   FALSE FALSE
+9   2      0   FALSE FALSE
+10 20      0   FALSE FALSE

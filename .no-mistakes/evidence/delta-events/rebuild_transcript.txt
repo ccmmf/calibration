@@ -1,0 +1,142 @@
+$ Rscript tools/event_prep/extract_parcel_csvs.R us_bi1 328163
+Warning messages:
+1: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+2: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+3: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+4: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+5: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+6: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+7: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+Warning messages:
+1: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+2: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+3: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+4: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+5: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+6: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+7: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+parcel 328163 -> /tmp/nm_delta_test/ccmmf_base/ccmmf/work/us_bi1_events
+  own_planting.csv   7 rows
+  own_harvest.csv    7 rows
+  own_irrigation.csv 460 rows (20 ensemble members)
+exit 0
+$ Rscript tools/event_prep/extract_parcel_csvs.R us_bi2 565118
+Warning messages:
+1: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+2: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+3: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+4: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+5: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+6: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+7: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+Warning messages:
+1: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+2: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+3: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+4: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+5: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+6: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+7: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+parcel 565118 -> /tmp/nm_delta_test/ccmmf_base/ccmmf/work/us_bi2_events
+  own_planting.csv   8 rows
+  own_harvest.csv    8 rows
+  own_irrigation.csv 40 rows (20 ensemble members)
+exit 0
+$ Rscript tools/event_prep/extract_parcel_csvs.R us_twt 590073
+Warning messages:
+1: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+2: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+3: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+4: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+5: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+6: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+7: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+Warning messages:
+1: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+2: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+3: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+4: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+5: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+6: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+7: R metadata may have unsafe or invalid elements
+ℹ Type: "externalptr" 
+parcel 590073 -> /tmp/nm_delta_test/ccmmf_base/ccmmf/work/us_twt_events
+  own_planting.csv   6 rows
+  own_harvest.csv    6 rows
+  own_irrigation.csv 2840 rows (20 ensemble members)
+exit 0
+$ Rscript tools/event_prep/us_bi1_build_events.R managements.csv(cal-val-data 8f88e95) /tmp/nm_delta_test/out_new/us_bi1.json
+wrote 58 events -> /tmp/nm_delta_test/out_new/us_bi1.json
+            
+             assumed imputed
+  harvest          1      38
+  irrigation       0      18
+  planting         0       1
+exit 0
+$ Rscript tools/event_prep/us_bi2_build_events.R managements.csv(cal-val-data 8f88e95) /tmp/nm_delta_test/out_new/us_bi2.json
+wrote 101 events -> /tmp/nm_delta_test/out_new/us_bi2.json
+               
+                assumed derived imputed
+  fertilization       0       2       6
+  harvest             1       0       7
+  irrigation          0       0      77
+  planting            0       0       8
+exit 0
+$ Rscript tools/event_prep/us_twt_build_events.R managements.csv(cal-val-data 8f88e95) /tmp/nm_delta_test/out_new/us_twt.json
+wrote 403 events -> /tmp/nm_delta_test/out_new/us_twt.json
+               
+                assumed derived imputed published
+  fertilization       0       9       7         1
+  harvest             6       0       7         1
+  irrigation          4       0     193       133
+  planting            0       0       8         6
+  tillage            12       0      16         0
+exit 0
+=== byte-for-byte comparison with committed runs/*/events.json (HEAD 66feef3) ===
+us_bi1: IDENTICAL (dfe8882c057129b1)
+us_bi2: IDENTICAL (bb371b5ce83f7d35)
+us_twt: IDENTICAL (b2ac3708135e435f)
+us_bi1 rerun exit 0: IDENTICAL
+us_bi2 rerun exit 0: IDENTICAL
+us_twt rerun exit 0: IDENTICAL

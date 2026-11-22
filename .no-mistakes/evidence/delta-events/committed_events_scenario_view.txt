@@ -1,0 +1,129 @@
+=== US-Bi1 irrigation (scenario: product days/amounts written as soil) ===
+ date       amount_mm method provenance_class
+ 2017-07-16 142.8579  soil   imputed         
+ 2017-08-03 142.8579  soil   imputed         
+ 2017-08-24 142.8579  soil   imputed         
+ 2017-09-17 142.8579  soil   imputed         
+ 2017-11-20 142.8579  soil   imputed         
+ 2018-10-27 142.8579  soil   imputed         
+ 2019-11-01 142.8579  soil   imputed         
+ 2020-07-19 142.8579  soil   imputed         
+ 2020-08-17 142.8579  soil   imputed         
+ 2020-09-25 142.8579  soil   imputed         
+ 2021-06-21 142.8579  soil   imputed         
+ 2021-07-13 142.8579  soil   imputed         
+ 2021-08-09 142.8579  soil   imputed         
+ 2021-09-10 142.8579  soil   imputed         
+ 2022-07-05 142.8579  soil   imputed         
+ 2022-07-29 142.8579  soil   imputed         
+ 2022-08-28 142.8579  soil   imputed         
+ 2022-10-08 142.8579  soil   imputed         
+ source                                        
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+ monitoring_product:irrigation/v1.1:irr_ens_001
+note[1]: Date and amount from the monitoring product for this parcel, which gives the method as canopy. The site record (delta-irrigation-0008, 0009) has the field irrigated mainly below the surface from the adjacent ditches, with sporadic flash floods, and gives no dates or amounts, so the water goes on as soil irrigation (method 1), not canopy. 
+
+=== US-Twt 2017-2023 harvests ===
+ date       crop_display frac_above_removed_0to1 frac_below_removed_0to1
+ 2017-11-14 R1           0.5                     0                      
+ 2018-11-15 R1           0.5                     0                      
+ 2019-10-27 R1           0.5                     0                      
+ 2020-11-13 R1           0.5                     0                      
+ 2021-11-14 R1           0.5                     0                      
+ 2022-10-25 G2           0.8                     0                      
+ 2023-11-26 R1           0.5                     0                      
+ frac_above_to_litter_0to1 frac_below_to_litter_0to1 provenance_class
+ 0.5                       1                         imputed         
+ 0.5                       1                         imputed         
+ 0.5                       1                         imputed         
+ 0.5                       1                         imputed         
+ 0.5                       1                         imputed         
+ 0.2                       1                         published       
+ 0.5                       1                         imputed         
+
+=== US-Twt 2016-2023 fertilization ===
+ date       nh4_n_kg_m2 no3_n_kg_m2 org_n_kg_m2 org_c_kg_m2 reported_rate_lb_ac
+ 2016-05-30 0.00168127  0.00000000  0           NA          100                
+ 2017-05-31 0.00168127  0.00000000  0           NA          100                
+ 2018-05-31 0.00168127  0.00000000  0           NA          100                
+ 2019-05-31 0.00168127  0.00000000  0           NA          100                
+ 2020-05-30 0.00168127  0.00000000  0           NA          100                
+ 2021-05-31 0.00168127  0.00000000  0           NA          100                
+ 2022-05-02 0.00574111  0.00574111  0            0           NA                
+ 2023-05-31 0.00168127  0.00000000  0           NA          100                
+ reported_grade provenance_class source                                       
+ 15-15-15       imputed          10.1002/2015JG003247                         
+ 15-15-15       imputed          10.1002/2015JG003247                         
+ 15-15-15       imputed          10.1002/2015JG003247                         
+ 15-15-15       imputed          10.1002/2015JG003247                         
+ 15-15-15       imputed          10.1002/2015JG003247                         
+ 15-15-15       imputed          10.1002/2015JG003247                         
+ <NA>           published        monitoring_product:fertilization/v1.0:ens_001
+ 15-15-15       imputed          10.1002/2015JG003247                         
+
+=== US-Twt 2017-2023 plantings ===
+ date       crop_code provenance_class source                          
+ 2017-05-20 R1        imputed          monitoring_product:planting/v1.0
+ 2018-05-23 R1        published        monitoring_product:planting/v1.0
+ 2019-04-24 R1        published        monitoring_product:planting/v1.0
+ 2020-05-19 R1        published        monitoring_product:planting/v1.0
+ 2021-04-19 R1        published        monitoring_product:planting/v1.0
+ 2022-04-08 G2        published        monitoring_product:planting/v1.0
+ 2023-05-27 R1        published        monitoring_product:planting/v1.0
+
+=== US-Twt irrigation: product canopy-origin events (2017, 2022) ===
+ date       amount_mm method provenance_class
+ 2017-07-27 157.4418  soil   assumed         
+ 2017-08-17 157.4418  soil   assumed         
+ 2017-09-09 157.4418  soil   assumed         
+ 2017-10-09 157.4418  soil   assumed         
+ 2022-04-08 157.4418  canopy published       
+ 2022-04-12 157.4418  canopy published       
+ 2022-07-11 157.4418  canopy published       
+ 2022-09-25 157.4418  canopy published       
+note[1]: Flood irrigation, written as soil irrigation (method 1); SIPNET's flood method is a placeholder. The monitoring product gives canopy irrigation here, inside the rice season planted 2017-05-20 and harvested 2017-11-14; rice at this site is grown flooded, so the water is read as flood irrigation. 
+
+US-Twt irrigation method counts:
+
+canopy   soil 
+     4    326 
+
+=== US-Bi2 harvests (silage, hay row) ===
+ date       frac_above_removed_0to1 frac_above_to_litter_0to1
+ 2016-09-23 0.892                   0.108                    
+ 2017-10-20 0.892                   0.108                    
+ 2018-10-08 0.892                   0.108                    
+ 2019-09-11 0.892                   0.108                    
+ 2020-09-23 0.892                   0.108                    
+ 2021-10-21 0.892                   0.108                    
+ 2022-10-19 0.892                   0.108                    
+ 2023-11-03 0.892                   0.108                    
+ harvest_lookup_row provenance_class
+ P (hay)            imputed         
+ P (hay)            imputed         
+ P (hay)            imputed         
+ P (hay)            assumed         
+ P (hay)            imputed         
+ P (hay)            imputed         
+ P (hay)            imputed         
+ P (hay)            imputed         
+harvest_fraction_note[1]: Assumed: the site record says the corn is usually cut for silage (delta-harvest-0014), which takes the whole aboveground plant. The shared harvest lookup has no silage row, so its hay row (0.892 removed, 0.108 to litter, the roots to litter) stands in for the F16 grain row (0.752), as agreed on calibration#19. 
+provenance_note[1]: The monitoring product's harvest day; the site record gives no harvest date this year. The product labels this crop G2; written as corn, assumed, to keep the field's continuous corn (the site record has corn every year from 2017, delta-planting-0012 to 0018). The fractions are assumed (harvest_fraction_note). 
+
+event counts: 58 101 403 
