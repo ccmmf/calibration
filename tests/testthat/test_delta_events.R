@@ -165,7 +165,7 @@ test_that("US-Twt floods follow the WTD onsets and are held to their drains", {
   onsets <- Filter(function(e) startsWith(e$source, "ameriflux:US-Twt BASE-BADM 7-5 WTD"), irr)
   expect_equal(dates(onsets), wtd$flood_onset[nzchar(wtd$flood_onset)])
   expect_length(onsets, 14L)
-  # a WTD date carrying the rule's 70 mm: imputed, and its source names both
+  # a WTD date carrying the rule's 69 mm: imputed, and its source names both
   expect_true(all(field(onsets, "provenance_class") == "imputed"))
   expect_true(all(grepl("; monitoring_product:irrigation/v1.1", field(onsets, "source"), fixed = TRUE)))
   expect_false("derived" %in% field(irr, "provenance_class"))

@@ -201,8 +201,9 @@ records them.
 
 Open: should every site's segments follow its flood windows, rice growing seasons and winter
 floods alike, from each flood's first day (or WTD onset) to its drain as the flood events here
-do, rather than planting and harvest? US-Twt's growing-season floods start after planting and
-drain before harvest; US-Bi2's floods and US-Twt's winter floods fall between harvest and the next
+do, rather than planting and harvest? US-Twt's 2010-2016 growing-season floods (WTD) start after
+planting and drain before harvest, while the product's 2017-2023 floods can start before planting
+and run past harvest; US-Bi2's floods and US-Twt's winter floods fall between harvest and the next
 planting, and US-Bi2's corn is not flooded. Planting to harvest fits none of them.
 
 ### US-Twt, Twitchell rice, parcel 590073, 2010-2023 (403 events)
@@ -399,6 +400,7 @@ its WTD dates were a hand edit.
   `code` or `CLASS_SUBCLASS`, so `extract_parcel_csvs.R` reads only v1.0; `us_bi2_build_events.R`
   reads v5.0 itself (`v5_parcel_rows()` in `delta_inputs.R`).
 - **v5.0 irrigation has no rows for parcel 565118** (its shard `564_567501.parquet` holds 565117
-  and 565119 but not 565118), which is why US-Bi2 has no irrigation events.
+  and 565119 but not 565118), so US-Bi2's only product irrigation is irrigation v1.1's two
+  events (2021-09-08 and 2022-10-16).
 - The fertilization product has rows for US-Bi1 (an F16 application in 2016, and organic
   amendments on P1 in some members from 2020); the US-Bi1 and US-Bi2 builders use none of it.
