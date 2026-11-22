@@ -1,0 +1,23 @@
+# Rebuild from ccmmf/cal-val-data 779d38eb2d05 (calval-metadata), compared byte for byte
+$ Rscript tools/event_prep/salinas_build_events.R <cal-val-data@779d38e> <tmp out>  (exit 0)
+IDENTICAL  runs/salinas_socs/events_socs_sys1.json  sha256 b0ef348fbbb89f9c
+IDENTICAL  runs/salinas_socs/events_socs_sys2.json  sha256 a01e97ee069bc937
+IDENTICAL  runs/salinas_socs/events_socs_sys3.json  sha256 17635842e75c746f
+IDENTICAL  runs/salinas_socs/events_socs_sys4.json  sha256 afedaf27c56e44a3
+IDENTICAL  runs/salinas_socs/events_socs_sys5.json  sha256 2fca3c6f2e84f6ce
+IDENTICAL  runs/salinas_socs/events_socs_sys6.json  sha256 b7dad45e5792add5
+IDENTICAL  runs/salinas_socs/events_socs_sys7.json  sha256 f221e1c2063b4c08
+IDENTICAL  runs/salinas_socs/events_socs_sys8.json  sha256 20bc13500c9cd642
+IDENTICAL  runs/salinas_socs/fill_summary.csv  sha256 1b4451e09d2623d0
+IDENTICAL  runs/salinas_socs/monitoring_near_salinas.csv  sha256 d3ce5042292199f0
+
+# Control: pre-change builder (0b74b34) against the same checkout vs the pre-change committed files
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys1.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys2.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys3.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys4.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys5.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys6.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys7.json
+IDENTICAL  0b74b34:runs/salinas_socs/events_socs_sys8.json
+IDENTICAL  0b74b34:runs/salinas_socs/fill_summary.csv

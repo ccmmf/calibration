@@ -1,0 +1,53 @@
+# Field-level diff: pre-change build (0b74b34 builder) vs new build, same cal-val-data 779d38e
+# Every changed field of every event, grouped; top-level (file) fields listed separately
+
+socs_sys1: top-level 'provenance' changed (note)
+socs_sys2: top-level 'provenance' changed (note)
+socs_sys3: top-level 'provenance' changed (note)
+socs_sys4: top-level 'provenance' changed (note)
+socs_sys5: top-level 'provenance' changed (note)
+socs_sys6: top-level 'provenance' changed (note)
+socs_sys7: top-level 'provenance' changed (note)
+socs_sys8: top-level 'provenance' changed (note)
+
+Changed event fields by system / event type / crop / field:
+    system event_type       crop           field n_events
+ socs_sys1   planting legume-rye    leaf_c_kg_m2        2
+ socs_sys1   planting legume-rye provenance_note        2
+ socs_sys1   planting legume-rye          source        2
+ socs_sys2   planting legume-rye    leaf_c_kg_m2        2
+ socs_sys2   planting legume-rye provenance_note        2
+ socs_sys2   planting legume-rye          source        2
+ socs_sys4   planting legume-rye    leaf_c_kg_m2        8
+ socs_sys4   planting legume-rye provenance_note        8
+ socs_sys4   planting legume-rye          source        8
+ socs_sys6   planting    mustard    leaf_c_kg_m2        8
+ socs_sys6   planting    mustard provenance_note        8
+ socs_sys6   planting    mustard          source        8
+ socs_sys8   planting        rye    leaf_c_kg_m2        8
+ socs_sys8   planting        rye provenance_note        8
+ socs_sys8   planting        rye          source        8
+
+Distinct leaf_c_kg_m2 changes:
+    system       crop     old     new
+ socs_sys1 legume-rye 0.00416 0.01123
+ socs_sys2 legume-rye 0.00416 0.01123
+ socs_sys4 legume-rye 0.00416 0.01123
+ socs_sys6    mustard 0.00416 0.01123
+ socs_sys8        rye 0.00416 0.01123
+
+Any change outside cover crop planting events? FALSE 
+Systems whose cover crop leaf C changed: socs_sys1, socs_sys2, socs_sys4, socs_sys6, socs_sys8 
+Systems with any event change: socs_sys1, socs_sys2, socs_sys4, socs_sys6, socs_sys8 
+
+Example new sys4 cover crop planting ( 2003-10-16 ): leaf_c_kg_m2 = 0.01123 
+  source: 10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/cal-val-data:data/treatments.csv + calibration#18 
+  provenance_note: 
+    Date from the calendar (planting-0002). leaf_c_kg_m2 is the median planting leaf C of G6 
+    (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 
+    629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding 
+    (legume-rye, 420 kg/ha (1x 140, socs_sys3)): about 2.7 times as many plants emerged as at 1x, 
+    so the stand starts that much larger. 
+
+Same planting in 1x partner sys3 ( 2003-10-16 ): leaf_c_kg_m2 = 0.00416 
+  source: 10.2134/agronj2011.0330 + calibration:runs/salinas_socs/monitoring_near_salinas.csv 

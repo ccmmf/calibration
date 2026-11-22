@@ -1,0 +1,27 @@
+# Rebuild with monitoring_near_salinas.csv cover_crop (G6) leaf C median set to 0.005 (was 0.00415972)
+# Expect 1x systems 0.005, 3x systems round(0.005*2.7,5) = 0.0135; vegetables unchanged
+
+socs_sys1: 2 cover crop plantings, leaf C {0.0135}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: TRUE
+socs_sys2: 2 cover crop plantings, leaf C {0.0135}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: TRUE
+socs_sys3: 8 cover crop plantings, leaf C {0.005}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: FALSE
+socs_sys4: 8 cover crop plantings, leaf C {0.0135}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: TRUE
+socs_sys5: 8 cover crop plantings, leaf C {0.005}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: FALSE
+socs_sys6: 8 cover crop plantings, leaf C {0.0135}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: TRUE
+socs_sys7: 8 cover crop plantings, leaf C {0.005}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: FALSE
+socs_sys8: 8 cover crop plantings, leaf C {0.0135}; vegetable leaf C {romaine_lettuce=0.00275,baby_leaf_spinach=0.00189,broccoli=0.00456}; 3x note present: TRUE
+
+fill_summary.csv cover crop leaf C rows:
+           what                                                rule n_events
+     cereal rye                   monitoring G6 (cover_crop) median        8
+     cereal rye monitoring G6 (cover_crop) median x 2.7, 3x seeding        8
+ legume-rye mix                   monitoring G6 (cover_crop) median        8
+ legume-rye mix monitoring G6 (cover_crop) median x 2.7, 3x seeding       12
+        mustard                   monitoring G6 (cover_crop) median        8
+        mustard monitoring G6 (cover_crop) median x 2.7, 3x seeding        8
+                                                                                       by_system
+ socs_sys1=0;socs_sys2=0;socs_sys3=0;socs_sys4=0;socs_sys5=0;socs_sys6=0;socs_sys7=8;socs_sys8=0
+ socs_sys1=0;socs_sys2=0;socs_sys3=0;socs_sys4=0;socs_sys5=0;socs_sys6=0;socs_sys7=0;socs_sys8=8
+ socs_sys1=0;socs_sys2=0;socs_sys3=8;socs_sys4=0;socs_sys5=0;socs_sys6=0;socs_sys7=0;socs_sys8=0
+ socs_sys1=2;socs_sys2=2;socs_sys3=0;socs_sys4=8;socs_sys5=0;socs_sys6=0;socs_sys7=0;socs_sys8=0
+ socs_sys1=0;socs_sys2=0;socs_sys3=0;socs_sys4=0;socs_sys5=8;socs_sys6=0;socs_sys7=0;socs_sys8=0
+ socs_sys1=0;socs_sys2=0;socs_sys3=0;socs_sys4=0;socs_sys5=0;socs_sys6=8;socs_sys7=0;socs_sys8=0

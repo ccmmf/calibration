@@ -1,0 +1,30 @@
+# Oracle: cal-val-data 779d38e data/treatments.csv definitions for the SOCS systems
+socs_sys1,"Control: legume-rye cover crop every 4th winter, high seeding rate (3x), in cover crop Years 4 and 8 (planted fall 2006 and fall 2010, before the Year 4 and Year 8 vegetables); no compost applied",2003-10-01,2
+socs_sys2,"Compost (7.6 Mg/ha/crop) + legume-rye cover crop every 4th winter, high seeding rate (3x), in cover crop Years 4 and 8 (planted fall 2006 and fall 2010, before the Year 4 and Year 8 vegetables)",2003-10-01,201
+socs_sys3,"Compost (7.6 Mg/ha/crop) + legume-rye cover crop every year, low seeding rate (1x)",2003-10-01,2011-09-01,no,NA,NA,NA,NA,NA,NA
+socs_sys4,"Compost (7.6 Mg/ha/crop) + legume-rye cover crop every year, high seeding rate (3x)",2003-10-01,2011-09-01,no,NA,NA,NA,NA,NA,NA
+socs_sys5,"Compost (7.6 Mg/ha/crop) + mustard cover crop every year, low seeding rate (1x)",2003-10-01,2011-09-01,no,NA,NA,NA,NA,NA,NA
+socs_sys6,"Compost (7.6 Mg/ha/crop) + mustard cover crop every year, high seeding rate (3x)",2003-10-01,2011-09-01,no,NA,NA,NA,NA,NA,NA
+socs_sys7,"Compost (7.6 Mg/ha/crop) + cereal rye cover crop every year, low seeding rate (1x)",2003-10-01,2011-09-01,no,NA,NA,NA,NA,NA,NA
+socs_sys8,"Compost (7.6 Mg/ha/crop) + cereal rye cover crop every year, high seeding rate (3x)",2003-10-01,2011-09-01,no,NA,NA,NA,NA,NA,NA
+
+# Oracle: published seeding rates in cal-val-data data_raw/white_salinas_2020 (kg/ha)
+{run-worktree}/.nm-test-tmp/cvd/data_raw/white_salinas_2020/data_entry_report.md:520:  420 kg ha⁻¹, so it is `socs_sys4`, not `socs_sys3`.
+
+# Docs/outputs naming David (expect none in changed files):
+  none
+
+# 'fill order' wording in builder comment:
+133:# One date for a calendar row (the fill order, tools/event_prep/README.md): the row's own date when it has one; for a window,
+
+# Old open question removed / new section present in runs/salinas_socs/README.md:
+  'Systems 3 to 8 reach SIPNET as one system' : absent
+31:## How the rows become events
+72:## Fills and assumptions
+105:## Monitoring values used
+127:## Left out
+140:## Checks
+161:## Rebuild
+170:## Cover crop species and seeding rate
+182:## Open questions
+191:## Using them

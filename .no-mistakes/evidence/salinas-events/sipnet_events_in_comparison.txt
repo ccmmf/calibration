@@ -1,0 +1,69 @@
+# SIPNET events.in written by tools/event_prep/write_events_in.R (PEcAn.SIPNET::write.events.SIPNET)
+## BEFORE (0b74b34 build): are the six cover crop systems' events.in identical?
+  sys3 vs sys4: IDENTICAL
+  sys5 vs sys6: IDENTICAL
+  sys7 vs sys8: IDENTICAL
+  sys3 vs sys5: IDENTICAL
+  sys3 vs sys7: IDENTICAL
+## AFTER (committed build):
+  sys3 vs sys4: differ in 8 lines
+  sys5 vs sys6: differ in 8 lines
+  sys7 vs sys8: differ in 8 lines
+  sys3 vs sys5: IDENTICAL
+  sys3 vs sys7: IDENTICAL
+  sys4 vs sys6: IDENTICAL
+  sys4 vs sys8: IDENTICAL
+
+## diff events-socs_sys3.in (1x legume-rye) vs events-socs_sys4.in (3x legume-rye), AFTER
+3c3
+< 2003  289  plant  4.16 1.248 0.832 2.08
+---
+> 2003  289  plant  11.23 3.369 2.246 5.615
+53c53
+< 2004  289  plant  4.16 1.248 0.832 2.08
+---
+> 2004  289  plant  11.23 3.369 2.246 5.615
+106c106
+< 2005  290  plant  4.16 1.248 0.832 2.08
+---
+> 2005  290  plant  11.23 3.369 2.246 5.615
+169c169
+< 2006  306  plant  4.16 1.248 0.832 2.08
+---
+> 2006  306  plant  11.23 3.369 2.246 5.615
+222c222
+< 2007  288  plant  4.16 1.248 0.832 2.08
+---
+> 2007  288  plant  11.23 3.369 2.246 5.615
+280c280
+< 2008  289  plant  4.16 1.248 0.832 2.08
+---
+> 2008  289  plant  11.23 3.369 2.246 5.615
+331c331
+< 2009  302  plant  4.16 1.248 0.832 2.08
+---
+> 2009  302  plant  11.23 3.369 2.246 5.615
+392c392
+< 2010  300  plant  4.16 1.248 0.832 2.08
+---
+> 2010  300  plant  11.23 3.369 2.246 5.615
+
+## Lines changed by this PR in each 3x system's events.in (old -> new build); only 'plant' lines?
+  sys1: 2 lines changed, 2 of them plant lines
+  sys2: 2 lines changed, 2 of them plant lines
+  sys4: 8 lines changed, 8 of them plant lines
+  sys6: 8 lines changed, 8 of them plant lines
+  sys8: 8 lines changed, 8 of them plant lines
+  sys3: 0 lines changed, 0 of them plant lines
+  sys5: 0 lines changed, 0 of them plant lines
+  sys7: 0 lines changed, 0 of them plant lines
+
+## socs_sys1 events.in: the 2006 and 2010 legume-rye plantings, old -> new
+146c146
+< 2006  306  plant  4.16 1.248 0.832 2.08
+---
+> 2006  306  plant  11.23 3.369 2.246 5.615
+340c340
+< 2010  300  plant  4.16 1.248 0.832 2.08
+---
+> 2010  300  plant  11.23 3.369 2.246 5.615
