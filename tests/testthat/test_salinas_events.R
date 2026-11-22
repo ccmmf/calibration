@@ -213,11 +213,28 @@ test_that("the builder stops when a fall incorporation would come before a harve
   expect_match(b$log, "tillage-fall-socs_sys1 on 2005-09-[0-9]+ is not after the harvest it follows")
 })
 
-test_that("a 3x cover crop starts with 2.7 times the 1x planting leaf C", {
-  leaf <- function(s) unique(vapply(Filter(function(e) e$crop_code %in% c("legume-rye", "mustard", "rye"),
-                                           events_of(s, "planting")), function(e) e$leaf_c_kg_m2, 0))
+test_that("a cover crop sown at 3x starts with 2.7 times the 1x planting leaf C, counted apart", {
+  # The calendar's treatment definitions: 1x in socs_sys3, sys5 and sys7, 3x in the other five
+  x1 <- c("socs_sys3", "socs_sys5", "socs_sys7")
+  x3 <- setdiff(SYSTEMS, x1)
+  for (s in x1) expect_match(files[[s]]$provenance$treatment_definition, "(1x)", fixed = TRUE)
+  for (s in x3) expect_match(files[[s]]$provenance$treatment_definition, "(3x)", fixed = TRUE)
+  leaf <- function(s) unique(vapply(Filter(function(e) e$crop_code %in% COVER_CROPS, events_of(s, "planting")),
+                                    function(e) e$leaf_c_kg_m2, 0))
   base <- leaf("socs_sys3")
   expect_length(base, 1L)
-  for (s in c("socs_sys1", "socs_sys2", "socs_sys5", "socs_sys7")) expect_equal(leaf(s), base, info = s)
-  for (s in c("socs_sys4", "socs_sys6", "socs_sys8")) expect_equal(leaf(s), round(base * 2.7, 5), tolerance = 1e-5, info = s)
+  for (s in x1) expect_equal(leaf(s), base, info = s)
+  for (s in x3) expect_equal(leaf(s), round(base * 2.7, 5), tolerance = 1e-5, info = s)
+  # fill_summary.csv never counts a 1x and a 3x system's cover crop leaf C under one rule
+  fs <- read.csv(file.path(dir, "fill_summary.csv"), stringsAsFactors = FALSE)
+  cc <- fs[fs$event_type == "planting" & fs$item == "leaf_c_kg_m2" &
+             fs$what %in% c("legume-rye mix", "mustard", "cereal rye"), ]
+  expect_gt(nrow(cc), 0L)
+  for (by in cc$by_system) {
+    n <- strsplit(strsplit(by, ";")[[1]], "=")
+    used <- vapply(n, `[`, "", 1)[as.integer(vapply(n, `[`, "", 2)) > 0]
+    expect_true(all(used %in% x1) || all(used %in% x3), info = by)
+  }
+  expect_equal(sum(cc$n_events), sum(vapply(SYSTEMS, function(s) length(Filter(
+    function(e) e$crop_code %in% COVER_CROPS, events_of(s, "planting"))), 0L)))
 })

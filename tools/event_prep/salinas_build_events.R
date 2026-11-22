@@ -53,14 +53,18 @@ CROPS <- data.frame(
   slot = c("lettuce", "spinach", "broccoli", "cover_crop", "cover_crop", "cover_crop"),
   stringsAsFactors = FALSE)
 stopifnot(all(CROPS$display %in% crops$common.name))
-# Cover crop seeding: systems 3 to 8 pair each species at 1x and 3x (kg/ha, Brennan and Boyd 2012, as
-# cal-val-data data_raw/white_salinas_2020 gives them). About 2.7 times as many plants emerged at 3x
-# (calibration#18 review), so a 3x cover crop starts with 2.7 times the planting leaf C. Systems 1 and 2,
-# which sow legume-rye in two years only, have no published rate and keep the base leaf C.
-SEEDING_3X <- c(socs_sys4 = "legume-rye, 420 kg/ha (1x 140, socs_sys3)",
+# Cover crop seeding: the calendar's treatment definitions sow each system's cover crop at 1x or 3x.
+# Systems 3 to 8 pair each species at both (kg/ha, Brennan and Boyd 2012, as cal-val-data
+# data_raw/white_salinas_2020 gives them); systems 1 and 2 sow legume-rye at 3x in two years, with no
+# kg/ha rate published. About 2.7 times as many plants emerged at 3x (calibration#18 review), so a 3x
+# cover crop starts with 2.7 times the planting leaf C.
+SEEDING_3X <- c(socs_sys1 = "legume-rye, 3x in the calendar's treatment definition, no kg/ha rate published",
+                socs_sys2 = "legume-rye, 3x in the calendar's treatment definition, no kg/ha rate published",
+                socs_sys4 = "legume-rye, 420 kg/ha (1x 140, socs_sys3)",
                 socs_sys6 = "mustard, 33 kg/ha (1x 11, socs_sys5)",
                 socs_sys8 = "rye, 270 kg/ha (1x 90, socs_sys7)")
 EMERGENCE_3X <- 2.7
+SEEDING_3X_SOURCE <- paste(MON_SOURCE, "ccmmf/cal-val-data:data/treatments.csv", "calibration#18", sep = " + ")
 VEGETABLES <- CROPS$key[CROPS$slot != "cover_crop"]
 COVER_CROPS <- CROPS$key[CROPS$slot == "cover_crop"]
 display_of <- function(k) CROPS$display[match(k, CROPS$key)]
@@ -201,8 +205,9 @@ build_system <- function(sys) {
       "stand starts that much larger."), leaf_note, EMERGENCE_3X, SEEDING_3X[[sys]], EMERGENCE_3X)
     e <- c(base(i, "planting", pd$date), list(crop_code = k, crop_display = display_of(k),
                                                leaf_c_kg_m2 = round(lc$value * (if (seed3x) EMERGENCE_3X else 1), 5)))
-    add(tag(e, list(pd$part, part("imputed", leaf_note, MON_SOURCE, "leaf_c_kg_m2",
-                                  sprintf("monitoring %s (%s) median", lc$crop_code, slot_of(k)))), sys, src_of(i)))
+    add(tag(e, list(pd$part, part("imputed", leaf_note, if (seed3x) SEEDING_3X_SOURCE else MON_SOURCE, "leaf_c_kg_m2",
+                                  sprintf("monitoring %s (%s) median%s", lc$crop_code, slot_of(k), if (seed3x)
+                                    sprintf(" x %.1f, 3x seeding", EMERGENCE_3X) else ""))), sys, src_of(i)))
     sown <- rbind(sown, data.frame(crop = k, date = pd$date))
   }
 
@@ -494,7 +499,8 @@ FILL_NOTE <- paste(
   "the earlier uncertainty#6 fills. Where a row gives a window, the event takes the monitoring product's",
   "median day for the crop and operation near SOCS when it falls in the window (imputed), otherwise the",
   "window's midpoint (assumed); windows the calendar orders around a planting or harvest are narrowed to",
-  "the dates chosen for those. Planting leaf C, vegetable irrigation and tillage intensity come from the",
+  "the dates chosen for those. Planting leaf C (times 2.7 for a cover crop sown at the 3x seeding rate),",
+  "vegetable irrigation and tillage intensity come from the",
   "monitoring product near SOCS (monitoring_near_salinas.csv), the drip interval from the scenarios",
   "priors. Harvests remove White et al. 2020b's harvest index (lettuce 0.26, broccoli 0.24) with the",
   "rest and the roots to litter; the 2004 spinach, the 2005 broccoli and the cover crops go wholly to",

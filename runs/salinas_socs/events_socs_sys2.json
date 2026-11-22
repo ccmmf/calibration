@@ -10,7 +10,7 @@
   "calendar_md5": "e6e9e0027eb2443b4d9f62ed4aa38ac0",
   "monitoring": "calibration:runs/salinas_socs/monitoring_near_salinas.csv",
   "monitoring_products": "planting v5.0, harvest v5.0, tillage v5.0, irrigation v5.0, fertilization v2.0, crops v4.1",
-  "note": "Built from the SOCS management calendar (cal-val-data managements.csv): an event for each operation on its rows (a cover crop irrigation row on each of its application days, a vegetable irrigation row as a drip schedule), plus the termination of each winter cover crop at its spring flail mowing and spading; nothing from the earlier uncertainty#6 fills. Where a row gives a window, the event takes the monitoring product's median day for the crop and operation near SOCS when it falls in the window (imputed), otherwise the window's midpoint (assumed); windows the calendar orders around a planting or harvest are narrowed to the dates chosen for those. Planting leaf C, vegetable irrigation and tillage intensity come from the monitoring product near SOCS (monitoring_near_salinas.csv), the drip interval from the scenarios priors. Harvests remove White et al. 2020b's harvest index (lettuce 0.26, broccoli 0.24) with the rest and the roots to litter; the 2004 spinach, the 2005 broccoli and the cover crops go wholly to litter. Compost C is the published 317 g C kg-1; its N is the calendar's unsourced 15 g N kg-1. See runs/salinas_socs/README.md."
+  "note": "Built from the SOCS management calendar (cal-val-data managements.csv): an event for each operation on its rows (a cover crop irrigation row on each of its application days, a vegetable irrigation row as a drip schedule), plus the termination of each winter cover crop at its spring flail mowing and spading; nothing from the earlier uncertainty#6 fills. Where a row gives a window, the event takes the monitoring product's median day for the crop and operation near SOCS when it falls in the window (imputed), otherwise the window's midpoint (assumed); windows the calendar orders around a planting or harvest are narrowed to the dates chosen for those. Planting leaf C (times 2.7 for a cover crop sown at the 3x seeding rate), vegetable irrigation and tillage intensity come from the monitoring product near SOCS (monitoring_near_salinas.csv), the drip interval from the scenarios priors. Harvests remove White et al. 2020b's harvest index (lettuce 0.26, broccoli 0.24) with the rest and the roots to litter; the 2004 spinach, the 2005 broccoli and the cover crops go wholly to litter. Compost C is the published 317 g C kg-1; its N is the calendar's unsourced 15 g N kg-1. See runs/salinas_socs/README.md."
  },
  "events": [
   {
@@ -1615,10 +1615,10 @@
    "calval_event_id": "planting-0052",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
-   "source": "10.2134/agronj2016.06.0354 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
+   "leaf_c_kg_m2": 0.01123,
+   "source": "10.2134/agronj2016.06.0354 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/cal-val-data:data/treatments.csv + calibration#18",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0052). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0052). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 3x in the calendar's treatment definition, no kg/ha rate published): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",
@@ -3756,10 +3756,10 @@
    "calval_event_id": "planting-0142",
    "crop_code": "legume-rye",
    "crop_display": "legume-rye mix",
-   "leaf_c_kg_m2": 0.00416,
-   "source": "10.2134/agronj2016.06.0354 + calibration:runs/salinas_socs/monitoring_near_salinas.csv",
+   "leaf_c_kg_m2": 0.01123,
+   "source": "10.2134/agronj2016.06.0354 + calibration:runs/salinas_socs/monitoring_near_salinas.csv + ccmmf/cal-val-data:data/treatments.csv + calibration#18",
    "provenance_class": "imputed",
-   "provenance_note": "Date from the calendar (planting-0142). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class."
+   "provenance_note": "Date from the calendar (planting-0142). leaf_c_kg_m2 is the median planting leaf C of G6 (miscellaneous grain and hay) sown in October or November within 25 km of SOCS, 2015-2024 (n = 629), the closest class: the product has no cover crop class. Times 2.7 for the 3x seeding (legume-rye, 3x in the calendar's treatment definition, no kg/ha rate published): about 2.7 times as many plants emerged as at 1x, so the stand starts that much larger."
   },
   {
    "event_type": "irrigation",

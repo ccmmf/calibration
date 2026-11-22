@@ -80,7 +80,8 @@ Totals over the eight files; `fill_summary.csv` breaks them down by system.
 | vegetable harvest date | monitoring median day: 2006 broccoli, 16 October | imputed | 8 |
 | vegetable harvest date | window midpoint (lettuce 64, spinach 8, broccoli 40) | assumed | 112 |
 | cover crop end date | window midpoint: 2011 in `socs_sys3` to `sys8`, 2007 and 2011 in `socs_sys1` and `sys2` (the other 42 are Table 2 dates) | assumed | 10 |
-| planting leaf C | monitoring median (lettuce 64, spinach 8, broccoli 48, cover crops 52) | imputed | 172 |
+| planting leaf C | monitoring median (lettuce 64, spinach 8, broccoli 48, cover crops 24) | imputed | 144 |
+| cover crop planting leaf C, 3x seeding | monitoring median x 2.7 (legume-rye 12, mustard 8, rye 8) | imputed | 28 |
 | fertilization date | window midpoint (compost 105, pellets 120, liquid 104) | assumed | 329 |
 | compost C | tonnage x 317 g C/kg | derived | 105 |
 | compost N | calendar `N_content_g_kg = 15`, no published source | assumed | 105 |
@@ -114,7 +115,7 @@ each crop is a class and its planting months.
 | baby leaf spinach | T30, July | planting day 196, 15 July; leaf C 0.00189; harvest day 268 (outside); irrigation 3.783 mm/day (5,509 of 6,636); tillage 35 days after harvest, intensity 0.9369 |
 | broccoli | T4 (cole crops), July or August | planting day 206, 25 July; leaf C 0.00456; harvest day 289, 16 October; tillage 33 days after harvest, intensity 0.936 (n = 4,390) |
 | broccoli irrigation | T30, July or August | 3.901 mm/day (9,414 of 11,255 seasons). T4 is irrigated in 11 % of its July and August seasons, at 1.738 mm/day, implausibly little for broccoli (its water model probably gives T4 a mustard crop coefficient; not checked for v5.0). Its dates and leaf C are kept |
-| cover crops | G6 (miscellaneous grain and hay), October or November | leaf C 0.00416 (n = 629); times 2.7 for the 3x systems, 0.01123 |
+| cover crops | G6 (miscellaneous grain and hay), October or November | leaf C 0.00416 (n = 629); times 2.7 for the 3x systems (`socs_sys1`, `sys2`, `sys4`, `sys6`, `sys8`), 0.01123 |
 | all tillage | | intensity 0.7869 (n = 95,194), for the 2003 buckwheat incorporation |
 
 The fertilization product puts one application per season on the planting day (median 0 days),
@@ -151,7 +152,9 @@ rate rather than taking a season total.
   against the papers, the cover crop water against Fig. 2, the drip schedule inside each season
   and the `events.in` written from `socs_sys3`; on a one-year calendar, that the builder dates a
   fall incorporation after the broccoli harvest in its window and the spring spading before the
-  lettuce planting, and stops when the harvest falls after that window.
+  lettuce planting, and stops when the harvest falls after that window; and that each system sown
+  at 3x in the calendar's treatment definition starts its cover crops with 2.7 times the 1x leaf
+  C, counted in `fill_summary.csv` apart from the 1x systems.
 - Rerunning both scripts reproduces `monitoring_near_salinas.csv`, the eight files and
   `fill_summary.csv` byte for byte.
 
@@ -167,13 +170,14 @@ Rscript tools/event_prep/salinas_build_events.R <cal-val-data checkout> runs/sal
 ## Cover crop species and seeding rate
 
 Systems 3 to 8 pair each cover crop species at 1x and 3x seeding (rye 90 and 270, mustard 11 and
-33, legume-rye 140 and 420 kg/ha; `socs_sys4`, `sys6` and `sys8` are 3x). About 2.7 times as many
-plants emerged at 3x, so a 3x cover crop starts with 2.7 times the planting leaf C of the 1x
-systems: 0.01123 against 0.00416 kg C/m2 (G6, the monitoring product's closest class). The species
-reaches SIPNET through the parameter file rather than the events: `write.events.SIPNET` does not
-write `crop_code`, but PEcAn's segmented runs can use it to switch to that crop's parameters at each
-planting. `socs_sys1` and `sys2`, which sow legume-rye in two years only, have no published rate
-and keep the base leaf C.
+33, legume-rye 140 and 420 kg/ha; `socs_sys4`, `sys6` and `sys8` are 3x). The calendar's treatment
+definitions also give `socs_sys1` and `sys2`, which sow legume-rye in two years only, the 3x rate,
+though no kg/ha rate is published for them. About 2.7 times as many plants emerged at 3x
+(calibration#18 review), so a 3x cover crop starts with 2.7 times the planting leaf C of the 1x
+systems: 0.01123 against 0.00416 kg C/m2 (G6, the monitoring product's closest class), in
+`socs_sys1`, `sys2`, `sys4`, `sys6` and `sys8`. The species reaches SIPNET through the parameter
+file rather than the events: `write.events.SIPNET` does not write `crop_code`, but PEcAn's
+segmented runs can use it to switch to that crop's parameters at each planting.
 
 ## Open questions
 
