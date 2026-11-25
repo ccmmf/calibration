@@ -20,6 +20,10 @@
 PROVENANCE_CLASSES <- c("published", "derived", "assumed", "imputed")
 
 #' The four harvest fractions, in the order SIPNET's harv line takes them
+#'
+#' SIPNET specific, as are harvest_fractions() and check_harvest_fractions() below: they follow
+#' SIPNET's harvest event and write.events.SIPNET. A generator for another model would need its own
+#' mapping of removal and litter transfer here (ccmmf/organization#306).
 HARVEST_FRACTIONS <- c("frac_above_removed_0to1", "frac_below_removed_0to1",
                        "frac_above_to_litter_0to1", "frac_below_to_litter_0to1")
 

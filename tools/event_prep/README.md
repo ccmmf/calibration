@@ -73,7 +73,8 @@ fields by hand:
   four `frac_*_0to1` fields and has no defaults. `PEcAn.SIPNET::write.events.SIPNET` fills a
   missing transfer to litter as 1 - removed, so an alfalfa cutting given only 0.85 removed sends
   the rest of the shoots and all the roots to litter and ends the stand; written as
-  `harvest_fractions(0.85, 0, 0, 0)` it leaves them alive.
+  `harvest_fractions(0.85, 0, 0, 0)` it leaves them alive. This and `check_harvest_fractions` are
+  SIPNET specific; another model would need its own harvest mapping (ccmmf/organization#306).
 - `check_harvest_fractions(events)` stops if a harvest lacks one of the four fractions or has one
   outside 0 to 1, or if removed and to litter add up to more than 1. Run it on the events before
   writing them.
