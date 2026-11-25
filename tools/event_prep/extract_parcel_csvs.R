@@ -1,11 +1,12 @@
 #!/usr/bin/env Rscript
 # Subset the statewide monitoring product to one parcel and write the per-parcel
-# CSVs the step3_* scripts read. This is the "step2" those scripts refer to; it
-# previously lived only on SCC, so the chain could not be re-run from a clean
-# checkout.
+# CSVs the Delta builders (*_build_events.R) read. It previously lived
+# only on SCC, so the chain could not be re-run from a clean checkout.
 #
 # Usage: extract_parcel_csvs.R <label> <parcel_id>
+#        extract_parcel_csvs.R us_bi1 328163
 #        extract_parcel_csvs.R us_bi2 565118
+#        extract_parcel_csvs.R us_twt 590073
 
 suppressPackageStartupMessages({ library(arrow); library(dplyr) })
 options(arrow.unsafe_metadata = TRUE)
@@ -55,7 +56,8 @@ if (!length(ifiles)) stop("no irrigation shards under ", idir, " -- run pull_inp
 irr <- do.call(rbind, lapply(ifiles, function(x)
   open_dataset(x) |> filter(parcel_id == PARCEL) |> collect() |> as.data.frame()))
 
-# step3 reads a `date` column of plain YYYY-MM-DD and an `ens_id` on irrigation.
+# The Delta builders (parcel_csv, irrigation_member_rows in delta_inputs.R)
+# read a `date` column of plain YYYY-MM-DD and an `ens_id` on irrigation.
 for (nm in c("plant", "harv", "irr")) {
   d <- get(nm)
   if (!is.null(d) && nrow(d)) { d$date <- as.character(as.Date(d$date)); assign(nm, d[order(d$date), ]) }
