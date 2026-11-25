@@ -66,8 +66,8 @@ KG_HA_TO_KG_M2 <- 1e-4
 # Harvest fractions (russell_harvest_lookup.csv): the shared harvest lookup the other calibration
 # sites use, its rows rounded to three decimals as Akash gave them on calibration#10, except corn
 # and tomato, which take what the site's own samples say the harvest removed (Aritra,
-# 2026-10-31; checked against the package below). Aboveground removed and to litter; roots all
-# go to litter.
+# 2026-10-31), the machine harvested share since organization#302 (checked against the package
+# below). Aboveground removed and to litter; roots all go to litter.
 HARVEST_LOOKUP <- rd_table("russell_harvest_lookup.csv")
 HARVEST_LOOKUP$above_removed <- as.numeric(HARVEST_LOOKUP$above_removed)
 HARVEST_LOOKUP$above_to_litter <- as.numeric(HARVEST_LOOKUP$above_to_litter)
@@ -753,8 +753,9 @@ apply_lookup <- function(e, sys) {
   } else {
     e$harvest_lookup_row <- r$lookup_row
     if (nrow(hay)) e$harvest_fraction_note <- sprintf("Cut for hay, not grain (%s); the lookup's hay row.", hay$id[1])
-    else if (r$lookup_row == "site samples") e$harvest_fraction_note <- sprintf("%s (Aritra, 2026-10-31%s).", r$lookup_source,
-      if (crop == "tomato") "; the green fruit to litter, David on calibration#10, 2026-11-02" else "")
+    else if (r$lookup_row == "site samples") e$harvest_fraction_note <- sprintf(
+      "%s; the machine harvest is what leaves the field (organization#302)%s.", r$lookup_source,
+      if (crop == "tomato") "; the green fruit to litter (David on calibration#10, 2026-11-02)" else "")
   }
   below <- setdiff(names(fr), above)
   e[below] <- fr[below]

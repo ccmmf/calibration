@@ -104,9 +104,9 @@ grain-harvest prior is dropped. Wheat, alfalfa and hay take the harvest lookup t
 calibration sites use (`s3://carb/management/plant_traits/harvest_lookup.csv`, dated 2026-08-06,
 md5 `defbff0c0b86ae9ff6db07d520813538`), the values the monitoring harvest product carries,
 rounded to three decimals as Akash gave them on calibration#10. Corn and tomato take what the
-site's own samples say the harvest removed instead (Aritra, 2026-10-31; below), and the script
-recomputes both from the package. This departs on purpose from the shared lookup agreed
-on calibration#10: the site's samples are source data, which comes first in the fill order
+site's own samples say the harvest removed instead (Aritra, 2026-10-31), the machine harvested
+share since organization#302 (below), and the script recomputes both from the package. This
+departs on purpose from the shared lookup agreed on calibration#10: the site's samples are source data, which comes first in the fill order
 (`tools/event_prep/README.md`, "Filling missing events"), and the residue left in the field is
 what feeds soil carbon. Every row takes 100% of the biomass as removed or to litter, so
 a harvest ends the crop; an intermediate alfalfa cutting does not (below). David suggested DSSAT
@@ -152,7 +152,7 @@ parameters if more values were needed; none were.
   the strips' lower yield rather than biomass left in the field.
   Tautges et al. 2019 chop and disk the maize stalks and disk the tomato residue, so the rest
   stays in the field. The lookup's F16 row would remove 0.752 of corn, leaving about
-  half the site's residue, and its T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package
+  two fifths of the site's residue, and its T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package
   has grain yields but no straw, so it gives no wheat share.
 - Sudangrass falls in F16, which groups corn, sorghum and sudan, but the site record overrides
   that row: in 2008 and 2009 it "was sampled prior to plowing under at every harvest and no hay

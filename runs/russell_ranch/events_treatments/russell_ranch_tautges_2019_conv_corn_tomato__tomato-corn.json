@@ -163,7 +163,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -257,7 +257,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -380,7 +380,7 @@
    "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie). Fractions from the harvest lookup.",
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -501,7 +501,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -614,7 +614,7 @@
    "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (1998-08-14), the date most of the phase's plots share.",
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -725,7 +725,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -836,7 +836,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -949,7 +949,7 @@
    "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (2001-10-19), the date most of the phase's plots share.",
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1076,7 +1076,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1187,7 +1187,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1334,7 +1334,7 @@
    "merge_note": "One operation recorded on 2 dates; dated by the day most plots share (earliest on a tie). Fractions from the harvest lookup.",
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1445,7 +1445,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1572,7 +1572,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1683,7 +1683,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -1810,7 +1810,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -2004,7 +2004,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -2179,7 +2179,7 @@
    "frac_above_removed_0to1": 0.5,
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -2306,7 +2306,7 @@
    "frac_above_removed_0to1": 0.371,
    "frac_above_to_litter_0to1": 0.629,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752 (Aritra, 2026-10-31).",
+   "harvest_fraction_note": "Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
@@ -2421,7 +2421,7 @@
    "provenance_note": "Missing from operations_harvest.csv; date from plot_system.csv crop_*_date_harvested (2014-08-21), the date most of the phase's plots share.",
    "frac_above_to_litter_0to1": 0.5,
    "harvest_lookup_row": "site samples",
-   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33 (Aritra, 2026-10-31; the green fruit to litter, David on calibration#10, 2026-11-02).",
+   "harvest_fraction_note": "Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).",
    "frac_below_removed_0to1": 0,
    "frac_below_to_litter_0to1": 1
   },
