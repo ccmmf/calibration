@@ -162,10 +162,12 @@ cmp <- rd("operations_compost.csv")
 ana <- rd("compost_analyses_summary.csv")
 wcc <- rd("wcc_harvests_all.csv")
 alf <- rd("alfalfa_harvests_all.csv")
-# The corn and tomato rows of russell_harvest_lookup.csv are the site's own medians from the
-# manual harvests, which "were used to establish total aboveground biomass" (Wolf et al. 2018
-# metadata): grain over aboveground dry biomass (corn_harvests_all.csv), and red fruit over red
-# fruit, green fruit and vine dry biomass (tomato_harvests_all.csv). The harvest exports the red
+# The corn and tomato rows of russell_harvest_lookup.csv are the site's own medians: the machine
+# harvested yield, which is what leaves the field (organization#302, 2026-11-09), over the
+# aboveground biomass of the manual harvests, which "were used to establish total aboveground
+# biomass" (Wolf et al. 2018 metadata): machine dry grain over aboveground dry biomass
+# (corn_harvests_all.csv), and machine dry fruit over red fruit, green fruit and vine dry biomass
+# (tomato_harvests_all.csv). The harvest exports the red
 # fruit; the green fruit stays in the field with the vines, so it counts in the aboveground
 # biomass and goes to litter (David on calibration#10, 2026-11-02). The package gives the hand
 # harvested red and green fruit fresh only, so both take the plot's fruit moisture
@@ -180,9 +182,9 @@ site_share <- function(f, part, whole) {
 }
 fruit_dry <- function(x, col) num(x, col) * (1 - num(x, "tomato_fruit_moisture_%") / 100)
 SITE_SHARE <- c(
-  corn = site_share("corn_harvests_all.csv", function(x) num(x, "dry_grain_wt_kg/ha"),
+  corn = site_share("corn_harvests_all.csv", function(x) num(x, "corn_mh_dry_yield_kg/ha"),
                     function(x) num(x, "dry_total_biomass_kg/ha")),
-  tomato = site_share("tomato_harvests_all.csv", function(x) fruit_dry(x, "tomato_hh_red_fresh_yield_Mg/ha"),
+  tomato = site_share("tomato_harvests_all.csv", function(x) num(x, "tomato_mh_dry_yield_Mg/ha"),
                       function(x) fruit_dry(x, "tomato_hh_red_fresh_yield_Mg/ha") +
                         fruit_dry(x, "tomato_hh_green_fresh_yield_Mg/ha") + num(x, "tomato_hh_vine_dry_yield_Mg/ha")))
 for (crop in names(SITE_SHARE)) {

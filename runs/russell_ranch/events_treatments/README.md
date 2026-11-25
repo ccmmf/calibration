@@ -114,8 +114,8 @@ parameters if more values were needed; none were.
 
 | crop | row | above removed | above to litter | below removed | below to litter | events |
 |---|---|---|---|---|---|---|
-| corn | site samples | 0.462 | 0.538 | 0 | 1 | 56 |
-| tomato | site samples | 0.55 | 0.45 | 0 | 1 | 93 |
+| corn | site samples | 0.371 | 0.629 | 0 | 1 | 56 |
+| tomato | site samples | 0.5 | 0.5 | 0 | 1 | 93 |
 | wheat | G2 | 0.713 | 0.287 | 0 | 1 | 150 |
 | cut for hay: the 1993 sudangrass, the 2012 wheat | hay (P, pasture) | 0.892 | 0.108 | 0 | 1 | 23 |
 | alfalfa, last cutting before another crop | P1 | 0.85 | 0.15 | 0 | 1 | 0 |
@@ -131,23 +131,25 @@ parameters if more values were needed; none were.
   planting would take the full row; the stand planted 2012-10-04 is still growing at the end
   of 2014, so all 13 cuttings in the files are intermediate. The monitoring product has one
   P1 harvest a year with the full row, so it has no cutting values to use instead.
-- Corn removes 0.462 of its aboveground biomass: the median share of grain in aboveground dry
-  biomass over the 280 plot samples of `corn_harvests_all.csv` (interquartile range 0.41 to
-  0.50). Tomato removes 0.550: the median share of red fruit in red fruit, green fruit and vine
-  dry biomass over the 473 hand harvested samples of `tomato_harvests_all.csv` (interquartile
-  range 0.50 to 0.59), each counted once although the file lists every 9/4/2012 sample twice
-  (`century_package_issues.md`, item 49). The harvest takes the red fruit; the green fruit, a
+- Corn removes 0.371 of its aboveground biomass: the median of the machine harvested dry grain
+  over the hand harvested aboveground dry biomass, over the 280 plot samples of
+  `corn_harvests_all.csv` (interquartile range 0.32 to 0.41). Tomato removes 0.500: the median of
+  the machine harvested dry fruit over the hand harvested red fruit, green fruit and vine dry
+  biomass, over the 473 samples of `tomato_harvests_all.csv` (interquartile range 0.44 to 0.55),
+  each counted once although the file lists every 9/4/2012 sample twice
+  (`century_package_issues.md`, item 49). The machine harvest is what leaves the field, so it
+  sets the removed share (organization#302, 2026-11-09). The harvest takes the red fruit; the green fruit, a
   median 0.039 of the aboveground biomass, stays in the field with the vines, so it counts in the
   total and goes to litter (David on calibration#10, 2026-11-02; Tautges et al. 2019: "green
   fruits and vine residues incorporated by shallow disking after harvest"). The package weighs
   the hand harvested fruit fresh only, so red and green fruit both take the plot's
   `tomato_fruit_moisture_%` (median 93.5%, measured on the hand harvested tomatoes; there is no
-  value for green fruit alone). Both crops' shares come from the hand harvests, which "were used
-  to establish total aboveground biomass" (Wolf et al. 2018 metadata). The machine harvested
-  strips yield less than the hand harvested quadrats (tomato a median 0.92 of the quadrat's red
-  fruit, fresh), so machine harvest over the quadrat's biomass would give 0.500 for tomato and
-  0.37 for corn. That ratio mixes two sampling areas and mostly reflects the strips' lower
-  yield; within the quadrat both parts come from the same plants, so the share stays there.
+  value for green fruit alone). The aboveground biomass comes from the hand harvests, which
+  "were used to establish total aboveground biomass" (Wolf et al. 2018 metadata). The two parts
+  of the ratio come from different areas: the machine harvested strips yield less than the hand
+  harvested quadrats (tomato a median 0.92 of the quadrat's red fruit, fresh), so part of the
+  gap to the hand shares (corn grain 0.462, tomato red fruit 0.550 of the quadrat's biomass) is
+  the strips' lower yield rather than biomass left in the field.
   Tautges et al. 2019 chop and disk the maize stalks and disk the tomato residue, so the rest
   stays in the field. The lookup's F16 row would remove 0.752 of corn, leaving about
   half the site's residue, and its T32 row 0.33 of tomato. Wheat keeps G2 (0.713): the package

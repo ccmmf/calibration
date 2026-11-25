@@ -107,3 +107,17 @@ test_that("the wheat and cover crop systems get no tillage in the summer fallow 
       expect_true(all(vapply(ends, function(d) sum(til == d) == 1L, TRUE)), info = paste(tid, ph))
     }
 })
+
+test_that("corn and tomato harvests remove the machine harvested share, the rest to litter", {
+  files <- list.files(events_dir, pattern = "^russell_ranch_tautges_2019_.*[.]json$", full.names = TRUE)
+  ev <- unlist(lapply(files, function(f) jsonlite::read_json(f, simplifyVector = FALSE)$events), recursive = FALSE)
+  fr <- function(e) unlist(e[c("frac_above_removed_0to1", "frac_below_removed_0to1",
+                               "frac_above_to_litter_0to1", "frac_below_to_litter_0to1")])
+  # machine harvested yield over the hand harvested aboveground biomass (organization#302)
+  corn <- of_type(ev, "harvest", "Corn"); tomato <- of_type(ev, "harvest", "Tomato")
+  expect_length(corn, 56L); expect_length(tomato, 93L)
+  for (e in corn) expect_equal(unname(fr(e)), c(0.371, 0, 0.629, 1), info = e$date)
+  for (e in tomato) expect_equal(unname(fr(e)), c(0.5, 0, 0.5, 1), info = e$date)
+  lk <- read.csv(file.path(events_dir, "russell_harvest_lookup.csv"))
+  expect_equal(lk$above_removed[lk$crop %in% c("corn", "tomato")], c(0.371, 0.5))
+})
