@@ -1,0 +1,11 @@
+$ Rscript sipnet_harvest_mapping.R tools/event_prep/fill_order.R <scratch>/sipnet   # HEAD 7f70f9d, PEcAn.SIPNET 1.10.9000
+HARVEST_FRACTIONS order: frac_above_removed_0to1, frac_below_removed_0to1, frac_above_to_litter_0to1, frac_below_to_litter_0to1 
+
+check_harvest_fractions on the first three: ok
+check_harvest_fractions on all four:  Alfalfa, removed only harvest on 2014-06-20 lacks frac_below_removed_0to1, frac_above_to_litter_0to1, frac_below_to_litter_0to1; write.events.SIPNET would fill it from 1 - removed 
+
+Alfalfa cutting        fields given: 0.85 0 0 0                 -> events.in: 2013  140 harv   0.85 0 0 0
+Tomato                 fields given: 0.462 0 0.538 1            -> events.in: 2013  244 harv   0.462 0 0.538 1
+Cover crop             fields given: 0 0 1 1                    -> events.in: 2014  91 harv   0 0 1 1
+Alfalfa, removed only  fields given: 0.85                       -> events.in: 2014  171 harv   0.85 0 0.15 1
+exit 0

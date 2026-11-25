@@ -1,0 +1,33 @@
+# Drive the fill helpers in the given fill_order.R through their public functions and print every
+# result, so two revisions of the file can be compared output for output.
+args <- commandArgs(trailingOnly = TRUE)
+source(args[1])
+show <- function(label, expr) {
+  r <- tryCatch(expr, error = function(e) paste("ERROR:", conditionMessage(e)))
+  cat(label, "=>", paste(deparse(r), collapse = " "), "\n")
+}
+cat("PROVENANCE_CLASSES =>", PROVENANCE_CLASSES, "\n")
+cat("HARVEST_FRACTIONS =>", HARVEST_FRACTIONS, "\n")
+# fill order as README "Filling missing events" states it: paper, then monitoring, then guidance
+show("paper has it", first_available(list(paper = c(121, 125), monitoring = 130, guidance = 140)))
+show("paper missing -> monitoring", first_available(list(paper = NULL, monitoring = c(130, NA, 132), guidance = 140)))
+show("paper and monitoring missing -> guidance", first_available(list(paper = NA, monitoring = numeric(), guidance = 140)))
+show("nothing available", first_available(list(paper = NULL, monitoring = NA)))
+show("min_n c(5,1), phase too small", first_available(list(phase = c(150, 160), site = c(150, 155, 160, 165, 170, 175)), min_n = c(5, 1)))
+show("data frame rows", first_available(list(sample = data.frame(d = character()), plot_table = data.frame(d = c("2004-04-01", "2005-04-03")))))
+show("unnamed", first_available(list(1, 2)))
+e <- list(event_type = "irrigation", date = "2004-06-01", amount_mm = 80)
+show("published with source", set_provenance(e, "published", source = "10.1002/ecy.2105:x.csv"))
+show("assumed with note", set_provenance(c(e, source = "10.1111/gcb.14762"), "assumed", "mm read as inches"))
+show("imputed without note", set_provenance(c(e, source = "monitoring"), "imputed"))
+show("no source", set_provenance(e, "imputed", "median"))
+show("NA source", set_provenance(e, "imputed", "median", source = NA_character_))
+show("bad class", set_provenance(c(e, source = "m"), "estimated", "x"))
+show("cutting", harvest_fractions(0.85, 0, 0, 0))
+show("ends in field", harvest_fractions(0, 0, 1, 1))
+show("no defaults", harvest_fractions(0.85))
+show("over 1", harvest_fractions(0.85, 0, 0.3, 0))
+cut <- c(list(event_type = "harvest", date = "2013-05-20", crop_display = "Alfalfa"), harvest_fractions(0.85, 0, 0, 0))
+bare <- list(event_type = "harvest", date = "2013-06-20", crop_display = "Alfalfa", frac_above_removed_0to1 = 0.85)
+show("check ok", check_harvest_fractions(list(cut, list(event_type = "tillage", date = "2013-07-01"))))
+show("check bare", check_harvest_fractions(list(cut, bare)))

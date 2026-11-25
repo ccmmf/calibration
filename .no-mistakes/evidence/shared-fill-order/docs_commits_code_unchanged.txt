@@ -1,0 +1,37 @@
+# Docs commits d660f3e + 7f70f9d (range 8ed6645..7f70f9d) change no executable R code
+## 1. Parsed code (comments dropped) of each R file, 8ed6645 vs HEAD
+fill_order.R             source lines differ: TRUE | parsed expressions: 7 vs 7 | parsed code identical: TRUE
+russell_split_phases.R   source lines differ: TRUE | parsed expressions: 276 vs 276 | parsed code identical: TRUE
+
+## 2. Same helper calls (helper_battery.R) against fill_order.R at 8ed6645 and at HEAD
+battery output 8ed6645: ab376165dd65  HEAD: ab376165dd65  identical
+
+## 3. Generator CLI startup, each revision copied with fill_order.R into a folder whose path has spaces
+--- pre_docs: $ Rscript "<scratch>/Google Drive pre_docs/event prep/russell_split_phases.R"   (no args)
+Error: usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv [irrigation_medians_csv]]
+Execution halted
+exit (of sed, see the Rscript exit status at the end)
+--- pre_docs: $ Rscript "<scratch>/Google Drive pre_docs/event prep/russell_split_phases.R" runs/russell_ranch/events_treatments/generator_stacked <scratch>/empty_century <scratch>/out_pre_docs
+Error in file(file, "rt", encoding = fileEncoding) : 
+  cannot open the connection
+Calls: rd -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt", encoding = fileEncoding) :
+  cannot open file '<scratch>/empty_century/plot_system.csv': No such file or directory
+Execution halted
+exit 1
+--- head: $ Rscript "<scratch>/Google Drive head/event prep/russell_split_phases.R"   (no args)
+Error: usage: russell_split_phases.R <generator_stacked_dir> <century_dir> <out_dir> [tillage_medians_csv [irrigation_medians_csv]]
+Execution halted
+exit (of sed, see the Rscript exit status at the end)
+--- head: $ Rscript "<scratch>/Google Drive head/event prep/russell_split_phases.R" runs/russell_ranch/events_treatments/generator_stacked <scratch>/empty_century <scratch>/out_head
+Error in file(file, "rt", encoding = fileEncoding) : 
+  cannot open the connection
+Calls: rd -> read.csv -> read.table -> file
+In addition: Warning message:
+In file(file, "rt", encoding = fileEncoding) :
+  cannot open file '<scratch>/empty_century/plot_system.csv': No such file or directory
+Execution halted
+exit 1
+pre_docs no-args Rscript exit status: 1
+head no-args Rscript exit status: 1

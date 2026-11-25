@@ -1,0 +1,29 @@
+# Doc wording checks at 7f70f9d
+## Phrases the intent removes (expect no hits)
+"David's order"                      hits: 0
+"David's fill order"                 hits: 0
+"David's rule"                       hits: 0
+"the shared lookup David asked for"  hits: 0
+"David asked for"                    hits: 0
+"(David, calibration#10)"            hits: 0
+
+## Text the intent adds (expect a hit each)
+README row for fill_order.R (David's suggested text)         21:| `fill_order.R` | No output files; provides reusable functions for selecting fallback data, recording provenance, and checking harvest fractions |
+README reason paragraph                                      47:The order goes from the most direct evidence to the most general: the paper and its data
+Russell README: lookup agreed on calibration#10              108:recomputes both from the package. This departs on purpose from the shared lookup agreed
+short ton comment gives the reason                           61:# US short ton per acre: a US field record in tons per acre means short tons, the US unit; the
+HARVEST_FRACTIONS SIPNET note                                24:#' SIPNET specific, as are harvest_fractions() and check_harvest_fractions() below: they follow
+HARVEST_FRACTIONS note issue link                            26:#' mapping of removal and litter transfer here (ccmmf/organization#306).
+README bullet SIPNET note                                    77:  SIPNET specific; another model would need its own harvest mapping (ccmmf/organization#306).
+
+## Person names on lines added by the two docs commits (8ed6645..HEAD), expect none
+none
+
+## Outputs and input tables changed on the branch (bb842cc..HEAD), expect none
+none
+
+## Remaining "David" mentions (the intent leaves these decision citations for the follow-up issue)
+tools/event_prep/fill_order.R:0
+tools/event_prep/README.md:0
+runs/russell_ranch/events_treatments/README.md:10
+tools/event_prep/russell_split_phases.R:8

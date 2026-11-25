@@ -1,0 +1,36 @@
+# testthat on tests/testthat/test_fill_order.R at 7f70f9d
+$ Rscript -e "testthat::test_file(\"tests/testthat/test_fill_order.R\", reporter = \"summary\")"
+fill_order: ....................................................
+
+══ DONE ════════════════════════════════════════════════════════════════════════
+   test                                                                               
+1  first_available takes the first candidate that has a value and names it            
+2  first_available falls back to the broader pool when the narrow one is too small    
+3  first_available returns only the values it counted                                 
+4  first_available counts events in a list and rows in a data frame                   
+5  first_available needs every candidate named                                        
+6  set_provenance tags an event and keeps its fields where they are                   
+7  set_provenance rejects a class the generators do not use                           
+8  a filled event must say where it came from and what it rests on                    
+9  a generator finds fill_order.R next to it when its path has a space                
+10 harvest_fractions writes all four fractions in SIPNET's order                      
+11 harvest_fractions has no defaults                                                  
+12 harvest_fractions rejects shares outside 0 to 1 or adding up past 1                
+13 check_harvest_fractions stops on a harvest missing a fraction                      
+14 a perennial cutting reaches SIPNET as written, not with its transfer as 1 - removed
+   nb failed skipped error
+1  5  0      FALSE   FALSE
+2  3  0      FALSE   FALSE
+3  6  0      FALSE   FALSE
+4  3  0      FALSE   FALSE
+5  2  0      FALSE   FALSE
+6  6  0      FALSE   FALSE
+7  3  0      FALSE   FALSE
+8  8  0      FALSE   FALSE
+9  2  0      FALSE   FALSE
+10 2  0      FALSE   FALSE
+11 2  0      FALSE   FALSE
+12 4  0      FALSE   FALSE
+13 3  0      FALSE   FALSE
+14 3  0      FALSE   FALSE
+exit status: 0
