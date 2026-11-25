@@ -1,0 +1,15 @@
+# What the machine-share change alters: event-by-event JSON comparison of the build at 9d51f54 (before 'Use machine harvest share') vs the build at 91a0c17
+$ python3 -I diff_events.py <scratch>/out_prev <scratch>/out_head1
+changed events by (type, crop): {('harvest', 'Tomato'): 93, ('harvest', 'Corn'): 56}
+  ('harvest', 'Corn') frac_above_removed_0to1: 56  [(0.462, 0.371)]
+  ('harvest', 'Corn') frac_above_to_litter_0to1: 56  [(0.538, 0.629)]
+  ('harvest', 'Corn') harvest_fraction_note: 56
+  ('harvest', 'Tomato') frac_above_removed_0to1: 93  [(0.55, 0.5)]
+  ('harvest', 'Tomato') frac_above_to_litter_0to1: 93  [(0.45, 0.5)]
+  ('harvest', 'Tomato') harvest_fraction_note: 93
+changes outside corn/tomato harvests: none
+phase_year_summary.csv: byte identical between the two builds
+
+## the harvest_fraction_note now carried (one distinct note per crop)
+Corn x56: Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry biomass from the manual harvests, n = 280; the shared lookup's F16 row removes 0.752; the machine harvest is what leaves the field (organization#302).
+Tomato x93: Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fruit and vine dry biomass from the manual harvests, the fruit dried at the plot's fruit moisture, n = 473, the repeated 2012 rows counted once; the green fruit stays in the field; the shared lookup's T32 row removes 0.33; the machine harvest is what leaves the field (organization#302); the green fruit to litter (David on calibration#10, 2026-11-02).

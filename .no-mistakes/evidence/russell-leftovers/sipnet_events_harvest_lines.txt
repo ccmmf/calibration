@@ -1,0 +1,53 @@
+# Downstream consumer: PEcAn.SIPNET::write.events.SIPNET (PEcAn.SIPNET 1.10.9000) on every committed Russell phase file
+# Rscript sipnet.R runs/russell_ranch/events_treatments <scratch>/sipnet_head   (exit 0; 23 events-*.in written)
+# harv line fields: above removed, below removed, above to litter, below to litter
+# note: the installed PEcAn.data.land ships only events_schema_v0.1.0.json, and the files declare pecan_events_version 0.1.1,
+#       so validate_events_json logs a version-constant error for all 23 files at base d660f3e and at 91a0c17 alike (pre-existing, not this change);
+#       relabelled to 0.1.0 in scratch copies, 23 of 23 files conform to the schema at both commits.
+
+events-alf_corn_tomato__corn-tomato-alfalfa-alfalfa-alfalfa-tomato.in                    valid,  18 harv lines: Corn 0.371 0 0.629 1 x1; Cover Crop 0 0 1 1 x7; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x1; Wheat 0 0 1 1 x1; Wheat 0.713 0 0.287 1 x7
+events-alf_corn_tomato__tomato-alfalfa-alfalfa-alfalfa-tomato-corn.in                    valid,  29 harv lines: Alfalfa 0.85 0 0 0 x13; Cover Crop 0 0 1 1 x8; Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x7
+events-conv_corn_tomato__corn-tomato.in                                                  valid,  21 harv lines: Corn 0.371 0 0.629 1 x8; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x10; Wheat 0.713 0 0.287 1 x2
+events-conv_corn_tomato__tomato-corn.in                                                  valid,  22 harv lines: Corn 0.371 0 0.629 1 x8; Sudangrass 0 0 1 1 x1; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x11; Wheat 0.713 0 0.287 1 x1
+events-conv_wheat_tomato__tomato-wheat.in                                                valid,  22 harv lines: Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x11; Wheat 0.713 0 0.287 1 x10
+events-conv_wheat_tomato__wheat-tomato.in                                                valid,  22 harv lines: Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x10; Wheat 0.713 0 0.287 1 x11
+events-irr_wheat_control__fallow-wheat.in                                                valid,  11 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x10
+events-irr_wheat_control__wheat-fallow.in                                                valid,  12 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x11
+events-irr_wheat_fallow__fallow-wheat.in                                                 valid,  11 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x10
+events-irr_wheat_fallow__wheat-fallow.in                                                 valid,  12 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x11
+events-irr_wheat_legume__cc-wheat.in                                                     valid,  16 harv lines: Cover Crop 0 0 1 1 x8; Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x7
+events-irr_wheat_legume__wheat-cc.in                                                     valid,  16 harv lines: Cover Crop 0 0 1 1 x7; Sudangrass 0.892 0 0.108 1 x1; Wheat 0 0 1 1 x1; Wheat 0.713 0 0.287 1 x7
+events-leg_corn_tomato__corn-cc-tomato-cc.in                                             valid,  35 harv lines: Corn 0.371 0 0.629 1 x8; Cover Crop 0 0 1 1 x14; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x10; Wheat 0.713 0 0.287 1 x1; Wheat 0.892 0 0.108 1 x1
+events-leg_corn_tomato__tomato-cc-corn-cc.in                                             valid,  36 harv lines: Corn 0.371 0 0.629 1 x8; Cover Crop 0 0 1 1 x15; Sudangrass 0 0 1 1 x1; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x10; Wheat 0.713 0 0.287 1 x1
+events-org_corn_tomato__corn-cc-tomato-cc.in                                             valid,  41 harv lines: Corn 0.371 0 0.629 1 x8; Cover Crop 0 0 1 1 x19; Sudangrass 0 0 1 1 x1; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x10; Wheat 0.713 0 0.287 1 x1; Wheat 0.892 0 0.108 1 x1
+events-org_corn_tomato__tomato-cc-corn-cc.in                                             valid,  42 harv lines: Corn 0.371 0 0.629 1 x8; Cover Crop 0 0 1 1 x20; Sudangrass 0 0 1 1 x1; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x11; Wheat 0.713 0 0.287 1 x1
+events-rf_wheat_control__fallow-wheat.in                                                 valid,  11 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x10
+events-rf_wheat_control__wheat-fallow.in                                                 valid,  12 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x11
+events-rf_wheat_fallow__fallow-wheat.in                                                  valid,  11 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x10
+events-rf_wheat_fallow__wheat-fallow.in                                                  valid,  12 harv lines: Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x11
+events-rf_wheat_legume__cc-wheat.in                                                      valid,  22 harv lines: Cover Crop 0 0 1 1 x11; Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x10
+events-rf_wheat_legume__wheat-cc.in                                                      valid,  22 harv lines: Cover Crop 0 0 1 1 x10; Sudangrass 0.892 0 0.108 1 x1; Wheat 0.713 0 0.287 1 x11
+events-transitional__tomato-corn.in                                                      valid,  36 harv lines: Corn 0.371 0 0.629 1 x7; Cover Crop 0 0 1 1 x15; Sudangrass 0 0 1 1 x1; Sudangrass 0.892 0 0.108 1 x1; Tomato 0.5 0 0.5 1 x9; Wheat 0.713 0 0.287 1 x3
+
+## events-conv_corn_tomato__corn-tomato.in, corn and tomato harv lines: base d660f3e (left) vs 91a0c17 (right)
+1993  215 harv   0.892 0 0.108 1     | 1993  215 harv   0.892 0 0.108 1
+1994  286 harv   0.462 0 0.538 1     | 1994  286 harv   0.371 0 0.629 1
+1995  251 harv   0.55 0 0.45 1       | 1995  251 harv   0.5 0 0.5 1
+1996  298 harv   0.462 0 0.538 1     | 1996  298 harv   0.371 0 0.629 1
+1997  227 harv   0.55 0 0.45 1       | 1997  227 harv   0.5 0 0.5 1
+1998  307 harv   0.462 0 0.538 1     | 1998  307 harv   0.371 0 0.629 1
+1999  244 harv   0.55 0 0.45 1       | 1999  244 harv   0.5 0 0.5 1
+2000  292 harv   0.462 0 0.538 1     | 2000  292 harv   0.371 0 0.629 1
+2001  239 harv   0.55 0 0.45 1       | 2001  239 harv   0.5 0 0.5 1
+2002  291 harv   0.462 0 0.538 1     | 2002  291 harv   0.371 0 0.629 1
+2003  233 harv   0.55 0 0.45 1       | 2003  233 harv   0.5 0 0.5 1
+2004  272 harv   0.462 0 0.538 1     | 2004  272 harv   0.371 0 0.629 1
+2005  238 harv   0.55 0 0.45 1       | 2005  238 harv   0.5 0 0.5 1
+2006  297 harv   0.462 0 0.538 1     | 2006  297 harv   0.371 0 0.629 1
+2007  254 harv   0.55 0 0.45 1       | 2007  254 harv   0.5 0 0.5 1
+2009  274 harv   0.55 0 0.45 1       | 2009  274 harv   0.5 0 0.5 1
+2010  190 harv   0.713 0 0.287 1     | 2010  190 harv   0.713 0 0.287 1
+2011  256 harv   0.55 0 0.45 1       | 2011  256 harv   0.5 0 0.5 1
+2012  177 harv   0.713 0 0.287 1     | 2012  177 harv   0.713 0 0.287 1
+2013  232 harv   0.55 0 0.45 1       | 2013  232 harv   0.5 0 0.5 1
+2014  279 harv   0.462 0 0.538 1     | 2014  279 harv   0.371 0 0.629 1

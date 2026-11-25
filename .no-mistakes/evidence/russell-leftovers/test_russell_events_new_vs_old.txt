@@ -1,0 +1,43 @@
+# tests/testthat/test_russell_events.R (new on this branch), run with testthat::test_file
+## A) against the committed files at 91a0c17
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 347 ]
+  test                                                                                     
+1 rainfed wheat carries the logged rate, not the paper's 146                               
+2 the spring 1999 rainfed urea is on the wheat plots, not the fallow ones                  
+3 irrigated wheat with no N record keeps the paper's 56 kg N/ha starter and 112 urea       
+4 a wheat-fallow fallow gets the two straw passes and four fallow diskings, six in all     
+5 the wheat and cover crop systems get no tillage in the summer fallow after the cover crop
+6 corn and tomato harvests remove the machine harvested share, the rest to litter          
+  nb  failed skipped error
+1   2 0      FALSE   FALSE
+2   8 0      FALSE   FALSE
+3   1 0      FALSE   FALSE
+4 168 0      FALSE   FALSE
+5  16 0      FALSE   FALSE
+6 152 0      FALSE   FALSE
+
+## B) the same test file against the committed files at 9d51f54 (before 'Use machine harvest share'): expected to fail only the harvest test
+[ FAIL 150 | WARN 0 | SKIP 0 | PASS 197 ]
+corn harvest failures (line 119): 56 (112 log lines; ProgressReporter prints each failure twice)
+tomato harvest failures (line 120): 93 (186 log lines)
+lookup check failures (line 122): 1 (2 log lines); 56 + 93 + 1 = 150
+first corn failure:
+Failure ('test_russell_events.R:119:3'): corn and tomato harvests remove the machine harvested share, the rest to litter
+unname(fr(e)) (`actual`) not equal to c(0.371, 0, 0.629, 1) (`expected`).
+
+  `actual`: 0.462 0.000 0.538 1.000
+`expected`: 0.371 0.000 0.629 1.000
+  test                                                                                     
+1 rainfed wheat carries the logged rate, not the paper's 146                               
+2 the spring 1999 rainfed urea is on the wheat plots, not the fallow ones                  
+3 irrigated wheat with no N record keeps the paper's 56 kg N/ha starter and 112 urea       
+4 a wheat-fallow fallow gets the two straw passes and four fallow diskings, six in all     
+5 the wheat and cover crop systems get no tillage in the summer fallow after the cover crop
+6 corn and tomato harvests remove the machine harvested share, the rest to litter          
+  nb  failed skipped error
+1   2   0    FALSE   FALSE
+2   8   0    FALSE   FALSE
+3   1   0    FALSE   FALSE
+4 168   0    FALSE   FALSE
+5  16   0    FALSE   FALSE
+6 152 150    FALSE   FALSE

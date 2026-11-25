@@ -1,0 +1,7 @@
+corn  machine dry grain / hand aboveground dry biomass: n = 280 (rows in file 280), median 0.371427591628629, IQR 0.316 to 0.412
+corn  (old basis) hand grain / hand aboveground dry biomass: n = 280 (rows in file 280), median 0.461893398328175, IQR 0.413 to 0.504
+tomato machine dry fruit / hand red+green (dried at fruit moisture)+vine dry: n = 473 (rows in file 535), median 0.499764773738553, IQR 0.441 to 0.550
+tomato (old basis) hand red fruit / same whole: n = 473 (rows in file 535), median 0.550441361916772, IQR 0.496 to 0.595
+
+russell_harvest_lookup.csv corn: above_removed 0.371, above_to_litter 0.629, lookup_above_removed 0.371427591628629  | independent median 0.371427591628629 -> MATCH
+russell_harvest_lookup.csv tomato: above_removed 0.5, above_to_litter 0.5, lookup_above_removed 0.499764773738553  | independent median 0.499764773738553 -> MATCH

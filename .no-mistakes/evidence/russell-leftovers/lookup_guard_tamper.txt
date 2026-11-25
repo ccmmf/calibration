@@ -1,0 +1,36 @@
+# Guard: russell_split_phases.R recomputes the corn and tomato machine shares from the package and stops unless russell_harvest_lookup.csv matches
+# each case: git archive of 91a0c17 with only russell_harvest_lookup.csv edited, then the documented rebuild command into a fresh <scratch>/out_<case>
+
+## tamper_old: corn and tomato rows reverted to the pre-change hand shares (0.462/0.538, 0.55/0.45)
+2,3c2,3
+< corn,site samples,0.371,0.629,0.371427591628629,"Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry bio
+< tomato,site samples,0.5,0.5,0.499764773738553,"Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fr
+---
+> corn,site samples,0.462,0.538,0.461893398328175,"Russell Ranch corn_harvests_all.csv: median share of grain in aboveground dry biomass, n = 280; the
+> tomato,site samples,0.55,0.45,0.550441361916772,"Russell Ranch tomato_harvests_all.csv manual harvests: median share of red fruit in red fruit, gree
+exit status 1; output files written: 0
+R stderr:
+    Error: abs(as.numeric(r$lookup_above_removed) - SITE_SHARE[[crop]]) <  .... is not TRUE
+    Execution halted
+
+## tamper_round: corn above_removed 0.372 / to_litter 0.628, exact median column left at 0.371427591628629
+2c2
+< corn,site samples,0.371,0.629,0.371427591628629,"Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry bio
+---
+> corn,site samples,0.372,0.628,0.371427591628629,"Russell Ranch corn_harvests_all.csv: median of machine harvested dry grain over aboveground dry bio
+exit status 1; output files written: 0
+R stderr:
+    Error: r$above_removed == round(SITE_SHARE[[crop]], 3) is not TRUE
+    Execution halted
+
+## tamper_tomato: tomato exact median column off by 1e-9 (0.499764774738553), rounded 0.5 unchanged
+3c3
+< tomato,site samples,0.5,0.5,0.499764773738553,"Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fr
+---
+> tomato,site samples,0.5,0.5,0.499764774738553,"Russell Ranch tomato_harvests_all.csv: median of machine harvested dry fruit over red fruit, green fr
+exit status 1; output files written: 0
+R stderr:
+    Error: abs(as.numeric(r$lookup_above_removed) - SITE_SHARE[[crop]]) <  .... is not TRUE
+    Execution halted
+
+## control: unedited lookup (out_head1 above): exit 0, 24 files written
